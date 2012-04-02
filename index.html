@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ofxUI: A User Interface Library for openFrameworks from Reza on Vimeo. ofxUI: A User Interface Addon for OF を使うと openFrameworks に ofxControlPanel &hellip;">
+  <meta name="description" content="ofxOpenCv を of007 で使うためのちょっとしたメモです。 1. addons に of/addons/ofxOpenCv をドラッグ。src 以外は参照を消してしまう。 2. Build Settings -> Linking -> Other Linker Flags に以下を設定 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T00:36:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
+
+<p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
+
+<p>2. Build Settings -> Linking -> Other Linker Flags に以下を設定。</p>
+
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
+</code></pre>
+
+<p>3. Build Settings -> Search Paths -> Header Search Paths に以下を設定。</p>
+
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
+    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
+    $(OF_PATH)/addons/ofxOpenCv/src
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -319,6 +369,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to use ofxOpenCv on of007</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/04/02/how-to-use-ofxui/">How to use ofxUI</a>
