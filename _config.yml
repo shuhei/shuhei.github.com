@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
+url: http://shuhei.github.com
 title: My Octopress Blog
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: Shuhei Kagawa
 simple_search: http://google.com/search
 description:
 
