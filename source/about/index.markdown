@@ -6,4 +6,4 @@ comments: true
 sharing: true
 footer: true
 ---
-Hi there! I'm Shuhei.
+こんにちは。かがわです。
