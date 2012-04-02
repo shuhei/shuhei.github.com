@@ -2,15 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2012-04-02T12:12:58+09:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://shuhei.github.com/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2012-04-02T12:36:32+09:00</updated>
+  <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Test]]></title>
+    <link href="http://shuhei.github.com/blog/2012/04/02/test/"/>
+    <updated>2012-04-02T12:35:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2012/04/02/test</id>
+    <content type="html"><![CDATA[<p>Hello, World!</p>
+]]></content>
+  </entry>
   
 </feed>
