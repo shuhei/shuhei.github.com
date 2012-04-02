@@ -4,7 +4,7 @@
   <title><![CDATA[Category: openFrameworks | My Octopress Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/openframeworks/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2012-04-02T21:23:51+09:00</updated>
+  <updated>2012-04-02T21:29:22+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -146,7 +146,7 @@ else if(e.widget-&gt;getName() == "FULLSCREEN")
 
 <p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
 
-<p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみとよいでしょう。</p>
+<p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
 ]]></content>
   </entry>
   
