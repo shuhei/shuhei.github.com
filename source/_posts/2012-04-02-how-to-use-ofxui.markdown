@@ -8,10 +8,11 @@ tags:
 categories: openFrameworks
 ---
 
+{% vimeo 36385123 800 600 %}
 
 [ofxUI: A User Interface Addon for OF](http://www.syedrezaali.com/blog/?p=2172) を使うと openFrameworks に [ofxControlPanel](https://github.com/ofTheo/ofxControlPanel) よりもちょっとかっこいい UI を追加することができます。[github のページ](https://github.com/rezaali/ofxUI) の Readme を超訳してみました。
 
-1\. ofxUI をダウンロード。中の src を of/addons の中に移して、名前を ofxUI にします。残りは of/apps に移して ofxUIExamples などとします。すると以下のようなファイル構成になります。
+1\. [ダウンロードページ](https://github.com/rezaali/ofxUI/downloads)から ofxUI をダウンロード。中の `src` を `of/addons` の中に移して、名前を `ofxUI` にします。残りは `of/apps` に移して `ofxUIExamples` などとします。すると以下のようなファイル構成になります。
 
         of
         |--- addons
@@ -28,15 +29,15 @@ categories: openFrameworks
         |         |--- ...
         |--- …
 
-2\. of/apps/examples/emptyExample を of/apps/myapps 以下にコピーして新しいプロジェクトを作ります。
+2\. `of/apps/examples/emptyExample` を `of/apps/myapps` 以下にコピーして新しいプロジェクトを作ります。
 
 3\. 新しく作ったプロジェクトを Xcode で開きます。
 
-4\. Xcode の左側の addons のところに Finder から of/addons/ofxUI をドラッグアンドドロップします。
+4\. Xcode の左側の `addons` のところに Finder から `of/addons/ofxUI` をドラッグアンドドロップします。
 
-5\. "Choose options for adding these files" と聞かれたら、何もせず "finish" を押します。of/addons/ofxXmlSettings も同様に Xcode の addons フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。
+5\. "Choose options for adding these files" と聞かれたら、何もせず "finish" を押します。`of/addons/ofxXmlSettings` も同様に Xcode の `addons` フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。
 
-6\. Finder で of/apps/ofxUIExamples/example-ofxUIAllWidgets/bin/data/GUI をコピーし、プロジェクトの bin/data に入れます。
+6\. Finder で `of/apps/ofxUIExamples/example-ofxUIAllWidgets/bin/data/GUI` をコピーし、プロジェクトの `bin/data` に入れます。
 
 7\. アプリのヘッダファイル（testApp.h）で "ofxUI.h" を include します。
 
@@ -63,13 +64,13 @@ void testApp::guiEvent(ofxUIEventArgs &e)
 }
 ```
 
-10\. setup() の中で初期化。引数は GUI の左上の点の座標と幅と高さです。
+10\. `setup()` の中で初期化。引数は GUI の左上の点の座標と幅と高さです。
 
 ```cpp
 gui = new ofxUICanvas(0,0,320,320);          //ofxUICanvas(float x, float y, float width, float height)         
 ```
 
-11\. exit はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。
+11\. `exit()` はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。
 
 ```cpp
 void testApp::exit()
@@ -101,13 +102,13 @@ void testApp::guiEvent(ofxUIEventArgs &e)
 }
 ```
 
-14\. フルスクリーンモードとウィンドウモードを切り替えるためにトグルを追加します。setup メソッドの中で他のウィジェットの後に以下を追加。もしこれをもうひとつの addWidgetDown の呼び出しの前に書けば、トグルはスライダーの上に置かれます。
+14\. フルスクリーンモードとウィンドウモードを切り替えるためにトグルを追加します。`setup()` メソッドの中で他のウィジェットの後に以下を追加。もしこれをもうひとつの `addWidgetDown` の呼び出しの前に書けば、トグルはスライダーの上に置かれます。
 
 ```cpp
 gui->addWidgetDown(new ofxUIToggle(32, 32, false, "FULLSCREEN"));
 ```
 
-15\. "FULLSCREEN" トグルウィジェットに対応するため、guiEvent メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。
+15\. "FULLSCREEN" トグルウィジェットに対応するため、`guiEvent` メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。
 
 ```cpp
 void testApp::guiEvent(ofxUIEventArgs &e)

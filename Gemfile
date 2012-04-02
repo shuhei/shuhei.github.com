@@ -13,6 +13,7 @@ group :development do
   gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off'
   gem 'stringex'
   gem 'liquid', '2.2.2'
+  gem 'multi_json'
 end
 
 gem 'sinatra', '1.2.6'
