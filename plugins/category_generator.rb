@@ -156,6 +156,12 @@ module Jekyll
       end
     end
 
+    # Outputs a link of a category.
+    # 
+    #  +category+ is an item of site.categories.
+    #
+    # Returns string
+    # 
     def category_link(category)
       dir = @context.registers[:site].config['category_dir']
       category = category[0]
