@@ -9,7 +9,11 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ofxOpenCv を of007 で使うためのちょっとしたメモです。 1. addons に of/addons/ofxOpenCv をドラッグ。src 以外は参照を消してしまう。 2. Build Settings -> Linking -> Other Linker Flags に以下を設定 &hellip;">
+  <meta name="description" content="サイドバーにカテゴリー一覧を出してみました。 diff --git a/_config.yml b/_config.yml
+index 5c7d335..7ad03bb 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -45,7 +45,7 @@ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +81,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T09:20:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
+
+<div><script src='https://gist.github.com/2288181.js?file='></script>
+<noscript><pre><code>diff --git a/_config.yml b/_config.yml
+index 5c7d335..7ad03bb 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
+ 
+ # list each of the sidebar modules you want to include, in the order you want them to appear.
+ # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
++default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
+ 
+ # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+ # and add an array with the asides you want to use.
+</code></pre></noscript></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -383,6 +442,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/03/category-index-for-octopress/">Category index for Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to use ofxOpenCv on of007</a>
       </li>
     
@@ -401,6 +464,8 @@
   <ul>
     
       <li><a class='category' href='/blog/categories/openframeworks/'>openFrameworks</a></li>
+    
+      <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
   </ul>
 </section>

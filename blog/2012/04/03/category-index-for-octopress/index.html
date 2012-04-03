@@ -5,12 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Test - かがわブログ</title>
+  <title>Category index for Octopress - かがわブログ</title>
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="Hello, World!
-">
+  <meta name="description" content="サイドバーにカテゴリー一覧を出してみました。 diff --git a/_config.yml b/_config.yml
+index 5c7d335..7ad03bb 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -45,7 +45,7 @@ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/2012/04/02/test">
+  <link rel="canonical" href="http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +84,7 @@
   
   <header>
     
-      <h1 class="entry-title">Test</h1>
+      <h1 class="entry-title">Category Index for Octopress</h1>
     
     
       <p class="meta">
@@ -97,14 +100,33 @@
   
 
 
-<time datetime="2012-04-02T12:35:00+09:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+<time datetime="2012-04-03T09:20:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Hello, World!</p>
+<div class="entry-content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
+
+<div><script src='https://gist.github.com/2288181.js?file='></script>
+<noscript><pre><code>diff --git a/_config.yml b/_config.yml
+index 5c7d335..7ad03bb 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
+ 
+ # list each of the sidebar modules you want to include, in the order you want them to appear.
+ # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
++default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
+ 
+ # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+ # and add an array with the asides you want to use.
+</code></pre></noscript></div>
+
+
+
 </div>
 
 
@@ -127,15 +149,21 @@
   
 
 
-<time datetime="2012-04-02T12:35:00+09:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+<time datetime="2012-04-03T09:20:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://shuhei.github.com/blog/2012/04/02/test/" data-via="" data-counturl="http://shuhei.github.com/blog/2012/04/02/test/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress/" data-via="" data-counturl="http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress/" >Tweet</a>
   
   
   
@@ -144,8 +172,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/" title="Previous Post: How to use ofxOpenCv on of007">&laquo; How to use ofxOpenCv on of007</a>
       
-        <a class="basic-alignment right" href="/blog/2012/04/02/how-to-use-ofxui/" title="Next Post: How to use ofxUI">How to use ofxUI &raquo;</a>
       
     </p>
   </footer>
