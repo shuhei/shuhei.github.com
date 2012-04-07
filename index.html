@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="Perfume Global のデータで遊んでみました。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは github にあります。 Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT &hellip;">
+  <meta name="description" content="最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の watchr を使って、ファイルを更新したら自動でコンパイルするように設定。 watch('(.*)\.coffee') { |md| system & &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +83,51 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/">普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-07T13:30:00+09:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
+
+<div><script src='https://gist.github.com/2325038.js?file='></script>
+<noscript><pre><code>watch('(.*)\.coffee') { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
+watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
+
+
+<p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/04/03/perfume-dev/">Perfume Dev</a></h1>
     
     
@@ -100,6 +145,8 @@
 
 
 <time datetime="2012-04-03T14:07:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/03/perfume-dev/#disqus_thread">Comments</a>
         
       </p>
     
@@ -140,6 +187,8 @@
 
 
 <time datetime="2012-04-03T09:20:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/03/category-index-for-octopress/#disqus_thread">Comments</a>
         
       </p>
     
@@ -196,6 +245,8 @@ index 5c7d335..7ad03bb 100644
 
 <time datetime="2012-04-03T00:36:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
         
+         | <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
@@ -245,6 +296,8 @@ index 5c7d335..7ad03bb 100644
 
 
 <time datetime="2012-04-02T20:13:00+09:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/02/how-to-use-ofxui/#disqus_thread">Comments</a>
         
       </p>
     
@@ -452,6 +505,8 @@ index 5c7d335..7ad03bb 100644
 
 <time datetime="2012-04-02T12:35:00+09:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
         
+         | <a href="/blog/2012/04/02/test/#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
@@ -478,6 +533,10 @@ index 5c7d335..7ad03bb 100644
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/">普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/03/perfume-dev/">Perfume Dev</a>
       </li>
     
@@ -491,10 +550,6 @@ index 5c7d335..7ad03bb 100644
     
       <li class="post">
         <a href="/blog/2012/04/02/how-to-use-ofxui/">How to use ofxUI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/02/test/">Test</a>
       </li>
     
   </ul>
@@ -558,6 +613,19 @@ index 5c7d335..7ad03bb 100644
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'shuhei';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
