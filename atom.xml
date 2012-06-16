@@ -4,7 +4,7 @@
   <title><![CDATA[かがわブログ]]></title>
   <link href="http://shuhei.github.com/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2012-04-07T13:43:50+09:00</updated>
+  <updated>2012-06-16T21:32:26+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[3D LUT]]></title>
+    <link href="http://shuhei.github.com/blog/2012/06/01/3d-lut/"/>
+    <updated>2012-06-01T21:22:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2012/06/01/3d-lut</id>
+    <content type="html"><![CDATA[<p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。</p>
+
+<p>フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
+
+<p>エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
+<a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて]]></title>

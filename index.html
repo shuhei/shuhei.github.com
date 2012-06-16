@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の watchr を使って、ファイルを更新したら自動でコンパイルするように設定。 watch('(.*)\.coffee') { |md| system & &hellip;">
+  <meta name="description" content="openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。 フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/01/3d-lut/">3D LUT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T21:22:00+09:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/06/01/3d-lut/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。</p>
+
+<p>フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
+
+<p>エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
+<a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -533,6 +576,10 @@ index 5c7d335..7ad03bb 100644
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/">普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a>
       </li>
     
@@ -546,10 +593,6 @@ index 5c7d335..7ad03bb 100644
     
       <li class="post">
         <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to use ofxOpenCv on of007</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/02/how-to-use-ofxui/">How to use ofxUI</a>
       </li>
     
   </ul>
