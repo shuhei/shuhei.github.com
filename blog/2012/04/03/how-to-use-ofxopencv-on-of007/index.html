@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ofxOpenCv を of007 で使うためのちょっとしたメモです。 1. addons に of/addons/ofxOpenCv をドラッグ。src 以外は参照を消してしまう。 2. Build Settings -> Linking -> Other Linker Flags に以下を設定 &hellip;">
+  <meta name="description" content="ofxOpenCv を of007 で使うためのちょっとしたメモです。 1. addons に of/addons/ofxOpenCv をドラッグ。src 以外は参照を消してしまう。 2. Build Settings &ndash;> Linking &ndash;> Other Linker &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="かがわブログ" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -109,12 +110,12 @@
 
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 
-<p>2. Build Settings -> Linking -> Other Linker Flags に以下を設定。</p>
+<p>2. Build Settings &ndash;> Linking &ndash;> Other Linker Flags に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
 </code></pre>
 
-<p>3. Build Settings -> Search Paths -> Header Search Paths に以下を設定。</p>
+<p>3. Build Settings &ndash;> Search Paths &ndash;> Header Search Paths に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
     $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
@@ -156,7 +157,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/" data-via="" data-counturl="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/" data-via="" data-counturl="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/" >Tweet</a>
   
   
   
@@ -201,11 +202,11 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/03/category-index-for-octopress/">Category index for Octopress</a>
+        <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to use ofxOpenCv on of007</a>
+        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -218,7 +219,7 @@
     
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
-      <li><a class='category' href='/blog/categories/three-js/'>Three.js</a></li>
+      <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
     
   </ul>
 </section>
@@ -232,7 +233,7 @@
   <a href="https://github.com/shuhei">@shuhei</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -264,7 +265,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Shuhei Kagawa -
+  Copyright &copy; 2013 - Shuhei Kagawa -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -298,7 +299,7 @@
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

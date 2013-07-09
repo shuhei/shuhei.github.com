@@ -4,7 +4,7 @@
   <title><![CDATA[かがわブログ]]></title>
   <link href="http://shuhei.github.com/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2012-06-16T21:32:26+09:00</updated>
+  <updated>2013-07-10T00:34:40+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -18,11 +18,9 @@
     <link href="http://shuhei.github.com/blog/2012/06/01/3d-lut/"/>
     <updated>2012-06-01T21:22:00+09:00</updated>
     <id>http://shuhei.github.com/blog/2012/06/01/3d-lut</id>
-    <content type="html"><![CDATA[<p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。</p>
+    <content type="html"><![CDATA[<p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
 
-<p>フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
-
-<p>エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
+<p>Instagram 風の example を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
 <a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
 ]]></content>
   </entry>
@@ -34,7 +32,7 @@
     <id>http://shuhei.github.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website</id>
     <content type="html"><![CDATA[<p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
-<div><script src='https://gist.github.com/2325038.js?file='></script>
+<div><script src='https://gist.github.com/2325038.js'></script>
 <noscript><pre><code>watch('(.*)\.coffee') { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
 watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
 
@@ -63,7 +61,7 @@ watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; 
     <id>http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress</id>
     <content type="html"><![CDATA[<p>サイドバーにカテゴリー一覧を出してみました。</p>
 
-<div><script src='https://gist.github.com/2288181.js?file='></script>
+<div><script src='https://gist.github.com/2288181.js'></script>
 <noscript><pre><code>diff --git a/_config.yml b/_config.yml
 index 5c7d335..7ad03bb 100644
 --- a/_config.yml
@@ -93,12 +91,12 @@ index 5c7d335..7ad03bb 100644
 
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 
-<p>2. Build Settings -> Linking -> Other Linker Flags に以下を設定。</p>
+<p>2. Build Settings &ndash;> Linking &ndash;> Other Linker Flags に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
 </code></pre>
 
-<p>3. Build Settings -> Search Paths -> Header Search Paths に以下を設定。</p>
+<p>3. Build Settings &ndash;> Search Paths &ndash;> Header Search Paths に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
     $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
@@ -144,11 +142,11 @@ index 5c7d335..7ad03bb 100644
 
 <p>4. Xcode の左側の <code>addons</code> のところに Finder から <code>of/addons/ofxUI</code> をドラッグアンドドロップします。</p>
 
-<p>5. &#8220;Choose options for adding these files&#8221; と聞かれたら、何もせず &#8220;finish&#8221; を押します。<code>of/addons/ofxXmlSettings</code> も同様に Xcode の <code>addons</code> フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。</p>
+<p>5. &ldquo;Choose options for adding these files&rdquo; と聞かれたら、何もせず &ldquo;finish&rdquo; を押します。<code>of/addons/ofxXmlSettings</code> も同様に Xcode の <code>addons</code> フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。</p>
 
 <p>6. Finder で <code>of/apps/ofxUIExamples/example-ofxUIAllWidgets/bin/data/GUI</code> をコピーし、プロジェクトの <code>bin/data</code> に入れます。</p>
 
-<p>7. アプリのヘッダファイル（testApp.h）で &#8220;ofxUI.h&#8221; を include します。</p>
+<p>7. アプリのヘッダファイル（testApp.h）で &ldquo;ofxUI.h&rdquo; を include します。</p>
 
 <p>8. ヘッダに続けて以下の変数と関数を追加。</p>
 
@@ -249,7 +247,7 @@ index 5c7d335..7ad03bb 100644
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>15. &#8220;FULLSCREEN&#8221; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
+<p>15. &ldquo;FULLSCREEN&rdquo; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

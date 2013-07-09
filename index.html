@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。 フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い &hellip;">
+  <meta name="description" content="openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://shuhei.github.com">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="かがわブログ" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -108,11 +109,9 @@
   </header>
 
 
-  <div class="entry-content"><p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。</p>
+  <div class="entry-content"><p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
 
-<p>フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
-
-<p>エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
+<p>Instagram 風の example を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
 <a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
 </div>
   
@@ -153,7 +152,7 @@
 
   <div class="entry-content"><p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
-<div><script src='https://gist.github.com/2325038.js?file='></script>
+<div><script src='https://gist.github.com/2325038.js'></script>
 <noscript><pre><code>watch('(.*)\.coffee') { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
 watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
 
@@ -240,7 +239,7 @@ watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; 
 
   <div class="entry-content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
 
-<div><script src='https://gist.github.com/2288181.js?file='></script>
+<div><script src='https://gist.github.com/2288181.js'></script>
 <noscript><pre><code>diff --git a/_config.yml b/_config.yml
 index 5c7d335..7ad03bb 100644
 --- a/_config.yml
@@ -299,12 +298,12 @@ index 5c7d335..7ad03bb 100644
 
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 
-<p>2. Build Settings -> Linking -> Other Linker Flags に以下を設定。</p>
+<p>2. Build Settings &ndash;> Linking &ndash;> Other Linker Flags に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
 </code></pre>
 
-<p>3. Build Settings -> Search Paths -> Header Search Paths に以下を設定。</p>
+<p>3. Build Settings &ndash;> Search Paths &ndash;> Header Search Paths に以下を設定。</p>
 
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
     $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
@@ -379,11 +378,11 @@ index 5c7d335..7ad03bb 100644
 
 <p>4. Xcode の左側の <code>addons</code> のところに Finder から <code>of/addons/ofxUI</code> をドラッグアンドドロップします。</p>
 
-<p>5. &#8220;Choose options for adding these files&#8221; と聞かれたら、何もせず &#8220;finish&#8221; を押します。<code>of/addons/ofxXmlSettings</code> も同様に Xcode の <code>addons</code> フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。</p>
+<p>5. &ldquo;Choose options for adding these files&rdquo; と聞かれたら、何もせず &ldquo;finish&rdquo; を押します。<code>of/addons/ofxXmlSettings</code> も同様に Xcode の <code>addons</code> フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。</p>
 
 <p>6. Finder で <code>of/apps/ofxUIExamples/example-ofxUIAllWidgets/bin/data/GUI</code> をコピーし、プロジェクトの <code>bin/data</code> に入れます。</p>
 
-<p>7. アプリのヘッダファイル（testApp.h）で &#8220;ofxUI.h&#8221; を include します。</p>
+<p>7. アプリのヘッダファイル（testApp.h）で &ldquo;ofxUI.h&rdquo; を include します。</p>
 
 <p>8. ヘッダに続けて以下の変数と関数を追加。</p>
 
@@ -484,7 +483,7 @@ index 5c7d335..7ad03bb 100644
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>15. &#8220;FULLSCREEN&#8221; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
+<p>15. &ldquo;FULLSCREEN&rdquo; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -588,11 +587,11 @@ index 5c7d335..7ad03bb 100644
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/03/category-index-for-octopress/">Category index for Octopress</a>
+        <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to use ofxOpenCv on of007</a>
+        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -605,7 +604,7 @@ index 5c7d335..7ad03bb 100644
     
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
-      <li><a class='category' href='/blog/categories/three-js/'>Three.js</a></li>
+      <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
     
   </ul>
 </section>
@@ -619,7 +618,7 @@ index 5c7d335..7ad03bb 100644
   <a href="https://github.com/shuhei">@shuhei</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -650,7 +649,7 @@ index 5c7d335..7ad03bb 100644
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Shuhei Kagawa -
+  Copyright &copy; 2013 - Shuhei Kagawa -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -681,7 +680,7 @@ index 5c7d335..7ad03bb 100644
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
