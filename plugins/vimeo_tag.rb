@@ -17,12 +17,17 @@ module Jekyll
 
     def render(context)
       if parts = @text.match(/(\d+) (\d+) (\d+)/)
-        id, width, height = parts[1].strip, parts[2].strip, parts[3].strip
+        id, width, height = parts[1..3].map(&:strip)
       end
 
       vimeo = get_vimeo(id)
       <<-HTML
-<iframe src="http://player.vimeo.com/video/#{id}?color=ffffff" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe><p><a href="http://vimeo.com/#{id}">#{vimeo["title"]}</a> from <a href="#{vimeo["author_url"]}">#{vimeo["author_name"]}</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<iframe src="http://player.vimeo.com/video/#{id}?color=ffffff" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<p>
+  <a href="http://vimeo.com/#{id}">#{vimeo["title"]}</a> from
+  <a href="#{vimeo["author_url"]}">#{vimeo["author_name"]}</a> on
+  <a href="http://vimeo.com">Vimeo</a>.
+</p>
       HTML
     end
 
