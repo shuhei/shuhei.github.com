@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby の Hash#default]]></title>
+    <link href="http://shuhei.github.com/blog/2010/02/17/hashdefault/"/>
+    <updated>2010-02-17T12:45:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2010/02/17/hashdefault</id>
+    <content type="html"><![CDATA[<p>Windows XP の Ruby 1.8.7 で</p>
+
+<p>pre(prettyprint). h = {}
+h.default = []
+h[&ldquo;hello&rdquo;] &lt;&lt; &ldquo;world&rdquo;</p>
+
+<p>としたとき</p>
+
+<p>pre(prettyprint). puts h.size # => 1
+puts h # => {&ldquo;hello&rdquo;=>[&ldquo;world&rdquo;]}</p>
+
+<p>となるのを期待していたのですが @{}@ と出力されます。
+さらに、なんと以下のようになりました。</p>
+
+<p>pre(prettyprint). puts h[&ldquo;foo&rdquo;] # => [&ldquo;world&rdquo;]</p>
+
+<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[さくらのレンタルサーバに Ruby on Rails を入れる]]></title>
+    <link href="http://shuhei.github.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/"/>
+    <updated>2008-05-11T13:27:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet</id>
+    <content type="html"><![CDATA[<p>基本的には以下のサイトを参考に。</p>
+
+<ul>
+    <li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura.html">がんちゃんのブログ: さくらのレンタルサーバにRuby on Railsをインストールする方法</a></li>
+    <li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura-part2.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Railsをインストールする方法 その2</a></li>
+</ul>
+
+
+<p>ここまで進めると、sqlite3 と sqlite3-ruby が入っていない場合はエラーが出ます。
+なので、以下を参考にインストール。</p>
+
+<p><a href="http://ruby.g.hatena.ne.jp/garyo/20070507">「2007-05-07 &ndash; Rubyの魔神 &ndash; はてな？Rubyグループ」</a></p>
+
+<p>これでやっと準備が整いました。
+で、何かサンプルを作ってみようとしていろいろやってみましたが、うまくいかず。
+本でも買ってからやろうかと思います。</p>
+
+<h3>追記</h3>
+
+
+<p>Rails 2.0.2 用の方法が別に書いてありました。
+最初からこれでやればよかった・・・。</p>
+
+<p><a href="http://iwatakenichi.blogspot.com/2008/05/ruby-on-rails-202-and-rubygems-111-on.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Rails 2.0.2をインストールする方法</a></p>
+]]></content>
+  </entry>
+  
+</feed>

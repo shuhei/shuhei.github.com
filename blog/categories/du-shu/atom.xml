@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 読書 | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/du-shu/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[今日届いた本（実用Subversion、Getting Real）]]></title>
+    <link href="http://shuhei.github.com/blog/2009/09/20/todays-shipped-books/"/>
+    <updated>2009-09-20T02:20:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/09/20/todays-shipped-books</id>
+    <content type="html"><![CDATA[<p>&ldquo;実用 Subversion 第二版&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22">http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22</a></p>
+
+<p>職場で Subversion の管理をしているのですが、Subversion について知らなさすぎると思い買ってみた本です。
+引き継いだ時からバックアップがされておらず、何とかしないと思いつつも何もやっていませんでした。そんな中、先日調査してみると結構な数のレポジトリが壊れているとのこと。何とかしなければなりません。
+日頃は、管理者としてはレポジトリを作ったりユーザを追加したりする程度。ユーザとしては TortoiseSVN ごしに使う程度です。
+必要は何とかの母、ということで、この機会に理解を深めようかと思います。</p>
+
+<p>&ldquo;Getting Real&rdquo;:<a href="http://gettingreal.37signals.com/GR_jpn.php">http://gettingreal.37signals.com/GR_jpn.php</a></p>
+
+<p>Ruby on Rails を作った 37signals。彼らのソフトウェア開発に対する考え方が書かれた本です。同じ内容のものが、ウェブ上で無料で公開されています。少し読んで気に入り、紙媒体で読みたくて購入してみました。
+シンプルにシンプルに。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近買った本 2009年7月]]></title>
+    <link href="http://shuhei.github.com/blog/2009/08/02/recently-bought-books-2009-07/"/>
+    <updated>2009-08-02T21:17:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/08/02/recently-bought-books-2009-07</id>
+    <content type="html"><![CDATA[<p>h3. &ldquo;骨—第5回企画展「骨」展展覧会カタログ 山中俊治ディレクション&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22">http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22</a></p>
+
+<p>展示会が面白かったので買いました。どうつくるかより何を作るかに目を向けなければ。</p>
+
+<p>h3. &ldquo;レガシーコード改善ガイド&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4798116831/nanataisan-22">http://amazon.co.jp/o/ASIN/4798116831/nanataisan-22</a></p>
+
+<p>仕事でまさにレガシーコードと格闘しているので・・・。</p>
+
+<p>h3. &ldquo;xUnit Test Patterns: Refactoring Test Code&rdquo;:<a href="http://amazon.co.jp/o/ASIN/0131495054/nanataisan-22">http://amazon.co.jp/o/ASIN/0131495054/nanataisan-22</a></p>
+
+<p>何となく買ってみたら 900 ページ近くもあってビックリ。</p>
+
+<p>うーん、あんまり買ってませんね。その上、実際に読んだのはレガシーコード改善ガイドのみ。7月は、飲んだり会社に遅くまでいたりで、本を読む気力・体力がなかったことが原因かもしれません。8月はもうすこしゆったり過ごしたいと思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[今週買った本 090622-28]]></title>
+    <link href="http://shuhei.github.com/blog/2009/06/28/this-weeks-books-090622-28/"/>
+    <updated>2009-06-28T23:39:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/06/28/this-weeks-books-090622-28</id>
+    <content type="html"><![CDATA[<p>h3. &ldquo;Learning OpenCV &ndash; Computer Vision with the OpenCV Library&rdquo;:<a href="http://amazon.co.jp/o/ASIN/0596516134/nanataisan-22">http://amazon.co.jp/o/ASIN/0596516134/nanataisan-22</a></p>
+
+<p>オライリーの OpenCV 本です。OpenCV のリファレンスというよりは、OpenCV を使ったコンピュータビジョンの解説書といった趣き。まだほとんど読んでいませんが、とても勉強になりそうです。</p>
+
+<p>h3. &ldquo;創造はシステムである　- 「失敗学」から「創造学」へ&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4047101885/nanataisan-22">http://amazon.co.jp/o/ASIN/4047101885/nanataisan-22</a></p>
+
+<p>半分くらい読みました。創造を「自分で目的を設定して、自分にとって新しい作品や作業を、新たに作ること」と定義。最初の「自分で目的を設定する」ことがなかなかできない自分にぴったりかなと。</p>
+
+<p>h3. &ldquo;四畳半神話体系&rdquo;:<a href="http://amazon.co.jp/o/ASIN/404387801X/nanataisan-22">http://amazon.co.jp/o/ASIN/404387801X/nanataisan-22</a></p>
+
+<p>「夜は短し、歩けよ乙女」の森見登美彦の小説。これはまだ1ページも読んでいません。衒学趣味かつ馬鹿馬鹿しい世界観が心地良いかなと思って購入。タイトルからするとラブクラフト好きなのでしょうか？「夜は・・・」を読んだ感じでは、あまり結びつきませんが。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近買った本]]></title>
+    <link href="http://shuhei.github.com/blog/2009/06/28/recently-bought-book/"/>
+    <updated>2009-06-28T23:38:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/06/28/recently-bought-book</id>
+    <content type="html"><![CDATA[<ul>
+<li>SIMPLY RAILS 2</li>
+<li>初めてのRuby</li>
+<li>絵でみる在庫管理のしくみ</li>
+<li>BEST SOFTWARE WRITING</li>
+<li>企業情報システムアーキテクチャ</li>
+<li>Foundation ActionScript 3.0 Image Effects</li>
+<li>面白南極料理人</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ファウラー本]]></title>
+    <link href="http://shuhei.github.com/blog/2009/02/26/fowler-books/"/>
+    <updated>2009-02-26T00:19:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/02/26/fowler-books</id>
+    <content type="html"><![CDATA[<p>「リファクタリング」をザッと読んだんですがとてもいいですね。
+テストを書いて、一歩一歩。
+機能追加はまずリファクタリングしてから。
+具体的な小さなパターンが多く載っていて理解しやすいです。
+デザインパターンとかよりも先に読むといいのかもしれません。</p>
+
+<p>今はUMLの本を読んでいます。
+UMLの説明というよりは、どう使うかということに焦点が置かれていていい感じです。</p>
+]]></content>
+  </entry>
+  
+</feed>

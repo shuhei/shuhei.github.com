@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | かがわブログ]]></title>
   <link href="http://shuhei.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-07-10T23:52:48+09:00</updated>
+  <updated>2013-07-12T00:00:07+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -20,22 +20,7 @@
     <id>http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress</id>
     <content type="html"><![CDATA[<p>サイドバーにカテゴリー一覧を出してみました。</p>
 
-<p><div><script src='https://gist.github.com/2288181.js'></script>
-<noscript><pre><code>diff --git a/_config.yml b/_config.yml
-index 5c7d335..7ad03bb 100644
---- a/_config.yml
-+++ b/_config.yml
-@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
- 
- # list each of the sidebar modules you want to include, in the order you want them to appear.
- # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
--default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
- 
- # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
- # and add an array with the asides you want to use.
-</code></pre></noscript></div>
-</p>
+<p>{% gist 2288181 %}</p>
 ]]></content>
   </entry>
   

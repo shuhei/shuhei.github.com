@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: UNIX/LINUX | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/unix-slash-linux/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[言語ごとに vim の設定を変える]]></title>
+    <link href="http://shuhei.github.com/blog/2009/08/22/vim-settings-for-each-language/"/>
+    <updated>2009-08-22T18:50:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/08/22/vim-settings-for-each-language</id>
+    <content type="html"><![CDATA[<p>例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。</p>
+
+<p>@~/.vimrc@ の中で、</p>
+
+<p>pre(prettyprint). autocmd FileType cs setlocal noexpandtab</p>
+
+<p>もっといろいろ書くときは @~/.vim/ftplugin/cs.vim@ などに書くと良いとか。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[tail]]></title>
+    <link href="http://shuhei.github.com/blog/2009/07/02/tail/"/>
+    <updated>2009-07-02T19:55:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/07/02/tail</id>
+    <content type="html"><![CDATA[<p>pre(prettyprint). tail -n 50 foo.log</p>
+
+<p>って書くと foo.log の最後の50行だけ見られます。ログなどを見るのに便利ですね。
+世の中的には常識なのでしょうが、今日初めて知りました。ヘルプは読んで見るものですね。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[さくらに Trac をインストール・・・成功]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/"/>
+    <updated>2008-08-23T19:34:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet</id>
+    <content type="html"><![CDATA[<p>やっと Trac 入りました。</p>
+
+<p><a href="http://nanataisan.net/blog/?p=123">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
+たぶん、以前 numpy を入れようとしていろいろいじったときの名残。
+変更内容はメモしておかないといけませんね。</p>
+
+<p>.pydistutils.cfg を直して、pysqlite2.4.1 をインストール。</p>
+
+<p>clearsilver は最新版を試したもののダメで、 0.9.14 ならインストールできました。
+あとは docutils 0.4 と Trac 0.11.1.ja1 と WebAdmin を入れて完成。</p>
+
+<p>それにしても、動きがモッサリしてます。
+CGI だからですかね。
+うーん、自宅サーバ立てたい。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[さくらに Trac をインストール・・・失敗]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
+    <updated>2008-08-14T18:53:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
+    <content type="html"><![CDATA[<ul>
+<li>&ldquo;心は十五歳の少年漂流記 » さくらでTrac&rdquo;:<a href="http://seasaw.eek.jp/wordpress/?p=38">http://seasaw.eek.jp/wordpress/?p=38</a></li>
+<li>&ldquo;Trac/さくらインターネットでインストール &ndash; Happy Engineer Life&rdquo;:<a href="http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB">http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB</a></li>
+</ul>
+
+
+<p>このあたりを参考に Trac をインストールしようとしましたが、Subversion までは入ったものの、pysqlite が入らず。
+build しようとすると、「error: don&rsquo;t know how to complile C/C++ ～～～」みたいなエラーが出てダメ。
+他の人のブログにはそんなことは書いてないので、自分で設定を変えた部分のせいなんですかね。</p>
+
+<p>また今度チャレンジします。</p>
+
+<p>h3. +追記+</p>
+
+<p>&ldquo;その後、成功しました。&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu の日本語フォルダを英語名に]]></title>
+    <link href="http://shuhei.github.com/blog/2008/06/15/english-name-for-folders-in-ubuntu/"/>
+    <updated>2008-06-15T17:15:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/06/15/english-name-for-folders-in-ubuntu</id>
+    <content type="html"><![CDATA[<p>Ubuntu の日本語フォーラムを覗いた時に、ちょうど目に入ったのでやってみました。</p>
+
+<p>参考にしたのは、以下の記事。
+<a href="http://www.atmarkit.co.jp/flinux/rensai/linuxtips/a077changelang.html">ホームディレクトリのフォルダ名を日本語から英語に変更するには － ＠IT</a></p>
+]]></content>
+  </entry>
+  
+</feed>

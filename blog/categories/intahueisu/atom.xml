@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: インターフェイス | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/intahueisu/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[FTIR]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/30/ftir/"/>
+    <updated>2008-08-30T17:15:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/30/ftir</id>
+    <content type="html"><![CDATA[<p><a href="http://code.google.com/p/ideo-multitouch/">ideo-multitouch &ndash; Google Code</a></p>
+
+<p>プロジェクタとウェブカメラ、アクリル板とLED でマルチタッチディスプレイができるというもの。
+こりゃすげえ。
+ぜひやりたい。</p>
+
+<p>ソフトウェアはもうあるので、あとはハードウェア。</p>
+
+<p>自作のための情報は、<a href="http://www.nuigroup.com/">NUI Group</a> あたりに山盛り。
+それから、日本で作っている人も。ありがたや。
+<a href="http://recotana.com/recotanablog/">recotana — </a>
+製作し始めのころの写真はリンク切れになってるけど、<a href="http://www.flickr.com/photos/recotana/collections/72157604001955337/">Collection: DIY multitouch display project</a> にありそうです。</p>
+
+<p>一番高そうなプロジェクタは置いておいて、まずは認識部分だけでも作りたいですね。</p>
+]]></content>
+  </entry>
+  
+</feed>

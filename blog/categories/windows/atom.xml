@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Windows | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows で grep]]></title>
+    <link href="http://shuhei.github.com/blog/2010/02/17/grep-onwindows/"/>
+    <updated>2010-02-17T09:38:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2010/02/17/grep-onwindows</id>
+    <content type="html"><![CDATA[<p>pre(prettyprint). findstr /n /s /c:&ldquo;hello world&rdquo; sub_dir*</p>
+
+<p>これで subdir 以下の &ldquo;hello world&rdquo; を含むファイルと行を表示できます。
+/n で行番号表示。/s は再帰的に。</p>
+
+<p>pre(prettyprint). findstr /n /s &ldquo;hello world&rdquo; sub_dir*</p>
+
+<p>とすると、"hello" と &ldquo;world&rdquo; の両方にマッチしてしまうので注意。</p>
+
+<p>via &ldquo;コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &ndash; 主に言語とシステム開発に関して&rdquo;:<a href="http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265">http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265</a></p>
+]]></content>
+  </entry>
+  
+</feed>

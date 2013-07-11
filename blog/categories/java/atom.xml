@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[DAO]]></title>
+    <link href="http://shuhei.github.com/blog/2008/10/06/dao/"/>
+    <updated>2008-10-06T21:44:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/10/06/dao</id>
+    <content type="html"><![CDATA[<p>DAOの使い方がやっと分かりました。
+コネクションはDAOを使うロジック部分が管理するんですね。
+どうりでうまくトランザクション管理が出来ないと想いました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[アジャイルソフトウェア開発の奥義]]></title>
+    <link href="http://shuhei.github.com/blog/2008/09/28/agile-software-development/"/>
+    <updated>2008-09-28T17:08:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/09/28/agile-software-development</id>
+    <content type="html"><![CDATA[<p>分厚いですがとても良い本だと思います。
+アジャイル開発の方法論からデザインバターン、リファクタリングなど多岐に渡る内容を豊富な実例とともに解説しています。
+とくに、コードをリファクタリングしながら、デザインバターンを採用していくあたりはとても参考になりました。
+最近読んだプログラミング関連の本の中で1番の良書です。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse で Java VM の実行時オプション]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/23/java-run-time-option-in-eclipse/"/>
+    <updated>2008-08-23T00:21:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/23/java-run-time-option-in-eclipse</id>
+    <content type="html"><![CDATA[<p>Java の VM の実行時オプションをを指定するには、Run &ndash;> Run Configuration &ndash;> arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。
+なかなかわからなくて苦労したのでメモ。</p>
+
+<p>ちなみに、Proxy サーバを指定するには以下。</p>
+
+<p>pre(prettyprint). -DproxySet=true -DproxyHost=xxx.xxx.xxx.xxx -DproxyPort=yyyy</p>
+
+<p>フォントをアンチエイリアスするにはこんな感じ。</p>
+
+<p>pre(prettyprint). -Dswing.aatext=true</p>
+]]></content>
+  </entry>
+  
+</feed>

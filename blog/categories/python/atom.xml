@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[さくらに Trac をインストール・・・失敗]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
+    <updated>2008-08-14T18:53:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
+    <content type="html"><![CDATA[<ul>
+<li>&ldquo;心は十五歳の少年漂流記 » さくらでTrac&rdquo;:<a href="http://seasaw.eek.jp/wordpress/?p=38">http://seasaw.eek.jp/wordpress/?p=38</a></li>
+<li>&ldquo;Trac/さくらインターネットでインストール &ndash; Happy Engineer Life&rdquo;:<a href="http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB">http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB</a></li>
+</ul>
+
+
+<p>このあたりを参考に Trac をインストールしようとしましたが、Subversion までは入ったものの、pysqlite が入らず。
+build しようとすると、「error: don&rsquo;t know how to complile C/C++ ～～～」みたいなエラーが出てダメ。
+他の人のブログにはそんなことは書いてないので、自分で設定を変えた部分のせいなんですかね。</p>
+
+<p>また今度チャレンジします。</p>
+
+<p>h3. +追記+</p>
+
+<p>&ldquo;その後、成功しました。&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[さくらのサーバに virtual-python を入れる]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/12/virtual-python-in-sakura-internet/"/>
+    <updated>2008-08-12T16:38:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/12/virtual-python-in-sakura-internet</id>
+    <content type="html"><![CDATA[<p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。
+問題は他にあった気がしますが、easy install は使えるようになりました。</p>
+
+<p>参考にしたのは、以下のサイト。</p>
+
+<ul>
+    <li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットにpythonを再インストール - cimada-ism</a></li>
+    <li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python開発環境を整えよう</a></li>
+</ul>
+
+
+<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。
+これについては、必要になるまで放置。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python で implode]]></title>
+    <link href="http://shuhei.github.com/blog/2008/06/22/implode-on-pytho/"/>
+    <updated>2008-06-22T15:23:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/06/22/implode-on-pytho</id>
+    <content type="html"><![CDATA[<p>PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 implode。</p>
+
+<p>pre(prettyprint). $output = implode(&ldquo;,&rdquo;, $arr);</p>
+
+<p>同じことをしようとすると、Python では、以下。</p>
+
+<p>pre(prettyprint). output = &ldquo;,&rdquo;.join(arr)</p>
+
+<p>少し変態っぽいですね。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[さくらのサーバに Python モジュールをインストール]]></title>
+    <link href="http://shuhei.github.com/blog/2008/06/22/install-python-modules-in-sakura-internet/"/>
+    <updated>2008-06-22T12:24:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/06/22/install-python-modules-in-sakura-internet</id>
+    <content type="html"><![CDATA[<p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。
+インストール場所は、<code>$HOME/lib/python</code>に。</p>
+
+<p>$HOME/.cshrc で環境変数を設定。</p>
+
+<p>pre(prettyprint).  setenv PYTHONPATH $HOME/lib/python</p>
+
+<p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記でOKでした。</p>
+
+<p>pre(prettyprint). python setup.py install &mdash;home=~</p>
+
+<p>今日インストールしたのは以下。</p>
+
+<ul>
+<li>Universal Feedparser</li>
+<li>Python Imaging Library</li>
+<li>Beautiful Soup</li>
+<li>IPython（モジュール？）</li>
+<li>MySQLdb</li>
+<li>-NumPy-</li>
+<li>-matplotlib-</li>
+<li>pydelicious</li>
+<li>Element Tree</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NumPy などをインストール]]></title>
+    <link href="http://shuhei.github.com/blog/2008/06/10/install-numpy-etc/"/>
+    <updated>2008-06-10T00:57:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/06/10/install-numpy-etc</id>
+    <content type="html"><![CDATA[<p>Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。</p>
+
+<p>&ldquo;ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &ndash; my cartesian theater&rdquo;:<a href="http://d.hatena.ne.jp/tdm/20080223/1203793774">http://d.hatena.ne.jp/tdm/20080223/1203793774</a>
+のとおりにしたら、うまくいきました。
+めでたしめでたし。</p>
+
+<p>ただし、下記のように @svc@ を @svn@ に変えました。</p>
+
+<p>pre(prettyprint). svn co <a href="http://svn.scipy.org/svn/numpy/trunk">http://svn.scipy.org/svn/numpy/trunk</a> numpy</p>
+
+<p>ついでに入れた scipy は FFT とか科学っぽいライブラリ。
+matplotlib は matlab 的な複雑なグラフが描けるとか。
+こんな感じで使うらしい。
+&ldquo;scipy+matplotlib による3元連立常微分方程式の軌道 &ndash; (Blog ’(Yasuto . Takenaka))&rdquo;:<a href="http://d.hatena.ne.jp/ytakenaka/20070106/p1">http://d.hatena.ne.jp/ytakenaka/20070106/p1</a></p>
+
+<p>・・・と思ったら、matplotlib がうまくインストールできませんでした。
+時間ができたら、下記を参考に再度チャレンジしてみます。
+&ldquo;MatPlotLibHowTo &ndash; Community Ubuntu Documentation&rdquo;:<a href="https://help.ubuntu.com/community/MatPlotLibHowTo">https://help.ubuntu.com/community/MatPlotLibHowTo</a></p>
+]]></content>
+  </entry>
+  
+</feed>

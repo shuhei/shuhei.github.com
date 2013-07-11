@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Flash/Flex | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/flash-slash-flex/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PBDT - Pixel Bender 用 Eclipse プラグイン]]></title>
+    <link href="http://shuhei.github.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse/"/>
+    <updated>2009-06-21T19:20:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse</id>
+    <content type="html"><![CDATA[<p>Pixel Bender のカーネル作成、編集などを Eclipse 上で行えるプラグインがありました。</p>
+
+<p>&ldquo;PBDT at blog.joa-ebert.com – Blog of Joa Ebert&rdquo;:<a href="http://blog.joa-ebert.com/pbdt/">http://blog.joa-ebert.com/pbdt/</a></p>
+
+<p>Pixel Bender Toolkit を立ち上げる必要がなくなるので、すっきりしますね。</p>
+]]></content>
+  </entry>
+  
+</feed>

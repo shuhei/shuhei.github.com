@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Wordpress | かがわブログ]]></title>
+  <link href="http://shuhei.github.com/blog/categories/wordpress/atom.xml" rel="self"/>
+  <link href="http://shuhei.github.com/"/>
+  <updated>2013-07-12T00:00:07+09:00</updated>
+  <id>http://shuhei.github.com/</id>
+  <author>
+    <name><![CDATA[Shuhei Kagawa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Wordpress で Textpattern 相当の Textile を使う]]></title>
+    <link href="http://shuhei.github.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress/"/>
+    <updated>2009-09-21T00:37:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress</id>
+    <content type="html"><![CDATA[<p>以前 &ldquo;Wordpress の Textile プラグイン&rdquo;:<a href="http://nanataisan.net/blog/2009/08/02/wordpress-textile-plugin/">http://nanataisan.net/blog/2009/08/02/wordpress-textile-plugin/</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
+
+<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン &ldquo;Text Control 2&rdquo;:<a href="http://wordpress.org/extend/plugins/text-control-2/">http://wordpress.org/extend/plugins/text-control-2/</a> をふと思い立ってインストールしてみたこと。
+このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。
+これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
+
+<p>h3. 手順</p>
+
+<p>h4. classTextile.php の入手</p>
+
+<p>Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。</p>
+
+<p>h4. textile2.php ではなく classTextile.php を使うように</p>
+
+<p>wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを</p>
+
+<p>pre(prettyprint).. function tc_post_process($text, $do_text=&lsquo;&rsquo;, $do_char=&lsquo;&rsquo;) {
+  if($do_text == &lsquo;textile2&rsquo;) {</p>
+
+<pre><code>require_once('text-control/textile2.php');
+$t = new Textile();
+$text = $t-&gt;process($text);
+</code></pre>
+
+<ol type="a">
+<li>から</li>
+</ol>
+
+
+<p>pre(prettyprint).. function tc_post_process($text, $do_text=&lsquo;&rsquo;, $do_char=&lsquo;&rsquo;) {
+  if($do_text == &lsquo;textile2&rsquo;) {</p>
+
+<pre><code>require_once('text-control/classTextile.php');
+$t = new Textile();
+$text = $t-&gt;TextileThis($text);
+</code></pre>
+
+<ol type="a">
+<li>へ変更します。</li>
+</ol>
+
+
+<p>h3. 結果</p>
+
+<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。
+Google Code Prettify も、これまではいちいち HTML のタグで囲んでいたのが @pre(prettyprint)..@ と書くだけで使えるようになりました。大変便利ですね。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Wordpress の Textile プラグイン]]></title>
+    <link href="http://shuhei.github.com/blog/2009/08/02/wordpress-textile-plugin/"/>
+    <updated>2009-08-02T23:53:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2009/08/02/wordpress-textile-plugin</id>
+    <content type="html"><![CDATA[<p>どうもしっくり来るのがありませんでした。</p>
+
+<p>&ldquo;Textile2&rdquo;:<a href="http://wordpress.org/extend/plugins/textile-2/">http://wordpress.org/extend/plugins/textile-2/</a> というのが直球のネーミングで良さそうだったのですが、日本語が化けるのでやめました。
+&ldquo;対策&rdquo;:<a href="http://wordpress.org/support/topic/253662">http://wordpress.org/support/topic/253662</a> を試すと大体直ったものの、 @pre@ タグで囲った部分の文字化けが直らず。 @pre@ タグを使うのはコードだけなので、日本語を使わなければいい話なのですが、コメントは日本語で書きたいので。
+ヘッダタグのオフセットなど素敵な機能がついていただけに残念です。</p>
+
+<p>結局 &ldquo;Textiler&rdquo;:<a href="http://wordpress.org/extend/plugins/textiler/">http://wordpress.org/extend/plugins/textiler/</a> というのを採用。何だか評判がよくありませんが、文字化けはしないようです。ただ、リストが途中で分割されてしまうなど不思議な動きをしていますが・・・。</p>
+
+<p>何はともあれ、Textile を使えるようになりました。タグを打つ必要がなく、とてもいいですね。やはり CMS はこうでなくては。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Wordpress でコードのシンタックスハイライト]]></title>
+    <link href="http://shuhei.github.com/blog/2008/08/14/syntax-highlight-in-wordpress/"/>
+    <updated>2008-08-14T12:22:00+09:00</updated>
+    <id>http://shuhei.github.com/blog/2008/08/14/syntax-highlight-in-wordpress</id>
+    <content type="html"><![CDATA[<p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。
+&ldquo;WordPress › SyntaxHighlighter « WordPress Plugins&rdquo;:<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">http://wordpress.org/extend/plugins/syntaxhighlighter/</a></p>
+
+<p>デフォルトでサポートされているのが以下。</p>
+
+<ul>
+<li>C++</li>
+<li>C#</li>
+<li>CSS</li>
+<li>Delphi</li>
+<li>Java</li>
+<li>Javascript</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Sql</li>
+<li>VB</li>
+<li>XML/HTML</li>
+</ul>
+
+
+<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
+
+<p>以下、AS3 でテスト。</p>
+
+<p>[sourcecode language=&lsquo;Actionscript&rsquo;]package
+{</p>
+
+<pre><code>import flash.display.Sprite;
+
+/**
+ * Test class.
+ */
+public class Test extends Sprite
+{
+    /**
+     * @private
+     */
+    private var _test:Sprite;
+
+    /*
+     * Constructor.
+     */
+    public function Test()
+    {
+        _test = new Sprite();
+        _test.graphics.beginFill(0);
+        _test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
+        _test.graphics.endFill();
+        addChild(_test);
+    }
+}
+</code></pre>
+
+<p>}[/sourcecode]</p>
+
+<p>h3. 参考URL</p>
+
+<ul>
+<li>&ldquo;Mj-site Blog » wordpressにAS3/MXMLのコードハイライトプラグインを導入&rdquo;:<a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html</a></li>
+<li>&ldquo;Languages &ndash; syntaxhighlighter &ndash; Google Code &ndash; List of supported languages.&rdquo;:<a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">http://code.google.com/p/syntaxhighlighter/wiki/Languages</a></li>
+</ul>
+
+
+<p>h3. +追記+</p>
+
+<p>+SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。+</p>
+]]></content>
+  </entry>
+  
+</feed>
