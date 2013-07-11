@@ -1,0 +1,18 @@
+---
+layout: post
+title: "clang で Objective C の静的解析"
+published: true
+date: 2009-01-07 00:48
+comments: true
+tags: 
+categories: [iPhone 開発]
+---
+"clang":http://clang.llvm.org/StaticAnalysis.html というツールを使うと、Objective Cや C、C++ などのコードを解析してバグを発見してくれるそうです。
+静的な意味で。
+
+"iPhoneアプリ開発にかかせない静的解析ツール「clang」 : アシアルブログ":http://blog.asial.co.jp/504 などを参考にしてやってみたのですが、バグが発見されずレポートが出ませんでした。
+残念。
+
+pre(prettyprint). scan-build -o {レポート出力先パス} xcodebuild
+
+あ、あと MacBook 買いました。

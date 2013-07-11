@@ -1,0 +1,16 @@
+---
+layout: post
+title: "iPhone 2.1"
+published: true
+date: 2008-09-14 07:53
+comments: true
+tags: 
+categories: [Uncategorized]
+---
+ソフトウェアをアップデートしました。
+
+日本語変換で分節区切りができるようになり、動きもサクサクしていい感じ。
+
+こういう風にユーザ満足を小出しにするのも、Apple のうまいところなのかもしれませんね。
+
+ところで iPhone のカメラは音を出さずに撮れるような気がするんですが、大丈夫なんですかね？

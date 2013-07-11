@@ -1,0 +1,27 @@
+---
+layout: post
+title: "ufw でファイアウォール"
+published: true
+date: 2010-01-16 14:27
+comments: true
+tags: 
+categories: []
+---
+Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
+Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。
+
+pre(prettyprint). sudo ufw default DENY
+sudo ufw enable
+
+とやって有効化。
+ウェブサーバならば HTTP を許可します。
+
+pre(prettyprint). sudo ufw allow http
+
+LAN 内からだけ SSH を許可。
+
+pre(prettyprint). sudo ufw allow from 192.168.1.0/24 to any port ssh
+
+SSH へのログイン試行回数を制限。
+
+pre(prettyprint). sudo ufw limit ssh

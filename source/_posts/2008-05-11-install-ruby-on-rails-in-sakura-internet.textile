@@ -1,0 +1,31 @@
+---
+layout: post
+title: "さくらのレンタルサーバに Ruby on Rails を入れる"
+published: true
+date: 2008-05-11 13:27
+comments: true
+tags: 
+categories: [Ruby, さくらインターネット]
+---
+基本的には以下のサイトを参考に。
+
+<ul>
+	<li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura.html">がんちゃんのブログ: さくらのレンタルサーバにRuby on Railsをインストールする方法</a></li>
+	<li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura-part2.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Railsをインストールする方法 その2</a></li>
+</ul>
+
+ここまで進めると、sqlite3 と sqlite3-ruby が入っていない場合はエラーが出ます。
+なので、以下を参考にインストール。
+
+<a href="http://ruby.g.hatena.ne.jp/garyo/20070507">「2007-05-07 - Rubyの魔神 - はてな？Rubyグループ」</a>
+
+これでやっと準備が整いました。
+で、何かサンプルを作ってみようとしていろいろやってみましたが、うまくいかず。
+本でも買ってからやろうかと思います。
+
+<h3>追記</h3>
+
+Rails 2.0.2 用の方法が別に書いてありました。
+最初からこれでやればよかった・・・。
+
+<a href="http://iwatakenichi.blogspot.com/2008/05/ruby-on-rails-202-and-rubygems-111-on.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Rails 2.0.2をインストールする方法</a>

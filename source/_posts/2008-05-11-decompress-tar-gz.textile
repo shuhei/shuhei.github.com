@@ -1,0 +1,27 @@
+---
+layout: post
+title: ".tar.gz の解凍"
+published: true
+date: 2008-05-11 10:29
+comments: true
+tags: 
+categories: [UNIX/LINUX]
+---
+pre(prettyprint). tar xzvf hogehoge.tar.gz
+
+h3. オプションの意味
+
+notextile. <dl>
+	<dt>x</dt>
+	<dd>tar を展開</dd>
+	<dt>z</dt>
+	<dd>gzip 併用</dd>
+	<dt>v</dt>
+	<dd>詳細表示</dd>
+	<dt>f</dt>
+	<dd>ファイルを指定（必須）</dd>
+</dl>
+
+h3. 参考URL
+
+"TAR の使い方":http://iris.homeunix.net/yayoi/freebsd/archiver/tar.asp

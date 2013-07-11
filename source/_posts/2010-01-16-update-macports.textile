@@ -1,0 +1,22 @@
+---
+layout: post
+title: "MacPorts のアップデート"
+published: true
+date: 2010-01-16 14:49
+comments: true
+tags: 
+categories: []
+---
+port search xxx として出てくるものが古いときに。
+
+MacPorts をアップデート。
+
+pre(prettyprint). sudo port selfupdate
+
+パッケージを更新。
+
+pre(prettyprint). sudo port sync
+
+たまにやった方がいいようですね。
+
+via "MacPortsをちゃんと使うために調べてみた - kanonjiの日記":http://d.hatena.ne.jp/kanonji/20091025/1256495516

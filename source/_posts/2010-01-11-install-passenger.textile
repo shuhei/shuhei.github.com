@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Ubuntu Server に Passenger をインストール"
+published: true
+date: 2010-01-11 23:00
+comments: true
+tags: 
+categories: []
+---
+h3. Aptitude ではだめ
+
+とりあえずは apt-get と思い、下記のようにしたらとしたら libapache2-mod-php5 などが消されて焦りました。
+
+pre(prettyprint). sudo apt-get install libapache2-mod-passenger
+
+Aptitude を使うと、Passenger と PHP 5 は共存できないようです。
+それぞれが依存している apache2-mpm-worker と apache2-mpm-prefork が共存できないのが原因のよう。
+via "Ubuntu日本語フォーラム / ubuntu 9.04 passenger と　php5は共存できない？":https://forums.ubuntulinux.jp/viewtopic.php?id=5341
+
+h3. Gem でインストール
+
+しょうがないので PHP 5 を入れ直し、Passenger を gem で入れる事にしました。
+
+pre(prettyprint). sudo gem install passenger
+sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module
+
+足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。
+
+pre(prettyprint). sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module
+
+h3. 設定ファイルの記述
+
+httpd.conf には直接書かず、専用のファイルを作ります。Ubuntu の流儀？
+
+/etc/apache2/mods-available/passenger.load
+
+pre(prettyprint). LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so
+
+/etc/apache2/mods-available/passenger.conf
+
+pre(prettyprint). <ifModule mod_passenger.c>
+  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
+  PassengerRuby /usr/bin/ruby1.8
+</ifModule>
+
+モジュールを有効に。
+mods-enabled から mods-available にシンボリックリンクを張って有効にするんですね。知りませんでした。
+
+pre(prettyprint). sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
+sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf
+
+h3. サブディレクトリで公開
+
+ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。
+
+pre(prettyprint). sudo ln -s /path/to/app-name/public /path/to/www/app-name
+
+そして、Apache の設定ファイルに少し付け足します。
+
+/etc/apache2/mods-available/passenger.conf
+
+pre(prettyprint). <ifModule mod_passenger.c>
+  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
+  PassengerRuby /usr/bin/ruby1.8
+  RailsBaseURI /app-name
+</ifModule>
+
+via "suz-lab - blog: PassengerでRedmineをサブディレクトリに公開":http://blog.suz-lab.com/2009/05/passengerredmine.html

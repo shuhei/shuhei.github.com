@@ -1,0 +1,27 @@
+---
+layout: post
+title: "The program being debugged is not being run."
+published: true
+date: 2010-05-01 14:41
+comments: true
+tags: 
+categories: []
+---
+久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ "The program being debugged is not being run." とのエラー。
+そんなの見ればわかります。理由を書いてください。理由を。
+アプリのインストール自体はできているのですが、デバッグができないようです。
+
+"XCode fails to run app on device, saying the program being debugged is not being run - Stack Overflow":http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being を読んでためしてみました。
+オーガナイザで provisioning profile を一旦消して、新しくダウンロードしたやつを入れ直そうというものです。
+
+しかし "DEVICES" => "iPhone" => "Provisionning" のところの "-" ボタンで消そうとしてみたものの、何故か消えず。"+" で上書きしようとしても効果なし。
+
+"IPHONE DEVELOMENT" => "Provisioning Profiles" のところで消して "DEVICES" => "iPhone" => "Provisionning" で入れ直したら上手く動きました。
+めでたしめでたし。
+
+h3. 追記
+
+・・・と思ったら、また同じエラーが出ました。
+ソースをいじってコンパイルし直した直後に出るみたい。
+その後もう一回試すと、ちゃんと起動しています。
+うーん、不思議です・・・。

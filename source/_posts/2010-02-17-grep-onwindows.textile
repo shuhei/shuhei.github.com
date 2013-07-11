@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Windows で grep"
+published: true
+date: 2010-02-17 09:38
+comments: true
+tags: 
+categories: [Windows]
+---
+pre(prettyprint). findstr /n /s /c:"hello world" sub_dir\*
+
+これで subdir 以下の "hello world" を含むファイルと行を表示できます。
+/n で行番号表示。/s は再帰的に。
+
+pre(prettyprint). findstr /n /s "hello world" sub_dir\*
+
+とすると、"hello" と "world" の両方にマッチしてしまうので注意。
+
+via "コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 - 主に言語とシステム開発に関して":http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265

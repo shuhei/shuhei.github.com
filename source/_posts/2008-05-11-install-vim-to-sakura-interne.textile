@@ -1,0 +1,20 @@
+---
+layout: post
+title: "さくらのレンタルサーバに vim を入れる"
+published: true
+date: 2008-05-11 17:23
+comments: true
+tags: 
+categories: [さくらインターネット]
+---
+vim は Vi IMproved なんだそうです。
+シェル上でテキスト編集したいと思って入れてみたのですが、もともと vi が入っているので必要なかったんですね。
+せっかく入れたので高度な技を覚えたいものです。
+
+<h3>インストール</h3>
+
+「<a href="http://www.hazama.nu/t2o2/archives/002696.html">さくらインターネットの共用サーバに vim をインストールする (talk to oneself 2)</a>」をそのままやったらできました。
+こんなんばっかりです。
+
+使い方は、「<a href="http://d.hatena.ne.jp/bonar/20070415/1176651778">vimで効率的にコードを書くための小技 - bonar note</a>」を見ながらやっています。
+インターネット便利だわー。
