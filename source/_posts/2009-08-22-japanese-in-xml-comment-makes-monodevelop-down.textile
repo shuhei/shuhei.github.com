@@ -5,7 +5,7 @@ published: true
 date: 2009-08-22 19:01
 comments: true
 tags: 
-categories: [Uncategorized]
+categories: 
 ---
 MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。
 プレビュー版だけあっていろいろ動作があやしいです。そして日本語、というかマルチバイト対応がさっぱりです。
