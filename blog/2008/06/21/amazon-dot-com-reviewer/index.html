@@ -11,8 +11,7 @@
   
   <meta name="description" content="Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
 一方、Amazon.com に行けばレビューがたくさんあります。
-ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。
-そこで、Greasemonkey のuser &hellip;">
+ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。 そこで、Greasemonkey のuser &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,36 +108,71 @@
   </header>
 
 
-<div class="entry-content"><p>Amazon.co.jp で洋書を見ると、レビューがほとんどありません。<br />
-一方、Amazon.com に行けばレビューがたくさんあります。<br />
-ですが同じ本のページを探すのに、 <span class="caps">ISBN</span> をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>
-<p>そこで、Greasemonkey のuser script を書いてみました。<br />
-<a href="http://www.7to3.net/lab/greasemonkey/amazondotcomreviewer.user.js">AmazonDotComReviewer</a></p>
-<p>本の題名のすぐ下に、リンクができます。<br />
-amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。<br />
+<div class="entry-content"><p>Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
+一方、Amazon.com に行けばレビューがたくさんあります。
+ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>
+
+<p>そこで、Greasemonkey のuser script を書いてみました。</p>
+
+<p>本の題名のすぐ下に、リンクができます。
+amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
 洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。</p>
-<pre class="prettyprint">// ==UserScript==
-// @name           AmazonDotComReviewer 0.1
-// @namespace      http://www.7to3.net
-// @description    Make link between amazon.com and amazon.co.jp
-// @include        http://*.amazon.*
-// ==/UserScript==</pre>
-<pre class="prettyprint">(function() {
-	var isbnmatch = window.location.href.match(/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//);
-	var header = document.getElementById('btAsinTitle');</pre>
-<pre class="prettyprint">	if(header &amp;&amp; isbnmatch) {
-		domain = (isbnmatch[1] == "com") ? "co.jp" : "com";
-		isbn = isbnmatch[2];</pre>
-<pre class="prettyprint">		var uslink = document.createElement('a');
-		uslink.setAttribute('href', 'http://www.amazon.' + domain + '/o/ASIN/' + isbn + '/');
-		uslink.setAttribute('title', 'The same book at amazon.' + domain);
-		uslink.innerHTML = "&lt;br /&gt;&amp;#187; Check also amazon." + domain + "!";</pre>
-<pre class="prettyprint">		header.insertBefore(uslink, header.firstChild.nextSibling);
-	}
-	return false;</pre>
-<pre class="prettyprint">}
-)();
-</pre></div>
+
+<figure class='code'><figcaption><span>amazondotcomreviewer.user.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// ==UserScript==</span>
+</span><span class='line'><span class="c1">// @name           AmazonDotComReviewer 0.1</span>
+</span><span class='line'><span class="c1">// @namespace      http://www.7to3.net</span>
+</span><span class='line'><span class="c1">// @description    Make link between amazon.com and amazon.co.jp</span>
+</span><span class='line'><span class="c1">// @include        http://*.amazon.*</span>
+</span><span class='line'><span class="c1">// ==/UserScript==</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">isbnmatch</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;btAsinTitle&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">header</span> <span class="o">&amp;&amp;</span> <span class="nx">isbnmatch</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">domain</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isbnmatch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;com&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;co.jp&#39;</span> <span class="o">:</span> <span class="s1">&#39;com&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">isbn</span> <span class="o">=</span> <span class="nx">isbnmatch</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">uslink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.amazon.&#39;</span> <span class="o">+</span> <span class="nx">domain</span> <span class="o">+</span> <span class="s1">&#39;/o/ASIN/&#39;</span> <span class="o">+</span> <span class="nx">isbn</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;The same book at amazon.&#39;</span> <span class="o">+</span> <span class="nx">domain</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&lt;br /&gt;&amp;#187; Check also amazon.&quot;</span> <span class="o">+</span> <span class="nx">domain</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">header</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">uslink</span><span class="p">,</span> <span class="nx">header</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">nextSibling</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">)();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
 
 
   <footer>

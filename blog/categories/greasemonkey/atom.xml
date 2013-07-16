@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Greasemonkey | かがわブログ]]></title>
   <link href="http://shuhei.github.com/blog/categories/greasemonkey/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-07-15T12:19:05+09:00</updated>
+  <updated>2013-07-16T22:23:55+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -22,14 +22,14 @@
 一方、Amazon.com に行けばレビューがたくさんあります。
 ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>
 
-<p>そこで、Greasemonkey のuser script を書いてみました。
-&ldquo;AmazonDotComReviewer&rdquo;:<a href="http://www.7to3.net/lab/greasemonkey/amazondotcomreviewer.user.js">http://www.7to3.net/lab/greasemonkey/amazondotcomreviewer.user.js</a></p>
+<p>そこで、Greasemonkey のuser script を書いてみました。</p>
 
 <p>本の題名のすぐ下に、リンクができます。
 amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
 洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。</p>
 
-<p>pre(prettyprint).. // ==UserScript==
+<p>```js amazondotcomreviewer.user.js
+// ==UserScript==
 // @name           AmazonDotComReviewer 0.1
 // @namespace      <a href="http://www.7to3.net">http://www.7to3.net</a>
 // @description    Make link between amazon.com and amazon.co.jp
@@ -41,8 +41,8 @@ amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、
 <pre><code>var isbnmatch = window.location.href.match(/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//);
 var header = document.getElementById('btAsinTitle');
 
-if(header &amp;&amp; isbnmatch) {
-    domain = (isbnmatch[1] == "com") ? "co.jp" : "com";
+if (header &amp;&amp; isbnmatch) {
+    domain = (isbnmatch[1] === 'com') ? 'co.jp' : 'com';
     isbn = isbnmatch[2];
 
     var uslink = document.createElement('a');
@@ -56,7 +56,8 @@ return false;
 </code></pre>
 
 <p>}
-)();</p>
+)();
+```</p>
 ]]></content>
   </entry>
   
