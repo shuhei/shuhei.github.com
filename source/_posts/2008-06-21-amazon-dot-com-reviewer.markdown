@@ -12,13 +12,13 @@ Amazon.co.jp で洋書を見ると、レビューがほとんどありません�
 ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。
 
 そこで、Greasemonkey のuser script を書いてみました。
-"AmazonDotComReviewer":http://www.7to3.net/lab/greasemonkey/amazondotcomreviewer.user.js
 
 本の題名のすぐ下に、リンクができます。
 amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
 洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。
 
-pre(prettyprint).. // ==UserScript==
+```js amazondotcomreviewer.user.js
+// ==UserScript==
 // @name           AmazonDotComReviewer 0.1
 // @namespace      http://www.7to3.net
 // @description    Make link between amazon.com and amazon.co.jp
@@ -29,8 +29,8 @@ pre(prettyprint).. // ==UserScript==
 	var isbnmatch = window.location.href.match(/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//);
 	var header = document.getElementById('btAsinTitle');
 
-	if(header && isbnmatch) {
-		domain = (isbnmatch[1] == "com") ? "co.jp" : "com";
+	if (header && isbnmatch) {
+		domain = (isbnmatch[1] === 'com') ? 'co.jp' : 'com';
 		isbn = isbnmatch[2];
 
 		var uslink = document.createElement('a');
@@ -44,3 +44,4 @@ pre(prettyprint).. // ==UserScript==
 
 }
 )();
+```
