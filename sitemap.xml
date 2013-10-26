@@ -104,7 +104,7 @@
         <loc>
             http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/
         </loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:53:31+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2008/08/20/mixi-openid/</loc>
@@ -122,13 +122,13 @@
         <loc>
             http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/
         </loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:51:49+09:00</lastmod>
     </url>
     <url>
         <loc>
             http://shuhei.github.com/blog/2008/08/24/connect-to-subversion-on-sakura-internet/
         </loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:51:00+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2008/08/24/forgotten-books/</loc>
@@ -218,7 +218,7 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/02/11/chat-networ/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:37:59+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/02/14/media-art-festa-2009/</loc>
@@ -289,11 +289,7 @@
         <lastmod>2013-10-26T17:27:27+09:00</lastmod>
     </url>
     <url>
-        <loc>http://shuhei.github.com/blog/2009/07/27/wanna-refactori-with-xcode/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://shuhei.github.com/blog/2009/07/27/wanna-refactoring-with-xcode/</loc>
+        <loc>http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode/</loc>
         <lastmod>2013-10-26T17:27:27+09:00</lastmod>
     </url>
     <url>
@@ -352,7 +348,7 @@
         <loc>
             http://shuhei.github.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress/
         </loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:50:41+09:00</lastmod>
     </url>
     <url>
         <loc>
@@ -394,7 +390,7 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/10/12/python-challenge-from-8-to-9/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:49:47+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/10/12/get-book-list-from-booklog/</loc>
@@ -414,7 +410,7 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/10/27/get-book-list-of-booklog-b-rss/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:43:14+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/11/05/git-usage-note/</loc>
@@ -428,11 +424,11 @@
         <loc>
             http://shuhei.github.com/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/
         </loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:42:22+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:42:01+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2009/12/09/ascii/</loc>
@@ -496,7 +492,7 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2010/03/18/circle-packing/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T18:23:06+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2010/04/14/upgrade-to-snow-leopard/</loc>
@@ -518,11 +514,11 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2010/07/04/floating-balls/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T18:16:47+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2010/07/10/surface/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T18:16:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2010/07/22/toeic-official-workbook-vol-4-1/</loc>
@@ -546,7 +542,7 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/2012/04/03/perfume-dev/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T17:59:40+09:00</lastmod>
     </url>
     <url>
         <loc>
@@ -564,11 +560,11 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/archives/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:53:31+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/blog/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T23:53:31+09:00</lastmod>
     </url>
     <url>
         <loc>http://shuhei.github.com/robots.txt</loc>
@@ -576,6 +572,6 @@
     </url>
     <url>
         <loc>http://shuhei.github.com/works/</loc>
-        <lastmod>2013-10-26T17:27:27+09:00</lastmod>
+        <lastmod>2013-10-26T20:53:50+09:00</lastmod>
     </url>
 </urlset>

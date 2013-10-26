@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -32,7 +32,7 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
 
 <p>h3. +追記+</p>
 
-<p>&ldquo;その後、成功しました。&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></p>
+<p>&ldquo;その後、成功しました。&rdquo;:/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</p>
 ]]></content>
   </entry>
   

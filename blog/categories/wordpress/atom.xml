@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Wordpress | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/wordpress/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -18,7 +18,7 @@
     <link href="http://shuhei.github.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress/"/>
     <updated>2009-09-21T00:37:00+09:00</updated>
     <id>http://shuhei.github.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress</id>
-    <content type="html"><![CDATA[<p>以前 &ldquo;Wordpress の Textile プラグイン&rdquo;:<a href="http://nanataisan.net/blog/2009/08/02/wordpress-textile-plugin/">http://nanataisan.net/blog/2009/08/02/wordpress-textile-plugin/</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
+    <content type="html"><![CDATA[<p>以前 &ldquo;Wordpress の Textile プラグイン&rdquo;:/blog/2009/08/02/wordpress-textile-plugin/ という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
 
 <p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン &ldquo;Text Control 2&rdquo;:<a href="http://wordpress.org/extend/plugins/text-control-2/">http://wordpress.org/extend/plugins/text-control-2/</a> をふと思い立ってインストールしてみたこと。
 このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 情報デザイン | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/qing-bao-dezain/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>前回に引き続き、Processing。
 某チャットルームの人間関係を視覚化してみました。</p>
 
-<p><a href="http://www.7to3.net/lab/sketches/ChatNetwork/"><a href="http://www.7to3.net/lab/sketches/ChatNetwork/">http://www.7to3.net/lab/sketches/ChatNetwork/</a></a></p>
+<p><a href="http://shuhei.github.com/works/chart_network/">ChatNetwork</a></p>
 
 <p>丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。
 同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。</p>

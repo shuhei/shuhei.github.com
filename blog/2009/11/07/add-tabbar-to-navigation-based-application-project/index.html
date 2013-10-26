@@ -49,7 +49,7 @@ InterfaceBuilder での設定が画像入りの説明なしではよくわから
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -116,13 +116,13 @@ InterfaceBuilder での設定が画像入りの説明なしではよくわから
 Navigation Controller を削除して Tab Bar Controller を追加します。</p>
 <h4>Tab Bar Controller の下に Navigation Controller を</h4>
 <p>Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の &#8220;Tab Bar Controller&#8221; =&gt; &#8220;View Controllers&#8221; の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。</p>
-<p><img src="http://nanataisan.net/blog/wp-content/uploads/2009/11/TabBarController_Inspector1.png" alt="" /></p>
+<p><img src="/images/2009/11/TabBarController_Inspector1.png" alt="" /></p>
 <p>すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。</p>
 <h4>Navigation Controller の下に Root View Controller を</h4>
 <p>この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。<br />
 一番左側のタブで <span class="caps">NIB</span> Name を、Inspectorで一番右側のタブで Class を設定します。</p>
-<p><img src="http://nanataisan.net/blog/wp-content/uploads/2009/11/SetRootViewControllerNIB1.png" alt="" /><br />
-<img src="http://nanataisan.net/blog/wp-content/uploads/2009/11/SetRootViewControllerClass1.png" alt="" /></p>
+<p><img src="/images/2009/11/SetRootViewControllerNIB1.png" alt="" /><br />
+<img src="/images/2009/11/SetRootViewControllerClass1.png" alt="" /></p>
 <p>以上を保存して IB を閉じます。</p>
 <h3>コードの修正</h3>
 <p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。<br />

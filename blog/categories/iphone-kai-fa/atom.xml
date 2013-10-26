@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iPhone 開発 | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/iphone-kai-fa/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -42,9 +42,9 @@
   
   <entry>
     <title type="html"><![CDATA[XCode でリファクタリングがしたい]]></title>
-    <link href="http://shuhei.github.com/blog/2009/07/27/wanna-refactori-with-xcode/"/>
+    <link href="http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode/"/>
     <updated>2009-07-27T23:27:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/07/27/wanna-refactori-with-xcode</id>
+    <id>http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode</id>
     <content type="html"><![CDATA[<p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
 
 <p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ TDD とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>

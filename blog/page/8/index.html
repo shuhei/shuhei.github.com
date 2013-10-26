@@ -9,11 +9,11 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。
-C++ や Objective-C を触るのにも必要ですからね。
-で、まずは基本のキからということで、
-#include &lt;stdio.h&gt;
-int main(int argc, char** argv &hellip;">
+  <meta name="description" content="CString cstr = foo();
+TCHAR *tchar = bar();
+CString concat = cstr + " " + tchar;
+普通に足せば足せるようです。
+*tchar を足すと tchar の最初の一文字だけ連結されます。">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,7 +52,7 @@ int main(int argc, char** argv &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -82,57 +82,6 @@ int main(int argc, char** argv &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/05/command-line-args/">コマンドライン引数</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-05T13:44:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/05/command-line-args/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/05/command-line-args/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
-C++ や Objective-C を触るのにも必要ですからね。</p>
-<p>で、まずは基本のキからということで、</p>
-<pre class="prettyprint">#include &lt;stdio.h&gt;</pre>
-<pre class="prettyprint">int main(int argc, char** argv) {
-  if (argc &gt; 1) {
-    printf("Hello, %s!", argv[1]);
-  } else {
-    printf("Hello, World!");
-  }
-}</pre>
-<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -542,6 +491,60 @@ UMLの説明というよりは、どう使うかということに焦点が置�
 </ul>
 <p>言われてみるとそういう気もしますが、少し意外でした。<br />
 さて、どう活かしていきますかねえ。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/14/media-art-festa-2009/">文化庁メディア芸術祭2009</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T10:02:00+09:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/02/14/media-art-festa-2009/#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com/blog/2009/02/14/media-art-festa-2009/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>文化庁メディア芸術祭に行ってきました。最終日前日だからか、かなりの混雑。映像作品はほとんど見られなかったものの、他は比較的スムーズに見ることができました。<br />
+印象に残ったのは以下。</p>
+<h3>Moment &#8211; performatives spazieren（田口行弘）</h3>
+<p>入口付近にあった、板が街の中を移動して行く連続写真。これが一番面白かったです。ハイテクでも何でもありませんが。<br />
+板のクローズアップでシーンを切り替えるのはテレビ的？</p>
+<p>デジタルアナログ時計。野原に材木でデジタル時計を組み上げ、リアルタイムに時刻を表示していくというもの。以前ネットで見ましたが、やはり面白い。こういう体をはったものが好きです。</p>
+<h3>Oups!（Marcio AMBROSIO）</h3>
+<p>アート部門の大賞。カメラに映った人の映像に画像処理をかけて、スクリーンに投影。顔にカボチャ、重心からオブジェクトなど。<br />
+あまり新しいとは思えないけど人気でした。普遍的な面白さがありますよね。あとはコンテンツが違えば違うんでしょうか。ディスブレイとマウスを使えば何でも一緒かというと、そうではないですもんね。<br />
+カメラ近傍からライト。影できないように。</p>
+<h3>３Ｄメガネで影の立体視</h3>
+<p>シンプルなアイデアがいい感じですが、そこまでは面白くなかったです。応用に期待。</p>
+<h3>缶のポイ捨てされてから朽ち果てるまで</h3>
+<p>50年。リアルで良かった。最近のCGはすごいですね。ああいうのやってみたい。Blenderでもできるんでしょうか。</p>
+<h3>総評</h3>
+<p>メディア芸術祭、存在は以前から感じていましたが足を運んだのは初めて。<br />
+バレンタインデーだからかオサレ系？の展覧会だからか、きれいな人が多い気がしました。おわり。</p></div>
   
   
 

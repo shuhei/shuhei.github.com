@@ -55,7 +55,7 @@ public: B(int value) : &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -200,7 +200,7 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/27/wanna-refactoring-with-xcode/">XCode でリファクタリングがしたい</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/27/wanna-refactor-with-xcode/">XCode でリファクタリングがしたい</a></h1>
     
     
       <p class="meta">
@@ -218,48 +218,8 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
 
 <time datetime="2009-07-27T23:27:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/27/wanna-refactoring-with-xcode/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/27/wanna-refactoring-with-xcode/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
-<p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ <span class="caps">TDD</span> とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
-<p>以前触ったときは、アプリを公開する事なくうやむやになってしまったので、今度こそ何か公開できればいいなと思っています。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/27/wanna-refactori-with-xcode/">XCode でリファクタリングがしたい</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-27T23:27:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/27/wanna-refactori-with-xcode/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/27/wanna-refactori-with-xcode/">Comments</a>
+           | <a href="/blog/2009/07/27/wanna-refactor-with-xcode/#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode/">Comments</a>
         
       </p>
     
@@ -510,6 +470,57 @@ Subversion からでないとダメとは書いてありませんが、文句は
 
   <div class="entry-content"><p>28 歳独身会社員です。会社では <span class="caps">CAD</span> 関連のシステム開発をしています。<br />
 このブログでは読書やプログラミングなどの話題が主になると思います。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/05/command-line-args/">コマンドライン引数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-05T13:44:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/07/05/command-line-args/#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/05/command-line-args/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
+C++ や Objective-C を触るのにも必要ですからね。</p>
+<p>で、まずは基本のキからということで、</p>
+<pre class="prettyprint">#include &lt;stdio.h&gt;</pre>
+<pre class="prettyprint">int main(int argc, char** argv) {
+  if (argc &gt; 1) {
+    printf("Hello, %s!", argv[1]);
+  } else {
+    printf("Hello, World!");
+  }
+}</pre>
+<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
+コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
+また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div>
   
   
 

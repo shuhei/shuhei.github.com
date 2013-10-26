@@ -9,9 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。
-WordPress › SyntaxHighlighter « WordPress Plugins
-デフォルトでサポートされているのが以下。 C++ C# CSS Delphi Java &hellip;">
+  <meta name="description" content="さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。
+問題は他にあった気がしますが、easy install は使えるようになりました。
+参考にしたのは、以下のサイト。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,7 +50,7 @@ WordPress › SyntaxHighlighter « WordPress Plugins
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -80,94 +80,6 @@ WordPress › SyntaxHighlighter « WordPress Plugins
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/14/syntax-highlight-in-wordpress/">Wordpress でコードのシンタックスハイライト</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-14T12:22:00+09:00" pubdate data-updated="true">Aug 14<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/08/14/syntax-highlight-in-wordpress/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/08/14/syntax-highlight-in-wordpress/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。<br />
-<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">WordPress › SyntaxHighlighter « WordPress Plugins</a></p>
-<p>デフォルトでサポートされているのが以下。</p>
-<ul>
-	<li>C++</li>
-	<li>C#</li>
-	<li><span class="caps">CSS</span></li>
-	<li>Delphi</li>
-	<li>Java</li>
-	<li>Javascript</li>
-	<li><span class="caps">PHP</span></li>
-	<li>Python</li>
-	<li>Ruby</li>
-	<li>Sql</li>
-	<li>VB</li>
-	<li><span class="caps">XML</span>/<span class="caps">HTML</span></li>
-</ul>
-<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
-<p>以下、AS3 でテスト。</p>
-<p>[sourcecode language=&#8216;Actionscript&#8217;]package<br />
-{<br />
-	import flash.display.Sprite;</p>
-<p>/<strong>*<br />
-	 * Test class.<br />
-	 */<br />
-	public class Test extends Sprite<br />
-	{<br />
-		/</strong>*<br />
-		 * @private<br />
-		 */<br />
-		private var _test:Sprite;</p>
-<p>/*<br />
-		 * Constructor.<br />
-		 */<br />
-		public function Test()<br />
-		{<br />
-			_test = new Sprite();<br />
-			_test.graphics.beginFill(0);<br />
-			_test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);<br />
-			<em>test.graphics.endFill();<br />
-			addChild(</em>test);<br />
-		}<br />
-	}<br />
-}[/sourcecode]</p>
-<h3>参考URL</h3>
-<ul>
-	<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpressにAS3/MXMLのコードハイライトプラグインを導入</a></li>
-	<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
-</ul>
-<h3><ins>追記</ins></h3>
-<p><ins>SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。</ins></p></div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -653,6 +565,56 @@ amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、
   <div class="entry-content"><p>Ubuntu の日本語フォーラムを覗いた時に、ちょうど目に入ったのでやってみました。</p>
 <p>参考にしたのは、以下の記事。<br />
 <a href="http://www.atmarkit.co.jp/flinux/rensai/linuxtips/a077changelang.html">ホームディレクトリのフォルダ名を日本語から英語に変更するには － ＠IT</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/10/install-numpy-etc/">NumPy などをインストール</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-10T00:57:00+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2008</time>
+        
+           | <a href="/blog/2008/06/10/install-numpy-etc/#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com/blog/2008/06/10/install-numpy-etc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。</p>
+<p><a href="http://d.hatena.ne.jp/tdm/20080223/1203793774">ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my cartesian theater</a><br />
+のとおりにしたら、うまくいきました。<br />
+めでたしめでたし。</p>
+<p>ただし、下記のように <code>svc</code> を <code>svn</code> に変えました。</p>
+<pre class="prettyprint">svn co http://svn.scipy.org/svn/numpy/trunk numpy</pre>
+<p>ついでに入れた scipy は <span class="caps">FFT</span> とか科学っぽいライブラリ。<br />
+matplotlib は matlab 的な複雑なグラフが描けるとか。<br />
+こんな感じで使うらしい。<br />
+<a href="http://d.hatena.ne.jp/ytakenaka/20070106/p1" title="Blog ’(Yasuto . Takenaka)">scipy+matplotlib による3元連立常微分方程式の軌道 -</a></p>
+<p>・・・と思ったら、matplotlib がうまくインストールできませんでした。<br />
+時間ができたら、下記を参考に再度チャレンジしてみます。<br />
+<a href="https://help.ubuntu.com/community/MatPlotLibHowTo">MatPlotLibHowTo &#8211; Community Ubuntu Documentation</a></p></div>
   
   
 

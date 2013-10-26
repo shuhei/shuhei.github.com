@@ -49,7 +49,7 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -112,10 +112,10 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
 <h3>方法</h3>
 <p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
-<p><img src="http://nanataisan.net/blog/wp-content/uploads/2009/11/symbolic_break_point1.png" alt="" /></p>
+<p><img src="/images/2009/11/symbolic_break_point1.png" alt="" /></p>
 <p>出てきたダイアログに <code>objc_exception_throw</code> と入力。<br />
 これで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。</p>
-<p><img src="http://nanataisan.net/blog/wp-content/uploads/2009/11/debugger1.png" alt="" /></p>
+<p><img src="/images/2009/11/debugger1.png" alt="" /></p>
 <p>デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。</p>
 <p>via <a href="http://www.markj.net/debugging-tip-objc_exception_throw-breakpoint/">Debugging Tip – objc_exception_throw breakpoint | markjnet</a></p>
 <h3>シンボリックブレークポイント</h3>

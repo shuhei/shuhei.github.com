@@ -4,7 +4,7 @@
   <title><![CDATA[Category: UNIX/LINUX | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/unix-slash-linux/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -47,7 +47,7 @@
     <id>http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet</id>
     <content type="html"><![CDATA[<p>やっと Trac 入りました。</p>
 
-<p><a href="http://nanataisan.net/blog/?p=123">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
+<p><a href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
 たぶん、以前 numpy を入れようとしていろいろいじったときの名残。
 変更内容はメモしておかないといけませんね。</p>
 
@@ -81,7 +81,7 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
 
 <p>h3. +追記+</p>
 
-<p>&ldquo;その後、成功しました。&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></p>
+<p>&ldquo;その後、成功しました。&rdquo;:/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</p>
 ]]></content>
   </entry>
   

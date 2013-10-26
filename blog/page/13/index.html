@@ -9,9 +9,11 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。
-ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my cartesian theater
-のとおりにしたら、うまくいきました。 &hellip;">
+  <meta name="description" content="ずいぶん間が開いてしまいました。
+以前メモした Information Design Patterns に少し似たウェブアプリケーション。
+目的別にいろいろなチャートを紹介してくれます。
+Chart Chooser
+ステキなのは、エクセルやパワーポイントのテンプレートがダウンロードできること。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,7 +52,7 @@ ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my ca
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Blog</a></h1>
+  <h1><a href="/blog">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -80,56 +82,6 @@ ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my ca
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/10/install-numpy-etc/">NumPy などをインストール</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-10T00:57:00+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/06/10/install-numpy-etc/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/06/10/install-numpy-etc/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。</p>
-<p><a href="http://d.hatena.ne.jp/tdm/20080223/1203793774">ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my cartesian theater</a><br />
-のとおりにしたら、うまくいきました。<br />
-めでたしめでたし。</p>
-<p>ただし、下記のように <code>svc</code> を <code>svn</code> に変えました。</p>
-<pre class="prettyprint">svn co http://svn.scipy.org/svn/numpy/trunk numpy</pre>
-<p>ついでに入れた scipy は <span class="caps">FFT</span> とか科学っぽいライブラリ。<br />
-matplotlib は matlab 的な複雑なグラフが描けるとか。<br />
-こんな感じで使うらしい。<br />
-<a href="http://d.hatena.ne.jp/ytakenaka/20070106/p1" title="Blog ’(Yasuto . Takenaka)">scipy+matplotlib による3元連立常微分方程式の軌道 -</a></p>
-<p>・・・と思ったら、matplotlib がうまくインストールできませんでした。<br />
-時間ができたら、下記を参考に再度チャレンジしてみます。<br />
-<a href="https://help.ubuntu.com/community/MatPlotLibHowTo">MatPlotLibHowTo &#8211; Community Ubuntu Documentation</a></p></div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -552,6 +504,58 @@ via <a href="http://swissmiss.typepad.com/weblog/2008/05/information-des.html">s
 <p>Rails 2.0.2 用の方法が別に書いてありました。<br />
 最初からこれでやればよかった・・・。</p>
 <p><a href="http://iwatakenichi.blogspot.com/2008/05/ruby-on-rails-202-and-rubygems-111-on.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Rails 2.0.2をインストールする方法</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/11/decompress-tar-gz/">.tar.gz の解凍</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-11T10:29:00+09:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
+        
+           | <a href="/blog/2008/05/11/decompress-tar-gz/#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/11/decompress-tar-gz/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre class="prettyprint">tar xzvf hogehoge.tar.gz</pre>
+<h3>オプションの意味</h3>
+<dl>
+	<dt>x</dt>
+	<dd>tar を展開</dd>
+	<dt>z</dt>
+	<dd>gzip 併用</dd>
+	<dt>v</dt>
+	<dd>詳細表示</dd>
+	<dt>f</dt>
+	<dd>ファイルを指定（必須）</dd>
+</dl>
+
+<h3>参考URL</h3>
+<p><a href="http://iris.homeunix.net/yayoi/freebsd/archiver/tar.asp"><span class="caps">TAR</span> の使い方</a></p></div>
   
   
 

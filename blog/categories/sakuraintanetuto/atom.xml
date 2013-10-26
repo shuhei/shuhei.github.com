@@ -4,7 +4,7 @@
   <title><![CDATA[Category: さくらインターネット | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/sakuraintanetuto/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-26T17:39:54+09:00</updated>
+  <updated>2013-10-26T23:55:00+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -19,8 +19,8 @@
     <updated>2008-08-24T14:40:00+09:00</updated>
     <id>http://shuhei.github.com/blog/2008/08/24/connect-to-subversion-on-sakura-internet</id>
     <content type="html"><![CDATA[<ul>
-<li>&ldquo;ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗&rdquo;:<a href="http://nanataisan.net/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/</a></li>
-<li>&ldquo;ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></li>
+<li>&ldquo;ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗&rdquo;:/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/</li>
+<li>&ldquo;ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功&rdquo;:/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</li>
 </ul>
 
 
@@ -65,7 +65,7 @@ Network &ndash;> SSH &ndash;> SSH client のところで下記のように設定
     <id>http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet</id>
     <content type="html"><![CDATA[<p>やっと Trac 入りました。</p>
 
-<p><a href="http://nanataisan.net/blog/?p=123">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
+<p><a href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
 たぶん、以前 numpy を入れようとしていろいろいじったときの名残。
 変更内容はメモしておかないといけませんね。</p>
 
@@ -99,7 +99,7 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
 
 <p>h3. +追記+</p>
 
-<p>&ldquo;その後、成功しました。&rdquo;:<a href="http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</a></p>
+<p>&ldquo;その後、成功しました。&rdquo;:/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/</p>
 ]]></content>
   </entry>
   
