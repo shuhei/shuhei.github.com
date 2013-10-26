@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MyDNS.jp 用に biffpop をビルド - かがわブログ</title>
+  <title>MyDNS.jp 用に biffpop をビルド - Blog</title>
   <meta name="author" content="Shuhei Kagawa">
 
   
@@ -23,7 +23,7 @@ POP のクライアントソフトとして説明ページでおすすめされ�
   <link rel="canonical" href="http://shuhei.github.com/blog/2010/01/04/build-biffpop-for-mydnsjp">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="かがわブログ" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -50,7 +50,7 @@ POP のクライアントソフトとして説明ページでおすすめされ�
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">かがわブログ</a></h1>
+  <h1><a href="/">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -70,7 +70,7 @@ POP のクライアントソフトとして説明ページでおすすめされ�
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
+  <li><a href="/blog">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about">About</a></li>
 </ul>
@@ -101,7 +101,8 @@ POP のクライアントソフトとして説明ページでおすすめされ�
 
 <time datetime="2010-01-04T02:17:00+09:00" pubdate data-updated="true">Jan 4<span>th</span>, 2010</time>
         
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com">Comments</a>
         
       </p>
     
@@ -348,7 +349,7 @@ make: <strong>*</strong> [biffpop.o] Error 1</p>
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

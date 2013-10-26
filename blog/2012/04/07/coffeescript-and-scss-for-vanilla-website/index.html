@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて - かがわブログ</title>
+  <title>普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて - Blog</title>
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の watchr を使って、ファイルを更新したら自動でコンパイルするように設定。 watch('(.*)\.coffee') { |md| system & &hellip;">
+  <meta name="description" content="最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の watchr を使って、ファイルを更新したら自動でコンパイルするように設定。 watch(&#39;(.*)\.coffee&#39;) { |md| &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://shuhei.github.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="かがわブログ" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -48,7 +48,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">かがわブログ</a></h1>
+  <h1><a href="/">Blog</a></h1>
   
     <h2>技術のことについて書きます。</h2>
   
@@ -68,7 +68,7 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
+  <li><a href="/blog">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about">About</a></li>
 </ul>
@@ -99,7 +99,8 @@
 
 <time datetime="2012-04-07T13:30:00+09:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
         
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://shuhei.github.com">Comments</a>
         
       </p>
     
@@ -109,8 +110,8 @@
 <div class="entry-content"><p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
 <div><script src='https://gist.github.com/2325038.js'></script>
-<noscript><pre><code>watch('(.*)\.coffee') { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
-watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
+<noscript><pre><code>watch(&#39;(.*)\.coffee&#39;) { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
+watch(&#39;sass\/(.*)\.s[ac]ss&#39;) { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
 
 
 <p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
@@ -306,7 +307,7 @@ watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; 
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

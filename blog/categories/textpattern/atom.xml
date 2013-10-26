@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Textpattern | かがわブログ]]></title>
+  <title><![CDATA[Category: Textpattern | Blog]]></title>
   <link href="http://shuhei.github.com/blog/categories/textpattern/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-07-16T22:23:55+09:00</updated>
+  <updated>2013-10-26T17:39:54+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>

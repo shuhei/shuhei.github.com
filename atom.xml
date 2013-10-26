@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[かがわブログ]]></title>
+  <title><![CDATA[Blog]]></title>
   <link href="http://shuhei.github.com/atom.xml" rel="self"/>
   <link href="http://shuhei.github.com/"/>
-  <updated>2013-07-16T22:23:25+09:00</updated>
+  <updated>2013-10-26T17:39:34+09:00</updated>
   <id>http://shuhei.github.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -33,8 +33,8 @@
     <content type="html"><![CDATA[<p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
 <div><script src='https://gist.github.com/2325038.js'></script>
-<noscript><pre><code>watch('(.*)\.coffee') { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
-watch('sass\/(.*)\.s[ac]ss') { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
+<noscript><pre><code>watch(&#39;(.*)\.coffee&#39;) { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
+watch(&#39;sass\/(.*)\.s[ac]ss&#39;) { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
 
 
 <p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
@@ -69,7 +69,7 @@ index 5c7d335..7ad03bb 100644
 @@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
  
  # list each of the sidebar modules you want to include, in the order you want them to appear.
- # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+ # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &#39;custom/asides/custom_aside_name.html&#39;
 -default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 +default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
  
