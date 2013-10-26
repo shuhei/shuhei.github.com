@@ -12,8 +12,8 @@ categories: []
 
 最近本を読んでばかりで何も作っていなかったので、Processing をいじってみました。
 
-* "FloatingBall_1 : Built with Processing":http://nanataisan.net/works/floating_ball_1/
-* "FloatingBall_2 : Built with Processing":http://nanataisan.net/works/floating_ball_2/
+* "FloatingBall_1 : Built with Processing":/works/floating_ball_1/
+* "FloatingBall_2 : Built with Processing":/works/floating_ball_2/
 
 "http://fladdict.net/flash/sketch/Study20100630.html":http://fladdict.net/flash/sketch/Study20100630.html をパクっただけですが・・・。
 

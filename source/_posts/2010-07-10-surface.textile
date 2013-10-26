@@ -12,5 +12,5 @@ categories: []
 
 しばらく続けてみます。
 
-* "Surface : Built with Processing":http://nanataisan.net/works/surface/
-* "Surface_3 : Built with Processing":http://nanataisan.net/works/surface_3/
+* "Surface : Built with Processing":/works/surface/
+* "Surface_3 : Built with Processing":/works/surface_3/
