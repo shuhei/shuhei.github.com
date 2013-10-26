@@ -1,29 +1,50 @@
----
-layout: default
----
-
-<div class="blog-index">
-  {% assign index = true %}
-  {% for post in paginator.posts %}
-  {% assign content = post.content %}
-    <article>
-      {% include article.html %}
-    </article>
-  {% endfor %}
-  <div class="pagination">
-    {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
-    {% endif %}
-    <a href="/blog/archives">Blog Archives</a>
-    {% if paginator.previous_page %}
-    <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
-    {% endif %}
-  </div>
-</div>
-<aside class="sidebar">
-  {% if site.blog_index_asides.size %}
-    {% include_array blog_index_asides %}
-  {% else %}
-    {% include_array default_asides %}
-  {% endif %}
-</aside>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shuhei Kagawa</title>
+    <style>
+      body {
+        font-family: "chaparral-pro", sans-serif;
+        font-size: 16px;
+      }
+      a {
+        color: #77bc19;
+      }
+      ul li {
+        list-style-type: none;
+      }
+      ul li:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 6px solid #000;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        display: inline-block;
+        margin-right: 5px;
+      }
+    </style>
+    <script src="//use.typekit.net/egb1kdr.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  </head>
+  <body>
+    <h1>Shuhei Kagawa</h1>
+    <section>
+      <ul>
+        <li><a href="https://github.com/shuhei">Github</a></li>
+        <li><a href="http://www.linkedin.com/in/shuheikagawa">LinkedIn</a></li>
+        <li><a href="http://qiita.com/users/shuhei@github">Qiita</a></li>
+      </ul>
+    </section>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-309586-9']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
