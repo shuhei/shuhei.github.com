@@ -9,7 +9,7 @@ categories: [UNIX/LINUX, さくらインターネット]
 ---
 やっと Trac 入りました。
 
-<a href="http://nanataisan.net/blog/?p=123">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC="gcc" としていたのが原因だったようです。
+<a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC="gcc" としていたのが原因だったようです。
 たぶん、以前 numpy を入れようとしていろいろいじったときの名残。
 変更内容はメモしておかないといけませんね。
 

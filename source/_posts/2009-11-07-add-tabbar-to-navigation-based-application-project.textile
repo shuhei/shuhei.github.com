@@ -21,7 +21,7 @@ h4. Tab Bar Controller の下に Navigation Controller を
 
 Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の "Tab Bar Controller" =&gt; "View Controllers" の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。
 
-!http://nanataisan.net/blog/wp-content/uploads/2009/11/TabBarController_Inspector1.png!
+!/images/2009/11/TabBarController_Inspector1.png!
 
 すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。
 
@@ -30,8 +30,8 @@ h4. Navigation Controller の下に Root View Controller を
 この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。
 一番左側のタブで NIB Name を、Inspectorで一番右側のタブで Class を設定します。
 
-!http://nanataisan.net/blog/wp-content/uploads/2009/11/SetRootViewControllerNIB1.png!
-!http://nanataisan.net/blog/wp-content/uploads/2009/11/SetRootViewControllerClass1.png!
+!/images/2009/11/SetRootViewControllerNIB1.png!
+!/images/2009/11/SetRootViewControllerClass1.png!
 
 以上を保存して IB を閉じます。
 

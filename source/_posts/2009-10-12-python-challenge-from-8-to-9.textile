@@ -9,7 +9,7 @@ categories: []
 ---
 h3. Level 8
 
-とりあえず @<area>@ タグの @coords@ 属性を描いてみました。Ruby と "苦労してインストールした cairo":http://nanataisan.net/blog/2009/10/12/install-cairo-with-gem/ を使用。
+とりあえず @<area>@ タグの @coords@ 属性を描いてみました。Ruby と "苦労してインストールした cairo":/blog/2009/10/12/install-cairo-with-gem/ を使用。
 
 pre(prettyprint).. require 'cairo'
 

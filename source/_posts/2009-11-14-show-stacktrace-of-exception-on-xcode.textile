@@ -14,12 +14,12 @@ h3. 方法
 
 "実行" =&gt; "ブレークポイントを管理" =&gt; "シンボリックブレークポイントを追加" を実行します。
 
-!http://nanataisan.net/blog/wp-content/uploads/2009/11/symbolic_break_point1.png!
+!/images/2009/11/symbolic_break_point1.png!
 
 出てきたダイアログに @objc_exception_throw@ と入力。
 これで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。
 
-!http://nanataisan.net/blog/wp-content/uploads/2009/11/debugger1.png!
+!/images/2009/11/debugger1.png!
 
 デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。
 

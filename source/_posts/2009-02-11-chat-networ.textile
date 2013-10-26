@@ -10,7 +10,7 @@ categories: [Proce55ing, 情報デザイン]
 前回に引き続き、Processing。
 某チャットルームの人間関係を視覚化してみました。
 
-<a href="http://www.7to3.net/lab/sketches/ChatNetwork/">http://www.7to3.net/lab/sketches/ChatNetwork/</a>
+<a href="/works/chart_network/">ChatNetwork</a>
 
 丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。
 同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。

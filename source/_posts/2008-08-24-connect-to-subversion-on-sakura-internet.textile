@@ -7,8 +7,8 @@ comments: true
 tags: 
 categories: [さくらインターネット]
 ---
-* "ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗":http://nanataisan.net/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/
-* "ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功":http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/
+* "ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗":/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/
+* "ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功":/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/
 
 上記二つに続けて、さくらインターネットへインストールした Subversion に SSH でつなぎます。
 使うのは TortoiseSVN。

@@ -7,7 +7,7 @@ comments: true
 tags: 
 categories: [Wordpress]
 ---
-以前 "Wordpress の Textile プラグイン":http://nanataisan.net/blog/2009/08/02/wordpress-textile-plugin/ という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。
+以前 "Wordpress の Textile プラグイン":/blog/2009/08/02/wordpress-textile-plugin/ という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。
 
 きっかけは、いくつかの簡易記法を選んで使えるというプラグイン "Text Control 2":http://wordpress.org/extend/plugins/text-control-2/ をふと思い立ってインストールしてみたこと。
 このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。

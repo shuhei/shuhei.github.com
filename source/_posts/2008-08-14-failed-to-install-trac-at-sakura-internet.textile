@@ -18,4 +18,4 @@ build しようとすると、「error: don't know how to complile C/C++ ～～�
 
 h3. +追記+
 
-"その後、成功しました。":http://nanataisan.net/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/
+"その後、成功しました。":/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/
