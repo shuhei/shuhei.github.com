@@ -1,2 +1,38 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+// base/_theme
+// TODO: Do it with variables.
+html {
+  background-image: none;
+}
+
+// base/_typography
+body {
+  // You can't override `extend` with `extend`.
+  font-family: $sans;
+}
+
+// partials/_navigation
+body > nav {
+  border: 0px none;
+}
+
+// partials/_footer
+body > footer {
+  text-shadow: none;
+  border: 0px none;
+}
+
+// partials/_blog
+article {
+  header {
+    padding-top: 0;
+    p {
+      &.meta {
+        position: relative;
+        top: 0.8em;
+      }
+    }
+  }
+}
