@@ -154,9 +154,11 @@
 
   <div class="entry-content"><p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
-<div><script src='https://gist.github.com/2325038.js'></script>
-<noscript><pre><code>watch(&#39;(.*)\.coffee&#39;) { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
-watch(&#39;sass\/(.*)\.s[ac]ss&#39;) { |md| system &quot;compass compile #{md[0]}&quot; }</code></pre></noscript></div>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;(.*)\.coffee&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">md</span><span class="o">|</span> <span class="nb">system</span> <span class="s2">&quot;coffee -o js -c </span><span class="si">#{</span><span class="n">md</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;sass\/(.*)\.s[ac]ss&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">md</span><span class="o">|</span> <span class="nb">system</span> <span class="s2">&quot;compass compile </span><span class="si">#{</span><span class="n">md</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
@@ -243,24 +245,111 @@ watch(&#39;sass\/(.*)\.s[ac]ss&#39;) { |md| system &quot;compass compile #{md[0]
 
   <div class="entry-content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
 
-<div><script src='https://gist.github.com/2288181.js'></script>
-<noscript><pre><code>diff --git a/_config.yml b/_config.yml
-index 5c7d335..7ad03bb 100644
---- a/_config.yml
-+++ b/_config.yml
-@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
- 
- # list each of the sidebar modules you want to include, in the order you want them to appear.
- # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &#39;custom/asides/custom_aside_name.html&#39;
--default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
- 
- # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
- # and add an array with the asides you want to use.
-</code></pre></noscript></div>
+<figure class='code'><figcaption><span>_config.yml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/_config.yml b/_config.yml</span>
+</span><span class='line'><span class="gh">index 5c7d335..7ad03bb 100644</span>
+</span><span class='line'><span class="gd">--- a/_config.yml</span>
+</span><span class='line'><span class="gi">+++ b/_config.yml</span>
+</span><span class='line'><span class="gu">@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase</span>
+</span><span class='line'>
+</span><span class='line'> # list each of the sidebar modules you want to include, in the order you want them to appear.
+</span><span class='line'> # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &#39;custom/asides/custom_aside_name.html&#39;
+</span><span class='line'><span class="gd">-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]</span>
+</span><span class='line'><span class="gi">+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.</span>
+</span><span class='line'>
+</span><span class='line'> # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+</span><span class='line'> # and add an array with the asides you want to use.
+</span></code></pre></td></tr></table></div></figure>
 
 
 
+
+<figure class='code'><figcaption><span>source/_includes/custom/asides/categories.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>    {% for category in site.categories %}
+</span><span class='line'>      <span class="nt">&lt;li&gt;</span>{{ category | category_link }}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>    {% endfor %}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2013-10-27 編集: 現在はデフォルトで <code>category_link</code> メソッドが追加されているので、以下の修正は不要です。</p>
+
+<figure class='code'><figcaption><span>plugins/category_generator.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gh">index bb5fd32..28bf7e0 100644</span>
+</span><span class='line'><span class="gd">--- a/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gi">+++ b/plugins/category_generator.rb</span>
+</span><span class='line'><span class="gu">@@ -156,6 +156,18 @@ module Jekyll</span>
+</span><span class='line'>       end
+</span><span class='line'>     end
+</span><span class='line'>
+</span><span class='line'><span class="gi">+    # Outputs a link of a category.</span>
+</span><span class='line'><span class="gi">+    # </span>
+</span><span class='line'><span class="gi">+    #  +category+ is an item of site.categories.</span>
+</span><span class='line'><span class="gi">+    #</span>
+</span><span class='line'><span class="gi">+    # Returns string</span>
+</span><span class='line'><span class="gi">+    # </span>
+</span><span class='line'><span class="gi">+    def category_link(category)</span>
+</span><span class='line'><span class="gi">+      dir = @context.registers[:site].config[&#39;category_dir&#39;]</span>
+</span><span class='line'><span class="gi">+      category = category[0]</span>
+</span><span class='line'><span class="gi">+      &quot;&lt;a class=&#39;category&#39; href=&#39;/#{dir}/#{category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase}/&#39;&gt;#{category}&lt;/a&gt;&quot;</span>
+</span><span class='line'><span class="gi">+    end</span>
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'>     # Outputs the post.date as formatted html, with hooks for CSS styling.
+</span><span class='line'>     #
+</span><span class='line'>     #  +date+ is the date object to format as HTML.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
 </div>
   
   
