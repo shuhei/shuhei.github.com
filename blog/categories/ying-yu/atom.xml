@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 英語 | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/ying-yu/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/ying-yu/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TOEIC 模試]]></title>
-    <link href="http://shuhei.github.com/blog/2009/05/24/toeic/"/>
+    <link href="http://shuheikagawa.com/blog/2009/05/24/toeic/"/>
     <updated>2009-05-24T19:02:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/05/24/toeic</id>
+    <id>http://shuheikagawa.com/blog/2009/05/24/toeic</id>
     <content type="html"><![CDATA[<p>ふと思い立って TOEIC でも受けてみようと思い、模試本を買ってきて解いてみました。
 以下、結果です。</p>
 

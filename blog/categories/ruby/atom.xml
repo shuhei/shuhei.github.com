@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby の Hash#default]]></title>
-    <link href="http://shuhei.github.com/blog/2010/02/17/hashdefault/"/>
+    <link href="http://shuheikagawa.com/blog/2010/02/17/hashdefault/"/>
     <updated>2010-02-17T12:45:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/02/17/hashdefault</id>
+    <id>http://shuheikagawa.com/blog/2010/02/17/hashdefault</id>
     <content type="html"><![CDATA[<p>Windows XP の Ruby 1.8.7 で</p>
 
 <p>pre(prettyprint). h = {}
@@ -40,9 +40,9 @@ puts h # => {&ldquo;hello&rdquo;=>[&ldquo;world&rdquo;]}</p>
   
   <entry>
     <title type="html"><![CDATA[さくらのレンタルサーバに Ruby on Rails を入れる]]></title>
-    <link href="http://shuhei.github.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/"/>
     <updated>2008-05-11T13:27:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet</id>
     <content type="html"><![CDATA[<p>基本的には以下のサイトを参考に。</p>
 
 <ul>

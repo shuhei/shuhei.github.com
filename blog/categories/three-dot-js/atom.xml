@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Three.js | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/three-dot-js/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:31+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/three-dot-js/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Perfume Dev]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/03/perfume-dev/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/03/perfume-dev/"/>
     <updated>2012-04-03T14:07:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/03/perfume-dev</id>
+    <id>http://shuheikagawa.com/blog/2012/04/03/perfume-dev</id>
     <content type="html"><![CDATA[<p><a href="/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" width="800" height="461" title="&ldquo;Perfume Dev&rdquo;" ></a></p>
 
 <p><a href="http://www.perfume-global.com/">Perfume Global</a> のデータで<a href="/works/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>

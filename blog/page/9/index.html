@@ -9,12 +9,11 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="前回に引き続き、Processing。
-某チャットルームの人間関係を視覚化してみました。
-ChatNetwork
-丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。
-同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。
-今後の展望としては、片想い、 &hellip;">
+  <meta name="description" content="sudo gem install cairo
+でインストールできず、四苦八苦。
+調べてみたところ、下記 URL に行き当たりました。
+よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。
+[Bug 18623] New: Patch for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +22,7 @@ ChatNetwork
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/page/9">
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/9">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
@@ -67,7 +66,7 @@ ChatNetwork
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:shuhei.github.com" />
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -89,7 +88,7 @@ ChatNetwork
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/02/11/chat-networ/">Chat Network</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/10/12/install-cairo-with-gem/">Gem で Cairo をインストール</a></h1>
     
     
       <p class="meta">
@@ -105,26 +104,28 @@ ChatNetwork
   
 
 
-<time datetime="2009-02-11T12:38:00+09:00" pubdate data-updated="true">Feb 11<span>th</span>, 2009</time>
+<time datetime="2009-10-12T16:13:00+09:00" pubdate data-updated="true">Oct 12<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/02/11/chat-networ/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/02/11/chat-networ/">Comments</a>
+           | <a href="/blog/2009/10/12/install-cairo-with-gem/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/12/install-cairo-with-gem/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>前回に引き続き、Processing。<br />
-某チャットルームの人間関係を視覚化してみました。</p>
-<p><a href="/works/chart_network/">ChatNetwork</a></p>
-<p>丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。<br />
-同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。</p>
-<p>今後の展望としては、片想い、両想いで線の色を変えると面白いかもしれません。<br />
-あとは、元データをDBからリアルタイムで取ってくるとか。</p>
-<p>例によってスケッチなのでソースコードはグチャグチャです。<br />
-個人的には Processing が日本語が表示できるようになっていたことに驚きました。<br />
-beta がとれただけのことはあります。</p></div>
+  <div class="entry-content"><pre class="prettyprint">sudo gem install cairo</pre>
+<p>でインストールできず、四苦八苦。<br />
+調べてみたところ、下記 <span class="caps">URL</span> に行き当たりました。<br />
+よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
+<p><a href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html" lang="cairo-bugs">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
+<p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
+<pre class="prettyprint">cd cairo-1.8.0
+sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
+sudo ruby extconf.rb
+sudo make
+sudo make install
+</pre></div>
   
   
 
@@ -136,7 +137,7 @@ beta がとれただけのことはあります。</p></div>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/02/06/poingpoing/">ポインポイン</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/10/11/this-weeks-chipped-books/">今週届いた本（Joel on Software、高度試験午前対策など）</a></h1>
     
     
       <p class="meta">
@@ -152,373 +153,294 @@ beta がとれただけのことはあります。</p></div>
   
 
 
-<time datetime="2009-02-06T01:06:00+09:00" pubdate data-updated="true">Feb 6<span>th</span>, 2009</time>
+<time datetime="2009-10-11T15:49:00+09:00" pubdate data-updated="true">Oct 11<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/02/06/poingpoing/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/02/06/poingpoing/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>久しぶりに Processing いじってみました。<br />
-とても簡単で楽しいです。<br />
-<a href="/works/Web/">Web</a></p>
-<p>何か作るときのプロトタイプは Processing で作ることにしますかね。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/18/htons/">Htons</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-18T11:50:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/01/18/htons/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/01/18/htons/">Comments</a>
+           | <a href="/blog/2009/10/11/this-weeks-chipped-books/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/11/this-weeks-chipped-books/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Core Foundation でソケットを扱うプログラムを読んでいたら <code>htons()</code> なる関数が出てきました。<br />
-パッと見て意味が分からないので調べてみたところ、&quot;Host To Network Short&quot; とのことで、16ビット（short）のホストバイトオーダーをネットワークバイトオーダー（ビッグエンディアン）に変換してくれるというもの。</p>
-<p>常識なんでしょうが、そんな略語知るか！という感じです。<br />
-僕は A 型だからか、Java のような名前を見ただけで働きのわかる名前が好きですねー。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/11/dardara/">ダラダラ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-11T00:54:00+09:00" pubdate data-updated="true">Jan 11<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/01/11/dardara/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/01/11/dardara/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ここ数日、iPhone <span class="caps">SDK</span> でネットワーク系のプログラムを書こうとしています。</p>
-<p>部屋にこもってダラダラやっていると、気がついたらもう真夜中、ということが多いです。<br />
-しかし、その割には進みません。</p>
-<p>やはり、時間を区切ってやらないと、成果は出にくいですね。<br />
-いつの間にか集中力が切れてしまいます。</p>
-<p>一日の時間割でも作ろうかなあ。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/07/analize-objective-c-project-with-clang/">Clang で Objective C の静的解析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-07T00:48:00+09:00" pubdate data-updated="true">Jan 7<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/01/07/analize-objective-c-project-with-clang/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/01/07/analize-objective-c-project-with-clang/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://clang.llvm.org/StaticAnalysis.html">clang</a> というツールを使うと、Objective Cや C、C++ などのコードを解析してバグを発見してくれるそうです。<br />
-静的な意味で。</p>
-<p><a href="http://blog.asial.co.jp/504">iPhoneアプリ開発にかかせない静的解析ツール「clang」 : アシアルブログ</a> などを参考にしてやってみたのですが、バグが発見されずレポートが出ませんでした。<br />
-残念。</p>
-<pre class="prettyprint">scan-build -o {レポート出力先パス} xcodebuild</pre>
-<p>あ、あと MacBook 買いました。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/16/software-develope/">ソフトウェア開発技術者</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-16T00:36:00+09:00" pubdate data-updated="true">Dec 16<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/12/16/software-develope/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/12/16/software-develope/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ソフ開受かってました。</p>
-<blockquote>受験番号 SWxxx &#8211; xxxx の方は，合格です。<br />
-午前試験のスコアは，735 点です。<br />
-午後I試験のスコアは，740 点です。<br />
-午後II試験のスコアは，615 点です。</blockquote>
-<p>それぞれ 400-800 点で採点され、それぞれ 600 点以上で合格だとか。<br />
-午後 II がかなり危なかったです。<br />
-ちょっと間違えたなとは思ったけど、まさかこんなにだとは。</p>
-<p>午前や午後 I については、試験直前に過去問だけで勉強したのでコンピュータの基礎が身についたかは疑問です。<br />
-やや過去問にオーバーフィットのきらいがあるかも。<br />
-どこかで紙面ではなく触って覚える必要がありますね。</p>
-<p>まあ、何はともあれ良かったです。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/11/3rd-grade-accountant-license/">簿記三級</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-11T23:00:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/12/11/3rd-grade-accountant-license/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/12/11/3rd-grade-accountant-license/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>受かってました。</p>
-<p>あとは、来週月曜発表のソフ開です。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/07/make-movie-from-proce55ing/">Proce55ing から 動画を作る</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-07T03:09:00+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/12/07/make-movie-from-proce55ing/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/12/07/make-movie-from-proce55ing/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Proce55ing で作った Sketch を動画にする方法です。<br />
-やり方は簡単。</p>
-<p>まず、Proce55ing から連番の静止画を書き出します。<br />
-draw メソッドの中で、saveFrame() を呼び出せば OK。<br />
-これで、フレームごとに screen-<span class="caps">XXXX</span>.tif という画像が書き出されます。</p>
-<p>そして、ffmpeg で連番の静止画から動画を作成します。<br />
-コマンドプロンプトで下記のようにすると、30 fps で mpeg ファイルが書き出されます。<br />
-ちなみに、%04d の部分は「数字が 4 つ」の意味です。</p>
-<pre class="prettyprint">ffmpeg -r 30 -i "screen-%04d.tif" -vcodec mjpeg -sameq test.avi</pre>
-<p>簡単ですね。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/06/mysql-int-timestamp-to-datetime/">MySQL で INT 型のタイムスタンプから DATETIME 型</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-06T12:59:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/12/06/mysql-int-timestamp-to-datetime/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/12/06/mysql-int-timestamp-to-datetime/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>にする方法がよくわかりません。<br />
-<span class="caps">TIMESTAMP</span> 型へのキャストはできませんし、DATETIME() に放り込むんでもタイムスタンプとして解釈されないのです。</p>
-<p>ゴリゴリ計算するとなると、閏年や月ごとの日にちの違いなど、めんどくさいことばかり。<br />
-他のプログラムからいじるようにしようと思います。</p>
-<p>普通に変換する関数はないんですかねえ？</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/23/artoolkit-on-vc2005express/">Visual C++ 2005 Express Edition で ARToolkit</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-23T15:07:00+09:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2008</time>
-        
-           | <a href="/blog/2008/11/23/artoolkit-on-vc2005express/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/11/23/artoolkit-on-vc2005express/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ARToolkit、やっと自作プロジェクトで動きました。<br />
-Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。</p>
-<p>プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; Windowsアプリケーション。</p>
-<p>出力先フォルダには、ARtoolkit/bin にある <span class="caps">DLL</span> ファイルや Data フォルダをコピーしておきます。</p>
-<p>プロジェクトの設定を下記のように変更。</p>
+  <div class="entry-content"><h3>エッセー</h3>
+<p>プログラマによるエッセー的な本を三冊。どれも有名な本ですね。</p>
 <ul>
-	<li>C/C++ &#8594; 全般 &#8594; 追加のインクルードディレクトリ = ARToolkit/include</li>
-	<li>リンカ &#8594; 全般 &#8594; インクリメンタルリンクを有効にする = 既定値</li>
-	<li>リンカ &#8594; 全般 &#8594; 追加のライブラリディレクトリ = ARToolkit/lib</li>
-	<li>リンカ &#8594; 入力 &#8594; 追加の依存ファイル = libARd.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib</li>
+	<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
+	<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
+	<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
 </ul>
-<p>これで何とか動くように思います。</p></div>
+<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。<br />
+エッセー的なものはどんどん読めて良いかな、と思って購入してみました。<br />
+ちょこちょこ読んで行こうと思います。</p>
+<h3><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前1・2対応</a></h3>
+<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。<br />
+しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。<br />
+まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。<br />
+試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/11/python-challenge-from-6-to-7/">Python Challenge Lv. 6 - 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-11T02:33:00+09:00" pubdate data-updated="true">Oct 11<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/10/11/python-challenge-from-6-to-7/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/11/python-challenge-from-6-to-7/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
+試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
+<h3>Level 6</h3>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。<br />
+少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre class="prettyprint">num = "90052"
+z = zipfile.ZipFile("channel.zip")</pre>
+<pre class="prettyprint">while True:
+  # Print file's comment
+  print z.getinfo(num + ".txt").comment,
+  # Get next nothing
+  s = open(num + ".txt").read()
+  m = pattern.match(s)
+  if m:
+    num = m.group(1)
+  else:
+    break</pre>
+<p>Python で改行なしの出力をするには <code>print "foo",</code> なんですね。<br />
+いつのまにか Python で解いてしまってますね・・・。</p>
+<h3>Level 7</h3>
+<pre class="prettyprint">from PIL import Image
+image = Image.open("oxygen.png")
+width = image.size[0]
+data = list(image.getdata())</pre>
+<pre class="prettyprint">before = 0
+message = ""
+for x in range(width):
+  tmp = data[x + width * 46][0]
+  if tmp != before:
+    message += "%c" % (tmp)
+    before= tmp</pre>
+<pre class="prettyprint">print message</pre>
+<p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<blockquote>
+<p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
+</blockquote>
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。<br />
+気を取り直して以下。書き方も少し Python らしく（？）。<br />
+<code>chr</code> という関数があったんですね。</p>
+<pre class="prettyprint">from PIL import Image
+image = Image.open("oxygen.png")
+width = image.size[0]
+data = list(image.getdata())
+message = []
+i = 0
+while True:
+  color = data[i + width * 46]
+  if color[0] == color[1] == color[2]:
+    message.append(color[2])
+    i += 7
+  else:
+    break</pre>
+<pre class="prettyprint">print "".join(map(chr, message))</pre>
+<p>出てきたメッセージから答えを出します。</p>
+<pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
+<p>何だかカンニングしてばかりですね・・・。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/11/grasse/">草</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-11T02:25:00+09:00" pubdate data-updated="true">Oct 11<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/10/11/grasse/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/11/grasse/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
+<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
+備忘のために。</p>
+<pre class="prettyprint">int NUM;
+float[] grasses;</pre>
+<pre class="prettyprint">void setup()
+{
+  size(495, 140);
+  smooth();
+  background(255);</pre>
+<pre class="prettyprint">  NUM = width;</pre>
+<pre class="prettyprint">  grasses = new float[NUM];
+  for (int i = 0; i &lt; NUM; i++)
+  {
+    grasses[i] = random(0, 1) * random(0.5, 1);
+  }
+  drawGrasses();
+  save("grasses.png");
+}</pre>
+<pre class="prettyprint">void drawGrasses()
+{
+  noFill();
+  colorMode(HSB);
+  for (int i = 0; i &lt; NUM; i++)
+  {
+    stroke(random(50, 100), 200, 200);
+    strokeWeight(width * 0.0015 * random(0.5, 1));</pre>
+<pre class="prettyprint">    int x = i * width / (NUM - 1);
+    line(x,
+         height,
+         x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
+         height * (1.0 - grasses[i] * 0.3 - 0.2));
+  }
+}
+</pre></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/10/python-challenge-from-0-to-5/">Python Challenge Lv. 0 - 5</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-10T15:38:00+09:00" pubdate data-updated="true">Oct 10<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/10/10/python-challenge-from-0-to-5/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/10/python-challenge-from-0-to-5/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
+プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。<br />
+最近マイブームな Ruby で。</p>
+<p>以下、ネタバレ注意です。</p>
+<h3>Level 0</h3>
+<pre class="prettyprint">2 ** 38</pre>
+<h3>Level 1</h3>
+<pre class="prettyprint">cipher = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
+abc = ("a"[0] .. "z"[0]).to_a
+cde = ("c"[0] .. "z"[0]).to_a + ["a"[0], "b"[0]]
+dict = Hash[*abc.zip(cde).flatten]
+cipher.bytes do |ch|
+  ch = dict[ch] if dict.has_key?(ch)
+  printf("%c", ch)
+end</pre>
+<h3>Level 2</h3>
+<p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
+<pre class="prettyprint">File.open("mess_2.txt") do |f|
+  while ch = f.getc
+    printf("%c", ch) if ("a"[0] .. "z"[0]).include?(ch)
+  end
+end</pre>
+<p>ファイルの中身を1バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
+<h3>Level 3</h3>
+<pre class="prettyprint">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
+File.open("mess_3.txt") do |f|
+  p f.read.scan(pattern).to_s
+end</pre>
+<p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
+<h3>Level 4</h3>
+<pre class="prettyprint">num = "12345"
+require "net/http"
+def get_nothing(num)
+  return Net::HTTP.get URI.parse("http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + num)
+end
+400.times do
+  content = get_nothing(num)
+  m = /and the next nothing is ([0-9]+)/.match(content)
+  p num
+  p content
+  if m != nil then
+    num = m[1]
+  else
+    exit
+  end
+end</pre>
+<p>途中でひっかけがありますが・・・。そこは手作業で。</p>
+<h3>Level 5</h3>
+<p>意味がわからずカンニング。<br />
+<a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a><br />
+Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
+<pre class="prettyprint">import urllib, pickle
+uri = "http://www.pythonchallenge.com/pc/def/banner.p"
+obj = pickle.load(urllib.urlopen(uri))
+for line in obj:
+  l = ""
+  for pair in line:
+    l += pair[0] * pair[1]
+    print l</pre>
+<h3>今日はここまで</h3>
+<p>続きはまた今度。</p></div>
   
   
 

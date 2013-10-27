@@ -9,8 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="rails.vim &#8211; Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more : vim online がステキ。
-ダウンロードして、.vim に入れればインストール完了。 &hellip;">
+  <meta name="description" content="1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。
+自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。
+Ruby Version Manager という素晴らしいものがあるそうです。 RVM: Ruby Version Manager &# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/page/3">
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/3">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
@@ -63,7 +64,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:shuhei.github.com" />
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -85,7 +86,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/03/01/rails-vim/">rails.vim</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/16/multi-rubies-with-rv/">RVM で複数バージョンの Ruby を管理</a></h1>
     
     
       <p class="meta">
@@ -101,43 +102,42 @@
   
 
 
-<time datetime="2010-03-01T08:40:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2010</time>
+<time datetime="2010-06-16T00:32:00+09:00" pubdate data-updated="true">Jun 16<span>th</span>, 2010</time>
         
-           | <a href="/blog/2010/03/01/rails-vim/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/03/01/rails-vim/">Comments</a>
+           | <a href="/blog/2010/06/16/multi-rubies-with-rv/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/06/16/multi-rubies-with-rv/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.vim.org/scripts/script.php?script_id=1567">rails.vim &#8211; Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more : vim online</a> がステキ。<br />
-ダウンロードして、.vim に入れればインストール完了。</p>
-<h3>ファイル間の移動</h3>
-<p>対応するモデルと単体テスト、コントローラとビューと機能テストの間などを行き来できます。</p>
+  <div class="entry-content"><p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。<br />
+自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。<br />
+<a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
 <ul>
-	<li>:Rmodel</li>
-	<li>:Runittest</li>
-	<li>:Rcontroller</li>
-	<li>:Rview</li>
-	<li>:Rfunctinaltest</li>
+	<li><a href="http://rvm.beginrescueend.com/rvm/install/"><span class="caps">RVM</span>: Ruby Version Manager &#8211; Installing <span class="caps">RVM</span></a></li>
+	<li><a href="http://d.hatena.ne.jp/mirakui/20100502/1272849327">rvm: 複数のRubyを共存させる最新のやり方 &#8211; 床のトルストイ、ゲイとするとのこと</a></li>
 </ul>
-<p>などなど。対応するファイルに飛ぶだけでなく、以下のような感じでパスの指定もできます。</p>
-<p>:Rmodel user<br />
-:Rview users/show</p>
-<p>Tabキーで補完が効くので、大変便利。</p>
-<h3>サーバの起動</h3>
-<p><code>:Rserver</code> とするとコマンドプロンプトが別に開き、サーバが起動されます。</p>
-<h3>Rake の実行</h3>
-<p><code>:Rake task_name</code> で Rake タスクが実行できます。<br />
-例えば単体テストの実行には <code>:Rake test:units</code> 。</p>
-<p>結果はエラーとして出力されるため <code>:cl</code> で確認可能。</p>
-<p>タスク名の補完もきくので、ターミナルより便利！</p>
-<h3>参考URL</h3>
-<ul>
-	<li><a href="http://d.hatena.ne.jp/secondlife/20061222/1166781841">rails.vim まとめ &#8211; 川o・-・）＜2nd life</a></li>
-	<li><a href="http://d.hatena.ne.jp/mig50/20060731/1154356587">rails.vimの使い方(導入編) &#8211; migration!!</a></li>
-</ul></div>
+<p>を参考にインストール。<br />
+公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。</p>
+<pre class="prettyprint">$ bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</pre>
+<p>した後 .bashrc の最後に以下を記載。</p>
+<pre class="prettyprint">$ [[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm</pre>
+<p>これでターミナルを再起動すれば完了です。</p>
+<pre class="prettyprint">$ rvm list known</pre>
+<p>とするとインストール可能なバージョンのリストを出力してくれます。<br />
+下記で 1.9.1 をインストール。</p>
+<pre class="prettyprint">$ rvm install 1.9.1</pre>
+<p>irb, gem, rake なども一緒にインストールして管理してくれます。<br />
+1.8.7 系もインストール。</p>
+<pre class="prettyprint">$ rvm install 1.8.7</pre>
+<p>使用する Ruby を変えるには・・・。</p>
+<pre class="prettyprint">$ rvm use 1.8.7</pre>
+<p>情報を見るには下記。</p>
+<pre class="prettyprint">$ rvm info 1.8.7</pre>
+<p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。<br />
+1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p></div>
   
   
 
@@ -149,7 +149,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/02/17/hashdefault/">Ruby の Hash#default</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/01/out-of-memory-with-wordpress/">Wordpress で Out of Memory</a></h1>
     
     
       <p class="meta">
@@ -165,27 +165,27 @@
   
 
 
-<time datetime="2010-02-17T12:45:00+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2010</time>
+<time datetime="2010-06-01T23:40:00+09:00" pubdate data-updated="true">Jun 1<span>st</span>, 2010</time>
         
-           | <a href="/blog/2010/02/17/hashdefault/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/02/17/hashdefault/">Comments</a>
+           | <a href="/blog/2010/06/01/out-of-memory-with-wordpress/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/06/01/out-of-memory-with-wordpress/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Windows XP の Ruby 1.8.7 で</p>
-<pre class="prettyprint">h = {}
-h.default = []
-h["hello"] &lt;&lt; "world"</pre>
-<p>としたとき</p>
-<pre class="prettyprint">puts h.size # =&gt; 1
-puts h # =&gt; {"hello"=&gt;["world"]}</pre>
-<p>となるのを期待していたのですが <code>{}</code> と出力されます。<br />
-さらに、なんと以下のようになりました。</p>
-<pre class="prettyprint">puts h["foo"] # =&gt; ["world"]</pre>
-<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p></div>
+  <div class="entry-content"><p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
+再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。<br />
+syslog を見ると Out of memory で kernel が apache2 を kill している様子。<br />
+運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
+<p>積んでるメモリはたった 512MB。<br />
+人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。<br />
+おそらく、クローラのアクセスに耐えられなくなるのでしょう。</p>
+<p>定期的な再起動、Apache や <span class="caps">PHP</span> の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。<br />
+&#8220;Super&#8221; Cache とはなかなかの名前です。<br />
+インストールはとても簡単。</p>
+<p>さて、一ヶ月後どうなることやら。</p></div>
   
   
 
@@ -197,7 +197,7 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/02/17/grep-onwindows/">Windows で Grep</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run/">The Program Being Debugged Is Not Being Run.</a></h1>
     
     
       <p class="meta">
@@ -213,22 +213,29 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
   
 
 
-<time datetime="2010-02-17T09:38:00+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2010</time>
+<time datetime="2010-05-01T14:41:00+09:00" pubdate data-updated="true">May 1<span>st</span>, 2010</time>
         
-           | <a href="/blog/2010/02/17/grep-onwindows/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/02/17/grep-onwindows/">Comments</a>
+           | <a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/05/01/the-program-being-debugged-is-not-being-run/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><pre class="prettyprint">findstr /n /s /c:"hello world" sub_dir\*</pre>
-<p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。<br />
-/n で行番号表示。/s は再帰的に。</p>
-<pre class="prettyprint">findstr /n /s "hello world" sub_dir\*</pre>
-<p>とすると、&quot;hello&quot; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>
-<p>via <a href="http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265">コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &#8211; 主に言語とシステム開発に関して</a></p></div>
+  <div class="entry-content"><p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
+そんなの見ればわかります。理由を書いてください。理由を。<br />
+アプリのインストール自体はできているのですが、デバッグができないようです。</p>
+<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
+オーガナイザで provisioning profile を一旦消して、新しくダウンロードしたやつを入れ直そうというものです。</p>
+<p>しかし &#8220;<span class="caps">DEVICES</span>&#8221; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&quot;+&quot; で上書きしようとしても効果なし。</p>
+<p>&#8220;<span class="caps">IPHONE</span> <span class="caps">DEVELOMENT</span>&#8221; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;<span class="caps">DEVICES</span>&#8221; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。<br />
+めでたしめでたし。</p>
+<h3>追記</h3>
+<p>・・・と思ったら、また同じエラーが出ました。<br />
+ソースをいじってコンパイルし直した直後に出るみたい。<br />
+その後もう一回試すと、ちゃんと起動しています。<br />
+うーん、不思議です・・・。</p></div>
   
   
 
@@ -240,7 +247,7 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/01/20/error-of-eclispe/">Eclipse の起動エラー</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/04/14/upgrade-to-snow-leopard/">今さら Snow Leopard にアップグレード</a></h1>
     
     
       <p class="meta">
@@ -256,54 +263,73 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
   
 
 
-<time datetime="2010-01-20T09:40:00+09:00" pubdate data-updated="true">Jan 20<span>th</span>, 2010</time>
+<time datetime="2010-04-14T23:57:00+09:00" pubdate data-updated="true">Apr 14<span>th</span>, 2010</time>
         
-           | <a href="/blog/2010/01/20/error-of-eclispe/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/01/20/error-of-eclispe/">Comments</a>
+           | <a href="/blog/2010/04/14/upgrade-to-snow-leopard/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/04/14/upgrade-to-snow-leopard/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Eclipse <span class="caps">IDE</span> for Java EE Developers (based on Eclipse 3.5 SR1) をダウンロードしてから最初の起動時に &#8220;<span class="caps">JVM</span> Terminated.&#8221; 的なエラー。<br />
-eclipse.ini を修正。</p>
-<pre class="prettyprint">-startup
-plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
---launcher.library
-plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
--product
-org.eclipse.epp.package.jee.product
---launcher.XXMaxPermSize
-256M
--showsplash
-org.eclipse.platform
---launcher.XXMaxPermSize
-256m
--vmargs
--Dosgi.requiredJavaVersion=1.5
--Xms40m
--Xmx512m</pre>
-<p>上を下に。</p>
-<pre class="prettyprint">-startup
-plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
---launcher.library
-plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
--product
-org.eclipse.epp.package.jee.product
---launcher.XXMaxPermSize
-256M
--showsplash
-org.eclipse.platform
---launcher.XXMaxPermSize
-256m
--vm
-C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
--vmargs
--Dosgi.requiredJavaVersion=1.6
--Xms40m
--Xmx512m</pre>
-<p>via <a href="http://aotan2008.eco.coocan.jp/blog/archives/2009/06/08133609.php">Eclipseの起動エラー（JVM terminated. Exit code=-1） &#8211; がんばれ！aotan2008</a></p></div>
+  <div class="entry-content"><p>Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。<br />
+しかし、iPhone <span class="caps">SDK</span> 4.0 beta は Leopard には入らないというので、ついに観念。<br />
+ヨドバシのオンラインストア（Amazon より高いけど送料無料、即日発送、ポイントつく）で注文し、アップグレードしてみました。<br />
+以下、それに伴う環境構築も合わせてメモ。</p>
+<h3>ファイル整理</h3>
+<p>引っ越し前の大掃除ということで、いらないファイルを一掃しました。</p>
+<h3>（iTunes の認証を解除しておく）</h3>
+<p>iTunes で購入した音楽やアプリは 5 台までのコンピュータで共有できるようです。<br />
+認証を解除しておかないと、この台数一つを無駄にすることになります。</p>
+<p>これには気がつかず、すっかりやり損ねました！<br />
+今のところ 5 台で共有することもなさそうなので構いませんが・・・。</p>
+<h3>MacPorts, RubyGems のメモ</h3>
+<pre class="prettyprint">$ port installed &gt; ports20100414.txt
+$ gem list --local &gt; gems20100414.txt</pre>
+<h3>Time Machine でバックアップ</h3>
+<p>外付け <span class="caps">HDD</span> を引っ張りだしてきてバックアップ。<br />
+Time Machine は初めてだったので、フルバックアップで時間がかかりました。<br />
+120 GB くらいで 3 から 4 時間ほど。</p>
+<h3>Snow Leopard インストール</h3>
+<p>Snow Leopard の <span class="caps">DVD</span> を入れ、ディスクユーティリティでフォーマット。<br />
+そしてインストール。</p>
+<h3>Time Machine からデータを転送</h3>
+<p>インストールのウィザードに身を任せ、Time Machine からデータを転送。<br />
+ユーザと設定のみ転送し、&quot;HDD 上のその他のファイル&quot;（みたいなやつ）は転送せず。</p>
+<h3>Xcode のインストール</h3>
+<p><span class="caps">DVD</span> の &#8220;オプションインストール&#8221; フォルダから Xcode をインストール。</p>
+<h3>ソフトウェアアップデート</h3>
+<p>言われるがままソフトウェアアップデートをし、再起動。<br />
+そしたらまた Java のアップデートがあるとかで、立て続けにソフトウェアアップデート、再起動。</p>
+<h3>iPhone <span class="caps">SDK</span> のインストール</h3>
+<p>Xcode 3.2.3 + iPhone <span class="caps">SDK</span> 4.0 beta をインストール。</p>
+<h3>MacPorts のインストール</h3>
+<p>Leopard には最初から入っていたような気がするんですが、Snow Leopard には入っていません。<br />
+サイトからダウンロードしてインストール。<br />
+パッケージ管理ソフトとして Fink や Homebrew なども少し検討してみましたが、結局使い慣れた MacPorts に。</p>
+<h3>Ruby 1.9 のインストール</h3>
+<p>これを機に Ruby も 1.9 系統を使うようにしてみます。</p>
+<pre class="prettyprint">$ sudo port install ruby19</pre>
+<p>このままだとコマンド名が <code>ruby1.9</code> や <code>rake1.9</code> です。<br />
+<code>ruby</code> や <code>rake</code> として使いたいので、シンボリックリンクを作成。</p>
+<pre class="prettyprint">$ cd /opt/local/bin
+$ sudo ln -s erb1.9 erb
+$ sudo ln -s gem1.9 gem
+$ sudo ln -s irb1.9 irb
+$ sudo ln -s rake1.9 rake
+$ sudo ln -s rdoc1.9 rdoc
+$ sudo ln -s ri1.9 ri
+$ sudo ln -s ruby1.9 ruby
+$ sudo ln -s testrb1.9 testrb
+$ which ruby
+/opt/local/bin/ruby</pre>
+<p>こんなんでいいんですかね・・・？<br />
+.bashrc が <code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH</code> 的な感じになっているのが前提です。</p>
+<p>なお、Ruby 1.9 には RubyGems が同梱されているので、別途インストールは不要。</p>
+<h3>一旦完了</h3>
+<p>とりあえず今日のところはこの辺で一旦完了ということで。<br />
+その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p></div>
   
   
 
@@ -315,7 +341,7 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2010/01/16/update-macports/">MacPorts のアップデート</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/03/18/circle-packing/">Circle Packing</a></h1>
     
     
       <p class="meta">
@@ -331,336 +357,20 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
   
 
 
-<time datetime="2010-01-16T14:49:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2010</time>
+<time datetime="2010-03-18T00:24:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2010</time>
         
-           | <a href="/blog/2010/01/16/update-macports/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/01/16/update-macports/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>port search xxx として出てくるものが古いときに。</p>
-<p>MacPorts をアップデート。</p>
-<pre class="prettyprint">sudo port selfupdate</pre>
-<p>パッケージを更新。</p>
-<pre class="prettyprint">sudo port sync</pre>
-<p>たまにやった方がいいようですね。</p>
-<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPortsをちゃんと使うために調べてみた &#8211; kanonjiの日記</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/16/useufw/">Ufw でファイアウォール</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-16T14:27:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/01/16/useufw/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/01/16/useufw/">Comments</a>
+           | <a href="/blog/2010/03/18/circle-packing/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/03/18/circle-packing/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。<br />
-Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。</p>
-<pre class="prettyprint">sudo ufw default DENY
-sudo ufw enable</pre>
-<p>とやって有効化。<br />
-ウェブサーバならば <span class="caps">HTTP</span> を許可します。</p>
-<pre class="prettyprint">sudo ufw allow http</pre>
-<p><span class="caps">LAN</span> 内からだけ <span class="caps">SSH</span> を許可。</p>
-<pre class="prettyprint">sudo ufw allow from 192.168.1.0/24 to any port ssh</pre>
-<p><span class="caps">SSH</span> へのログイン試行回数を制限。</p>
-<pre class="prettyprint">sudo ufw limit ssh
-</pre></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/11/install-passenger/">Ubuntu Server に Passenger をインストール</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-11T23:00:00+09:00" pubdate data-updated="true">Jan 11<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/01/11/install-passenger/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/01/11/install-passenger/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Aptitude ではだめ</h3>
-<p>とりあえずは apt-get と思い、下記のようにしたらとしたら libapache2-mod-php5 などが消されて焦りました。</p>
-<pre class="prettyprint">sudo apt-get install libapache2-mod-passenger</pre>
-<p>Aptitude を使うと、Passenger と <span class="caps">PHP</span> 5 は共存できないようです。<br />
-それぞれが依存している apache2-mpm-worker と apache2-mpm-prefork が共存できないのが原因のよう。<br />
-via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu日本語フォーラム / ubuntu 9.04 passenger と　php5は共存できない？</a></p>
-<h3>Gem でインストール</h3>
-<p>しょうがないので <span class="caps">PHP</span> 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
-<pre class="prettyprint">sudo gem install passenger
-sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
-<p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
-<pre class="prettyprint">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
-<h3>設定ファイルの記述</h3>
-<p>httpd.conf には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
-<p>/etc/apache2/mods-available/passenger.load</p>
-<pre class="prettyprint">LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</pre>
-<p>/etc/apache2/mods-available/passenger.conf</p>
-<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
-  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
-  PassengerRuby /usr/bin/ruby1.8
-&lt;/ifModule&gt;</pre>
-<p>モジュールを有効に。<br />
-mods-enabled から mods-available にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
-<pre class="prettyprint">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
-sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</pre>
-<h3>サブディレクトリで公開</h3>
-<p>ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。</p>
-<pre class="prettyprint">sudo ln -s /path/to/app-name/public /path/to/www/app-name</pre>
-<p>そして、Apache の設定ファイルに少し付け足します。</p>
-<p>/etc/apache2/mods-available/passenger.conf</p>
-<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
-  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
-  PassengerRuby /usr/bin/ruby1.8
-  RailsBaseURI /app-name
-&lt;/ifModule&gt;</pre>
-<p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab &#8211; blog: PassengerでRedmineをサブディレクトリに公開</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/04/build-biffpop-for-mydnsjp/">MyDNS.jp 用に Biffpop をビルド</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-04T02:17:00+09:00" pubdate data-updated="true">Jan 4<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/01/04/build-biffpop-for-mydnsjp/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2010/01/04/build-biffpop-for-mydnsjp/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>無料ダイナミック <span class="caps">DNS</span> サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。<br />
-<span class="caps">POP</span> のクライアントソフトとして説明ページでおすすめされていた <a href="http://www.nakata-jp.org/computer/freesoft/biffpop.html">biffpop</a> をビルドする際につまずいたのでメモ。<br />
-環境は Ubuntu Server 9.10 64 bit。</p>
-<p>ソースをダウンロードして make すると、下記のようなエラー。</p>
-<blockquote>
-<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_SSL  -c -Wall biffpop.c -o biffpop.o<br />
-biffpop.c:24:25: error: openssl/ssl.h: No such file or directory<br />
-biffpop.c:25:25: error: openssl/err.h: No such file or directory<br />
-biffpop.c:47: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token<br />
-biffpop.c: In function ‘main’:<br />
-biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_COMMON’ undeclared (first use in this function)<br />
-biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
-biffpop.c:124: error: for each function it appears in.)<br />
-biffpop.c:127: warning: implicit declaration of function ‘SSL_load_error_strings’<br />
-biffpop.c:128: warning: implicit declaration of function ‘SSL_library_init’<br />
-biffpop.c:129: error: ‘ctx’ undeclared (first use in this function)<br />
-biffpop.c:129: warning: implicit declaration of function ‘SSL_CTX_new’<br />
-biffpop.c:129: warning: implicit declaration of function ‘SSLv23_client_method’<br />
-biffpop.c:130: warning: implicit declaration of function ‘ERR_print_errors_fp’<br />
-biffpop.c:138: warning: implicit declaration of function ‘SSL_CTX_free’<br />
-biffpop.c:139: warning: implicit declaration of function ‘ERR_free_strings’<br />
-biffpop.c: In function ‘readConfigFileSub’:<br />
-biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
-biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
-make: <strong>*</strong> [biffpop.o] Error 1</p>
-</blockquote>
-<p>OpenSSL は入っているのにおかしいな、と思ったのですが、libssl-dev がいるっぽいです。<br />
-<a href="http://forum.qmailrocks.org/archive/index.php/t-963.html">openssl/ssl.h: No such file or directory [Archive] &#8211; Qmailrocks.org Forum</a></p>
-<pre class="prettyprint">sudo apt-get install libssl-dev
-make</pre>
-<p>まだ少しエラー。</p>
-<blockquote>
-<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_SSL  -c -Wall biffpop.c -o biffpop.o<br />
-biffpop.c: In function ‘main’:<br />
-biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_COMMON’ undeclared (first use in this function)<br />
-biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
-biffpop.c:124: error: for each function it appears in.)<br />
-biffpop.c: In function ‘readConfigFileSub’:<br />
-biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
-biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
-make: <strong>*</strong> [biffpop.o] Error 1</p>
-</blockquote>
-<p>今度は regex.h のエラー。ソースを見てみると <code>_RE_SYNTAX_POSIX_COMMON</code> は <code>#ifdef __USE_GNU</code> で囲まれています。<br />
-<code>__USE_GNU</code> をオンにするには <code>#define _GNU_SOURCE</code> するか <code>cc -D _GNU_SOURCE</code> すれば良いらしい。</p>
-<p>・・・ということまではわかりましたが、よく考えると上記二つは <code>-DKILLLIST</code> と <code>-DUSE_SSL</code> をつけなければ起きないエラーです。SSLも正規表現によるメールの削除も、今回の用途には必要ありません。</p>
-<p>Makefile を よく読むと <code>#FLAGS  = -O3      # for mydns.jp system simple function</code> と書いてありました。<br />
-親切にも MyDNS ユーザ用のオプションが用意されていた訳です。<br />
-この行のコメントを外し、フルオプションの方（ <code>FLAGS  = -O3 -DIPv6 -DKILLLIST -DUSE_SSL # full option IPv6, Kill List &amp; SSL</code> ）をコメントアウトすると、ビルドできました。<br />
-めでたしめでたし。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/31/japanese-on-irb/">Irb で日本語表示</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-31T15:46:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2009</time>
-        
-           | <a href="/blog/2009/12/31/japanese-on-irb/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/12/31/japanese-on-irb/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre class="prettyprint">$irb
-irb(main):001:0&gt;puts "あああ"
-"\343\201\202\343\201\202\343\201\202"
-=&gt; nil</pre>
-<p>上の例のように、日本語出力が読めない問題。</p>
-<p>$<span class="caps">KCODE</span> に使用中のターミナルの文字コードを設定すれば良いようです。<br />
-<span class="caps">UTF</span>-8 なら <code>$KCODE = 'u'</code> 、EUC-JP なら <code>$KCODE = 'e'</code> など。<br />
-irb コマンドのオプションでも指定できます。<br />
-<code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
-<p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今Ruby勉強中 &#8211; Rubyist</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/09/ascii/">Ascii コード</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-09T22:51:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/12/09/ascii/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/12/09/ascii/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
-<blockquote>
-<p>Poem.</p>
-<p>You translated my poem,<br />
-I congratulate you.<br />
-I wish I could rhyme with poem,<br />
-but its very hard to.<br />
-I just beguiled you,</p>
-</blockquote>
-<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre class="prettyprint">class String
-  def bin
-    Integer('0b' + self)
-  end
-end</pre>
-<pre class="prettyprint">def decode(ascii)
-  0.step(ascii.size - 1, 8) do |num|
-    puts ascii[num..(num + 7)].bin.chr
-  end
-end</pre>
-<p>作る方は簡単でしょうが、読む方は大変です。</p></div>
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
+<p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
+<a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
+<p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p></div>
   
   
 

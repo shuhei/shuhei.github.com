@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Flash/Flex | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/flash-slash-flex/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/flash-slash-flex/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[PBDT - Pixel Bender 用 Eclipse プラグイン]]></title>
-    <link href="http://shuhei.github.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse/"/>
+    <link href="http://shuheikagawa.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse/"/>
     <updated>2009-06-21T19:20:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse</id>
+    <id>http://shuheikagawa.com/blog/2009/06/21/pbdt-pixel-bender-plugin-for-eclipse</id>
     <content type="html"><![CDATA[<p>Pixel Bender のカーネル作成、編集などを Eclipse 上で行えるプラグインがありました。</p>
 
 <p>&ldquo;PBDT at blog.joa-ebert.com – Blog of Joa Ebert&rdquo;:<a href="http://blog.joa-ebert.com/pbdt/">http://blog.joa-ebert.com/pbdt/</a></p>

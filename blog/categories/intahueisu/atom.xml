@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: インターフェイス | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/intahueisu/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/intahueisu/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[FTIR]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/30/ftir/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/30/ftir/"/>
     <updated>2008-08-30T17:15:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/30/ftir</id>
+    <id>http://shuheikagawa.com/blog/2008/08/30/ftir</id>
     <content type="html"><![CDATA[<p><a href="http://code.google.com/p/ideo-multitouch/">ideo-multitouch &ndash; Google Code</a></p>
 
 <p>プロジェクタとウェブカメラ、アクリル板とLED でマルチタッチディスプレイができるというもの。

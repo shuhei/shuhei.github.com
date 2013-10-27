@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Python | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[さくらに Trac をインストール・・・失敗]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
     <updated>2008-08-14T18:53:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
     <content type="html"><![CDATA[<ul>
 <li>&ldquo;心は十五歳の少年漂流記 » さくらでTrac&rdquo;:<a href="http://seasaw.eek.jp/wordpress/?p=38">http://seasaw.eek.jp/wordpress/?p=38</a></li>
 <li>&ldquo;Trac/さくらインターネットでインストール &ndash; Happy Engineer Life&rdquo;:<a href="http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB">http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB</a></li>
@@ -38,9 +38,9 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
   
   <entry>
     <title type="html"><![CDATA[さくらのサーバに virtual-python を入れる]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/12/virtual-python-in-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/12/virtual-python-in-sakura-internet/"/>
     <updated>2008-08-12T16:38:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/12/virtual-python-in-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/08/12/virtual-python-in-sakura-internet</id>
     <content type="html"><![CDATA[<p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。
 問題は他にあった気がしますが、easy install は使えるようになりました。</p>
 
@@ -59,9 +59,9 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
   
   <entry>
     <title type="html"><![CDATA[Python で implode]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/22/implode-on-pytho/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/22/implode-on-pytho/"/>
     <updated>2008-06-22T15:23:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/22/implode-on-pytho</id>
+    <id>http://shuheikagawa.com/blog/2008/06/22/implode-on-pytho</id>
     <content type="html"><![CDATA[<p>PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 implode。</p>
 
 <p>pre(prettyprint). $output = implode(&ldquo;,&rdquo;, $arr);</p>
@@ -76,9 +76,9 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
   
   <entry>
     <title type="html"><![CDATA[さくらのサーバに Python モジュールをインストール]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/22/install-python-modules-in-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/22/install-python-modules-in-sakura-internet/"/>
     <updated>2008-06-22T12:24:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/22/install-python-modules-in-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/06/22/install-python-modules-in-sakura-internet</id>
     <content type="html"><![CDATA[<p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。
 インストール場所は、<code>$HOME/lib/python</code>に。</p>
 
@@ -109,9 +109,9 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
   
   <entry>
     <title type="html"><![CDATA[NumPy などをインストール]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/10/install-numpy-etc/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/10/install-numpy-etc/"/>
     <updated>2008-06-10T00:57:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/10/install-numpy-etc</id>
+    <id>http://shuheikagawa.com/blog/2008/06/10/install-numpy-etc</id>
     <content type="html"><![CDATA[<p>Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。</p>
 
 <p>&ldquo;ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &ndash; my cartesian theater&rdquo;:<a href="http://d.hatena.ne.jp/tdm/20080223/1203793774">http://d.hatena.ne.jp/tdm/20080223/1203793774</a>

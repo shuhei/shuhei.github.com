@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Blog</title>
+  <meta name="author" content="Shuhei Kagawa">
+
+  
+  <meta name="description" content="さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。
+問題は他にあった気がしますが、easy install は使えるようになりました。
+参考にしたのは、以下のサイト。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/23">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-309586-9']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog">Blog</a></h1>
+  
+    <h2>技術のことについて書きます。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/12/virtual-python-in-sakura-internet/">さくらのサーバに Virtual-python を入れる</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-12T16:38:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time>
+        
+           | <a href="/blog/2008/08/12/virtual-python-in-sakura-internet/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/08/12/virtual-python-in-sakura-internet/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。<br />
+問題は他にあった気がしますが、easy install は使えるようになりました。</p>
+<p>参考にしたのは、以下のサイト。</p>
+<ul>
+	<li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットにpythonを再インストール &#8211; cimada-ism</a></li>
+	<li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python開発環境を整えよう</a></li>
+</ul>
+<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。<br />
+これについては、必要になるまで放置。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/02/building-names-ingoogle-maps/">Google Maps に建物名</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-02T11:14:00+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
+        
+           | <a href="/blog/2008/08/02/building-names-ingoogle-maps/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/08/02/building-names-ingoogle-maps/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Google Maps に建物名が表示されるようになってました。<br />
+<a href="http://googlejapan.blogspot.com/2008/07/google-maps.html">「Google Japan Blog: Google Mapsで建物の名前が詳しく見られるようになりました」</a></p>
+<p>すばらしい。<br />
+ゼンリンの住宅地図は大丈夫なんですかね？</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/22/implode-on-pytho/">Python で Implode</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-22T15:23:00+09:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2008</time>
+        
+           | <a href="/blog/2008/06/22/implode-on-pytho/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/06/22/implode-on-pytho/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><span class="caps">PHP</span> などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 implode。</p>
+<pre class="prettyprint">$output = implode(",", $arr);</pre>
+<p>同じことをしようとすると、Python では、以下。</p>
+<pre class="prettyprint">output = ",".join(arr)</pre>
+<p>少し変態っぽいですね。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/22/install-python-modules-in-sakura-internet/">さくらのサーバに Python モジュールをインストール</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-22T12:24:00+09:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2008</time>
+        
+           | <a href="/blog/2008/06/22/install-python-modules-in-sakura-internet/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/06/22/install-python-modules-in-sakura-internet/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。<br />
+インストール場所は、<code>$HOME/lib/python</code>に。</p>
+<p>$<span class="caps">HOME</span>/.cshrc で環境変数を設定。</p>
+<pre class="prettyprint"> setenv PYTHONPATH $HOME/lib/python</pre>
+<p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記でOKでした。</p>
+<pre class="prettyprint">python setup.py install --home=~</pre>
+<p>今日インストールしたのは以下。</p>
+<ul>
+	<li>Universal Feedparser</li>
+	<li>Python Imaging Library</li>
+	<li>Beautiful Soup</li>
+	<li>IPython（モジュール？）</li>
+	<li>MySQLdb</li>
+	<li><del>NumPy</del></li>
+	<li><del>matplotlib</del></li>
+	<li>pydelicious</li>
+	<li>Element Tree</li>
+</ul></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/21/amazon-dot-com-reviewer/">Amazon.co.jp の洋書レビューを Amazon.com で見るための Greasemonkey</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-21T23:58:00+09:00" pubdate data-updated="true">Jun 21<span>st</span>, 2008</time>
+        
+           | <a href="/blog/2008/06/21/amazon-dot-com-reviewer/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/06/21/amazon-dot-com-reviewer/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
+一方、Amazon.com に行けばレビューがたくさんあります。
+ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>
+
+<p>そこで、Greasemonkey のuser script を書いてみました。</p>
+
+<p>本の題名のすぐ下に、リンクができます。
+amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
+洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。</p>
+
+<figure class='code'><figcaption><span>amazondotcomreviewer.user.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// ==UserScript==</span>
+</span><span class='line'><span class="c1">// @name           AmazonDotComReviewer 0.1</span>
+</span><span class='line'><span class="c1">// @namespace      http://www.7to3.net</span>
+</span><span class='line'><span class="c1">// @description    Make link between amazon.com and amazon.co.jp</span>
+</span><span class='line'><span class="c1">// @include        http://*.amazon.*</span>
+</span><span class='line'><span class="c1">// ==/UserScript==</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">isbnmatch</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;btAsinTitle&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">header</span> <span class="o">&amp;&amp;</span> <span class="nx">isbnmatch</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">domain</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isbnmatch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;com&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;co.jp&#39;</span> <span class="o">:</span> <span class="s1">&#39;com&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">isbn</span> <span class="o">=</span> <span class="nx">isbnmatch</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">uslink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.amazon.&#39;</span> <span class="o">+</span> <span class="nx">domain</span> <span class="o">+</span> <span class="s1">&#39;/o/ASIN/&#39;</span> <span class="o">+</span> <span class="nx">isbn</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;The same book at amazon.&#39;</span> <span class="o">+</span> <span class="nx">domain</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">uslink</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&lt;br /&gt;&amp;#187; Check also amazon.&quot;</span> <span class="o">+</span> <span class="nx">domain</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">header</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">uslink</span><span class="p">,</span> <span class="nx">header</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">nextSibling</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">)();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/24/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/22/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/">普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/perfume-dev/">Perfume Dev</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul>
+    
+      <li><a class='category' href='/blog/categories/du-shu/'>読書</a></li>
+    
+      <li><a class='category' href='/blog/categories/unix-slash-linux/'>UNIX/LINUX</a></li>
+    
+      <li><a class='category' href='/blog/categories/ruby/'>Ruby</a></li>
+    
+      <li><a class='category' href='/blog/categories/sakuraintanetuto/'>さくらインターネット</a></li>
+    
+      <li><a class='category' href='/blog/categories/qing-bao-dezain/'>情報デザイン</a></li>
+    
+      <li><a class='category' href='/blog/categories/python/'>Python</a></li>
+    
+      <li><a class='category' href='/blog/categories/greasemonkey/'>Greasemonkey</a></li>
+    
+      <li><a class='category' href='/blog/categories/wordpress/'>Wordpress</a></li>
+    
+      <li><a class='category' href='/blog/categories/java/'>Java</a></li>
+    
+      <li><a class='category' href='/blog/categories/intahueisu/'>インターフェイス</a></li>
+    
+      <li><a class='category' href='/blog/categories/proce55ing/'>Proce55ing</a></li>
+    
+      <li><a class='category' href='/blog/categories/iphone-kai-fa/'>iPhone 開発</a></li>
+    
+      <li><a class='category' href='/blog/categories/ying-yu/'>英語</a></li>
+    
+      <li><a class='category' href='/blog/categories/flash-slash-flex/'>Flash/Flex</a></li>
+    
+      <li><a class='category' href='/blog/categories/c-slash-c-plus-plus/'>C/C++</a></li>
+    
+      <li><a class='category' href='/blog/categories/openframeworks/'>OpenFrameworks</a></li>
+    
+      <li><a class='category' href='/blog/categories/textpattern/'>Textpattern</a></li>
+    
+      <li><a class='category' href='/blog/categories/windows/'>Windows</a></li>
+    
+      <li><a class='category' href='/blog/categories/openframeworks/'>openFrameworks</a></li>
+    
+      <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
+    
+      <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/shuhei">@shuhei</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'shuhei',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Shuhei Kagawa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'shuhei';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

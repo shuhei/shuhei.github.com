@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Textpattern | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/textpattern/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/textpattern/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Textpattern の コメント表示タグが変更に]]></title>
-    <link href="http://shuhei.github.com/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/"/>
+    <link href="http://shuheikagawa.com/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/"/>
     <updated>2009-09-21T09:45:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/09/21/texpatterns-comment-display-tag-has-changed</id>
+    <id>http://shuheikagawa.com/blog/2009/09/21/texpatterns-comment-display-tag-has-changed</id>
     <content type="html"><![CDATA[<p>先日別のブログで使っている Textpattern のバージョンを 4.0.5 から 4.2.0 に上げたのですが、 コメントの本文が表示されなくなっていることに気がつきました。</p>
 
 <p>コメント本文を表示するタグが @txp:message@ から @txp:comment_message@ に変更になっていたようです。

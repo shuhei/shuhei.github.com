@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Greasemonkey | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/greasemonkey/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/greasemonkey/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Amazon.co.jp の洋書レビューを Amazon.com で見るための Greasemonkey]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/21/amazon-dot-com-reviewer/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/21/amazon-dot-com-reviewer/"/>
     <updated>2008-06-21T23:58:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/21/amazon-dot-com-reviewer</id>
+    <id>http://shuheikagawa.com/blog/2008/06/21/amazon-dot-com-reviewer</id>
     <content type="html"><![CDATA[<p>Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
 一方、Amazon.com に行けばレビューがたくさんあります。
 ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>

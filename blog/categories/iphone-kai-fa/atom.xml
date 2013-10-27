@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: iPhone 開発 | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/iphone-kai-fa/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/iphone-kai-fa/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[iPhone Provisioning Profile]]></title>
-    <link href="http://shuhei.github.com/blog/2009/08/10/iphone-provisioning-profile/"/>
+    <link href="http://shuheikagawa.com/blog/2009/08/10/iphone-provisioning-profile/"/>
     <updated>2009-08-10T12:31:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/08/10/iphone-provisioning-profile</id>
+    <id>http://shuheikagawa.com/blog/2009/08/10/iphone-provisioning-profile</id>
     <content type="html"><![CDATA[<p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。
 改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
 
@@ -29,9 +29,9 @@
   
   <entry>
     <title type="html"><![CDATA[iPhone で OpenFrameworks]]></title>
-    <link href="http://shuhei.github.com/blog/2009/08/02/openframeworks-on-iphon/"/>
+    <link href="http://shuheikagawa.com/blog/2009/08/02/openframeworks-on-iphon/"/>
     <updated>2009-08-02T20:41:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/08/02/openframeworks-on-iphon</id>
+    <id>http://shuheikagawa.com/blog/2009/08/02/openframeworks-on-iphon</id>
     <content type="html"><![CDATA[<p>二次元で Strange Attractor 的なものをつくってみました。パーティクルの点描ではなく軌跡を描いています。</p>
 
 <p><a href="http://www.flickr.com/photos/branchiopoda/3780153165/" title="Attractor2D by shuhei kagawa, on Flickr"><img src="http://farm4.static.flickr.com/3479/3780153165_68805a6ef5.jpg" width="269" height="500" alt="Attractor2D" /></a></p>
@@ -42,9 +42,9 @@
   
   <entry>
     <title type="html"><![CDATA[XCode でリファクタリングがしたい]]></title>
-    <link href="http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode/"/>
+    <link href="http://shuheikagawa.com/blog/2009/07/27/wanna-refactor-with-xcode/"/>
     <updated>2009-07-27T23:27:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode</id>
+    <id>http://shuheikagawa.com/blog/2009/07/27/wanna-refactor-with-xcode</id>
     <content type="html"><![CDATA[<p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
 
 <p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ TDD とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[htons]]></title>
-    <link href="http://shuhei.github.com/blog/2009/01/18/htons/"/>
+    <link href="http://shuheikagawa.com/blog/2009/01/18/htons/"/>
     <updated>2009-01-18T11:50:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/01/18/htons</id>
+    <id>http://shuheikagawa.com/blog/2009/01/18/htons</id>
     <content type="html"><![CDATA[<p>Core Foundation でソケットを扱うプログラムを読んでいたら @htons()@ なる関数が出てきました。
 パッと見て意味が分からないので調べてみたところ、"Host To Network Short" とのことで、16ビット（short）のホストバイトオーダーをネットワークバイトオーダー（ビッグエンディアン）に変換してくれるというもの。</p>
 
@@ -68,9 +68,9 @@
   
   <entry>
     <title type="html"><![CDATA[clang で Objective C の静的解析]]></title>
-    <link href="http://shuhei.github.com/blog/2009/01/07/analize-objective-c-project-with-clang/"/>
+    <link href="http://shuheikagawa.com/blog/2009/01/07/analize-objective-c-project-with-clang/"/>
     <updated>2009-01-07T00:48:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/01/07/analize-objective-c-project-with-clang</id>
+    <id>http://shuheikagawa.com/blog/2009/01/07/analize-objective-c-project-with-clang</id>
     <content type="html"><![CDATA[<p>&ldquo;clang&rdquo;:<a href="http://clang.llvm.org/StaticAnalysis.html">http://clang.llvm.org/StaticAnalysis.html</a> というツールを使うと、Objective Cや C、C++ などのコードを解析してバグを発見してくれるそうです。
 静的な意味で。</p>
 

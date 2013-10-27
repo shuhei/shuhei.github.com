@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Blog]]></title>
-  <link href="http://shuhei.github.com/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:31+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[3D LUT]]></title>
-    <link href="http://shuhei.github.com/blog/2012/06/01/3d-lut/"/>
+    <link href="http://shuheikagawa.com/blog/2012/06/01/3d-lut/"/>
     <updated>2012-06-01T21:22:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/06/01/3d-lut</id>
+    <id>http://shuheikagawa.com/blog/2012/06/01/3d-lut</id>
     <content type="html"><![CDATA[<p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
 
 <p>Instagram 風の example を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
@@ -27,9 +27,9 @@
   
   <entry>
     <title type="html"><![CDATA[普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/"/>
     <updated>2012-04-07T13:30:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website</id>
+    <id>http://shuheikagawa.com/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website</id>
     <content type="html"><![CDATA[<p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -45,12 +45,12 @@
   
   <entry>
     <title type="html"><![CDATA[Perfume Dev]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/03/perfume-dev/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/03/perfume-dev/"/>
     <updated>2012-04-03T14:07:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/03/perfume-dev</id>
-    <content type="html"><![CDATA[<p><a href="http://shuhei.github.com/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" width="800" height="461" title="&#34;Perfume Dev&#34;" alt="&#34;Perfume Dev&#34;"></a></p>
+    <id>http://shuheikagawa.com/blog/2012/04/03/perfume-dev</id>
+    <content type="html"><![CDATA[<p><a href="http://shuheikagawa.com/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" width="800" height="461" title="&#34;Perfume Dev&#34;" alt="&#34;Perfume Dev&#34;"></a></p>
 
-<p><a href="http://www.perfume-global.com/">Perfume Global</a> のデータで<a href="http://shuhei.github.com/works/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
+<p><a href="http://www.perfume-global.com/">Perfume Global</a> のデータで<a href="http://shuheikagawa.com/works/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
 
 <p>Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT したのを表示してます。Web Audio API はビルトインで FFT できてびっくりしました。HTML5 すごい。</p>
 ]]></content>
@@ -58,9 +58,9 @@
   
   <entry>
     <title type="html"><![CDATA[Category index for Octopress]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/03/category-index-for-octopress/"/>
     <updated>2012-04-03T09:20:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/03/category-index-for-octopress</id>
+    <id>http://shuheikagawa.com/blog/2012/04/03/category-index-for-octopress</id>
     <content type="html"><![CDATA[<p>サイドバーにカテゴリー一覧を出してみました。</p>
 
 <figure class='code'><figcaption><span>_config.yml </span></figcaption>
@@ -173,9 +173,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to use ofxOpenCv on of007]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/"/>
     <updated>2012-04-03T00:36:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007</id>
+    <id>http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007</id>
     <content type="html"><![CDATA[<p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
 
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
@@ -196,9 +196,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to use ofxUI]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/02/how-to-use-ofxui/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui/"/>
     <updated>2012-04-02T20:13:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/02/how-to-use-ofxui</id>
+    <id>http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui</id>
     <content type="html"><![CDATA[<iframe src="http://player.vimeo.com/video/36385123?color=ffffff" width="800" height="600" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
@@ -379,18 +379,18 @@
   
   <entry>
     <title type="html"><![CDATA[Test]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/02/test/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/02/test/"/>
     <updated>2012-04-02T12:35:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/02/test</id>
+    <id>http://shuheikagawa.com/blog/2012/04/02/test</id>
     <content type="html"><![CDATA[<p>Hello, World!</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[TOEIC 新公式問題集 vol.4 (1)]]></title>
-    <link href="http://shuhei.github.com/blog/2010/07/22/toeic-official-workbook-vol-4-1/"/>
+    <link href="http://shuheikagawa.com/blog/2010/07/22/toeic-official-workbook-vol-4-1/"/>
     <updated>2010-07-22T00:16:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/07/22/toeic-official-workbook-vol-4-1</id>
+    <id>http://shuheikagawa.com/blog/2010/07/22/toeic-official-workbook-vol-4-1</id>
     <content type="html"><![CDATA[<p>初 <span class="caps">TOEIC</span> が今週末に迫ってきたので、練習問題を解いてみました。</p>
 <ul>
 	<li>Part 1: 9 / 10</li>
@@ -403,7 +403,7 @@
 </ul>
 <p>換算点は 805 &#8211; 925 とのこと。<br />
 0 &#8211; 200 を 10 &#8211; 990 に線形に投影すると 892 点。<br />
-<a href="http://shuhei.github.com/blog/2009/05/24/toeic/">前回</a> よりも良くなっているようです。</p>
+<a href="http://shuheikagawa.com/blog/2009/05/24/toeic/">前回</a> よりも良くなっているようです。</p>
 <p>Part 7 が劇的に改善されています。最近洋書を読むようにしているからでしょう。<br />
 弱点はやはりリスニングの Part 2, 3, 4 と、単語・語法の Part 5 です。<br />
 前者は問題文先読みの試験テクニックを練習すればもう少し向上する気がします。<br />
@@ -413,29 +413,29 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
   
   <entry>
     <title type="html"><![CDATA[Surface]]></title>
-    <link href="http://shuhei.github.com/blog/2010/07/10/surface/"/>
+    <link href="http://shuheikagawa.com/blog/2010/07/10/surface/"/>
     <updated>2010-07-10T19:03:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/07/10/surface</id>
+    <id>http://shuheikagawa.com/blog/2010/07/10/surface</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/branchiopoda/4764366632/" title="Surface by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4079/4764366632_14665c42ff.jpg" width="500" height="250" alt="Surface"></a><br />
 <a href="http://www.flickr.com/photos/branchiopoda/4779669194/" title="surface_3 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4139/4779669194_19ce3b4159.jpg" width="500" height="250" alt="surface_3"></a></p>
 <p>しばらく続けてみます。</p>
 <ul>
-	<li><a href="http://shuhei.github.com/works/surface/">Surface : Built with Processing</a></li>
-	<li><a href="http://shuhei.github.com/works/surface_3/">Surface_3 : Built with Processing</a></li>
+	<li><a href="http://shuheikagawa.com/works/surface/">Surface : Built with Processing</a></li>
+	<li><a href="http://shuheikagawa.com/works/surface_3/">Surface_3 : Built with Processing</a></li>
 </ul>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Floating Balls]]></title>
-    <link href="http://shuhei.github.com/blog/2010/07/04/floating-balls/"/>
+    <link href="http://shuheikagawa.com/blog/2010/07/04/floating-balls/"/>
     <updated>2010-07-04T15:44:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/07/04/floating-balls</id>
+    <id>http://shuheikagawa.com/blog/2010/07/04/floating-balls</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/branchiopoda/4759782068/" title="floating balls 1 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4076/4759782068_589051e708.jpg" width="500" height="250" alt="floating balls 1"></a><br />
 <a href="http://www.flickr.com/photos/branchiopoda/4759146593/" title="floating balls 2 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4142/4759146593_2488f16d0e.jpg" width="500" height="250" alt="floating balls 2"></a></p>
 <p>最近本を読んでばかりで何も作っていなかったので、Processing をいじってみました。</p>
 <ul>
-	<li><a href="http://shuhei.github.com/works/floating_ball_1/">FloatingBall_1 : Built with Processing</a></li>
-	<li><a href="http://shuhei.github.com/works/floating_ball_2/">FloatingBall_2 : Built with Processing</a></li>
+	<li><a href="http://shuheikagawa.com/works/floating_ball_1/">FloatingBall_1 : Built with Processing</a></li>
+	<li><a href="http://shuheikagawa.com/works/floating_ball_2/">FloatingBall_2 : Built with Processing</a></li>
 </ul>
 <p><a href="http://fladdict.net/flash/sketch/Study20100630.html">http://fladdict.net/flash/sketch/Study20100630.html</a> をパクっただけですが・・・。</p>
 <p>あと、はじめて <a href="http://processing.org/reference/PVector.html">PVector</a> 使ってみたんですが、自分でベクトル演算書かなくていいので便利ですね。</p>
@@ -449,9 +449,9 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
   
   <entry>
     <title type="html"><![CDATA[RVM で複数バージョンの Ruby を管理]]></title>
-    <link href="http://shuhei.github.com/blog/2010/06/16/multi-rubies-with-rv/"/>
+    <link href="http://shuheikagawa.com/blog/2010/06/16/multi-rubies-with-rv/"/>
     <updated>2010-06-16T00:32:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/06/16/multi-rubies-with-rv</id>
+    <id>http://shuheikagawa.com/blog/2010/06/16/multi-rubies-with-rv</id>
     <content type="html"><![CDATA[<p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。<br />
 自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。<br />
 <a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
@@ -482,9 +482,9 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
   
   <entry>
     <title type="html"><![CDATA[Wordpress で Out of memory]]></title>
-    <link href="http://shuhei.github.com/blog/2010/06/01/out-of-memory-with-wordpress/"/>
+    <link href="http://shuheikagawa.com/blog/2010/06/01/out-of-memory-with-wordpress/"/>
     <updated>2010-06-01T23:40:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/06/01/out-of-memory-with-wordpress</id>
+    <id>http://shuheikagawa.com/blog/2010/06/01/out-of-memory-with-wordpress</id>
     <content type="html"><![CDATA[<p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
 再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。<br />
 syslog を見ると Out of memory で kernel が apache2 を kill している様子。<br />
@@ -500,9 +500,9 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
   
   <entry>
     <title type="html"><![CDATA[The program being debugged is not being run.]]></title>
-    <link href="http://shuhei.github.com/blog/2010/05/01/the-program-being-debugged-is-not-being-run/"/>
+    <link href="http://shuheikagawa.com/blog/2010/05/01/the-program-being-debugged-is-not-being-run/"/>
     <updated>2010-05-01T14:41:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/05/01/the-program-being-debugged-is-not-being-run</id>
+    <id>http://shuheikagawa.com/blog/2010/05/01/the-program-being-debugged-is-not-being-run</id>
     <content type="html"><![CDATA[<p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
 そんなの見ればわかります。理由を書いてください。理由を。<br />
 アプリのインストール自体はできているのですが、デバッグができないようです。</p>
@@ -520,9 +520,9 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
   
   <entry>
     <title type="html"><![CDATA[今さら Snow Leopard にアップグレード]]></title>
-    <link href="http://shuhei.github.com/blog/2010/04/14/upgrade-to-snow-leopard/"/>
+    <link href="http://shuheikagawa.com/blog/2010/04/14/upgrade-to-snow-leopard/"/>
     <updated>2010-04-14T23:57:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/04/14/upgrade-to-snow-leopard</id>
+    <id>http://shuheikagawa.com/blog/2010/04/14/upgrade-to-snow-leopard</id>
     <content type="html"><![CDATA[<p>Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。<br />
 しかし、iPhone <span class="caps">SDK</span> 4.0 beta は Leopard には入らないというので、ついに観念。<br />
 ヨドバシのオンラインストア（Amazon より高いけど送料無料、即日発送、ポイントつく）で注文し、アップグレードしてみました。<br />
@@ -584,20 +584,20 @@ $ which ruby
   
   <entry>
     <title type="html"><![CDATA[Circle Packing]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/18/circle-packing/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/18/circle-packing/"/>
     <updated>2010-03-18T00:24:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/18/circle-packing</id>
+    <id>http://shuheikagawa.com/blog/2010/03/18/circle-packing</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
-<p><a href="http://shuhei.github.com/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
-<a href="http://shuhei.github.com/works/auto_circles/">AutoCircles : Built with Processing</a></p>
+<p><a href="http://shuheikagawa.com/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
+<a href="http://shuheikagawa.com/works/auto_circles/">AutoCircles : Built with Processing</a></p>
 <p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Flash Platform Camp Tokyo を見てきた]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/16/flash-platform-camp-tokyo/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/16/flash-platform-camp-tokyo/"/>
     <updated>2010-03-16T23:02:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/16/flash-platform-camp-tokyo</id>
+    <id>http://shuheikagawa.com/blog/2010/03/16/flash-platform-camp-tokyo</id>
     <content type="html"><![CDATA[<p>今日 Flash Platform Camp Tokyo に行ってきました。<br />
 Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Mario Klingemann, 深津さん、新藤さん、Erik Natzke らのセッション。</p>
 <p>（内容まとめ。あとで書く）</p>
@@ -609,9 +609,9 @@ Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Ma
   
   <entry>
     <title type="html"><![CDATA[SSH を安全に]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/15/secure-ssh/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/15/secure-ssh/"/>
     <updated>2010-03-15T15:32:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/15/secure-ssh</id>
+    <id>http://shuheikagawa.com/blog/2010/03/15/secure-ssh</id>
     <content type="html"><![CDATA[<p>自宅サーバの <span class="caps">SSH</span> を外から使えるようにするにあたり、セキュリティ対策を施してみました。</p>
 <p>鍵認証のところ以外は <a href="http://www.unixuser.org/~euske/doc/openssh/jman/sshd_config.html" title="5">SSHD_CONFIG</a> 参照。<br />
 下記設定をして ufw とルータの設定を変えたら、今のところそれらしく動いてます。</p>
@@ -631,9 +631,9 @@ Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Ma
   
   <entry>
     <title type="html"><![CDATA[Git + Redmine]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/13/redmine-with-git/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/13/redmine-with-git/"/>
     <updated>2010-03-13T13:50:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/13/redmine-with-git</id>
+    <id>http://shuheikagawa.com/blog/2010/03/13/redmine-with-git</id>
     <content type="html"><![CDATA[<p>自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。</p>
 <h3>サーバにリポジトリを作成</h3>
 <p>Redmine を置いているサーバに空のリポジトリを作ります。</p>
@@ -666,9 +666,9 @@ local$ git push origin master</pre>
   
   <entry>
     <title type="html"><![CDATA[ActiveLdap 調査メモ]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/06/servey-note-ofactiveldap/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/06/servey-note-ofactiveldap/"/>
     <updated>2010-03-06T19:56:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/06/servey-note-ofactiveldap</id>
+    <id>http://shuheikagawa.com/blog/2010/03/06/servey-note-ofactiveldap</id>
     <content type="html"><![CDATA[<p>未検証ですが、以下の記事から調査したことのメモ。</p>
 <ul>
 	<li><a href="http://jp.rubyist.net/magazine/?0027-ActiveLdap">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>
@@ -694,9 +694,9 @@ script/generete model_active_ldap user</pre>
   
   <entry>
     <title type="html"><![CDATA[Ruby の環境を新しく]]></title>
-    <link href="http://shuhei.github.com/blog/2010/03/06/renew-ruby-environment/"/>
+    <link href="http://shuheikagawa.com/blog/2010/03/06/renew-ruby-environment/"/>
     <updated>2010-03-06T19:54:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/03/06/renew-ruby-environment</id>
+    <id>http://shuheikagawa.com/blog/2010/03/06/renew-ruby-environment</id>
     <content type="html"><![CDATA[<p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />
 以下の環境に揃えました。</p>
 <ul>

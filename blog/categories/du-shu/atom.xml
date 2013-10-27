@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 読書 | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/du-shu/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/du-shu/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[今日届いた本（実用Subversion、Getting Real）]]></title>
-    <link href="http://shuhei.github.com/blog/2009/09/20/todays-shipped-books/"/>
+    <link href="http://shuheikagawa.com/blog/2009/09/20/todays-shipped-books/"/>
     <updated>2009-09-20T02:20:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/09/20/todays-shipped-books</id>
+    <id>http://shuheikagawa.com/blog/2009/09/20/todays-shipped-books</id>
     <content type="html"><![CDATA[<p>&ldquo;実用 Subversion 第二版&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22">http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22</a></p>
 
 <p>職場で Subversion の管理をしているのですが、Subversion について知らなさすぎると思い買ってみた本です。
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[最近買った本 2009年7月]]></title>
-    <link href="http://shuhei.github.com/blog/2009/08/02/recently-bought-books-2009-07/"/>
+    <link href="http://shuheikagawa.com/blog/2009/08/02/recently-bought-books-2009-07/"/>
     <updated>2009-08-02T21:17:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/08/02/recently-bought-books-2009-07</id>
+    <id>http://shuheikagawa.com/blog/2009/08/02/recently-bought-books-2009-07</id>
     <content type="html"><![CDATA[<p>h3. &ldquo;骨—第5回企画展「骨」展展覧会カタログ 山中俊治ディレクション&rdquo;:<a href="http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22">http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22</a></p>
 
 <p>展示会が面白かったので買いました。どうつくるかより何を作るかに目を向けなければ。</p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[今週買った本 090622-28]]></title>
-    <link href="http://shuhei.github.com/blog/2009/06/28/this-weeks-books-090622-28/"/>
+    <link href="http://shuheikagawa.com/blog/2009/06/28/this-weeks-books-090622-28/"/>
     <updated>2009-06-28T23:39:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/06/28/this-weeks-books-090622-28</id>
+    <id>http://shuheikagawa.com/blog/2009/06/28/this-weeks-books-090622-28</id>
     <content type="html"><![CDATA[<p>h3. &ldquo;Learning OpenCV &ndash; Computer Vision with the OpenCV Library&rdquo;:<a href="http://amazon.co.jp/o/ASIN/0596516134/nanataisan-22">http://amazon.co.jp/o/ASIN/0596516134/nanataisan-22</a></p>
 
 <p>オライリーの OpenCV 本です。OpenCV のリファレンスというよりは、OpenCV を使ったコンピュータビジョンの解説書といった趣き。まだほとんど読んでいませんが、とても勉強になりそうです。</p>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[最近買った本]]></title>
-    <link href="http://shuhei.github.com/blog/2009/06/28/recently-bought-book/"/>
+    <link href="http://shuheikagawa.com/blog/2009/06/28/recently-bought-book/"/>
     <updated>2009-06-28T23:38:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/06/28/recently-bought-book</id>
+    <id>http://shuheikagawa.com/blog/2009/06/28/recently-bought-book</id>
     <content type="html"><![CDATA[<ul>
 <li>SIMPLY RAILS 2</li>
 <li>初めてのRuby</li>
@@ -92,9 +92,9 @@
   
   <entry>
     <title type="html"><![CDATA[ファウラー本]]></title>
-    <link href="http://shuhei.github.com/blog/2009/02/26/fowler-books/"/>
+    <link href="http://shuheikagawa.com/blog/2009/02/26/fowler-books/"/>
     <updated>2009-02-26T00:19:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/02/26/fowler-books</id>
+    <id>http://shuheikagawa.com/blog/2009/02/26/fowler-books</id>
     <content type="html"><![CDATA[<p>「リファクタリング」をザッと読んだんですがとてもいいですね。
 テストを書いて、一歩一歩。
 機能追加はまずリファクタリングしてから。

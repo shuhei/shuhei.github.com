@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: UNIX/LINUX | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/unix-slash-linux/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/unix-slash-linux/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[言語ごとに vim の設定を変える]]></title>
-    <link href="http://shuhei.github.com/blog/2009/08/22/vim-settings-for-each-language/"/>
+    <link href="http://shuheikagawa.com/blog/2009/08/22/vim-settings-for-each-language/"/>
     <updated>2009-08-22T18:50:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/08/22/vim-settings-for-each-language</id>
+    <id>http://shuheikagawa.com/blog/2009/08/22/vim-settings-for-each-language</id>
     <content type="html"><![CDATA[<p>例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。</p>
 
 <p>@~/.vimrc@ の中で、</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[tail]]></title>
-    <link href="http://shuhei.github.com/blog/2009/07/02/tail/"/>
+    <link href="http://shuheikagawa.com/blog/2009/07/02/tail/"/>
     <updated>2009-07-02T19:55:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/07/02/tail</id>
+    <id>http://shuheikagawa.com/blog/2009/07/02/tail</id>
     <content type="html"><![CDATA[<p>pre(prettyprint). tail -n 50 foo.log</p>
 
 <p>って書くと foo.log の最後の50行だけ見られます。ログなどを見るのに便利ですね。
@@ -42,12 +42,12 @@
   
   <entry>
     <title type="html"><![CDATA[さくらに Trac をインストール・・・成功]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/"/>
     <updated>2008-08-23T19:34:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet</id>
     <content type="html"><![CDATA[<p>やっと Trac 入りました。</p>
 
-<p><a href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
+<p><a href="http://shuheikagawa.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&ldquo;gcc&rdquo; としていたのが原因だったようです。
 たぶん、以前 numpy を入れようとしていろいろいじったときの名残。
 変更内容はメモしておかないといけませんね。</p>
 
@@ -64,9 +64,9 @@ CGI だからですかね。
   
   <entry>
     <title type="html"><![CDATA[さくらに Trac をインストール・・・失敗]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/"/>
     <updated>2008-08-14T18:53:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
+    <id>http://shuheikagawa.com/blog/2008/08/14/failed-to-install-trac-at-sakura-internet</id>
     <content type="html"><![CDATA[<ul>
 <li>&ldquo;心は十五歳の少年漂流記 » さくらでTrac&rdquo;:<a href="http://seasaw.eek.jp/wordpress/?p=38">http://seasaw.eek.jp/wordpress/?p=38</a></li>
 <li>&ldquo;Trac/さくらインターネットでインストール &ndash; Happy Engineer Life&rdquo;:<a href="http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB">http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB</a></li>
@@ -87,9 +87,9 @@ build しようとすると、「error: don&rsquo;t know how to complile C/C++ �
   
   <entry>
     <title type="html"><![CDATA[Ubuntu の日本語フォルダを英語名に]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/15/english-name-for-folders-in-ubuntu/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/15/english-name-for-folders-in-ubuntu/"/>
     <updated>2008-06-15T17:15:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/15/english-name-for-folders-in-ubuntu</id>
+    <id>http://shuheikagawa.com/blog/2008/06/15/english-name-for-folders-in-ubuntu</id>
     <content type="html"><![CDATA[<p>Ubuntu の日本語フォーラムを覗いた時に、ちょうど目に入ったのでやってみました。</p>
 
 <p>参考にしたのは、以下の記事。

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 情報デザイン | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/qing-bao-dezain/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/qing-bao-dezain/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,13 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[Chat Network]]></title>
-    <link href="http://shuhei.github.com/blog/2009/02/11/chat-networ/"/>
+    <link href="http://shuheikagawa.com/blog/2009/02/11/chat-networ/"/>
     <updated>2009-02-11T12:38:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/02/11/chat-networ</id>
+    <id>http://shuheikagawa.com/blog/2009/02/11/chat-networ</id>
     <content type="html"><![CDATA[<p>前回に引き続き、Processing。
 某チャットルームの人間関係を視覚化してみました。</p>
 
-<p><a href="http://shuhei.github.com/works/chart_network/">ChatNetwork</a></p>
+<p><a href="http://shuheikagawa.com/works/chart_network/">ChatNetwork</a></p>
 
 <p>丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。
 同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。</p>
@@ -37,9 +37,9 @@ beta がとれただけのことはあります。</p>
   
   <entry>
     <title type="html"><![CDATA[Google Maps に建物名]]></title>
-    <link href="http://shuhei.github.com/blog/2008/08/02/building-names-ingoogle-maps/"/>
+    <link href="http://shuheikagawa.com/blog/2008/08/02/building-names-ingoogle-maps/"/>
     <updated>2008-08-02T11:14:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/08/02/building-names-ingoogle-maps</id>
+    <id>http://shuheikagawa.com/blog/2008/08/02/building-names-ingoogle-maps</id>
     <content type="html"><![CDATA[<p>Google Maps に建物名が表示されるようになってました。
 <a href="http://googlejapan.blogspot.com/2008/07/google-maps.html">「Google Japan Blog: Google Mapsで建物の名前が詳しく見られるようになりました」</a></p>
 
@@ -50,9 +50,9 @@ beta がとれただけのことはあります。</p>
   
   <entry>
     <title type="html"><![CDATA[Chart Chooser]]></title>
-    <link href="http://shuhei.github.com/blog/2008/06/07/chart-chooser/"/>
+    <link href="http://shuheikagawa.com/blog/2008/06/07/chart-chooser/"/>
     <updated>2008-06-07T17:07:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/06/07/chart-chooser</id>
+    <id>http://shuheikagawa.com/blog/2008/06/07/chart-chooser</id>
     <content type="html"><![CDATA[<p>ずいぶん間が開いてしまいました。</p>
 
 <p>以前メモした <a href="http://niceone.org/infodesign/">Information Design Patterns</a> に少し似たウェブアプリケーション。
@@ -68,9 +68,9 @@ beta がとれただけのことはあります。</p>
   
   <entry>
     <title type="html"><![CDATA[Information Design Pattern]]></title>
-    <link href="http://shuhei.github.com/blog/2008/05/12/information-design-pattern/"/>
+    <link href="http://shuheikagawa.com/blog/2008/05/12/information-design-pattern/"/>
     <updated>2008-05-12T21:27:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/05/12/information-design-pattern</id>
+    <id>http://shuheikagawa.com/blog/2008/05/12/information-design-pattern</id>
     <content type="html"><![CDATA[<p>最近、情報デザインみたいなことに興味を持って、Ben Fry とか Edward Tufte の本を読んだりしています。
 今日はそんな文脈でステキなサイトを見つけたので、メモ。</p>
 

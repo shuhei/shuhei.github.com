@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Proce55ing | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/proce55ing/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/proce55ing/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,13 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[Chat Network]]></title>
-    <link href="http://shuhei.github.com/blog/2009/02/11/chat-networ/"/>
+    <link href="http://shuheikagawa.com/blog/2009/02/11/chat-networ/"/>
     <updated>2009-02-11T12:38:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/02/11/chat-networ</id>
+    <id>http://shuheikagawa.com/blog/2009/02/11/chat-networ</id>
     <content type="html"><![CDATA[<p>前回に引き続き、Processing。
 某チャットルームの人間関係を視覚化してみました。</p>
 
-<p><a href="http://shuhei.github.com/works/chart_network/">ChatNetwork</a></p>
+<p><a href="http://shuheikagawa.com/works/chart_network/">ChatNetwork</a></p>
 
 <p>丸の大きさが発言回数、線の太さが発言の隣接回数を表しています。
 同じくらいの発言回数の相手とでも、人によって隣接回数が異なるのがわかるかと思います。</p>
@@ -37,12 +37,12 @@ beta がとれただけのことはあります。</p>
   
   <entry>
     <title type="html"><![CDATA[ポインポイン]]></title>
-    <link href="http://shuhei.github.com/blog/2009/02/06/poingpoing/"/>
+    <link href="http://shuheikagawa.com/blog/2009/02/06/poingpoing/"/>
     <updated>2009-02-06T01:06:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2009/02/06/poingpoing</id>
+    <id>http://shuheikagawa.com/blog/2009/02/06/poingpoing</id>
     <content type="html"><![CDATA[<p>久しぶりに Processing いじってみました。
 とても簡単で楽しいです。
-<a href="http://shuhei.github.com/works/Web/">Web</a></p>
+<a href="http://shuheikagawa.com/works/Web/">Web</a></p>
 
 <p>何か作るときのプロトタイプは Processing で作ることにしますかね。</p>
 ]]></content>
@@ -50,9 +50,9 @@ beta がとれただけのことはあります。</p>
   
   <entry>
     <title type="html"><![CDATA[Proce55ing から 動画を作る]]></title>
-    <link href="http://shuhei.github.com/blog/2008/12/07/make-movie-from-proce55ing/"/>
+    <link href="http://shuheikagawa.com/blog/2008/12/07/make-movie-from-proce55ing/"/>
     <updated>2008-12-07T03:09:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2008/12/07/make-movie-from-proce55ing</id>
+    <id>http://shuheikagawa.com/blog/2008/12/07/make-movie-from-proce55ing</id>
     <content type="html"><![CDATA[<p>Proce55ing で作った Sketch を動画にする方法です。
 やり方は簡単。</p>
 

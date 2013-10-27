@@ -9,14 +9,8 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="またまた少しはまりました。
-C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。
-以下のように書くとエラーになります。
-class A {
-protected: int foo;
-};
-class B : public A {
-public: B(int value) : &hellip;">
+  <meta name="description" content="iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。
+Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -25,7 +19,7 @@ public: B(int value) : &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/page/7">
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/7">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
@@ -69,7 +63,7 @@ public: B(int value) : &hellip;">
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:shuhei.github.com" />
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -91,7 +85,7 @@ public: B(int value) : &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/28/cannot-initialize-members-of-base-class/">基本クラスのメンバを初期化できない</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1>
     
     
       <p class="meta">
@@ -107,32 +101,30 @@ public: B(int value) : &hellip;">
   
 
 
-<time datetime="2009-07-28T20:01:00+09:00" pubdate data-updated="true">Jul 28<span>th</span>, 2009</time>
+<time datetime="2009-11-14T10:07:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/28/cannot-initialize-members-of-base-class/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/28/cannot-initialize-members-of-base-class/">Comments</a>
+           | <a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>またまた少しはまりました。</p>
-<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。<br />
-以下のように書くとエラーになります。</p>
-<pre class="prettyprint">class A {
-protected:
-  int foo;
-};</pre>
-<pre class="prettyprint">class B : public A {
-public:
-  B(int value) : foo(value) {
-  }
-};</pre>
-<p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
-なかなか面倒なものですね。</p>
-<p>参考サイト<br />
-<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; A7M の日記</a></p></div>
+  <div class="entry-content"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
+Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
+<h3>方法</h3>
+<p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
+<p><img src="/images/2009/11/symbolic_break_point1.png" alt="" /></p>
+<p>出てきたダイアログに <code>objc_exception_throw</code> と入力。<br />
+これで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。</p>
+<p><img src="/images/2009/11/debugger1.png" alt="" /></p>
+<p>デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。</p>
+<p>via <a href="http://www.markj.net/debugging-tip-objc_exception_throw-breakpoint/">Debugging Tip – objc_exception_throw breakpoint | markjnet</a></p>
+<h3>シンボリックブレークポイント</h3>
+<p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
+ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
+今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div>
   
   
 
@@ -144,7 +136,7 @@ public:
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/28/former-declaration-of-class/">クラスの前方宣言</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/">Navigation-based Application に TabBar を追加</a></h1>
     
     
       <p class="meta">
@@ -160,35 +152,53 @@ public:
   
 
 
-<time datetime="2009-07-28T19:44:00+09:00" pubdate data-updated="true">Jul 28<span>th</span>, 2009</time>
+<time datetime="2009-11-07T17:53:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/28/former-declaration-of-class/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/28/former-declaration-of-class/">Comments</a>
+           | <a href="/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>1時間ほどハマりました。<br />
-下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
-<blockquote>
-<p>C4430: 型指定子がありません &#8211; int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
-</blockquote>
-<pre class="prettyprint">enum GREETING { HELLO, NI_HAO, CIAO };</pre>
-<pre class="prettyprint">class A {
-public:
-  GREETING foo(B* b);  // コンパイルエラー！
+  <div class="entry-content"><p>iPhone プロジェクトの新規作成時に &#8220;Navigation-based Application&#8221; を選んだ場合に、後から TabBar を追加する方法です。<br />
+InterfaceBuilder での設定が画像入りの説明なしではよくわからず、苦戦したのでメモしておきます。</p>
+<h3>InterfaceBuilder の設定</h3>
+<h4>Tab Bar Controller の追加</h4>
+<p>まず、InterfaceBuilder で MainWindow.xib を開きます。<br />
+Navigation Controller を削除して Tab Bar Controller を追加します。</p>
+<h4>Tab Bar Controller の下に Navigation Controller を</h4>
+<p>Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の &#8220;Tab Bar Controller&#8221; =&gt; &#8220;View Controllers&#8221; の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。</p>
+<p><img src="/images/2009/11/TabBarController_Inspector1.png" alt="" /></p>
+<p>すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。</p>
+<h4>Navigation Controller の下に Root View Controller を</h4>
+<p>この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。<br />
+一番左側のタブで <span class="caps">NIB</span> Name を、Inspectorで一番右側のタブで Class を設定します。</p>
+<p><img src="/images/2009/11/SetRootViewControllerNIB1.png" alt="" /><br />
+<img src="/images/2009/11/SetRootViewControllerClass1.png" alt="" /></p>
+<p>以上を保存して IB を閉じます。</p>
+<h3>コードの修正</h3>
+<p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。<br />
+以下、アプリケーションの名前を Hoge だったとして、 HogeAppDelegate.h と .m を編集します。</p>
+<h4>HogeDelegate.h</h4>
+<pre class="prettyprint">@interface HogeAppDelegate : NSObject  {
+  UIWindow *window;
+  UITabBarController *tabBarController;
 }</pre>
-<pre class="prettyprint">class B {
-public:
-  void bar(A* a);
+<pre class="prettyprint">@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;</pre>
+<pre class="prettyprint">@end</pre>
+<h4>HogeAppDelegate.m</h4>
+<pre class="prettyprint">- (void)applicationDidFinishLaunching:(UIApplication *)application {
+  [window addSubview:[tabBarController view]];
+  [window makeKeyAndVisible];
 }</pre>
-<p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<br />
-class A の宣言の前にBの前方宣言が必要なんですね。</p>
-<pre class="prettyprint">class B;</pre>
-<p>一回勉強したのですが、すっかり忘れていました。<br />
-この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p></div>
+<p><code>synsthesize</code> と <code>dealloc</code> 中の <code>release</code> も忘れずに変更します。</p>
+<h3>App Delegate の Outlet のつなぎ変え</h3>
+<p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。<br />
+再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
+<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p></div>
   
   
 
@@ -200,7 +210,7 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/27/wanna-refactor-with-xcode/">XCode でリファクタリングがしたい</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/07/resize-images-with-imagemagick/">ImageMagick で画像を一括リサイズ</a></h1>
     
     
       <p class="meta">
@@ -216,19 +226,24 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
   
 
 
-<time datetime="2009-07-27T23:27:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
+<time datetime="2009-11-07T15:41:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/27/wanna-refactor-with-xcode/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/27/wanna-refactor-with-xcode/">Comments</a>
+           | <a href="/blog/2009/11/07/resize-images-with-imagemagick/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/11/07/resize-images-with-imagemagick/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
-<p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ <span class="caps">TDD</span> とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
-<p>以前触ったときは、アプリを公開する事なくうやむやになってしまったので、今度こそ何か公開できればいいなと思っています。</p></div>
+  <div class="entry-content"><p>特定の名前の画像をリサイズします。</p>
+<pre class="prettyprint">#! /bin/bash</pre>
+<pre class="prettyprint">for f in rect_*.png;
+do
+  convert -resize 12x12! $f $f
+done</pre>
+<p>コマンドラインは便利ですねー。<br />
+ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p></div>
   
   
 
@@ -240,7 +255,7 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/27/byline/">Byline</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/05/git-usage-note/">Git の使い方メモ</a></h1>
     
     
       <p class="meta">
@@ -256,21 +271,29 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
   
 
 
-<time datetime="2009-07-27T23:15:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
+<time datetime="2009-11-05T23:47:00+09:00" pubdate data-updated="true">Nov 5<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/27/byline/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/27/byline/">Comments</a>
+           | <a href="/blog/2009/11/05/git-usage-note/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/11/05/git-usage-note/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>iPhone の <span class="caps">RSS</span> リーダ。</p>
-<p>画像キャッシュができるなど、良いとは聞いていましたが、以前は記事がフィード毎に分けられないようだったので採用を見送っていました。</p>
-<p>その間使っていたのは NetNewsWire。iPhoneアプリは軽快動作でステキな出来なのですが、本体のウェブサイトが重すぎて使い物にならない代物で、いつか乗り換えたいと思っていました。</p>
-<p>先日 Byline が何かのセールで 200 円くらいにまで下がっていたので購入。使ってみたところ、カテゴリ毎だけでなくフィード毎の分類もできるようになっていたので、乗り換えを決意。ウェブサービスの方を Google Reader へと乗り換え、めでたく移行完了。</p>
-<p>Byline は動作と見た目を合わせて妙な安定感があっていいですね。さらに画像のキャッシュはとても便利。通勤電車の中でもストレスフリーでフィードを読めます。RSS の読みすぎで目が悪くなったり読書の時間が減っても困るので、ほどほどにしようとは思いますが。</p></div>
+  <div class="entry-content"><h3>無視リスト</h3>
+<p>&#8220;.gitignore&#8221; というファイルを作って、その中に無視したいファイルやディレクトリ名を書きます。<br />
+すると <code>git status</code> や <code>git add .</code> しても無視されるようになります。<br />
+すでに追加してしまったものに関しては、後述の方法で削除する必要があるようです。</p>
+<p>via <a href="http://tobysoft.net/wiki/index.php?git%2F%CC%B5%BB%EB%A4%B9%A4%EB%A5%D5%A5%A1%A5%A4%A5%EB%A4%F2%BB%D8%C4%EA%A4%B9%A4%EB%CA%FD%CB%A1(.gitignore%A4%CB%A4%C4%A4%A4%A4%C6)">git/無視するファイルを指定する方法(.gitignoreについて) &#8211; <span class="caps">TOBY</span> <span class="caps">SOFT</span> wiki</a><br />
+via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" title="5">gitignore</a></p>
+<h3>削除</h3>
+<p><code>svn delete</code> のようなことをするには <code>git rm hoge</code> 。<br />
+ディレクトリを消すには <code>git rm -r hoge</code>。</p>
+<h3>なかったことにする</h3>
+<p><code>git log</code> で戻りたいコミットのIDをチェック。<br />
+<code>git revert --hard commit_id</code></p>
+<p>via <a href="http://bulkya.blogdb.jp/share/wiki/FAQ/Git#%E5%85%83%E3%81%AB%E6%88%BB%E3%81%99%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><span class="caps">FAQ</span>/Git – CodeRepos::Share – Trac</a></p></div>
   
   
 
@@ -282,7 +305,7 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2009/07/26/build-google-test-on-xcod/">Xcode での Google Test のビルド</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss/">Booklog の本一覧をRSSから取得</a></h1>
     
     
       <p class="meta">
@@ -298,229 +321,20 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
   
 
 
-<time datetime="2009-07-26T23:30:00+09:00" pubdate data-updated="true">Jul 26<span>th</span>, 2009</time>
+<time datetime="2009-10-27T00:35:00+09:00" pubdate data-updated="true">Oct 27<span>th</span>, 2009</time>
         
-           | <a href="/blog/2009/07/26/build-google-test-on-xcod/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/26/build-google-test-on-xcod/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。<br />
-Google Code のサイトから落としてきた tar.gz ではダメでした。</p>
-<p>たしかに <a href="http://code.google.com/p/googletest/wiki/GoogleTestXcodeGuide">GoogleTestXcodeGuide</a> には Subversion から落としてね、と書いてあります。<br />
-Subversion からでないとダメとは書いてありませんが、文句は言えませんね。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/23/cpd/">CPD</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-23T19:12:00+09:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/23/cpd/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/23/cpd/">Comments</a>
+           | <a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/27/get-book-list-of-booklog-b-rss/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.ibm.com/developerworks/jp/">developerWorks</a> の <a href="http://www.ibm.com/developerworks/jp/java/library/j-eaed5/">進化するアーキテクチャーと新方式の設計: 設計のためのリファクタリング</a> という記事で、コードの重複を検出するツールが紹介されています。<br />
-<span class="caps">CPD</span> という名前で、Copy/Paste Detector の略だとか。</p>
-<p><a href="http://pmd.sourceforge.net/cpd.html"><span class="caps">PMD</span> &#8211; Finding copied and pasted code</a></p>
-<p><span class="caps">PMD</span> という静的コード解析ツールの一部として入手できます。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/23/refactor-for-cpp/">Refactor! For C++</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-23T19:05:00+09:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/23/refactor-for-cpp/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/23/refactor-for-cpp/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Visual Studio で使える C++ のリファクタリング用プラグインです。</p>
-<p><a href="http://www.devexpress.com/Products/Visual_Studio_Add-in/RefactorCPP/">Free C++ Refactoring Add-in for Visual Studio Developers</a></p>
-<p>無料で利用できます。Visual Studio にはもともと C# のリファクタリング機能がついていますが、それよりも高機能な印象です。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/06/hello-world-2/">Hello World!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-06T11:15:00+09:00" pubdate data-updated="true">Jul 6<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/06/hello-world-2/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/06/hello-world-2/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>WordPress へようこそ。これは最初の投稿です。編集もしくは削除してブログを始めてください !</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/06/about-2/">紹介</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-06T11:15:00+09:00" pubdate data-updated="true">Jul 6<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/06/about-2/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/06/about-2/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>28 歳独身会社員です。会社では <span class="caps">CAD</span> 関連のシステム開発をしています。<br />
-このブログでは読書やプログラミングなどの話題が主になると思います。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/05/command-line-args/">コマンドライン引数</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-05T13:44:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/05/command-line-args/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2009/07/05/command-line-args/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
-C++ や Objective-C を触るのにも必要ですからね。</p>
-<p>で、まずは基本のキからということで、</p>
-<pre class="prettyprint">#include &lt;stdio.h&gt;</pre>
-<pre class="prettyprint">int main(int argc, char** argv) {
-  if (argc &gt; 1) {
-    printf("Hello, %s!", argv[1]);
-  } else {
-    printf("Hello, World!");
-  }
-}</pre>
-<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div>
+  <div class="entry-content"><p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、RSS を使うともっと楽にできるようです。<br />
+以下のように、GET のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
+<p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
+<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p></div>
   
   
 

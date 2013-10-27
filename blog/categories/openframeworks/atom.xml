@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: openFrameworks | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/openframeworks/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/openframeworks/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[3D LUT]]></title>
-    <link href="http://shuhei.github.com/blog/2012/06/01/3d-lut/"/>
+    <link href="http://shuheikagawa.com/blog/2012/06/01/3d-lut/"/>
     <updated>2012-06-01T21:22:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/06/01/3d-lut</id>
+    <id>http://shuheikagawa.com/blog/2012/06/01/3d-lut</id>
     <content type="html"><![CDATA[<p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
 
 <p>Instagram 風の example を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
@@ -27,9 +27,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to use ofxOpenCv on of007]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/"/>
     <updated>2012-04-03T00:36:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007</id>
+    <id>http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007</id>
     <content type="html"><![CDATA[<p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
 
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
@@ -50,10 +50,16 @@
   
   <entry>
     <title type="html"><![CDATA[How to use ofxUI]]></title>
-    <link href="http://shuhei.github.com/blog/2012/04/02/how-to-use-ofxui/"/>
+    <link href="http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui/"/>
     <updated>2012-04-02T20:13:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2012/04/02/how-to-use-ofxui</id>
-    <content type="html"><![CDATA[<p>{% vimeo 36385123 800 600 %}</p>
+    <id>http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui</id>
+    <content type="html"><![CDATA[<p><iframe src="http://player.vimeo.com/video/36385123?color=ffffff" width="800" height="600" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<p>
+  <a href="http://vimeo.com/36385123">ofxUI: A User Interface Library for openFrameworks</a> from
+  <a href="http://vimeo.com/rezaali">Reza</a> on
+  <a href="http://vimeo.com">Vimeo</a>.
+</p>
+</p>
 
 <p><a href="http://www.syedrezaali.com/blog/?p=2172">ofxUI: A User Interface Addon for OF</a> を使うと openFrameworks に <a href="https://github.com/ofTheo/ofxControlPanel">ofxControlPanel</a> よりもちょっとかっこいい UI を追加することができます。<a href="https://github.com/rezaali/ofxUI">github のページ</a> の Readme を超訳してみました。</p>
 

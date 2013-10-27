@@ -9,13 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="今日、簿記の3級を受けてきました。
-たぶん合格してるはず。
-人にもらった問題集が良かったので、メモしておきます。
-一橋出版の日商簿記検定模擬試験問題集。
-模擬試験と過去問で合計11回分のボリュームです。
-結局、3回分しか解かなかったんですが、問題に慣れることができました。
-解説も十分詳しいです。 &hellip;">
+  <meta name="description" content="バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。
+ret = system "cmd.exe /c dir"
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/page/10">
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/10">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
@@ -68,7 +64,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:shuhei.github.com" />
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -90,7 +86,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/16/bookkeeping-problems-collection/">簿記の問題集</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/30/exec-windows-command-with-ruby/">Ruby で Windows のコマンド実行</a></h1>
     
     
       <p class="meta">
@@ -106,25 +102,19 @@
   
 
 
-<time datetime="2008-11-16T22:54:00+09:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+<time datetime="2009-09-30T10:49:00+09:00" pubdate data-updated="true">Sep 30<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/11/16/bookkeeping-problems-collection/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/11/16/bookkeeping-problems-collection/">Comments</a>
+           | <a href="/blog/2009/09/30/exec-windows-command-with-ruby/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/30/exec-windows-command-with-ruby/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>今日、簿記の3級を受けてきました。<br />
-たぶん合格してるはず。</p>
-<p>人にもらった問題集が良かったので、メモしておきます。<br />
-一橋出版の日商簿記検定模擬試験問題集。<br />
-模擬試験と過去問で合計11回分のボリュームです。</p>
-<p>結局、3回分しか解かなかったんですが、問題に慣れることができました。<br />
-解説も十分詳しいです。</p>
-<p>もし2級や1級を受ける場合は、教科書的な本をパラパラ見て、これを解けばよさそう。<br />
-やはり、試験対策は過去問に限りますね。</p></div>
+  <div class="entry-content"><p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
+<pre class="prettyprint">ret = system "cmd.exe /c dir"
+</pre></div>
   
   
 
@@ -136,7 +126,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/08/environmental-dependency/">環境依存文字</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/26/tweetstat/">TweetStats</a></h1>
     
     
       <p class="meta">
@@ -152,18 +142,21 @@
   
 
 
-<time datetime="2008-11-08T17:02:00+09:00" pubdate data-updated="true">Nov 8<span>th</span>, 2008</time>
+<time datetime="2009-09-26T22:36:00+09:00" pubdate data-updated="true">Sep 26<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/11/08/environmental-dependency/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/11/08/environmental-dependency/">Comments</a>
+           | <a href="/blog/2009/09/26/tweetstat/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/26/tweetstat/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>「崎」の右上が「立」になっている字は環境依存文字だそうです。<br />
-これのせいで2、3時間ハマりました・・・。</p></div>
+  <div class="entry-content"><p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
+<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。<br />
+時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
+<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。<br />
+<a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p></div>
   
   
 
@@ -175,7 +168,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/14/software-developer/">ソフトウェア開発技術者</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/23/textile-format-of-make-link/">Make Link の Textile 2 用フォーマット</a></h1>
     
     
       <p class="meta">
@@ -191,24 +184,25 @@
   
 
 
-<time datetime="2008-10-14T21:38:00+09:00" pubdate data-updated="true">Oct 14<span>th</span>, 2008</time>
+<time datetime="2009-09-23T10:54:00+09:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2009</time>
         
-           | <a href="/blog/2008/10/14/software-developer/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/10/14/software-developer/">Comments</a>
+           | <a href="/blog/2009/09/23/textile-format-of-make-link/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/23/textile-format-of-make-link/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>残り一週間を切った昨日、やっと過去問一回分を解いてみました。</p>
-<p>これが思ったよりも難しい。<br />
-基礎知識があまりないので、午前問題が一番ヤバそうです。<br />
-午後は少し勉強すればあとは考えるだけでなんとかなりそう。</p>
-<p>一回分を解くのに五時間半もかかるのでなかなか手をだせなかったのですが、もっと早く解いてみるべきでした。<br />
-まぁ、ギリギリで受かれば効率が良い訳ですが。</p>
-<p>今後の課題は何事にも余裕を持って行動すること。<br />
-そのためにはやることを減らさなければならないわけですが。</p></div>
+  <div class="entry-content"><p>Firefox の Addon <a href="https://addons.mozilla.org/ja/firefox/addon/142">Make Link</a> はページのタイトルや <span class="caps">URL</span> からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。<br />
+とうことで、Textile 2 用のフォーマットを作ってみました。</p>
+<h3>ページ名とURL</h3>
+<pre class="prettyprint">"%text%":%url</pre>
+<p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>
+<h3>引用（引用元とそのURL付き）</h3>
+<pre class="prettyprint">bq.. %text%</pre>
+<pre class="prettyprint">"??%title%??":%url%</pre>
+<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p></div>
   
   
 
@@ -220,7 +214,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/06/dao/">DAO</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/">Textpattern の コメント表示タグが変更に</a></h1>
     
     
       <p class="meta">
@@ -236,19 +230,19 @@
   
 
 
-<time datetime="2008-10-06T21:44:00+09:00" pubdate data-updated="true">Oct 6<span>th</span>, 2008</time>
+<time datetime="2009-09-21T09:45:00+09:00" pubdate data-updated="true">Sep 21<span>st</span>, 2009</time>
         
-           | <a href="/blog/2008/10/06/dao/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/10/06/dao/">Comments</a>
+           | <a href="/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>DAOの使い方がやっと分かりました。<br />
-コネクションはDAOを使うロジック部分が管理するんですね。<br />
-どうりでうまくトランザクション管理が出来ないと想いました。</p></div>
+  <div class="entry-content"><p>先日別のブログで使っている Textpattern のバージョンを 4.0.5 から 4.2.0 に上げたのですが、 コメントの本文が表示されなくなっていることに気がつきました。</p>
+<p>コメント本文を表示するタグが <code>txp:message</code> から <code>txp:comment_message</code> に変更になっていたようです。<br />
+4.0.5 から 4.2.0 までのどこかで変更になったのでしょうね。</p></div>
   
   
 
@@ -260,7 +254,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/09/28/agile-software-development/">アジャイルソフトウェア開発の奥義</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/21/use-textpatterns-textile-with-wordpress/">Wordpress で Textpattern 相当の Textile を使う</a></h1>
     
     
       <p class="meta">
@@ -276,228 +270,40 @@
   
 
 
-<time datetime="2008-09-28T17:08:00+09:00" pubdate data-updated="true">Sep 28<span>th</span>, 2008</time>
+<time datetime="2009-09-21T00:37:00+09:00" pubdate data-updated="true">Sep 21<span>st</span>, 2009</time>
         
-           | <a href="/blog/2008/09/28/agile-software-development/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/28/agile-software-development/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>分厚いですがとても良い本だと思います。<br />
-アジャイル開発の方法論からデザインバターン、リファクタリングなど多岐に渡る内容を豊富な実例とともに解説しています。<br />
-とくに、コードをリファクタリングしながら、デザインバターンを採用していくあたりはとても参考になりました。<br />
-最近読んだプログラミング関連の本の中で1番の良書です。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/28/wordpress-app-on-iphone/">Wordpress App on iPhone</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-28T01:09:00+09:00" pubdate data-updated="true">Sep 28<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/28/wordpress-app-on-iphone/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/28/wordpress-app-on-iphone/">Comments</a>
+           | <a href="/blog/2009/09/21/use-textpatterns-textile-with-wordpress/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>ブログをiPhone対応させようと思って検索してたら、更新用アプリケーションを発見。<br />
-早速インストール。<br />
-これはなかなかの使い心地。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/16/negative-margin/">ネガティブマージン</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-16T23:36:00+09:00" pubdate data-updated="true">Sep 16<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/16/negative-margin/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/16/negative-margin/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><span class="caps">CSS</span> で固定幅とリキッドの2カラムにレイアウトするため、ネガティブマージンを使ってみました。<br />
-どうも直感的はないためいまいち腑に落ちませんが、パッと見うまくいきました。<br />
-リキッドな方は本当にボックスを二重にする必要があるのか、ブラウザ対応はどの程度なのか、もう少し検証が必要です。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/14/iphone-2-1/">iPhone 2.1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-14T07:53:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/14/iphone-2-1/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/14/iphone-2-1/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ソフトウェアをアップデートしました。</p>
-<p>日本語変換で分節区切りができるようになり、動きもサクサクしていい感じ。</p>
-<p>こういう風にユーザ満足を小出しにするのも、Apple のうまいところなのかもしれませんね。</p>
-<p>ところで iPhone のカメラは音を出さずに撮れるような気がするんですが、大丈夫なんですかね？</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/08/iphone-doesnt-work-well/">iPhone さっそく不具合</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-08T08:43:00+09:00" pubdate data-updated="true">Sep 8<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/08/iphone-doesnt-work-well/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/08/iphone-doesnt-work-well/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>インストールしたアプリが全く動きません。<br />
-今日帰宅したらリストアしてみます。</p>
-<p>日本語入力のモッサリ感は気がついたら解消されていましたが、変換の際に複数の文節に対応できないのがヒドイ。<br />
-文節ごとに変換しないといけません。<br />
-早めに対応してほしいですねぇ。</p>
-<h3>追記</h3>
-<p>アプリ問題は復元したら直りました。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/07/iphone/">iPhone</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-07T22:08:00+09:00" pubdate data-updated="true">Sep 7<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/07/iphone/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/09/07/iphone/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Now I&#8217;ve gotta one.</p>
-<p>It works well and it&#8217;s very fun to touch it.<br />
-The only one problem is its Japanese text input works toooooooooo slowly!<br />
-This is the reason why I&#8217;m struggling with English now.<br />
-I hope software update will come soon&#8230;</p>
-<p>Anyway, I love it.</p></div>
+  <div class="entry-content"><p>以前 <a href="/blog/2009/08/02/wordpress-textile-plugin/">Wordpress の Textile プラグイン</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
+<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン <a href="http://wordpress.org/extend/plugins/text-control-2/">Text Control 2</a> をふと思い立ってインストールしてみたこと。<br />
+このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。<br />
+これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
+<h3>手順</h3>
+<h4>classTextile.php の入手</h4>
+<p>Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。</p>
+<h4>textile2.php ではなく classTextile.php を使うように</h4>
+<p>wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを</p>
+<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
+  if($do_text == 'textile2') {</pre>
+<pre class="prettyprint">    require_once('text-control/textile2.php');
+    $t = new Textile();
+    $text = $t-&gt;process($text);</pre>
+<p>から</p>
+<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
+  if($do_text == 'textile2') {</pre>
+<pre class="prettyprint">    require_once('text-control/classTextile.php');
+    $t = new Textile();
+    $text = $t-&gt;TextileThis($text);</pre>
+<p>へ変更します。</p>
+<h3>結果</h3>
+<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。<br />
+Google Code Prettify も、これまではいちいち <span class="caps">HTML</span> のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p></div>
   
   
 

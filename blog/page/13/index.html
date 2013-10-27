@@ -9,11 +9,14 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ずいぶん間が開いてしまいました。
-以前メモした Information Design Patterns に少し似たウェブアプリケーション。
-目的別にいろいろなチャートを紹介してくれます。
-Chart Chooser
-ステキなのは、エクセルやパワーポイントのテンプレートがダウンロードできること。 &hellip;">
+  <meta name="description" content="またまた少しはまりました。
+C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。
+以下のように書くとエラーになります。
+class A {
+protected: int foo;
+};
+class B : public A {
+public: B(int value) : &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +25,7 @@ Chart Chooser
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuhei.github.com/blog/page/13">
+  <link rel="canonical" href="http://shuheikagawa.com/blog/page/13">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Blog" type="application/atom+xml">
@@ -66,7 +69,7 @@ Chart Chooser
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:shuhei.github.com" />
+    <input type="hidden" name="q" value="site:shuheikagawa.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -88,7 +91,7 @@ Chart Chooser
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/07/chart-chooser/">Chart Chooser</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/28/cannot-initialize-members-of-base-class/">基本クラスのメンバを初期化できない</a></h1>
     
     
       <p class="meta">
@@ -104,24 +107,32 @@ Chart Chooser
   
 
 
-<time datetime="2008-06-07T17:07:00+09:00" pubdate data-updated="true">Jun 7<span>th</span>, 2008</time>
+<time datetime="2009-07-28T20:01:00+09:00" pubdate data-updated="true">Jul 28<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/06/07/chart-chooser/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/06/07/chart-chooser/">Comments</a>
+           | <a href="/blog/2009/07/28/cannot-initialize-members-of-base-class/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/28/cannot-initialize-members-of-base-class/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>ずいぶん間が開いてしまいました。</p>
-<p>以前メモした <a href="http://niceone.org/infodesign/">Information Design Patterns</a> に少し似たウェブアプリケーション。<br />
-目的別にいろいろなチャートを紹介してくれます。</p>
-<p><a href="http://chartchooser.juiceanalytics.com/">Chart Chooser</a><br />
-ステキなのは、エクセルやパワーポイントのテンプレートがダウンロードできること。<br />
-エクセルのグラフウィザードでは作れないものが多いので、とても便利そうです。<br />
-現在あるチャートは 17。<br />
-もう少し増えることに期待。</p></div>
+  <div class="entry-content"><p>またまた少しはまりました。</p>
+<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。<br />
+以下のように書くとエラーになります。</p>
+<pre class="prettyprint">class A {
+protected:
+  int foo;
+};</pre>
+<pre class="prettyprint">class B : public A {
+public:
+  B(int value) : foo(value) {
+  }
+};</pre>
+<p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
+なかなか面倒なものですね。</p>
+<p>参考サイト<br />
+<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; A7M の日記</a></p></div>
   
   
 
@@ -133,7 +144,7 @@ Chart Chooser
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/27/purchaseing-books/">書籍購入</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/28/former-declaration-of-class/">クラスの前方宣言</a></h1>
     
     
       <p class="meta">
@@ -149,18 +160,35 @@ Chart Chooser
   
 
 
-<time datetime="2008-05-27T00:27:00+09:00" pubdate data-updated="true">May 27<span>th</span>, 2008</time>
+<time datetime="2009-07-28T19:44:00+09:00" pubdate data-updated="true">Jul 28<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/05/27/purchaseing-books/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/27/purchaseing-books/">Comments</a>
+           | <a href="/blog/2009/07/28/former-declaration-of-class/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/28/former-declaration-of-class/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>今のところ、給料日から三日で本を10以上買ってしまっています。<br />
-まだまだ増えそう。</p></div>
+  <div class="entry-content"><p>1時間ほどハマりました。<br />
+下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
+<blockquote>
+<p>C4430: 型指定子がありません &#8211; int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
+</blockquote>
+<pre class="prettyprint">enum GREETING { HELLO, NI_HAO, CIAO };</pre>
+<pre class="prettyprint">class A {
+public:
+  GREETING foo(B* b);  // コンパイルエラー！
+}</pre>
+<pre class="prettyprint">class B {
+public:
+  void bar(A* a);
+}</pre>
+<p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<br />
+class A の宣言の前にBの前方宣言が必要なんですね。</p>
+<pre class="prettyprint">class B;</pre>
+<p>一回勉強したのですが、すっかり忘れていました。<br />
+この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p></div>
   
   
 
@@ -172,7 +200,7 @@ Chart Chooser
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/18/freakonomics/">ヤバい経済学</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/27/wanna-refactor-with-xcode/">XCode でリファクタリングがしたい</a></h1>
     
     
       <p class="meta">
@@ -188,32 +216,19 @@ Chart Chooser
   
 
 
-<time datetime="2008-05-18T12:47:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2008</time>
+<time datetime="2009-07-27T23:27:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/05/18/freakonomics/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/18/freakonomics/">Comments</a>
+           | <a href="/blog/2009/07/27/wanna-refactor-with-xcode/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/27/wanna-refactor-with-xcode/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://amazon.co.jp/o/ASIN/pd_sbs_b_title/nanataisan-22">ヤバい経済学</a> 読了。<br />
-<a href="http://amazon.co.jp/o/ASIN/pd_sbs_b_title/nanataisan-22">その数字が戦略を決める</a> が面白かったので、データマイニング的な流れで読んでみました。</p>
-<p>中絶合法化と犯罪率や相撲の八百長など、トピックはとても面白かったですが、分析手法についてほとんど書いてありません。<br />
-<a href="http://pricetheory.uchicago.edu/levitt/index.html">著者のサイト</a> に論文PDFがあるので、いくつか読んでみようかと思います。</p>
-<p>以下、趣旨とは無関係にメモ。</p>
-<ul>
-	<li>インセンティブ = 経済的インセンティブ + 社会的インセンティブ + 道徳的インセンティブ</li>
-	<li>親がどんな人か &gt;&gt;&gt; 親が何をするか</li>
-	<li>人はコントロールできないものが怖い</li>
-	<li><a href="http://post.economics.harvard.edu/faculty/fryer">Roland Fryer</a> （以下、Fryer について書いた記事）
-	<ul>
-		<li><a href="http://d.hatena.ne.jp/kaikaji/20051009">http://d.hatena.ne.jp/kaikaji/20051009</a></li>
-		<li><a href="http://d.hatena.ne.jp/kaikaji/20051011#p2">http://d.hatena.ne.jp/kaikaji/20051011#p2</a></li>
-		<li><a href="http://d.hatena.ne.jp/kaikaji/20051013#p1">http://d.hatena.ne.jp/kaikaji/20051013#p1</a></li>
-	</ul></li>
-</ul></div>
+  <div class="entry-content"><p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
+<p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ <span class="caps">TDD</span> とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
+<p>以前触ったときは、アプリを公開する事なくうやむやになってしまったので、今度こそ何か公開できればいいなと思っています。</p></div>
   
   
 
@@ -225,7 +240,7 @@ Chart Chooser
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/18/python-development-environment/">Python 開発環境</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/27/byline/">Byline</a></h1>
     
     
       <p class="meta">
@@ -241,22 +256,21 @@ Chart Chooser
   
 
 
-<time datetime="2008-05-18T12:25:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2008</time>
+<time datetime="2009-07-27T23:15:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/05/18/python-development-environment/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/18/python-development-environment/">Comments</a>
+           | <a href="/blog/2009/07/27/byline/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/27/byline/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>これまで vim をデフォルトのまま使っていたのですが、なかなか慣れません。</p>
-<p><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20080207/293282/?P=2&amp;ST=develop">第1回 気軽にPythonを始めよう: ITpro</a> を見て、とりあえず Python 向けのパッケージをいくつか入れてみました。</p>
-<p>入れたのは、readline-common、ipython、python-dev、python-doc、python-setuptools、python-profiler、vim-pythonです。<br />
-どれのおかげなのかよくわかりませんが、vim の挿入モードの使い勝手が格段に向上。<br />
-十字キーでカーソル移動できるし、バックスペースで文字も消せます。</p>
-<p>やっとスタートラインに立った感じ。</p></div>
+  <div class="entry-content"><p>iPhone の <span class="caps">RSS</span> リーダ。</p>
+<p>画像キャッシュができるなど、良いとは聞いていましたが、以前は記事がフィード毎に分けられないようだったので採用を見送っていました。</p>
+<p>その間使っていたのは NetNewsWire。iPhoneアプリは軽快動作でステキな出来なのですが、本体のウェブサイトが重すぎて使い物にならない代物で、いつか乗り換えたいと思っていました。</p>
+<p>先日 Byline が何かのセールで 200 円くらいにまで下がっていたので購入。使ってみたところ、カテゴリ毎だけでなくフィード毎の分類もできるようになっていたので、乗り換えを決意。ウェブサービスの方を Google Reader へと乗り換え、めでたく移行完了。</p>
+<p>Byline は動作と見た目を合わせて妙な安定感があっていいですね。さらに画像のキャッシュはとても便利。通勤電車の中でもストレスフリーでフィードを読めます。RSS の読みすぎで目が悪くなったり読書の時間が減っても困るので、ほどほどにしようとは思いますが。</p></div>
   
   
 
@@ -268,7 +282,7 @@ Chart Chooser
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/">Windows 上に Ubuntu 8.04 をインストール</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/07/26/build-google-test-on-xcod/">Xcode での Google Test のビルド</a></h1>
     
     
       <p class="meta">
@@ -284,278 +298,20 @@ Chart Chooser
   
 
 
-<time datetime="2008-05-13T01:12:00+09:00" pubdate data-updated="true">May 13<span>th</span>, 2008</time>
+<time datetime="2009-07-26T23:30:00+09:00" pubdate data-updated="true">Jul 26<span>th</span>, 2009</time>
         
-           | <a href="/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>研修で興味を持ったので、自分のノート PC に Linux をインストール。<br />
-VMWare Player 上だけど。</p>
-<p>ディストリビューションは Fedora と迷ったけど、語感で Ubuntu に決めました。<br />
-方法は、「<a href="http://sarabande.info/wiki/Vmware:Windows%E3%82%92%E3%83%9B%E3%82%B9%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6Ubuntu%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">Vmware:WindowsをホストにしてUbuntuをインストールする &#8211; Sarabande Wiki</a>」の通りにやったらうまくいきました。</p>
-<p>ubuntu.vmx は「下記のものは修正中のものです。」より上側をコピペして、バージョンやパスを合わせたら OK。<br />
-とても簡単でしたが、ファイルのコピーにはわりと時間がかかりました。</p>
-<p>最初からデスクトップ環境の充実ぶりが異常。<br />
-Firefox から OpenOffice、Gimp などなど、ひととおり使いそうなものは何でも入っています。<br />
-IT ゆとり世代ですね。</p>
-<p>Ubuntu で特に何をするというわけではないんですが、プログラムを書くのは徐々にこっちでやるようにしようかなと思います。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/12/information-design-pattern/">Information Design Pattern</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-12T21:27:00+09:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/12/information-design-pattern/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/12/information-design-pattern/">Comments</a>
+           | <a href="/blog/2009/07/26/build-google-test-on-xcod/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/26/build-google-test-on-xcod/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>最近、情報デザインみたいなことに興味を持って、Ben Fry とか Edward Tufte の本を読んだりしています。<br />
-今日はそんな文脈でステキなサイトを見つけたので、メモ。</p>
-<p><a href="http://niceone.org/infodesign/">Information Design Patterns</a><br />
-via <a href="http://swissmiss.typepad.com/weblog/2008/05/information-des.html">swissmiss</a></p>
-<p>いろんな情報デザインのデザインパターンが載っています。<br />
-それぞれに丁寧なコメントと美しい実例つき。<br />
-ドイツの自称メディアデザイナーが修士論文で集めたものみたい。</p>
-<p>エクセルの作るグラフに嫌気がさした時や、デザインのインスピレーションがほしいときにオススメ。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/11/install-vim-to-sakura-interne/">さくらのレンタルサーバに Vim を入れる</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-11T17:23:00+09:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/11/install-vim-to-sakura-interne/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/11/install-vim-to-sakura-interne/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>vim は Vi IMproved なんだそうです。<br />
-シェル上でテキスト編集したいと思って入れてみたのですが、もともと vi が入っているので必要なかったんですね。<br />
-せっかく入れたので高度な技を覚えたいものです。</p>
-<h3>インストール</h3>
-<p>「<a href="http://www.hazama.nu/t2o2/archives/002696.html">さくらインターネットの共用サーバに vim をインストールする (talk to oneself 2)</a>」をそのままやったらできました。<br />
-こんなんばっかりです。</p>
-<p>使い方は、「<a href="http://d.hatena.ne.jp/bonar/20070415/1176651778">vimで効率的にコードを書くための小技 &#8211; bonar note</a>」を見ながらやっています。<br />
-インターネット便利だわー。</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/11/install-subversion-to-sakura-internet/">さくらのレンタルサーバに Subversion を入れる</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-11T13:29:00+09:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/11/install-subversion-to-sakura-internet/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/11/install-subversion-to-sakura-internet/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>バージョン</h3>
-<dl>
-<dt>Subversion</dt>
-<dd>1.4.6</dd>
-<dt>Neon</dt>
-<dd>0.25.5</dd>
-<dt>APR & APR-util</dt>
-<dd>1.2.12</dd>
-<dt>SWIG</dt>
-<dd>1.3.35</dd>
-</dl>
-
-<h3>インストール</h3>
-<p>以下の記事そのまま。<br />
-タイプミスがいくつかありますが、そこは脳内補完で。<br />
-<a href="http://www.hazama.nu/t2o2/archives/002700.html">さくらインターネットの共用サーバに Subversion + Trac をインストールする (talk to oneself 2)</a></p>
-<p>最初は、「<a href="http://ruby.g.hatena.ne.jp/garyo/20070507/1178517143">さくらインターネットでSubversionのインストール &#8211; Rubyの魔神 &#8211; はてな？Rubyグループ</a>」を参考にやってみたのですが、外のレポジトリに接続できず。<br />
-どうやら Neon だとかを入れてなかったせいだとか。</p>
-<h3>使い方</h3>
-<p>使い方は以下のサイトを参考にするとわかりやすいです。<br />
-<a href="http://artis.imag.fr/~Xavier.Decoret/resources/svn/index.html"><span class="caps">SVN</span> Tutorial fo Unix</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/">さくらのレンタルサーバに Ruby on Rails を入れる</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-11T13:27:00+09:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/11/install-ruby-on-rails-in-sakura-internet/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>基本的には以下のサイトを参考に。</p>
-<ul>
-	<li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura.html">がんちゃんのブログ: さくらのレンタルサーバにRuby on Railsをインストールする方法</a></li>
-	<li><a href="http://iwatakenichi.blogspot.com/2007/08/ruby-on-rails-on-sakura-part2.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Railsをインストールする方法 その2</a></li>
-</ul>
-<p>ここまで進めると、sqlite3 と sqlite3-ruby が入っていない場合はエラーが出ます。<br />
-なので、以下を参考にインストール。</p>
-<p><a href="http://ruby.g.hatena.ne.jp/garyo/20070507">「2007-05-07 &#8211; Rubyの魔神 &#8211; はてな？Rubyグループ」</a></p>
-<p>これでやっと準備が整いました。<br />
-で、何かサンプルを作ってみようとしていろいろやってみましたが、うまくいかず。<br />
-本でも買ってからやろうかと思います。</p>
-<h3>追記</h3>
-<p>Rails 2.0.2 用の方法が別に書いてありました。<br />
-最初からこれでやればよかった・・・。</p>
-<p><a href="http://iwatakenichi.blogspot.com/2008/05/ruby-on-rails-202-and-rubygems-111-on.html">がんちゃんのブログ: さくらのレンタルサーバーにRuby on Rails 2.0.2をインストールする方法</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/11/decompress-tar-gz/">.tar.gz の解凍</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-11T10:29:00+09:00" pubdate data-updated="true">May 11<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/11/decompress-tar-gz/#disqus_thread"
-             data-disqus-identifier="http://shuhei.github.com/blog/2008/05/11/decompress-tar-gz/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre class="prettyprint">tar xzvf hogehoge.tar.gz</pre>
-<h3>オプションの意味</h3>
-<dl>
-	<dt>x</dt>
-	<dd>tar を展開</dd>
-	<dt>z</dt>
-	<dd>gzip 併用</dd>
-	<dt>v</dt>
-	<dd>詳細表示</dd>
-	<dt>f</dt>
-	<dd>ファイルを指定（必須）</dd>
-</dl>
-
-<h3>参考URL</h3>
-<p><a href="http://iris.homeunix.net/yayoi/freebsd/archiver/tar.asp"><span class="caps">TAR</span> の使い方</a></p></div>
+  <div class="entry-content"><p>Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。<br />
+Google Code のサイトから落としてきた tar.gz ではダメでした。</p>
+<p>たしかに <a href="http://code.google.com/p/googletest/wiki/GoogleTestXcodeGuide">GoogleTestXcodeGuide</a> には Subversion から落としてね、と書いてあります。<br />
+Subversion からでないとダメとは書いてありませんが、文句は言えませんね。</p></div>
   
   
 

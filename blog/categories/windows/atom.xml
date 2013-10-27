@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Windows | Blog]]></title>
-  <link href="http://shuhei.github.com/blog/categories/windows/atom.xml" rel="self"/>
-  <link href="http://shuhei.github.com/"/>
-  <updated>2013-10-27T15:36:59+09:00</updated>
-  <id>http://shuhei.github.com/</id>
+  <link href="http://shuheikagawa.com/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://shuheikagawa.com/"/>
+  <updated>2013-10-27T16:09:20+09:00</updated>
+  <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Windows で grep]]></title>
-    <link href="http://shuhei.github.com/blog/2010/02/17/grep-onwindows/"/>
+    <link href="http://shuheikagawa.com/blog/2010/02/17/grep-onwindows/"/>
     <updated>2010-02-17T09:38:00+09:00</updated>
-    <id>http://shuhei.github.com/blog/2010/02/17/grep-onwindows</id>
+    <id>http://shuheikagawa.com/blog/2010/02/17/grep-onwindows</id>
     <content type="html"><![CDATA[<p>pre(prettyprint). findstr /n /s /c:&ldquo;hello world&rdquo; sub_dir*</p>
 
 <p>これで subdir 以下の &ldquo;hello world&rdquo; を含むファイルと行を表示できます。
