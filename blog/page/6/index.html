@@ -9,11 +9,13 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
-Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。
-sudo ufw default DENY
-sudo ufw enable
-とやって有効化。 &hellip;">
+  <meta name="description" content="port search xxx として出てくるものが古いときに。
+MacPorts をアップデート。
+sudo port selfupdate
+パッケージを更新。
+sudo port sync
+たまにやった方がいいようですね。
+via MacPortsをちゃんと使うために調べてみた &#8211 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +84,50 @@ sudo ufw enable
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/16/update-macports/">MacPorts のアップデート</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-16T14:49:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2010</time>
+        
+           | <a href="/blog/2010/01/16/update-macports/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/01/16/update-macports/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>port search xxx として出てくるものが古いときに。</p>
+<p>MacPorts をアップデート。</p>
+<pre class="prettyprint">sudo port selfupdate</pre>
+<p>パッケージを更新。</p>
+<pre class="prettyprint">sudo port sync</pre>
+<p>たまにやった方がいいようですね。</p>
+<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPortsをちゃんと使うために調べてみた &#8211; kanonjiの日記</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -338,64 +384,6 @@ irb コマンドのオプションでも指定できます。<br />
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/12/09/ascii/">Ascii コード</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-09T22:51:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/12/09/ascii/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2009/12/09/ascii/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
-<blockquote>
-<p>Poem.</p>
-<p>You translated my poem,<br />
-I congratulate you.<br />
-I wish I could rhyme with poem,<br />
-but its very hard to.<br />
-I just beguiled you,</p>
-</blockquote>
-<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre class="prettyprint">class String
-  def bin
-    Integer('0b' + self)
-  end
-end</pre>
-<pre class="prettyprint">def decode(ascii)
-  0.step(ascii.size - 1, 8) do |num|
-    puts ascii[num..(num + 7)].bin.chr
-  end
-end</pre>
-<p>作る方は簡単でしょうが、読む方は大変です。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -413,6 +401,10 @@ end</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -426,10 +418,6 @@ end</pre>
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -479,6 +467,10 @@ end</pre>
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: openFrameworks | Blog]]></title>
   <link href="http://shuheikagawa.com/blog/categories/openframeworks/atom.xml" rel="self"/>
   <link href="http://shuheikagawa.com/"/>
-  <updated>2013-10-27T16:42:01+09:00</updated>
+  <updated>2013-10-27T17:34:27+09:00</updated>
   <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -53,7 +53,13 @@
     <link href="http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui/"/>
     <updated>2012-04-02T20:13:00+09:00</updated>
     <id>http://shuheikagawa.com/blog/2012/04/02/how-to-use-ofxui</id>
-    <content type="html"><![CDATA[<p>{% vimeo 36385123 800 600 %}</p>
+    <content type="html"><![CDATA[<p><iframe src="http://player.vimeo.com/video/36385123?color=ffffff" width="800" height="600" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<p>
+  <a href="http://vimeo.com/36385123">ofxUI: A User Interface Library for openFrameworks</a> from
+  <a href="http://vimeo.com/rezaali">Reza</a> on
+  <a href="http://vimeo.com">Vimeo</a>.
+</p>
+</p>
 
 <p><a href="http://www.syedrezaali.com/blog/?p=2172">ofxUI: A User Interface Addon for OF</a> を使うと openFrameworks に <a href="https://github.com/ofTheo/ofxControlPanel">ofxControlPanel</a> よりもちょっとかっこいい UI を追加することができます。<a href="https://github.com/rezaali/ofxUI">github のページ</a> の Readme を超訳してみました。</p>
 

@@ -9,11 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ずいぶん間が開いてしまいました。
-以前メモした Information Design Patterns に少し似たウェブアプリケーション。
-目的別にいろいろなチャートを紹介してくれます。
-Chart Chooser
-ステキなのは、エクセルやパワーポイントのテンプレートがダウンロードできること。 &hellip;">
+  <meta name="description" content="Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。
+ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my cartesian theater
+のとおりにしたら、うまくいきました。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +80,56 @@ Chart Chooser
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/10/install-numpy-etc/">NumPy などをインストール</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-10T00:57:00+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2008</time>
+        
+           | <a href="/blog/2008/06/10/install-numpy-etc/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/06/10/install-numpy-etc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。</p>
+<p><a href="http://d.hatena.ne.jp/tdm/20080223/1203793774">ubuntu linuxでnumpy, scipy, matplotlibを入れたときのメモ &#8211; my cartesian theater</a><br />
+のとおりにしたら、うまくいきました。<br />
+めでたしめでたし。</p>
+<p>ただし、下記のように <code>svc</code> を <code>svn</code> に変えました。</p>
+<pre class="prettyprint">svn co http://svn.scipy.org/svn/numpy/trunk numpy</pre>
+<p>ついでに入れた scipy は <span class="caps">FFT</span> とか科学っぽいライブラリ。<br />
+matplotlib は matlab 的な複雑なグラフが描けるとか。<br />
+こんな感じで使うらしい。<br />
+<a href="http://d.hatena.ne.jp/ytakenaka/20070106/p1" title="Blog ’(Yasuto . Takenaka)">scipy+matplotlib による3元連立常微分方程式の軌道 -</a></p>
+<p>・・・と思ったら、matplotlib がうまくインストールできませんでした。<br />
+時間ができたら、下記を参考に再度チャレンジしてみます。<br />
+<a href="https://help.ubuntu.com/community/MatPlotLibHowTo">MatPlotLibHowTo &#8211; Community Ubuntu Documentation</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -263,53 +311,6 @@ Chart Chooser
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/">Windows 上に Ubuntu 8.04 をインストール</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-13T01:12:00+09:00" pubdate data-updated="true">May 13<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2008/05/13/install-ubuntu-8-04-to-windows-xp/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>研修で興味を持ったので、自分のノート PC に Linux をインストール。<br />
-VMWare Player 上だけど。</p>
-<p>ディストリビューションは Fedora と迷ったけど、語感で Ubuntu に決めました。<br />
-方法は、「<a href="http://sarabande.info/wiki/Vmware:Windows%E3%82%92%E3%83%9B%E3%82%B9%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6Ubuntu%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">Vmware:WindowsをホストにしてUbuntuをインストールする &#8211; Sarabande Wiki</a>」の通りにやったらうまくいきました。</p>
-<p>ubuntu.vmx は「下記のものは修正中のものです。」より上側をコピペして、バージョンやパスを合わせたら OK。<br />
-とても簡単でしたが、ファイルのコピーにはわりと時間がかかりました。</p>
-<p>最初からデスクトップ環境の充実ぶりが異常。<br />
-Firefox から OpenOffice、Gimp などなど、ひととおり使いそうなものは何でも入っています。<br />
-IT ゆとり世代ですね。</p>
-<p>Ubuntu で特に何をするというわけではないんですが、プログラムを書くのは徐々にこっちでやるようにしようかなと思います。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/26/">&larr; Older</a>
@@ -327,6 +328,10 @@ IT ゆとり世代ですね。</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -340,10 +345,6 @@ IT ゆとり世代ですね。</p>
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -393,6 +394,10 @@ IT ゆとり世代ですね。</p>
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

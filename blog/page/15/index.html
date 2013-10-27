@@ -9,11 +9,11 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="CString cstr = foo();
-TCHAR *tchar = bar();
-CString concat = cstr + " " + tchar;
-普通に足せば足せるようです。
-*tchar を足すと tchar の最初の一文字だけ連結されます。">
+  <meta name="description" content="OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。
+C++ や Objective-C を触るのにも必要ですからね。
+で、まずは基本のキからということで、
+#include &lt;stdio.h&gt;
+int main(int argc, char** argv &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,57 @@ CString concat = cstr + " " + tchar;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/05/command-line-args/">コマンドライン引数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-05T13:44:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/07/05/command-line-args/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/05/command-line-args/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
+C++ や Objective-C を触るのにも必要ですからね。</p>
+<p>で、まずは基本のキからということで、</p>
+<pre class="prettyprint">#include &lt;stdio.h&gt;</pre>
+<pre class="prettyprint">int main(int argc, char** argv) {
+  if (argc &gt; 1) {
+    printf("Hello, %s!", argv[1]);
+  } else {
+    printf("Hello, World!");
+  }
+}</pre>
+<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
+コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
+また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -259,52 +310,6 @@ ptr = &amp;a;</pre>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/28/recently-bought-book/">最近買った本</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-28T23:38:00+09:00" pubdate data-updated="true">Jun 28<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/06/28/recently-bought-book/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2009/06/28/recently-bought-book/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-	<li><span class="caps">SIMPLY</span> <span class="caps">RAILS</span> 2</li>
-	<li>初めてのRuby</li>
-	<li>絵でみる在庫管理のしくみ</li>
-	<li><span class="caps">BEST</span> <span class="caps">SOFTWARE</span> <span class="caps">WRITING</span></li>
-	<li>企業情報システムアーキテクチャ</li>
-	<li>Foundation ActionScript 3.0 Image Effects</li>
-	<li>面白南極料理人</li>
-</ul></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -322,6 +327,10 @@ ptr = &amp;a;</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -335,10 +344,6 @@ ptr = &amp;a;</pre>
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -388,6 +393,10 @@ ptr = &amp;a;</pre>
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

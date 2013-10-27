@@ -9,7 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。 &hellip;">
+  <meta name="description" content="大変ひさびさの更新。ここ一年の間で、会社も変わったりいろいろありました。 最近社内勉強会で発表したスライドを溜め込んでたので、この辺で吐き出しておきます。 6/7 Node.js と WebSockets でテザリング
+8/16 Backbone.js のはなし
+10/25 Testing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +80,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T16:44:00+09:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/27/tech-talks/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2013/10/27/tech-talks/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>大変ひさびさの更新。ここ一年の間で、会社も変わったりいろいろありました。</p>
+
+<p>最近社内勉強会で発表したスライドを溜め込んでたので、この辺で吐き出しておきます。</p>
+
+<ul>
+<li>6/7 <a href="https://speakerdeck.com/shuhei/node-dot-js-plus-websocket-detezaringusitemita">Node.js と WebSockets でテザリング</a></li>
+<li>8/16 <a href="/talks/20130816_Introduction_to_Backbone/">Backbone.js のはなし</a></li>
+<li>10/25 <a href="/talks/20131025_Testing_JavaScript/">Testing JavaScript</a></li>
+</ul>
+
+
+<p>どれも JavaScript ネタ。仕事の半分くらいは Ruby を書いているのですが・・・。</p>
+
+<p>一個目のは、外に置いてあるサーバとローカルのクライアント（両方 Node.js）を iPhone の Safari を介して WebSockets でつないでインターネットする、というやつです。Softbank がテザリングを始める前に着手して、ちょこちょこ作ってる間にサービスが始まってしまい、モチベーションが大いに削がれたといういわくつき。</p>
+
+<p>二個名、三個目のはタイトルそのままの内容です。どちらも markdown から HTML+JS のプレゼンを生成しています。コードを載せやすくて良いのですが、字が小さくて見にくいと不評。画像も貼りにくいし、次回からは Keynote で作ろうかなあ。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -357,59 +413,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-03T00:36:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
-        
-           | <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
-
-<p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
-
-<p>2. Build Settings &ndash;> Linking &ndash;> Other Linker Flags に以下を設定。</p>
-
-<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
-</code></pre>
-
-<p>3. Build Settings &ndash;> Search Paths &ndash;> Header Search Paths に以下を設定。</p>
-
-<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
-    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
-    $(OF_PATH)/addons/ofxOpenCv/src
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -425,6 +428,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -438,10 +445,6 @@
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -491,6 +494,10 @@
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

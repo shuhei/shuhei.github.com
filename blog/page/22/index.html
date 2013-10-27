@@ -9,10 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="っていう言葉があるのかはわかりませんが、そんな感じのことについて全く知識がないことに気がつきました。
-重要な分野だと思うのですが、今後の研修ではあまりやらなさそう。
-しばらくは、テーマの一つにして勉強しようかと思います。
-これまで触ってきたのは、レンタルサーバ上で何かを動かすということが主でした &hellip;">
+  <meta name="description" content="Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration &#8594; arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +78,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/23/java-run-time-option-in-eclipse/">Eclipse で Java VM の実行時オプション</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-23T00:21:00+09:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2008</time>
+        
+           | <a href="/blog/2008/08/23/java-run-time-option-in-eclipse/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/08/23/java-run-time-option-in-eclipse/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration &#8594; arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。<br />
+なかなかわからなくて苦労したのでメモ。</p>
+<p>ちなみに、Proxy サーバを指定するには以下。</p>
+<pre class="prettyprint">-DproxySet=true -DproxyHost=xxx.xxx.xxx.xxx -DproxyPort=yyyy</pre>
+<p>フォントをアンチエイリアスするにはこんな感じ。</p>
+<pre class="prettyprint">-Dswing.aatext=true
+</pre></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -261,94 +302,6 @@ build しようとすると、「error: don&#8217;t know how to complile C/C++ �
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/14/syntax-highlight-in-wordpress/">Wordpress でコードのシンタックスハイライト</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-14T12:22:00+09:00" pubdate data-updated="true">Aug 14<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/08/14/syntax-highlight-in-wordpress/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2008/08/14/syntax-highlight-in-wordpress/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。<br />
-<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">WordPress › SyntaxHighlighter « WordPress Plugins</a></p>
-<p>デフォルトでサポートされているのが以下。</p>
-<ul>
-	<li>C++</li>
-	<li>C#</li>
-	<li><span class="caps">CSS</span></li>
-	<li>Delphi</li>
-	<li>Java</li>
-	<li>Javascript</li>
-	<li><span class="caps">PHP</span></li>
-	<li>Python</li>
-	<li>Ruby</li>
-	<li>Sql</li>
-	<li>VB</li>
-	<li><span class="caps">XML</span>/<span class="caps">HTML</span></li>
-</ul>
-<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
-<p>以下、AS3 でテスト。</p>
-<p>[sourcecode language=&#8216;Actionscript&#8217;]package<br />
-{<br />
-	import flash.display.Sprite;</p>
-<p>/<strong>*<br />
-	 * Test class.<br />
-	 */<br />
-	public class Test extends Sprite<br />
-	{<br />
-		/</strong>*<br />
-		 * @private<br />
-		 */<br />
-		private var _test:Sprite;</p>
-<p>/*<br />
-		 * Constructor.<br />
-		 */<br />
-		public function Test()<br />
-		{<br />
-			_test = new Sprite();<br />
-			_test.graphics.beginFill(0);<br />
-			_test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);<br />
-			<em>test.graphics.endFill();<br />
-			addChild(</em>test);<br />
-		}<br />
-	}<br />
-}[/sourcecode]</p>
-<h3>参考URL</h3>
-<ul>
-	<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpressにAS3/MXMLのコードハイライトプラグインを導入</a></li>
-	<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
-</ul>
-<h3><ins>追記</ins></h3>
-<p><ins>SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。</ins></p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/23/">&larr; Older</a>
@@ -366,6 +319,10 @@ build しようとすると、「error: don&#8217;t know how to complile C/C++ �
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -379,10 +336,6 @@ build しようとすると、「error: don&#8217;t know how to complile C/C++ �
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -432,6 +385,10 @@ build しようとすると、「error: don&#8217;t know how to complile C/C++ �
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

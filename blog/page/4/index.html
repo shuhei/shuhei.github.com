@@ -9,9 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="今日 Flash Platform Camp Tokyo に行ってきました。
-Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Mario Klingemann, 深津さん、新藤さん、Erik Natzke らのセッション。
-（ &hellip;">
+  <meta name="description" content="Flash Platform Camp Tokyo での Mario Klingemann の話にあったやつを Processing で作ってみました。
+AutoCircles : Built with Processing
+写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,47 @@ Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Ma
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/03/18/circle-packing/">Circle Packing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-18T00:24:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2010</time>
+        
+           | <a href="/blog/2010/03/18/circle-packing/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2010/03/18/circle-packing/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
+<p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
+<a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
+<p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -300,64 +341,6 @@ script/generete model_active_ldap user</pre>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/06/renew-ruby-environment/">Ruby の環境を新しく</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-06T19:54:00+09:00" pubdate data-updated="true">Mar 6<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/03/06/renew-ruby-environment/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2010/03/06/renew-ruby-environment/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />
-以下の環境に揃えました。</p>
-<ul>
-	<li>Ruby 1.8.7</li>
-	<li>Ruby Gems 1.3.5（Macbook は1.3.4）</li>
-	<li>Rails 2.3.5</li>
-</ul>
-<h3>Ubuntu Server 9.10 64 bit</h3>
-<p>Ruby はもともと 1.8.7。RubyGems も 1.3.5。<br />
-入っている Rails のバージョンを上げる。Aptitude で入れると古いので、RubyGems を使う事に。</p>
-<pre class="prettyprint">sudo aptitude remove rails
-sudo gem install rails
-sudo gem install sqlite3-ruby</pre>
-<pre class="prettyprint">vi ~/.bashrc
-export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
-<h3>Mac OS X</h3>
-<p>もともと入っている Ruby が 1.8.6 なので、1.8.7 を入れます。</p>
-<pre class="prettyprint">sudo port install ruby</pre>
-<p>RubyGems も MacPorts から。1.3.4 なのは我慢。</p>
-<pre class="prettyprint">sudo port install rb-rubygems
-</pre></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -375,6 +358,10 @@ export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -388,10 +375,6 @@ export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -441,6 +424,10 @@ export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

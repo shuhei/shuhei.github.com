@@ -9,9 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="developerWorks の 進化するアーキテクチャーと新方式の設計: 設計のためのリファクタリング という記事で、コードの重複を検出するツールが紹介されています。
-CPD という名前で、Copy/Paste Detector の略だとか。
-PMD &#8211; Finding copied &hellip;">
+  <meta name="description" content="Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。
+Google Code のサイトから落としてきた tar.gz ではダメでした。
+たしかに GoogleTestXcodeGuide には Subversion から落としてね、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,47 @@ PMD &#8211; Finding copied &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/26/build-google-test-on-xcod/">Xcode での Google Test のビルド</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-26T23:30:00+09:00" pubdate data-updated="true">Jul 26<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/07/26/build-google-test-on-xcod/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/26/build-google-test-on-xcod/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。<br />
+Google Code のサイトから落としてきた tar.gz ではダメでした。</p>
+<p>たしかに <a href="http://code.google.com/p/googletest/wiki/GoogleTestXcodeGuide">GoogleTestXcodeGuide</a> には Subversion から落としてね、と書いてあります。<br />
+Subversion からでないとダメとは書いてありませんが、文句は言えませんね。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -239,57 +280,6 @@ PMD &#8211; Finding copied &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/05/command-line-args/">コマンドライン引数</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-05T13:44:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/07/05/command-line-args/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2009/07/05/command-line-args/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
-C++ や Objective-C を触るのにも必要ですからね。</p>
-<p>で、まずは基本のキからということで、</p>
-<pre class="prettyprint">#include &lt;stdio.h&gt;</pre>
-<pre class="prettyprint">int main(int argc, char** argv) {
-  if (argc &gt; 1) {
-    printf("Hello, %s!", argv[1]);
-  } else {
-    printf("Hello, World!");
-  }
-}</pre>
-<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -307,6 +297,10 @@ C++ や Objective-C を触るのにも必要ですからね。</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -320,10 +314,6 @@ C++ や Objective-C を触るのにも必要ですからね。</p>
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -373,6 +363,10 @@ C++ や Objective-C を触るのにも必要ですからね。</p>
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

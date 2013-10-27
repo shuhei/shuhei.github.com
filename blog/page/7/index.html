@@ -9,8 +9,10 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。
-Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、 &hellip;">
+  <meta name="description" content="How else would you get away with swearing in a paper? &#8211; CollegeHumor picture を訳してみました。 Poem.
+You translated my poem,
+I congratulate you.
+I wish &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +81,64 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/09/ascii/">Ascii コード</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-09T22:51:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2009</time>
+        
+           | <a href="/blog/2009/12/09/ascii/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/12/09/ascii/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
+<blockquote>
+<p>Poem.</p>
+<p>You translated my poem,<br />
+I congratulate you.<br />
+I wish I could rhyme with poem,<br />
+but its very hard to.<br />
+I just beguiled you,</p>
+</blockquote>
+<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
+<pre class="prettyprint">class String
+  def bin
+    Integer('0b' + self)
+  end
+end</pre>
+<pre class="prettyprint">def decode(ascii)
+  0.step(ascii.size - 1, 8) do |num|
+    puts ascii[num..(num + 7)].bin.chr
+  end
+end</pre>
+<p>作る方は簡単でしょうが、読む方は大変です。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -300,47 +360,6 @@ via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" tit
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss/">Booklog の本一覧をRSSから取得</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-27T00:35:00+09:00" pubdate data-updated="true">Oct 27<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2009/10/27/get-book-list-of-booklog-b-rss/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、RSS を使うともっと楽にできるようです。<br />
-以下のように、GET のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
-<p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
-<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -358,6 +377,10 @@ via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" tit
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -371,10 +394,6 @@ via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" tit
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -424,6 +443,10 @@ via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" tit
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

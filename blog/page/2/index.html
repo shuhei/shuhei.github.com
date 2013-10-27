@@ -9,7 +9,7 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="ofxUI: A User Interface Library for openFrameworks from Reza on Vimeo. ofxUI: A User Interface Addon for OF を使うと openFrameworks に ofxControlPanel &hellip;">
+  <meta name="description" content="ofxOpenCv を of007 で使うためのちょっとしたメモです。 1. addons に of/addons/ofxOpenCv をドラッグ。src 以外は参照を消してしまう。 2. Build Settings &ndash;> Linking &ndash;> Other Linker &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-03T00:36:00+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2012</time>
+        
+           | <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
+
+<p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
+
+<p>2. Build Settings &ndash;> Linking &ndash;> Other Linker Flags に以下を設定。</p>
+
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
+</code></pre>
+
+<p>3. Build Settings &ndash;> Search Paths &ndash;> Header Search Paths に以下を設定。</p>
+
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
+    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
+    $(OF_PATH)/addons/ofxOpenCv/src
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -430,58 +483,6 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/07/04/floating-balls/">Floating Balls</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-04T15:44:00+09:00" pubdate data-updated="true">Jul 4<span>th</span>, 2010</time>
-        
-           | <a href="/blog/2010/07/04/floating-balls/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2010/07/04/floating-balls/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/branchiopoda/4759782068/" title="floating balls 1 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4076/4759782068_589051e708.jpg" width="500" height="250" alt="floating balls 1"></a><br />
-<a href="http://www.flickr.com/photos/branchiopoda/4759146593/" title="floating balls 2 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4142/4759146593_2488f16d0e.jpg" width="500" height="250" alt="floating balls 2"></a></p>
-<p>最近本を読んでばかりで何も作っていなかったので、Processing をいじってみました。</p>
-<ul>
-	<li><a href="/works/floating_ball_1/">FloatingBall_1 : Built with Processing</a></li>
-	<li><a href="/works/floating_ball_2/">FloatingBall_2 : Built with Processing</a></li>
-</ul>
-<p><a href="http://fladdict.net/flash/sketch/Study20100630.html">http://fladdict.net/flash/sketch/Study20100630.html</a> をパクっただけですが・・・。</p>
-<p>あと、はじめて <a href="http://processing.org/reference/PVector.html">PVector</a> 使ってみたんですが、自分でベクトル演算書かなくていいので便利ですね。</p>
-<p>後のアイデア。</p>
-<ul>
-	<li>丸じゃなくてほかの形。植物や花が育つとか。</li>
-	<li>丸が動画の点描。</li>
-	<li>絵や写真の濃度マップによって、丸のバネ定数が変わる。絵が浮かび上がる？</li>
-</ul></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -499,6 +500,10 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -512,10 +517,6 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -565,6 +566,10 @@ Part 5 は費用対効果が少なさそうですが、コツコツやるしか�
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

@@ -9,13 +9,9 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="今日、簿記の3級を受けてきました。
-たぶん合格してるはず。
-人にもらった問題集が良かったので、メモしておきます。
-一橋出版の日商簿記検定模擬試験問題集。
-模擬試験と過去問で合計11回分のボリュームです。
-結局、3回分しか解かなかったんですが、問題に慣れることができました。
-解説も十分詳しいです。 &hellip;">
+  <meta name="description" content="ARToolkit、やっと自作プロジェクトで動きました。
+Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。
+プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +80,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/23/artoolkit-on-vc2005express/">Visual C++ 2005 Express Edition で ARToolkit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-23T15:07:00+09:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2008</time>
+        
+           | <a href="/blog/2008/11/23/artoolkit-on-vc2005express/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2008/11/23/artoolkit-on-vc2005express/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ARToolkit、やっと自作プロジェクトで動きました。<br />
+Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。</p>
+<p>プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; Windowsアプリケーション。</p>
+<p>出力先フォルダには、ARtoolkit/bin にある <span class="caps">DLL</span> ファイルや Data フォルダをコピーしておきます。</p>
+<p>プロジェクトの設定を下記のように変更。</p>
+<ul>
+	<li>C/C++ &#8594; 全般 &#8594; 追加のインクルードディレクトリ = ARToolkit/include</li>
+	<li>リンカ &#8594; 全般 &#8594; インクリメンタルリンクを有効にする = 既定値</li>
+	<li>リンカ &#8594; 全般 &#8594; 追加のライブラリディレクトリ = ARToolkit/lib</li>
+	<li>リンカ &#8594; 入力 &#8594; 追加の依存ファイル = libARd.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib</li>
+</ul>
+<p>これで何とか動くように思います。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -255,47 +300,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/28/agile-software-development/">アジャイルソフトウェア開発の奥義</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-28T17:08:00+09:00" pubdate data-updated="true">Sep 28<span>th</span>, 2008</time>
-        
-           | <a href="/blog/2008/09/28/agile-software-development/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2008/09/28/agile-software-development/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>分厚いですがとても良い本だと思います。<br />
-アジャイル開発の方法論からデザインバターン、リファクタリングなど多岐に渡る内容を豊富な実例とともに解説しています。<br />
-とくに、コードをリファクタリングしながら、デザインバターンを採用していくあたりはとても参考になりました。<br />
-最近読んだプログラミング関連の本の中で1番の良書です。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -313,6 +317,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -326,10 +334,6 @@
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -379,6 +383,10 @@
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>

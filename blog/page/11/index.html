@@ -9,9 +9,8 @@
   <meta name="author" content="Shuhei Kagawa">
 
   
-  <meta name="description" content="実用 Subversion 第二版
-職場で Subversion の管理をしているのですが、Subversion について知らなさすぎると思い買ってみた本です。
-引き継いだ時からバックアップがされておらず、何とかしないと思いつつも何もやっていませんでした。そんな中、 &hellip;">
+  <meta name="description" content="以前 Wordpress の Textile プラグイン という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。
+きっかけは、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/21/use-textpatterns-textile-with-wordpress/">Wordpress で Textpattern 相当の Textile を使う</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-21T00:37:00+09:00" pubdate data-updated="true">Sep 21<span>st</span>, 2009</time>
+        
+           | <a href="/blog/2009/09/21/use-textpatterns-textile-with-wordpress/#disqus_thread"
+             data-disqus-identifier="http://shuheikagawa.com/blog/2009/09/21/use-textpatterns-textile-with-wordpress/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前 <a href="/blog/2009/08/02/wordpress-textile-plugin/">Wordpress の Textile プラグイン</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
+<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン <a href="http://wordpress.org/extend/plugins/text-control-2/">Text Control 2</a> をふと思い立ってインストールしてみたこと。<br />
+このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。<br />
+これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
+<h3>手順</h3>
+<h4>classTextile.php の入手</h4>
+<p>Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。</p>
+<h4>textile2.php ではなく classTextile.php を使うように</h4>
+<p>wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを</p>
+<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
+  if($do_text == 'textile2') {</pre>
+<pre class="prettyprint">    require_once('text-control/textile2.php');
+    $t = new Textile();
+    $text = $t-&gt;process($text);</pre>
+<p>から</p>
+<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
+  if($do_text == 'textile2') {</pre>
+<pre class="prettyprint">    require_once('text-control/classTextile.php');
+    $t = new Textile();
+    $text = $t-&gt;TextileThis($text);</pre>
+<p>へ変更します。</p>
+<h3>結果</h3>
+<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。<br />
+Google Code Prettify も、これまではいちいち <span class="caps">HTML</span> のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -295,47 +355,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/10/iphone-provisioning-profile/">iPhone Provisioning Profile</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-10T12:31:00+09:00" pubdate data-updated="true">Aug 10<span>th</span>, 2009</time>
-        
-           | <a href="/blog/2009/08/10/iphone-provisioning-profile/#disqus_thread"
-             data-disqus-identifier="http://shuheikagawa.com/blog/2009/08/10/iphone-provisioning-profile/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
-改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
-<p>キーチェーンアクセス &#8594; 証明書アシスタント &#8594; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
-<p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -353,6 +372,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/27/tech-talks/">最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/06/01/3d-lut/">3D LUT</a>
       </li>
     
@@ -366,10 +389,6 @@
     
       <li class="post">
         <a href="/blog/2012/04/03/category-index-for-octopress/">Category Index for Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007/">How to Use ofxOpenCv on Of007</a>
       </li>
     
   </ul>
@@ -419,6 +438,10 @@
       <li><a class='category' href='/blog/categories/octopress/'>Octopress</a></li>
     
       <li><a class='category' href='/blog/categories/three-dot-js/'>Three.js</a></li>
+    
+      <li><a class='category' href='/blog/categories/backbone/'>Backbone</a></li>
+    
+      <li><a class='category' href='/blog/categories/javascript/'>JavaScript,</a></li>
     
   </ul>
 </section>
