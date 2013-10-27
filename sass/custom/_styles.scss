@@ -13,6 +13,10 @@ body {
   font-family: $sans;
 }
 
+@media only screen and (min-width: 992px) {
+  h1 { font-size: 2.2em; }
+}
+
 // partials/_navigation
 body > nav {
   border: 0 none;
@@ -35,15 +39,27 @@ body > footer {
 }
 
 // partials/_blog
-article {
-  header {
-    padding-top: 0;
-    p {
-      &.meta {
-        position: relative;
-        top: 0.8em;
-      }
-    }
+#content .blog-index {
+  article { padding-top: 1em; }
+}
+
+@media only screen and (min-width: 768px) {
+  #content .blog-index {
+    padding-top: $pad-medium/2;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #content .blog-index {
+    padding-top: $pad-wide/2;
+  }
+}
+
+article header {
+  padding-top: 0;
+  p.meta {
+    position: relative;
+    top: 0.8em;
   }
 }
 
