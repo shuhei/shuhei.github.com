@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Blog]]></title>
   <link href="http://shuheikagawa.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://shuheikagawa.com/"/>
-  <updated>2013-10-27T16:09:20+09:00</updated>
+  <updated>2013-10-27T16:42:01+09:00</updated>
   <id>http://shuheikagawa.com/</id>
   <author>
     <name><![CDATA[Shuhei Kagawa]]></name>
@@ -20,116 +20,68 @@
     <id>http://shuheikagawa.com/blog/2012/04/03/category-index-for-octopress</id>
     <content type="html"><![CDATA[<p>サイドバーにカテゴリー一覧を出してみました。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span><em>config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff &amp;mdash;git a/&lt;/em&gt;config.yml b/&lt;em&gt;config.yml</span>
-</span><span class='line'><span class="gh">index 5c7d335..7ad03bb 100644</span>
-</span><span class='line'>&amp;mdash;&amp;ndash; a/&lt;/em&gt;config.yml
-</span><span class='line'><span class="gi">+++ b/_config.yml</span>
-</span><span class='line'><span class="gu">@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt; # list each of the sidebar modules you want to include, in the order you want them to appear.
-</span><span class='line'> # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &amp;lsquo;custom/asides/custom_aside_name.html&amp;rsquo;
-</span><span class='line'><span class="gd">-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]</span>
-</span><span class='line'><span class="gi">+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt; # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
-</span><span class='line'> # and add an array with the asides you want to use.
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:diff <em>config.yml %}
+diff &mdash;git a/</em>config.yml b/<em>config.yml
+index 5c7d335..7ad03bb 100644
+&mdash;&ndash; a/</em>config.yml
++++ b/_config.yml
+@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/asides/categories.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;ul&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>{% for category in site.categories %}
-</span><span class='line'>  <span class="ni">&amp;lt;</span>li<span class="ni">&amp;gt;</span>{{ category | category_link }}<span class="ni">&amp;lt;</span>/li<span class="ni">&amp;gt;</span>
-</span><span class='line'>{% endfor %}
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p> # list each of the sidebar modules you want to include, in the order you want them to appear.
+ # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &lsquo;custom/asides/custom_aside_name.html&rsquo;
+-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
++default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.</p>
+
+<p> # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+ # and add an array with the asides you want to use.
+{% endcodeblock %}</p>
+
+<p>{% codeblock lang:html source/_includes/custom/asides/categories.html %}
+{% raw %}
+<section>
+  <h1>Categories</h1>
+  <ul></p>
+
+<pre><code>{% for category in site.categories %}
+  &lt;li&gt;{{ category | category_link }}&lt;/li&gt;
+{% endfor %}
+</code></pre>
+
+<p>  </ul>
+</section>
+{% endraw %}
+{% endcodeblock %}</p>
 
 <p>2013-10-27 編集: 現在はデフォルトで <code>category_link</code> メソッドが追加されているので、以下の修正は不要です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>plugins/category_generator.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gh">diff &amp;mdash;git a/plugins/category_generator.rb b/plugins/category_generator.rb</span>
-</span><span class='line'><span class="gh">index bb5fd32..28bf7e0 100644</span>
-</span><span class='line'>&amp;mdash;&amp;ndash; a/plugins/category_generator.rb
-</span><span class='line'><span class="gi">+++ b/plugins/category_generator.rb</span>
-</span><span class='line'><span class="gu">@@ -156,6 +156,18 @@ module Jekyll&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;   end
-</span><span class='line'> end
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>&lt;li&gt; # Outputs a link of a category.&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; #&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; #  +category+ is an item of site.categories.&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; #&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; # Returns string&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; #&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; def category_link(category)&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;   dir = @context.registers[:site].config[&amp;lsquo;category_dir&amp;rsquo;]&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;   category = category[0]&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;   &amp;ldquo;&lt;a class=&#39;category&#39; href=&#39;http://shuheikagawa.com/#{dir}/#{category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase}/&#39;&gt;#{category}&lt;/a&gt;&amp;rdquo;&lt;/li&gt;
-</span><span class='line'>&lt;li&gt; end
-</span><span class='line'><span class="gi">+</span>
-</span><span class='line'> # Outputs the post.date as formatted html, with hooks for CSS styling.
-</span><span class='line'> #
-</span><span class='line'> #  +date+ is the date object to format as HTML.
-</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<p>{% codeblock lang:diff plugins/category_generator.rb %}
+diff &mdash;git a/plugins/category_generator.rb b/plugins/category_generator.rb
+index bb5fd32..28bf7e0 100644
+&mdash;&ndash; a/plugins/category_generator.rb
++++ b/plugins/category_generator.rb
+@@ -156,6 +156,18 @@ module Jekyll</p>
+
+<pre><code>   end
+ end
+</code></pre>
+
+<ul>
+<li> # Outputs a link of a category.</li>
+<li> #</li>
+<li> #  +category+ is an item of site.categories.</li>
+<li> #</li>
+<li> # Returns string</li>
+<li> #</li>
+<li> def category_link(category)</li>
+<li>   dir = @context.registers[:site].config[&lsquo;category_dir&rsquo;]</li>
+<li>   category = category[0]</li>
+<li>   &ldquo;<a class='category' href='http://shuheikagawa.com/#{dir}/#{category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase}/'>#{category}</a>&rdquo;</li>
+<li> end
++
+ # Outputs the post.date as formatted html, with hooks for CSS styling.
+ #
+ #  +date+ is the date object to format as HTML.
+{% endcodeblock %}</li>
 </ul>
 
 
