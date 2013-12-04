@@ -1,12 +1,12 @@
 [submodule "source/works/goban.js"]
 	path = source/works/goban.js
-	url = git@github.com:shuhei/goban.js.git
+	url = git://github.com/shuhei/goban.js.git
 [submodule "source/works/dymaxion-paint"]
 	path = source/works/dymaxion-paint
-	url = git@github.com:shuhei/dymaxion-paint.git
+	url = git://github.com/shuhei/dymaxion-paint.git
 [submodule "source/works/perfume_dev"]
 	path = source/works/perfume_dev
-	url = git@github.com:shuhei/perfume_dev.git
+	url = git://github.com/shuhei/perfume_dev.git
 [submodule "source/works/webland"]
 	path = source/works/webland
-	url = git@github.com:shuhei/webland.git
+	url = git://github.com/shuhei/webland.git
