@@ -255,6 +255,10 @@ multitask :push do
   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
   puts "\n## Copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir
+
+  # Delete .git of submodules!
+  (Dir["#{deploy_dir}/*/**/.git"]).each { |f| rm_rf(f) }
+
   cd "#{deploy_dir}" do
     system "git add -A"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
