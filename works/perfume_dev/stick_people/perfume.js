@@ -35,7 +35,7 @@
       this.channels = [];
       this.initialOffset = new THREE.Vector3;
       this.translation = new THREE.Vector3;
-      this.rotation = new THREE.Vector3;
+      this.rotation = new THREE.Euler;
       this.matrix = new THREE.Matrix4;
       this.globalMatrix = new THREE.Matrix4;
     }
@@ -51,7 +51,7 @@
     Node.prototype.update = function(index, frame) {
       var channel, child, v, _i, _j, _len, _len2, _ref, _ref2;
       this.translation.set(0, 0, 0);
-      this.rotation.set(0, 0, 0);
+      this.rotation.set(0, 0, 0, 'YXZ');
       _ref = this.channels;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         channel = _ref[_i];
@@ -77,12 +77,12 @@
         }
         index++;
       }
-      this.translation.addSelf(this.initialOffset);
+      this.translation.add(this.initialOffset);
       this.matrix.identity();
-      this.matrix.translate(this.translation);
-      this.matrix.setRotationFromEuler(this.rotation, 'YXZ');
+      this.matrix.makeTranslation(this.translation.x, this.translation.y, this.translation.z);
+      this.matrix.makeRotationFromEuler(this.rotation);
       this.globalMatrix.copy(this.matrix);
-      if (this.parent) this.globalMatrix.multiplySelf(this.parent.globalMatrix);
+      if (this.parent) this.globalMatrix.multiply(this.parent.globalMatrix);
       _ref2 = this.children;
       for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
         child = _ref2[_j];
@@ -295,8 +295,8 @@
         blending: THREE.AdditiveBlending
       });
       geo = new THREE.Geometry;
-      geo.vertices.push(new THREE.Vertex(new THREE.Vector3(x1, y1, z1)));
-      geo.vertices.push(new THREE.Vertex(new THREE.Vector3(x2, y2, z2)));
+      geo.vertices.push(new THREE.Vector3(x1, y1, z1));
+      geo.vertices.push(new THREE.Vector3(x2, y2, z2));
       line = new THREE.Line(geo, mat);
       return line;
     };
@@ -313,7 +313,7 @@
       this.grounds = [];
       for (i = 0; 0 <= num ? i < num : i > num; 0 <= num ? i++ : i--) {
         angle = i * Math.PI * 2 / num + Math.PI;
-        color = new THREE.Color().setHSV(i / num, 1, 0.8).getHex();
+        color = new THREE.Color().setHSL(i / num, 1, 0.8).getHex();
         line = this.createLine(0, 0, 0, 100 * Math.cos(angle), 0, 100 * Math.sin(angle), color);
         this.scene.add(line);
         this.grounds.push(line);
@@ -360,7 +360,7 @@
         color: color
       });
       object = new THREE.Mesh(geometry, material);
-      object.eulerOrder = 'YXZ';
+      object.rotation.order = 'YXZ';
       parentNode.add(object);
       objects.push(object);
       _ref = joint.children;
@@ -375,8 +375,8 @@
           blending: THREE.AdditiveBlending
         });
         geo = new THREE.Geometry;
-        geo.vertices.push(new THREE.Vertex(new THREE.Vector3));
-        geo.vertices.push(new THREE.Vertex(child.initialOffset));
+        geo.vertices.push(new THREE.Vector3);
+        geo.vertices.push(child.initialOffset);
         line = new THREE.Line(geo, mat);
         _results.push(object.add(line));
       }

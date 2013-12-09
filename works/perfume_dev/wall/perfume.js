@@ -35,7 +35,7 @@ var Node = (function() {
     this.channels = [];
     this.initialOffset = new THREE.Vector3();
     this.translation = new THREE.Vector3();
-    this.rotation = new THREE.Vector3();
+    this.rotation = new THREE.Euler();
     this.matrix = new THREE.Matrix4();
     this.globalMatrix = new THREE.Matrix4();
   }
@@ -50,7 +50,7 @@ var Node = (function() {
   
   Node.prototype.update = function(index, frame) {
     this.translation.set(0, 0, 0);
-    this.rotation.set(0, 0, 0);
+    this.rotation.set(0, 0, 0, 'YXZ');
     for (var i = 0; i < this.channels.length; i++) {
       var channel = this.channels[i],
           v = frame[index];
@@ -70,15 +70,15 @@ var Node = (function() {
       index++;
     }
     
-    this.translation.addSelf(this.initialOffset);
+    this.translation.add(this.initialOffset);
     
     this.matrix.identity();
-    this.matrix.translate(this.translation);
-    this.matrix.setRotationFromEuler(this.rotation, 'YXZ');
+    this.matrix.makeTranslation(this.translation);
+    this.matrix.makeRotationFromEuler(this.rotation);
     
     this.globalMatrix.copy(this.matrix);
     if (!!this.parent) {
-      this.globalMatrix.multiplySelf(this.parent.globalMatrix);
+      this.globalMatrix.multiply(this.parent.globalMatrix);
     }
     
     for (var i = 0; i < this.children.length; i++) {
@@ -284,8 +284,8 @@ var Perfume = (function() {
       blending: THREE.AdditiveBlending
     });
     var geo = new THREE.Geometry();
-    geo.vertices.push(new THREE.Vertex(new THREE.Vector3(x1, y1, z1)));
-    geo.vertices.push(new THREE.Vertex(new THREE.Vector3(x2, y2, z2)));
+    geo.vertices.push(new THREE.Vector3(x1, y1, z1));
+    geo.vertices.push(new THREE.Vector3(x2, y2, z2));
     var line = new THREE.Line(geo, mat);
     return line;
   }
@@ -306,7 +306,7 @@ var Perfume = (function() {
     this.grounds = [];
     for (var i = 0; i < num; i++) {
       var angle = i * Math.PI * 2 / num + Math.PI,
-          color = new THREE.Color().setHSV(i / 255, 1, 0.8).getHex(),
+          color = new THREE.Color().setHSL(i / 255, 1, 0.8).getHex(),
           r = 300,
           x = r * Math.cos(angle),
           z = r * Math.sin(angle),
@@ -361,7 +361,7 @@ var Perfume = (function() {
     var geometry = new THREE.CubeGeometry(5, 5, 5),
         material = new THREE.MeshLambertMaterial({ color: color }),
         object = new THREE.Mesh(geometry, material);
-    object.eulerOrder = 'YXZ';
+    object.rotation.order = 'YXZ';
     
     parentNode.add(object);
     objects.push(object);
@@ -377,8 +377,8 @@ var Perfume = (function() {
         blending: THREE.AdditiveBlending
       });
       var geo = new THREE.Geometry();
-      geo.vertices.push(new THREE.Vertex(new THREE.Vector3()));
-      geo.vertices.push(new THREE.Vertex(child.initialOffset));
+      geo.vertices.push(new THREE.Vector3());
+      geo.vertices.push(child.initialOffset);
       var line = new THREE.Line(geo, mat);
       object.add(line);
     }
