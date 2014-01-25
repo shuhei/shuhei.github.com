@@ -1,24 +1,8 @@
-doctype html
-html
-  head
-    title= site.title
-    meta(charset="utf-8")
-    style.
-      body {
-        font-family: sans-serif;
-      }
-      .header, .container {
-        width: 700px;
-        margin: 0 auto;
-      }
-      .header {
-        text-align: center;
-      }
-  body
-    header.header
-      .header-title
-        a(href="/blog")= site.title
+extends default
 
-    .container
-      h1= post.title
-      .content!= post.content
+block head
+
+block content
+  h1
+    a(href=post.url)= post.title
+  .content!= post.content

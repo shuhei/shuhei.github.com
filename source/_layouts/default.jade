@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= site.title
+    meta(charset="utf-8")
+    style.
+      body {
+        font-family: sans-serif;
+      }
+      .header, .container {
+        width: 700px;
+        margin: 0 auto;
+      }
+      .header {
+        text-align: center;
+      }
+    block head
+  body
+    header.header
+      .header-title
+        a(href="/blog")= site.title
+
+    .container
+      block content

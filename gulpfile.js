@@ -20,10 +20,11 @@ gulp.task('posts', function () {
       .pipe(frontmatter())
       .pipe(markdown())
       .pipe(blog.cleanUrl())
-      .pipe(blog.layout())
-      .pipe(gulp.dest('./public/blog'));
+      .pipe(blog.layout({ title: 'Blog' }))
+      .pipe(gulp.dest('./public/blog'))
+      .pipe(blog.index({ title: 'Blog' }))
+      .pipe(gulp.dest('./public/blog'))
       // TODO: Create archive.
-      // TODO: Create index.
 });
 
 gulp.task('watch', ['copy', 'posts'], function () {
