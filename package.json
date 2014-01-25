@@ -1,0 +1,28 @@
+{
+  "name": "shuheikagawa.com",
+  "version": "0.0.0",
+  "description": "Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shuhei/shuhei.github.com.git"
+  },
+  "author": "Shuhei Kagawa <shuhei.kagawa@m3.com>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/shuhei/shuhei.github.com/issues"
+  },
+  "homepage": "https://github.com/shuhei/shuhei.github.com",
+  "devDependencies": {
+    "gulp": "~3.5.0",
+    "gulp-markdown": "~0.1.2",
+    "gulp-plumber": "~0.5.6",
+    "gulp-util": "~2.2.12",
+    "connect": "~2.12.0",
+    "gulp-ignore": "~1.0.0",
+    "gulp-if": "0.0.4",
+    "js-yaml": "~3.0.1",
+    "through2": "~0.4.1"
+  }
+}
