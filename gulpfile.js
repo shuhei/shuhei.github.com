@@ -6,10 +6,11 @@ var markdown = require('gulp-markdown');
 
 var frontmatter = require('./frontmatter');
 var server = require('./server');
+var blog = require('./blog');
 
 gulp.task('copy', function () {
   gulp.src(['./source/**/*.*', '!./source/_*/**/*.*'])
-      .pipe(gulp.dest('./dist'));
+      .pipe(gulp.dest('./public'));
 });
 
 gulp.task('posts', function () {
@@ -18,15 +19,17 @@ gulp.task('posts', function () {
       .pipe(plumber())
       .pipe(frontmatter())
       .pipe(markdown())
-      // TODO: Add layout.
-      // TODO: Change file name.
-      .pipe(gulp.dest('./dist/blog'));
+      .pipe(blog.cleanUrl())
+      .pipe(blog.layout())
+      .pipe(gulp.dest('./public/blog'));
+      // TODO: Create archive.
+      // TODO: Create index.
 });
 
-gulp.task('watch', function () {
-  server('./dist').listen(4000, function (err) {
+gulp.task('watch', ['copy', 'posts'], function () {
+  server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
-    gulp.watch('./source/_posts/*.markdown', ['posts']);
+    gulp.watch('./source/**/*', ['posts']);
   });
 });
 

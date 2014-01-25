@@ -1,4 +1,4 @@
-var through = require('through2');
+var through = require('through2').obj;
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var yaml = require('js-yaml');
@@ -50,5 +50,5 @@ function transform(file, enc, cb) {
 }
 
 module.exports = function () {
-  return through({ objectMode: true }, transform);
+  return through(transform);
 }
