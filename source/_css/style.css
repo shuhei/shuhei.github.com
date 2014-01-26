@@ -13,15 +13,6 @@ a:hover {
   color: #999;
 }
 
-.main {
-  background: #fff;
-  padding: 10px 0;
-}
-.main-inner {
-  margin: 0 auto;
-  width: 700px;
-}
-
 .header, .footer {
   background: #eee;
   text-align: center;
@@ -56,9 +47,28 @@ a:hover {
   text-decoration: none;
 }
 
+.post {
+  background: #fff;
+  padding: 20px 0;
+  margin: 0 0 40px;
+}
+.post:last-child {
+  margin-bottom: 0;
+}
+.post .title,
+.post .content {
+  margin: 0 auto;
+  width: 700px;
+}
+
+.post-list {
+  background: #fff;
+  padding: 15px 0;
+}
 .post-list-item {
-  width: 100%;
-  margin: 20px 0;
+  padding: 10px 0;
+  margin: 0 auto;
+  width: 700px;
 }
 .post-list-item:after {
   content: "";
