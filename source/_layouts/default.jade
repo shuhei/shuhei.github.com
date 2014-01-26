@@ -5,14 +5,24 @@ html
     meta(charset="utf-8")
     style.
       body {
+        background: #eee;
         font-family: sans-serif;
+        padding: 0;
+        margin: 0;
       }
 
-      .header, .main {
-        width: 700px;
-        margin: 0 auto;
+      .main {
+        background: #fff;
+        padding: 10px 0;
       }
-      .header {
+      .main-inner {
+        margin: 0 auto;
+        width: 700px;
+      }
+
+      .header, .footer {
+        background: #eee;
+        padding: 30px 0;
         text-align: center;
       }
 
@@ -61,8 +71,12 @@ html
     block head
   body
     header.header
-      .header-title
+      .title
         a(href="/blog")= site.title
 
     .main
-      block content
+      .main-inner
+        block content
+
+    footer.footer
+      != '&copy; ' + site.author

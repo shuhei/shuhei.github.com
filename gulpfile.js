@@ -8,6 +8,11 @@ var frontmatter = require('./frontmatter');
 var server = require('./server');
 var blog = require('./blog');
 
+var blogConfig = {
+  title: 'Blog!',
+  author: 'Shuhei Kagawa'
+};
+
 gulp.task('copy', function () {
   gulp.src(['./source/**/*.*', '!./source/_*/**/*.*'])
       .pipe(gulp.dest('./public'));
@@ -20,9 +25,9 @@ gulp.task('posts', function () {
       .pipe(frontmatter())
       .pipe(markdown())
       .pipe(blog.cleanUrl())
-      .pipe(blog.layout({ title: 'Blog' }))
+      .pipe(blog.layout(blogConfig))
       .pipe(gulp.dest('./public/blog'))
-      .pipe(blog.index({ title: 'Blog' }))
+      .pipe(blog.index(blogConfig))
       .pipe(gulp.dest('./public/blog'))
       // TODO: Create archive.
 });
