@@ -17,7 +17,9 @@ Amazon.co.jp で洋書を見ると、レビューがほとんどありません�
 amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
 洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。
 
-```js amazondotcomreviewer.user.js
+amazondotcomreviewer.user.js
+
+```js
 // ==UserScript==
 // @name           AmazonDotComReviewer 0.1
 // @namespace      http://www.7to3.net

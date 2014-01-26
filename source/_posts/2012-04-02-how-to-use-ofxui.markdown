@@ -8,7 +8,7 @@ tags:
 categories: openFrameworks
 ---
 
-{% vimeo 36385123 800 600 %}
+<iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 [ofxUI: A User Interface Addon for OF](http://www.syedrezaali.com/blog/?p=2172) を使うと openFrameworks に [ofxControlPanel](https://github.com/ofTheo/ofxControlPanel) よりもちょっとかっこいい UI を追加することができます。[github のページ](https://github.com/rezaali/ofxUI) の Readme を超訳してみました。
 

@@ -7,8 +7,9 @@ comments: true
 tags: 
 categories: openFrameworks 
 ---
-openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは examples が充実していることです。ディレクトリ構成上も apps から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。
+openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは `examples` が充実していることです。ディレクトリ構成上も `apps` から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。
 
-Instagram 風の example を見てみると、エフェクトをかけるのには [3D LUT](http://en.wikipedia.org/wiki/3D_LUT) という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたい。
+Instagram 風の例を見てみると、エフェクトをかけるのには [3D LUT](http://en.wikipedia.org/wiki/3D_LUT) という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたいです。
+
 [After Effects CS5 ファーストレビュー！CS5では何が変わる？](http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/)
 

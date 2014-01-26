@@ -8,7 +8,7 @@ html
         font-family: sans-serif;
       }
 
-      .header, .container {
+      .header, .main {
         width: 700px;
         margin: 0 auto;
       }
@@ -47,11 +47,22 @@ html
         margin: 0;
       }
 
+      .content img {
+        max-width: 100%;
+      }
+      .content pre code {
+        background: #000;
+        color: #0f0;
+        display: block;
+        padding: 10px 15px;
+        overflow-x: scroll;
+      }
+
     block head
   body
     header.header
       .header-title
         a(href="/blog")= site.title
 
-    .container
+    .main
       block content

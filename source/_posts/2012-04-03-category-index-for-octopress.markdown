@@ -7,7 +7,9 @@ categories: Octopress
 ---
 サイドバーにカテゴリー一覧を出してみました。
 
-{% codeblock lang:diff _config.yml %}
+_config.yml
+
+```diff
 diff --git a/_config.yml b/_config.yml
 index 5c7d335..7ad03bb 100644
 --- a/_config.yml
@@ -21,10 +23,11 @@ index 5c7d335..7ad03bb 100644
  
  # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
  # and add an array with the asides you want to use.
-{% endcodeblock %}
+```
 
-{% codeblock lang:html source/_includes/custom/asides/categories.html %}
-{% raw %}
+source/_includes/custom/asides/categories.html
+
+```html
 <section>
   <h1>Categories</h1>
   <ul>
@@ -33,12 +36,13 @@ index 5c7d335..7ad03bb 100644
     {% endfor %}
   </ul>
 </section>
-{% endraw %}
-{% endcodeblock %}
+```
 
 2013-10-27 編集: 現在はデフォルトで `category_link` メソッドが追加されているので、以下の修正は不要です。
 
-{% codeblock lang:diff plugins/category_generator.rb %}
+plugins/category_generator.rb
+
+```diff
 diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb
 index bb5fd32..28bf7e0 100644
 --- a/plugins/category_generator.rb
@@ -62,6 +66,6 @@ index bb5fd32..28bf7e0 100644
      # Outputs the post.date as formatted html, with hooks for CSS styling.
      #
      #  +date+ is the date object to format as HTML.
-{% endcodeblock %}
+```
 
-[Add a category index to Octopress](https://gist.github.com/shuhei/2288181)
+Gist: [Add a category index to Octopress](https://gist.github.com/shuhei/2288181)
