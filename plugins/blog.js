@@ -4,36 +4,51 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var jade = require('jade');
 var xtend = require('xtend');
+var async = require('async');
 
 var PLUGIN_NAME = 'blog';
 
 module.exports.index = function (config) {
   var files = [];
+
   return through(function (file, enc, cb) {
     files.push(file);
     cb();
   }, function (cb) {
     var self = this;
 
-    var locals = {
-      site: config,
-      posts: files.map(function (file) { return file.meta; }).reverse()
+    var posts = files.map(function (file) {
+      return xtend({ content: file.contents.toString() }, file.meta);
+    }).reverse();
+
+    var locals = { site: config, posts: posts };
+
+    function renderTemplateFunc(tmpl, dest) {
+      var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
+      return function (callback) {
+        jade.renderFile(templateFile, locals, function (err, data) {
+          if (err) return callback(err);
+
+          var file = new gutil.File({
+            cwd: process.cwd(),
+            base: path.join(__dirname, 'source/blog'),
+            path: path.join(__dirname, 'source/blog', dest),
+            contents: new Buffer(data)
+          });
+          self.push(file);
+          callback(null, file);
+        });
+      }
     }
 
-    var templateFile = path.join(__dirname, 'source/_layouts/index.jade');
-    jade.renderFile(templateFile, locals, function (err, data) {
+    async.parallel([
+      renderTemplateFunc('index.jade', 'index.html'),
+      renderTemplateFunc('archives.jade', 'archives/index.html')
+    ], function (err) {
       if (err) {
         self.emit('err', new PluginError(PLUGIN_NAME, err));
         return;
       }
-
-      var file = new gutil.File({
-        cwd: process.cwd(),
-        base: path.join(__dirname, 'source/blog'),
-        path: path.join(__dirname, 'source/blog/index.html'),
-        contents: new Buffer(data)
-      });
-      self.push(file);
       cb();
     });
   });
@@ -51,7 +66,7 @@ module.exports.layout = function (config) {
       return cb();
     }
 
-    var templateFile = path.join(__dirname, '/source/_layouts/', file.meta.layout + '.jade');
+    var templateFile = path.join(file.cwd, '/source/_layouts/', file.meta.layout + '.jade');
     var locals = {
       site: config,
       post: xtend({ content: file.contents.toString() }, file.meta)

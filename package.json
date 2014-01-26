@@ -27,6 +27,7 @@
     "xtend": "~2.1.2",
     "gulp-concat": "~2.1.7",
     "gulp-match": "0.0.2",
-    "textile-js": "~0.1.7"
+    "textile-js": "~0.1.7",
+    "async": "~0.2.10"
   }
 }

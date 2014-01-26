@@ -4,11 +4,12 @@ var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 
-var condition = require('./condition');
-var frontmatter = require('./frontmatter');
-var textile = require('./textile');
-var server = require('./server');
-var blog = require('./blog');
+var condition = require('./plugins/condition');
+var frontmatter = require('./plugins/frontmatter');
+var textile = require('./plugins/textile');
+var server = require('./plugins/server');
+var blog = require('./plugins/blog');
+var branch = require('./plugins/branch');
 
 var blogConfig = {
   title: 'Blog',
@@ -25,17 +26,18 @@ gulp.task('copy', function () {
 });
 
 gulp.task('posts', function () {
+  var aggregator = blog.index(blogConfig);
+  aggregator.pipe(gulp.dest('./public/blog'));
+
   gulp.src('./source/_posts/*.*')
       .pipe(plumber())
       .pipe(frontmatter())
       .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
       .pipe(condition(__dirname + '/source/**/*.textile', textile()))
       .pipe(blog.cleanUrl())
+      .pipe(branch(aggregator))
       .pipe(blog.layout(blogConfig))
-      .pipe(gulp.dest('./public/blog'))
-      .pipe(blog.index(blogConfig))
-      .pipe(gulp.dest('./public/blog'))
-      // TODO: Create archive.
+      .pipe(gulp.dest('./public/blog'));
 });
 
 gulp.task('css', function () {
@@ -49,7 +51,7 @@ gulp.task('watch', ['default'], function () {
   server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
     gulp.watch(['./source/**/*.*', '!./source/_*/**/*.*'], ['copy']);
-    gulp.watch('./source/_posts/*.*', ['posts']);
+    gulp.watch(['./source/_posts/*.*', './source/_layouts/*.*'], ['posts']);
     gulp.watch('./source/_css/**/*.css', ['css']);
   });
 });
