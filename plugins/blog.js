@@ -97,12 +97,12 @@ module.exports.cleanUrl = function () {
 
     var nameComponents = basename.split('-');
     var date = nameComponents.slice(0, 3);
-    var newName = nameComponents.slice(3).join('-');
+    var dirname = nameComponents.slice(3).join('-').replace(/\.html$/, '');
 
-    components.splice(components.length - 1, 1, date[0], date[1], date[2], newName);
+    components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
     file.path = components.join(path.sep);
-    file.meta.url = ['/blog', date[0], date[1], date[2], newName].join('/')
+    file.meta.url = ['/blog', date[0], date[1], date[2], dirname].join('/')
 
     this.push(file);
     cb();
