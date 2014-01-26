@@ -4,6 +4,8 @@ block head
 
 block content
   .post-list
+    h1.title
+      a(href="/blog/archives") Archives
     each post in posts
       .post-list-item
         .date= post.date.split(' ')[0] + ' '
