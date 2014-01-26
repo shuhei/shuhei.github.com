@@ -3,7 +3,6 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var yaml = require('js-yaml');
 
-var PLUGIN_NAME = 'frontmatter';
 var SEPARATOR = '---';
 
 function transform(file, enc, cb) {
@@ -15,7 +14,7 @@ function transform(file, enc, cb) {
   }
 
   function emitError(message) {
-    var error = new PluginError(PLUGIN_NAME, message);
+    var error = new PluginError('frontmatter', message);
     self.emit('error', error);
   }
 

@@ -29,7 +29,7 @@ Wordpress でコードのシンタックスハイライﾄをしてくれるプ�
 
 以下、AS3 でテスト。
 
-[sourcecode language='Actionscript']package
+pre(prettyprint).. [sourcecode language='Actionscript']package
 {
 	import flash.display.Sprite;
 

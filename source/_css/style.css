@@ -82,7 +82,8 @@ a:hover {
 .content img {
   max-width: 100%;
 }
-.content pre code {
+.content pre code,
+.content pre.prettyprint {
   background: #000;
   color: #0f0;
   display: block;

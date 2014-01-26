@@ -26,6 +26,7 @@
     "jade": "~1.1.5",
     "xtend": "~2.1.2",
     "gulp-concat": "~2.1.7",
-    "gulp-match": "0.0.2"
+    "gulp-match": "0.0.2",
+    "textile-js": "~0.1.7"
   }
 }

@@ -6,6 +6,7 @@ var markdown = require('gulp-markdown');
 
 var condition = require('./condition');
 var frontmatter = require('./frontmatter');
+var textile = require('./textile');
 var server = require('./server');
 var blog = require('./blog');
 
@@ -24,11 +25,11 @@ gulp.task('copy', function () {
 });
 
 gulp.task('posts', function () {
-  // TODO: Support textile.
-  gulp.src('./source/_posts/*.{markdown,md}')
+  gulp.src('./source/_posts/*.*')
       .pipe(plumber())
       .pipe(frontmatter())
-      .pipe(markdown())
+      .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+      .pipe(condition(__dirname + '/source/**/*.textile', textile()))
       .pipe(blog.cleanUrl())
       .pipe(blog.layout(blogConfig))
       .pipe(gulp.dest('./public/blog'))
@@ -48,7 +49,7 @@ gulp.task('watch', ['default'], function () {
   server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
     gulp.watch(['./source/**/*.*', '!./source/_*/**/*.*'], ['copy']);
-    gulp.watch('./source/_posts/*.{markdown,md}', ['posts']);
+    gulp.watch('./source/_posts/*.*', ['posts']);
     gulp.watch('./source/_css/**/*.css', ['css']);
   });
 });
