@@ -76,6 +76,9 @@ a:hover {
   margin: 0;
 }
 
+.content {
+  line-height: 1.6em;
+}
 .content img {
   max-width: 100%;
 }
@@ -83,6 +86,7 @@ a:hover {
   background: #000;
   color: #0f0;
   display: block;
+  line-height: 1.3em;
   padding: 10px 15px;
   overflow-x: scroll;
 }

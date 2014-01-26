@@ -47,7 +47,9 @@ gulp.task('css', function () {
 gulp.task('watch', ['default'], function () {
   server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
-    gulp.watch('./source/**/*', ['default']);
+    gulp.watch(['./source/**/*.*', '!./source/_*/**/*.*'], ['copy']);
+    gulp.watch('./source/_posts/*.{markdown,md}', ['posts']);
+    gulp.watch('./source/_css/**/*.css', ['css']);
   });
 });
 
