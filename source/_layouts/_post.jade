@@ -1,0 +1,14 @@
+.post
+  .post-header
+    h1.title
+      a(href=post.url)= post.title
+    .meta
+      | @
+      span.date= post.date
+      if post.categories
+        = ' - '
+        each cat, i in post.categories
+          span.category= cat
+          if i < post.categories.length - 1
+            = ', '
+  .content!= post.content

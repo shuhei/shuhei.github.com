@@ -55,10 +55,18 @@ a:hover {
 .post:last-child {
   margin-bottom: 0;
 }
-.post .title,
+.post .post-header,
 .post .content {
   margin: 0 auto;
   width: 700px;
+}
+.post .title {
+  margin: 0;
+}
+.post .meta {
+  color: #999;
+  font-size: small;
+  margin: 10px 0 25px;
 }
 
 .post-list {

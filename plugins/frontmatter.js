@@ -38,7 +38,13 @@ function transform(file, enc, cb) {
   }
 
   try {
-    file.meta = yaml.safeLoad(rest.slice(0, sepIndex));
+    var meta = yaml.safeLoad(rest.slice(0, sepIndex));
+    if (meta.categories && typeof meta.categories === 'string') {
+      meta.categories = meta.categories.split(',').map(function (cat) {
+        return cat.replace(/(^\s+)|(\s+$)/g, '');
+      });
+    }
+    file.meta = meta;
   } catch (e) {
     return emitError(e);
   }

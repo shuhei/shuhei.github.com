@@ -4,6 +4,7 @@ block head
 
 block content
   .post
-    h1.title
-      a(href=post.url)= post.title
+    .post-header
+      h1.title
+        a(href=post.url)= post.title
     .content!= post.content
