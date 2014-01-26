@@ -59,7 +59,7 @@ module.exports.layout = function (config) {
 
     jade.renderFile(templateFile, locals, function (err, data) {
       if (err) {
-        self.emit('err', new PluginError(PLUGIN_NAME, err));
+        self.emit('error', new PluginError(PLUGIN_NAME, err));
         return;
       }
 

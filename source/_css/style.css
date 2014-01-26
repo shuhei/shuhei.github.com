@@ -6,13 +6,11 @@ body {
 }
 
 a {
-  color: #393;
+  color: #000;
+  transition: color 300ms ease;
 }
-a:visited {
-  color: #993;
-}
-a:hover, a:active {
-  text-decoration: none;
+a:hover {
+  color: #999;
 }
 
 .main {
@@ -26,21 +24,36 @@ a:hover, a:active {
 
 .header, .footer {
   background: #eee;
-  padding: 30px 0;
   text-align: center;
 }
 
+.header {
+  padding: 20px 0 10px;
+}
 .header .title {
+  margin: 0 0 10px;
+}
+.header nav ul {
+  list-style-position: outside;
+  list-style-type: none;
+  padding: 10px 0;
   margin: 0;
+}
+.header nav li {
+  display: inline-block;
+  padding: 0 20px;
+}
+.header nav a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 30px 0;
 }
 
 .title a {
-  color: #000;
   text-decoration: none;
-  transition: color 300ms ease;
-}
-.title a:hover {
-  color: #999;
 }
 
 .post-list-item {

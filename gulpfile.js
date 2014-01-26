@@ -1,21 +1,25 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var condition = require('gulp-if');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 
+var condition = require('./condition');
 var frontmatter = require('./frontmatter');
 var server = require('./server');
 var blog = require('./blog');
 
 var blogConfig = {
-  title: 'Blog!',
+  title: 'Blog',
   author: 'Shuhei Kagawa'
 };
 
 gulp.task('copy', function () {
   gulp.src(['./source/**/*.*', '!./source/_*/**/*.*'])
+      .pipe(plumber())
+      .pipe(frontmatter())
+      .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+      .pipe(blog.layout(blogConfig))
       .pipe(gulp.dest('./public'));
 });
 
