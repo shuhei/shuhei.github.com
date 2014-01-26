@@ -3,75 +3,11 @@ html
   head
     title= site.title
     meta(charset="utf-8")
-    style.
-      body {
-        background: #eee;
-        font-family: sans-serif;
-        padding: 0;
-        margin: 0;
-      }
-
-      .main {
-        background: #fff;
-        padding: 10px 0;
-      }
-      .main-inner {
-        margin: 0 auto;
-        width: 700px;
-      }
-
-      .header, .footer {
-        background: #eee;
-        padding: 30px 0;
-        text-align: center;
-      }
-
-      .post .title a,
-      .post-list-item .title a {
-        color: #000;
-        text-decoration: none;
-        transition: color 300ms ease;
-      }
-      .post .title a:hover,
-      .post-list-item .title a:hover {
-        color: #999;
-      }
-
-      .post-list-item {
-        width: 100%;
-        margin: 20px 0;
-      }
-      .post-list-item:after {
-        content: "";
-        clear: both;
-        display: block;
-      }
-      .post-list-item .date {
-        float: left;
-        width: 100px;
-        padding-top: 5px;
-      }
-      .post-list-item .title {
-        float: left;
-        width: 600px;
-        margin: 0;
-      }
-
-      .content img {
-        max-width: 100%;
-      }
-      .content pre code {
-        background: #000;
-        color: #0f0;
-        display: block;
-        padding: 10px 15px;
-        overflow-x: scroll;
-      }
-
+    link(rel="stylesheet" href="/css/style.css")
     block head
   body
     header.header
-      .title
+      h1.title
         a(href="/blog")= site.title
 
     .main

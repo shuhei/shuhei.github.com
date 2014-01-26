@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var condition = require('gulp-if');
+var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 
@@ -32,11 +33,18 @@ gulp.task('posts', function () {
       // TODO: Create archive.
 });
 
-gulp.task('watch', ['copy', 'posts'], function () {
+gulp.task('css', function () {
+  gulp.src('./source/_css/**/*.css')
+      .pipe(plumber())
+      .pipe(concat('style.css'))
+      .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('watch', ['default'], function () {
   server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
-    gulp.watch('./source/**/*', ['posts']);
+    gulp.watch('./source/**/*', ['default']);
   });
 });
 
-gulp.task('default', ['posts', 'copy']);
+gulp.task('default', ['css', 'copy', 'posts']);
