@@ -7,6 +7,7 @@ html
       body {
         font-family: sans-serif;
       }
+
       .header, .container {
         width: 700px;
         margin: 0 auto;
@@ -14,6 +15,38 @@ html
       .header {
         text-align: center;
       }
+
+      .post .title a,
+      .post-list-item .title a {
+        color: #000;
+        text-decoration: none;
+        transition: color 300ms ease;
+      }
+      .post .title a:hover,
+      .post-list-item .title a:hover {
+        color: #999;
+      }
+
+      .post-list-item {
+        width: 100%;
+        margin: 20px 0;
+      }
+      .post-list-item:after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      .post-list-item .date {
+        float: left;
+        width: 100px;
+        padding-top: 5px;
+      }
+      .post-list-item .title {
+        float: left;
+        width: 600px;
+        margin: 0;
+      }
+
     block head
   body
     header.header
