@@ -17,7 +17,7 @@ var blogConfig = {
 };
 
 gulp.task('copy', function () {
-  gulp.src(['./source/**/*.*', '!./source/_*/**/*.*'])
+  gulp.src(['./source/**/*', '!./source/_*/**/*'])
       .pipe(plumber())
       .pipe(frontmatter())
       .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
