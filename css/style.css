@@ -114,3 +114,15 @@ a:hover {
   padding: 10px 15px;
   overflow-x: scroll;
 }
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 24px;
+  }
+  .post .post-header,
+  .post .content,
+  .post-list .title,
+  .post-list-item {
+    width: 90%;
+  }
+}
