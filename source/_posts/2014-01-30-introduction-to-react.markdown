@@ -9,6 +9,7 @@ categories: JavaScript
 社内勉強会で Facebook の UI ライブラリ [React](http://facebook.github.io/react/index.html) について発表しました。
 
 - 1/20 [Introduction to React // Speaker Deck](https://speakerdeck.com/shuhei/introduction-to-react)
+- [サンプルコード](https://github.com/shuhei/react-sample-counter)
 
 <script async class="speakerdeck-embed" data-id="868ac76063e60131e1ad6e04b6941de4" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
