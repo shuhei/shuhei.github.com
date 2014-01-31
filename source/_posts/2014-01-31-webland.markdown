@@ -1,0 +1,23 @@
+---
+layout: post
+title: "日本の地価"
+date: 2014-01-31 14:25
+comments: true
+categories: [JavaScript, Three.js]
+---
+
+[![Land Prices in Japan](http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/works/webland/)
+
+[日本の地価を視覚化](/works/webland/)してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。
+
+- [Land Prices in Japan](/works/webland/)
+- [フロントエンドのソース](https://github.com/shuhei/webland)
+- [データ取得と加工用スクリプト](https://github.com/shuhei/webland-scraper)
+
+データソースは[国土交通省の土地総合情報システム](http://www.land.mlit.go.jp/webland/)です。データの取得、加工は Ruby のスクリプトでやりました。JSON ファイルにしています。
+
+視覚化は Chrome Expreriments の [WebGL Globe](http://www.chromeexperiments.com/globe) のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。
+
+三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと [postprocessing](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing) といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。
+
+スペースボタンを押すと真横からのビューに切り替わります。都市の高さが際立っていますね。
