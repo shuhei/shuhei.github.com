@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
-    "gulp": "~3.5.0",
+    "gulp": "~3.5.1",
     "gulp-markdown": "~0.1.2",
     "gulp-plumber": "~0.5.6",
     "gulp-util": "~2.2.12",
