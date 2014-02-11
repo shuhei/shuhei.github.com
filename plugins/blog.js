@@ -18,7 +18,7 @@ module.exports.index = function (config) {
     var self = this;
 
     var posts = files.map(function (file) {
-      return xtend({ content: file.contents.toString() }, file.meta);
+      return xtend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
     var locals = { site: config, posts: posts };
@@ -61,15 +61,15 @@ module.exports.layout = function (config) {
   return through(function (file, enc, cb) {
     var self = this;
 
-    if (!file.meta || !file.meta.layout) {
+    if (!file.frontMatter || !file.frontMatter.layout) {
       this.push(file);
       return cb();
     }
 
-    var templateFile = path.join(file.cwd, '/source/_layouts/', file.meta.layout + '.jade');
+    var templateFile = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
     var locals = {
       site: config,
-      post: xtend({ content: file.contents.toString() }, file.meta)
+      post: xtend({ content: file.contents.toString() }, file.frontMatter)
     };
 
     jade.renderFile(templateFile, locals, function (err, data) {
@@ -87,7 +87,7 @@ module.exports.layout = function (config) {
 
 module.exports.cleanUrl = function () {
   return through(function (file, enc, cb) {
-    if (!file.meta) {
+    if (!file.frontMatter) {
       this.push(file);
       return cb();
     }
@@ -102,7 +102,7 @@ module.exports.cleanUrl = function () {
     components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
     file.path = components.join(path.sep);
-    file.meta.url = ['/blog', date[0], date[1], date[2], dirname].join('/')
+    file.frontMatter.url = ['/blog', date[0], date[1], date[2], dirname].join('/')
 
     this.push(file);
     cb();

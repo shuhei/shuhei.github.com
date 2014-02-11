@@ -15,6 +15,7 @@ module.exports = function (options) {
     function emitError(message) {
       var error = new PluginError('textile', message);
       self.emit('error', error);
+      cb();
     }
 
     if (file.isNull()) {

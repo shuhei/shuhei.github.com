@@ -3,9 +3,9 @@ var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
+var frontMatter = require('gulp-front-matter');
 
 var condition = require('./plugins/condition');
-var frontmatter = require('./plugins/frontmatter');
 var textile = require('./plugins/textile');
 var server = require('./plugins/server');
 var blog = require('./plugins/blog');
@@ -19,7 +19,7 @@ var blogConfig = {
 gulp.task('copy', function () {
   gulp.src(['./source/**/*', '!./source/_*/**/*'])
       .pipe(plumber())
-      .pipe(frontmatter())
+      .pipe(frontMatter())
       .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
       .pipe(blog.layout(blogConfig))
       .pipe(gulp.dest('./public'));
@@ -31,7 +31,7 @@ gulp.task('posts', function () {
 
   gulp.src('./source/_posts/*.*')
       .pipe(plumber())
-      .pipe(frontmatter())
+      .pipe(frontMatter())
       .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
       .pipe(condition(__dirname + '/source/**/*.textile', textile()))
       .pipe(blog.cleanUrl())

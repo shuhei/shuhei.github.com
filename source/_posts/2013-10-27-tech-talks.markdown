@@ -3,7 +3,7 @@ layout: post
 title: "最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）"
 date: 2013-10-27 16:44
 comments: true
-categories: JavaScript, Backbone
+categories: [JavaScript, Backbone]
 ---
 
 大変ひさびさの更新。ここ一年の間で、会社も変わったりいろいろありました。

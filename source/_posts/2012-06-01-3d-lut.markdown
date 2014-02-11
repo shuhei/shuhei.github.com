@@ -5,7 +5,7 @@ published: true
 date: 2012-06-01 21:22
 comments: true
 tags: 
-categories: openFrameworks 
+categories: [openFrameworks]
 ---
 openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは `examples` が充実していることです。ディレクトリ構成上も `apps` から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。
 

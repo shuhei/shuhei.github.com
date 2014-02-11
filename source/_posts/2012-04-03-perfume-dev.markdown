@@ -5,7 +5,7 @@ published: true
 date: 2012-04-03 14:07
 comments: true
 tags:
-categories: Three.js
+categories: [Three.js]
 ---
 [![Perfume Dev](http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg)](/works/perfume_dev/stick_people/)
 

@@ -4,7 +4,7 @@ var gutil = require('gulp-util');
 module.exports = function (child) {
   function transform(file, enc, cb) {
     var clone = file.clone();
-    clone.meta = file.meta;
+    clone.frontMatter = file.frontMatter;
 
     child.write(clone);
 

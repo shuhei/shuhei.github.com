@@ -5,7 +5,7 @@ published: true
 date: 2012-04-02 20:13
 comments: true
 tags: 
-categories: openFrameworks
+categories: [openFrameworks]
 ---
 
 <iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

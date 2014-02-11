@@ -3,7 +3,7 @@ layout: post
 title: "React"
 date: 2014-01-30 23:27
 comments: true
-categories: JavaScript
+categories: [JavaScript]
 ---
 
 社内勉強会で Facebook の UI ライブラリ [React](http://facebook.github.io/react/index.html) について発表しました。

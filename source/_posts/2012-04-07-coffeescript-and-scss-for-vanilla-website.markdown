@@ -5,7 +5,7 @@ published: true
 date: 2012-04-07 13:30
 comments: true
 tags: 
-categories: 
+categories: []
 ---
 最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の [watchr](https://github.com/mynyml/watchr) を使って、ファイルを更新したら自動でコンパイルするように設定。
 
