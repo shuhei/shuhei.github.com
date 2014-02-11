@@ -4,9 +4,9 @@ var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
+var textile = require('gulp-textile');
 
 var condition = require('./plugins/condition');
-var textile = require('./plugins/textile');
 var server = require('./plugins/server');
 var blog = require('./plugins/blog');
 var branch = require('./plugins/branch');
