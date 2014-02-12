@@ -27,6 +27,7 @@ function renderTemplateFunc(tmpl, dest, locals) {
 
 module.exports.index = function (config) {
   var files = [];
+  var perPage = 3;
 
   function transform(file, enc, cb) {
     files.push(file);
@@ -40,12 +41,31 @@ module.exports.index = function (config) {
       return xtend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
-    var locals = { site: config, posts: posts };
+    function localsForPage(page) {
+      var locals = { site: config, posts: posts.slice(page * perPage, (page + 1) * perPage) };
+      if (page === 1) {
+        locals.prevPage = '/blog';
+      } else if (page > 1) {
+        locals.prevPage = '/blog/pages/' + page;
+      }
+      if (page < Math.ceil(posts.length / 3) - 1) {
+        locals.nextPage = '/blog/pages/' + (page + 2);
+      }
+      return locals;
+    }
 
-    async.parallel([
-      renderTemplateFunc('index.jade', 'index.html', locals),
-      renderTemplateFunc('archives.jade', 'archives/index.html', locals)
-    ], function (err, files) {
+    var funcs = [];
+    var pageCount = Math.ceil(posts.length / perPage);
+
+    funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0)));
+    for (var i = 1; i < pageCount; i++) {
+      var dest = 'pages/' + (i + 1) + '/index.html';
+      funcs.push(renderTemplateFunc('index.jade', dest,localsForPage(i)));
+    }
+    funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html',
+      { site: config, posts: posts }));
+
+    async.parallel(funcs, function (err, files) {
       if (err) {
         self.emit('err', new PluginError(PLUGIN_NAME, err));
         return cb();

@@ -3,5 +3,10 @@ extends default
 block head
 
 block content
-  each post in posts.slice(0, 3)
+  each post in posts
     include _post
+  ul.pagination
+    if prevPage
+      li.prev-page: a(href=prevPage) Newer Posts
+    if nextPage
+      li.next-page: a(href=nextPage) Older Posts
