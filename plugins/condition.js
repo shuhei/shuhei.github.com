@@ -22,9 +22,11 @@ module.exports = function (condition, child, branch) {
     self.push(file);
     cb();
   }
+
   function flush(cb) {
     child.once('end', cb);
     child.end();
   }
+
   return through(transform, flush);
 };

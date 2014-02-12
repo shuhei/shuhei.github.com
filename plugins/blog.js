@@ -8,13 +8,32 @@ var async = require('async');
 
 var PLUGIN_NAME = 'blog';
 
+function renderTemplateFunc(tmpl, dest, locals) {
+  var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
+  return function (callback) {
+    jade.renderFile(templateFile, locals, function (err, data) {
+      if (err) return callback(err);
+
+      var file = new gutil.File({
+        cwd: process.cwd(),
+        base: path.join(__dirname, 'source/blog'),
+        path: path.join(__dirname, 'source/blog', dest),
+        contents: new Buffer(data)
+      });
+      callback(null, file);
+    });
+  }
+}
+
 module.exports.index = function (config) {
   var files = [];
 
-  return through(function (file, enc, cb) {
+  function transform(file, enc, cb) {
     files.push(file);
     cb();
-  }, function (cb) {
+  }
+
+  function flush(cb) {
     var self = this;
 
     var posts = files.map(function (file) {
@@ -23,42 +42,24 @@ module.exports.index = function (config) {
 
     var locals = { site: config, posts: posts };
 
-    function renderTemplateFunc(tmpl, dest) {
-      var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
-      return function (callback) {
-        jade.renderFile(templateFile, locals, function (err, data) {
-          if (err) return callback(err);
-
-          var file = new gutil.File({
-            cwd: process.cwd(),
-            base: path.join(__dirname, 'source/blog'),
-            path: path.join(__dirname, 'source/blog', dest),
-            contents: new Buffer(data)
-          });
-          self.push(file);
-          callback(null, file);
-        });
-      }
-    }
-
     async.parallel([
-      renderTemplateFunc('index.jade', 'index.html'),
-      renderTemplateFunc('archives.jade', 'archives/index.html')
-    ], function (err) {
+      renderTemplateFunc('index.jade', 'index.html', locals),
+      renderTemplateFunc('archives.jade', 'archives/index.html', locals)
+    ], function (err, files) {
       if (err) {
         self.emit('err', new PluginError(PLUGIN_NAME, err));
-        return;
+        return cb();
       }
+      files.forEach(self.push.bind(self));
       cb();
     });
-  });
-};
+  }
 
-module.exports.archive = function () {
+  return through(transform, flush);
 };
 
 module.exports.layout = function (config) {
-  return through(function (file, enc, cb) {
+  function transform(file, enc, cb) {
     var self = this;
 
     if (!file.frontMatter || !file.frontMatter.layout) {
@@ -75,18 +76,20 @@ module.exports.layout = function (config) {
     jade.renderFile(templateFile, locals, function (err, data) {
       if (err) {
         self.emit('error', new PluginError(PLUGIN_NAME, err));
-        return;
+        return cb();
       }
 
       file.contents = new Buffer(data);
       self.push(file);
       cb();
     });
-  });
+  }
+
+  return through(transform);
 };
 
 module.exports.cleanUrl = function () {
-  return through(function (file, enc, cb) {
+  function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
       return cb();
@@ -106,5 +109,7 @@ module.exports.cleanUrl = function () {
 
     this.push(file);
     cb();
-  });
+  }
+
+  return through(transform);
 };

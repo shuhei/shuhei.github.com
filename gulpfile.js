@@ -17,34 +17,34 @@ var blogConfig = {
 };
 
 gulp.task('copy', function () {
-  gulp.src(['./source/**/*', '!./source/_*/**/*'])
-      .pipe(plumber())
-      .pipe(frontMatter())
-      .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
-      .pipe(blog.layout(blogConfig))
-      .pipe(gulp.dest('./public'));
+  return gulp.src(['./source/**/*', '!./source/_*/**/*'])
+    .pipe(plumber())
+    .pipe(frontMatter())
+    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+    .pipe(blog.layout(blogConfig))
+    .pipe(gulp.dest('./public'));
 });
 
 gulp.task('posts', function () {
   var aggregator = blog.index(blogConfig);
   aggregator.pipe(gulp.dest('./public/blog'));
 
-  gulp.src('./source/_posts/*.*')
-      .pipe(plumber())
-      .pipe(frontMatter())
-      .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
-      .pipe(condition(__dirname + '/source/**/*.textile', textile()))
-      .pipe(blog.cleanUrl())
-      .pipe(branch(aggregator))
-      .pipe(blog.layout(blogConfig))
-      .pipe(gulp.dest('./public/blog'));
+  return gulp.src('./source/_posts/*.*')
+    .pipe(plumber())
+    .pipe(frontMatter())
+    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+    .pipe(condition(__dirname + '/source/**/*.textile', textile()))
+    .pipe(blog.cleanUrl())
+    .pipe(branch(aggregator))
+    .pipe(blog.layout(blogConfig))
+    .pipe(gulp.dest('./public/blog'));
 });
 
 gulp.task('css', function () {
-  gulp.src('./source/_css/**/*.css')
-      .pipe(plumber())
-      .pipe(concat('style.css'))
-      .pipe(gulp.dest('./public/css'));
+  return gulp.src('./source/_css/**/*.css')
+    .pipe(plumber())
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('watch', ['default'], function () {
