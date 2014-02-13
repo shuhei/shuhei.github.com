@@ -1,9 +1,9 @@
 var path = require('path');
+var util = require('util');
 var through = require('through2').obj;
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var jade = require('jade');
-var xtend = require('xtend');
 var async = require('async');
 
 var PLUGIN_NAME = 'blog';
@@ -38,11 +38,14 @@ module.exports.index = function (config) {
     var self = this;
 
     var posts = files.map(function (file) {
-      return xtend({ content: file.contents.toString() }, file.frontMatter);
+      return util._extend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
     function localsForPage(page) {
-      var locals = { site: config, posts: posts.slice(page * perPage, (page + 1) * perPage) };
+      var locals = {
+        site: config,
+        posts: posts.slice(page * perPage, (page + 1) * perPage)
+      };
       if (page === 1) {
         locals.prevPage = '/blog';
       } else if (page > 1) {
@@ -53,6 +56,7 @@ module.exports.index = function (config) {
       }
       return locals;
     }
+    var localsForArchive = { site: config, posts: posts };
 
     var funcs = [];
     var pageCount = Math.ceil(posts.length / perPage);
@@ -62,8 +66,7 @@ module.exports.index = function (config) {
       var dest = 'pages/' + (i + 1) + '/index.html';
       funcs.push(renderTemplateFunc('index.jade', dest,localsForPage(i)));
     }
-    funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html',
-      { site: config, posts: posts }));
+    funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html', localsForArchive));
 
     async.parallel(funcs, function (err, files) {
       if (err) {
@@ -90,7 +93,7 @@ module.exports.layout = function (config) {
     var templateFile = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
     var locals = {
       site: config,
-      post: xtend({ content: file.contents.toString() }, file.frontMatter)
+      post: util._extend({ content: file.contents.toString() }, file.frontMatter)
     };
 
     jade.renderFile(templateFile, locals, function (err, data) {
