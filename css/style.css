@@ -119,7 +119,7 @@ ul.pagination {
   list-style-position: outside;
   list-style-type: none;
   padding: 0;
-  margin: 0 auto 30px;
+  margin: -20px auto 0px;
   width: 700px;
 }
 ul.pagination:after {
