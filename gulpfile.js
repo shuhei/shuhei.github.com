@@ -13,7 +13,8 @@ var branch = require('./plugins/branch');
 
 var blogConfig = {
   title: 'Blog',
-  author: 'Shuhei Kagawa'
+  author: 'Shuhei Kagawa',
+  perPage: 3
 };
 
 gulp.task('copy', function () {

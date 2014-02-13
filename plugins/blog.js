@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var util = require('util');
 var through = require('through2').obj;
@@ -27,7 +28,23 @@ function renderTemplateFunc(tmpl, dest, locals) {
 
 module.exports.index = function (config) {
   var files = [];
-  var perPage = 3;
+  var perPage = config.perPage || 3;
+
+  function localsForPage(page, posts) {
+    var locals = {
+      site: config,
+      posts: posts.slice(page * perPage, (page + 1) * perPage)
+    };
+    if (page === 1) {
+      locals.prevPage = '/blog';
+    } else if (page > 1) {
+      locals.prevPage = '/blog/pages/' + page;
+    }
+    if (page < Math.ceil(posts.length / 3) - 1) {
+      locals.nextPage = '/blog/pages/' + (page + 2);
+    }
+    return locals;
+  }
 
   function transform(file, enc, cb) {
     files.push(file);
@@ -41,30 +58,15 @@ module.exports.index = function (config) {
       return util._extend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
-    function localsForPage(page) {
-      var locals = {
-        site: config,
-        posts: posts.slice(page * perPage, (page + 1) * perPage)
-      };
-      if (page === 1) {
-        locals.prevPage = '/blog';
-      } else if (page > 1) {
-        locals.prevPage = '/blog/pages/' + page;
-      }
-      if (page < Math.ceil(posts.length / 3) - 1) {
-        locals.nextPage = '/blog/pages/' + (page + 2);
-      }
-      return locals;
-    }
     var localsForArchive = { site: config, posts: posts };
 
     var funcs = [];
     var pageCount = Math.ceil(posts.length / perPage);
 
-    funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0)));
+    funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0, posts)));
     for (var i = 1; i < pageCount; i++) {
       var dest = 'pages/' + (i + 1) + '/index.html';
-      funcs.push(renderTemplateFunc('index.jade', dest,localsForPage(i)));
+      funcs.push(renderTemplateFunc('index.jade', dest,localsForPage(i, posts)));
     }
     funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html', localsForArchive));
 
@@ -82,27 +84,52 @@ module.exports.index = function (config) {
 };
 
 module.exports.layout = function (config) {
+  // Cache compiled template functions.
+  var compiledTemplates = {};
+
+  function getCompiledTemplate(filePath, callback) {
+    var compiled = compiledTemplates[filePath]
+    if (compiled) return callback(null, compiled);
+    
+    fs.readFile(filePath, { encoding: 'utf8' }, function (err, data) {
+      try {
+        compiled = jade.compile(data, { filename: filePath });
+      } catch(err) {
+        return callback(err);
+      }
+      compiledTemplates[filePath] = compiled;
+      callback(null, compiled);
+    });
+  }
+
   function transform(file, enc, cb) {
     var self = this;
 
     if (!file.frontMatter || !file.frontMatter.layout) {
-      this.push(file);
+      self.push(file);
       return cb();
     }
 
-    var templateFile = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
-    var locals = {
-      site: config,
-      post: util._extend({ content: file.contents.toString() }, file.frontMatter)
-    };
+    var templatePath = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
 
-    jade.renderFile(templateFile, locals, function (err, data) {
+    getCompiledTemplate(templatePath, function (err, compiled) {
       if (err) {
         self.emit('error', new PluginError(PLUGIN_NAME, err));
         return cb();
       }
 
-      file.contents = new Buffer(data);
+      var locals = {
+        site: config,
+        post: util._extend({ content: file.contents.toString() }, file.frontMatter)
+      };
+
+      try {
+        file.contents = new Buffer(compiled(locals));
+      } catch(err) {
+        self.emit('error', new PluginError(PLUGIN_NAME, err));
+        return cb();
+      }
+
       self.push(file);
       cb();
     });
