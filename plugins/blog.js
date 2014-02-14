@@ -9,26 +9,53 @@ var async = require('async');
 
 var PLUGIN_NAME = 'blog';
 
-function renderTemplateFunc(tmpl, dest, locals) {
-  var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
-  return function (callback) {
-    jade.renderFile(templateFile, locals, function (err, data) {
-      if (err) return callback(err);
+function templateCache() {
+  var compiledTemplates = {};
 
-      var file = new gutil.File({
-        cwd: process.cwd(),
-        base: path.join(__dirname, 'source/blog'),
-        path: path.join(__dirname, 'source/blog', dest),
-        contents: new Buffer(data)
-      });
-      callback(null, file);
+  return function (filePath, callback) {
+    var compiled = compiledTemplates[filePath]
+    if (compiled) return callback(null, compiled);
+
+    fs.readFile(filePath, { encoding: 'utf8' }, function (err, data) {
+      try {
+        compiled = jade.compile(data, { filename: filePath });
+      } catch(err) {
+        return callback(err);
+      }
+      compiledTemplates[filePath] = compiled;
+      callback(null, compiled);
     });
-  }
+  };
 }
 
 module.exports.index = function (config) {
   var files = [];
   var perPage = config.perPage || 3;
+  var getCompiledTemplate = templateCache();
+
+  function renderTemplateFunc(tmpl, dest, locals) {
+    var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
+    return function (callback) {
+      getCompiledTemplate(templateFile, function (err, compiled) {
+        if (err) return callback(err);
+
+        var data;
+        try {
+          data = compiled(locals);
+        } catch (err) {
+          return callback(err);
+        }
+
+        var file = new gutil.File({
+          cwd: process.cwd(),
+          base: path.join(__dirname, 'source/blog'),
+          path: path.join(__dirname, 'source/blog', dest),
+          contents: new Buffer(data)
+        });
+        callback(null, file);
+      });
+    }
+  }
 
   function localsForPage(page, posts) {
     var locals = {
@@ -84,23 +111,7 @@ module.exports.index = function (config) {
 };
 
 module.exports.layout = function (config) {
-  // Cache compiled template functions.
-  var compiledTemplates = {};
-
-  function getCompiledTemplate(filePath, callback) {
-    var compiled = compiledTemplates[filePath]
-    if (compiled) return callback(null, compiled);
-    
-    fs.readFile(filePath, { encoding: 'utf8' }, function (err, data) {
-      try {
-        compiled = jade.compile(data, { filename: filePath });
-      } catch(err) {
-        return callback(err);
-      }
-      compiledTemplates[filePath] = compiled;
-      callback(null, compiled);
-    });
-  }
+  var getCompiledTemplate = templateCache();
 
   function transform(file, enc, cb) {
     var self = this;
