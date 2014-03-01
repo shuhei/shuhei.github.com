@@ -20,6 +20,7 @@ var blogConfig = {
 gulp.task('copy', function () {
   return gulp.src(['./source/**/*', '!./source/_*/**/*'])
     .pipe(plumber())
+    // frontMatter messes up binary files and files with `---`.
     .pipe(condition(__dirname + '/source/**/*.{markdown,md,textile}', frontMatter()))
     .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
     .pipe(blog.layout(blogConfig))
