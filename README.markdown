@@ -27,7 +27,7 @@ gulp watch
 
 ## Deploy
 
-Deploy to GitHub Pages.
+Deploy to GitHub Pages. Make sure to build before deployment!
 
 ```
 bundle exec rake push
