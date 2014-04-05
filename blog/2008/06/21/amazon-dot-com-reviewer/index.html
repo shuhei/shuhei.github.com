@@ -24,7 +24,7 @@ amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、
         var uslink = document.createElement(&#39;a&#39;);
         uslink.setAttribute(&#39;href&#39;, &#39;http://www.amazon.&#39; + domain + &#39;/o/ASIN/&#39; + isbn + &#39;/&#39;);
         uslink.setAttribute(&#39;title&#39;, &#39;The same book at amazon.&#39; + domain);
-        uslink.innerHTML = &quot;&lt;br /&gt;&#187; Check also amazon.&quot; + domain + &quot;!&quot;;
+        uslink.innerHTML = &quot;&lt;br /&gt;&amp;#187; Check also amazon.&quot; + domain + &quot;!&quot;;
 
         header.insertBefore(uslink, header.firstChild.nextSibling);
     }
