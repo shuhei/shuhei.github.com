@@ -52,6 +52,7 @@ gulp.task('css', function () {
 gulp.task('watch', ['default'], function () {
   server('./public').listen(4000, function (err) {
     if (err) return gutil.log(err);
+    gutil.log('Listening on port 4000');
     gulp.watch(['./source/**/*.*', '!./source/_{css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layout}/*.*', ['posts']);
     gulp.watch('./source/_css/**/*.css', ['css']);
