@@ -30,6 +30,8 @@
     "textile-js": "~0.1.7",
     "async": "~0.2.10",
     "gulp-front-matter": "shuhei/gulp-front-matter",
-    "gulp-textile": "0.0.1"
+    "gulp-textile": "0.0.1",
+    "yargs": "^1.2.1",
+    "strftime": "^0.8.0"
   }
 }

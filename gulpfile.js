@@ -6,6 +6,12 @@ var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
 
+var args = require('yargs').argv;
+var strftime = require('strftime');
+var util = require('util');
+var path = require('path');
+var fs = require('fs');
+
 var condition = require('./plugins/condition');
 var server = require('./plugins/server');
 var blog = require('./plugins/blog');
@@ -57,6 +63,30 @@ gulp.task('watch', ['default'], function () {
     gulp.watch('./source/_{posts,layout}/*.*', ['posts']);
     gulp.watch('./source/_css/**/*.css', ['css']);
   });
+});
+
+gulp.task('newpost', function () {
+  if (!args.title) {
+    gutil.log('Specify title: gulp newpost --title "Hello World"');
+    return;
+  }
+
+  var urlTitle = args.title.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
+  var now = new Date();
+  var date = strftime('%Y-%m-%d', now);
+  var filename = path.join('source' , '_posts', util.format('%s-%s.%s', date, urlTitle, '.markdown'));
+
+  gutil.log(util.format('Creating new post: %s', filename));
+
+  var writer = fs.createWriteStream(filename);
+  writer.write("---\n");
+  writer.write("layout: post\n");
+  writer.write(util.format("title: \"%s\"\n", args.title));
+  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H%M')));
+  writer.write("comments: true\n");
+  writer.write("categories: \n");
+  writer.write("---\n");
+  writer.end();
 });
 
 gulp.task('default', ['css', 'copy', 'posts']);
