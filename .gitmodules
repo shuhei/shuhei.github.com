@@ -10,3 +10,6 @@
 [submodule "source/works/webland"]
 	path = source/works/webland
 	url = git://github.com/shuhei/webland.git
+[submodule "source/works/rotating-arcs"]
+	path = source/works/rotating-arcs
+	url = https://github.com/shuhei/rotating-arcs.git
