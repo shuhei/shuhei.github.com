@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "description": "Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.",
   "main": "gulpfile.js",
-  "scripts": {},
+  "scripts": {
+    "start": "gulp",
+    "watch": "gulp watch"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/shuhei/shuhei.github.com.git"
