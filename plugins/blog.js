@@ -15,19 +15,23 @@ function templateCache() {
   var compiledTemplates = {};
 
   return function(filePath, callback) {
-    var compiled = compiledTemplates[filePath]
+    var compiled = compiledTemplates[filePath];
     if (compiled) return callback(null, compiled);
 
     fs.readFile(filePath, { encoding: 'utf8' }, function(err, data) {
       try {
         compiled = jade.compile(data, { filename: filePath });
-      } catch(err) {
-        return callback(err);
+      } catch(e) {
+        return callback(e);
       }
       compiledTemplates[filePath] = compiled;
       callback(null, compiled);
     });
   };
+}
+
+function toURL(str) {
+  return str.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
 }
 
 module.exports.index = function(config) {
@@ -44,8 +48,8 @@ module.exports.index = function(config) {
         var data;
         try {
           data = compiled(locals);
-        } catch (err) {
-          return callback(err);
+        } catch (e) {
+          return callback(e);
         }
 
         var file = new gutil.File({
@@ -56,7 +60,7 @@ module.exports.index = function(config) {
         });
         callback(null, file);
       });
-    }
+    };
   }
 
   function localsForPage(page, posts) {
@@ -138,8 +142,8 @@ module.exports.layout = function(config) {
 
       try {
         file.contents = new Buffer(compiled(locals));
-      } catch(err) {
-        self.emit('error', new PluginError(PLUGIN_NAME, err));
+      } catch(e) {
+        self.emit('error', new PluginError(PLUGIN_NAME, e));
         return cb();
       }
 
@@ -168,7 +172,7 @@ module.exports.cleanUrl = function() {
     components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
     file.path = components.join(path.sep);
-    file.frontMatter.url = ['/blog', date[0], date[1], date[2], dirname].join('/')
+    file.frontMatter.url = ['/blog', date[0], date[1], date[2], dirname].join('/');
 
     this.push(file);
     cb();
@@ -237,7 +241,3 @@ module.exports.newPage = function(filename, config) {
   writer.write("---\n");
   writer.end();
 };
-
-function toURL(str) {
-  return str.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
-}

@@ -18,4 +18,4 @@ module.exports = function (child) {
   }
 
   return through(transform, flush);
-}
+};
