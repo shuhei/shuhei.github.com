@@ -6,17 +6,19 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var jade = require('jade');
 var async = require('async');
+var mkdirp = require('mkdirp');
+var strftime = require('strftime');
 
 var PLUGIN_NAME = 'blog';
 
 function templateCache() {
   var compiledTemplates = {};
 
-  return function (filePath, callback) {
+  return function(filePath, callback) {
     var compiled = compiledTemplates[filePath]
     if (compiled) return callback(null, compiled);
 
-    fs.readFile(filePath, { encoding: 'utf8' }, function (err, data) {
+    fs.readFile(filePath, { encoding: 'utf8' }, function(err, data) {
       try {
         compiled = jade.compile(data, { filename: filePath });
       } catch(err) {
@@ -28,15 +30,15 @@ function templateCache() {
   };
 }
 
-module.exports.index = function (config) {
+module.exports.index = function(config) {
   var files = [];
   var perPage = config.perPage || 3;
   var getCompiledTemplate = templateCache();
 
   function renderTemplateFunc(tmpl, dest, locals) {
     var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
-    return function (callback) {
-      getCompiledTemplate(templateFile, function (err, compiled) {
+    return function(callback) {
+      getCompiledTemplate(templateFile, function(err, compiled) {
         if (err) return callback(err);
 
         var data;
@@ -81,7 +83,7 @@ module.exports.index = function (config) {
   function flush(cb) {
     var self = this;
 
-    var posts = files.map(function (file) {
+    var posts = files.map(function(file) {
       return util._extend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
@@ -97,7 +99,7 @@ module.exports.index = function (config) {
     }
     funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html', localsForArchive));
 
-    async.parallel(funcs, function (err, files) {
+    async.parallel(funcs, function(err, files) {
       if (err) {
         self.emit('err', new PluginError(PLUGIN_NAME, err));
         return cb();
@@ -110,7 +112,7 @@ module.exports.index = function (config) {
   return through(transform, flush);
 };
 
-module.exports.layout = function (config) {
+module.exports.layout = function(config) {
   var getCompiledTemplate = templateCache();
 
   function transform(file, enc, cb) {
@@ -123,7 +125,7 @@ module.exports.layout = function (config) {
 
     var templatePath = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
 
-    getCompiledTemplate(templatePath, function (err, compiled) {
+    getCompiledTemplate(templatePath, function(err, compiled) {
       if (err) {
         self.emit('error', new PluginError(PLUGIN_NAME, err));
         return cb();
@@ -149,7 +151,7 @@ module.exports.layout = function (config) {
   return through(transform);
 };
 
-module.exports.cleanUrl = function () {
+module.exports.cleanUrl = function() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
@@ -174,3 +176,68 @@ module.exports.cleanUrl = function () {
 
   return through(transform);
 };
+
+module.exports.newPost = function(title) {
+  var urlTitle = toURL(title);
+  var now = new Date();
+  var date = strftime('%Y-%m-%d', now);
+  var filename = path.join('source' , '_posts', util.format('%s-%s.markdown', date, urlTitle));
+
+  gutil.log(util.format('Creating new post: %s', filename));
+
+  var writer = fs.createWriteStream(filename);
+  writer.write("---\n");
+  writer.write("layout: post\n");
+  writer.write(util.format("title: \"%s\"\n", title));
+  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H:%M')));
+  writer.write("comments: true\n");
+  writer.write("categories: \n");
+  writer.write("---\n");
+  writer.end();
+};
+
+module.exports.newPage = function(filename, config) {
+  var filenamePattern = /(^.+\/)?(.+)/;
+  var matches = filenamePattern.exec(filename);
+  if (!matches) {
+    throw new PluginError(PLUGIN_NAME, ['Syntac error:', filename, 'contains unsupported characters'].join(' '));
+  }
+
+  var dirComponents = ['source'];
+  dirComponents = dirComponents.concat((matches[1] || '').split('/').filter(Boolean));
+
+  var components = matches[2].split('.');
+  var extension;
+  if (components.length > 1) {
+    extension = components.pop();
+  }
+  var title = components.join('.');
+  var file= toURL(title);
+
+  if (!extension) {
+    dirComponents.push(file);
+    file = 'index';
+  }
+  extension = extension || config.newPageExtension;
+
+  var pageDir = dirComponents.map(toURL).join('/');
+
+  var filePath = util.format('%s/%s.%s', pageDir, file, extension);
+
+  gutil.log(util.format('Creating new page: %s', filePath));
+
+  mkdirp.sync(pageDir);
+
+  var writer = fs.createWriteStream(filePath);
+  writer.write("---\n");
+  writer.write("layout: page\n");
+  writer.write(util.format("title: \"%s\"\n", title));
+  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H:%M')));
+  writer.write("comments: true\n");
+  writer.write("---\n");
+  writer.end();
+};
+
+function toURL(str) {
+  return str.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
+}

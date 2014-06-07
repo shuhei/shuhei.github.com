@@ -7,11 +7,7 @@ var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
 
 var args = require('yargs').argv;
-var strftime = require('strftime');
 var util = require('util');
-var path = require('path');
-var fs = require('fs');
-var mkdirp = require('mkdirp');
 
 var condition = require('./plugins/condition');
 var server = require('./plugins/server');
@@ -67,81 +63,21 @@ gulp.task('watch', ['default'], function() {
   });
 });
 
-function toURL(str) {
-  return str.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
-}
-
 gulp.task('newpost', function() {
   if (!args.title) {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-
-  var urlTitle = toURL(args.title);
-  var now = new Date();
-  var date = strftime('%Y-%m-%d', now);
-  var filename = path.join('source' , '_posts', util.format('%s-%s.%s', date, urlTitle, '.markdown'));
-
-  gutil.log(util.format('Creating new post: %s', filename));
-
-  var writer = fs.createWriteStream(filename);
-  writer.write("---\n");
-  writer.write("layout: post\n");
-  writer.write(util.format("title: \"%s\"\n", args.title));
-  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H%M')));
-  writer.write("comments: true\n");
-  writer.write("categories: \n");
-  writer.write("---\n");
-  writer.end();
+  blog.newPost(args.title);
 });
 
 gulp.task('newpage', function() {
-  var filenamePattern = /(^.+\/)?(.+)/;
-
   if (!args.filename) {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
     return;
   }
 
-  var matches = filenamePattern.exec(args.filename);
-  if (!matches) {
-    gutil.log('Syntac error:', args.filename, 'contains unsupported characters');
-    return;
-  }
-
-  var dirComponents = ['source'];
-  dirComponents = dirComponents.concat((matches[1] || '').split('/').filter(Boolean));
-
-  var components = matches[2].split('.');
-  var extension;
-  if (components.length > 1) {
-    extension = components.pop();
-  }
-  var title = components.join('.');
-  var filename = toURL(title);
-
-  if (!extension) {
-    dirComponents.push(filename);
-    filename = 'index';
-  }
-  extension = extension || blogConfig.newPageExtension;
-
-  var pageDir = dirComponents.map(toURL).join('/');
-
-  var file = util.format('%s/%s.%s', pageDir, filename, extension);
-
-  gutil.log(util.format('Creating new page: %s', file));
-
-  mkdirp.sync(pageDir);
-
-  var writer = fs.createWriteStream(file);
-  writer.write("---\n");
-  writer.write("layout: page\n");
-  writer.write(util.format("title: \"%s\"\n", title));
-  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H%M')));
-  writer.write("comments: true\n");
-  writer.write("---\n");
-  writer.end();
+  blog.newPage(args.filename, blogConfig);
 });
 
 gulp.task('default', ['css', 'copy', 'posts']);
