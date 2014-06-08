@@ -83,12 +83,8 @@ gulp.task('newpage', function() {
   return blog.newPage(args.filename, blogConfig);
 });
 
-gulp.task('copydot', function() {
-  return ghpage.copyDot('source', 'hello');
-});
-
-gulp.task('push', function() {
-  return ghpage.push(blogConfig);
+gulp.task('deploy', function() {
+  return ghpage.deploy(blogConfig);
 });
 
 gulp.task('default', ['css', 'copy', 'posts']);

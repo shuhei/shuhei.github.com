@@ -25,19 +25,12 @@ function logExec(command, options, callback) {
   });
 }
 
-function copyDot(source, dest) {
-  var src = path.join(source, '**/.*');
-  var excluded = ["!**/.DS_Store", "!**/._*", "!**/.git", "!**/.gitignore"];
-  return gulp.src([src].concat(excluded))
-    .pipe(gulp.dest(dest));
-}
-
-function push(config) {
+function deploy(config) {
   var resultStream = new stream.Stream();
 
   gutil.log('## Deploying branch to Github Pages');
 
-  function gitPull(callback) {
+  function pull(callback) {
     gutil.log('## Pulling any updates from Github Pages');
     logExec('git pull', { cwd: config.deployDir }, callback);
   }
@@ -71,7 +64,7 @@ function push(config) {
     logExec(util.format('git commit -m "%s"', message), { cwd: config.deployDir }, callback);
   }
 
-  function gitPush(callback) {
+  function push(callback) {
     gutil.log(util.format('## Pushing generated %s website', config.deployDir));
     logExec('git push origin master', { cwd: config.deployDir }, callback);
   }
@@ -85,7 +78,7 @@ function push(config) {
     resultStream.emit('end');
   }
 
-  var tasks = [gitPull, cleanDeploy, copyToDeploy, add, commit, gitPush];
+  var tasks = [pull, cleanDeploy, copyToDeploy, add, commit, push];
   async.series(tasks, done);
 
   return resultStream;
@@ -96,6 +89,5 @@ function utcTime() {
 }
 
 module.exports = {
-  copyDot: copyDot,
-  push: push
+  deploy: deploy
 };

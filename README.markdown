@@ -30,5 +30,5 @@ gulp watch
 Deploy to GitHub Pages. Make sure to build before deployment!
 
 ```
-bundle exec rake push
+gulp deploy
 ```
