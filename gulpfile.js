@@ -30,7 +30,7 @@ var blogConfig = {
 
 // Copy static pages compiling markdown files.
 gulp.task('copy', function() {
-  return gulp.src(['./source/**/*', '!./source/_*/**/*'])
+  return gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
@@ -44,7 +44,7 @@ gulp.task('posts', function() {
   var aggregator = blog.index(blogConfig);
   aggregator.pipe(gulp.dest('./public/blog'));
 
-  return gulp.src('./source/_posts/*.*')
+  return gulp.src('source/_posts/*.*')
     .pipe(plumber())
     .pipe(frontMatter())
     .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
