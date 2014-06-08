@@ -13,22 +13,25 @@ var condition = require('./plugins/condition');
 var server = require('./plugins/server');
 var blog = require('./plugins/blog');
 var branch = require('./plugins/branch');
+var ghpage = require('./plugins/ghpage');
 
 var blogConfig = {
   title: 'Blog',
   author: 'Shuhei Kagawa',
   perPage: 3,
-  newPageExtension: 'markdown'
+  newPageExtension: 'markdown',
+  publicDir: 'public',
+  deployDir: '_deploy'
 };
 
 gulp.task('copy', function() {
   return gulp.src(['./source/**/*', '!./source/_*/**/*'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
-    .pipe(condition(__dirname + '/source/**/*.{markdown,md,textile}', frontMatter()))
-    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
+    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown()))
     .pipe(blog.layout(blogConfig))
-    .pipe(gulp.dest('./public'));
+    .pipe(gulp.dest(blogConfig.deployDir));
 });
 
 gulp.task('posts', function() {
@@ -68,7 +71,7 @@ gulp.task('newpost', function() {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  blog.newPost(args.title);
+  return blog.newPost(args.title);
 });
 
 gulp.task('newpage', function() {
@@ -77,7 +80,15 @@ gulp.task('newpage', function() {
     return;
   }
 
-  blog.newPage(args.filename, blogConfig);
+  return blog.newPage(args.filename, blogConfig);
+});
+
+gulp.task('copydot', function() {
+  return ghpage.copyDot('source', 'hello');
+});
+
+gulp.task('push', function() {
+  return ghpage.push(blogConfig);
 });
 
 gulp.task('default', ['css', 'copy', 'posts']);

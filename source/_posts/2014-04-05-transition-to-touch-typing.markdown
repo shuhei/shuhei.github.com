@@ -29,7 +29,7 @@ categories:
 
 # 工夫したこと
 
-矢印キーが遠いので [KeyRemap4MacBook](https://pqrs.org/macosx/keyremap4macbook/) を使って Ctrl + hjkl を矢印キーに割り当てました。これでホームポジションのまま移動ができます。Vim 操作にも慣れるというおまけつき。
+矢印キーが遠いので [KeyRemap4MacBook](https://pqrs.org/macosx/keyremap4macbook/) を使って Ctrl + h/j/k/l を矢印キーに割り当てました。これでホームポジションのまま移動ができます。Vim 操作にも慣れるというおまけつき。
 
 [Alfred](http://www.alfredapp.com/) を入れました。アプリの起動に使おうと思って。他にも直接 Google 検索できたりととても便利です。
 
