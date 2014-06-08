@@ -1,3 +1,9 @@
+var util = require('util');
+var path = require('path');
+
+var args = require('yargs').argv;
+var strftime = require('strftime');
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
@@ -5,15 +11,13 @@ var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
-
-var args = require('yargs').argv;
-var util = require('util');
+var clean = require('gulp-clean');
+var shell = require('gulp-shell');
 
 var condition = require('./plugins/condition');
 var server = require('./plugins/server');
 var blog = require('./plugins/blog');
 var branch = require('./plugins/branch');
-var ghpage = require('./plugins/ghpage');
 
 var blogConfig = {
   title: 'Blog',
@@ -24,6 +28,7 @@ var blogConfig = {
   deployDir: '_deploy'
 };
 
+// Copy static pages compiling markdown files.
 gulp.task('copy', function() {
   return gulp.src(['./source/**/*', '!./source/_*/**/*'])
     .pipe(plumber())
@@ -34,6 +39,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(blogConfig.deployDir));
 });
 
+// Compile blog posts, create index and archive pages.
 gulp.task('posts', function() {
   var aggregator = blog.index(blogConfig);
   aggregator.pipe(gulp.dest('./public/blog'));
@@ -49,6 +55,7 @@ gulp.task('posts', function() {
     .pipe(gulp.dest('./public/blog'));
 });
 
+// Concat CSS files.
 gulp.task('css', function() {
   return gulp.src('./source/_css/**/*.css')
     .pipe(plumber())
@@ -56,6 +63,7 @@ gulp.task('css', function() {
     .pipe(gulp.dest('./public/css'));
 });
 
+// Build the site, launch a dev server and watch changes.
 gulp.task('watch', ['default'], function() {
   server('./public').listen(4000, function(err) {
     if (err) return gutil.log(err);
@@ -66,6 +74,7 @@ gulp.task('watch', ['default'], function() {
   });
 });
 
+// Create a new post source file.
 gulp.task('newpost', function() {
   if (!args.title) {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
@@ -74,6 +83,7 @@ gulp.task('newpost', function() {
   return blog.newPost(args.title);
 });
 
+// Create a new page source file.
 gulp.task('newpage', function() {
   if (!args.filename) {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
@@ -83,8 +93,32 @@ gulp.task('newpage', function() {
   return blog.newPage(args.filename, blogConfig);
 });
 
-gulp.task('deploy', function() {
-  return ghpage.deploy(blogConfig);
+// Pull remote changes to the deploy dir.
+gulp.task('pull', shell.task('git pull', { cwd: blogConfig.deployDir }));
+
+// Remove non-dot files and directories in the deploy dir.
+gulp.task('clean_deploy', ['pull'], function() {
+  return gulp.src(path.join(blogConfig.deployDir, '**/*'), { dot: false, read: false })
+    .pipe(clean());
+});
+
+// Copy all files including dot files in public dir to deploy dir.
+gulp.task('copy_to_deploy', ['clean_deploy'], function() {
+  return gulp.src(path.join(blogConfig.publicDir, '**/*'), { dot: true })
+    .pipe(gulp.dest(blogConfig.deployDir));
+});
+
+// Push to GitHub Pages.
+gulp.task('deploy', ['copy_to_deploy'], function() {
+  var utcTime = strftime.strftimeTZ('%F %T UTC', new Date(), '0000');
+  var commit = util.format('git commit -m "Site updated at %s"', utcTime);
+  // FIXME: Not sure why but strange file names are ocasionally added.
+  return gulp.src('')
+    .pipe(shell([
+      'git add -A',
+      commit,
+      'git push origin master'
+    ], { cwd: blogConfig.deployDir }));
 });
 
 gulp.task('default', ['css', 'copy', 'posts']);

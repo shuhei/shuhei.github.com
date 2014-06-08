@@ -29,6 +29,7 @@
     "gulp-markdown": "~0.1.2",
     "gulp-match": "0.0.2",
     "gulp-plumber": "~0.5.6",
+    "gulp-shell": "^0.2.5",
     "gulp-textile": "0.0.1",
     "gulp-util": "~2.2.12",
     "jade": "~1.1.5",
