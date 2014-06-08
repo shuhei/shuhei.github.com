@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/23/java-run-time-option-in-eclipse">Eclipse で Java VM の実行時オプション</a></h1><div class="meta">@<span class="date">2008-08-23 00:21</span> - <span class="category">Java</span></div></div><div class="content"><p>Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration -&gt; arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。<br />
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet">さくらに Trac をインストール・・・成功</a></h1><div class="meta">@<span class="date">2008-08-23 19:34</span> - <span class="category">UNIX/LINUX</span>, <span class="category">さくらインターネット</span></div></div><div class="content"><p>やっと Trac 入りました。</p>
+<p><a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">前回</a> pysqlite が入らなかったのは、.pydistutils.cfg の中で、 CC=&#8220;gcc&#8221; としていたのが原因だったようです。<br />
+たぶん、以前 numpy を入れようとしていろいろいじったときの名残。<br />
+変更内容はメモしておかないといけませんね。</p>
+<p>.pydistutils.cfg を直して、pysqlite2.4.1 をインストール。</p>
+<p>clearsilver は最新版を試したもののダメで、 0.9.14 ならインストールできました。<br />
+あとは docutils 0.4 と Trac 0.11.1.ja1 と WebAdmin を入れて完成。</p>
+<p>それにしても、動きがモッサリしてます。<br />
+<span class="caps">CGI</span> だからですかね。<br />
+うーん、自宅サーバ立てたい。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/23/java-run-time-option-in-eclipse">Eclipse で Java VM の実行時オプション</a></h1><div class="meta">@<span class="date">2008-08-23 00:21</span> - <span class="category">Java</span></div></div><div class="content"><p>Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration -&gt; arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。<br />
 なかなかわからなくて苦労したのでメモ。</p>
 <p>ちなみに、Proxy サーバを指定するには以下。</p>
 <pre class="prettyprint">-DproxySet=true -DproxyHost=xxx.xxx.xxx.xxx -DproxyPort=yyyy</pre>
@@ -8,13 +17,7 @@
 しばらくは、テーマの一つにして勉強しようかと思います。</p>
 <p>これまで触ってきたのは、レンタルサーバ上で何かを動かすということが主でした。<br />
 そうするとレンタルサーバでできない（またはとてもめんどくさい）ことがなかなか試せないため、どうも知識が偏ってしまいます。<br />
-次の給料は自宅サーバに消えるかも。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/20/mixi-openid">mixi OpenID</a></h1><div class="meta">@<span class="date">2008-08-20 23:07</span> - </div></div><div class="content"><p>気がついたら、こんなん出てました。<br />
-体感的には、ほとんどの人が mixi ユーザな気がします。<br />
-これは使えそうですね。</p>
-<ul>
-<li><a href="http://">mixi Developer Center » mixi OpenID</a></li>
-<li><a href="http://mixi.jp/openid.pl">[mixi] mixi OpenID</a></li>
-</ul></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/35">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/37">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+次の給料は自宅サーバに消えるかも。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/35">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/37">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

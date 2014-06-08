@@ -1,4 +1,24 @@
-<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/28/former-declaration-of-class">クラスの前方宣言</a></h1><div class="meta">@<span class="date">2009-07-28 19:44</span> - </div></div><div class="content"><p>1時間ほどハマりました。<br />
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/01/const-and-pointe">const とポインタ</a></h1><div class="meta">@<span class="date">2009-08-01 14:45</span> - <span class="category">C/C++</span></div></div><div class="content"><p>下のように <code>const</code> は型名の前後どちらに書いても同じです。</p>
+<pre class="prettyprint">const int a = 1;
+int const b = 2;</pre>
+<p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique <span class="caps">FAQ</span></a> では、前者がわかりやすくおすすめとされていますが。</p>
+<p>では、ポインタについてはどうでしょうか？</p>
+<pre class="prettyprint">const int* pa = new int(10);  // "const な int" へのポインタ
+int const* pb = new int(11);  // "const な int " へのポインタ
+int* const pc = new int(12);  // int への  "const なポインタ"</pre>
+<p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
+<pre class="prettyprint">// *pa = 20;  // エラー！ "const な int" の値を変えることはできない
+// *pb = 21;  // エラー！ "const な int" の値を変えることはできない
+*pc = 23;
+
+delete pa;   // delete はできる
+delete pb;   // delete はできる
+delete pc;
+
+pa = NULL;
+pb = NULL;
+// pc = NULL;  // エラー！ポインタ自体が const なため</pre>
+<p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/28/former-declaration-of-class">クラスの前方宣言</a></h1><div class="meta">@<span class="date">2009-07-28 19:44</span> - </div></div><div class="content"><p>1時間ほどハマりました。<br />
 下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
 <blockquote>
 <p><span class="caps">C4430</span>: 型指定子がありません &#8211; int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
@@ -34,9 +54,7 @@ public:
 <p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
 なかなか面倒なものですね。</p>
 <p>参考サイト<br />
-<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; <span class="caps">A7M</span> の日記</a></p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/27/wanna-refactor-with-xcode">XCode でリファクタリングがしたい</a></h1><div class="meta">@<span class="date">2009-07-27 23:27</span> - <span class="category">iPhone 開発</span></div></div><div class="content"><p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
-<p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ <span class="caps">TDD</span> とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
-<p>以前触ったときは、アプリを公開する事なくうやむやになってしまったので、今度こそ何か公開できればいいなと思っています。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/21">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/23">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; <span class="caps">A7M</span> の日記</a></p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/21">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/23">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

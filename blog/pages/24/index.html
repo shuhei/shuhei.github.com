@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/23/cpd">CPD</a></h1><div class="meta">@<span class="date">2009-07-23 19:12</span> - </div></div><div class="content"><p><a href="http://www.ibm.com/developerworks/jp/">developerWorks</a> の <a href="http://www.ibm.com/developerworks/jp/java/library/j-eaed5/">進化するアーキテクチャーと新方式の設計: 設計のためのリファクタリング</a> という記事で、コードの重複を検出するツールが紹介されています。<br />
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/23/refactor-for-cpp">Refactor! for C++</a></h1><div class="meta">@<span class="date">2009-07-23 19:05</span> - </div></div><div class="content"><p>Visual Studio で使える C++ のリファクタリング用プラグインです。</p>
+<p><a href="http://www.devexpress.com/Products/Visual_Studio_Add-in/RefactorCPP/">Free C++ Refactoring Add-in for Visual Studio Developers</a></p>
+<p>無料で利用できます。Visual Studio にはもともと C# のリファクタリング機能がついていますが、それよりも高機能な印象です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/23/cpd">CPD</a></h1><div class="meta">@<span class="date">2009-07-23 19:12</span> - </div></div><div class="content"><p><a href="http://www.ibm.com/developerworks/jp/">developerWorks</a> の <a href="http://www.ibm.com/developerworks/jp/java/library/j-eaed5/">進化するアーキテクチャーと新方式の設計: 設計のためのリファクタリング</a> という記事で、コードの重複を検出するツールが紹介されています。<br />
 <span class="caps">CPD</span> という名前で、Copy/Paste Detector の略だとか。</p>
 <p><a href="http://pmd.sourceforge.net/cpd.html"><span class="caps">PMD</span> &#8211; Finding copied and pasted code</a></p>
 <p><span class="caps">PMD</span> という静的コード解析ツールの一部として入手できます。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/05/command-line-args">コマンドライン引数</a></h1><div class="meta">@<span class="date">2009-07-05 13:44</span> - </div></div><div class="content"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
@@ -15,19 +17,7 @@ int main(int argc, char** argv) {
 }</pre>
 <p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
 コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/03/studying-pointer">ポインタの勉強</a></h1><div class="meta">@<span class="date">2009-07-03 10:38</span> - </div></div><div class="content"><p>ポインタについて勉強してみます。</p>
-<h3>変数のアドレス</h3>
-<pre class="prettyprint">int value = 10;</pre>
-<p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
-<h3>ポインタ</h3>
-<p>メモリ上のアドレスを格納する変数がポインタです。</p>
-<pre class="prettyprint">int value = 10;
-int *ptr;
-ptr = &amp;a;</pre>
-<p>という感じです。</p>
-<h3>ポインタの指す値</h3>
-<p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>
-<pre class="prettyprint">printf("*ptr の値は %d です。", *ptr); // *ptr の値は 10 です。</pre></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/23">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/25">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/23">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/25">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

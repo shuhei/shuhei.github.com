@@ -1,4 +1,25 @@
-<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta">@<span class="date">2009-11-14 10:07</span> - </div></div><div class="content"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/09/ascii">ascii コード</a></h1><div class="meta">@<span class="date">2009-12-09 22:51</span> - </div></div><div class="content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
+<blockquote>
+<p>Poem.</p>
+<p>You translated my poem,<br />
+I congratulate you.<br />
+I wish I could rhyme with poem,<br />
+but its very hard to.<br />
+I just beguiled you,</p>
+</blockquote>
+<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
+<pre class="prettyprint">class String
+  def bin
+    Integer('0b' + self)
+  end
+end
+
+def decode(ascii)
+  0.step(ascii.size - 1, 8) do |num|
+    puts ascii[num..(num + 7)].bin.chr
+  end
+end</pre>
+<p>作る方は簡単でしょうが、読む方は大変です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta">@<span class="date">2009-11-14 10:07</span> - </div></div><div class="content"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
 Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
 <h3>方法</h3>
 <p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
@@ -19,45 +40,7 @@ do
   convert -resize 12x12! $f $f
 done</pre>
 <p>コマンドラインは便利ですねー。<br />
-ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/07/add-tabbar-to-navigation-based-application-project">Navigation-based Application に TabBar を追加</a></h1><div class="meta">@<span class="date">2009-11-07 17:53</span> - </div></div><div class="content"><p>iPhone プロジェクトの新規作成時に &#8220;Navigation-based Application&#8221; を選んだ場合に、後から TabBar を追加する方法です。<br />
-InterfaceBuilder での設定が画像入りの説明なしではよくわからず、苦戦したのでメモしておきます。</p>
-<h3>InterfaceBuilder の設定</h3>
-<h4>Tab Bar Controller の追加</h4>
-<p>まず、InterfaceBuilder で MainWindow.xib を開きます。<br />
-Navigation Controller を削除して Tab Bar Controller を追加します。</p>
-<h4>Tab Bar Controller の下に Navigation Controller を</h4>
-<p>Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の &#8220;Tab Bar Controller&#8221; =&gt; &#8220;View Controllers&#8221; の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。</p>
-<p><img src="/images/2009/11/TabBarController_Inspector1.png" alt="" /></p>
-<p>すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。</p>
-<h4>Navigation Controller の下に Root View Controller を</h4>
-<p>この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。<br />
-一番左側のタブで <span class="caps">NIB</span> Name を、Inspectorで一番右側のタブで Class を設定します。</p>
-<p><img src="/images/2009/11/SetRootViewControllerNIB1.png" alt="" /><br />
-<img src="/images/2009/11/SetRootViewControllerClass1.png" alt="" /></p>
-<p>以上を保存して IB を閉じます。</p>
-<h3>コードの修正</h3>
-<p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。<br />
-以下、アプリケーションの名前を Hoge だったとして、 HogeAppDelegate.h と .m を編集します。</p>
-<h4>HogeDelegate.h</h4>
-<pre class="prettyprint">@interface HogeAppDelegate : NSObject  {
-  UIWindow *window;
-  UITabBarController *tabBarController;
-}
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-
-@end</pre>
-<h4>HogeAppDelegate.m</h4>
-<pre class="prettyprint">- (void)applicationDidFinishLaunching:(UIApplication *)application {
-  [window addSubview:[tabBarController view]];
-  [window makeKeyAndVisible];
-}</pre>
-<p><code>synsthesize</code> と <code>dealloc</code> 中の <code>release</code> も忘れずに変更します。</p>
-<h3>App Delegate の Outlet のつなぎ変え</h3>
-<p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。<br />
-再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
-<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/11">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/13">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/11">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/13">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

@@ -1,4 +1,9 @@
-<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/perfume-dev">Perfume Dev</a></h1><div class="meta">@<span class="date">2012-04-03 14:07</span> - <span class="category">Three.js</span></div></div><div class="content"><p><a href="/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" alt="Perfume Dev"></a></p>
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website">普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a></h1><div class="meta">@<span class="date">2012-04-07 13:30</span> - </div></div><div class="content"><p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
+<pre><code class="lang-rb">watch(&#39;(.*)\.coffee&#39;) { |md| system &quot;coffee -o js -c #{md[0]}&quot; }
+watch(&#39;sass\/(.*)\.s[ac]ss&#39;) { |md| system &quot;compass compile #{md[0]}&quot; }
+</code></pre>
+<p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/perfume-dev">Perfume Dev</a></h1><div class="meta">@<span class="date">2012-04-03 14:07</span> - <span class="category">JavsScript</span>, <span class="category">Three.js</span></div></div><div class="content"><p><a href="/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" alt="Perfume Dev"></a></p>
 <p><a href="http://www.perfume-global.com/">Perfume Global</a> のデータで<a href="/works/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
 <p>Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT したのを表示してます。Web Audio API はビルトインで FFT できてびっくりしました。HTML5 すごい。</p>
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
@@ -9,60 +14,7 @@
 <pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
     $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
     $(OF_PATH)/addons/ofxOpenCv/src
-</code></pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/category-index-for-octopress">Category index for Octopress</a></h1><div class="meta">@<span class="date">2012-04-03 09:20</span> - <span class="category">Octopress</span></div></div><div class="content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
-<p>_config.yml</p>
-<pre><code class="lang-diff">diff --git a/_config.yml b/_config.yml
-index 5c7d335..7ad03bb 100644
---- a/_config.yml
-+++ b/_config.yml
-@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
-
- # list each of the sidebar modules you want to include, in the order you want them to appear.
- # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &#39;custom/asides/custom_aside_name.html&#39;
--default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
-
- # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
- # and add an array with the asides you want to use.
-</code></pre>
-<p>source/_includes/custom/asides/categories.html</p>
-<pre><code class="lang-html">&lt;section&gt;
-  &lt;h1&gt;Categories&lt;/h1&gt;
-  &lt;ul&gt;
-    {% for category in site.categories %}
-      &lt;li&gt;{{ category | category_link }}&lt;/li&gt;
-    {% endfor %}
-  &lt;/ul&gt;
-&lt;/section&gt;
-</code></pre>
-<p>2013-10-27 編集: 現在はデフォルトで <code>category_link</code> メソッドが追加されているので、以下の修正は不要です。</p>
-<p>plugins/category_generator.rb</p>
-<pre><code class="lang-diff">diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb
-index bb5fd32..28bf7e0 100644
---- a/plugins/category_generator.rb
-+++ b/plugins/category_generator.rb
-@@ -156,6 +156,18 @@ module Jekyll
-       end
-     end
-
-+    # Outputs a link of a category.
-+    # 
-+    #  +category+ is an item of site.categories.
-+    #
-+    # Returns string
-+    # 
-+    def category_link(category)
-+      dir = @context.registers[:site].config[&#39;category_dir&#39;]
-+      category = category[0]
-+      &quot;&lt;a class=&#39;category&#39; href=&#39;/#{dir}/#{category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase}/&#39;&gt;#{category}&lt;/a&gt;&quot;
-+    end
-+
-     # Outputs the post.date as formatted html, with hooks for CSS styling.
-     #
-     #  +date+ is the date object to format as HTML.
-</code></pre>
-<p>Gist: <a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
-</div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/2">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/4">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</code></pre></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/2">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/4">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
