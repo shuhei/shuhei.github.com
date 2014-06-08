@@ -36,7 +36,7 @@ gulp.task('copy', function() {
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown()))
     .pipe(blog.layout(blogConfig))
-    .pipe(gulp.dest(blogConfig.deployDir));
+    .pipe(gulp.dest(blogConfig.publicDir));
 });
 
 // Compile blog posts, create index and archive pages.
