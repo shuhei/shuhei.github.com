@@ -11,6 +11,20 @@ git submodule update
 git clone {this repo} _deploy
 ```
 
+## Add posts and pages
+
+To add a post:
+
+```
+gulp newpost --title 'Hello World!'
+```
+
+To add a page:
+
+```
+gulp newpage --filename 'foo'
+```
+
 ## Build
 
 Use `gulp` to build static files.
