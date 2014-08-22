@@ -109,7 +109,7 @@ gulp.task('copy_to_deploy', ['clean_deploy'], function() {
 });
 
 // Push to GitHub Pages.
-gulp.task('deploy', ['copy_to_deploy'], function() {
+gulp.task('deploy', ['build', 'copy_to_deploy'], function() {
   var utcTime = strftime.strftimeTZ('%F %T UTC', new Date(), '0000');
   var commit = util.format('git commit -m "Site updated at %s"', utcTime);
   // FIXME: Not sure why but strange file names are ocasionally added.
@@ -121,4 +121,6 @@ gulp.task('deploy', ['copy_to_deploy'], function() {
     ], { cwd: blogConfig.deployDir }));
 });
 
-gulp.task('default', ['css', 'copy', 'posts']);
+gulp.task('build', ['css', 'copy', 'posts']);
+
+gulp.task('default', ['build']);
