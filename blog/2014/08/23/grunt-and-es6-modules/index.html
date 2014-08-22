@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><title>Blog</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/blog">Blog</a></h1><nav><ul><li><a href="/blog">Index</a></li><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/08/23/grunt-and-es6-modules">Grunt と ES6 Modules</a></h1><div class="meta">@<span class="date">2014-08-23 01:21</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
+<h2 id="-introduction-to-grunt-https-speakerdeck-com-shuhei-introduction-to-grunt-"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
+<p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
+<p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
+<script async class="speakerdeck-embed" data-id="39e78f00fade0131d88d6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="-start-es6-today-https-speakerdeck-com-shuhei-start-es6-modules-today-"><a href="https://speakerdeck.com/shuhei/start-es6-modules-today">Start ES6 Today</a></h2>
+<p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
+<p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
+<script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>
