@@ -8,6 +8,18 @@ footer: true
 ---
 こんにちは。かがわです。
 
+## Accounts
 - [Github](https://github.com/shuhei)
 - [LinkedIn](http://www.linkedin.com/in/shuheikagawa)
 - [Qiita](http://qiita.com/users/shuhei)
+- [Speaker Deck](https://speakerdeck.com/shuhei)
+- [Stack Overflow](http://stackoverflow.com/)
+
+## Talks
+
+- 2014/7 [Introduction to Grunt](https://speakerdeck.com/shuhei/introduction-to-grunt)
+- 2014/6 [Start ES6 Modules Today](https://speakerdeck.com/shuhei/start-es6-modules-today)
+- 2014/1 [Introduction to React](https://speakerdeck.com/shuhei/introduction-to-react)
+- 2013/10 [Testing JavaScript](/talks/20131025_Testing_JavaScript)
+- 2013/8 [Backbone.js のはなし](/talks/20130816_Introduction_to_Backbone)
+- 2013/6 [Node.js + WebSocket でテザリングしてみた](https://speakerdeck.com/shuhei/node-dot-js-plus-websocket-detezaringusitemita)

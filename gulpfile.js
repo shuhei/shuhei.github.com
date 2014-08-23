@@ -20,7 +20,7 @@ var blog = require('./plugins/blog');
 var branch = require('./plugins/branch');
 
 var blogConfig = {
-  title: 'Blog',
+  title: 'Shuhei Kagawa',
   author: 'Shuhei Kagawa',
   perPage: 3,
   newPageExtension: 'markdown',
@@ -66,7 +66,10 @@ gulp.task('css', function() {
 // Build the site, launch a dev server and watch changes.
 gulp.task('watch', ['default'], function() {
   server('./public').listen(4000, function(err) {
-    if (err) return gutil.log(err);
+    if (err) {
+      gutil.log(err);
+      return;
+    }
     gutil.log('Listening on port 4000');
     gulp.watch(['./source/**/*.*', '!./source/_{css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layout}/*.*', ['posts']);
