@@ -6,7 +6,7 @@ comments: false
 sharing: true
 footer: true
 ---
-こんにちは。かがわです。
+こんにちは。かがわです。東京でプログラムを書いたり、ビールを飲んだりしています。
 
 ## Accounts
 - [Github](https://github.com/shuhei)

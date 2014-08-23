@@ -10,7 +10,7 @@ var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
-var clean = require('gulp-clean');
+var rimraf = require('gulp-rimraf');
 var shell = require('gulp-shell');
 
 var condition = require('./plugins/condition');
@@ -96,13 +96,13 @@ gulp.task('newpage', function() {
 });
 
 // Pull remote changes to the deploy dir.
-gulp.task('pull', ['build'], shell.task('git pull', { cwd: blogConfig.deployDir }));
+gulp.task('pull', shell.task('git pull', { cwd: blogConfig.deployDir }));
 
 // Remove non-dot files and directories in the deploy dir.
 gulp.task('clean_deploy', ['pull'], function() {
-  var paths = path.join(blogConfig.deployDir, '**/*');
+  var paths = path.join(blogConfig.deployDir, '*');
   return gulp.src(paths, { dot: false, read: false })
-    .pipe(clean());
+    .pipe(rimraf());
 });
 
 // Copy all files including dot files in public dir to deploy dir.
@@ -116,6 +116,7 @@ gulp.task('deploy', ['copy_to_deploy'], function() {
   var utcTime = strftime.strftimeTZ('%F %T UTC', new Date(), '0000');
   var commit = util.format('git commit -m "Site updated at %s"', utcTime);
   // FIXME: Not sure why but strange file names are ocasionally added.
+  // FIXME: This raises an error when there is nothing to commit.
   return gulp.src('')
     .pipe(shell([
       'git add -A',
