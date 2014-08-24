@@ -14,7 +14,5 @@ footer: true
 - TenderLearn (Front-end and back-end development)
 - [Go Board](/works/goban.js/)
 - [My Tweet Stats](/works/tweet/)
-- [Radiation Map](/works/radiation/) (Japanese)
-- [Earthquakes in Japan](/works/eqjp/)
 - [Groundscape Design Institute](http://www.groundscape.jp/)
 - [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/)
