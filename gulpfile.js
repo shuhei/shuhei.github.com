@@ -62,6 +62,11 @@ gulp.task('css', function() {
     .pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('clean', function(cb) {
+  return gulp.src(blogConfig.publicDir, { read: false })
+    .pipe(rimraf());
+});
+
 // Build the site, launch a dev server and watch changes.
 gulp.task('watch', ['default'], function() {
   server('./public').listen(4000, function(err) {
