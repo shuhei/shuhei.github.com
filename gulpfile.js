@@ -1,4 +1,5 @@
-var util = require('util'); var path = require('path');
+var util = require('util');
+var path = require('path');
 
 var args = require('yargs').argv;
 var strftime = require('strftime');
@@ -23,9 +24,14 @@ var blogConfig = {
   author: 'Shuhei Kagawa',
   perPage: 3,
   newPageExtension: 'markdown',
-  publicDir: 'public',
-  deployDir: '_deploy'
+  blogDir: 'blog',
+  sourceDir: 'source',
+  layoutDir: '_layouts',
+  postDir: '_posts'
 };
+
+var deployDir = '_deploy';
+var publicDir = 'public';
 
 // Copy static pages compiling markdown files.
 gulp.task('copy', function() {
@@ -35,13 +41,13 @@ gulp.task('copy', function() {
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown()))
     .pipe(blog.layout(blogConfig))
-    .pipe(gulp.dest(blogConfig.publicDir));
+    .pipe(gulp.dest(publicDir));
 });
 
 // Compile blog posts, create index and archive pages.
 gulp.task('posts', function() {
   var aggregator = blog.index(blogConfig);
-  aggregator.pipe(gulp.dest('./public/blog'));
+  aggregator.pipe(gulp.dest('./public'));
 
   return gulp.src('source/_posts/*.*')
     .pipe(plumber())
@@ -51,7 +57,7 @@ gulp.task('posts', function() {
     .pipe(blog.cleanUrl())
     .pipe(branch(aggregator))
     .pipe(blog.layout(blogConfig))
-    .pipe(gulp.dest('./public/blog'));
+    .pipe(gulp.dest(path.join('./public', blogConfig.blogDir)));
 });
 
 // Concat CSS files.
@@ -63,7 +69,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('clean', function(cb) {
-  return gulp.src(blogConfig.publicDir, { read: false })
+  return gulp.src(publicDir, { read: false })
     .pipe(rimraf());
 });
 
@@ -101,19 +107,19 @@ gulp.task('newpage', function() {
 });
 
 // Pull remote changes to the deploy dir.
-gulp.task('pull', shell.task('git pull', { cwd: blogConfig.deployDir }));
+gulp.task('pull', shell.task('git pull', { cwd: deployDir }));
 
 // Remove non-dot files and directories in the deploy dir.
 gulp.task('clean_deploy', ['pull'], function() {
-  var paths = path.join(blogConfig.deployDir, '*');
+  var paths = path.join(deployDir, '*');
   return gulp.src(paths, { dot: false, read: false })
     .pipe(rimraf());
 });
 
 // Copy all files including dot files in public dir to deploy dir.
 gulp.task('copy_to_deploy', ['clean_deploy'], function() {
-  return gulp.src(path.join(blogConfig.publicDir, '**/*'), { dot: true })
-    .pipe(gulp.dest(blogConfig.deployDir));
+  return gulp.src(path.join(publicDir, '**/*'), { dot: true })
+    .pipe(gulp.dest(deployDir));
 });
 
 // Push to GitHub Pages.
@@ -127,7 +133,7 @@ gulp.task('deploy', ['copy_to_deploy'], function() {
       'git add -A',
       commit,
       'git push origin master'
-    ], { cwd: blogConfig.deployDir }));
+    ], { cwd: deployDir }));
 });
 
 gulp.task('build', ['css', 'copy', 'posts']);

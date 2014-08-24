@@ -39,23 +39,28 @@ module.exports.index = function(config) {
   var perPage = config.perPage || 3;
   var getCompiledTemplate = templateCache();
 
+  // Return a function that renders `tmpl` with `locals` data into `dest`.
   function renderTemplateFunc(tmpl, dest, locals) {
-    var templateFile = path.join(process.cwd(),'source/_layouts', tmpl);
+    var templateFile = path.join(process.cwd(), config.sourceDir, config.layoutDir, tmpl);
     return function(callback) {
       getCompiledTemplate(templateFile, function(err, compiled) {
-        if (err) return callback(err);
+        if (err) {
+          callback(err);
+          return;
+        }
 
         var data;
         try {
           data = compiled(locals);
         } catch (e) {
-          return callback(e);
+          callback(e);
+          return;
         }
 
         var file = new gutil.File({
           cwd: process.cwd(),
-          base: path.join(__dirname, 'source/blog'),
-          path: path.join(__dirname, 'source/blog', dest),
+          base: path.join(__dirname, config.sourceDir),
+          path: path.join(__dirname, config.sourceDir, dest),
           contents: new Buffer(data)
         });
         callback(null, file);
@@ -69,12 +74,12 @@ module.exports.index = function(config) {
       posts: posts.slice(page * perPage, (page + 1) * perPage)
     };
     if (page === 1) {
-      locals.prevPage = '/blog';
+      locals.prevPage = '/';
     } else if (page > 1) {
-      locals.prevPage = '/blog/pages/' + page;
+      locals.prevPage = path.join('/', config.blogDir, 'pages', page.toString());
     }
     if (page < Math.ceil(posts.length / 3) - 1) {
-      locals.nextPage = '/blog/pages/' + (page + 2);
+      locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2).toString());
     }
     return locals;
   }
@@ -93,15 +98,21 @@ module.exports.index = function(config) {
 
     var localsForArchive = { site: config, posts: posts };
 
+    // Render index pages and archive page in parallel.
     var funcs = [];
     var pageCount = Math.ceil(posts.length / perPage);
 
+    // Top page.
     funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0, posts)));
+
+    // Index pages.
     for (var i = 1; i < pageCount; i++) {
-      var dest = 'pages/' + (i + 1) + '/index.html';
-      funcs.push(renderTemplateFunc('index.jade', dest,localsForPage(i, posts)));
+      var dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
+      funcs.push(renderTemplateFunc('index.jade', dest, localsForPage(i, posts)));
     }
-    funcs.push(renderTemplateFunc('archives.jade', 'archives/index.html', localsForArchive));
+
+    // Archive page.
+    funcs.push(renderTemplateFunc('archives.jade', path.join(config.blogDir, 'archives', 'index.html'), localsForArchive));
 
     async.parallel(funcs, function(err, files) {
       if (err) {
@@ -127,7 +138,7 @@ module.exports.layout = function(config) {
       return cb();
     }
 
-    var templatePath = path.join(file.cwd, '/source/_layouts/', file.frontMatter.layout + '.jade');
+    var templatePath = path.join(file.cwd, config.sourceDir, config.layoutDir, file.frontMatter.layout + '.jade');
 
     getCompiledTemplate(templatePath, function(err, compiled) {
       if (err) {
@@ -172,7 +183,7 @@ module.exports.cleanUrl = function() {
     components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
     file.path = components.join(path.sep);
-    file.frontMatter.url = ['/blog', date[0], date[1], date[2], dirname].join('/');
+    file.frontMatter.url = path.join('/blog', date[0], date[1], date[2], dirname)
 
     this.push(file);
     cb();
@@ -185,7 +196,7 @@ module.exports.newPost = function(title) {
   var urlTitle = toURL(title);
   var now = new Date();
   var date = strftime('%Y-%m-%d', now);
-  var filename = path.join('source' , '_posts', util.format('%s-%s.markdown', date, urlTitle));
+  var filename = path.join(config.sourceDir, config.postDir, util.format('%s-%s.markdown', date, urlTitle));
 
   gutil.log(util.format('Creating new post: %s', filename));
 
@@ -207,7 +218,7 @@ module.exports.newPage = function(filename, config) {
     throw new PluginError(PLUGIN_NAME, ['Syntac error:', filename, 'contains unsupported characters'].join(' '));
   }
 
-  var dirComponents = ['source'];
+  var dirComponents = [config.sourceDir];
   dirComponents = dirComponents.concat((matches[1] || '').split('/').filter(Boolean));
 
   var components = matches[2].split('.');
