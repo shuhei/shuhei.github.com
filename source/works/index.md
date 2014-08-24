@@ -6,13 +6,14 @@ comments: true
 sharing: true
 footer: true
 ---
-- [WebGL RotatingArcs](/works/rotating-arcs/)
-- [Land Prices in Japan 2012-2013](/works/webland/)
-- [Perfume Dev](/works/perfume_dev/)
-- [*** Books](/works/bookshelf/)
-- [Dymaxion Paint](/works/dymaxion-paint/)
+- [Contib](http://contrib.herokuapp.com/): Check your GitHub Contributions on your phone. Build with React.js and SVG.
+- [WebGL RotatingArcs](/works/rotating-arcs/): Ectype of Processing's 3D sketch with Three.js.
+- [Land Prices in Japan 2012-2013](/works/webland/): Land prices in Japan visualized with Three.js.
+- [Perfume Dev](/works/perfume_dev/): Perfume's choreography data visualized with Three.js.
+- [*** Books](/works/bookshelf/): Books in my bookshelf.
+- [Dymaxion Paint](/works/dymaxion-paint/): Something made with Three.js.
 - TenderLearn (Front-end and back-end development)
-- [Go Board](/works/goban.js/)
-- [My Tweet Stats](/works/tweet/)
-- [Groundscape Design Institute](http://www.groundscape.jp/)
-- [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/)
+- [Go Board](/works/goban.js/): A Go game implementation in JavaScript.
+- [My Tweet Stats](/works/tweet/): My tweet stats visualized with Protoviz.
+- [Groundscape Design Institute](http://www.groundscape.jp/): A website for an association for civil engineers, architects, landscape designers and etc. Made with WordPress.
+- [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/): A website for an urban design workshop. Made with Flash and ActionScript 3.
