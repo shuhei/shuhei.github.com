@@ -15,6 +15,24 @@ LAND.Japan = function (container) {
 
   var isBirdView = true;
 
+  var touchEnabled = false;
+  var downEventName, upEventName, outEventName, moveEventName;
+  if ('ontouchstart' in document.documentElement) {
+    touchEnabled = true;
+    downEventName = 'touchstart';
+    upEventName = 'touchend';
+    outEventName = 'touchcancel';
+    moveEventName = 'touchmove';
+  } else {
+    downEventName = 'mousedown';
+    upEventName = 'mouseup';
+    outEventName = 'mouseout';
+    moveEventName = 'mousemove';
+  }
+
+  // For pinch gesture on touch devices.
+  var previousScale = null;
+
   function init() {
     // Create camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
@@ -129,12 +147,21 @@ LAND.Japan = function (container) {
   function onMouseDown(event) {
     event.preventDefault();
 
-    container.addEventListener('mousemove', onMouseMove, false);
-    container.addEventListener('mouseup', onMouseUp, false);
-    container.addEventListener('mouseout', onMouseOut, false);
+    container.addEventListener(moveEventName, onMouseMove, false);
+    container.addEventListener(upEventName, onMouseUp, false);
+    container.addEventListener(outEventName, onMouseOut, false);
 
-    mouseOnDown.x = - event.clientX;
-    mouseOnDown.y = event.clientY;
+    if (touchEnabled) {
+      if (event.targetTouches.length !== 1) {
+        return;
+      }
+      var touchItem = event.targetTouches[0];
+      mouseOnDown.x = - touchItem.pageX;
+      mouseOnDown.y = touchItem.pageY;
+    } else {
+      mouseOnDown.x = - event.clientX;
+      mouseOnDown.y = event.clientY;
+    }
 
     targetOnDown.x = target.x;
     targetOnDown.y = target.y;
@@ -143,21 +170,31 @@ LAND.Japan = function (container) {
   }
 
   function onMouseUp(event) {
-    container.removeEventListener('mousemove', onMouseMove, false);
-    container.removeEventListener('mouseup', onMouseUp, false);
-    container.removeEventListener('mouseout', onMouseOut, false);
+    container.removeEventListener(moveEventName, onMouseMove, false);
+    container.removeEventListener(upEventName, onMouseUp, false);
+    container.removeEventListener(outEventName, onMouseOut, false);
     container.style.cursor = 'auto';
   }
 
   function onMouseOut(event) {
-    container.removeEventListener('mousemove', onMouseMove, false);
-    container.removeEventListener('mouseup', onMouseUp, false);
-    container.removeEventListener('mouseout', onMouseOut, false);
+    container.removeEventListener(outEventName, onMouseMove, false);
+    container.removeEventListener(upEventName, onMouseUp, false);
+    container.removeEventListener(outEventName, onMouseOut, false);
   }
 
   function onMouseMove(event) {
-    mouse.x = - event.clientX;
-    mouse.y = event.clientY;
+    if (touchEnabled) {
+      if (event.targetTouches.length !== 1) {
+        return;
+      }
+      var touchItem = event.targetTouches[0];
+      mouse.x = - touchItem.pageX;
+      mouse.y = touchItem.pageY;
+    } else {
+      mouse.x = - event.clientX;
+      mouse.y = event.clientY;
+      console.log(event.clientX, event.clientY);
+    }
 
     var zoomDamp = distance / 500;
 
@@ -185,6 +222,22 @@ LAND.Japan = function (container) {
     }
   }
 
+  function onGestureStart(event) {
+    previousScale = event.scale;
+  }
+
+  function onGestureChange(event) {
+    var scale = event.scale / previousScale;
+    zoom(0.1 * distanceTarget * (scale - 1) / scale);
+    previsousScale = event.scale;
+  }
+
+  function onGestureEnd(event) {
+    var scale = event.scale / previousScale;
+    zoom(0.1 * distanceTarget * (scale - 1) / scale);
+    previousScale = null;
+  }
+
   function zoom(delta) {
     distanceTarget -= delta;
     distanceTarget = distanceTarget > 3000 ? 3000 : distanceTarget;
@@ -196,9 +249,13 @@ LAND.Japan = function (container) {
 
   window.addEventListener('resize', onResize);
   window.addEventListener('keydown', onKeyDown, false);
-  container.addEventListener('mousedown', onMouseDown, false);
+  container.addEventListener(downEventName, onMouseDown, false);
   container.addEventListener('mousewheel', onMouseWheel, false); // For Chrome
   container.addEventListener('wheel', onMouseWheel, false); // For Firefox
+  // For iOS touch devices
+  container.addEventListener('gesturestart', onGestureStart, false);
+  container.addEventListener('gesturechange', onGestureChange, false);
+  container.addEventListener('gestureend', onGestureEnd, false);
 
   this.addData = addData;
   return this;
