@@ -13,6 +13,7 @@ LAND.Japan = function (container) {
   var distance = 1000;
   var distanceTarget = 1000;
 
+  var lastClickTime = new Date().getTime();
   var isBirdView = true;
 
   var touchEnabled = false;
@@ -147,6 +148,16 @@ LAND.Japan = function (container) {
   function onMouseDown(event) {
     event.preventDefault();
 
+    // Check if it's double click/tap.
+    var currentTime = new Date().getTime();
+    var diff = currentTime - lastClickTime;
+    var isSingleTap = touchEnabled && event.targetTouches.length === 1;
+    lastClickTime = currentTime;
+    if ((!touchEnabled || isSingleTap) && diff < 300) {
+      isBirdView = !isBirdView;
+      return;
+    }
+
     container.addEventListener(moveEventName, onMouseMove, false);
     container.addEventListener(upEventName, onMouseUp, false);
     container.addEventListener(outEventName, onMouseOut, false);
@@ -193,7 +204,6 @@ LAND.Japan = function (container) {
     } else {
       mouse.x = - event.clientX;
       mouse.y = event.clientY;
-      console.log(event.clientX, event.clientY);
     }
 
     var zoomDamp = distance / 500;
