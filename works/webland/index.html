@@ -44,22 +44,45 @@
     <script src="js/Detector.js"></script>
 
     <script>
-      if (Detector.webgl) {
+      (function() {
+        if (!Detector.webgl) {
+          Detector.addGetWebGLMessage();
+          return;
+        }
+
         var container = document.getElementById('container');
         var japan = LAND.Japan(container);
+        getPrices(japan.addData.bind(japan));
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', './prices.json', true);
-        xhr.onreadystatechange = function (e) {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            japan.addData(data);
+        function getPrices(callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', './prices.data', true);
+          xhr.responseType = 'arraybuffer';
+          xhr.onreadystatechange = function (e) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var data = parseBinary(xhr.response);
+              callback(data);
+            }
+          };
+          xhr.send(null);
+        }
+
+        function parseBinary(data) {
+          var result = [];
+          var view = new DataView(data);
+          var len = data.byteLength;
+          for (var i = 0; i < len; i += 12) {
+            // Big Endian float 32
+            var float1 = view.getFloat32(i, false);
+            // Big Endian float 32
+            var float2 = view.getFloat32(i + 4, false);
+            // Big Endian integer 32
+            var integer = view.getInt32(i + 8, false);
+            result.push(float1, float2, integer);
           }
-        };
-        xhr.send(null);
-      } else {
-        Detector.addGetWebGLMessage();
-      }
+          return result;
+        }
+      })();
     </script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
