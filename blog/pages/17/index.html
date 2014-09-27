@@ -1,4 +1,63 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/grasse">草</a></h1><div class="meta">@<span class="date">2009-10-11 02:25</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/python-challenge-from-6-to-7">Python Challenge Lv. 6 - 7</a></h1><div class="meta">@<span class="date">2009-10-11 02:33</span> - </div></div><div class="content"><p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
+試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
+<h3>Level 6</h3>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。<br />
+少しカンニングしてみると、<span class="caps">ZIP</span> ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre class="prettyprint">num = "90052"
+z = zipfile.ZipFile("channel.zip")
+
+while True:
+  # Print file's comment
+  print z.getinfo(num + ".txt").comment,
+  # Get next nothing
+  s = open(num + ".txt").read()
+  m = pattern.match(s)
+  if m:
+    num = m.group(1)
+  else:
+    break</pre>
+<p>Python で改行なしの出力をするには <code>print "foo",</code> なんですね。<br />
+いつのまにか Python で解いてしまってますね・・・。</p>
+<h3>Level 7</h3>
+<pre class="prettyprint">from PIL import Image
+image = Image.open("oxygen.png")
+width = image.size[0]
+data = list(image.getdata())
+
+before = 0
+message = ""
+for x in range(width):
+  tmp = data[x + width * 46][0]
+  if tmp != before:
+    message += "%c" % (tmp)
+    before= tmp
+
+print message</pre>
+<p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<blockquote>
+<p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
+</blockquote>
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。<br />
+気を取り直して以下。書き方も少し Python らしく（？）。<br />
+<code>chr</code> という関数があったんですね。</p>
+<pre class="prettyprint">from PIL import Image
+image = Image.open("oxygen.png")
+width = image.size[0]
+data = list(image.getdata())
+message = []
+i = 0
+while True:
+  color = data[i + width * 46]
+  if color[0] == color[1] == color[2]:
+    message.append(color[2])
+    i += 7
+  else:
+    break
+
+print "".join(map(chr, message))</pre>
+<p>出てきたメッセージから答えを出します。</p>
+<pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
+<p>何だかカンニングしてばかりですね・・・。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/grasse">草</a></h1><div class="meta">@<span class="date">2009-10-11 02:25</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
 <p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
 備忘のために。</p>
 <pre class="prettyprint">int NUM;
@@ -97,8 +156,7 @@ for line in obj:
     l += pair[0] * pair[1]
     print l</pre>
 <h3>今日はここまで</h3>
-<p>続きはまた今度。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/30/exec-windows-command-with-ruby">Ruby で Windows のコマンド実行</a></h1><div class="meta">@<span class="date">2009-09-30 10:49</span></div></div><div class="content"><p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
-<pre class="prettyprint">ret = system "cmd.exe /c dir"</pre></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/16">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/18">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>続きはまた今度。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/16">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/18">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
