@@ -192,7 +192,7 @@ module.exports.cleanUrl = function() {
   return through(transform);
 };
 
-module.exports.newPost = function(title) {
+module.exports.newPost = function(title, config) {
   var urlTitle = toURL(title);
   var now = new Date();
   var date = strftime('%Y-%m-%d', now);

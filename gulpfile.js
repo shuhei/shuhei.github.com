@@ -93,7 +93,7 @@ gulp.task('newpost', function() {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  return blog.newPost(args.title);
+  return blog.newPost(args.title, blogConfig);
 });
 
 // Create a new page source file.
