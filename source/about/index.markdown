@@ -17,6 +17,7 @@ footer: true
 
 ## Talks
 
+- 2014/10 [What's "this"? - いまさら聞けない JavaScript の this](https://speakerdeck.com/shuhei/whats-this-imasarawen-kenai-javascript-false-this)
 - 2014/7 [Introduction to Grunt](https://speakerdeck.com/shuhei/introduction-to-grunt)
 - 2014/6 [Start ES6 Modules Today](https://speakerdeck.com/shuhei/start-es6-modules-today)
 - 2014/1 [Introduction to React](https://speakerdeck.com/shuhei/introduction-to-react)
