@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/01/11/dardara">ダラダラ</a></h1><div class="meta">@<span class="date">2009-01-11 00:54</span> - </div></div><div class="content"><p>ここ数日、iPhone <span class="caps">SDK</span> でネットワーク系のプログラムを書こうとしています。</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/01/18/htons">htons</a></h1><div class="meta">@<span class="date">2009-01-18 11:50</span> - <span class="category">iPhone 開発</span></div></div><div class="content"><p>Core Foundation でソケットを扱うプログラムを読んでいたら <code>htons()</code> なる関数が出てきました。<br />
+パッと見て意味が分からないので調べてみたところ、&#8220;Host To Network Short&#8221; とのことで、16ビット（short）のホストバイトオーダーをネットワークバイトオーダー（ビッグエンディアン）に変換してくれるというもの。</p>
+<p>常識なんでしょうが、そんな略語知るか！という感じです。<br />
+僕は A 型だからか、Java のような名前を見ただけで働きのわかる名前が好きですねー。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/01/11/dardara">ダラダラ</a></h1><div class="meta">@<span class="date">2009-01-11 00:54</span> - </div></div><div class="content"><p>ここ数日、iPhone <span class="caps">SDK</span> でネットワーク系のプログラムを書こうとしています。</p>
 <p>部屋にこもってダラダラやっていると、気がついたらもう真夜中、ということが多いです。<br />
 しかし、その割には進みません。</p>
 <p>やはり、時間を区切ってやらないと、成果は出にくいですね。<br />
@@ -8,18 +11,7 @@
 <p><a href="http://blog.asial.co.jp/504">iPhoneアプリ開発にかかせない静的解析ツール「clang」 : アシアルブログ</a> などを参考にしてやってみたのですが、バグが発見されずレポートが出ませんでした。<br />
 残念。</p>
 <pre class="prettyprint">scan-build -o {レポート出力先パス} xcodebuild</pre>
-<p>あ、あと MacBook 買いました。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/12/16/software-develope">ソフトウェア開発技術者</a></h1><div class="meta">@<span class="date">2008-12-16 00:36</span> - </div></div><div class="content"><p>ソフ開受かってました。</p>
-<blockquote><p>受験番号 SWxxx &#8211; xxxx の方は，合格です。<br />
-午前試験のスコアは，735 点です。<br />
-午後I試験のスコアは，740 点です。<br />
-午後II試験のスコアは，615 点です。</p></blockquote>
-<p>それぞれ 400-800 点で採点され、それぞれ 600 点以上で合格だとか。<br />
-午後 II がかなり危なかったです。<br />
-ちょっと間違えたなとは思ったけど、まさかこんなにだとは。</p>
-<p>午前や午後 I については、試験直前に過去問だけで勉強したのでコンピュータの基礎が身についたかは疑問です。<br />
-やや過去問にオーバーフィットのきらいがあるかも。<br />
-どこかで紙面ではなく触って覚える必要がありますね。</p>
-<p>まあ、何はともあれ良かったです。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/29">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/31">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>あ、あと MacBook 買いました。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/29">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/31">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
