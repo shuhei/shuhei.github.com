@@ -6,12 +6,15 @@ comments: false
 sharing: true
 footer: true
 ---
+
+Hi! I'm Shuhei. I write code and occasionally enjoy beer, especially craft beer these days, in Tokyo.
+
 こんにちは。かがわです。東京でプログラムを書いたり、ビールを飲んだりしています。
 
 ## Accounts
 - [Github](https://github.com/shuhei)
 - [LinkedIn](http://www.linkedin.com/in/shuheikagawa)
-- [Qiita](http://qiita.com/users/shuhei)
+- [Qiita](http://qiita.com/users/shuhei) (Technical tips in Japanese)
 - [Speaker Deck](https://speakerdeck.com/shuhei)
 - [Stack Overflow](http://stackoverflow.com/)
 
