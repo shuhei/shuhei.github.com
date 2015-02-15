@@ -6,6 +6,7 @@ comments: true
 sharing: true
 footer: true
 ---
+- [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
 - [Contib](http://contrib.herokuapp.com/): Check your GitHub Contributions on your phone. Build with React.js and SVG.
 - [WebGL RotatingArcs](/works/rotating-arcs/): Ectype of Processing's 3D sketch with Three.js.
 - [Land Prices in Japan 2012-2013](/works/webland/): Land prices in Japan visualized with Three.js.
