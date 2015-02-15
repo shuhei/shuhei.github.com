@@ -1,4 +1,12 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/category-index-for-octopress">Category index for Octopress</a></h1><div class="meta">@<span class="date">2012-04-03 09:20</span> - <span class="category">Octopress</span></div></div><div class="content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
+<p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
+<p>2. Build Settings -&gt; Linking -&gt; Other Linker Flags に以下を設定。</p>
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
+</code></pre><p>3. Build Settings -&gt; Search Paths -&gt; Header Search Paths に以下を設定。</p>
+<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
+    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
+    $(OF_PATH)/addons/ofxOpenCv/src
+</code></pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/category-index-for-octopress">Category index for Octopress</a></h1><div class="meta">@<span class="date">2012-04-03 09:20</span> - <span class="category">Octopress</span></div></div><div class="content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
 <p>_config.yml</p>
 <pre><code class="lang-diff">diff --git a/_config.yml b/_config.yml
 index 5c7d335..7ad03bb 100644
@@ -138,24 +146,7 @@ gui-&gt;loadSettings(&quot;GUI/guiSettings.xml&quot;);
 </code></pre>
 <p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
 <p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/07/22/toeic-official-workbook-vol-4-1">TOEIC 新公式問題集 vol.4 (1)</a></h1><div class="meta">@<span class="date">2010-07-22 00:16</span></div></div><div class="content"><p>初 <span class="caps">TOEIC</span> が今週末に迫ってきたので、練習問題を解いてみました。</p>
-<ul>
-	<li>Part 1: 9 / 10</li>
-	<li>Part 2: 27 / 30</li>
-	<li>Part 3: 27 / 30</li>
-	<li>Part 4: 25 / 30</li>
-	<li>Part 5: 35 / 40</li>
-	<li>Part 6: 10 / 12</li>
-	<li>Part 7: 47 / 48</li>
-</ul>
-<p>換算点は 805 &#8211; 925 とのこと。<br />
-0 &#8211; 200 を 10 &#8211; 990 に線形に投影すると 892 点。<br />
-<a href="/blog/2009/05/24/toeic/">前回</a> よりも良くなっているようです。</p>
-<p>Part 7 が劇的に改善されています。最近洋書を読むようにしているからでしょう。<br />
-弱点はやはりリスニングの Part 2, 3, 4 と、単語・語法の Part 5 です。<br />
-前者は問題文先読みの試験テクニックを練習すればもう少し向上する気がします。<br />
-Part 5 は費用対効果が少なさそうですが、コツコツやるしかありませんかね。</p>
-<p>とりあえず、日曜日まで毎日解いていこうと思います。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/4">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/6">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/4">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/6">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
