@@ -3,6 +3,7 @@ var path = require('path');
 
 var args = require('yargs').argv;
 var strftime = require('strftime');
+var del = require('del');
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -11,7 +12,6 @@ var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
-var rimraf = require('gulp-rimraf');
 var shell = require('gulp-shell');
 
 var condition = require('./plugins/condition');
@@ -69,8 +69,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('clean', function(cb) {
-  return gulp.src(publicDir, { read: false })
-    .pipe(rimraf());
+  del([publicDir], cb);
 });
 
 // Build the site, launch a dev server and watch changes.
