@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss">Booklog の本一覧をRSSから取得</a></h1><div class="meta">@<span class="date">2009-10-27 00:35</span> - </div></div><div class="content"><p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、<span class="caps">RSS</span> を使うともっと楽にできるようです。<br />
+以下のように、<span class="caps">GET</span> のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
+<p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
+<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/19/install-git">git をインストール</a></h1><div class="meta">@<span class="date">2009-10-19 16:49</span> - </div></div><div class="content"><p>会社では構成管理に Subversion を使っています。<br />
+特に困っていることもないのですが、見識を広めるため家の MacBook に git を入れてみました。</p>
+<p><a href="http://code.google.com/p/git-osx-installer/">インストーラ</a> もあるようですが、管理が楽そうな MacPorts を使用。</p>
+<pre class="prettyprint">port search git</pre>
+<p>いろいろ出てきますが、git-core だけでよさそうです。</p>
+<pre class="prettyprint">port variants git-core</pre>
+<p>でオプションが出てきます。<br />
+全部入りにしてみました。</p>
+<pre class="prettyprint">sudo port install git-core +doc +gitweb +svn +bash_completion</pre>
+<p>何だか Perl5 のライブラリがたくさん入りました。<br />
+bash 補完は以下を.profileに貼付けると良いとのこと。</p>
+<pre class="prettyprint">if [ -f /opt/local/etc/bash_completion ]; then
+  . /opt/local/etc/bash_completion
+fi</pre>
+<p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。<br />
+branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branchをちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/16/hello-world-with-curses-of-rub">Ruby の Curses で Hello, World!</a></h1><div class="meta">@<span class="date">2009-10-16 00:14</span> - </div></div><div class="content"><p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
+<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />
+参考にしたのは <a href="http://codezine.jp/article/detail/2086">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>
+<pre class="prettyprint">require 'curses'
+
+message = [
+  "**   **  *******  **       **        *****    **",
+  "**   **  **       **       **       **   **   **",
+  "*******  *******  **       **       **   **   **",
+  "**   **  **       **       **       **   **     ",
+  "**   **  *******  *******  *******   *****    **"
+]
+
+def animate(image)
+  include Curses
+  init_screen
+  y = ((lines - image.size) / 2).truncate
+  (cols - image[0].size).downto(1) do |t|
+    image.size.times do |i|
+      setpos(y + i, t)
+      addstr(image[i])
+    end
+    refresh
+    sleep(0.05)
+    clear
+  end
+close_screen
+end
+
+animate(message)</pre>
+<p>おおー、動きました。逆に新鮮で面白いですね。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/14">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/16">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      #container {
+        width: 700px;
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+    <script src="jquery-1.4.2.min.js"></script>
+    <script src="protovis-r3.2.js"></script>
+    <script type="text/javascript+protovis">
+    $.getJSON("stats.json", function(data) {
+      new pv.Panel()
+        .canvas("replies")
+        .width(660)
+        .height(400)
+        .left(17)
+        .right(15)
+      .add(pv.Panel)
+        .data(data.replies)
+        .left(function() this.index * 15)
+        .bottom(150)
+      .add(pv.Label)
+        .left(0)
+        .bottom(0)
+        .text(function(d) d.sn)
+        .textAngle(Math.PI / 2)
+        .textStyle("gray")
+      .parent.add(pv.Bar)
+        .width(12)
+        .height(function(d) d.c * 230 / data.replies[0].c)
+        .bottom(5)
+      .parent.add(pv.Label)
+        .left(6)
+        .bottom(function(d) 7 + d.c * 230 / data.replies[0].c)
+        .text(function(d) d.c)
+        .textAlign("center")
+        .textStyle("gray")
+      .root.render();
+      
+      var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      var prettyHour = function(h) {
+        if (h == 0) return "12am";
+        if (h == 12) return "12pm"
+        return h % 12;
+      };
+      var dayColor = pv.Scale.linear()
+        .domain(0, 7, 12, 17, 24)
+        .range("#369", "#fc6", "#f93", "#fc6", "#369")
+      ;
+      
+      new pv.Panel()
+        .canvas("week_hour_circle")
+        .width(330)
+        .height(220)
+        .left(330)
+        .top(220)
+      .add(pv.Label)
+        .data([
+          data.user_name,
+          data.total + " tweets",
+          data.days + " days",
+          data.start_date + "- " + data.last_date
+        ])
+        .textAlign("center")
+        .top(function() -13 + this.index * 15 + (this.index > 0 ? 7 : 0))
+        .font(function() (this.index == 0 ? 20 : 10) + "px sans-serif")
+        .textStyle("gray")
+      .parent.add(pv.Wedge)
+        .data(days)
+        .innerRadius(100)
+        .outerRadius(180)
+        .startAngle(function() this.index * 2 * Math.PI / 7 - Math.PI /2 )
+        .fillStyle(null)
+        .strokeStyle("#ddd")
+        .angle(2 * Math.PI / 7)
+        //.angle(0)
+      .parent.add(pv.Wedge)
+        .data(pv.range(0, 7 * 24))
+        .innerRadius(100)
+        .outerRadius(function(i) 100 + data.hours[Math.floor(i / 24)][i % 24] / data.total * 4000)
+        .startAngle(function() this.index * 2 * Math.PI / (24 * 7) - Math.PI / 2)
+        .angle(2 * Math.PI / (24 * 7))
+        .fillStyle(dayColor.by(function() Math.floor((this.index + 2) % 24 / 3) * 3))
+      .parent.add(pv.Wedge)
+        .data(days)
+        .innerRadius(80)
+        .outerRadius(195)
+        .startAngle(function() this.index * 2 * Math.PI / 7 - Math.PI /2 )
+        .angle(2 * Math.PI / 7)
+        .fillStyle(null)
+      .anchor("outer").add(pv.Label)
+        .textAlign("center")
+        .textAngle(function() this.anchorTarget().midAngle() + Math.PI / 2)
+        .textStyle("gray")
+      .root.render();
+      
+      new pv.Panel()
+        .canvas("week_hour_dots")
+        .width(700)
+        .height(290)
+        .left(15)
+        .top(50)
+      .add(pv.Label)
+        .data(pv.range(0, 24))
+        .left(function() 45 + this.index * 27)
+        .text(function(d) prettyHour(d))
+        .textAlign("center")
+        .visible(function() this.index % 2 == 0)
+      .parent.add(pv.Panel)
+        .data(data.hours)
+        .top(function() 25 + this.index * 35)
+      .add(pv.Label)
+        .text(function() days[this.parent.index])
+        .top(6)
+      .parent.add(pv.Dot)
+        .data(function(d) d)
+        .radius(function(d) d * 0.25)
+        .fillStyle("#000")
+        .strokeStyle(null)
+        .left(function() 45 + this.index * 27)
+        .fillStyle(dayColor.by(function() Math.floor((this.index + 1) % 24 / 3) * 3))
+      .root.render();
+    });
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="week_hour_circle"></div>
+      <div id="week_hour_dots"></div>
+      <div id="replies"></div>
+    </div>
+  </body>
+</html>

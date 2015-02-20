@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/07/28/former-declaration-of-class">クラスの前方宣言</a></h1><div class="meta">@<span class="date">2009-07-28 19:44</span> - </div></div><div class="content"><p>1時間ほどハマりました。<br />
+下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
+<blockquote>
+<p><span class="caps">C4430</span>: 型指定子がありません &#8211; int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
+</blockquote>
+<pre class="prettyprint">enum GREETING { HELLO, NI_HAO, CIAO };
+
+class A {
+public:
+  GREETING foo(B* b);  // コンパイルエラー！
+}
+
+class B {
+public:
+  void bar(A* a);
+}</pre>
+<p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<br />
+class A の宣言の前にBの前方宣言が必要なんですね。</p>
+<pre class="prettyprint">class B;</pre>
+<p>一回勉強したのですが、すっかり忘れていました。<br />
+この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p></div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>

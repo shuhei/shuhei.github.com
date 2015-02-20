@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/09/27/land-prices-on-ios">WebGL な日本の地価マップをタッチ対応してみた</a></h1><div class="meta">@<span class="date">2014-09-27 16:53</span> - <span class="category">WebGL</span>, <span class="category">JavaScript</span></div></div><div class="content"><p>iOS 8 の Safari で WebGL が動くようになったので、以前作った日本の地価の 3D で表示するやつをタッチ対応してみました。</p>
+<p><img src="/images/webland-ios.png" alt="Land Prices in Japan on iOS 8 Safari"></p>
+<p><a href="/works/webland">Land Prices in Japan</a></p>
+<p>ソースは <a href="https://github.com/shuhei/webland">GitHub にあります</a>。</p>
+<p>タッチ対応というのは、大体以下のような感じです。</p>
+<ul>
+<li>Viewport が動かないように調整。</li>
+<li>ドラッグで上下左右に動けるように。タッチデバイスかどうがで、タッチ系のイベントを使うかマウス系のイベントを使うかを切り替えています。</li>
+<li>ピンチでズームできるように。難しいかなと思ったんですが、<code>gesturestart</code>, <code>gesturechange</code>, <code>gestureend</code> イベントがあったので簡単でした。</li>
+<li>ダブルタップで視点を切り替えられるように。ダブルタップやダブルクリックのイベントというのは特にないので、<code>touchstart</code> の時に一個前のイベントの時刻と比較して判断しています。</li>
+</ul>
+<p>早速買い換えた iPhone 6 Plus でぬるぬる動く上に、iPhone 5 でも余裕で動きます。直接触れるので、画面は小さいものの PC より楽しいなあと思いました。今後はモバイルでの WebGL が面白そうですね。</p>
+</div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>

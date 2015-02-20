@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Land Prices in Japan</title>
+    <link rel="image_src" href="./img/thumbnail.png">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+      h1 {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        font-size: 20px;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+      }
+      footer {
+        position: absolute;
+        text-align: right;
+        right: 30px;
+        bottom: 20px;
+        font-size: 12px;
+      }
+      a {
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <h1>Land Prices in Japan</h1>
+    <footer>Created by Shuhei Kagawa. Excessively inspired by <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. Data acquired from <a href="http://www.land.mlit.go.jp/webland/">MLIT</a>. Get the <a href="https://github.com/shuhei/webland">code</a>.</footer>
+
+    <script src="js/three.js"></script>
+    <script src="js/webland.js"></script>
+    <script src="js/Detector.js"></script>
+
+    <script>
+      (function() {
+        if (!Detector.webgl) {
+          Detector.addGetWebGLMessage();
+          return;
+        }
+
+        var container = document.getElementById('container');
+        var japan = LAND.Japan(container);
+        getPrices(japan.addData.bind(japan));
+
+        function getPrices(callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', './prices.data', true);
+          xhr.responseType = 'arraybuffer';
+          xhr.onreadystatechange = function (e) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var data = parseBinary(xhr.response);
+              callback(data);
+            }
+          };
+          xhr.send(null);
+        }
+
+        function parseBinary(data) {
+          var result = [];
+          var view = new DataView(data);
+          var len = data.byteLength;
+          for (var i = 0; i < len; i += 12) {
+            // Big Endian float 32
+            var float1 = view.getFloat32(i, false);
+            // Big Endian float 32
+            var float2 = view.getFloat32(i + 4, false);
+            // Big Endian integer 32
+            var integer = view.getInt32(i + 8, false);
+            result.push(float1, float2, integer);
+          }
+          return result;
+        }
+      })();
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-309586-8']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+body {
+  background: #eee;
+  font-family: 'Asap', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #000;
+  transition: color 300ms ease;
+}
+a:hover {
+  color: #999;
+}
+
+.header, .footer {
+  text-align: center;
+}
+
+.header {
+  padding: 25px 0 10px;
+}
+.header .title {
+  margin: 0 0 15px;
+}
+.header nav ul {
+  list-style-position: outside;
+  list-style-type: none;
+  padding: 10px 0;
+  margin: 0;
+}
+.header nav li {
+  display: inline-block;
+  padding: 0 20px;
+}
+.header nav a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 30px 0;
+}
+
+.title a {
+  text-decoration: none;
+}
+
+.post {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  padding: 30px 0 20px;
+  margin: 0 0 40px;
+}
+.post:last-child {
+  margin-bottom: 0;
+}
+.post .post-header,
+.post .content {
+  margin: 0 auto;
+  width: 700px;
+}
+.post .title {
+  margin: 0;
+}
+.post .meta {
+  color: #999;
+  font-size: small;
+  margin: 10px 0 25px;
+}
+
+.post-list {
+  background: #fff;
+  padding: 30px 0 20px;
+}
+.post-list .title {
+  width: 700px;
+  margin: 0 auto 10px;
+}
+.post-list-item {
+  padding: 10px 0;
+  margin: 0 auto;
+  width: 700px;
+}
+.post-list-item:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.post-list-item .date {
+  float: left;
+  width: 100px;
+  padding-top: 5px;
+}
+.post-list-item .title {
+  float: left;
+  width: 600px;
+  margin: 0;
+}
+
+.content {
+  line-height: 1.6em;
+}
+.content img {
+  max-width: 100%;
+}
+.content pre code,
+.content pre.prettyprint {
+  background: #000;
+  color: #0f0;
+  display: block;
+  line-height: 1.3em;
+  padding: 10px 15px;
+  overflow-x: scroll;
+}
+
+ul.pagination {
+  list-style-position: outside;
+  list-style-type: none;
+  padding: 0;
+  margin: -20px auto 0px;
+  width: 700px;
+}
+ul.pagination:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+ul.pagination li {
+  font-weight: bold;
+  width: 50%;
+}
+ul.pagination a {
+  text-decoration: none;
+}
+ul.pagination .prev-page {
+  float: left;
+}
+ul.pagination .prev-page a:before {
+  content: "< ";
+}
+ul.pagination .next-page {
+  float: right;
+  text-align: right;
+}
+ul.pagination .next-page a:after {
+  content: " >";
+}
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 24px;
+  }
+  .post .post-header,
+  .post .content,
+  .post-list .title,
+  .post-list-item,
+  .pagination {
+    width: 90%;
+  }
+}
