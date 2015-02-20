@@ -38,6 +38,7 @@
     "strftime": "^0.8.2",
     "textile-js": "^0.1.10",
     "through2": "^0.6.3",
+    "vinyl-paths": "^1.0.0",
     "xtend": "^4.0.0",
     "yargs": "^3.0.4"
   }

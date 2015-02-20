@@ -4,6 +4,7 @@ var path = require('path');
 var args = require('yargs').argv;
 var strftime = require('strftime');
 var del = require('del');
+var vinylPaths = require('vinyl-paths');
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -112,7 +113,7 @@ gulp.task('pull', shell.task('git pull', { cwd: deployDir }));
 gulp.task('clean_deploy', ['pull'], function() {
   var paths = path.join(deployDir, '*');
   return gulp.src(paths, { dot: false, read: false })
-    .pipe(rimraf());
+    .pipe(vinylPaths(del));
 });
 
 // Copy all files including dot files in public dir to deploy dir.
