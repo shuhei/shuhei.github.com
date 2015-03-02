@@ -5,6 +5,7 @@ var args = require('yargs').argv;
 var strftime = require('strftime');
 var del = require('del');
 var vinylPaths = require('vinyl-paths');
+var highlightjs = require('highlight.js');
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -34,13 +35,17 @@ var blogConfig = {
 var deployDir = '_deploy';
 var publicDir = 'public';
 
+function highlight(code) {
+  return highlightjs.highlightAuto(code).value;
+}
+
 // Copy static pages compiling markdown files.
 gulp.task('copy', function() {
   return gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
-    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown()))
+    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
     .pipe(blog.layout(blogConfig))
     .pipe(gulp.dest(publicDir));
 });
@@ -53,7 +58,7 @@ gulp.task('posts', function() {
   return gulp.src('source/_posts/*.*')
     .pipe(plumber())
     .pipe(frontMatter())
-    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown()))
+    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
     .pipe(condition(__dirname + '/source/**/*.textile', textile()))
     .pipe(blog.cleanUrl())
     .pipe(branch(aggregator))
@@ -63,7 +68,7 @@ gulp.task('posts', function() {
 
 // Concat CSS files.
 gulp.task('css', function() {
-  return gulp.src('./source/_css/**/*.css')
+  return gulp.src(['./source/_css/**/*.css', './node_modules/highlight.js/styles/default.css'])
     .pipe(plumber())
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./public/css'));
