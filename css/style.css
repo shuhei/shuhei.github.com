@@ -118,37 +118,36 @@ a:hover {
   padding: 0.1em 0.2em;
 }
 
-
-ul.pagination {
+.pagination {
   list-style-position: outside;
   list-style-type: none;
   padding: 0;
   margin: -20px auto 0px;
   width: 700px;
 }
-ul.pagination:after {
+.pagination:after {
   content: "";
   clear: both;
   display: block;
 }
-ul.pagination li {
+.pagination li {
   font-weight: bold;
   width: 50%;
 }
-ul.pagination a {
+.pagination a {
   text-decoration: none;
 }
-ul.pagination .prev-page {
+.pagination .prev-page {
   float: left;
 }
-ul.pagination .prev-page a:before {
+.pagination .prev-page a:before {
   content: "< ";
 }
-ul.pagination .next-page {
+.pagination .next-page {
   float: right;
   text-align: right;
 }
-ul.pagination .next-page a:after {
+.pagination .next-page a:after {
   content: " >";
 }
 
