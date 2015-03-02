@@ -1,4 +1,17 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/07/resize-images-with-imagemagick">ImageMagick で画像を一括リサイズ</a></h1><div class="meta">@<span class="date">2009-11-07 15:41</span> - </div></div><div class="content"><p>特定の名前の画像をリサイズします。</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta">@<span class="date">2009-11-14 10:07</span> - </div></div><div class="content"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
+Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
+<h3>方法</h3>
+<p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
+<p><img src="/images/2009/11/symbolic_break_point1.png" alt="" /></p>
+<p>出てきたダイアログに <code>objc_exception_throw</code> と入力。<br />
+これで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。</p>
+<p><img src="/images/2009/11/debugger1.png" alt="" /></p>
+<p>デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。</p>
+<p>via <a href="http://www.markj.net/debugging-tip-objc_exception_throw-breakpoint/">Debugging Tip – objc_exception_throw breakpoint | markjnet</a></p>
+<h3>シンボリックブレークポイント</h3>
+<p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
+ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
+今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/07/resize-images-with-imagemagick">ImageMagick で画像を一括リサイズ</a></h1><div class="meta">@<span class="date">2009-11-07 15:41</span> - </div></div><div class="content"><p>特定の名前の画像をリサイズします。</p>
 <pre class="prettyprint">#! /bin/bash
 
 for f in rect_*.png;
@@ -44,19 +57,7 @@ Navigation Controller を削除して Tab Bar Controller を追加します。</
 <h3>App Delegate の Outlet のつなぎ変え</h3>
 <p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。<br />
 再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
-<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/05/git-usage-note">git の使い方メモ</a></h1><div class="meta">@<span class="date">2009-11-05 23:47</span></div></div><div class="content"><h3>無視リスト</h3>
-<p>&#8220;.gitignore&#8221; というファイルを作って、その中に無視したいファイルやディレクトリ名を書きます。<br />
-すると <code>git status</code> や <code>git add .</code> しても無視されるようになります。<br />
-すでに追加してしまったものに関しては、後述の方法で削除する必要があるようです。</p>
-<p>via <a href="http://tobysoft.net/wiki/index.php?git%2F%CC%B5%BB%EB%A4%B9%A4%EB%A5%D5%A5%A1%A5%A4%A5%EB%A4%F2%BB%D8%C4%EA%A4%B9%A4%EB%CA%FD%CB%A1(.gitignore%A4%CB%A4%C4%A4%A4%A4%C6)">git/無視するファイルを指定する方法(.gitignoreについて) &#8211; <span class="caps">TOBY</span> <span class="caps">SOFT</span> wiki</a><br />
-via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" title="5">gitignore</a></p>
-<h3>削除</h3>
-<p><code>svn delete</code> のようなことをするには <code>git rm hoge</code> 。<br />
-ディレクトリを消すには @git rm -r hoge@。</p>
-<h3>なかったことにする</h3>
-<p><code>git log</code> で戻りたいコミットのIDをチェック。<br />
-<code>git revert --hard commit_id</code></p>
-<p>via <a href="http://bulkya.blogdb.jp/share/wiki/FAQ/Git#%E5%85%83%E3%81%AB%E6%88%BB%E3%81%99%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><span class="caps">FAQ</span>/Git – CodeRepos::Share – Trac</a></p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/13">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/15">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/13">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/15">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

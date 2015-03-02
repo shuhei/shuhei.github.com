@@ -1,4 +1,16 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/08/23/grunt-and-es6-modules">Grunt と ES6 Modules</a></h1><div class="meta">@<span class="date">2014-08-23 01:21</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/09/27/land-prices-on-ios">WebGL な日本の地価マップをタッチ対応してみた</a></h1><div class="meta">@<span class="date">2014-09-27 16:53</span> - <span class="category">WebGL</span>, <span class="category">JavaScript</span></div></div><div class="content"><p>iOS 8 の Safari で WebGL が動くようになったので、以前作った日本の地価の 3D で表示するやつをタッチ対応してみました。</p>
+<p><img src="/images/webland-ios.png" alt="Land Prices in Japan on iOS 8 Safari"></p>
+<p><a href="/works/webland">Land Prices in Japan</a></p>
+<p>ソースは <a href="https://github.com/shuhei/webland">GitHub にあります</a>。</p>
+<p>タッチ対応というのは、大体以下のような感じです。</p>
+<ul>
+<li>Viewport が動かないように調整。</li>
+<li>ドラッグで上下左右に動けるように。タッチデバイスかどうがで、タッチ系のイベントを使うかマウス系のイベントを使うかを切り替えています。</li>
+<li>ピンチでズームできるように。難しいかなと思ったんですが、<code>gesturestart</code>, <code>gesturechange</code>, <code>gestureend</code> イベントがあったので簡単でした。</li>
+<li>ダブルタップで視点を切り替えられるように。ダブルタップやダブルクリックのイベントというのは特にないので、<code>touchstart</code> の時に一個前のイベントの時刻と比較して判断しています。</li>
+</ul>
+<p>早速買い換えた iPhone 6 Plus でぬるぬる動く上に、iPhone 5 でも余裕で動きます。直接触れるので、画面は小さいものの PC より楽しいなあと思いました。今後はモバイルでの WebGL が面白そうですね。</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/08/23/grunt-and-es6-modules">Grunt と ES6 Modules</a></h1><div class="meta">@<span class="date">2014-08-23 01:21</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
 <h2 id="-introduction-to-grunt-https-speakerdeck-com-shuhei-introduction-to-grunt-"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
 <p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
 <p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
@@ -29,25 +41,6 @@
 <h2 id="-">感想</h2>
 <p>当たり前の感想ですが、gulp はデプロイのようなタスクには向いてないものの、 静的サイトの生成には悪くないなと思いました。</p>
 <p>とは言え、サイト全体の情報を扱うのはやりにくいです。現在は index, archive のページを、各記事の stream から分岐して作っています。また、必要ないと思いサイドバーをつけていないのですが、つける場合には一旦全記事を読み込んでサイドバー向けの情報を作ってから各記事のページにくっつける必要があります。その辺は今後の課題ですかね。</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/04/05/transition-to-touch-typing">タッチタイピングに移行</a></h1><div class="meta">@<span class="date">2014-04-05 13:04</span></div></div><div class="content"><p>二週間くらい前にふと思い立ち、タッチタイピングを練習し始めました。何となく打てるようになってきたので、ここら辺でタイピングの練習がてら雑感を書いておきます。</p>
-<h1 id="-">動機</h1>
-<p>これまでタイピングは我流でやっていて、普通に仕事をするには支障がなかったのですが、タッチタイピングができないことにコンプレックスを持っていました。まず人前でタイプするのが恥ずかしい。それから妻や同僚のタイピングが速く、引け目を感じていました。特に今の職場に入った当初は周囲の人の異常なタイピング音には驚きました。</p>
-<p>それから、ホームポジションを無視した時によって変わる打ち方だったので、指の移動距離が大きく速度に限界がありました。また間違いも多かったです。これからの人生でもかなりの量をタイプする訳ですから、生産性に大きな差が出ます。</p>
-<p>そして、ツールの恩恵を受けたかったというのもあります。世の中のプログラマ向けのツールにはホームポジションで使う事が前提になっているものが多くあります。以前 Vim の本を買ったら、最初にタッチタイピングをできない人は、Vim の前にタッチタイピングを練習してくださいと書いてあり悔しい思いをしました。</p>
-<h1 id="-">練習</h1>
-<p>そんな訳で、まず練習するにあたり、ただタイピングしまくるのではなく、ホームポジションでの正しいタイピングの練習のためのソフトを探しました。良さそうに見えたのは以下です。</p>
-<ul>
-<li><a href="http://typing.twi1.me/training">ひよこでも出来るタイピング練習講座</a></li>
-<li><a href="http://type-fu.com/">Type Fu</a></li>
-</ul>
-<p>「ひよこでも出来る・・・」は、キーの配列を覚えるというよりは日本語の文字を見て直接打てるようにするというものでした。たしかに合理的だと思いましたが、仕事柄プログラムや英語を書くので、まずはキーの配列を覚えるため「Type Fu」という英語向けのキー練習ソフトで練習しました。最初は少ないキーからだんだんと打つキーの数を増やしていく形式です。他にもことわざや名言で練習するモードもあり面白いです。</p>
-<p>昼間会社ではこれまでの打ち方で仕事をし、夜と週末にタッチタイピングの練習をしました。一週間これをやるとかろうじてアルファベット全てが押せるようになったので、会社でもタッチタイピングを始めました。この時点ではまだ大分遅く仕事も遅くなったのですが、遅くなった分は残業で何とかカバーしました。するとどんどん慣れてきて、今ではそこまで仕事に支障が出ないくらいになってきました。もともとタイピングが遅かったのもありますが。</p>
-<h1 id="-">工夫したこと</h1>
-<p>矢印キーが遠いので <a href="https://pqrs.org/macosx/keyremap4macbook/">KeyRemap4MacBook</a> を使って Ctrl + h/j/k/l を矢印キーに割り当てました。これでホームポジションのまま移動ができます。Vim 操作にも慣れるというおまけつき。</p>
-<p><a href="http://www.alfredapp.com/">Alfred</a> を入れました。アプリの起動に使おうと思って。他にも直接 Google 検索できたりととても便利です。</p>
-<p>そして、まずは形からということで、つい数日前に <a href="https://www.pfu.fujitsu.com/hhkeyboard/hhkbpro2/nokeytop.html">Happy Hacking Keyboard の無刻印キーボード</a>を購入しました。キーボードを見ないようにするには何も書いてなければ良いじゃないというわけです。矢印キーもないし。叩いたときの感触が良くて気に入っていますが、会社に持っていくのはもう少し速く打てるようになってからにしようかと思っています。</p>
-<h1 id="-">目がやたらと疲れるようになった</h1>
-<p>これまでは朝から晩までパソコンの前にいても、目がちょっと疲れたなというくらいで視力も落ちなかったのですが、タッチタイピングを練習し始めてからは一二時間タイプしていると視界がかすんできます。おそらく、これまでは手元と画面を交互に見ていたため目に優しかったのでしょう。タッチタイピングでも精度が十分ならばよそ見しながら打てば良いのですが、まだ結構間違えるので画面を凝視しています。目を守るためには、精度を上げないといけませんね。</p>
 </div></div><ul class="pagination"><li class="prev-page"><a href="/">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/3">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
