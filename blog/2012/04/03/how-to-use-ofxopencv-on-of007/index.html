@@ -1,11 +1,11 @@
 <!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 <p>2. Build Settings -&gt; Linking -&gt; Other Linker Flags に以下を設定。</p>
-<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
+<pre><code>    $(OF_PATH)<span class="hljs-regexp">/addons/</span>ofxOpenCv<span class="hljs-regexp">/libs/</span>opencv<span class="hljs-regexp">/lib/</span>osx<span class="hljs-regexp">/opencv.a</span>
 </code></pre><p>3. Build Settings -&gt; Search Paths -&gt; Header Search Paths に以下を設定。</p>
-<pre><code>    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
-    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
-    $(OF_PATH)/addons/ofxOpenCv/src
+<pre><code>    $(OF_PATH)<span class="hljs-regexp">/addons/</span>ofxOpenCv<span class="hljs-regexp">/libs/</span>opencv<span class="hljs-regexp">/include/</span>opencv
+    $(OF_PATH)<span class="hljs-regexp">/addons/</span>ofxOpenCv<span class="hljs-regexp">/libs/</span>opencv/include
+    $(OF_PATH)<span class="hljs-regexp">/addons/</span>ofxOpenCv/src
 </code></pre></div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -2,41 +2,41 @@
 <p>ActiveRecord is great. It automatically converts data <a href="https://github.com/rails/rails/tree/v4.2.0/activerecord/lib/active_record/type">according to the type of database column</a>. That&#39;s why we can throw request params, whose values are often strings, into mass assignment methods like <code>create</code> and <code>update</code> without manual conversion. The conversion works perfectly in most of the cases except for <code>date</code> attribute.</p>
 <p>To <code>date</code> attribute, we can assign <code>Date</code> and date string like <code>&#39;2015-03-02&#39;</code> without any problem. However, <code>Time</code> and time string with different time zone, usualy UTC, don&#39;t work well here. Their own time zones are not taken into account when converted to <code>Date</code>.</p>
 <pre><code class="lang-ruby">class Application &lt; Rails::Application
-  config.time_zone = &#39;Tokyo&#39;
+  config.time_zone = <span class="hljs-string">'Tokyo'</span>
 end
 
 class Person &lt; ActiveRecord::Base
-  # birth_date :date
+  <span class="hljs-comment"># birth_date :date</span>
 end
 
-expect(Person.new(birth_date: &#39;2015-03-02&#39;).birth_date).to eq(Date.new(2015, 3, 2))
-expect(Person.new(birth_date: Date.new(2015, 3, 2)).birth_date).to eq(Date.new(2015, 3, 2))
-expect(Person.new(birth_date: Time.zone.local(2015, 3, 2)).birth_date).to eq(Date.new(2015, 3, 2))
+expect(Person.new(birth_date: <span class="hljs-string">'2015-03-02'</span>).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
+expect(Person.new(birth_date: Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
+expect(Person.new(birth_date: Time.zone.<span class="hljs-keyword">local</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
 
-# But...
-expect(Person.new(birth_date: Time.utc(2015, 3, 1, 15)).birth_date).to eq(Date.new(2015, 3, 1))
-expect(Person.new(birth_date: &#39;2015-03-01T15:00:00.000Z&#39;).birth_date).to eq(Date.new(2015, 3, 1))
+<span class="hljs-comment"># But...</span>
+expect(Person.new(birth_date: Time.utc(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 1)</span>)
+expect(Person.new(birth_date: <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 1)</span>)
 </code></pre>
 <p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
-<pre><code class="lang-javascript">JSON.stringify({ date: new Date(2015, 3 - 1, 2) });
-// &#39;{&quot;date&quot;:&quot;2015-03-01T15:00:00.000Z&quot;}&#39;
+<pre><code class="lang-javascript"><span class="hljs-tag">JSON</span><span class="hljs-class">.stringify</span>({ <span class="hljs-attribute">date</span>: new <span class="hljs-function">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
+<span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span>
 </code></pre>
 <p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
-<pre><code>def birth_date=(value)
-  self[:birth_date] = case value
-                      when String then Time.zone.parse(value)
-                      when Time then value.in_time_zone
-                      else value
-                      end
-end
+<pre><code>def birth_date=(<span class="hljs-built_in">value</span>)
+  self[:birth_date] = <span class="hljs-keyword">case</span> <span class="hljs-built_in">value</span>
+                      when String <span class="hljs-keyword">then</span> Time.zone.parse(<span class="hljs-built_in">value</span>)
+                      when Time <span class="hljs-keyword">then</span> <span class="hljs-built_in">value</span>.in_time_zone
+                      <span class="hljs-keyword">else</span> <span class="hljs-built_in">value</span>
+                      <span class="hljs-function"><span class="hljs-keyword">end</span></span>
+<span class="hljs-function"><span class="hljs-keyword">end</span></span>
 </code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
-<pre><code class="lang-Gemfile">gem &#39;date_timezone&#39;
+<pre><code class="lang-Gemfile"><span class="hljs-title">gem</span> <span class="hljs-string">'date_timezone'</span>
 </code></pre>
-<pre><code class="lang-ruby">class Person &lt; ActiveRecord::Base
-  include DateTimezone
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  <span class="hljs-keyword">include</span> <span class="hljs-constant">DateTimezone</span>
 
-  # birth_date :date
-end
+  <span class="hljs-comment"># birth_date :date</span>
+<span class="hljs-keyword">end</span>
 </code></pre>
 <p>If you are creating Rails application on the east side of the prime meridian and in trouble with the same issue as mine, please try it and share what you think.</p>
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/02/15/playing-with-vanilla-webgl-api">Playing with vanilla WebGL API</a></h1><div class="meta">@<span class="date">2015-02-15 16:21</span> - <span class="category">JavaScript</span>, <span class="category">WebGL</span></div></div><div class="content"><p>Started writing in English on a whim.</p>

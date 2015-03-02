@@ -19,29 +19,29 @@
 amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
 洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。</p>
 <p>amazondotcomreviewer.user.js</p>
-<pre><code class="lang-js">// ==UserScript==
-// @name           AmazonDotComReviewer 0.1
-// @namespace      http://www.7to3.net
-// @description    Make link between amazon.com and amazon.co.jp
-// @include        http://*.amazon.*
-// ==/UserScript==
+<pre><code class="lang-js"><span class="hljs-comment">// ==UserScript==</span>
+<span class="hljs-comment">// @name           AmazonDotComReviewer 0.1</span>
+<span class="hljs-comment">// @namespace      http://www.7to3.net</span>
+<span class="hljs-comment">// @description    Make link between amazon.com and amazon.co.jp</span>
+<span class="hljs-comment">// @include        http://*.amazon.*</span>
+<span class="hljs-comment">// ==/UserScript==</span>
 
-(function() {
-    var isbnmatch = window.location.href.match(/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//);
-    var header = document.getElementById(&#39;btAsinTitle&#39;);
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> isbnmatch = <span class="hljs-built_in">window</span>.location.href.match(<span class="hljs-regexp">/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//</span>);
+    <span class="hljs-keyword">var</span> header = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btAsinTitle'</span>);
 
-    if (header &amp;&amp; isbnmatch) {
-        domain = (isbnmatch[1] === &#39;com&#39;) ? &#39;co.jp&#39; : &#39;com&#39;;
-        isbn = isbnmatch[2];
+    <span class="hljs-keyword">if</span> (header &amp;&amp; isbnmatch) {
+        domain = (isbnmatch[<span class="hljs-number">1</span>] === <span class="hljs-string">'com'</span>) ? <span class="hljs-string">'co.jp'</span> : <span class="hljs-string">'com'</span>;
+        isbn = isbnmatch[<span class="hljs-number">2</span>];
 
-        var uslink = document.createElement(&#39;a&#39;);
-        uslink.setAttribute(&#39;href&#39;, &#39;http://www.amazon.&#39; + domain + &#39;/o/ASIN/&#39; + isbn + &#39;/&#39;);
-        uslink.setAttribute(&#39;title&#39;, &#39;The same book at amazon.&#39; + domain);
-        uslink.innerHTML = &quot;&lt;br /&gt;&amp;#187; Check also amazon.&quot; + domain + &quot;!&quot;;
+        <span class="hljs-keyword">var</span> uslink = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'a'</span>);
+        uslink.setAttribute(<span class="hljs-string">'href'</span>, <span class="hljs-string">'http://www.amazon.'</span> + domain + <span class="hljs-string">'/o/ASIN/'</span> + isbn + <span class="hljs-string">'/'</span>);
+        uslink.setAttribute(<span class="hljs-string">'title'</span>, <span class="hljs-string">'The same book at amazon.'</span> + domain);
+        uslink.innerHTML = <span class="hljs-string">"&lt;br /&gt;&amp;#187; Check also amazon."</span> + domain + <span class="hljs-string">"!"</span>;
 
         header.insertBefore(uslink, header.firstChild.nextSibling);
     }
-    return false;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 
 }
 )();
