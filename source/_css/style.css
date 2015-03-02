@@ -107,13 +107,17 @@ a:hover {
 }
 .content pre code,
 .content pre.prettyprint {
-  background: #000;
-  color: #0f0;
+  background: #eee;
   display: block;
-  line-height: 1.3em;
+  line-height: 1.5em;
   padding: 10px 15px;
   overflow-x: scroll;
 }
+.content code {
+  background-color: #eee;
+  padding: 0.1em 0.2em;
+}
+
 
 ul.pagination {
   list-style-position: outside;
