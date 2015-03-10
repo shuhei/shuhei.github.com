@@ -10,7 +10,7 @@ iOS 8 の Safari で WebGL が動くようになったので、以前作った�
 
 ![Land Prices in Japan on iOS 8 Safari](/images/webland-ios.png)
 
-[Land Prices in Japan](/works/webland)
+[Land Prices in Japan](/webland)
 
 ソースは [GitHub にあります](https://github.com/shuhei/webland)。
 

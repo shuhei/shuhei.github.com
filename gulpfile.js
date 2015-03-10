@@ -4,7 +4,6 @@ var path = require('path');
 var args = require('yargs').argv;
 var strftime = require('strftime');
 var del = require('del');
-var vinylPaths = require('vinyl-paths');
 var highlightjs = require('highlight.js');
 
 var gulp = require('gulp');
@@ -14,7 +13,6 @@ var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var frontMatter = require('gulp-front-matter');
 var textile = require('gulp-textile');
-var shell = require('gulp-shell');
 
 var condition = require('./plugins/condition');
 var server = require('./plugins/server');
@@ -109,36 +107,6 @@ gulp.task('newpage', function() {
   }
 
   return blog.newPage(args.filename, blogConfig);
-});
-
-// Pull remote changes to the deploy dir.
-gulp.task('pull', shell.task('git pull', { cwd: deployDir }));
-
-// Remove non-dot files and directories in the deploy dir.
-gulp.task('clean_deploy', ['pull'], function() {
-  var paths = path.join(deployDir, '*');
-  return gulp.src(paths, { dot: false, read: false })
-    .pipe(vinylPaths(del));
-});
-
-// Copy all files including dot files in public dir to deploy dir.
-gulp.task('copy_to_deploy', ['clean_deploy'], function() {
-  return gulp.src(path.join(publicDir, '**/*'), { dot: true })
-    .pipe(gulp.dest(deployDir));
-});
-
-// Push to GitHub Pages.
-gulp.task('deploy', ['copy_to_deploy'], function() {
-  var utcTime = strftime.strftimeTZ('%F %T UTC', new Date(), '0000');
-  var commit = util.format('git commit -m "Site updated at %s"', utcTime);
-  // FIXME: Not sure why but strange file names are ocasionally added.
-  // FIXME: This raises an error when there is nothing to commit.
-  return gulp.src('')
-    .pipe(shell([
-      'git add -A',
-      commit,
-      'git push origin master'
-    ], { cwd: deployDir }));
 });
 
 gulp.task('build', ['css', 'copy', 'posts']);

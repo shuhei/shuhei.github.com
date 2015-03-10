@@ -6,11 +6,11 @@ comments: true
 categories: [JavaScript, Three.js]
 ---
 
-[![Land Prices in Japan](http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/works/webland/)
+[![Land Prices in Japan](http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/webland/)
 
-[日本の地価を視覚化](/works/webland/)してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。
+[日本の地価を視覚化](/webland/)してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。
 
-- [Land Prices in Japan](/works/webland/)
+- [Land Prices in Japan](/webland/)
 - [フロントエンドのソース](https://github.com/shuhei/webland)
 - [データ取得と加工用スクリプト](https://github.com/shuhei/webland-scraper)
 
