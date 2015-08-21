@@ -20,6 +20,9 @@ Hi! I'm Shuhei. I write code and occasionally enjoy beer, especially craft beer 
 
 ## Talks
 
+- 2015/8 [Git の内部データ構造](https://speakerdeck.com/shuhei/git-falsenei-bu-detagou-zao)
+- 2015/4 [Hello World in Angular 2](https://speakerdeck.com/shuhei/hello-world-in-angular-2)
+- 2015/2 [Node.js のパッケージ管理](https://speakerdeck.com/shuhei/node-dot-js-package-management)
 - 2014/10 [What's "this"? - いまさら聞けない JavaScript の this](https://speakerdeck.com/shuhei/whats-this-imasarawen-kenai-javascript-false-this)
 - 2014/7 [Introduction to Grunt](https://speakerdeck.com/shuhei/introduction-to-grunt)
 - 2014/6 [Start ES6 Modules Today](https://speakerdeck.com/shuhei/start-es6-modules-today)
