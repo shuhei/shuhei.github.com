@@ -31,12 +31,16 @@ Use `gulp` to build static files.
 
 ```
 gulp
+# or
+npm start
 ```
 
 When writing articles or developing templates, watch file changes.
 
 ```
 gulp watch
+# or
+npm run watch
 ```
 
 ### EMFILE
@@ -58,8 +62,8 @@ Error: EMFILE, readdir '/Users/shuhei/work/shuheikagawa.com/source/works/radiati
 
 ## Deploy
 
-Deploy to GitHub Pages. Make sure to build before deployment!
+Deploy to GitHub Pages.
 
 ```
-gulp deploy
+npm run deploy
 ```
