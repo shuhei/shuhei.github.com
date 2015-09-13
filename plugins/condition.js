@@ -1,17 +1,15 @@
-var through = require('through2').obj;
-var match = require('gulp-match');
+import { obj as through } from 'through2';
+import match from 'gulp-match';
 
-module.exports = function (condition, child, branch) {
+export default function (condition, child, branch) {
   function transform(file, enc, cb) {
-    var self = this;
-
     if (match(file, condition)) {
       if (branch) {
         child.write(file);
         cb();
       } else {
-        child.once('data', function (data) {
-          self.push(data);
+        child.once('data', (data) => {
+          this.push(data);
           cb();
         });
         child.write(file);
@@ -19,7 +17,7 @@ module.exports = function (condition, child, branch) {
       return;
     }
 
-    self.push(file);
+    this.push(file);
     cb();
   }
 
@@ -29,4 +27,4 @@ module.exports = function (condition, child, branch) {
   }
 
   return through(transform, flush);
-};
+}

@@ -1,7 +1,7 @@
-var through = require('through2').obj;
-var gutil = require('gulp-util');
+import { obj as through } from 'through2';
+import gutil from 'gulp-util';
 
-module.exports = function (child) {
+export default function (child) {
   function transform(file, enc, cb) {
     var clone = file.clone();
     clone.frontMatter = file.frontMatter;
@@ -18,4 +18,4 @@ module.exports = function (child) {
   }
 
   return through(transform, flush);
-};
+}

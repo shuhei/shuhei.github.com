@@ -1,21 +1,20 @@
-var fs = require('fs');
-var path = require('path');
-var util = require('util');
-var through = require('through2').obj;
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
-var jade = require('jade');
-var async = require('async');
-var mkdirp = require('mkdirp');
-var strftime = require('strftime');
+import fs from 'fs';
+import path from 'path';
+import util from 'util';
+import { obj as through } from 'through2';
+import gutil, { PluginError } from 'gulp-util';
+import jade from 'jade';
+import async from 'async';
+import mkdirp from 'mkdirp';
+import strftime from 'strftime';
 
-var PLUGIN_NAME = 'blog';
+const PLUGIN_NAME = 'blog';
 
 function templateCache() {
-  var compiledTemplates = {};
+  const compiledTemplates = {};
 
-  return function(filePath, callback) {
-    var compiled = compiledTemplates[filePath];
+  return (filePath, callback) => {
+    let compiled = compiledTemplates[filePath];
     if (compiled) return callback(null, compiled);
 
     fs.readFile(filePath, { encoding: 'utf8' }, function(err, data) {
@@ -34,22 +33,22 @@ function toURL(str) {
   return str.toLowerCase().replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
 }
 
-module.exports.index = function(config) {
-  var files = [];
-  var perPage = config.perPage || 3;
-  var getCompiledTemplate = templateCache();
+export function index(config) {
+  const files = [];
+  const perPage = config.perPage || 3;
+  const getCompiledTemplate = templateCache();
 
   // Return a function that renders `tmpl` with `locals` data into `dest`.
   function renderTemplateFunc(tmpl, dest, locals) {
-    var templateFile = path.join(process.cwd(), config.sourceDir, config.layoutDir, tmpl);
-    return function(callback) {
+    const templateFile = path.join(process.cwd(), config.sourceDir, config.layoutDir, tmpl);
+    return (callback) => {
       getCompiledTemplate(templateFile, function(err, compiled) {
         if (err) {
           callback(err);
           return;
         }
 
-        var data;
+        let data;
         try {
           data = compiled(locals);
         } catch (e) {
@@ -57,7 +56,7 @@ module.exports.index = function(config) {
           return;
         }
 
-        var file = new gutil.File({
+        const file = new gutil.File({
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
           path: path.join(__dirname, config.sourceDir, dest),
@@ -69,7 +68,7 @@ module.exports.index = function(config) {
   }
 
   function localsForPage(page, posts) {
-    var locals = {
+    const locals = {
       site: config,
       posts: posts.slice(page * perPage, (page + 1) * perPage)
     };
@@ -90,36 +89,34 @@ module.exports.index = function(config) {
   }
 
   function flush(cb) {
-    var self = this;
-
-    var posts = files.map(function(file) {
+    const posts = files.map((file) => {
       return util._extend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
-    var localsForArchive = { site: config, posts: posts };
+    const localsForArchive = { site: config, posts: posts };
 
     // Render index pages and archive page in parallel.
-    var funcs = [];
-    var pageCount = Math.ceil(posts.length / perPage);
+    const funcs = [];
+    const pageCount = Math.ceil(posts.length / perPage);
 
     // Top page.
     funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0, posts)));
 
     // Index pages.
-    for (var i = 1; i < pageCount; i++) {
-      var dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
+    for (let i = 1; i < pageCount; i++) {
+      const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
       funcs.push(renderTemplateFunc('index.jade', dest, localsForPage(i, posts)));
     }
 
     // Archive page.
     funcs.push(renderTemplateFunc('archives.jade', path.join(config.blogDir, 'archives', 'index.html'), localsForArchive));
 
-    async.parallel(funcs, function(err, files) {
+    async.parallel(funcs, (err, files) => {
       if (err) {
-        self.emit('err', new PluginError(PLUGIN_NAME, err));
+        this.emit('err', new PluginError(PLUGIN_NAME, err));
         return cb();
       }
-      files.forEach(self.push.bind(self));
+      files.forEach((file) => this.push(file));
       cb();
     });
   }
@@ -127,26 +124,24 @@ module.exports.index = function(config) {
   return through(transform, flush);
 };
 
-module.exports.layout = function(config) {
-  var getCompiledTemplate = templateCache();
+export function layout(config) {
+  const getCompiledTemplate = templateCache();
 
   function transform(file, enc, cb) {
-    var self = this;
-
     if (!file.frontMatter || !file.frontMatter.layout) {
-      self.push(file);
+      this.push(file);
       return cb();
     }
 
-    var templatePath = path.join(file.cwd, config.sourceDir, config.layoutDir, file.frontMatter.layout + '.jade');
+    const templatePath = path.join(file.cwd, config.sourceDir, config.layoutDir, file.frontMatter.layout + '.jade');
 
-    getCompiledTemplate(templatePath, function(err, compiled) {
+    getCompiledTemplate(templatePath, (err, compiled) => {
       if (err) {
-        self.emit('error', new PluginError(PLUGIN_NAME, err));
+        this.emit('error', new PluginError(PLUGIN_NAME, err));
         return cb();
       }
 
-      var locals = {
+      const locals = {
         site: config,
         post: util._extend({ content: file.contents.toString() }, file.frontMatter)
       };
@@ -154,11 +149,11 @@ module.exports.layout = function(config) {
       try {
         file.contents = new Buffer(compiled(locals));
       } catch(e) {
-        self.emit('error', new PluginError(PLUGIN_NAME, e));
+        this.emit('error', new PluginError(PLUGIN_NAME, e));
         return cb();
       }
 
-      self.push(file);
+      this.push(file);
       cb();
     });
   }
@@ -166,19 +161,19 @@ module.exports.layout = function(config) {
   return through(transform);
 };
 
-module.exports.cleanUrl = function() {
+export function cleanUrl() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
       return cb();
     }
 
-    var components = file.path.split(path.sep);
-    var basename = components[components.length - 1];
+    const components = file.path.split(path.sep);
+    const basename = components[components.length - 1];
 
-    var nameComponents = basename.split('-');
-    var date = nameComponents.slice(0, 3);
-    var dirname = nameComponents.slice(3).join('-').replace(/\.html$/, '');
+    const nameComponents = basename.split('-');
+    const date = nameComponents.slice(0, 3);
+    const dirname = nameComponents.slice(3).join('-').replace(/\.html$/, '');
 
     components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
@@ -192,15 +187,15 @@ module.exports.cleanUrl = function() {
   return through(transform);
 };
 
-module.exports.newPost = function(title, config) {
-  var urlTitle = toURL(title);
-  var now = new Date();
-  var date = strftime('%Y-%m-%d', now);
-  var filename = path.join(config.sourceDir, config.postDir, util.format('%s-%s.markdown', date, urlTitle));
+export function newPost(title, config) {
+  const urlTitle = toURL(title);
+  const now = new Date();
+  const date = strftime('%Y-%m-%d', now);
+  const filename = path.join(config.sourceDir, config.postDir, util.format('%s-%s.markdown', date, urlTitle));
 
   gutil.log(util.format('Creating new post: %s', filename));
 
-  var writer = fs.createWriteStream(filename);
+  const writer = fs.createWriteStream(filename);
   writer.write("---\n");
   writer.write("layout: post\n");
   writer.write(util.format("title: \"%s\"\n", title));
@@ -211,23 +206,22 @@ module.exports.newPost = function(title, config) {
   writer.end();
 };
 
-module.exports.newPage = function(filename, config) {
-  var filenamePattern = /(^.+\/)?(.+)/;
-  var matches = filenamePattern.exec(filename);
+export function newPage(filename, config) {
+  const filenamePattern = /(^.+\/)?(.+)/;
+  const matches = filenamePattern.exec(filename);
   if (!matches) {
-    throw new PluginError(PLUGIN_NAME, ['Syntac error:', filename, 'contains unsupported characters'].join(' '));
+    throw new PluginError(PLUGIN_NAME, ['Syntax error:', filename, 'contains unsupported characters'].join(' '));
   }
 
-  var dirComponents = [config.sourceDir];
-  dirComponents = dirComponents.concat((matches[1] || '').split('/').filter(Boolean));
+  const dirComponents = [config.sourceDir].concat((matches[1] || '').split('/').filter(Boolean));
 
-  var components = matches[2].split('.');
-  var extension;
+  const components = matches[2].split('.');
+  let extension;
   if (components.length > 1) {
     extension = components.pop();
   }
-  var title = components.join('.');
-  var file= toURL(title);
+  const title = components.join('.');
+  let file = toURL(title);
 
   if (!extension) {
     dirComponents.push(file);
@@ -235,15 +229,15 @@ module.exports.newPage = function(filename, config) {
   }
   extension = extension || config.newPageExtension;
 
-  var pageDir = dirComponents.map(toURL).join('/');
+  const pageDir = dirComponents.map(toURL).join('/');
 
-  var filePath = util.format('%s/%s.%s', pageDir, file, extension);
+  const filePath = util.format('%s/%s.%s', pageDir, file, extension);
 
   gutil.log(util.format('Creating new page: %s', filePath));
 
   mkdirp.sync(pageDir);
 
-  var writer = fs.createWriteStream(filePath);
+  const writer = fs.createWriteStream(filePath);
   writer.write("---\n");
   writer.write("layout: page\n");
   writer.write(util.format("title: \"%s\"\n", title));

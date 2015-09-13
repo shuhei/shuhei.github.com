@@ -1,25 +1,25 @@
-var util = require('util');
-var path = require('path');
+import util from 'util';
+import path from 'path'
 
-var args = require('yargs').argv;
-var strftime = require('strftime');
-var del = require('del');
-var highlightjs = require('highlight.js');
+import { argv } from 'yargs';
+import strftime from 'strftime';
+import del from 'del';
+import highlightjs from 'highlight.js';
 
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var concat = require('gulp-concat');
-var plumber = require('gulp-plumber');
-var markdown = require('gulp-markdown');
-var frontMatter = require('gulp-front-matter');
-var textile = require('gulp-textile');
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import concat from 'gulp-concat';
+import plumber from 'gulp-plumber';
+import markdown from 'gulp-markdown';
+import frontMatter from 'gulp-front-matter';
+import textile from 'gulp-textile';
 
-var condition = require('./plugins/condition');
-var server = require('./plugins/server');
-var blog = require('./plugins/blog');
-var branch = require('./plugins/branch');
+import condition from './plugins/condition';
+import server from './plugins/server';
+import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
+import branch from './plugins/branch';
 
-var blogConfig = {
+const blogConfig = {
   title: 'Shuhei Kagawa',
   author: 'Shuhei Kagawa',
   perPage: 3,
@@ -30,27 +30,27 @@ var blogConfig = {
   postDir: '_posts'
 };
 
-var deployDir = '_deploy';
-var publicDir = 'public';
+const deployDir = '_deploy';
+const publicDir = 'public';
 
 function highlight(code) {
   return highlightjs.highlightAuto(code).value;
 }
 
 // Copy static pages compiling markdown files.
-gulp.task('copy', function() {
+gulp.task('copy', () => {
   return gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
-    .pipe(blog.layout(blogConfig))
+    .pipe(layout(blogConfig))
     .pipe(gulp.dest(publicDir));
 });
 
 // Compile blog posts, create index and archive pages.
-gulp.task('posts', function() {
-  var aggregator = blog.index(blogConfig);
+gulp.task('posts', () => {
+  const aggregator = index(blogConfig);
   aggregator.pipe(gulp.dest('./public'));
 
   return gulp.src('source/_posts/*.*')
@@ -58,27 +58,27 @@ gulp.task('posts', function() {
     .pipe(frontMatter())
     .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
     .pipe(condition(__dirname + '/source/**/*.textile', textile()))
-    .pipe(blog.cleanUrl())
+    .pipe(cleanUrl())
     .pipe(branch(aggregator))
-    .pipe(blog.layout(blogConfig))
+    .pipe(layout(blogConfig))
     .pipe(gulp.dest(path.join('./public', blogConfig.blogDir)));
 });
 
 // Concat CSS files.
-gulp.task('css', function() {
+gulp.task('css', () => {
   return gulp.src(['./source/_css/**/*.css', './node_modules/highlight.js/styles/default.css'])
     .pipe(plumber())
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', (cb) => {
   del([publicDir], cb);
 });
 
 // Build the site, launch a dev server and watch changes.
-gulp.task('watch', ['default'], function() {
-  server('./public').listen(4000, function(err) {
+gulp.task('watch', ['default'], () => {
+  server('./public').listen(4000, (err) => {
     if (err) {
       gutil.log(err);
       return;
@@ -91,22 +91,22 @@ gulp.task('watch', ['default'], function() {
 });
 
 // Create a new post source file.
-gulp.task('newpost', function() {
+gulp.task('newpost', () => {
   if (!args.title) {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  return blog.newPost(args.title, blogConfig);
+  return newPost(args.title, blogConfig);
 });
 
 // Create a new page source file.
-gulp.task('newpage', function() {
+gulp.task('newpage', () => {
   if (!args.filename) {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
     return;
   }
 
-  return blog.newPage(args.filename, blogConfig);
+  return newPage(args.filename, blogConfig);
 });
 
 gulp.task('build', ['css', 'copy', 'posts']);
