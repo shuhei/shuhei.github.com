@@ -108,20 +108,20 @@ npm <span class="hljs-keyword">install</span></span>
 <p>Once you get the ASTs, half of the work is done. Let&#39;s write some code to insert AST nodes using <code>types</code> functions.</p>
 <p><a href="https://github.com/shuhei/babel-plugin-auto-assign">The complete project</a> includes unit testing with fixtures.</p>
 <p><code>src/index.js</code></p>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> autoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> AutoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">'autoAssign'</span>, {
     visitor: {
       ClassDeclaration: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">node, parent</span>) </span>{
-        <span class="hljs-keyword">new</span> autoAssign(t).run(node);
+        <span class="hljs-keyword">new</span> AutoAssign(t).run(node);
       }
     }
   });
 }
 </code></pre>
 <p><code>src/auto-assign.js</code></p>
-<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> autoAssign {
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> AutoAssign {
   <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(types) </span>{
     <span class="hljs-keyword">this</span>.types = types;
   }
