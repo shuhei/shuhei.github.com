@@ -1,4 +1,8 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/11/23/artoolkit-on-vc2005express">Visual C++ 2005 Express Edition で ARToolkit</a></h1><div class="meta">@<span class="date">2008-11-23 15:07</span> - </div></div><div class="content"><p>ARToolkit、やっと自作プロジェクトで動きました。<br />
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/blog/archives">Archives</a></li><li><a href="/about">About</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/12/06/mysql-int-timestamp-to-datetime">MySQL で INT 型のタイムスタンプから DATETIME 型</a></h1><div class="meta">@<span class="date">2008-12-06 12:59</span></div></div><div class="content"><p>にする方法がよくわかりません。<br />
+<span class="caps">TIMESTAMP</span> 型へのキャストはできませんし、<span class="caps">DATETIME</span> に放り込むんでもタイムスタンプとして解釈されないのです。</p>
+<p>ゴリゴリ計算するとなると、閏年や月ごとの日にちの違いなど、めんどくさいことばかり。<br />
+他のプログラムからいじるようにしようと思います。</p>
+<p>普通に変換する関数はないんですかねえ？</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/11/23/artoolkit-on-vc2005express">Visual C++ 2005 Express Edition で ARToolkit</a></h1><div class="meta">@<span class="date">2008-11-23 15:07</span> - </div></div><div class="content"><p>ARToolkit、やっと自作プロジェクトで動きました。<br />
 Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。</p>
 <p>プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; Windowsアプリケーション。</p>
 <p>出力先フォルダには、ARtoolkit/bin にある <span class="caps">DLL</span> ファイルや Data フォルダをコピーしておきます。</p>
@@ -17,8 +21,7 @@ Visual Studio の設定について書いたものはありましたが、プロ
 <p>結局、3回分しか解かなかったんですが、問題に慣れることができました。<br />
 解説も十分詳しいです。</p>
 <p>もし2級や1級を受ける場合は、教科書的な本をパラパラ見て、これを解けばよさそう。<br />
-やはり、試験対策は過去問に限りますね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/11/08/environmental-dependency">環境依存文字</a></h1><div class="meta">@<span class="date">2008-11-08 17:02</span> - </div></div><div class="content"><p>「崎」の右上が「立」になっている字は環境依存文字だそうです。<br />
-これのせいで2、3時間ハマりました・・・。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/32">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/34">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+やはり、試験対策は過去問に限りますね。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/32">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/34">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
