@@ -161,13 +161,13 @@ Once you get the ASTs, half of the work is done. Let's write some code to insert
 `src/index.js`
 
 ```js
-import autoAssign from './auto-assign';
+import AutoAssign from './auto-assign';
 
 export default function ({ Plugin, types: t }) {
   return new Plugin('autoAssign', {
     visitor: {
       ClassDeclaration: function (node, parent) {
-        new autoAssign(t).run(node);
+        new AutoAssign(t).run(node);
       }
     }
   });
@@ -177,7 +177,7 @@ export default function ({ Plugin, types: t }) {
 `src/auto-assign.js`
 
 ```js
-export default class autoAssign {
+export default class AutoAssign {
   constructor(types) {
     this.types = types;
   }
