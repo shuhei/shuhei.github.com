@@ -8,7 +8,7 @@ categories: [JavaScript, gulp]
 
 もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。
 
-[shuhei.github.com / gulpfile.js](https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.js)
+[shuhei.github.io / gulpfile.babel.js](https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js)
 
 ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。
 
