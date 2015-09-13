@@ -18,17 +18,17 @@ expect(Person.new(birth_date: Time.utc(<span class="hljs-number">2015</span>, <s
 expect(Person.new(birth_date: <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 1)</span>)
 </code></pre>
 <p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
-<pre><code class="lang-javascript"><span class="hljs-tag">JSON</span><span class="hljs-class">.stringify</span>({ <span class="hljs-attribute">date</span>: new <span class="hljs-function">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
+<pre><code class="lang-javascript">JSON.stringify({ date: <span class="hljs-keyword">new</span> Date(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
 <span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span>
 </code></pre>
 <p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
-<pre><code>def birth_date=(<span class="hljs-built_in">value</span>)
-  self[:birth_date] = <span class="hljs-keyword">case</span> <span class="hljs-built_in">value</span>
-                      when String <span class="hljs-keyword">then</span> Time.zone.parse(<span class="hljs-built_in">value</span>)
-                      when Time <span class="hljs-keyword">then</span> <span class="hljs-built_in">value</span>.in_time_zone
-                      <span class="hljs-keyword">else</span> <span class="hljs-built_in">value</span>
-                      <span class="hljs-function"><span class="hljs-keyword">end</span></span>
-<span class="hljs-function"><span class="hljs-keyword">end</span></span>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">birth_date=</span><span class="hljs-params">(value)</span></span>
+  <span class="hljs-keyword">self</span>[<span class="hljs-symbol">:birth_date</span>] = <span class="hljs-keyword">case</span> value
+                      <span class="hljs-keyword">when</span> <span class="hljs-constant">String</span> <span class="hljs-keyword">then</span> <span class="hljs-constant">Time</span>.zone.parse(value)
+                      <span class="hljs-keyword">when</span> <span class="hljs-constant">Time</span> <span class="hljs-keyword">then</span> value.in_time_zone
+                      <span class="hljs-keyword">else</span> value
+                      <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 </code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
 <pre><code class="lang-Gemfile"><span class="hljs-title">gem</span> <span class="hljs-string">'date_timezone'</span>
 </code></pre>

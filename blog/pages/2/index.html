@@ -21,7 +21,7 @@
 <p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
 <script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/06/08/blog-with-gulp">Gulp でブログを書く</a></h1><div class="meta">@<span class="date">2014-06-08 17:23</span> - <span class="category">JavaScript</span>, <span class="category">gulp</span></div></div><div class="content"><p>もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。</p>
-<p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.js">shuhei.github.com / gulpfile.js</a></p>
+<p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js">shuhei.github.io / gulpfile.babel.js</a></p>
 <p>ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。</p>
 <p>機能は本当に最小限で、記事ページ、静的ページと index, archive の生成だけです。</p>
 <h2 id="-">経緯</h2>
