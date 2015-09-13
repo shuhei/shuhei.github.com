@@ -1,7 +1,7 @@
 import util from 'util';
 import path from 'path'
 
-import { argv } from 'yargs';
+import { argv as args } from 'yargs';
 import strftime from 'strftime';
 import del from 'del';
 import highlightjs from 'highlight.js';
