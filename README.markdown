@@ -7,8 +7,6 @@ git clone {this repo}
 git checkout source
 git submodule init
 git submodule update
-
-git clone {this repo} _deploy
 ```
 
 ## Add posts and pages
