@@ -1,15 +1,22 @@
 ---
 layout: page
-title: "works"
+title: "Works"
 date: 2013-07-10 23:45
 comments: true
 sharing: true
 footer: true
 ---
+
+## Code
+
+- [GitHub](https://github.com/shuhei)
+- [npm](https://www.npmjs.com/~shuhei)
+
+## Visible Things
+
 - [Weird Attractors](/attractors): Tweaked Strange Attractors.
 - [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
-- [Contrib](http://contrib.herokuapp.com/): Check your GitHub Contributions on your phone. Build with React.js and SVG.
-- [WebGL RotatingArcs](/rotating-arcs/): Ectype of Processing's 3D sketch with Three.js.
+- Contrib: Check your GitHub Contributions on your phone. Build with React.js and SVG.
 - [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
 - [Perfume Dev](/works/perfume_dev/): Perfume's choreography data visualized with Three.js.
 - [*** Books](/works/bookshelf/): Books in my bookshelf.
