@@ -48,7 +48,7 @@ a:hover {
 
 .post {
   background: #fff;
-  border-top: 8px solid #ff0;
+  border-top: 8px solid #fbf76e;
   padding: 30px 0 20px;
   margin: 0 0 40px;
 }
@@ -71,7 +71,7 @@ a:hover {
 
 .post-list {
   background: #fff;
-  border-top: 8px solid #ff0;
+  border-top: 8px solid #fbf76e;
   padding: 30px 0 20px;
 }
 .post-list .title {
