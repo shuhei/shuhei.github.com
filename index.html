@@ -18,25 +18,23 @@
 <p>You can do almost anything as long as it&#39;s in the syntax that Babylon supports, ES2015, ES7+, JSX, flowtype and etc. You can&#39;t introduce new syntax because Babel currently doesn&#39;t support parser extension by plugins. (You can actually accomplish it by monkey-patching Babylon though.)</p>
 <h2 id="create-a-project">Create a project</h2>
 <p>Create a directory in the format of <code>babel-plugin-*</code>. The <code>*</code> part turns to be your plugin name. In the directory, you can create a Babel plugin project with <code>babel-plugin init</code>, which is installed by <code>npm install -g babel</code>.</p>
-<pre><code># <span class="hljs-operator"><span class="hljs-keyword">Prepare</span> a <span class="hljs-keyword">project</span> <span class="hljs-keyword">directory</span>.
-mkdir babel-<span class="hljs-keyword">plugin</span>-foo-bar
-cd babel-<span class="hljs-keyword">plugin</span>-foo-bar
-# Generate necessary files.
-npm <span class="hljs-keyword">install</span> -<span class="hljs-keyword">g</span> babel
-babel-<span class="hljs-keyword">plugin</span> init
-# <span class="hljs-keyword">Install</span> dependencies.
-npm <span class="hljs-keyword">install</span></span>
-</code></pre><p>The following structure should have been generated:</p>
-<pre><code>.
-├── <span class="hljs-class">.gitignore</span>
-├── <span class="hljs-class">.npmigonore</span>
+<pre><code class="hljs sh"><span class="hljs-comment"># Prepare a project directory.</span>
+mkdir babel-plugin-foo-bar
+<span class="hljs-built_in">cd</span> babel-plugin-foo-bar
+<span class="hljs-comment"># Generate necessary files.</span>
+npm install -g babel
+babel-plugin init
+<span class="hljs-comment"># Install dependencies.</span>
+npm install</code></pre><p>The following structure should have been generated:</p>
+<pre><code class="hljs undefined">.
+├── .gitignore
+├── .npmigonore
 ├── LICENSE
-├── README<span class="hljs-class">.md</span>
+├── README.md
 ├── node_modules
-├── package<span class="hljs-class">.json</span>
+├── package.json
 └── src
-    └── index.js
-</code></pre><p>You will find some npm-run-scripts in the <code>package.json</code>:</p>
+    └── index.js</code></pre><p>You will find some npm-run-scripts in the <code>package.json</code>:</p>
 <ul>
 <li><code>npm run build</code> transpiles files under <code>src</code> directory with Babel and output the result into <code>lib</code> directory.</li>
 <li><code>npm run push</code> releases a newer version of the plugin. It takes care of git commit, tag and npm package.</li>
@@ -45,31 +43,27 @@ npm <span class="hljs-keyword">install</span></span>
 <p>With this setup, you can write your plugin itself with Babel&#39;s features. <code>src</code> should be ignored in npm and <code>lib</code> in git.</p>
 <h2 id="transformer">Transformer</h2>
 <p><code>src/index.js</code>, the meat of the plugin, looks like this:</p>
-<pre><code class="lang-js"><span class="hljs-comment">/* eslint no-unused-vars:0 */</span>
+<pre><code class="hljs js"><span class="hljs-comment">/* eslint no-unused-vars:0 */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">"foo"</span>, {
     visitor: {
       <span class="hljs-comment">// your visitor methods go here</span>
     }
   });
-}
-</code></pre>
-<p>It exports a factory function that creates a <code>Plugin</code> instance. The <code>Plugin</code> constructor gets the plugin&#39;s name and a configuration object.</p>
+}</code></pre><p>It exports a factory function that creates a <code>Plugin</code> instance. The <code>Plugin</code> constructor gets the plugin&#39;s name and a configuration object.</p>
 <p>The <code>visitor</code> property holds methods named as AST node types. A Babel transformer traverses AST from the top to the bottom. Each method is called when the trasnformer visits the matched nodes. For instance, you can manipulate class declarations and function declarations as the following:</p>
-<pre><code class="lang-js"><span class="hljs-tag">export</span> <span class="hljs-tag">default</span> <span class="hljs-tag">function</span> ({ <span class="hljs-tag">Plugin</span>, <span class="hljs-tag">types</span>: <span class="hljs-tag">t</span> }) {
-  <span class="hljs-tag">return</span> <span class="hljs-tag">new</span> <span class="hljs-tag">Plugin</span>(<span class="hljs-string">"foo"</span>, {
-    <span class="hljs-tag">visitor</span>: {
-      <span class="hljs-tag">ClassDeclaration</span>(node, parent) {
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">"foo"</span>, {
+    visitor: {
+      ClassDeclaration(node, parent) {
         <span class="hljs-comment">// Do something on a class declaration node.</span>
       },
-      <span class="hljs-function">FunctionDeclaration</span>(node, parent) {
+      FunctionDeclaration(node, parent) {
         <span class="hljs-comment">// Do something on a function declaration node.</span>
       }
     }
   });
-};
-</code></pre>
-<p>You can also use <code>alias</code> instead of plain node types to match multiple node types. For example, <code>Function</code> matches against <code>FunctionDeclaration</code> and <code>FunctionExpression</code>.</p>
+};</code></pre><p>You can also use <code>alias</code> instead of plain node types to match multiple node types. For example, <code>Function</code> matches against <code>FunctionDeclaration</code> and <code>FunctionExpression</code>.</p>
 <p><code>types</code> is another important thing. It contains a bunch of utility functions for AST manipulation.</p>
 <ul>
 <li>AST node generation functions such as <code>identifier()</code>, <code>memberExpression()</code> and <code>assignmentExpression</code>. Their names are lowerCamelCased versions of the corresponding node types. You can check their arguments at <a href="https://github.com/babel/babel/tree/master/packages/babel/src/types/definitions">definitions</a>&#39; <code>builder</code> properties.</li>
@@ -81,22 +75,18 @@ npm <span class="hljs-keyword">install</span></span>
 <p>As a case study, I built a plugin called <a href="https://github.com/shuhei/babel-plugin-auto-assign">babel-plugin-auto-assign</a> that &quot;assigns class constructor&#39;s arguments as instance properties&quot;, which resembles TypeScript&#39;s parameter properties in its action. It is intended to be used with class-based dependency injection like Angular&#39;s.</p>
 <p>To avoid unawarely messing up constructors, let&#39;s apply the transformation only to classes with a decrator called <code>@autoAssign</code>. <code>@autoAssign</code> is a so-called <a href="https://github.com/jonathandturner/brainstorming/blob/master/README.md#c6-ambient-decorators">ambient decorator</a> because it should not appear in the output.</p>
 <p>Before:</p>
-<pre><code class="lang-js">@autoAssign
-<span class="hljs-keyword">class</span> Hello {
-  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(foo, bar, baz) </span>{
+<pre><code class="hljs js">@autoAssign
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>{
+  constructor(foo, bar, baz) {
   }
-}
-</code></pre>
-<p>After:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">class</span> Hello {
-  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(foo, bar, baz) </span>{
+}</code></pre><p>After:</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>{
+  constructor(foo, bar, baz) {
     <span class="hljs-keyword">this</span>.foo = foo;
     <span class="hljs-keyword">this</span>.bar = bar;
     <span class="hljs-keyword">this</span>.baz = baz;
   }
-}
-</code></pre>
-<p>Note that we can leave the ES6 class as is because it&#39;s going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied <strong>before</strong> the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with <code>:after</code> like <code>babel --plugins foo:after index.js</code>.</p>
+}</code></pre><p>Note that we can leave the ES6 class as is because it&#39;s going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied <strong>before</strong> the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with <code>:after</code> like <code>babel --plugins foo:after index.js</code>.</p>
 <h2 id="ast-before-after-transformation">AST before/after transformation</h2>
 <p>To transform AST, we need to know how the starting post and the goal look like. You can visualize source code in AST parsed by Babylon with <a href="http://felix-kling.de/esprima_ast_explorer">Felix Kling&#39;s JS AST Explorer</a>.</p>
 <ul>
@@ -108,7 +98,7 @@ npm <span class="hljs-keyword">install</span></span>
 <p>Once you get the ASTs, half of the work is done. Let&#39;s write some code to insert AST nodes using <code>types</code> functions.</p>
 <p><a href="https://github.com/shuhei/babel-plugin-auto-assign">The complete project</a> includes unit testing with fixtures.</p>
 <p><code>src/index.js</code></p>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> AutoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> AutoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">'autoAssign'</span>, {
@@ -118,11 +108,9 @@ npm <span class="hljs-keyword">install</span></span>
       }
     }
   });
-}
-</code></pre>
-<p><code>src/auto-assign.js</code></p>
-<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> AutoAssign {
-  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(types) </span>{
+}</code></pre><p><code>src/auto-assign.js</code></p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoAssign</span> </span>{
+  constructor(types) {
     <span class="hljs-keyword">this</span>.types = types;
   }
 
@@ -179,14 +167,11 @@ npm <span class="hljs-keyword">install</span></span>
     <span class="hljs-keyword">const</span> assignment = <span class="hljs-keyword">this</span>.types.assignmentExpression(<span class="hljs-string">'='</span>, prop, arg);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.types.expressionStatement(assignment);
   }
-}
-</code></pre>
-<h2 id="run-">Run!</h2>
+}</code></pre><h2 id="run-">Run!</h2>
 <p>Use <code>--optional es7.decorators</code> option in order to support decorators. You can specify plugins by file path in addition to plugin name, which is convenient for development.</p>
-<pre><code>npm run build
-echo <span class="hljs-string">'@autoAssign class Hello { constructor(foo, bar, baz) {} }'</span> | babel --optional es7.decorators --plugins ./<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">index</span>.<span class="hljs-title">js</span></span>
-</code></pre><p>Here comes the result!</p>
-<pre><code class="lang-js"><span class="hljs-pi">"use strict"</span>;
+<pre><code class="hljs undefined">npm run build
+echo '@autoAssign class Hello { constructor(foo, bar, baz) {} }' | babel --optional es7.decorators --plugins ./lib/index.js</code></pre><p>Here comes the result!</p>
+<pre><code class="hljs js"><span class="hljs-pi">"use strict"</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }
 
@@ -201,9 +186,7 @@ echo <span class="hljs-string">'@autoAssign class Hello { constructor(foo, bar, 
 
   <span class="hljs-keyword">var</span> _Hello = Hello;
   <span class="hljs-keyword">return</span> Hello;
-})();
-</code></pre>
-<h2 id="publish">Publish</h2>
+})();</code></pre><h2 id="publish">Publish</h2>
 <p>After you write README and commit it, you can publish your plugin to the world by <code>npm run push</code>.</p>
 <p>Let&#39;s create awesome babel plugins!</p>
 <h2 id="references">References</h2>
@@ -221,44 +204,35 @@ echo <span class="hljs-string">'@autoAssign class Hello { constructor(foo, bar, 
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/03/02/date-timezone">Assign Time/time string in UTC to ActiveRecord date attribute</a></h1><div class="meta">@<span class="date">2015-03-02 20:58</span> - <span class="category">Ruby</span>, <span class="category">Rails</span></div></div><div class="content"><p><strong>TL;DR: <code>gem &#39;date_timezone&#39;</code> in <code>Gemfile</code> and <code>include DateTimezone</code> in ActiveRecord models if you are on the east side of the prime meridian.</strong></p>
 <p>ActiveRecord is great. It automatically converts data <a href="https://github.com/rails/rails/tree/v4.2.0/activerecord/lib/active_record/type">according to the type of database column</a>. That&#39;s why we can throw request params, whose values are often strings, into mass assignment methods like <code>create</code> and <code>update</code> without manual conversion. The conversion works perfectly in most of the cases except for <code>date</code> attribute.</p>
 <p>To <code>date</code> attribute, we can assign <code>Date</code> and date string like <code>&#39;2015-03-02&#39;</code> without any problem. However, <code>Time</code> and time string with different time zone, usualy UTC, don&#39;t work well here. Their own time zones are not taken into account when converted to <code>Date</code>.</p>
-<pre><code class="lang-ruby">class Application &lt; Rails::Application
+<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">Rails::Application</span></span></span>
   config.time_zone = <span class="hljs-string">'Tokyo'</span>
-end
+<span class="hljs-keyword">end</span>
 
-class Person &lt; ActiveRecord::Base
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   <span class="hljs-comment"># birth_date :date</span>
-end
+<span class="hljs-keyword">end</span>
 
-expect(Person.new(birth_date: <span class="hljs-string">'2015-03-02'</span>).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
-expect(Person.new(birth_date: Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
-expect(Person.new(birth_date: Time.zone.<span class="hljs-keyword">local</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 2)</span>)
+expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-02'</span>).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
+expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
+expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Time</span>.zone.local(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
 
 <span class="hljs-comment"># But...</span>
-expect(Person.new(birth_date: Time.utc(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>)).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 1)</span>)
-expect(Person.new(birth_date: <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to e<span class="hljs-string">q(Date.new(2015, 3, 1)</span>)
-</code></pre>
-<p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
-<pre><code class="lang-javascript">JSON.stringify({ date: <span class="hljs-keyword">new</span> Date(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
-<span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span>
-</code></pre>
-<p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
-<pre><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">birth_date=</span><span class="hljs-params">(value)</span></span>
-  <span class="hljs-keyword">self</span>[<span class="hljs-symbol">:birth_date</span>] = <span class="hljs-keyword">case</span> value
-                      <span class="hljs-keyword">when</span> <span class="hljs-constant">String</span> <span class="hljs-keyword">then</span> <span class="hljs-constant">Time</span>.zone.parse(value)
-                      <span class="hljs-keyword">when</span> <span class="hljs-constant">Time</span> <span class="hljs-keyword">then</span> value.in_time_zone
-                      <span class="hljs-keyword">else</span> value
-                      <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
-<pre><code class="lang-Gemfile"><span class="hljs-title">gem</span> <span class="hljs-string">'date_timezone'</span>
-</code></pre>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Time</span>.utc(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))
+expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))</code></pre><p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
+<pre><code class="hljs javascript"><span class="hljs-built_in">JSON</span>.stringify({ date: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
+<span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span></code></pre><p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
+<pre><code class="hljs undefined">def birth_date=(value)
+  self[:birth_date] = case value
+                      when String then Time.zone.parse(value)
+                      when Time then value.in_time_zone
+                      else value
+                      end
+end</code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
+<pre><code class="hljs Gemfile">gem 'date_timezone'</code></pre><pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   <span class="hljs-keyword">include</span> <span class="hljs-constant">DateTimezone</span>
 
   <span class="hljs-comment"># birth_date :date</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>If you are creating Rails application on the east side of the prime meridian and in trouble with the same issue as mine, please try it and share what you think.</p>
+<span class="hljs-keyword">end</span></code></pre><p>If you are creating Rails application on the east side of the prime meridian and in trouble with the same issue as mine, please try it and share what you think.</p>
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/02/15/playing-with-vanilla-webgl-api">Playing with vanilla WebGL API</a></h1><div class="meta">@<span class="date">2015-02-15 16:21</span> - <span class="category">JavaScript</span>, <span class="category">WebGL</span></div></div><div class="content"><p>Started writing in English on a whim.</p>
 <p>I&#39;ve been learning vanilla WebGL with <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> since the last weekend. It took some time for me to understand concepts like array buffer and element buffer but it was fun to learn the basics that we stand on.</p>
 <p>The team behind <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> creates a set of utility modules called <a href="http://stack.gl/"><code>stackgl</code></a>. It embraces the UNIX philosophy, &quot;Write programs that do one thing and do it well.&quot; Even though the workshop doesn&#39;t use <code>stackgl</code> libraries, I liked the way the exercises were organized as small modules.</p>

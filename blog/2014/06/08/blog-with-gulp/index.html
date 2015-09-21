@@ -8,15 +8,9 @@
 <p>どうも気持ち悪かったので、ついに重い腰を上げて書いてみました。当初 child_process を使って書いたのですが、<a href="https://github.com/sun-zheng-an/gulp-shell">gulp-shell</a>を見つけて使うようにしたらすっきりしました。</p>
 <h2 id="-">操作</h2>
 <p>gulp でビルドします。</p>
-<pre><code class="lang-shell">gulp
-</code></pre>
-<p>表示を確認しながら編集したいときは、以下でローカルにサーバが立ち上がり、ファイル変更時にビルドしなおしてくれます。</p>
-<pre><code class="lang-shell"><span class="hljs-title">gulp</span> watch
-</code></pre>
-<p>デプロイも gulp タスクです。</p>
-<pre><code class="lang-shell"><span class="hljs-title">gulp</span> deploy
-</code></pre>
-<h2 id="-">感想</h2>
+<pre><code class="hljs shell">gulp</code></pre><p>表示を確認しながら編集したいときは、以下でローカルにサーバが立ち上がり、ファイル変更時にビルドしなおしてくれます。</p>
+<pre><code class="hljs shell">gulp watch</code></pre><p>デプロイも gulp タスクです。</p>
+<pre><code class="hljs shell">gulp deploy</code></pre><h2 id="-">感想</h2>
 <p>当たり前の感想ですが、gulp はデプロイのようなタスクには向いてないものの、 静的サイトの生成には悪くないなと思いました。</p>
 <p>とは言え、サイト全体の情報を扱うのはやりにくいです。現在は index, archive のページを、各記事の stream から分岐して作っています。また、必要ないと思いサイドバーをつけていないのですが、つける場合には一旦全記事を読み込んでサイドバー向けの情報を作ってから各記事のページにくっつける必要があります。その辺は今後の課題ですかね。</p>
 </div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
