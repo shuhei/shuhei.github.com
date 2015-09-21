@@ -5,6 +5,7 @@ import { argv as args } from 'yargs';
 import strftime from 'strftime';
 import del from 'del';
 import highlightjs from 'highlight.js';
+import { Renderer } from 'marked';
 
 import gulp from 'gulp';
 import gutil from 'gulp-util';
@@ -33,9 +34,14 @@ const blogConfig = {
 const deployDir = '_deploy';
 const publicDir = 'public';
 
-function highlight(code) {
-  return highlightjs.highlightAuto(code).value;
-}
+// Custom renderer to add `hljs` class to code blocks.
+// https://github.com/chjj/marked/pull/418
+const renderer = new Renderer();
+renderer.code = (code, language) => {
+  const validLang = !!(language && highlightjs.getLanguage(language));
+  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
 
 // Copy static pages compiling markdown files.
 gulp.task('copy', () => {
@@ -43,7 +49,7 @@ gulp.task('copy', () => {
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
     .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
-    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
+    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown({ renderer })))
     .pipe(layout(blogConfig))
     .pipe(gulp.dest(publicDir));
 });
@@ -56,7 +62,7 @@ gulp.task('posts', () => {
   return gulp.src('source/_posts/*.*')
     .pipe(plumber())
     .pipe(frontMatter())
-    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown({ highlight: highlight })))
+    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown({ renderer })))
     .pipe(condition(__dirname + '/source/**/*.textile', textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
@@ -66,7 +72,11 @@ gulp.task('posts', () => {
 
 // Concat CSS files.
 gulp.task('css', () => {
-  return gulp.src(['./source/_css/**/*.css', './node_modules/highlight.js/styles/default.css'])
+  const cssFiles = [
+    './node_modules/highlight.js/styles/monokai_sublime.css',
+    './source/_css/**/*.css'
+  ];
+  return gulp.src(cssFiles)
     .pipe(plumber())
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./public/css'));

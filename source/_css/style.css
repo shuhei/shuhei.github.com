@@ -1,5 +1,5 @@
 body {
-  background: #eee;
+  background-color: #f8f8f2;
   font-family: 'Asap', sans-serif;
   padding: 0;
   margin: 0;
@@ -105,16 +105,15 @@ a:hover {
 .content img {
   max-width: 100%;
 }
-.content pre code,
-.content pre.prettyprint {
-  background: #eee;
-  display: block;
+
+/* code */
+.hljs {
   line-height: 1.5em;
   padding: 10px 15px;
   overflow-x: scroll;
 }
-.content code {
-  background-color: #eee;
+code {
+  background-color: #f8f8f2;
   padding: 0.1em 0.2em;
 }
 

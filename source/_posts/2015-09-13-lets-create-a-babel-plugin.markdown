@@ -35,7 +35,7 @@ You can do almost anything as long as it's in the syntax that Babylon supports, 
 
 Create a directory in the format of `babel-plugin-*`. The `*` part turns to be your plugin name. In the directory, you can create a Babel plugin project with `babel-plugin init`, which is installed by `npm install -g babel`.
 
-```
+```sh
 # Prepare a project directory.
 mkdir babel-plugin-foo-bar
 cd babel-plugin-foo-bar
