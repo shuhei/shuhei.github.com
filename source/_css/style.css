@@ -46,10 +46,14 @@ a:hover {
   text-decoration: none;
 }
 
-.post {
+.post,
+.post-list{
   background: #fff;
-  border-top: 8px solid #fbf76e;
+  border-top: 8px solid #fbf52f;
   padding: 30px 0 20px;
+}
+
+.post {
   margin: 0 0 40px;
 }
 .post:last-child {
@@ -69,11 +73,6 @@ a:hover {
   margin: 10px 0 25px;
 }
 
-.post-list {
-  background: #fff;
-  border-top: 8px solid #fbf76e;
-  padding: 30px 0 20px;
-}
 .post-list .title {
   width: 700px;
   margin: 0 auto 10px;
