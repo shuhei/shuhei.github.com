@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use highlight.js with marked"
+title: "Using highlight.js with marked"
 date: 2015-09-21 18:09
 comments: true
 categories: [JavaScript]
