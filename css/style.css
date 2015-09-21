@@ -203,8 +203,7 @@ a:hover {
 
 .post {
   background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  border-top: 1px solid #e0e0e0;
+  border-top: 8px solid #ff0;
   padding: 30px 0 20px;
   margin: 0 0 40px;
 }
@@ -227,6 +226,7 @@ a:hover {
 
 .post-list {
   background: #fff;
+  border-top: 8px solid #ff0;
   padding: 30px 0 20px;
 }
 .post-list .title {
