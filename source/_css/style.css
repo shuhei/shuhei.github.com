@@ -191,7 +191,8 @@ code {
   .post .content,
   .post-list .title,
   .post-list-item,
-  .pagination {
+  .pagination,
+  .comments {
     width: 90%;
   }
 }
