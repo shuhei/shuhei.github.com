@@ -288,6 +288,12 @@ blockquote cite:before {
   max-width: 100%;
 }
 
+/* comments */
+.comments {
+  margin: 0 auto 3em;
+  width: 700px;
+}
+
 /* code */
 .hljs {
   line-height: 1.5em;

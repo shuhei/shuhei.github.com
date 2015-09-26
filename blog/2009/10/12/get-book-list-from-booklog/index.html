@@ -37,7 +37,15 @@ books = get_books("branchiopoda")
 books.each do |book|
   puts "#{book.title} =&gt; #{book.asin}"
 end</pre>
-<p>一覧から取れるのはタイトルと <span class="caps">ASIN</span> コードだけなので、それ以上の情報を得るには、個別のページや Amazon の <span class="caps">API</span> を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の <span class="caps">API</span> の公開に期待です。</p></div></div></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>一覧から取れるのはタイトルと <span class="caps">ASIN</span> コードだけなので、それ以上の情報を得るには、個別のページや Amazon の <span class="caps">API</span> を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の <span class="caps">API</span> の公開に期待です。</p></div></div><div class="comments"><div id="disqus_thread"></div><script>/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'shuheikagawa';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div><noscript><Please>enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></Please></noscript></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
