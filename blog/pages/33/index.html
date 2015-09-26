@@ -1,4 +1,5 @@
-<!DOCTYPE html><html><head><title>Page 33 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/about">About</a></li><li><a href="/works">Works</a></li><li><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/12/07/make-movie-from-proce55ing">Proce55ing から 動画を作る</a></h1><div class="meta">@<span class="date">2008-12-07 03:09</span> - <span class="category">Proce55ing</span></div></div><div class="content"><p>Proce55ing で作った Sketch を動画にする方法です。<br />
+<!DOCTYPE html><html><head><title>Page 33 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="title"><a href="/">Shuhei Kagawa</a></h1><nav><ul><li><a href="/about">About</a></li><li><a href="/works">Works</a></li><li><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/12/11/3rd-grade-accountant-license">簿記三級</a></h1><div class="meta">@<span class="date">2008-12-11 23:00</span> - </div></div><div class="content"><p>受かってました。</p>
+<p>あとは、来週月曜発表のソフ開です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/12/07/make-movie-from-proce55ing">Proce55ing から 動画を作る</a></h1><div class="meta">@<span class="date">2008-12-07 03:09</span> - <span class="category">Proce55ing</span></div></div><div class="content"><p>Proce55ing で作った Sketch を動画にする方法です。<br />
 やり方は簡単。</p>
 <p>まず、Proce55ing から連番の静止画を書き出します。<br />
 draw メソッドの中で、saveFrame() を呼び出せば OK。<br />
@@ -11,18 +12,7 @@ draw メソッドの中で、saveFrame() を呼び出せば OK。<br />
 <span class="caps">TIMESTAMP</span> 型へのキャストはできませんし、<span class="caps">DATETIME</span> に放り込むんでもタイムスタンプとして解釈されないのです。</p>
 <p>ゴリゴリ計算するとなると、閏年や月ごとの日にちの違いなど、めんどくさいことばかり。<br />
 他のプログラムからいじるようにしようと思います。</p>
-<p>普通に変換する関数はないんですかねえ？</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/11/23/artoolkit-on-vc2005express">Visual C++ 2005 Express Edition で ARToolkit</a></h1><div class="meta">@<span class="date">2008-11-23 15:07</span> - </div></div><div class="content"><p>ARToolkit、やっと自作プロジェクトで動きました。<br />
-Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。</p>
-<p>プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; Windowsアプリケーション。</p>
-<p>出力先フォルダには、ARtoolkit/bin にある <span class="caps">DLL</span> ファイルや Data フォルダをコピーしておきます。</p>
-<p>プロジェクトの設定を下記のように変更。</p>
-<ul>
-	<li>C/C++ &#8594; 全般 -&gt; 追加のインクルードディレクトリ = ARToolkit/include</li>
-	<li>リンカ &#8594; 全般 -&gt; インクリメンタルリンクを有効にする = 既定値</li>
-	<li>リンカ &#8594; 全般 -&gt; 追加のライブラリディレクトリ = ARToolkit/lib</li>
-	<li>リンカ &#8594; 入力 -&gt; 追加の依存ファイル = libARd.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib</li>
-</ul>
-<p>これで何とか動くように思います。</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/32">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/34">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>普通に変換する関数はないんですかねえ？</p></div></div><ul class="pagination"><li class="prev-page"><a href="/blog/pages/32">Newer Posts</a></li><li class="next-page"><a href="/blog/pages/34">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
