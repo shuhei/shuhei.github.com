@@ -125,7 +125,7 @@ end
 
 However, `build` actually saves the model's associations, `article` and `author` created by `article` in this case, into the database [unless you give `strategy: :build` option in the factory](http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md#Associations). So `build` actually creates all its ancestor models, which can be a huge performance penalty if called plenty of times.
 
-To avoid this behavior, you can use [`FactoryGirl.build_stubbed`(http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build_stubbed-instance_method) instead of `build`. It builds all associations and don't save them into the database.
+To avoid this behavior, you can use [`FactoryGirl.build_stubbed`](http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build_stubbed-instance_method) instead of `build`. It builds all associations and don't save them into the database.
 
 ```ruby
 comment = FactoryGirl.build_stubbed(:comment, created_at: now - 1.minute, updated_at: now)
