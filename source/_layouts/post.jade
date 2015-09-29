@@ -3,7 +3,10 @@ extends default
 block head
 
 block content
+  - var isPostPage = true
   include _post
+
+  // Comments
   if post.comments
     .comments
       #disqus_thread

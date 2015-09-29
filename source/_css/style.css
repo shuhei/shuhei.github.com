@@ -133,6 +133,10 @@ blockquote cite:before {
   max-width: 100%;
 }
 
+.social-buttons {
+  margin: 2em 0 0;
+}
+
 /* comments */
 .comments {
   margin: 0 auto 3em;
