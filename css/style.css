@@ -196,33 +196,34 @@ blockquote cite:before {
   content: "- ";
 }
 
-.header, .footer {
-  text-align: center;
-}
-
 .header {
   padding: 25px 0 10px;
+  text-align: center;
 }
-.header .title {
+.header__title {
   margin: 0 0 15px;
 }
-.header nav ul {
+.header__title a {
+  text-decoration: none;
+}
+.menu {
   list-style-position: outside;
   list-style-type: none;
   padding: 10px 0;
   margin: 0;
 }
-.header nav li {
+.menu__item {
   display: inline-block;
   padding: 0 20px;
 }
-.header nav a {
+.menu__item a {
   font-weight: bold;
   text-decoration: none;
 }
 
 .footer {
   padding: 30px 0;
+  text-align: center;
 }
 
 .title a {
@@ -257,10 +258,11 @@ blockquote cite:before {
 }
 
 .post-list .title {
-  width: 700px;
   margin: 0 auto 10px;
+  width: 700px;
 }
 .post-list-item {
+  line-height: 1.6em;
   padding: 10px 0;
   margin: 0 auto;
   width: 700px;
@@ -270,15 +272,20 @@ blockquote cite:before {
   clear: both;
   display: block;
 }
-.post-list-item .date {
+.post-list-item__date {
+  color: #999;
   float: left;
-  width: 100px;
-  padding-top: 5px;
+  font-size: small;
+  width: 80px;
 }
-.post-list-item .title {
+.post-list-item__title {
   float: left;
-  width: 600px;
+  width: 620px;
   margin: 0;
+}
+.post-list-item__title a {
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .content {
@@ -322,24 +329,31 @@ code {
   display: block;
 }
 .pagination li {
+  float: left;
   font-weight: bold;
-  width: 50%;
+  min-height: 1em;
 }
 .pagination a {
   text-decoration: none;
 }
-.pagination .prev-page {
+.pagination__prev-page {
   float: left;
+  width: 35%;
 }
-.pagination .prev-page a:before {
+.pagination__prev-page a:before {
   content: "< ";
 }
-.pagination .next-page {
+.pagination__next-page {
   float: right;
   text-align: right;
+  width: 35%;
 }
-.pagination .next-page a:after {
+.pagination__next-page a:after {
   content: " >";
+}
+.pagination__archives {
+  text-align: center;
+  width: 30%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -353,5 +367,8 @@ code {
   .pagination,
   .comments {
     width: 90%;
+  }
+  .post-list-item__title {
+    width: 100%;
   }
 }
