@@ -12,7 +12,8 @@ Hi, my name is Shuhei. I'm a programmer based in Tokyo, focusing on JavaScript, 
 When I don't sit in front of my laptop, I wander the intricate streets of Tokyo, give a look at the spines of my book collection or enjoy local IPAs.
 
 ## Accounts
-- [Github](https://github.com/shuhei)
+- [Github @shuhei](https://github.com/shuhei)
+- [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
 - [Stack Overflow](http://stackoverflow.com/)
 - [Speaker Deck](https://speakerdeck.com/shuhei)
 - [LinkedIn](http://www.linkedin.com/in/shuheikagawa)
