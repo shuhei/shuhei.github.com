@@ -15,13 +15,13 @@ html
     block head
   body
     header.header
-      h1.title
+      h1.header__title
         a(href="/")= site.title
       nav
-        ul
-          li: a(href="/about") About
-          li: a(href="/works") Works
-          li: a(href="/blog/archives") Archives
+        ul.menu
+          li.menu__item: a(href="/about") About
+          li.menu__item: a(href="/works") Works
+          li.menu__item: a(href="/blog/archives") Archives
 
     .main
       block content
