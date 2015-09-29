@@ -167,24 +167,31 @@ code {
   display: block;
 }
 .pagination li {
+  float: left;
   font-weight: bold;
-  width: 50%;
+  min-height: 1em;
 }
 .pagination a {
   text-decoration: none;
 }
-.pagination .prev-page {
+.pagination__prev-page {
   float: left;
+  width: 35%;
 }
-.pagination .prev-page a:before {
+.pagination__prev-page a:before {
   content: "< ";
 }
-.pagination .next-page {
+.pagination__next-page {
   float: right;
   text-align: right;
+  width: 35%;
 }
-.pagination .next-page a:after {
+.pagination__next-page a:after {
   content: " >";
+}
+.pagination__archives {
+  text-align: center;
+  width: 30%;
 }
 
 @media only screen and (max-width: 767px) {

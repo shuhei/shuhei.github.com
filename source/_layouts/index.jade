@@ -6,7 +6,11 @@ block content
   each post in posts
     include _post
   ul.pagination
-    if prevPage
-      li.prev-page: a(href=prevPage) Newer Posts
-    if nextPage
-      li.next-page: a(href=nextPage) Older Posts
+    li.pagination__prev-page
+      if prevPage
+        a(href=prevPage) Newer Posts
+    li.pagination__archives
+      a(href="/blog/archives") Archives
+    li.pagination__next-page
+      if nextPage
+        a(href=nextPage) Older Posts
