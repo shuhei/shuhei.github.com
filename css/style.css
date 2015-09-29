@@ -279,6 +279,7 @@ blockquote cite:before {
   width: 80px;
 }
 .post-list-item__title {
+  font-size: large;
   float: left;
   width: 620px;
   margin: 0;
