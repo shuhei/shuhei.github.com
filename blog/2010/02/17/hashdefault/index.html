@@ -8,7 +8,7 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
 <p>となるのを期待していたのですが <code>{}</code> と出力されます。<br />
 さらに、なんと以下のようになりました。</p>
 <pre class="prettyprint">puts h["foo"] # =&gt; ["world"]</pre>
-<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p></div></div><div class="comments"><div id="disqus_thread"></div><script>/* * * CONFIGURATION VARIABLES * * */
+<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p><div class="social-buttons"><a href="https://twitter.com/share" data-via="shuheikagawa" data-text="Ruby の Hash#default" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div><!-- Comments--><div class="comments"><div id="disqus_thread"></div><script>/* * * CONFIGURATION VARIABLES * * */
 var disqus_shortname = 'shuheikagawa';
 
 /* * * DON'T EDIT BELOW THIS LINE * * */
