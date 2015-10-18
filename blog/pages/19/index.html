@@ -1,4 +1,57 @@
-<!DOCTYPE html><html><head><title>Page 19 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/python-challenge-from-6-to-7">Python Challenge Lv. 6 - 7</a></h1><div class="meta">@<span class="date">2009-10-11 02:33</span> - </div></div><div class="content"><p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
+<!DOCTYPE html><html><head><title>Page 19 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/12/get-book-list-from-booklog">Booklog から本一覧を取得</a></h1><div class="meta">@<span class="date">2009-10-12 22:10</span> - </div></div><div class="content"><p><a href="http://booklog.jp/">web 本棚サービス ブクログ</a> がリニューアルしたというので <a href="http://www.booklog.jp/users/branchiopoda">再開しました</a> 。ペパボの公式サービスとなり、メンテナンスやサービスの追加をどんどんやって行くそうです。<br />
+今回のリニューアルで一番うれしいのが、本の登録機能の強化です。</p>
+<blockquote>
+<p>ご要望で最も多かったものの一つが、もっと本を簡単に登録したい！ １冊１冊登録するのが面倒くさい！というものでした。 今回のリニューアルでは、 ページ遷移をせずに、簡単に複数の本を登録できるように改善しています。</p>
+<p><a href="http://info.booklog.jp/?eid=78"><cite>ブクログがリニューアルいたしました。 | ブクログお知らせブログ</cite></a></p>
+</blockquote>
+<p>さくさく登録できて素晴らしいです。</p>
+<p>今のところ <span class="caps">API</span> はないようで、何かをしたいときにはスクレイピングする必要があります。<br />
+とりあえず Ruby で本の一覧を取得してみました。</p>
+<pre class="prettyprint">require 'rubygems'
+require 'hpricot'
+require 'open-uri'
+
+class Book
+  def initialize(title, url)
+    @title = title
+    @url = url
+  end
+  def asin
+    @url.split("/").last
+  end
+  attr_accessor :title, :url
+end
+
+def get_books(username)
+  doc = Hpricot(open("http://www.booklog.jp/users/#{username}/All?display=list"))
+  books = []
+  (doc/"div#shelf div.list ul li").each do |book|
+    title = (book/:a).first.inner_html
+    url = (book/:a).first[:href]
+    books.push(Book.new(title, url))
+  end
+  books
+end
+
+books = get_books("branchiopoda")
+books.each do |book|
+  puts "#{book.title} =&gt; #{book.asin}"
+end</pre>
+<p>一覧から取れるのはタイトルと <span class="caps">ASIN</span> コードだけなので、それ以上の情報を得るには、個別のページや Amazon の <span class="caps">API</span> を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の <span class="caps">API</span> の公開に期待です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/this-weeks-chipped-books">今週届いた本（Joel on Software、高度試験午前対策など）</a></h1><div class="meta">@<span class="date">2009-10-11 15:49</span> - </div></div><div class="content"><h3>エッセー</h3>
+<p>プログラマによるエッセー的な本を三冊。どれも有名な本ですね。</p>
+<ul>
+	<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
+	<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
+	<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
+</ul>
+<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。<br />
+エッセー的なものはどんどん読めて良いかな、と思って購入してみました。<br />
+ちょこちょこ読んで行こうと思います。</p>
+<h3><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前1・2対応</a></h3>
+<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。<br />
+しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。<br />
+まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。<br />
+試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/python-challenge-from-6-to-7">Python Challenge Lv. 6 - 7</a></h1><div class="meta">@<span class="date">2009-10-11 02:33</span> - </div></div><div class="content"><p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
 試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
 <h3>Level 6</h3>
 <p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。<br />
@@ -57,106 +110,7 @@ while True:
 print "".join(map(chr, message))</pre>
 <p>出てきたメッセージから答えを出します。</p>
 <pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
-<p>何だかカンニングしてばかりですね・・・。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/grasse">草</a></h1><div class="meta">@<span class="date">2009-10-11 02:25</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
-<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
-備忘のために。</p>
-<pre class="prettyprint">int NUM;
-float[] grasses;
-
-void setup()
-{
-  size(495, 140);
-  smooth();
-  background(255);
-
-  NUM = width;
-
-  grasses = new float[NUM];
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    grasses[i] = random(0, 1) * random(0.5, 1);
-  }
-  drawGrasses();
-  save("grasses.png");
-}
-
-void drawGrasses()
-{
-  noFill();
-  colorMode(HSB);
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    stroke(random(50, 100), 200, 200);
-    strokeWeight(width * 0.0015 * random(0.5, 1));
-
-    int x = i * width / (NUM - 1);
-    line(x,
-         height,
-         x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
-         height * (1.0 - grasses[i] * 0.3 - 0.2));
-  }
-}
-</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/10/python-challenge-from-0-to-5">Python Challenge Lv. 0 - 5</a></h1><div class="meta">@<span class="date">2009-10-10 15:38</span> - </div></div><div class="content"><p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
-プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。<br />
-最近マイブームな Ruby で。</p>
-<p>以下、ネタバレ注意です。</p>
-<h3>Level 0</h3>
-<pre class="prettyprint">2 ** 38</pre>
-<h3>Level 1</h3>
-<pre class="prettyprint">cipher = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
-abc = ("a"[0] .. "z"[0]).to_a
-cde = ("c"[0] .. "z"[0]).to_a + ["a"[0], "b"[0]]
-dict = Hash[*abc.zip(cde).flatten]
-cipher.bytes do |ch|
-  ch = dict[ch] if dict.has_key?(ch)
-  printf("%c", ch)
-end</pre>
-<h3>Level 2</h3>
-<p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
-<pre class="prettyprint">File.open("mess_2.txt") do |f|
-  while ch = f.getc
-    printf("%c", ch) if ("a"[0] .. "z"[0]).include?(ch)
-  end
-end</pre>
-<p>ファイルの中身を1バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
-<h3>Level 3</h3>
-<pre class="prettyprint">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
-File.open("mess_3.txt") do |f|
-  p f.read.scan(pattern).to_s
-end</pre>
-<p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
-<h3>Level 4</h3>
-<pre class="prettyprint">num = "12345"
-require "net/http"
-def get_nothing(num)
-  return Net::HTTP.get URI.parse("http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + num)
-end
-400.times do
-  content = get_nothing(num)
-  m = /and the next nothing is ([0-9]+)/.match(content)
-  p num
-  p content
-  if m != nil then
-    num = m[1]
-  else
-    exit
-  end
-end</pre>
-<p>途中でひっかけがありますが・・・。そこは手作業で。</p>
-<h3>Level 5</h3>
-<p>意味がわからずカンニング。<br />
-<a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a><br />
-Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
-<pre class="prettyprint">import urllib, pickle
-uri = "http://www.pythonchallenge.com/pc/def/banner.p"
-obj = pickle.load(urllib.urlopen(uri))
-for line in obj:
-  l = ""
-  for pair in line:
-    l += pair[0] * pair[1]
-    print l</pre>
-<h3>今日はここまで</h3>
-<p>続きはまた今度。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/18">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/20">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>何だかカンニングしてばかりですね・・・。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/18">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/20">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
