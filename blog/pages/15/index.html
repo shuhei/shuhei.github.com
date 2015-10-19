@@ -1,13 +1,4 @@
-<!DOCTYPE html><html><head><title>Page 15 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/31/japanese-on-irb">irb で日本語表示</a></h1><div class="meta">@<span class="date">2009-12-31 15:46</span></div></div><div class="content"><pre class="prettyprint">$irb
-irb(main):001:0&gt;puts "あああ"
-"\343\201\202\343\201\202\343\201\202"
-=&gt; nil</pre>
-<p>上の例のように、日本語出力が読めない問題。</p>
-<p>$<span class="caps">KCODE</span> に使用中のターミナルの文字コードを設定すれば良いようです。<br />
-<span class="caps">UTF</span>-8 なら <code>$KCODE = 'u'</code> 、<span class="caps">EUC</span>-JP なら <code>$KCODE = 'e'</code> など。<br />
-irb コマンドのオプションでも指定できます。<br />
-<code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
-<p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今Ruby勉強中 &#8211; Rubyist</a></p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/09/ascii">ascii コード</a></h1><div class="meta">@<span class="date">2009-12-09 22:51</span> - </div></div><div class="content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
+<!DOCTYPE html><html><head><title>Page 15 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/09/ascii">ascii コード</a></h1><div class="meta">@<span class="date">2009-12-09 22:51</span> - </div></div><div class="content"><p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
 <blockquote>
 <p>Poem.</p>
 <p>You translated my poem,<br />
@@ -41,7 +32,15 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 <h3>シンボリックブレークポイント</h3>
 <p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
 ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
-今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/14">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/16">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/07/resize-images-with-imagemagick">ImageMagick で画像を一括リサイズ</a></h1><div class="meta">@<span class="date">2009-11-07 15:41</span> - </div></div><div class="content"><p>特定の名前の画像をリサイズします。</p>
+<pre class="prettyprint">#! /bin/bash
+
+for f in rect_*.png;
+do
+  convert -resize 12x12! $f $f
+done</pre>
+<p>コマンドラインは便利ですねー。<br />
+ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/14">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/16">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

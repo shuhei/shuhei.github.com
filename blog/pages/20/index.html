@@ -1,43 +1,4 @@
-<!DOCTYPE html><html><head><title>Page 20 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/11/grasse">草</a></h1><div class="meta">@<span class="date">2009-10-11 02:25</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
-<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
-備忘のために。</p>
-<pre class="prettyprint">int NUM;
-float[] grasses;
-
-void setup()
-{
-  size(495, 140);
-  smooth();
-  background(255);
-
-  NUM = width;
-
-  grasses = new float[NUM];
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    grasses[i] = random(0, 1) * random(0.5, 1);
-  }
-  drawGrasses();
-  save("grasses.png");
-}
-
-void drawGrasses()
-{
-  noFill();
-  colorMode(HSB);
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    stroke(random(50, 100), 200, 200);
-    strokeWeight(width * 0.0015 * random(0.5, 1));
-
-    int x = i * width / (NUM - 1);
-    line(x,
-         height,
-         x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
-         height * (1.0 - grasses[i] * 0.3 - 0.2));
-  }
-}
-</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/10/python-challenge-from-0-to-5">Python Challenge Lv. 0 - 5</a></h1><div class="meta">@<span class="date">2009-10-10 15:38</span> - </div></div><div class="content"><p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
+<!DOCTYPE html><html><head><title>Page 20 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/10/python-challenge-from-0-to-5">Python Challenge Lv. 0 - 5</a></h1><div class="meta">@<span class="date">2009-10-10 15:38</span> - </div></div><div class="content"><p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
 プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。<br />
 最近マイブームな Ruby で。</p>
 <p>以下、ネタバレ注意です。</p>
@@ -98,7 +59,11 @@ for line in obj:
     print l</pre>
 <h3>今日はここまで</h3>
 <p>続きはまた今度。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/30/exec-windows-command-with-ruby">Ruby で Windows のコマンド実行</a></h1><div class="meta">@<span class="date">2009-09-30 10:49</span></div></div><div class="content"><p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
-<pre class="prettyprint">ret = system "cmd.exe /c dir"</pre></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/19">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/21">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<pre class="prettyprint">ret = system "cmd.exe /c dir"</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/26/tweetstat">TweetStats</a></h1><div class="meta">@<span class="date">2009-09-26 22:36</span> - </div></div><div class="content"><p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
+<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。<br />
+時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
+<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。<br />
+<a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/19">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/21">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

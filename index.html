@@ -23,112 +23,6 @@ reset=<span class="hljs-string">"\[\e[m\]"</span>
 }
 <span class="hljs-built_in">export</span> GIT_PS1_SHOWDIRTYSTATE=<span class="hljs-number">1</span>
 <span class="hljs-built_in">export</span> PROMPT_COMMAND=prompt_commandsh</code></pre><p>One of the advantages of attending real events over just browsing slides online is being able to take a peek of other people&#39;s dev environments. Looking forward to seeing more cool stuff on upcoming events like <a href="http://nodefest.jp/2015/">Tokyo Node Fest 2015</a>.</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/10/04/build-angular-app-with-babel">Build Angular 2 app with Babel</a></h1><div class="meta">@<span class="date">2015-10-04 18:44</span> - <span class="category">JavaScript</span>, <span class="category">Babel</span>, <span class="category">Angular</span></div></div><div class="content"><h2 id="why-">Why?</h2>
-<h3 id="why-babel-">Why Babel?</h3>
-<p>Some people prefer ES6 to TypeScript. Fast development. Extensible with plugins.</p>
-<p>Now Angular 2 is alpha.39. Its npm module is in ES5, don&#39;t require Traceur runtime and is compatible with CommonJS. It even has nice DSLs for ES5 users.</p>
-<h3 id="why-babel-plugin-angular2-annotations-different-syntaxes-">Why babel-plugin-angular2-annotations? (Different syntaxes)</h3>
-<p>However, Angular2 seems to be designed to work well with the extended syntax of TypeScript. We want to take advantage of it even when we don&#39;t use TypeScript.</p>
-<p>This is tedious. That&#39;s why I made <code>babel-plugin-angular2-annotations</code>.</p>
-<p>With TypeScript:</p>
-<pre><code class="hljs ts">@Component({
-  selector: <span class="hljs-string">'hello'</span>
-})
-@View({
-  template: `
-  `
-})
-<span class="hljs-keyword">class</span> HelloComponent {
-  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(greeter: Greeter, @Attribute('name') name) </span>{
-    <span class="hljs-comment">// ...</span>
-  }
-}</code></pre><p>There are three different syntaxes to add metadata to the class.</p>
-<ol>
-<li>Class decorators</li>
-<li>Type annotations on the constructor</li>
-<li>Parameter decorators on the constructor</li>
-</ol>
-<p>With ES7 decorators:</p>
-<p>Class decorator is now an ES7 proposal and supported by Babel with <code>es7.decorators</code> option. However, type annotations and parameter decorators are not. While parameter decorators don&#39;t seem to appear as often as class decorators, type annotations are inevitable for dependency injection.</p>
-<p>Does <code>HelloComponent.parameters</code> work with decorators? Should I use reflect-metadata?</p>
-<pre><code class="hljs js">@Component({
-  selector: <span class="hljs-string">'hello'</span>
-})
-@View({
-  template: <span class="hljs-string">`
-  `</span>
-})
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
-  constructor(greeter, name) {
-    <span class="hljs-comment">// ...</span>
-  }
-}
-HelloComponent.parameters = [
-  [Greeter],
-  [<span class="hljs-keyword">new</span> Attribute(<span class="hljs-string">'name'</span>)]
-];</code></pre><p>With ES5 DSL:</p>
-<p>ES5 DSL doesn&#39;t look worse than you imagine, but the constructor annotations are ugly and might remind you of Angular 1.x annotations.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> HelloComponent = ng
-  .Component({
-    selector: <span class="hljs-string">'hello'</span>
-  })
-  .View({
-    template: [
-      <span class="hljs-string">''</span>,
-      <span class="hljs-string">''</span>
-    ].join(<span class="hljs-string">'\n'</span>)
-  })
-  .Class({
-    constructor: [Greeter, <span class="hljs-keyword">new</span> ng.Attribute(<span class="hljs-string">'name'</span>), <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">greeter, name</span>) </span>{
-    }]
-  });</code></pre><p>or?</p>
-<pre><code class="hljs js">[[Greeter], [<span class="hljs-keyword">new</span> ng.Attribute(<span class="hljs-string">'name'</span>)], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">greeter, name</span>) </span>{
-}]</code></pre><p>With ES5 without DSL:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> HelloComponent = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">greeter, name</span>) </span>{
-  <span class="hljs-comment">// ...</span>
-};
-HelloComponent.annotations = [
-  <span class="hljs-keyword">new</span> ng.Component({ selector: <span class="hljs-string">'hello'</span> }),
-  <span class="hljs-keyword">new</span> ng.View({ template: <span class="hljs-comment">/* ... */</span> })
-];
-HelloComponent.parameters = [
-  [Greeter],
-  [<span class="hljs-keyword">new</span> ng.Attribute(<span class="hljs-string">'name'</span>)]
-];</code></pre><h2 id="babel-plugin-angular2-annotations">babel-plugin-angular2-annotations</h2>
-<p>To support type annotations and parameter decorators, I created a babel plugin called <code>babel-plugin-angular2-annotations</code>.</p>
-<p>What it does is to create ???.</p>
-<p>For type annotations, it takes advantage of Babel&#39;s flow type support. Babylon, the JavaScript parser of Babel, can parse flow type annotations and the generated AST holds type annotations on variables and parameters until they are erased by flow transformer. The plugin uses the type annotations to create <code>parameters</code> metadata.</p>
-<p>Babel and Babylon don&#39;t currently support parameter decorator syntax right now because it&#39;s not in the formal ES7 proposals. To support it, the plugin monkey-patches Babylon out of necessity. I hope it&#39;s going to be formalized as an ES7 proposal or Angular 2 finds another way to achieve the same effect. Anyway, once they are parsed, it&#39;s easy to use them for <code>parameters</code> metadata.</p>
-<h2 id="how-you-can-use-it">How you can use it</h2>
-<ol>
-<li><p>Install required modules. In order to monkey patch <code>babylon</code>, we have to have <code>babylon</code> at the top level. If you are using npm 3, you don&#39;t need it because it flatly installs modules in node_modules.</p>
-<pre><code class="hljs sh">npm install -S angular2 reflect-metadata zone.js
-npm install -D babel-core babel-plugin-angular2-annotations babylon</code></pre></li>
-<li><p>Configure Babel to enable ES7 decorators and the plugin. <code>.babelrc</code> would look like this:</p>
-<pre><code class="hljs json">{
- "<span class="hljs-attribute">optional</span>": <span class="hljs-value">[<span class="hljs-string">"es7.decorators"</span>]</span>,
- "<span class="hljs-attribute">plugins</span>": <span class="hljs-value">[<span class="hljs-string">"angular2-annotations"</span>]
-</span>}</code></pre></li>
-<li><p>Import the following at your entry point</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js/lib/browser/zone-microtask'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'babel-core/polyfill'</span>; <span class="hljs-comment">// or 'babel/polyfill'</span></code></pre><ul>
-<li><code>zone.js/lib/browser/zone-microtask</code> Angular 2 uses zone.js to detect async callbacks and kick change detection. We need the microtask version instead of just <code>zone.js</code> somehow.</li>
-<li><code>reflect-metadata</code> Required for setting/retrieving metadata on class/method/function. @/parameter decorators and type annotations are transformed to metadata.</li>
-<li><code>babel-core/polyfill</code></li>
-</ul>
-</li>
-<li><p>Write your Angular 2 app!</p>
-</li>
-</ol>
-<p>You can check a working example at <a href="https://github.com/shuhei/babel-angular2-app">babel-angular2-app</a>.</p>
-<h2 id="what-it-does">What it does</h2>
-<ol>
-<li>Read flow type annotations on class constructors and set them as metadata</li>
-<li>Parse parameter decorators monkey-patching Babylon, the parse of Babel, and set them as metadata</li>
-</ol>
-<h3 id="it-s-become-better">It&#39;s become better</h3>
-<p>It was March 2015 that I started experimenting to build Angular 2 app with Babel. At that time Angular 2 was alpha.18 and being compiled with Traceur instead of TypeScript. However he README stated it could be compiled with any ES6 compiler, I needed several quirks to build it with Babel.</p>
 </div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/09/26/speed-up-your-rspec-tests-by-reviewing-factory-girl">Speed up your RSpec tests by reviewing Factory Girl</a></h1><div class="meta">@<span class="date">2015-09-26 09:23</span> - <span class="category">Ruby</span>, <span class="category">Rails</span></div></div><div class="content"><p><a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a> is a great tool that makes test data creation easier. However, if you don&#39;t use it properly, it may imperceptibly slow down your tests.</p>
 <p>In this post, I will walk through some caveats that I stumbled upon in my current project. They could be applied not only to RSpec but I will use RSpec as an example.</p>
 <h2 id="measure-measure-measure-">Measure! Measure! Measure!</h2>
@@ -248,7 +142,26 @@ post = <span class="hljs-constant">FactoryGirl</span>.create(<span class="hljs-s
 <li><a href="https://robots.thoughtbot.com/speed-up-tests-by-selectively-avoiding-factory-girl">Speed Up Tests by Selectively Avoiding Factory Girl</a></li>
 <li><a href="https://robots.thoughtbot.com/use-factory-girls-build-stubbed-for-a-faster-test">Use Factory Girl&#39;s build_stubbed for a Faster Test Suite</a></li>
 </ul>
-</div></div><ul class="pagination"><li class="pagination__prev-page"></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/2">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/09/21/using-highlight-js-with-marked">Using highlight.js with marked</a></h1><div class="meta">@<span class="date">2015-09-21 18:09</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>I use <a href="https://github.com/chjj/marked">marked</a> to parse markdown files of posts and pages, and <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> to highlight code blocks in them for this site. Here are problems that I came across to make them work together and a workaround for them.</p>
+<p>marked&#39;s README has <a href="https://github.com/chjj/marked#highlight">an example on how to configure it to work with highlight.js</a> but it doesn&#39;t add <code>hljs</code> classes on <code>&lt;code&gt;</code> tags that highlight.js uses to style code blocks. At the moment, you have to <a href="https://github.com/chjj/marked/pull/418#issuecomment-57291402">prepare your own renderer</a> to achieve it.</p>
+<p>Also, you need to check whether the language given by marked is a valid one for highlight.js. <a href="https://github.com/chjj/marked/issues/311#issuecomment-31182632">highlight.js seems to have had <code>LANGUAGES</code> property a few years ago</a> but now <code>getLanguage()</code> method serves as a substitute for it.</p>
+<p>Here&#39;s the outcome:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> marked, { Renderer } <span class="hljs-keyword">from</span> <span class="hljs-string">'marked'</span>;
+<span class="hljs-keyword">import</span> highlightjs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;
+
+<span class="hljs-comment">// Create your custom renderer.</span>
+<span class="hljs-keyword">const</span> renderer = <span class="hljs-keyword">new</span> Renderer();
+renderer.code = (code, language) =&gt; {
+  <span class="hljs-comment">// Check whether the given language is valid for highlight.js.</span>
+  <span class="hljs-keyword">const</span> validLang = !!(language &amp;&amp; highlightjs.getLanguage(language));
+  <span class="hljs-comment">// Highlight only if the language is valid.</span>
+  <span class="hljs-keyword">const</span> highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  <span class="hljs-comment">// Render the highlighted code with `hljs` class.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class="hljs <span class="hljs-subst">${language}</span>"&gt;<span class="hljs-subst">${highlighted}</span>&lt;/code&gt;&lt;/pre&gt;`</span>;
+};
+
+<span class="hljs-comment">// Set the renderer to marked.</span>
+marked.setOptions({ renderer });</code></pre></div></div><ul class="pagination"><li class="pagination__prev-page"></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/2">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
