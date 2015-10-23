@@ -1,9 +1,10 @@
 import { obj as through } from 'through2';
-import match from 'gulp-match';
+import minimatch from 'minimatch';
 
+// TODO: Why don't you use gulp-if?
 export default function (condition, child, branch) {
   function transform(file, enc, cb) {
-    if (match(file, condition)) {
+    if (minimatch(file.path, condition)) {
       if (branch) {
         child.write(file);
         cb();
