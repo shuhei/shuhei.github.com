@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><title>Node.js executable module - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/10/25/node-executable-module">Node.js executable module</a></h1><div class="meta">@<span class="date">2015-10-25 22:42</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it&#39;s OK for simple modules.</p>
+<p>To achieve it, you need to detect whether it&#39;s executed as an entry point. According to <a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module">the official documentation of Node</a>:</p>
+<blockquote>
+<p>When a file is run directly from Node.js, <code>require.main</code> is set to its module. That means that you can determine whether a file has been run directly by testing</p>
+<pre><code class="hljs undefined">require.main === module</code></pre></blockquote>
+<p>For example:</p>
+<pre><code class="hljs js">#!/usr/bin/env node
+
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+
+if (require.main === module) {
+  var a = parseInt(process.argv[2], 10);
+  var b = parseInt(process.argv[3], 10);
+  console.log(sum(a, b));
+}</code></pre><p>Then you can use it as an executable and a module.</p>
+<pre><code class="hljs sh">$ node sum.js <span class="hljs-number">3</span> <span class="hljs-number">4</span>
+<span class="hljs-number">7</span>
+$ node
+&gt; require(<span class="hljs-string">'./sum'</span>)(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+<span class="hljs-number">7</span></code></pre><div class="social-buttons"><a href="https://twitter.com/share" data-via="shuheikagawa" data-text="Node.js executable module" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div><!-- Comments--><div class="comments"><div id="disqus_thread"></div><script>/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'shuheikagawa';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div><noscript><Please>enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></Please></noscript></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>
