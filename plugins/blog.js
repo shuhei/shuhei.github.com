@@ -30,7 +30,7 @@ function templateCache() {
 }
 
 function toURL(str) {
-  return str.toLowerCase().replace(/'/g, '').replace(/[^a-z\-]/g, ' ').replace(/\s+/g, '-');
+  return str.toLowerCase().replace(/'/g, '').replace(/[^a-z1-9\-]/g, ' ').replace(/\s+/g, '-');
 }
 
 export function index(config) {
