@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><title>Page 7 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
+<!DOCTYPE html><html><head><title>Page 7 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/perfume-dev">Perfume Dev</a></h1><div class="meta">@<span class="date">2012-04-03 14:07</span> - <span class="category">JavsScript</span>, <span class="category">Three.js</span></div></div><div class="content"><p><a href="/works/perfume_dev/stick_people/"><img src="http://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" alt="Perfume Dev"></a></p>
+<p><a href="http://www.perfume-global.com/">Perfume Global</a> のデータで<a href="/works/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
+<p>Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT したのを表示してます。Web Audio API はビルトインで FFT できてびっくりしました。HTML5 すごい。</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 <p>2. Build Settings -&gt; Linking -&gt; Other Linker Flags に以下を設定。</p>
 <pre><code class="hljs undefined">    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a</code></pre><p>3. Build Settings -&gt; Search Paths -&gt; Header Search Paths に以下を設定。</p>
@@ -51,76 +54,6 @@ index bb5fd32..28bf7e0 100644
      # Outputs the post.date as formatted html, with hooks for CSS styling.
      #
      #  +date+ is the date object to format as HTML.</code></pre><p>Gist: <a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/02/how-to-use-ofxui">How to use ofxUI</a></h1><div class="meta">@<span class="date">2012-04-02 20:13</span> - <span class="category">openFrameworks</span></div></div><div class="content"><iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-<p><a href="http://www.syedrezaali.com/blog/?p=2172">ofxUI: A User Interface Addon for OF</a> を使うと openFrameworks に <a href="https://github.com/ofTheo/ofxControlPanel">ofxControlPanel</a> よりもちょっとかっこいい UI を追加することができます。<a href="https://github.com/rezaali/ofxUI">github のページ</a> の Readme を超訳してみました。</p>
-<p>1. <a href="https://github.com/rezaali/ofxUI/downloads">ダウンロードページ</a>から ofxUI をダウンロード。中の <code>src</code> を <code>of/addons</code> の中に移して、名前を <code>ofxUI</code> にします。残りは <code>of/apps</code> に移して <code>ofxUIExamples</code> などとします。すると以下のようなファイル構成になります。</p>
-<pre><code class="hljs undefined">    of
-    |--- addons
-    |    |--- ofxUI
-    |         |--- ofxUI.h
-    |         |--- ...
-    |
-    |--- apps
-    |    |--- addonExamples
-    |    |--- examples
-    |    |--- myapps
-    |    |--- ofxUIExamples
-    |         |--- example-ofxUIAllWidgets
-    |         |--- ...
-    |--- …</code></pre><p>2. <code>of/apps/examples/emptyExample</code> を <code>of/apps/myapps</code> 以下にコピーして新しいプロジェクトを作ります。</p>
-<p>3. 新しく作ったプロジェクトを Xcode で開きます。</p>
-<p>4. Xcode の左側の <code>addons</code> のところに Finder から <code>of/addons/ofxUI</code> をドラッグアンドドロップします。</p>
-<p>5. &quot;Choose options for adding these files&quot; と聞かれたら、何もせず &quot;finish&quot; を押します。<code>of/addons/ofxXmlSettings</code> も同様に Xcode の <code>addons</code> フォルダに追加。このアドオンは XML ファイルに設定を保存して読み出すのに使われます。</p>
-<p>6. Finder で <code>of/apps/ofxUIExamples/example-ofxUIAllWidgets/bin/data/GUI</code> をコピーし、プロジェクトの <code>bin/data</code> に入れます。</p>
-<p>7. アプリのヘッダファイル（testApp.h）で &quot;ofxUI.h&quot; を include します。</p>
-<p>8. ヘッダに続けて以下の変数と関数を追加。</p>
-<pre><code class="hljs cpp">ofxUICanvas *gui;
-
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">exit</span><span class="hljs-params">()</span></span>;
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">guiEvent</span><span class="hljs-params">(ofxUIEventArgs &amp;e)</span></span>;</code></pre><p>9. 実装ファイルにメソッドを追加します。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::<span class="hljs-built_in">exit</span>()
-{
-
-}
-
-<span class="hljs-keyword">void</span> testApp::guiEvent(ofxUIEventArgs &amp;e)
-{
-
-}</code></pre><p>10. <code>setup()</code> の中で初期化。引数は GUI の左上の点の座標と幅と高さです。</p>
-<pre><code class="hljs cpp">gui = <span class="hljs-keyword">new</span> ofxUICanvas(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">320</span>,<span class="hljs-number">320</span>);          <span class="hljs-comment">//ofxUICanvas(float x, float y, float width, float height)</span></code></pre><p>11. <code>exit()</code> はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::<span class="hljs-built_in">exit</span>()
-{
-  gui-&gt;saveSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);    
-  <span class="hljs-keyword">delete</span> gui;
-}</code></pre><p>12. GUI にウィジェット（UI 部品のこと）を追加する。最後から二番目の行は、リスナー／コールバックを追加することで、ウィジェットがユーザに操作されたときに何をすればいいか GUI に教えています。よくわからなくても気にしない。また、最後の行は GUI に XML に保存された設定を読み込んでいます。ファイルがなければ、ウィジェットのデフォルトの値が使用されます。</p>
-<pre><code class="hljs cpp">gui-&gt;addWidgetDown(<span class="hljs-keyword">new</span> ofxUILabel(<span class="hljs-string">"OFXUI TUTORIAL"</span>, OFX_UI_FONT_LARGE));
-gui-&gt;addWidgetDown(<span class="hljs-keyword">new</span> ofxUISlider(<span class="hljs-number">304</span>,<span class="hljs-number">16</span>,<span class="hljs-number">0.0</span>,<span class="hljs-number">255.0</span>,<span class="hljs-number">100.0</span>,<span class="hljs-string">"BACKGROUND VALUE"</span>));
-ofAddListener(gui-&gt;newGUIEvent, <span class="hljs-keyword">this</span>, &amp;testApp::guiEvent);
-gui-&gt;loadSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);</code></pre><p>13. ユーザが UI を操作したときに呼ばれます。操作されたウィジェットに関する処理を書きましょう。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::guiEvent(ofxUIEventArgs &amp;e)
-{
-    <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"BACKGROUND VALUE"</span>)    
-    {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
-        ofBackground(slider-&gt;getScaledValue());
-    }  
-}</code></pre><p>14. フルスクリーンモードとウィンドウモードを切り替えるためにトグルを追加します。<code>setup()</code> メソッドの中で他のウィジェットの後に以下を追加。もしこれをもうひとつの <code>addWidgetDown</code> の呼び出しの前に書けば、トグルはスライダーの上に置かれます。</p>
-<pre><code class="hljs cpp">gui-&gt;addWidgetDown(<span class="hljs-keyword">new</span> ofxUIToggle(<span class="hljs-number">32</span>, <span class="hljs-number">32</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">"FULLSCREEN"</span>));</code></pre><p>15. &quot;FULLSCREEN&quot; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::guiEvent(ofxUIEventArgs &amp;e)
-{
-    <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"BACKGROUND VALUE"</span>)
-    {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
-        ofBackground(slider-&gt;getScaledValue());
-    }
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"FULLSCREEN"</span>)
-    {
-        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
-        ofSetFullscreen(toggle-&gt;getValue());
-    }   
-}</code></pre><p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
-<p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/6">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/8">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
