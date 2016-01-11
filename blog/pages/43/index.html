@@ -1,4 +1,21 @@
-<!DOCTYPE html><html><head><title>Page 43 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/06/22/implode-on-pytho">Python で implode</a></h1><div class="meta">@<span class="date">2008-06-22 15:23</span> - <span class="category">Python</span></div></div><div class="content"><p><span class="caps">PHP</span> などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 implode。</p>
+<!DOCTYPE html><html><head><title>Page 43 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/06/22/install-python-modules-in-sakura-internet">さくらのサーバに Python モジュールをインストール</a></h1><div class="meta">@<span class="date">2008-06-22 12:24</span> - <span class="category">Python</span>, <span class="category">さくらインターネット</span></div></div><div class="content"><p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。<br />
+インストール場所は、<code>$HOME/lib/python</code>に。</p>
+<p>$<span class="caps">HOME</span>/.cshrc で環境変数を設定。</p>
+<pre class="prettyprint"> setenv PYTHONPATH $HOME/lib/python</pre>
+<p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記でOKでした。</p>
+<pre class="prettyprint">python setup.py install --home=~</pre>
+<p>今日インストールしたのは以下。</p>
+<ul>
+	<li>Universal Feedparser</li>
+	<li>Python Imaging Library</li>
+	<li>Beautiful Soup</li>
+	<li>IPython（モジュール？）</li>
+	<li>MySQLdb</li>
+	<li><del>NumPy</del></li>
+	<li><del>matplotlib</del></li>
+	<li>pydelicious</li>
+	<li>Element Tree</li>
+</ul></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/06/22/implode-on-pytho">Python で implode</a></h1><div class="meta">@<span class="date">2008-06-22 15:23</span> - <span class="category">Python</span></div></div><div class="content"><p><span class="caps">PHP</span> などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 implode。</p>
 <pre class="prettyprint">$output = implode(",", $arr);</pre>
 <p>同じことをしようとすると、Python では、以下。</p>
 <pre class="prettyprint">output = ",".join(arr)</pre>
@@ -11,35 +28,7 @@
 プロファイルフォルダの中の bookmarks.html をインポートしたら、うまくいきました。</p>
 <p>それから、毎度アップデートの際に面倒なのが、大抵のアドオンが最新版に対応していないこと。<br />
 特にテーマがなかなか追いつかないのが残念です。<br />
-拡張については、マウスジェスチャと Google Preview、それから Removetabs が対応してくれているので、特に言うことはありません。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/06/21/recent-reading">最近の読書</a></h1><div class="meta">@<span class="date">2008-06-21 19:34</span> - <span class="category">読書</span></div></div><div class="content"><p>最近は比較的忙しめで、最後まで読む本が少なかったです。<br />
-途中まで読んで放ってある本も感想書きます。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/0596529325/nanataisan-22">Programming Collective Intelligence</a></h3>
-<p>ほぼ読了。<br />
-機械学習や統計的データ分析についてなんとなくわかったような気がしました。<br />
-あとは、どこかで実戦投入ですね。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4860630793/nanataisan-22">リッツ・カールトンで学んだ仕事でいちばん大切なこと</a></h3>
-<p>読了。<br />
-営業研修の助けになるかと思って読んでみました。<br />
-リッツ・カールトンが半分、著者の仕事観が半分といった感じ。<br />
-感動。紳士淑女。人脈。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4478300755/nanataisan-22">短期間で組織が変わる行動科学マネジメント</a></h3>
-<p>半分くらい。<br />
-まず行動を分析。いいことを増やし、良くないことを減らす。<br />
-結果だけでなくそれにいたる行動にもフォーカス。リインフォースは行動後すぐ。など。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4314010479/nanataisan-22">経済は感情で動く</a></h3>
-<p>半分ちょい。<br />
-「経済の主体である人間は全く合理的に行動できない」という本です。<br />
-どのように合理的でないか、という例が満載。<br />
-現状維持バイアス。保有効果。損失回避。選択肢が増えると判断が鈍る。などなど。<br />
-これらを知っていると、人の判断を操ったり、自分の誤判断を回避したりできそうです。<br />
-構成が読み物風で、一覧性に乏しいのが玉に瑕。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4797337389/nanataisan-22">マッキンゼー式世界最高の仕事術</a></h3>
-<p>読んで字のごとくな本。<br />
-仕事をする上で基本的な事柄が多く書いてあり、やる気も出ます。<br />
-事実主導、構造（<span class="caps">MECE</span>）、仮説主導が基本。<br />
-チーム・・・「見当もつかない」は何か考えがある証拠。チームの士気。<br />
-調査・・・礼状は必ず書く。聞くスキル。<br />
-プレゼンテーション・・・完璧を求めて失敗するな。関係者全員に事前報告。一つのチャートに一つのメッセージ。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/42">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/44">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+拡張については、マウスジェスチャと Google Preview、それから Removetabs が対応してくれているので、特に言うことはありません。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/42">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/44">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
