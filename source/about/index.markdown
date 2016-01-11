@@ -21,6 +21,8 @@ When I don't sit in front of my laptop, I wander the intricate streets of Tokyo,
 
 ## Talks
 
+- 2015/12 [Angular 2](https://speakerdeck.com/shuhei/angular-2-at-js-ojisan-number-6-3) at [JS Ojisan #6-3](https://atnd.org/events/71991)
+- 2015/12 [Introduction to Angular 2](https://speakerdeck.com/shuhei/introduction-to-angular-2) at [TokyoJS XMAS](http://www.meetup.com/tokyojs/events/226903404/)
 - 2015/8 [Git の内部データ構造](https://speakerdeck.com/shuhei/git-falsenei-bu-detagou-zao): (Japanese) Git's internal data structure
 - 2015/4 [Hello World in Angular 2](https://speakerdeck.com/shuhei/hello-world-in-angular-2)
 - 2015/2 [Node.js のパッケージ管理](https://speakerdeck.com/shuhei/node-dot-js-package-management): (Japnese) Package management on Node.js
