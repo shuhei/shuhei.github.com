@@ -1,4 +1,9 @@
-<!DOCTYPE html><html><head><title>Page 39 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/30/ftir">FTIR</a></h1><div class="meta">@<span class="date">2008-08-30 17:15</span> - <span class="category">インターフェイス</span></div></div><div class="content"><p><a href="http://code.google.com/p/ideo-multitouch/">ideo-multitouch &#8211; Google Code</a></p>
+<!DOCTYPE html><html><head><title>Page 39 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/09/07/iphone">iPhone</a></h1><div class="meta">@<span class="date">2008-09-07 22:08</span></div></div><div class="content"><p>Now I&#8217;ve gotta one.</p>
+<p>It works well and it&#8217;s very fun to touch it.<br />
+The only one problem is its Japanese text input works toooooooooo slowly!<br />
+This is the reason why I&#8217;m struggling with English now.<br />
+I hope software update will come soon&#8230;</p>
+<p>Anyway, I love it.</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/30/ftir">FTIR</a></h1><div class="meta">@<span class="date">2008-08-30 17:15</span> - <span class="category">インターフェイス</span></div></div><div class="content"><p><a href="http://code.google.com/p/ideo-multitouch/">ideo-multitouch &#8211; Google Code</a></p>
 <p>プロジェクタとウェブカメラ、アクリル板と<span class="caps">LED</span> でマルチタッチディスプレイができるというもの。<br />
 こりゃすげえ。<br />
 ぜひやりたい。</p>
@@ -47,28 +52,7 @@
 	<li>本心。</li>
 	<li>誰にでも売りたい商品は、誰も買わない商品。</li>
 	<li>最大の敵は作り手が飽きること。</li>
-</ul></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2008/08/24/connect-to-subversion-on-sakura-internet">さくらインターネット上の Subversion につなぐ</a></h1><div class="meta">@<span class="date">2008-08-24 14:40</span> - <span class="category">さくらインターネット</span></div></div><div class="content"><ul>
-	<li><a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗</a></li>
-	<li><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功</a></li>
-</ul>
-<p>上記二つに続けて、さくらインターネットへインストールした Subversion に <span class="caps">SSH</span> でつなぎます。<br />
-使うのは TortoiseSVN。</p>
-<h3>公開鍵と秘密鍵</h3>
-<p>puttygen.exe を実行して、マウスをグリグリします。<br />
-上のテキストエリアに公開鍵、下に秘密鍵が出てきます。</p>
-<h4>公開鍵</h4>
-<p>コピペして下記のように編集。</p>
-<pre class="prettyprint">command="/home/username/local/bin/svnserve -t" ssh-rsa 公開鍵</pre>
-<p>authorized_keys という名前で保存し、$<span class="caps">HOME</span>/.ssh/authorized_keys となるようにアップします。</p>
-<h4>秘密鍵</h4>
-<p>コピペして適当な名前で、TortoiseSVN/bin に保存。<br />
-これはどこでもいいそうですが、後でパスを指定します。</p>
-<h3>TortoiseSVN の設定</h3>
-<p>適当なフォルダを右クリックし、TortoiseSVN の 設定画面を開きます。<br />
-Network &#8594; <span class="caps">SSH</span> &#8594; <span class="caps">SSH</span> client のところで下記のように設定。</p>
-<pre class="prettyprint">"C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe" -l username -i "C:\Program Files\TortoiseSVN\bin\private_key.ppk"</pre>
-<p>あとは下のような感じでレポジトリにアクセスできます。</p>
-<pre class="prettyprint">svn+ssh://username@hostname/home/username/local/bin/repo</pre></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/38">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/40">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+</ul></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/38">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/40">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

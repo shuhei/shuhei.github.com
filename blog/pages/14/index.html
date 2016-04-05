@@ -1,4 +1,9 @@
-<!DOCTYPE html><html><head><title>Page 14 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/01/20/error-of-eclispe">Eclipse の起動エラー</a></h1><div class="meta">@<span class="date">2010-01-20 09:40</span> - </div></div><div class="content"><p>Eclipse <span class="caps">IDE</span> for Java EE Developers (based on Eclipse 3.5 <span class="caps">SR1</span>) をダウンロードしてから最初の起動時に &#8220;<span class="caps">JVM</span> Terminated.&#8221; 的なエラー。<br />
+<!DOCTYPE html><html><head><title>Page 14 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/02/17/grep-onwindows">Windows で grep</a></h1><div class="meta">@<span class="date">2010-02-17 09:38</span> - <span class="category">Windows</span></div></div><div class="content"><pre class="prettyprint">findstr /n /s /c:"hello world" sub_dir\*</pre>
+<p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。<br />
+/n で行番号表示。/s は再帰的に。</p>
+<pre class="prettyprint">findstr /n /s "hello world" sub_dir\*</pre>
+<p>とすると、&#8220;hello&#8221; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>
+<p>via <a href="http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265">コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &#8211; 主に言語とシステム開発に関して</a></p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/01/20/error-of-eclispe">Eclipse の起動エラー</a></h1><div class="meta">@<span class="date">2010-01-20 09:40</span> - </div></div><div class="content"><p>Eclipse <span class="caps">IDE</span> for Java EE Developers (based on Eclipse 3.5 <span class="caps">SR1</span>) をダウンロードしてから最初の起動時に &#8220;<span class="caps">JVM</span> Terminated.&#8221; 的なエラー。<br />
 eclipse.ini を修正。</p>
 <pre class="prettyprint">-startup
 plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
@@ -45,13 +50,7 @@ sudo ufw enable</pre>
 <p><span class="caps">LAN</span> 内からだけ <span class="caps">SSH</span> を許可。</p>
 <pre class="prettyprint">sudo ufw allow from 192.168.1.0/24 to any port ssh</pre>
 <p><span class="caps">SSH</span> へのログイン試行回数を制限。</p>
-<pre class="prettyprint">sudo ufw limit ssh</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/01/16/update-macports">MacPorts のアップデート</a></h1><div class="meta">@<span class="date">2010-01-16 14:49</span> - </div></div><div class="content"><p>port search xxx として出てくるものが古いときに。</p>
-<p>MacPorts をアップデート。</p>
-<pre class="prettyprint">sudo port selfupdate</pre>
-<p>パッケージを更新。</p>
-<pre class="prettyprint">sudo port sync</pre>
-<p>たまにやった方がいいようですね。</p>
-<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPortsをちゃんと使うために調べてみた &#8211; kanonjiの日記</a></p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/13">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/15">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<pre class="prettyprint">sudo ufw limit ssh</pre></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/13">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/15">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

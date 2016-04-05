@@ -1,4 +1,15 @@
-<!DOCTYPE html><html><head><title>Page 6 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/01/30/introduction-to-react">React</a></h1><div class="meta">@<span class="date">2014-01-30 23:27</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>社内勉強会で Facebook の UI ライブラリ <a href="http://facebook.github.io/react/index.html">React</a> について発表しました。</p>
+<!DOCTYPE html><html><head><title>Page 6 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/01/31/webland">日本の地価</a></h1><div class="meta">@<span class="date">2014-01-31 14:25</span> - <span class="category">JavaScript</span>, <span class="category">Three.js</span></div></div><div class="content"><p><a href="/webland/"><img src="http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg" alt="Land Prices in Japan"></a></p>
+<p><a href="/webland/">日本の地価を視覚化</a>してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。</p>
+<ul>
+<li><a href="/webland/">Land Prices in Japan</a></li>
+<li><a href="https://github.com/shuhei/webland">フロントエンドのソース</a></li>
+<li><a href="https://github.com/shuhei/webland-scraper">データ取得と加工用スクリプト</a></li>
+</ul>
+<p>データソースは<a href="http://www.land.mlit.go.jp/webland/">国土交通省の土地総合情報システム</a>です。データの取得、加工は Ruby のスクリプトでやりました。JSON ファイルにしています。</p>
+<p>視覚化は Chrome Expreriments の <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a> のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。</p>
+<p>三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing">postprocessing</a> といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。</p>
+<p>スペースボタンを押すと真横からのビューに切り替わります。都市の高さが際立っていますね。</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/01/30/introduction-to-react">React</a></h1><div class="meta">@<span class="date">2014-01-30 23:27</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>社内勉強会で Facebook の UI ライブラリ <a href="http://facebook.github.io/react/index.html">React</a> について発表しました。</p>
 <ul>
 <li>1/20 <a href="https://speakerdeck.com/shuhei/introduction-to-react">Introduction to React // Speaker Deck</a></li>
 <li><a href="https://github.com/shuhei/react-sample-counter">サンプルコード</a></li>
@@ -19,9 +30,6 @@
 <p>どれも JavaScript ネタ。仕事の半分くらいは Ruby を書いているのですが・・・。</p>
 <p>一個目のは、外に置いてあるサーバとローカルのクライアント（両方 Node.js）を iPhone の Safari を介して WebSockets でつないでインターネットする、というやつです。Softbank がテザリングを始める前に着手して、ちょこちょこ作ってる間にサービスが始まってしまい、モチベーションが大いに削がれたといういわくつき。</p>
 <p>二個名、三個目のはタイトルそのままの内容です。どちらも markdown から HTML+JS のプレゼンを生成しています。コードを載せやすくて良いのですが、字が小さくて見にくいと不評。画像も貼りにくいし、次回からは Keynote で作ろうかなあ。</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/06/01/3d-lut">3D LUT</a></h1><div class="meta">@<span class="date">2012-06-01 21:22</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは <code>examples</code> が充実していることです。ディレクトリ構成上も <code>apps</code> から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
-<p>Instagram 風の例を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたいです。</p>
-<p><a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/5">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/7">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
