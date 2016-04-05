@@ -1,4 +1,34 @@
-<!DOCTYPE html><html><head><title>Page 19 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/13/ntlm-hash-with-ruby">NTLM ハッシュ を求める</a></h1><div class="meta">@<span class="date">2009-10-13 21:18</span> - </div></div><div class="content"><p>最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの <span class="caps">UTF</span>-16 に符号化したものから <a href="http://en.wikipedia.org/wiki/MD4"><span class="caps">MD4</span></a> でハッシュを作成するのだとか。</p>
+<!DOCTYPE html><html><head><title>Page 19 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/16/hello-world-with-curses-of-rub">Ruby の Curses で Hello, World!</a></h1><div class="meta">@<span class="date">2009-10-16 00:14</span> - </div></div><div class="content"><p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
+<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />
+参考にしたのは <a href="http://codezine.jp/article/detail/2086">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>
+<pre class="prettyprint">require 'curses'
+
+message = [
+  "**   **  *******  **       **        *****    **",
+  "**   **  **       **       **       **   **   **",
+  "*******  *******  **       **       **   **   **",
+  "**   **  **       **       **       **   **     ",
+  "**   **  *******  *******  *******   *****    **"
+]
+
+def animate(image)
+  include Curses
+  init_screen
+  y = ((lines - image.size) / 2).truncate
+  (cols - image[0].size).downto(1) do |t|
+    image.size.times do |i|
+      setpos(y + i, t)
+      addstr(image[i])
+    end
+    refresh
+    sleep(0.05)
+    clear
+  end
+close_screen
+end
+
+animate(message)</pre>
+<p>おおー、動きました。逆に新鮮で面白いですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/13/ntlm-hash-with-ruby">NTLM ハッシュ を求める</a></h1><div class="meta">@<span class="date">2009-10-13 21:18</span> - </div></div><div class="content"><p>最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの <span class="caps">UTF</span>-16 に符号化したものから <a href="http://en.wikipedia.org/wiki/MD4"><span class="caps">MD4</span></a> でハッシュを作成するのだとか。</p>
 <h3>Ruby で</h3>
 <p>16進数表現の文字列として出力します。もう少しうまい方法がある気がするのですが・・・。<br />
 <span class="caps">NTLM</span> ハッシュの計算そのものは <a href="http://rubyforge.org/projects/rubyntlm/">Ruby/<span class="caps">NTLM</span></a> に頼っています。ちなみに Ruby/<span class="caps">NTLM</span> をインストールするには、 <code>gem install rubyntlm</code> とします。</p>
@@ -103,18 +133,7 @@ draw_points(first_points, 495, 495, "first.png")
 draw_points(second_points, 495, 495, "second.png")</pre>
 <p><a href="http://www.flickr.com/photos/branchiopoda/4004511454/" title="first by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" width="495" height="495" alt="first" /></a></p>
 <p>ということで、出てきた動物の名前をいくつか適当に入れると正解に。<br />
-しかし、まだまだ四分の一。先は長いです・・・。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/12/install-cairo-with-gem">gem で cairo をインストール</a></h1><div class="meta">@<span class="date">2009-10-12 16:13</span> - </div></div><div class="content"><pre class="prettyprint">sudo gem install cairo</pre>
-<p>でインストールできず、四苦八苦。<br />
-調べてみたところ、下記 <span class="caps">URL</span> に行き当たりました。<br />
-よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
-<p><a lang="cairo-bugs" href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
-<p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
-<pre class="prettyprint">cd cairo-1.8.0
-sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
-sudo ruby extconf.rb
-sudo make
-sudo make install
-</pre></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/18">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/20">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+しかし、まだまだ四分の一。先は長いです・・・。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/18">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/20">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

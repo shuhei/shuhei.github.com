@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><title>Clean up before exiting in Haskell - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/04/06/clean-up-before-exiting-in-haskell">Clean up before exiting in Haskell</a></h1><div class="meta">@<span class="date">2016-04-06 00:32</span> - <span class="category">Haskell</span></div></div><div class="content"><p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Show the Game of Life</span>
+  life glider
+  <span class="hljs-comment">-- Show the cursor (but the code does not reach here!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>But the code does not reach the line that shows the cursor because <code>life</code> is a infinite loop. If I quit the program with <code>Ctrl+C</code>, the cursor remains hidden.</p>
+<p>So I wrote a function that loops <code>a -&gt; IO a</code> until interrupted by a signal, referring to <a href="http://stackoverflow.com/a/18430872/822317">unix - Killing a Haskell binary - Stack Overflow</a>. It manages a state of whether the program was interrupted in a <code>MVar</code> and stops the loop when interrupted.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Concurrent.MVar <span class="hljs-container">(<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Posix.Signals <span class="hljs-container">(<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)</span></span>
+
+<span class="hljs-title">loopUntilInterruption</span> :: (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loopUntilInterruption</span> p init = <span class="hljs-keyword">do</span>
+  v &lt;- newEmptyMVar
+  installHandler sigINT (handler v) <span class="hljs-type">Nothing</span>
+  installHandler sigTERM (handler v) <span class="hljs-type">Nothing</span>
+  loop v p init
+
+<span class="hljs-title">handler</span> :: <span class="hljs-type">MVar</span> () -&gt; <span class="hljs-type">Handler</span>
+<span class="hljs-title">handler</span> v = <span class="hljs-type">CatchOnce</span> $ putMVar v ()
+
+<span class="hljs-title">loop</span> :: <span class="hljs-type">MVar</span> () -&gt; (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loop</span> v p prev = <span class="hljs-keyword">do</span>
+  x &lt;- p prev
+  val &lt;- tryTakeMVar v
+  <span class="hljs-keyword">case</span> val <span class="hljs-keyword">of</span>
+    <span class="hljs-type">Just</span> _ -&gt; return ()
+    <span class="hljs-type">Nothing</span> -&gt; loop v p x &gt;&gt; return ()</code></pre><p>In the Game of Life, I changed the type of <code>life</code> so that it returns the result of its previous result and loop with <code>loop</code>. Now the clean up code will be called when interrupted by a signal.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Loop until interrupted</span>
+  loopUntilInterruption life glider
+  <span class="hljs-comment">-- Show the cursor (the code will reach here now!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
+<div class="social-buttons"><a href="https://twitter.com/share" data-via="shuheikagawa" data-text="Clean up before exiting in Haskell" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div><!-- Comments--><div class="comments"><div id="disqus_thread"></div><script>/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'shuheikagawa';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div><noscript><Please>enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></Please></noscript></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-309586-8', 'shuheikagawa.com');
+ga('send', 'pageview');</script></footer></body></html>

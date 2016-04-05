@@ -1,4 +1,54 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/04/06/one-time-binding-for-ng-if">One-time binding for ng-if</a></h1><div class="meta">@<span class="date">2016-04-06 00:02</span> - <span class="category">JavaScript</span>, <span class="category">AngularJS</span></div></div><div class="content"><p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/04/06/clean-up-before-exiting-in-haskell">Clean up before exiting in Haskell</a></h1><div class="meta">@<span class="date">2016-04-06 00:32</span> - <span class="category">Haskell</span></div></div><div class="content"><p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Show the Game of Life</span>
+  life glider
+  <span class="hljs-comment">-- Show the cursor (but the code does not reach here!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>But the code does not reach the line that shows the cursor because <code>life</code> is a infinite loop. If I quit the program with <code>Ctrl+C</code>, the cursor remains hidden.</p>
+<p>So I wrote a function that loops <code>a -&gt; IO a</code> until interrupted by a signal, referring to <a href="http://stackoverflow.com/a/18430872/822317">unix - Killing a Haskell binary - Stack Overflow</a>. It manages a state of whether the program was interrupted in a <code>MVar</code> and stops the loop when interrupted.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Concurrent.MVar <span class="hljs-container">(<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Posix.Signals <span class="hljs-container">(<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)</span></span>
+
+<span class="hljs-title">loopUntilInterruption</span> :: (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loopUntilInterruption</span> p init = <span class="hljs-keyword">do</span>
+  v &lt;- newEmptyMVar
+  installHandler sigINT (handler v) <span class="hljs-type">Nothing</span>
+  installHandler sigTERM (handler v) <span class="hljs-type">Nothing</span>
+  loop v p init
+
+<span class="hljs-title">handler</span> :: <span class="hljs-type">MVar</span> () -&gt; <span class="hljs-type">Handler</span>
+<span class="hljs-title">handler</span> v = <span class="hljs-type">CatchOnce</span> $ putMVar v ()
+
+<span class="hljs-title">loop</span> :: <span class="hljs-type">MVar</span> () -&gt; (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loop</span> v p prev = <span class="hljs-keyword">do</span>
+  x &lt;- p prev
+  val &lt;- tryTakeMVar v
+  <span class="hljs-keyword">case</span> val <span class="hljs-keyword">of</span>
+    <span class="hljs-type">Just</span> _ -&gt; return ()
+    <span class="hljs-type">Nothing</span> -&gt; loop v p x &gt;&gt; return ()</code></pre><p>In the Game of Life, I changed the type of <code>life</code> so that it returns the result of its previous result and loop with <code>loop</code>. Now the clean up code will be called when interrupted by a signal.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Loop until interrupted</span>
+  loopUntilInterruption life glider
+  <span class="hljs-comment">-- Show the cursor (the code will reach here now!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/04/05/one-time-binding-for-ng-if">One-time binding for ng-if</a></h1><div class="meta">@<span class="date">2016-04-05 23:58</span> - <span class="category">JavaScript</span>, <span class="category">AngularJS</span></div></div><div class="content"><p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
 <p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
 <p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
@@ -60,20 +110,6 @@ topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css">
   <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
 }</span></code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
 <p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/11/29/algorithms-part-1">Algorithms: Design and Analysis, Part 1</a></h1><div class="meta">@<span class="date">2015-11-29 23:35</span> - <span class="category">Algorithms</span></div></div><div class="content"><p>Today I finished the final exam of Stanford&#39;s <a href="https://www.coursera.org/course/algo">&quot;Algorithms: Design and Analysis, Part 1&quot;</a> at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:</p>
-<ul>
-<li><a href="https://github.com/shuhei/algo">shuhei/algo</a></li>
-</ul>
-<p>The course focused on fundamental algorithms and their analysis. What I learned so far were:</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithms">Divide-and-conquer algorithms</a> and analysis with <a href="https://en.wikipedia.org/wiki/Master_theorem">Master Method</a>: <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> and <a href="https://en.wikipedia.org/wiki/Quicksort">quick sort</a></li>
-<li>Graph algorithms: <a href="https://en.wikipedia.org/wiki/Minimum_cut">minimum cut</a>, <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first</a> and <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first</a> search, <a href="https://en.wikipedia.org/wiki/Strongly_connected_component">strongly connected components</a>, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&#39;s shortest-path</a></li>
-<li>Data structures: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">heaps</a>, <a href="https://en.wikipedia.org/wiki/Hash_table">hash tables</a> and <a href="https://en.wikipedia.org/wiki/Binary_search_tree">binary search trees</a></li>
-</ul>
-<p>As a self-taught programmer, I had been away from formal Computer Science topics like big O notation. But after I learned <a href="https://www.coursera.org/learn/machine-learning">Machine Learning</a> and tried to implement some ML algorithms for large datasets a few months ago, I noticed that I needed some knowledge of basic algorithms and mathematical analysis of them.</p>
-<p>The Algorithms course focused not only on algorithms themselves but also on their performance analysis and mathematical proofs. The analysis and proofs are crucial especially for the cases when we design custom algorithms for real-world problems in the future, and more importantly made me more confident about the algorithms.</p>
-<p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
-<p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/2">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -1,4 +1,16 @@
-<!DOCTYPE html><html><head><title>Page 18 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss">Booklog の本一覧をRSSから取得</a></h1><div class="meta">@<span class="date">2009-10-27 00:35</span> - </div></div><div class="content"><p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、<span class="caps">RSS</span> を使うともっと楽にできるようです。<br />
+<!DOCTYPE html><html><head><title>Page 18 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/05/git-usage-note">git の使い方メモ</a></h1><div class="meta">@<span class="date">2009-11-05 23:47</span></div></div><div class="content"><h3>無視リスト</h3>
+<p>&#8220;.gitignore&#8221; というファイルを作って、その中に無視したいファイルやディレクトリ名を書きます。<br />
+すると <code>git status</code> や <code>git add .</code> しても無視されるようになります。<br />
+すでに追加してしまったものに関しては、後述の方法で削除する必要があるようです。</p>
+<p>via <a href="http://tobysoft.net/wiki/index.php?git%2F%CC%B5%BB%EB%A4%B9%A4%EB%A5%D5%A5%A1%A5%A4%A5%EB%A4%F2%BB%D8%C4%EA%A4%B9%A4%EB%CA%FD%CB%A1(.gitignore%A4%CB%A4%C4%A4%A4%A4%C6)">git/無視するファイルを指定する方法(.gitignoreについて) &#8211; <span class="caps">TOBY</span> <span class="caps">SOFT</span> wiki</a><br />
+via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" title="5">gitignore</a></p>
+<h3>削除</h3>
+<p><code>svn delete</code> のようなことをするには <code>git rm hoge</code> 。<br />
+ディレクトリを消すには @git rm -r hoge@。</p>
+<h3>なかったことにする</h3>
+<p><code>git log</code> で戻りたいコミットのIDをチェック。<br />
+<code>git revert --hard commit_id</code></p>
+<p>via <a href="http://bulkya.blogdb.jp/share/wiki/FAQ/Git#%E5%85%83%E3%81%AB%E6%88%BB%E3%81%99%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><span class="caps">FAQ</span>/Git – CodeRepos::Share – Trac</a></p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/27/get-book-list-of-booklog-b-rss">Booklog の本一覧をRSSから取得</a></h1><div class="meta">@<span class="date">2009-10-27 00:35</span> - </div></div><div class="content"><p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、<span class="caps">RSS</span> を使うともっと楽にできるようです。<br />
 以下のように、<span class="caps">GET</span> のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
 <p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
 <p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/19/install-git">git をインストール</a></h1><div class="meta">@<span class="date">2009-10-19 16:49</span> - </div></div><div class="content"><p>会社では構成管理に Subversion を使っています。<br />
@@ -16,37 +28,7 @@ bash 補完は以下を.profileに貼付けると良いとのこと。</p>
   . /opt/local/etc/bash_completion
 fi</pre>
 <p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。<br />
-branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branchをちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/10/16/hello-world-with-curses-of-rub">Ruby の Curses で Hello, World!</a></h1><div class="meta">@<span class="date">2009-10-16 00:14</span> - </div></div><div class="content"><p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
-<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />
-参考にしたのは <a href="http://codezine.jp/article/detail/2086">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>
-<pre class="prettyprint">require 'curses'
-
-message = [
-  "**   **  *******  **       **        *****    **",
-  "**   **  **       **       **       **   **   **",
-  "*******  *******  **       **       **   **   **",
-  "**   **  **       **       **       **   **     ",
-  "**   **  *******  *******  *******   *****    **"
-]
-
-def animate(image)
-  include Curses
-  init_screen
-  y = ((lines - image.size) / 2).truncate
-  (cols - image[0].size).downto(1) do |t|
-    image.size.times do |i|
-      setpos(y + i, t)
-      addstr(image[i])
-    end
-    refresh
-    sleep(0.05)
-    clear
-  end
-close_screen
-end
-
-animate(message)</pre>
-<p>おおー、動きました。逆に新鮮で面白いですね。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/17">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/19">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branchをちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/17">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/19">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

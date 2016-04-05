@@ -1,4 +1,123 @@
-<!DOCTYPE html><html><head><title>Page 3 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/09/21/using-highlight-js-with-marked">Using highlight.js with marked</a></h1><div class="meta">@<span class="date">2015-09-21 18:09</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>I use <a href="https://github.com/chjj/marked">marked</a> to parse markdown files of posts and pages, and <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> to highlight code blocks in them for this site. Here are problems that I came across to make them work together and a workaround for them.</p>
+<!DOCTYPE html><html><head><title>Page 3 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/09/26/speed-up-your-rspec-tests-by-reviewing-factory-girl">Speed up your RSpec tests by reviewing Factory Girl</a></h1><div class="meta">@<span class="date">2015-09-26 09:23</span> - <span class="category">Ruby</span>, <span class="category">Rails</span></div></div><div class="content"><p><a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a> is a great tool that makes test data creation easier. However, if you don&#39;t use it properly, it may imperceptibly slow down your tests.</p>
+<p>In this post, I will walk through some caveats that I stumbled upon in my current project. They could be applied not only to RSpec but I will use RSpec as an example.</p>
+<h2 id="measure-measure-measure-">Measure! Measure! Measure!</h2>
+<blockquote>
+<p>What gets measured gets managed.</p>
+<p><cite>Peter Drucker</cite></p>
+</blockquote>
+<p>First of all, we want to know which tests take most of the times. RSpec has <code>--profile</code>/<code>-p</code> option for the very purpose.</p>
+<pre><code class="hljs sh">$ rspec --help
+<span class="hljs-comment"># ...</span>
+    -p, --[no-]profile [COUNT]       Enable profiling of examples and list the slowest examples (default: <span class="hljs-number">10</span>).
+<span class="hljs-comment"># ...</span></code></pre><p>Let&#39;s measure your tests with it.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Run all specs with profiling.</span>
+bin/rspec -p
+
+<span class="hljs-comment"># Run specific spec file with profiling.</span>
+bin/rspec spec/models/article_spec.rb -p</code></pre><p>It shows the slowest examples and groups. They should be the good point to start with.</p>
+<h2 id="database-writes-are-slow">Database writes are slow</h2>
+<p>There are many potential causes that slow down your tests. External API calls, file access, database access and etc. Among them, I would like to focus on database writes in this post because they are ubiquitous and relatively slow.</p>
+<p>You could use mocks/stubs to completely avoid touching database. However, you may have a certain amount of code that touches database. I believe it&#39;s better to find database-related bugs with a bit slow tests than finding them on production that were overlooked by lightning-fast tests.</p>
+<p>One of the Rails&#39; greatest features is that we can easily write tests that involves database queries. It&#39;s too good not to use it at all.</p>
+<p>Before you consider parallel execution of tests that may introduce other complexity, you still have something to do.</p>
+<h2 id="sample-project">Sample project</h2>
+<p>Let&#39;s say we have a blog application with the following models:</p>
+<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  has_many <span class="hljs-symbol">:articles</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  belongs_to <span class="hljs-symbol">:author</span>
+  has_many <span class="hljs-symbol">:comments</span>
+
+  validates <span class="hljs-symbol">:author</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  belongs_to <span class="hljs-symbol">:article</span>
+
+  validates <span class="hljs-symbol">:article</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">edited?</span></span>
+    created_at &lt; updated_at
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>and factories:</p>
+<pre><code class="hljs ruby"><span class="hljs-constant">FactoryGirl</span>.define <span class="hljs-keyword">do</span>
+  factory <span class="hljs-symbol">:author</span> <span class="hljs-keyword">do</span>
+    first_name <span class="hljs-string">'Shuhei'</span>
+    last_name <span class="hljs-string">'Kagawa'</span>
+  <span class="hljs-keyword">end</span>
+
+  factory <span class="hljs-symbol">:article</span> <span class="hljs-keyword">do</span>
+    author
+    title <span class="hljs-string">'Rails on Rails'</span>
+    body <span class="hljs-string">'If you created an application that manages railway rails with the Rails framework, its name would be Rails on Rails...'</span>
+  <span class="hljs-keyword">end</span>
+
+  factory <span class="hljs-symbol">:comment</span> <span class="hljs-keyword">do</span>
+    article
+    commenter <span class="hljs-string">'Railer'</span>
+    body <span class="hljs-string">'Great post!'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><h2 id="factorygirl-build-creates-associations">FactoryGirl.build creates associations</h2>
+<p>Let&#39;s review Factory Girl&#39;s <code>create</code> and <code>build</code>. <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#create-instance_method"><code>create</code></a> instantiates an model saving it into the database just like <code>ActiveRecord::Base.create</code> does. <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build-instance_method"><code>build</code></a> only instantiates an model without saving it just like <code>ActiveRecord::Base.new</code> does.</p>
+<p>The following usage of <code>FactoryGirl.build</code> seems harmful. <code>build</code> doesn&#39;t save a <code>Comment</code> into the database while <code>create</code> does, right?</p>
+<pre><code class="hljs ruby">describe <span class="hljs-constant">Comment</span>
+  describe <span class="hljs-string">'#edited?'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'returns true if updated after creation'</span> <span class="hljs-keyword">do</span>
+      now = <span class="hljs-constant">Time</span>.zone.now
+      comment = <span class="hljs-constant">FactoryGirl</span>.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)
+
+      expect(comment).to be_edited
+    <span class="hljs-keyword">end</span>
+
+    it <span class="hljs-string">'returns false right after creation'</span> <span class="hljs-keyword">do</span>
+      now = <span class="hljs-constant">Time</span>.zone.now
+      comment = <span class="hljs-constant">FactoryGirl</span>.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now, <span class="hljs-symbol">updated_at:</span> now)
+
+      expect(comment).not_to be_edited
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>However, <code>build</code> actually saves the model&#39;s associations, <code>article</code> and <code>author</code> created by <code>article</code> in this case, into the database <a href="http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md#Associations">unless you give <code>strategy: :build</code> option in the factory</a>. So <code>build</code> actually creates all its ancestor models, which can be a huge performance penalty if called plenty of times.</p>
+<p>To avoid this behavior, you can use <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build_stubbed-instance_method"><code>FactoryGirl.build_stubbed</code></a> instead of <code>build</code>. It builds all associations and don&#39;t save them into the database.</p>
+<pre><code class="hljs ruby">comment = <span class="hljs-constant">FactoryGirl</span>.build_stubbed(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)</code></pre><p>In this case, you even don&#39;t need to use Factory Girl because the <code>edited?</code> method doesn&#39;t involve associations. The following just works fine:</p>
+<pre><code class="hljs ruby">comment = <span class="hljs-constant">Comment</span>.new(<span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)</code></pre><p>Here is another case where unnecessary <code>post</code> is created by <code>build(:comment)</code>.</p>
+<pre><code class="hljs ruby">post = <span class="hljs-constant">FactoryGirl</span>.create(<span class="hljs-symbol">:post</span>)
+post.comments &lt;&lt; <span class="hljs-constant">FactoryGirl</span>.build(<span class="hljs-symbol">:comment</span>)</code></pre><p>You could do:</p>
+<pre><code class="hljs ruby">post = <span class="hljs-constant">FactoryGirl</span>.create(<span class="hljs-symbol">:post</span>)
+post.comments &lt;&lt; <span class="hljs-constant">FactoryGirl</span>.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">post:</span> <span class="hljs-keyword">nil</span>)
+
+<span class="hljs-comment"># or</span>
+
+post = <span class="hljs-constant">FactoryGirl</span>.create(<span class="hljs-symbol">:post</span>)
+<span class="hljs-constant">FactoryGirl</span>.create(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">post:</span> post)</code></pre><h2 id="review-your-association-chain">Review your association chain</h2>
+<p>There is also a case where you intentionally use <code>FactoryGirl.create</code> and create unused objects. Let&#39;s think about <code>Blog</code> model that has multiple authors and multiple posts.</p>
+<pre><code class="hljs ruby"><span class="hljs-constant">FactoryGirl</span>.define <span class="hljs-keyword">do</span>
+  factory <span class="hljs-symbol">:blog</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">end</span>
+
+  factory <span class="hljs-symbol">:author</span> <span class="hljs-keyword">do</span>
+    blog
+  <span class="hljs-keyword">end</span>
+
+  factory <span class="hljs-symbol">:post</span> <span class="hljs-keyword">do</span>
+    author
+    blog
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>With the setup above, <code>FactoryGirl.create(:post)</code> <strong>creates blog twice</strong>, once in the <code>post</code> factory and once in the <code>author</code> factory. Not only is it redundant, but also it may introduce data inconsistency because the two <code>blog</code> instances are different.</p>
+<p>The <code>post</code> factory could reuse the <code>author</code>&#39;s <code>blog</code>.</p>
+<pre><code class="hljs ruby">factory <span class="hljs-symbol">:post</span> <span class="hljs-keyword">do</span>
+  author
+  blog { author.blog }
+<span class="hljs-keyword">end</span></code></pre><h2 id="summary">Summary</h2>
+<p>To recap, there are things to consider before you stub everything or start considering parallel execution of tests. Imagine what Factory Girl exactly does and review your tests and factories. You will be able to speed up your tests for relatively cheaper cost.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
+<li><a href="https://robots.thoughtbot.com/speed-up-tests-by-selectively-avoiding-factory-girl">Speed Up Tests by Selectively Avoiding Factory Girl</a></li>
+<li><a href="https://robots.thoughtbot.com/use-factory-girls-build-stubbed-for-a-faster-test">Use Factory Girl&#39;s build_stubbed for a Faster Test Suite</a></li>
+</ul>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/09/21/using-highlight-js-with-marked">Using highlight.js with marked</a></h1><div class="meta">@<span class="date">2015-09-21 18:09</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>I use <a href="https://github.com/chjj/marked">marked</a> to parse markdown files of posts and pages, and <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> to highlight code blocks in them for this site. Here are problems that I came across to make them work together and a workaround for them.</p>
 <p>marked&#39;s README has <a href="https://github.com/chjj/marked#highlight">an example on how to configure it to work with highlight.js</a> but it doesn&#39;t add <code>hljs</code> classes on <code>&lt;code&gt;</code> tags that highlight.js uses to style code blocks. At the moment, you have to <a href="https://github.com/chjj/marked/pull/418#issuecomment-57291402">prepare your own renderer</a> to achieve it.</p>
 <p>Also, you need to check whether the language given by marked is a valid one for highlight.js. <a href="https://github.com/chjj/marked/issues/311#issuecomment-31182632">highlight.js seems to have had <code>LANGUAGES</code> property a few years ago</a> but now <code>getLanguage()</code> method serves as a substitute for it.</p>
 <p>Here&#39;s the outcome:</p>
@@ -220,38 +339,6 @@ echo '@autoAssign class Hello { constructor(foo, bar, baz) {} }' | babel --optio
 <li><a href="https://github.com/estree/estree">shuhei/babel-plugin-auto-assign</a> The case study project in this article.</li>
 <li><a href="https://github.com/shuhei/babel-plugin-angular2-annotations">shuhei/babel-plugin-angular2-annotations</a> A plugin for building Angular 2 app with Babel. It supports TypeScript-like method parameter decorators by monkey-patching Babylon.</li>
 </ul>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2015/03/02/date-timezone">Assign Time/time string in UTC to ActiveRecord date attribute</a></h1><div class="meta">@<span class="date">2015-03-02 20:58</span> - <span class="category">Ruby</span>, <span class="category">Rails</span></div></div><div class="content"><p><strong>TL;DR: <code>gem &#39;date_timezone&#39;</code> in <code>Gemfile</code> and <code>include DateTimezone</code> in ActiveRecord models if you are on the east side of the prime meridian.</strong></p>
-<p>ActiveRecord is great. It automatically converts data <a href="https://github.com/rails/rails/tree/v4.2.0/activerecord/lib/active_record/type">according to the type of database column</a>. That&#39;s why we can throw request params, whose values are often strings, into mass assignment methods like <code>create</code> and <code>update</code> without manual conversion. The conversion works perfectly in most of the cases except for <code>date</code> attribute.</p>
-<p>To <code>date</code> attribute, we can assign <code>Date</code> and date string like <code>&#39;2015-03-02&#39;</code> without any problem. However, <code>Time</code> and time string with different time zone, usualy UTC, don&#39;t work well here. Their own time zones are not taken into account when converted to <code>Date</code>.</p>
-<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">Rails::Application</span></span></span>
-  config.time_zone = <span class="hljs-string">'Tokyo'</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  <span class="hljs-comment"># birth_date :date</span>
-<span class="hljs-keyword">end</span>
-
-expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-02'</span>).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
-expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
-expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Time</span>.zone.local(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
-
-<span class="hljs-comment"># But...</span>
-expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-constant">Time</span>.utc(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>)).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))
-expect(<span class="hljs-constant">Person</span>.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to eq(<span class="hljs-constant">Date</span>.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))</code></pre><p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
-<pre><code class="hljs javascript"><span class="hljs-built_in">JSON</span>.stringify({ date: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
-<span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span></code></pre><p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
-<pre><code class="hljs undefined">def birth_date=(value)
-  self[:birth_date] = case value
-                      when String then Time.zone.parse(value)
-                      when Time then value.in_time_zone
-                      else value
-                      end
-end</code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
-<pre><code class="hljs Gemfile">gem 'date_timezone'</code></pre><pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  <span class="hljs-keyword">include</span> <span class="hljs-constant">DateTimezone</span>
-
-  <span class="hljs-comment"># birth_date :date</span>
-<span class="hljs-keyword">end</span></code></pre><p>If you are creating Rails application on the east side of the prime meridian and in trouble with the same issue as mine, please try it and share what you think.</p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/2">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/4">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
