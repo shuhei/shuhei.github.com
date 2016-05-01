@@ -1,4 +1,14 @@
-<!DOCTYPE html><html><head><title>Page 11 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run">The program being debugged is not being run.</a></h1><div class="meta">@<span class="date">2010-05-01 14:41</span> - </div></div><div class="content"><p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
+<!DOCTYPE html><html><head><title>Page 11 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/06/01/out-of-memory-with-wordpress">Wordpress で Out of memory</a></h1><div class="meta">@<span class="date">2010-06-01 23:40</span> - </div></div><div class="content"><p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
+再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。<br />
+syslog を見ると Out of memory で kernel が apache2 を kill している様子。<br />
+運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
+<p>積んでるメモリはたった 512MB。<br />
+人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。<br />
+おそらく、クローラのアクセスに耐えられなくなるのでしょう。</p>
+<p>定期的な再起動、Apache や <span class="caps">PHP</span> の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。<br />
+&#8220;Super&#8221; Cache とはなかなかの名前です。<br />
+インストールはとても簡単。</p>
+<p>さて、一ヶ月後どうなることやら。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run">The program being debugged is not being run.</a></h1><div class="meta">@<span class="date">2010-05-01 14:41</span> - </div></div><div class="content"><p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
 そんなの見ればわかります。理由を書いてください。理由を。<br />
 アプリのインストール自体はできているのですが、デバッグができないようです。</p>
 <p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
@@ -66,10 +76,7 @@ $ which ruby
 <p>なお、Ruby 1.9 には RubyGems が同梱されているので、別途インストールは不要。</p>
 <h3>一旦完了</h3>
 <p>とりあえず今日のところはこの辺で一旦完了ということで。<br />
-その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/03/18/circle-packing">Circle Packing</a></h1><div class="meta">@<span class="date">2010-03-18 00:24</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
-<p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
-<a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
-<p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/10">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/12">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/10">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/12">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
