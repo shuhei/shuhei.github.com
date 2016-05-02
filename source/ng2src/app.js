@@ -75,7 +75,8 @@
         .center([this.w / 2, this.h / 2])
         .scaleExtent([0.2, 10])
         .on('zoom', () => {
-          this.wrapper.attr('transform', `translate(${d3.event.translate}) scale(${d3.event.scale})`);
+          this.wrapper.attr('transform',
+                            `translate(${d3.event.translate}) scale(${d3.event.scale})`);
         });
 
       this.vis = d3.select('#vis')

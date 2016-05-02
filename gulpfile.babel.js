@@ -1,5 +1,5 @@
 import util from 'util';
-import path from 'path'
+import path from 'path';
 
 import { argv as args } from 'yargs';
 import strftime from 'strftime';

@@ -115,7 +115,8 @@ export function index(config) {
     }
 
     // Archive page.
-    funcs.push(renderTemplateFunc('archives.jade', path.join(config.blogDir, 'archives', 'index.html'), localsForArchive));
+    const archivePath = path.join(config.blogDir, 'archives', 'index.html');
+    funcs.push(renderTemplateFunc('archives.jade', archivePath, localsForArchive));
 
     async.parallel(funcs, (err, files) => {
       if (err) {
@@ -139,7 +140,10 @@ export function layout(config) {
       return cb();
     }
 
-    const templatePath = path.join(file.cwd, config.sourceDir, config.layoutDir, file.frontMatter.layout + '.jade');
+    const templatePath = path.join(file.cwd,
+                                   config.sourceDir,
+                                   config.layoutDir,
+                                   file.frontMatter.layout + '.jade');
 
     getCompiledTemplate(templatePath, (err, compiled) => {
       if (err) {
@@ -197,11 +201,12 @@ export function newPost(title, config) {
   const urlTitle = toURL(title);
   const now = new Date();
   const date = strftime('%Y-%m-%d', now);
-  const filename = path.join(config.sourceDir, config.postDir, util.format('%s-%s.markdown', date, urlTitle));
+  const filename = util.format('%s-%s.markdown', date, urlTitle);
+  const newPostPath = path.join(config.sourceDir, config.postDir, filename);
 
-  gutil.log(util.format('Creating new post: %s', filename));
+  gutil.log(`Creating new post: ${newPostPath}`);
 
-  const writer = fs.createWriteStream(filename);
+  const writer = fs.createWriteStream(newPostPath);
   writer.write("---\n");
   writer.write("layout: post\n");
   writer.write(util.format("title: \"%s\"\n", title));
@@ -216,7 +221,7 @@ export function newPage(filename, config) {
   const filenamePattern = /(^.+\/)?(.+)/;
   const matches = filenamePattern.exec(filename);
   if (!matches) {
-    throw new PluginError(PLUGIN_NAME, ['Syntax error:', filename, 'contains unsupported characters'].join(' '));
+    throw new PluginError(PLUGIN_NAME, `Syntax error: ${filename} contains unsupported characters`);
   }
 
   const dirComponents = [config.sourceDir].concat((matches[1] || '').split('/').filter(Boolean));
