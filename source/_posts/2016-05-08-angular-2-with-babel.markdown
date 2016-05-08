@@ -8,7 +8,7 @@ categories: [JavaScript, Angular 2, Babel]
 
 Although Angular 2's primary language is apparently TypeScript, many people want to use Babel as shown in [a survey](http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html).
 
-However, [The official documentation](https://angular.io) targets only TypeScript and ES5. In addition, any pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript's type annotations for annotating components and services.
+However, [The official documentation](https://angular.io) targets only TypeScript and ES5. In addition, many pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript's type annotations for annotating components and services.
 
 To fill the gap, you can use [`babel-preset-angular2`](https://github.com/shuhei/babel-preset-angular2) that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.
 
