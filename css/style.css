@@ -230,6 +230,7 @@ blockquote cite:before {
   text-decoration: none;
 }
 
+/* post */
 .post,
 .post-list{
   background: #fff;
@@ -289,6 +290,7 @@ blockquote cite:before {
   text-decoration: none;
 }
 
+/* content */
 .content {
   line-height: 1.6em;
 }
@@ -306,6 +308,23 @@ blockquote cite:before {
   width: 700px;
 }
 
+/* table */
+table {
+  border-collapse: collapse;
+  margin: 2em 0;
+}
+th {
+  font-weight: normal;
+  text-align: left;
+}
+tbody {
+  border-top: 1px solid #333;
+  padding: 0.5em 0;
+}
+th, td {
+  padding-right: 1em;
+}
+
 /* code */
 .hljs {
   line-height: 1.5em;
@@ -319,6 +338,7 @@ code {
   font-family: Monaco, 'Lucida Console', monospace;
 }
 
+/* pagination */
 .pagination {
   list-style-position: outside;
   list-style-type: none;

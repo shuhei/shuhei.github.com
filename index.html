@@ -1,4 +1,116 @@
-<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/05/01/incremental-search-with-rxjs">Incremental search with RxJS switchMap</a></h1><div class="meta">@<span class="date">2016-05-02 02:18</span> - <span class="category">JavaScript</span>, <span class="category">RxJS</span></div></div><div class="content"><p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
+<!DOCTYPE html><html><head><title>Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/05/08/angular-2-with-babel">Angular 2 with Babel</a></h1><div class="meta">@<span class="date">2016-05-08 15:47</span> - <span class="category">JavaScript</span>, <span class="category">Angular 2</span>, <span class="category">Babel</span></div></div><div class="content"><p>Although Angular 2&#39;s primary language is apparently TypeScript, many people want to use Babel as shown in <a href="http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html">a survey</a>.</p>
+<p>However, <a href="https://angular.io">The official documentation</a> targets only TypeScript and ES5. In addition, any pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript&#39;s type annotations for annotating components and services.</p>
+<p>To fill the gap, you can use <a href="https://github.com/shuhei/babel-preset-angular2"><code>babel-preset-angular2</code></a> that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<pre><code class="hljs sh">npm install -D babel-preset-es2015 babel-preset-angular2</code></pre><p>Add <code>presets</code> to <code>.babelrc</code>. Note that the <code>presets</code>&#39; order is important.</p>
+<pre><code class="hljs json">{
+  "<span class="hljs-attribute">presets</span>": <span class="hljs-value">[<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
+</span>}</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
+<h2 id="supported-annotations">Supported annotations</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>EcmaScript</th>
+<th>TypeScript</th>
+<th>Babel*</th>
+<th>Babel + angular2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class decorator</td>
+<td><code>@Component()</code></td>
+<td>Stage 1</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Property decorator</td>
+<td><code>@Input()</code></td>
+<td>Stage 1</td>
+<td>Yes</td>
+<td>Partial*</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Parameter decorator</td>
+<td><code>@Optional()</code></td>
+<td>Stage 0</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Type annotation</td>
+<td><code>foo: Foo</code></td>
+<td>-</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
+<ul>
+<li><a href="https://babeljs.io/docs/plugins/preset-es2015/">babel-preset-es2015</a></li>
+<li><a href="https://babeljs.io/docs/plugins/transform-class-properties/">babel-plugin-transform-class-properties</a></li>
+<li><a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">babel-plugin-transform-decorators-legacy</a> (not literally official but maintained by <a href="https://github.com/loganfsmyth">@loganfsmyth</a>, one of Babel&#39;s core contributors)</li>
+</ul>
+<p>Property decorator in Babel is marked &quot;Partial&quot; because <code>babel-plugin-transform-decorators-legacy</code> ignores class properties without initializers.</p>
+<p>You can emulate parameter decorator and type annotation with plain ES2015 like the following but it&#39;s a little bit counterintuitive.</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
+  constructor(foo: Foo, @Optional() bar: Bar) {
+    <span class="hljs-comment">// Do something with foo and bar.</span>
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
+  static get parameters() {
+    <span class="hljs-keyword">return</span> [[Foo], [Bar, Optional()]];
+  }
+
+  constructor(foo, bar) {
+    <span class="hljs-comment">// Do something with foo and bar.</span>
+  }
+}</code></pre><h2 id="polyfills">Polyfills</h2>
+<p>Angular 2 beta versions had polyfill bundles but RC versions don&#39;t. But never mind. We can just import them before bootstrapping our app.</p>
+<pre><code class="hljs sh">npm install -S babel-polyfill zone.js</code></pre><p><code>src/index.js</code></p>
+<pre><code class="hljs js"><span class="hljs-comment">// Import polyfills.</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'babel-polyfill'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js/dist/zone.js'</span>;
+
+<span class="hljs-comment">// Bootstrap app!</span>
+<span class="hljs-keyword">import</span> {provide} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> {bootstrap} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+<span class="hljs-keyword">import</span> {ROUTER_PROVIDERS} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> {LocationStrategy, HashLocationStrategy} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+
+<span class="hljs-keyword">import</span> {HelloApp} <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>;
+
+bootstrap(HelloApp, [
+  ROUTER_PROVIDERS,
+  provide(LocationStrategy, { useClass: HashLocationStrategy })
+]).catch(err =&gt; <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
+<h2 id="module-resolution">Module resolution</h2>
+<p>You can use any module resolver as long as it works with Babel. I&#39;ll pick <a href="http://browserify.org/">Browserify</a> here for its simplicity.</p>
+<pre><code class="hljs js">npm install -D browserify babelify</code></pre><p>Add a <code>build</code> script to your <code>package.json</code> assuming that your bootstrap script locates at <code>src/index.js</code>.</p>
+<pre><code class="hljs json">{
+  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">build</span>": <span class="hljs-value"><span class="hljs-string">"browserify -t babelify src/index &gt; public/bundle.js"</span>
+  </span>}
+</span>}</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
+<p>Of course you can use other module resolvers like Webpack or SystemJS.</p>
+<h2 id="offline-compilation">Offline compilation</h2>
+<p>This is not yet available for Babel. Not completed even for TypeScript.</p>
+<p>The <a href="https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli"><code>compiler_cli</code></a> seems to be deeply integrated with TypeScript compiler. It <strong>statically</strong> collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.</p>
+<p>I&#39;m thinking of working on it once the TypeScript version is published and the compiler API becomes more stable.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
+<p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/05/01/incremental-search-with-rxjs">Incremental search with RxJS switchMap</a></h1><div class="meta">@<span class="date">2016-05-02 02:18</span> - <span class="category">JavaScript</span>, <span class="category">RxJS</span></div></div><div class="content"><p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
 <h2 id="switchmap">switchMap</h2>
 <p><code>switchMap(func)</code> is equivalent to <code>map(func).switch()</code>. It keeps subscribing latest observable at the moment and unsubscribing outdated ones so that it only streams events from latest observable at the moment. <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">Take a look at the marble chart for <code>switch</code></a>. It illustrates the behavior well.</p>
 <h2 id="incremental-search">Incremental search</h2>
@@ -78,11 +190,6 @@ keyword$
 
 <span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
 <span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2016/04/05/one-time-binding-for-ng-if">One-time binding for ng-if</a></h1><div class="meta">@<span class="date">2016-04-05 23:58</span> - <span class="category">JavaScript</span>, <span class="category">AngularJS</span></div></div><div class="content"><p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
-<p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
-<p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/2">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
