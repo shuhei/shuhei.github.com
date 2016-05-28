@@ -21,6 +21,8 @@ When I don't sit in front of my laptop, I wander the intricate streets of Tokyo,
 
 ## Talks
 
+- 2016/5 [Angular 2 Offline Compiler](https://speakerdeck.com/shuhei/angular-2-offline-compiler)
+- 2016/3 [Weird Attractors](https://speakerdeck.com/shuhei/weird-attractors)
 - 2015/12 [Angular 2](https://speakerdeck.com/shuhei/angular-2-at-js-ojisan-number-6-3) at [JS Ojisan #6-3](https://atnd.org/events/71991)
 - 2015/12 [Introduction to Angular 2](https://speakerdeck.com/shuhei/introduction-to-angular-2) at [TokyoJS XMAS](http://www.meetup.com/tokyojs/events/226903404/)
 - 2015/8 [Git の内部データ構造](https://speakerdeck.com/shuhei/git-falsenei-bu-detagou-zao): (Japanese) Git's internal data structure
