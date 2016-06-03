@@ -1,4 +1,52 @@
-<!DOCTYPE html><html><head><title>Page 17 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/31/japanese-on-irb">irb で日本語表示</a></h1><div class="meta">@<span class="date">2009-12-31 15:46</span></div></div><div class="content"><pre class="prettyprint">$irb
+<!DOCTYPE html><html><head><title>Page 17 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/01/04/build-biffpop-for-mydnsjp">MyDNS.jp 用に biffpop をビルド</a></h1><div class="meta">@<span class="date">2010-01-04 02:17</span> - </div></div><div class="content"><p>無料ダイナミック <span class="caps">DNS</span> サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。<br />
+<span class="caps">POP</span> のクライアントソフトとして説明ページでおすすめされていた <a href="http://www.nakata-jp.org/computer/freesoft/biffpop.html">biffpop</a> をビルドする際につまずいたのでメモ。<br />
+環境は Ubuntu Server 9.10 64 bit。</p>
+<p>ソースをダウンロードして make すると、下記のようなエラー。</p>
+<blockquote>
+<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_<span class="caps">SSL</span>  -c -Wall biffpop.c -o biffpop.o<br />
+biffpop.c:24:25: error: openssl/ssl.h: No such file or directory<br />
+biffpop.c:25:25: error: openssl/err.h: No such file or directory<br />
+biffpop.c:47: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token<br />
+biffpop.c: In function ‘main’:<br />
+biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_<span class="caps">COMMON</span>’ undeclared (first use in this function)<br />
+biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
+biffpop.c:124: error: for each function it appears in.)<br />
+biffpop.c:127: warning: implicit declaration of function ‘SSL_load_error_strings’<br />
+biffpop.c:128: warning: implicit declaration of function ‘SSL_library_init’<br />
+biffpop.c:129: error: ‘ctx’ undeclared (first use in this function)<br />
+biffpop.c:129: warning: implicit declaration of function ‘SSL_CTX_new’<br />
+biffpop.c:129: warning: implicit declaration of function ‘SSLv23_client_method’<br />
+biffpop.c:130: warning: implicit declaration of function ‘ERR_print_errors_fp’<br />
+biffpop.c:138: warning: implicit declaration of function ‘SSL_CTX_free’<br />
+biffpop.c:139: warning: implicit declaration of function ‘ERR_free_strings’<br />
+biffpop.c: In function ‘readConfigFileSub’:<br />
+biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
+biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
+make: *** [biffpop.o] Error 1</p>
+</blockquote>
+<p>OpenSSL は入っているのにおかしいな、と思ったのですが、libssl-dev がいるっぽいです。<br />
+<a href="http://forum.qmailrocks.org/archive/index.php/t-963.html">openssl/ssl.h: No such file or directory [Archive] &#8211; Qmailrocks.org Forum</a></p>
+<pre class="prettyprint">sudo apt-get install libssl-dev
+make</pre>
+<p>まだ少しエラー。</p>
+<blockquote>
+<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_<span class="caps">SSL</span>  -c -Wall biffpop.c -o biffpop.o<br />
+biffpop.c: In function ‘main’:<br />
+biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_<span class="caps">COMMON</span>’ undeclared (first use in this function)<br />
+biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
+biffpop.c:124: error: for each function it appears in.)<br />
+biffpop.c: In function ‘readConfigFileSub’:<br />
+biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
+biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
+make: *** [biffpop.o] Error 1</p>
+</blockquote>
+<p>今度は regex.h のエラー。ソースを見てみると <code>_RE_SYNTAX_POSIX_COMMON</code> は <code>#ifdef __USE_GNU</code> で囲まれています。<br />
+<code>__USE_GNU</code> をオンにするには <code>#define _GNU_SOURCE</code> するか <code>cc -D _GNU_SOURCE</code> すれば良いらしい。</p>
+<p>・・・ということまではわかりましたが、よく考えると上記二つは <code>-DKILLLIST</code> と <code>-DUSE_SSL</code> をつけなければ起きないエラーです。<span class="caps">SSL</span>も正規表現によるメールの削除も、今回の用途には必要ありません。</p>
+<p>Makefile を よく読むと <code>#FLAGS  = -O3      # for mydns.jp system simple function</code> と書いてありました。<br />
+親切にも MyDNS ユーザ用のオプションが用意されていた訳です。<br />
+この行のコメントを外し、フルオプションの方（ <code>FLAGS  = -O3 -DIPv6 -DKILLLIST -DUSE_SSL # full option IPv6, Kill List &amp; SSL</code> ）をコメントアウトすると、ビルドできました。<br />
+めでたしめでたし。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/12/31/japanese-on-irb">irb で日本語表示</a></h1><div class="meta">@<span class="date">2009-12-31 15:46</span></div></div><div class="content"><pre class="prettyprint">$irb
 irb(main):001:0&gt;puts "あああ"
 "\343\201\202\343\201\202\343\201\202"
 =&gt; nil</pre>
@@ -28,20 +76,7 @@ def decode(ascii)
     puts ascii[num..(num + 7)].bin.chr
   end
 end</pre>
-<p>作る方は簡単でしょうが、読む方は大変です。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta">@<span class="date">2009-11-14 10:07</span> - </div></div><div class="content"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
-Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
-<h3>方法</h3>
-<p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
-<p><img src="/images/2009/11/symbolic_break_point1.png" alt="" /></p>
-<p>出てきたダイアログに <code>objc_exception_throw</code> と入力。<br />
-これで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。</p>
-<p><img src="/images/2009/11/debugger1.png" alt="" /></p>
-<p>デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。</p>
-<p>via <a href="http://www.markj.net/debugging-tip-objc_exception_throw-breakpoint/">Debugging Tip – objc_exception_throw breakpoint | markjnet</a></p>
-<h3>シンボリックブレークポイント</h3>
-<p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
-ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
-今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/16">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/18">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>作る方は簡単でしょうが、読む方は大変です。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/16">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/18">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');

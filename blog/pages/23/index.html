@@ -1,4 +1,5 @@
-<!DOCTYPE html><html><head><title>Page 23 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/26/tweetstat">TweetStats</a></h1><div class="meta">@<span class="date">2009-09-26 22:36</span> - </div></div><div class="content"><p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
+<!DOCTYPE html><html><head><title>Page 23 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/30/exec-windows-command-with-ruby">Ruby で Windows のコマンド実行</a></h1><div class="meta">@<span class="date">2009-09-30 10:49</span></div></div><div class="content"><p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
+<pre class="prettyprint">ret = system "cmd.exe /c dir"</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/26/tweetstat">TweetStats</a></h1><div class="meta">@<span class="date">2009-09-26 22:36</span> - </div></div><div class="content"><p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
 <p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。<br />
 時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
 <p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。<br />
@@ -11,32 +12,7 @@
 <pre class="prettyprint">bq.. %text%
 
 "??%title%??":%url%</pre>
-<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/09/21/use-textpatterns-textile-with-wordpress">Wordpress で Textpattern 相当の Textile を使う</a></h1><div class="meta">@<span class="date">2009-09-21 00:37</span> - <span class="category">Wordpress</span></div></div><div class="content"><p>以前 <a href="/blog/2009/08/02/wordpress-textile-plugin/">Wordpress の Textile プラグイン</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
-<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン <a href="http://wordpress.org/extend/plugins/text-control-2/">Text Control 2</a> をふと思い立ってインストールしてみたこと。<br />
-このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。<br />
-これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
-<h3>手順</h3>
-<h4>classTextile.php の入手</h4>
-<p>Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。</p>
-<h4>textile2.php ではなく classTextile.php を使うように</h4>
-<p>wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを</p>
-<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
-  if($do_text == 'textile2') {
-
-    require_once('text-control/textile2.php');
-    $t = new Textile();
-    $text = $t-&gt;process($text);</pre>
-<p>から</p>
-<pre class="prettyprint">function tc_post_process($text, $do_text='', $do_char='') {
-  if($do_text == 'textile2') {
-
-    require_once('text-control/classTextile.php');
-    $t = new Textile();
-    $text = $t-&gt;TextileThis($text);</pre>
-<p>へ変更します。</p>
-<h3>結果</h3>
-<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。<br />
-Google Code Prettify も、これまではいちいち <span class="caps">HTML</span> のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/22">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/24">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/22">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/24">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
