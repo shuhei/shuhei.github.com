@@ -1,4 +1,29 @@
-<!DOCTYPE html><html><head><title>Page 26 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/10/iphone-provisioning-profile">iPhone Provisioning Profile</a></h1><div class="meta">@<span class="date">2009-08-10 12:31</span> - <span class="category">iPhone 開発</span></div></div><div class="content"><p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
+<!DOCTYPE html><html><head><title>Page 26 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/22/japanese-in-xml-comment-makes-monodevelop-down">OSX 上の MonoDevelop の日本語対応</a></h1><div class="meta">@<span class="date">2009-08-22 19:01</span></div></div><div class="content"><p>MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。<br />
+プレビュー版だけあっていろいろ動作があやしいです。そして日本語、というかマルチバイト対応がさっぱりです。<br />
+以下、できるだけ日本語使えるようにするためのメモ。</p>
+<h3>スタートページやメニューの文字化け</h3>
+<p>まず目につくのがこれ。<br />
+/Library/Framework/Mono.Framework/Version/Current/etc/pango/pango.aliases というファイルを作成し、以下の内容を書くと直るようです。</p>
+<pre class="prettyprint">"Lucida Grande" = "Hiragino Kaku Gothic Pro"</pre>
+<p>pango なるもののバグだとか。</p>
+<p>via <a href="http://kki-zakki.blogspot.com/2008/12/monodevelop-20-alphamac-os-x.html">っき雑記: MonoDevelop 2.0 AlphaのMac OS X版で日本語を表示する方法</a></p>
+<h3>ファイルは <span class="caps">UTF</span>-8 でないと化ける</h3>
+<p>Shift-<span class="caps">JIS</span> のファイルを <span class="caps">UTF</span>-8 置換しましょう。VisualStudio に戻した時にも問題ないはずです。</p>
+<pre class="prettyprint">find . -name '*.cs' -print0 | xargs -0 nkf -w -Lu --overwrite</pre>
+<h3>なんと日本語が入力できない</h3>
+<p>我慢しましょう。どうしてもという時はコピペができます。</p>
+<h3><span class="caps">XML</span> 内の日本語</h3>
+<p><span class="caps">XML</span>コメントの中の一行で日本語が何文字か続いた後、改行せずにタグを閉じると落ちるようです。<br />
+つまり、以下のようなもの。</p>
+<pre class="prettyprint">/// &lt;param name="hoge"&gt;ほげほげほげ&lt;/param&gt;</pre>
+<p>当面の回避策は、タグを閉じる前に改行することでしょうか。</p>
+<pre class="prettyprint">/// &lt;param name="hoge"&gt;ほげほげほげ
+/// &lt;/param&gt;</pre>
+<p>ちょっとどうかと思いますが、これなら落ちません。</p>
+<h4>置換</h4>
+<pre class="prettyprint">perl -i.bak -pe 's/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg' hoge.cs</pre>
+<p>一括置換は以下。</p>
+<pre class="prettyprint">find . -name '*.cs' -exec perl -i.bak -pe 's/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg' {} \;</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/10/iphone-provisioning-profile">iPhone Provisioning Profile</a></h1><div class="meta">@<span class="date">2009-08-10 12:31</span> - <span class="category">iPhone 開発</span></div></div><div class="content"><p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
 改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
 <p>キーチェーンアクセス &#8594; 証明書アシスタント -&gt; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
 <p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/02/wordpress-textile-plugin">Wordpress の Textile プラグイン</a></h1><div class="meta">@<span class="date">2009-08-02 23:53</span> - <span class="category">Wordpress</span></div></div><div class="content"><p>どうもしっくり来るのがありませんでした。</p>
@@ -6,13 +31,7 @@
 <a href="http://wordpress.org/support/topic/253662">対策</a> を試すと大体直ったものの、 <code>pre</code> タグで囲った部分の文字化けが直らず。 <code>pre</code> タグを使うのはコードだけなので、日本語を使わなければいい話なのですが、コメントは日本語で書きたいので。<br />
 ヘッダタグのオフセットなど素敵な機能がついていただけに残念です。</p>
 <p>結局 <a href="http://wordpress.org/extend/plugins/textiler/">Textiler</a> というのを採用。何だか評判がよくありませんが、文字化けはしないようです。ただ、リストが途中で分割されてしまうなど不思議な動きをしていますが・・・。</p>
-<p>何はともあれ、Textile を使えるようになりました。タグを打つ必要がなく、とてもいいですね。やはり <span class="caps">CMS</span> はこうでなくては。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/02/recently-bought-books-2009-07">最近買った本 2009年7月</a></h1><div class="meta">@<span class="date">2009-08-02 21:17</span> - <span class="category">読書</span></div></div><div class="content"><h3><a href="http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22">骨—第5回企画展「骨」展展覧会カタログ 山中俊治ディレクション</a></h3>
-<p>展示会が面白かったので買いました。どうつくるかより何を作るかに目を向けなければ。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4798116831/nanataisan-22">レガシーコード改善ガイド</a></h3>
-<p>仕事でまさにレガシーコードと格闘しているので・・・。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/0131495054/nanataisan-22">xUnit Test Patterns: Refactoring Test Code</a></h3>
-<p>何となく買ってみたら 900 ページ近くもあってビックリ。</p>
-<p>うーん、あんまり買ってませんね。その上、実際に読んだのはレガシーコード改善ガイドのみ。7月は、飲んだり会社に遅くまでいたりで、本を読む気力・体力がなかったことが原因かもしれません。8月はもうすこしゆったり過ごしたいと思います。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/25">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/27">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>何はともあれ、Textile を使えるようになりました。タグを打つ必要がなく、とてもいいですね。やはり <span class="caps">CMS</span> はこうでなくては。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/25">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/27">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
