@@ -1,4 +1,14 @@
-<!DOCTYPE html><html><head><title>Page 7 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/06/08/blog-with-gulp">Gulp でブログを書く</a></h1><div class="meta">@<span class="date">2014-06-08 17:23</span> - <span class="category">JavaScript</span>, <span class="category">gulp</span></div></div><div class="content"><p>もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。</p>
+<!DOCTYPE html><html><head><title>Page 7 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/08/23/grunt-and-es6-modules">Grunt と ES6 Modules</a></h1><div class="meta">@<span class="date">2014-08-23 01:21</span> - <span class="category">JavaScript</span></div></div><div class="content"><p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
+<h2 id="-introduction-to-grunt-https-speakerdeck-com-shuhei-introduction-to-grunt-"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
+<p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
+<p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
+<script async class="speakerdeck-embed" data-id="39e78f00fade0131d88d6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<h2 id="-start-es6-today-https-speakerdeck-com-shuhei-start-es6-modules-today-"><a href="https://speakerdeck.com/shuhei/start-es6-modules-today">Start ES6 Today</a></h2>
+<p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
+<p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
+<script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/06/08/blog-with-gulp">Gulp でブログを書く</a></h1><div class="meta">@<span class="date">2014-06-08 17:23</span> - <span class="category">JavaScript</span>, <span class="category">gulp</span></div></div><div class="content"><p>もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。</p>
 <p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js">shuhei.github.io / gulpfile.babel.js</a></p>
 <p>ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。</p>
 <p>機能は本当に最小限で、記事ページ、静的ページと index, archive の生成だけです。</p>
@@ -32,17 +42,6 @@
 <p>そして、まずは形からということで、つい数日前に <a href="https://www.pfu.fujitsu.com/hhkeyboard/hhkbpro2/nokeytop.html">Happy Hacking Keyboard の無刻印キーボード</a>を購入しました。キーボードを見ないようにするには何も書いてなければ良いじゃないというわけです。矢印キーもないし。叩いたときの感触が良くて気に入っていますが、会社に持っていくのはもう少し速く打てるようになってからにしようかと思っています。</p>
 <h1 id="-">目がやたらと疲れるようになった</h1>
 <p>これまでは朝から晩までパソコンの前にいても、目がちょっと疲れたなというくらいで視力も落ちなかったのですが、タッチタイピングを練習し始めてからは一二時間タイプしていると視界がかすんできます。おそらく、これまでは手元と画面を交互に見ていたため目に優しかったのでしょう。タッチタイピングでも精度が十分ならばよそ見しながら打てば良いのですが、まだ結構間違えるので画面を凝視しています。目を守るためには、精度を上げないといけませんね。</p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/01/31/webland">日本の地価</a></h1><div class="meta">@<span class="date">2014-01-31 14:25</span> - <span class="category">JavaScript</span>, <span class="category">Three.js</span></div></div><div class="content"><p><a href="/webland/"><img src="http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg" alt="Land Prices in Japan"></a></p>
-<p><a href="/webland/">日本の地価を視覚化</a>してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。</p>
-<ul>
-<li><a href="/webland/">Land Prices in Japan</a></li>
-<li><a href="https://github.com/shuhei/webland">フロントエンドのソース</a></li>
-<li><a href="https://github.com/shuhei/webland-scraper">データ取得と加工用スクリプト</a></li>
-</ul>
-<p>データソースは<a href="http://www.land.mlit.go.jp/webland/">国土交通省の土地総合情報システム</a>です。データの取得、加工は Ruby のスクリプトでやりました。JSON ファイルにしています。</p>
-<p>視覚化は Chrome Expreriments の <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a> のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。</p>
-<p>三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing">postprocessing</a> といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。</p>
-<p>スペースボタンを押すと真横からのビューに切り替わります。都市の高さが際立っていますね。</p>
 </div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/6">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/8">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

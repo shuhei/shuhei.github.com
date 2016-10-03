@@ -1,4 +1,60 @@
-<!DOCTYPE html><html><head><title>Page 13 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/03/18/circle-packing">Circle Packing</a></h1><div class="meta">@<span class="date">2010-03-18 00:24</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
+<!DOCTYPE html><html><head><title>Page 13 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/04/14/upgrade-to-snow-leopard">今さら Snow Leopard にアップグレード</a></h1><div class="meta">@<span class="date">2010-04-14 23:57</span> - </div></div><div class="content"><p>Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。<br />
+しかし、iPhone <span class="caps">SDK</span> 4.0 beta は Leopard には入らないというので、ついに観念。<br />
+ヨドバシのオンラインストア（Amazon より高いけど送料無料、即日発送、ポイントつく）で注文し、アップグレードしてみました。<br />
+以下、それに伴う環境構築も合わせてメモ。</p>
+<h3>ファイル整理</h3>
+<p>引っ越し前の大掃除ということで、いらないファイルを一掃しました。</p>
+<h3>（iTunes の認証を解除しておく）</h3>
+<p>iTunes で購入した音楽やアプリは 5 台までのコンピュータで共有できるようです。<br />
+認証を解除しておかないと、この台数一つを無駄にすることになります。</p>
+<p>これには気がつかず、すっかりやり損ねました！<br />
+今のところ 5 台で共有することもなさそうなので構いませんが・・・。</p>
+<h3>MacPorts, RubyGems のメモ</h3>
+<pre class="prettyprint">$ port installed &gt; ports20100414.txt
+$ gem list --local &gt; gems20100414.txt</pre>
+<h3>Time Machine でバックアップ</h3>
+<p>外付け <span class="caps">HDD</span> を引っ張りだしてきてバックアップ。<br />
+Time Machine は初めてだったので、フルバックアップで時間がかかりました。<br />
+120 GB くらいで 3 から 4 時間ほど。</p>
+<h3>Snow Leopard インストール</h3>
+<p>Snow Leopard の <span class="caps">DVD</span> を入れ、ディスクユーティリティでフォーマット。<br />
+そしてインストール。</p>
+<h3>Time Machine からデータを転送</h3>
+<p>インストールのウィザードに身を任せ、Time Machine からデータを転送。<br />
+ユーザと設定のみ転送し、&#8221;<span class="caps">HDD</span> 上のその他のファイル&#8220;（みたいなやつ）は転送せず。</p>
+<h3>Xcode のインストール</h3>
+<p><span class="caps">DVD</span> の &#8220;オプションインストール&#8221; フォルダから Xcode をインストール。</p>
+<h3>ソフトウェアアップデート</h3>
+<p>言われるがままソフトウェアアップデートをし、再起動。<br />
+そしたらまた Java のアップデートがあるとかで、立て続けにソフトウェアアップデート、再起動。</p>
+<h3>iPhone <span class="caps">SDK</span> のインストール</h3>
+<p>Xcode 3.2.3 + iPhone <span class="caps">SDK</span> 4.0 beta をインストール。</p>
+<h3>MacPorts のインストール</h3>
+<p>Leopard には最初から入っていたような気がするんですが、Snow Leopard には入っていません。<br />
+サイトからダウンロードしてインストール。<br />
+パッケージ管理ソフトとして Fink や Homebrew なども少し検討してみましたが、結局使い慣れた MacPorts に。</p>
+<h3>Ruby 1.9 のインストール</h3>
+<p>これを機に Ruby も 1.9 系統を使うようにしてみます。</p>
+<pre class="prettyprint">$ sudo port install ruby19</pre>
+<p>このままだとコマンド名が <code>ruby1.9</code> や <code>rake1.9</code> です。<br />
+<code>ruby</code> や <code>rake</code> として使いたいので、シンボリックリンクを作成。</p>
+<pre class="prettyprint">$ cd /opt/local/bin
+$ sudo ln -s erb1.9 erb
+$ sudo ln -s gem1.9 gem
+$ sudo ln -s irb1.9 irb
+$ sudo ln -s rake1.9 rake
+$ sudo ln -s rdoc1.9 rdoc
+$ sudo ln -s ri1.9 ri
+$ sudo ln -s ruby1.9 ruby
+$ sudo ln -s testrb1.9 testrb
+$ which ruby
+/opt/local/bin/ruby</pre>
+<p>こんなんでいいんですかね・・・？<br />
+.bashrc が <code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH</code> 的な感じになっているのが前提です。</p>
+<p>なお、Ruby 1.9 には RubyGems が同梱されているので、別途インストールは不要。</p>
+<h3>一旦完了</h3>
+<p>とりあえず今日のところはこの辺で一旦完了ということで。<br />
+その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/03/18/circle-packing">Circle Packing</a></h1><div class="meta">@<span class="date">2010-03-18 00:24</span> - </div></div><div class="content"><p><a href="http://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
 <p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
 <a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
 <p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/03/16/flash-platform-camp-tokyo">Flash Platform Camp Tokyo を見てきた</a></h1><div class="meta">@<span class="date">2010-03-16 23:02</span> - </div></div><div class="content"><p>今日 Flash Platform Camp Tokyo に行ってきました。<br />
@@ -7,21 +63,7 @@ Flash <span class="caps">CS5</span>、Flash Player 10.1、<span class="caps">AIR
 <p>最近開発プロセスやアプリケーション設計、プログラミング言語そのものなど、いわば How の方に興味が移っていました。<br />
 会社で What を選びにくい状況で、ついついそうなってしまっていたのかもしれません。<br />
 しかし、今回のイベントでやはり How より What の方が面白いと再確認。とにかく何かを作ることを忘れないようにしようと思いました。</p>
-<p>こういう普段と違う世界を見るのは、自分を遠くから見る良いきっかけになりますね。今後も面白そうなものを見つけて参加していきたいです。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/03/15/secure-ssh">SSH を安全に</a></h1><div class="meta">@<span class="date">2010-03-15 15:32</span> - </div></div><div class="content"><p>自宅サーバの <span class="caps">SSH</span> を外から使えるようにするにあたり、セキュリティ対策を施してみました。</p>
-<p>鍵認証のところ以外は <a href="http://www.unixuser.org/~euske/doc/openssh/jman/sshd_config.html" title="5">SSHD_<span class="caps">CONFIG</span></a> 参照。<br />
-下記設定をして ufw とルータの設定を変えたら、今のところそれらしく動いてます。</p>
-<h3>パスワードではなく鍵認証に</h3>
-<p>クライアントで鍵を作って、サーバに公開鍵を置いておきます。クライアントが秘密鍵を持っていないと認証できないように設定。<br />
-念のためパスワードもかけておきました。</p>
-<p>via <a href="http://www.turbolinux.co.jp/support/document/knowledge/152.html">ssh にてパスワードを使用しないでログインする方法</a></p>
-<h3>ポートを変更</h3>
-<p>22 番ポートはいろんなところから攻撃されるということなので。</p>
-<h3>ログインユーザの制限</h3>
-<p>そんなにいろんなユーザ作ってませんが、念のため。</p>
-<h3>ルートログインの禁止</h3>
-<p>root ログインはユーザ名がばれているため禁止。使わないし。</p>
-<h3>試行回数の制限</h3>
-<p>鍵認証の場合はあまり関係ないかな？</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/12">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/14">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<p>こういう普段と違う世界を見るのは、自分を遠くから見る良いきっかけになりますね。今後も面白そうなものを見つけて参加していきたいです。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/12">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/14">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
