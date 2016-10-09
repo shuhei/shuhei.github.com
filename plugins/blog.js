@@ -95,12 +95,6 @@ export function index(config) {
       return util._extend({ content: file.contents.toString() }, file.frontMatter);
     }).reverse();
 
-    const localsForArchive = {
-      site: config,
-      posts: posts,
-      title: 'Archives'
-    };
-
     // Render index pages and archive page in parallel.
     const funcs = [];
     const pageCount = Math.ceil(posts.length / perPage);
@@ -116,10 +110,25 @@ export function index(config) {
 
     // Archive page.
     const archivePath = path.join(config.blogDir, 'archives', 'index.html');
+    const localsForArchive = {
+      site: config,
+      posts: posts,
+      title: 'Archives'
+    };
     funcs.push(renderTemplateFunc('archives.jade', archivePath, localsForArchive));
 
+    // RSS feed.
+    const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
+    const localsForRss = {
+      site: config,
+      posts: posts.slice(0, 10)
+    };
+    funcs.push(renderTemplateFunc('rss.jade', rssPath, localsForRss));
+
+    // Execute in parallel.
     async.parallel(funcs, (err, files) => {
       if (err) {
+        console.log('error', err);
         this.emit('err', new PluginError(PLUGIN_NAME, err));
         return cb();
       }

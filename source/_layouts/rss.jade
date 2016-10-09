@@ -1,0 +1,20 @@
+doctype xml
+rss(version="2.0", xmlns:atom="http://www.w3.org/2005/Atom")
+    channel
+        title= site.title
+        link http://shuheikagawa.com
+        atom:link(href="http://shuheikagawa.com/blog/feed/rss.xml", rel="self", type="application/rss+xml")
+        description Shuhei Kagawa's blog
+        language en-US
+        if posts.length
+          lastBuildDate= new Date(posts[0].date).toUTCString()
+        each post in posts
+          item
+            title= post.title
+            link http://shuheikagawa.com/#{post.url}
+            description
+              | <![CDATA[
+              | !{post.content}
+              | ]]>
+            pubDate= new Date(post.date).toUTCString()
+            guid(isPermaLink="false") http://shuheikagawa.com/#{post.url]
