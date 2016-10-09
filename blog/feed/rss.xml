@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 03 Oct 2016 08:35:00 GMT</lastBuildDate><item><title>How to set up and top up a prepaid SIM in Germany</title><link>http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany</link><description><![CDATA[
+<p>I have moved to Berlin from Tokyo a week ago. I may or may not write about it later, but I&#39;m going to share more practical stuff today.</p>
+<p>Since I arrived in Germany, I bought two prepaid SIM cards and set up a SIM-free iPhone and a MiFi (mobile WiFi router). It was harder than I thought because I had never used a prepaid SIM before and most of official instructions were in German. I&#39;d like to share what I did for people like me.</p>
+<p>This post is a complement to <a href="http://prepaid-data-sim-card.wikia.com/wiki/Germany">Germany | Prepaid Data SIM Card Wiki | Fandom powered by Wikia</a>. If you haven&#39;t read it yet, read it first.</p>
+<h2 id="initial-setup">Initial setup</h2>
+<p>After reading the wiki, I chose <a href="https://www.o2online.de/">O<sub>2</sub></a> as a network provider because of its rate and availability in Berlin&#39;s subway.</p>
+<ol>
+<li>Go to a large electronics store like Saturn.</li>
+<li>Find an O<sub>2</sub> prepaid SIM.</li>
+<li>Bring it to an O<sub>2</sub> representative in the store and ask her to activate it.</li>
+<li>Go to the casher and pay for the SIM card.</li>
+<li>Insert the SIM card into your phone/MiFi. You can ask shop staffs to open SIM card slot.</li>
+<li>Unlock the SIM card. <strong>PIN is on the white card that contains the SIM card. Also its phone number (Rufnummer) is on the same card.</strong></li>
+</ol>
+<h2 id="topping-up">Topping up</h2>
+<p>You can top up your SIM via a call, O<sub>2</sub> mobile app or O<sub>2</sub> website. I used O<sub>2</sub> website because I couldn&#39;t make a call with my MiFi and I don&#39;t have German AppStore&#39;s account. The website is only in German. So it&#39;s convenient to use Google Chrome&#39;s translation feature.</p>
+<ol>
+<li>Go to a drug store chain like dm and buy one of O<sub>2</sub> top-up cards like €20. They are usually put next to other prepaid cards like Apple, Google Play, Amazon, Zalando, etc. <strong>The actual top-up code is printed on your receipt</strong>.</li>
+<li>Sign up for <a href="https://login.o2online.de/ngAuth/#/registration/mobile-registrierung">O<sub>2</sub> website</a>.</li>
+<li>Enter your phone number (Mobilfunknummer), preliminary password (Vorläufiges Kennwort) and new password (Neues Kennwort). The preliminary password is notified via SMS. If it&#39;s for your MiFi, you can access to the MiFi&#39;s admin page and read SMS.</li>
+<li>Go to Recharge tab (Mein O<sub>2</sub> -&gt; Mein Prepaid -&gt; Guthaben &amp; Aufladen) and enter your top-up card&#39;s code.</li>
+<li>(Optional) Choose your favorite plan (Tarif &amp; SIM-Karte).</li>
+</ol>
+
+]]></description><pubDate>Mon, 03 Oct 2016 08:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany</guid></item><item><title>Draw animated chart on React Native</title><link>http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native</link><description><![CDATA[
+<p>At <a href="http://meguroes.connpass.com/event/32167/">Meguro.es #4</a> on June 21th, 2016, I talked about drawing animated chart on <a href="https://facebook.github.io/react-native/">React Native</a>. The talk was about the things I learned through developing an tiny app, Compare. It&#39;s a super simple app to compare temperatures.</p>
+<p>Before creating it, I had no idea about what temperatures on weather forecast, like 15 degrees Celsius, were actually like. I remember what yesterday was like, but not the numbers. Typical weather forecast apps shows only future temperatures without past records. Thanks to <a href="https://developer.forecast.io/">The Dark Sky Forecast API</a>, the app fetches both of past records and future forecasts, and show them together.</p>
+<p><img src="/images/compare-animated.gif" alt="Compare app"></p>
+<p>The app&#39;s source code is on GitHub:</p>
+<p><a href="https://github.com/shuhei/Compare">shuhei/Compare</a></p>
+<p>There might have been some charting libraries to draw similar charts, but I like to write things from scratch. I like to reinvent the wheel especially when it&#39;s a side project. Thanks to that, I found a way to animate smooth paths with the <code>Animated</code> library.</p>
+<script async class="speakerdeck-embed" data-id="3deb649c92814572ac3412a78bb5b688" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>If I have to add something to the slides:</p>
+<ul>
+<li>It&#39;s fun to develop on React Native, and super easy to start. If you know React and CSS, you can apply your familiar ideas to mobile app development. And they are actually powerful.</li>
+<li><a href="http://browniefed.com/">Jason Brown&#39;s JavaScript without Grammar</a> is an awesome blog. It has lots of articles about React Native and animation on it, which taught me a lot. Also, I found the awesomeness of <code>LayoutAnimation</code> at <a href="https://medium.com/@Jpoliachik/react-native-s-layoutanimation-is-awesome-4a4d317afd3e#.5tnprrm80">Justin Poliachik&#39;s React Native’s LayoutAnimation is Awesome</a>, which is a great post too.</li>
+</ul>
+
+]]></description><pubDate>Mon, 18 Jul 2016 21:43:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native</guid></item><item><title>The Best Part of Angular 2 Offline Compiler</title><link>http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler</link><description><![CDATA[
+<p>A couple of weeks ago, I gave a short talk about Angular offline compiler at <a href="http://ng-sake.connpass.com/event/30746/">ng-sake #3</a>, which is a cozy meetup where Tokyo&#39;s Angular developers hang out drinking beer.</p>
+<script async class="speakerdeck-embed" data-id="384a4e8ded2945fbaa5dc2054409bcb3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>I won&#39;t write much about it here because it&#39;s still in its early stage and I couldn&#39;t make <code>@angular/compiler-cli</code> work without modification.</p>
+<p>The only thing I want to stress here is that it enables us to <strong>statically type-check our templates with TypeScript</strong>, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn&#39;t be able to detect mistakes in templates until they are evaluated at the runtime.</p>
+<p>The steps would be the following:</p>
+<ol>
+<li>Angular 2 offline compiler compiles templates into TypeScript files with <code>.ngfactory.ts</code> extension.</li>
+<li>You prepare another bootstrap script that imports the root <code>.ngfactory.ts</code> and bootstraps your app with it.</li>
+<li>TypeScript compiler compiles the bootstrap script, other TypeScript files and <code>.ngfactory.ts</code> files into JavaScript.</li>
+</ol>
+<p>The step 3 type-checks <code>.ngfactory.ts</code>, and detects typo and type errors in your templates if any. It is a great benefit in addition to skipping the runtime compilation and smaller library size. Looking forward to Angular 2 offline compiler&#39;s official release!</p>
+
+]]></description><pubDate>Fri, 03 Jun 2016 20:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler</guid></item><item><title>Angular 2 with Babel</title><link>http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel</link><description><![CDATA[
+<p>Although Angular 2&#39;s primary language is apparently TypeScript, many people want to use Babel as shown in <a href="http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html">a survey</a>.</p>
+<p>However, <a href="https://angular.io">The official documentation</a> targets only TypeScript and ES5. In addition, many pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript&#39;s type annotations for annotating components and services.</p>
+<p>To fill the gap, you can use <a href="https://github.com/shuhei/babel-preset-angular2"><code>babel-preset-angular2</code></a> that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<pre><code class="hljs sh">npm install -D babel-preset-es2015 babel-preset-angular2</code></pre><p>Add <code>presets</code> to <code>.babelrc</code>. Note that the <code>presets</code>&#39; order is important.</p>
+<pre><code class="hljs json">{
+  "<span class="hljs-attribute">presets</span>": <span class="hljs-value">[<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
+</span>}</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
+<h2 id="supported-annotations">Supported annotations</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>EcmaScript</th>
+<th>TypeScript</th>
+<th>Babel*</th>
+<th>Babel + angular2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class decorator</td>
+<td><code>@Component()</code></td>
+<td>Stage 1</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Property decorator</td>
+<td><code>@Input()</code></td>
+<td>Stage 1</td>
+<td>Yes</td>
+<td>Partial*</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Parameter decorator</td>
+<td><code>@Optional()</code></td>
+<td>Stage 0</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Type annotation</td>
+<td><code>foo: Foo</code></td>
+<td>-</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
+<ul>
+<li><a href="https://babeljs.io/docs/plugins/preset-es2015/">babel-preset-es2015</a></li>
+<li><a href="https://babeljs.io/docs/plugins/transform-class-properties/">babel-plugin-transform-class-properties</a></li>
+<li><a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">babel-plugin-transform-decorators-legacy</a> (not literally official but maintained by <a href="https://github.com/loganfsmyth">@loganfsmyth</a>, one of Babel&#39;s core contributors)</li>
+</ul>
+<p>Property decorator in Babel is marked &quot;Partial&quot; because <code>babel-plugin-transform-decorators-legacy</code> ignores class properties without initializers.</p>
+<p>You can emulate parameter decorator and type annotation with plain ES2015 like the following but it&#39;s a little bit counterintuitive.</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
+  constructor(foo: Foo, @Optional() bar: Bar) {
+    <span class="hljs-comment">// Do something with foo and bar.</span>
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
+  static get parameters() {
+    <span class="hljs-keyword">return</span> [[Foo], [Bar, Optional()]];
+  }
+
+  constructor(foo, bar) {
+    <span class="hljs-comment">// Do something with foo and bar.</span>
+  }
+}</code></pre><h2 id="polyfills">Polyfills</h2>
+<p>Angular 2 beta versions had polyfill bundles but RC versions don&#39;t. But never mind. We can just import them before bootstrapping our app.</p>
+<pre><code class="hljs sh">npm install -S babel-polyfill zone.js</code></pre><p><code>src/index.js</code></p>
+<pre><code class="hljs js"><span class="hljs-comment">// Import polyfills.</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'babel-polyfill'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js/dist/zone.js'</span>;
+
+<span class="hljs-comment">// Bootstrap app!</span>
+<span class="hljs-keyword">import</span> {provide} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> {bootstrap} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+<span class="hljs-keyword">import</span> {ROUTER_PROVIDERS} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> {LocationStrategy, HashLocationStrategy} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+
+<span class="hljs-keyword">import</span> {HelloApp} <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>;
+
+bootstrap(HelloApp, [
+  ROUTER_PROVIDERS,
+  provide(LocationStrategy, { useClass: HashLocationStrategy })
+]).catch(err =&gt; <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
+<h2 id="module-resolution">Module resolution</h2>
+<p>You can use any module resolver as long as it works with Babel. I&#39;ll pick <a href="http://browserify.org/">Browserify</a> here for its simplicity.</p>
+<pre><code class="hljs js">npm install -D browserify babelify</code></pre><p>Add a <code>build</code> script to your <code>package.json</code> assuming that your bootstrap script locates at <code>src/index.js</code>.</p>
+<pre><code class="hljs json">{
+  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">build</span>": <span class="hljs-value"><span class="hljs-string">"browserify -t babelify src/index &gt; public/bundle.js"</span>
+  </span>}
+</span>}</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
+<p>Of course you can use other module resolvers like Webpack or SystemJS.</p>
+<h2 id="offline-compilation">Offline compilation</h2>
+<p>This is not yet available for Babel. Not completed even for TypeScript.</p>
+<p>The <a href="https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli"><code>compiler_cli</code></a> seems to be deeply integrated with TypeScript compiler. It <strong>statically</strong> collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.</p>
+<p>I&#39;m thinking of working on it once the TypeScript version is published and the compiler API becomes more stable.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
+<p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
+
+]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel</guid></item><item><title>Incremental search with RxJS switchMap</title><link>http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs</link><description><![CDATA[
+<p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
+<h2 id="switchmap">switchMap</h2>
+<p><code>switchMap(func)</code> is equivalent to <code>map(func).switch()</code>. It keeps subscribing latest observable at the moment and unsubscribing outdated ones so that it only streams events from latest observable at the moment. <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">Take a look at the marble chart for <code>switch</code></a>. It illustrates the behavior well.</p>
+<h2 id="incremental-search">Incremental search</h2>
+<p><code>switchMap</code> is convenient for properly implementing incremental search. Incremental search makes multiple requests to a server. The server can respond in a different order from requests&#39;. Because of the order, a naive implementation may show a wrong result. However, you can effortlessly avoid the caveat if you use <code>switchMap</code>.</p>
+<p>Here is an example. Type fast in the text fields. <strong>Without switchMap</strong> sometimes shows a wrong result while <strong>With switchMap</strong> always works fine.</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/megiqo/embed?output">JS Bin on jsbin.com</a><script async src="http://static.jsbin.com/js/embed.min.js?3.35.12"></script></p>
+<p><code>search</code> function mocks an AJAX request. It returns a <code>Promise</code> that resolves after a random delay.</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search</span>(<span class="hljs-params">keyword</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve(<span class="hljs-string">'Result of '</span> + keyword);
+    }, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>);
+  });
+}</code></pre><p>A naive implementation always shows the last response at the time. A wrong result is shown if responses come in a different order from requests&#39;. We could add some debouncing to decrease the chance of the wrong order but it still may happen when response time is longer than the debounce time.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> keyword = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'keyword-without'</span>);
+<span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'result-without'</span>);
+
+keyword.addEventListener(<span class="hljs-string">'keyup'</span>, e =&gt; {
+  <span class="hljs-keyword">const</span> value = e.target.value;
+  search(value)
+    .then(data =&gt; result.textContent = data);
+});</code></pre><p><code>switchMap</code> guarantees that the last keyword&#39;s result is finally shown.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> keyword = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'keyword-with'</span>);
+<span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'result-with'</span>);
+
+<span class="hljs-keyword">const</span> keyword$ = Rx.Observable.fromEvent(keyword, <span class="hljs-string">'keyup'</span>)
+  .map(e =&gt; e.target.value);
+keyword$
+  .switchMap(search)
+  .subscribe(data =&gt; result.textContent = data);</code></pre>
+]]></description><pubDate>Mon, 02 May 2016 00:18:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs</guid></item><item><title>Clean up before exiting in Haskell</title><link>http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell</link><description><![CDATA[
+<p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Show the Game of Life</span>
+  life glider
+  <span class="hljs-comment">-- Show the cursor (but the code does not reach here!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>But the code does not reach the line that shows the cursor because <code>life</code> is a infinite loop. If I quit the program with <code>Ctrl+C</code>, the cursor remains hidden.</p>
+<p>So I wrote a function that loops <code>a -&gt; IO a</code> until interrupted by a signal, referring to <a href="http://stackoverflow.com/a/18430872/822317">unix - Killing a Haskell binary - Stack Overflow</a>. It manages a state of whether the program was interrupted in a <code>MVar</code> and stops the loop when interrupted.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Concurrent.MVar <span class="hljs-container">(<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Posix.Signals <span class="hljs-container">(<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)</span></span>
+
+<span class="hljs-title">loopUntilInterruption</span> :: (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loopUntilInterruption</span> p init = <span class="hljs-keyword">do</span>
+  v &lt;- newEmptyMVar
+  installHandler sigINT (handler v) <span class="hljs-type">Nothing</span>
+  installHandler sigTERM (handler v) <span class="hljs-type">Nothing</span>
+  loop v p init
+
+<span class="hljs-title">handler</span> :: <span class="hljs-type">MVar</span> () -&gt; <span class="hljs-type">Handler</span>
+<span class="hljs-title">handler</span> v = <span class="hljs-type">CatchOnce</span> $ putMVar v ()
+
+<span class="hljs-title">loop</span> :: <span class="hljs-type">MVar</span> () -&gt; (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
+<span class="hljs-title">loop</span> v p prev = <span class="hljs-keyword">do</span>
+  x &lt;- p prev
+  val &lt;- tryTakeMVar v
+  <span class="hljs-keyword">case</span> val <span class="hljs-keyword">of</span>
+    <span class="hljs-type">Just</span> _ -&gt; return ()
+    <span class="hljs-type">Nothing</span> -&gt; loop v p x &gt;&gt; return ()</code></pre><p>In the Game of Life, I changed the type of <code>life</code> so that it returns the result of its previous result and loop with <code>loop</code>. Now the clean up code will be called when interrupted by a signal.</p>
+<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  <span class="hljs-comment">-- Hide the cursor</span>
+  system <span class="hljs-string">"tput civis"</span>
+  <span class="hljs-comment">-- Loop until interrupted</span>
+  loopUntilInterruption life glider
+  <span class="hljs-comment">-- Show the cursor (the code will reach here now!)</span>
+  system <span class="hljs-string">"tput cvvis"</span>
+  return ()
+
+<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
+<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
+
+]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell</guid></item><item><title>One-time binding for ng-if</title><link>http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if</link><description><![CDATA[
+<p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
+<p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
+<p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
+
+]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if</guid></item><item><title>Freeze panes with CSS and a bit of JavaScript</title><link>http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript</link><description><![CDATA[
+<p>People want fixed-header table. It reminds you what the columns are while you scroll down the table. There are a bunch of fixed-header-table tutorials out there. But most of them kill one of the greatest features of HTML table. The automatic sizing of cells according to their contents. This is because they usually prepare separate <code>&lt;table&gt;</code>s for header and body.</p>
+<p>Also, most of the tutorials only fix a header at the top. But my colleagues wanted more. They wanted to fix headers at the top and left. Just like <a href="http://www.gcflearnfree.org/excel2013/17">Microsoft Excel&#39;s Freeze Panes feature</a>. So what we want now is:</p>
+<ol>
+<li>Automatic sizing of cells according to their contents</li>
+<li>Freeze panes</li>
+</ol>
+<p>We want to use only one <code>&lt;table&gt;</code> to easily achive the goal 1. But at the same time, we want to separate the movement of the headers from other cells to achieve the goal 2. Then <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">CSS3&#39;s <code>transform</code> property</a> came to my mind. It allows you to transform <strong>only rendering</strong> of an element without interfering its sibling nodes.</p>
+<p>So I gave it a shot and here&#39;s the result.</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/katabi/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script></p>
+<h2 id="transform-translate-">transform: translate()</h2>
+<p>I used JavaScript to dynamically set <code>transform: translate(x, y);</code> to the header cells sending them back to the top/left edge of the container.</p>
+<pre><code class="hljs js">container.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> x = container.scrollLeft;
+  <span class="hljs-keyword">var</span> y = container.scrollTop;
+
+  leftHeaders.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">leftHeader</span>) </span>{
+    leftHeader.style.transform = translate(x, <span class="hljs-number">0</span>);
+  });
+  topHeaders.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">topHeader, i</span>) </span>{
+    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">0</span>) {
+      topHeader.style.transform = translate(x, y);
+    } <span class="hljs-keyword">else</span> {
+      topHeader.style.transform = translate(<span class="hljs-number">0</span>, y);
+    }
+  });
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">translate</span>(<span class="hljs-params">x, y</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'translate('</span> + x + <span class="hljs-string">'px, '</span> + y + <span class="hljs-string">'px)'</span>;
+}</code></pre><h2 id="border-collapse-separate-">border-collapse: separate;</h2>
+<p>Another trick is <code>border-collapse: separate;</code>. We usually use <code>border-collapse: collapse;</code> for tables but it leaves borders behind the cells. With <code>border-collapse: collapse;</code>, we can make the borders transformed together with the header cells.</p>
+<pre><code class="hljs css"><span class="hljs-tag">table</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border-collapse</span>:<span class="hljs-value"> separate</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-spacing</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+}</span>
+
+<span class="hljs-tag">th</span>,
+<span class="hljs-tag">td</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border-bottom</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-right</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
+}</span></code></pre><h2 id="dummy-top-left-header-cell">Dummy top left header cell</h2>
+<p>The last trick is a kind of shame. It&#39;s the top left header cell that should be fixed horizontally and vertically. We can achieve it by the <code>transform</code> property but the other top header cells hides it. I tried to make it rise with <code>z-index</code> but didn&#39;t work. So I created a dummy element that had the same size with the cell.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> topLeft = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+<span class="hljs-keyword">var</span> computed = <span class="hljs-built_in">window</span>.getComputedStyle(columnHeaders[<span class="hljs-number">0</span>]);
+container.appendChild(topLeft);
+topLeft.classList.add(<span class="hljs-string">'top-left'</span>);
+topLeft.style.width = computed.width;
+topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css"><span class="hljs-class">.top-left</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#eee</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-right</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-bottom</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+}</span></code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
+<p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
+
+]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript</guid></item><item><title>Algorithms: Design and Analysis, Part 1</title><link>http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1</link><description><![CDATA[
+<p>Today I finished the final exam of Stanford&#39;s <a href="https://www.coursera.org/course/algo">&quot;Algorithms: Design and Analysis, Part 1&quot;</a> at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:</p>
+<ul>
+<li><a href="https://github.com/shuhei/algo">shuhei/algo</a></li>
+</ul>
+<p>The course focused on fundamental algorithms and their analysis. What I learned so far were:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithms">Divide-and-conquer algorithms</a> and analysis with <a href="https://en.wikipedia.org/wiki/Master_theorem">Master Method</a>: <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> and <a href="https://en.wikipedia.org/wiki/Quicksort">quick sort</a></li>
+<li>Graph algorithms: <a href="https://en.wikipedia.org/wiki/Minimum_cut">minimum cut</a>, <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first</a> and <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first</a> search, <a href="https://en.wikipedia.org/wiki/Strongly_connected_component">strongly connected components</a>, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&#39;s shortest-path</a></li>
+<li>Data structures: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">heaps</a>, <a href="https://en.wikipedia.org/wiki/Hash_table">hash tables</a> and <a href="https://en.wikipedia.org/wiki/Binary_search_tree">binary search trees</a></li>
+</ul>
+<p>As a self-taught programmer, I had been away from formal Computer Science topics like big O notation. But after I learned <a href="https://www.coursera.org/learn/machine-learning">Machine Learning</a> and tried to implement some ML algorithms for large datasets a few months ago, I noticed that I needed some knowledge of basic algorithms and mathematical analysis of them.</p>
+<p>The Algorithms course focused not only on algorithms themselves but also on their performance analysis and mathematical proofs. The analysis and proofs are crucial especially for the cases when we design custom algorithms for real-world problems in the future, and more importantly made me more confident about the algorithms.</p>
+<p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
+<p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
+
+]]></description><pubDate>Sun, 29 Nov 2015 22:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1</guid></item><item><title>Node.js executable module</title><link>http://shuheikagawa.com//blog/2015/10/25/node-executable-module</link><description><![CDATA[
+<p>You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it&#39;s OK for simple modules.</p>
+<p>To achieve it, you need to detect whether it&#39;s executed as an entry point. According to <a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module">the official documentation of Node</a>:</p>
+<blockquote>
+<p>When a file is run directly from Node.js, <code>require.main</code> is set to its module. That means that you can determine whether a file has been run directly by testing</p>
+<pre><code class="hljs undefined">require.main === module</code></pre></blockquote>
+<p>For example:</p>
+<pre><code class="hljs js">#!/usr/bin/env node
+
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+
+if (require.main === module) {
+  var a = parseInt(process.argv[2], 10);
+  var b = parseInt(process.argv[3], 10);
+  console.log(sum(a, b));
+}</code></pre><p>Then you can use it as an executable and a module.</p>
+<pre><code class="hljs sh">$ node sum.js <span class="hljs-number">3</span> <span class="hljs-number">4</span>
+<span class="hljs-number">7</span>
+$ node
+&gt; require(<span class="hljs-string">'./sum'</span>)(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+<span class="hljs-number">7</span></code></pre>
+]]></description><pubDate>Sun, 25 Oct 2015 21:42:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/10/25/node-executable-module</guid></item></channel></rss>
