@@ -1,9 +1,8 @@
 import { obj as through } from 'through2';
-import gutil from 'gulp-util';
 
 export default function (child) {
   function transform(file, enc, cb) {
-    var clone = file.clone();
+    const clone = file.clone();
     clone.frontMatter = file.frontMatter;
 
     child.write(clone);

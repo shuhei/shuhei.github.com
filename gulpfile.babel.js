@@ -56,6 +56,7 @@ gulp.task('copy', () => {
 
 // Compile blog posts, create index and archive pages.
 gulp.task('posts', () => {
+  // Aggregates posts and render index and archive pages.
   const aggregator = index(blogConfig);
   aggregator.pipe(gulp.dest('./public'));
 
