@@ -8,7 +8,7 @@ export const SiteProps = PropTypes.shape({
 export const PostTypes = PropTypes.shape({
   url: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   comments: PropTypes.bool.isRequired,

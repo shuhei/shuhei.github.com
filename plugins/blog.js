@@ -11,6 +11,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
+import IndexPage from '../source/_layouts/IndexPage';
 import PostPage from '../source/_layouts/PostPage';
 
 const PLUGIN_NAME = 'blog';
@@ -73,6 +74,23 @@ export function index(config) {
     };
   }
 
+  function renderReactFunc(component, dest, locals) {
+    return (callback) => {
+      try {
+        const data = renderPage(component, locals);
+        const file = new gutil.File({
+          cwd: process.cwd(),
+          base: path.join(__dirname, config.sourceDir),
+          path: path.join(__dirname, config.sourceDir, dest),
+          contents: new Buffer(data),
+        });
+        callback(null, file);
+      } catch (e) {
+        callback(new PluginError(PLUGIN_NAME, e));
+      }
+    };
+  }
+
   function localsForPage(page, posts) {
     const locals = {
       site: config,
@@ -106,12 +124,12 @@ export function index(config) {
     const pageCount = Math.ceil(posts.length / perPage);
 
     // Top page.
-    funcs.push(renderTemplateFunc('index.jade', 'index.html', localsForPage(0, posts)));
+    funcs.push(renderReactFunc(IndexPage, 'index.html', localsForPage(0, posts)));
 
     // Index pages.
     for (let i = 1; i < pageCount; i++) {
       const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
-      funcs.push(renderTemplateFunc('index.jade', dest, localsForPage(i, posts)));
+      funcs.push(renderReactFunc(IndexPage, dest, localsForPage(i, posts)));
     }
 
     // Archive page.
@@ -181,7 +199,6 @@ export function layout(config) {
       site: config,
       post: {
         ...file.frontMatter,
-        categories: file.frontMatter.categories || [],
         content: file.contents.toString(),
       },
     };

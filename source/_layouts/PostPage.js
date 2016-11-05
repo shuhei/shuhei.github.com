@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import Layout from './Layout';
 import Post from './Post';
 import Comments from './Comments';
-import { PostTypes } from './types';
+import { SiteProps, PostTypes } from './types';
 
 const PostPage = ({ site, post }) => {
   const title = [post.title, site.title].join(' - ');
@@ -16,7 +16,8 @@ const PostPage = ({ site, post }) => {
 };
 
 PostPage.propTypes = {
-  post: PostTypes,
+  site: SiteProps.isRequired,
+  post: PostTypes.isRequired,
 };
 
 export default PostPage;

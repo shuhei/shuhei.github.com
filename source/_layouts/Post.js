@@ -4,7 +4,7 @@ import SocialButtons from './SocialButtons';
 import { PostTypes } from './types';
 
 const Post = ({ post, isPostPage }) => {
-  const categories = [...post.categories.map((category, i) => [
+  const categories = [...(post.categories || []).map((category, i) => [
     i === 0 ? ' - ' : ', ',
     <span className="category">{category}</span>
   ])];

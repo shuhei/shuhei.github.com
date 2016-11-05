@@ -44,7 +44,7 @@ const Layout = ({ site, title, children }) => {
               <a href="/works">Works</a>
             </li>
             <li className="menu__item">
-              <a href="/archives">Archives</a>
+              <a href="/blog/archives">Archives</a>
             </li>
           </ul>
         </nav>
@@ -61,7 +61,7 @@ const Layout = ({ site, title, children }) => {
 };
 
 Layout.propTypes = {
-  site: SiteProps,
+  site: SiteProps.isRequired,
   title: PropTypes.string,
 };
 
