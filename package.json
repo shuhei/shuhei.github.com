@@ -7,7 +7,7 @@
     "start": "gulp build",
     "deploy": "gulp build && gh-pagesify",
     "watch": "gulp watch",
-    "lint": "eslint plugins source/_layouts"
+    "lint": "eslint gulpfile.babel.js plugins source/_layouts"
   },
   "repository": {
     "type": "git",

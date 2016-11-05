@@ -1,8 +1,6 @@
-import util from 'util';
 import path from 'path';
 
 import { argv as args } from 'yargs';
-import strftime from 'strftime';
 import del from 'del';
 import highlightjs from 'highlight.js';
 import { Renderer } from 'marked';
@@ -28,10 +26,9 @@ const blogConfig = {
   blogDir: 'blog',
   sourceDir: 'source',
   layoutDir: '_layouts',
-  postDir: '_posts'
+  postDir: '_posts',
 };
 
-const deployDir = '_deploy';
 const publicDir = 'public';
 
 // Custom renderer to add `hljs` class to code blocks.
@@ -44,15 +41,15 @@ renderer.code = (code, language) => {
 };
 
 // Copy static pages compiling markdown files.
-gulp.task('copy', () => {
-  return gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
+gulp.task('copy', () =>
+  gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
-    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md,textile}', frontMatter()))
-    .pipe(condition(process.cwd() + '/source/**/*.{markdown,md}', markdown({ renderer })))
+    .pipe(condition(`${process.cwd()}/source/**/*.{markdown,md,textile}`, frontMatter()))
+    .pipe(condition(`${process.cwd()}/source/**/*.{markdown,md}`, markdown({ renderer })))
     .pipe(layout(blogConfig))
-    .pipe(gulp.dest(publicDir));
-});
+    .pipe(gulp.dest(publicDir))
+);
 
 // Compile blog posts, create index and archive pages.
 gulp.task('posts', () => {
@@ -63,8 +60,8 @@ gulp.task('posts', () => {
   return gulp.src('source/_posts/*.*')
     .pipe(plumber())
     .pipe(frontMatter())
-    .pipe(condition(__dirname + '/source/**/*.{markdown,md}', markdown({ renderer })))
-    .pipe(condition(__dirname + '/source/**/*.textile', textile()))
+    .pipe(condition(`${__dirname}/source/**/*.{markdown,md}`, markdown({ renderer })))
+    .pipe(condition(`${__dirname}/source/**/*.textile`, textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
     .pipe(layout(blogConfig))
@@ -75,7 +72,7 @@ gulp.task('posts', () => {
 gulp.task('css', () => {
   const cssFiles = [
     './node_modules/highlight.js/styles/monokai_sublime.css',
-    './source/_css/**/*.css'
+    './source/_css/**/*.css',
   ];
   return gulp.src(cssFiles)
     .pipe(plumber())
@@ -107,7 +104,7 @@ gulp.task('newpost', () => {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  return newPost(args.title, blogConfig);
+  newPost(args.title, blogConfig);
 });
 
 // Create a new page source file.
@@ -117,7 +114,7 @@ gulp.task('newpage', () => {
     return;
   }
 
-  return newPage(args.filename, blogConfig);
+  newPage(args.filename, blogConfig);
 });
 
 gulp.task('build', ['css', 'copy', 'posts']);
