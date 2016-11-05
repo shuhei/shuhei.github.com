@@ -1,4 +1,12 @@
-<!DOCTYPE html><html><head><title>Page 12 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/06/16/multi-rubies-with-rv">RVM で複数バージョンの Ruby を管理</a></h1><div class="meta">@<span class="date">2010-06-16 00:32</span> - </div></div><div class="content"><p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。<br />
+<!doctype html>
+    <html >
+      <head>
+        <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
+        <title data-react-helmet="true">Page 12</title>
+        <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+      </head>
+      <body>
+        <div><div data-reactroot="" data-reactid="1" data-react-checksum="-116412561"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2010/06/16/multi-rubies-with-rv" data-reactid="19">RVM で複数バージョンの Ruby を管理</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2010-06-16 00:32</span></div></div><div class="content" data-reactid="23"><div data-reactid="24"><p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。<br />
 自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。<br />
 <a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
 <ul>
@@ -23,7 +31,7 @@
 <p>情報を見るには下記。</p>
 <pre class="prettyprint">$ rvm info 1.8.7</pre>
 <p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。<br />
-1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/06/01/out-of-memory-with-wordpress">Wordpress で Out of memory</a></h1><div class="meta">@<span class="date">2010-06-01 23:40</span> - </div></div><div class="content"><p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
+1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p></div></div></div><div class="post" data-reactid="25"><div class="post-header" data-reactid="26"><h1 class="title" data-reactid="27"><a href="/blog/2010/06/01/out-of-memory-with-wordpress" data-reactid="28">Wordpress で Out of memory</a></h1><div class="meta" data-reactid="29"><!-- react-text: 30 -->@<!-- /react-text --><span class="date" data-reactid="31">2010-06-01 23:40</span></div></div><div class="content" data-reactid="32"><div data-reactid="33"><p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
 再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。<br />
 syslog を見ると Out of memory で kernel が apache2 を kill している様子。<br />
 運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
@@ -33,7 +41,7 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
 <p>定期的な再起動、Apache や <span class="caps">PHP</span> の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。<br />
 &#8220;Super&#8221; Cache とはなかなかの名前です。<br />
 インストールはとても簡単。</p>
-<p>さて、一ヶ月後どうなることやら。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run">The program being debugged is not being run.</a></h1><div class="meta">@<span class="date">2010-05-01 14:41</span> - </div></div><div class="content"><p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
+<p>さて、一ヶ月後どうなることやら。</p></div></div></div><div class="post" data-reactid="34"><div class="post-header" data-reactid="35"><h1 class="title" data-reactid="36"><a href="/blog/2010/05/01/the-program-being-debugged-is-not-being-run" data-reactid="37">The program being debugged is not being run.</a></h1><div class="meta" data-reactid="38"><!-- react-text: 39 -->@<!-- /react-text --><span class="date" data-reactid="40">2010-05-01 14:41</span></div></div><div class="content" data-reactid="41"><div data-reactid="42"><p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
 そんなの見ればわかります。理由を書いてください。理由を。<br />
 アプリのインストール自体はできているのですが、デバッグができないようです。</p>
 <p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
@@ -45,10 +53,14 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
 <p>・・・と思ったら、また同じエラーが出ました。<br />
 ソースをいじってコンパイルし直した直後に出るみたい。<br />
 その後もう一回試すと、ちゃんと起動しています。<br />
-うーん、不思議です・・・。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/11">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/13">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+うーん、不思議です・・・。</p></div></div></div><ul class="pagination" data-reactid="43"><li class="pagination__prev-page" data-reactid="44"><a href="/blog/pages/11" data-reactid="45">Newer Posts</a></li><li class="pagination__archives" data-reactid="46"><a href="/blog/archives" data-reactid="47">Archives</a></li><li class="pagination__next-page" data-reactid="48"><a href="/blog/pages/13" data-reactid="49">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="50"><!-- react-text: 51 -->© <!-- /react-text --><!-- react-text: 52 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="53">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-309586-8', 'shuheikagawa.com');
-ga('send', 'pageview');</script></footer></body></html>
+    ga('create', 'UA-309586-8', 'shuheikagawa.com');
+    ga('send', 'pageview');
+  </script></footer></div></div>
+      </body>
+    </html>

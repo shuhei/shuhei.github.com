@@ -1,7 +1,15 @@
-<!DOCTYPE html><html><head><title>Page 26 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/22/vim-settings-for-each-language">言語ごとに vim の設定を変える</a></h1><div class="meta">@<span class="date">2009-08-22 18:50</span> - <span class="category">UNIX/LINUX</span></div></div><div class="content"><p>例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。</p>
+<!doctype html>
+    <html >
+      <head>
+        <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
+        <title data-react-helmet="true">Page 26</title>
+        <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+      </head>
+      <body>
+        <div><div data-reactroot="" data-reactid="1" data-react-checksum="409613455"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2009/08/22/vim-settings-for-each-language" data-reactid="19">言語ごとに vim の設定を変える</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2009-08-22 18:50</span><!-- react-text: 23 --> - <!-- /react-text --><span class="category" data-reactid="24">UNIX/LINUX</span></div></div><div class="content" data-reactid="25"><div data-reactid="26"><p>例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。</p>
 <p><code>~/.vimrc</code> の中で、</p>
 <pre class="prettyprint">autocmd FileType cs setlocal noexpandtab</pre>
-<p>もっといろいろ書くときは <code>~/.vim/ftplugin/cs.vim</code> などに書くと良いとか。</p></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/22/japanese-in-xml-comment-makes-monodevelop-down">OSX 上の MonoDevelop の日本語対応</a></h1><div class="meta">@<span class="date">2009-08-22 19:01</span></div></div><div class="content"><p>MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。<br />
+<p>もっといろいろ書くときは <code>~/.vim/ftplugin/cs.vim</code> などに書くと良いとか。</p></div></div></div><div class="post" data-reactid="27"><div class="post-header" data-reactid="28"><h1 class="title" data-reactid="29"><a href="/blog/2009/08/22/japanese-in-xml-comment-makes-monodevelop-down" data-reactid="30">OSX 上の MonoDevelop の日本語対応</a></h1><div class="meta" data-reactid="31"><!-- react-text: 32 -->@<!-- /react-text --><span class="date" data-reactid="33">2009-08-22 19:01</span></div></div><div class="content" data-reactid="34"><div data-reactid="35"><p>MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。<br />
 プレビュー版だけあっていろいろ動作があやしいです。そして日本語、というかマルチバイト対応がさっぱりです。<br />
 以下、できるだけ日本語使えるようにするためのメモ。</p>
 <h3>スタートページやメニューの文字化け</h3>
@@ -26,13 +34,17 @@
 <h4>置換</h4>
 <pre class="prettyprint">perl -i.bak -pe 's/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg' hoge.cs</pre>
 <p>一括置換は以下。</p>
-<pre class="prettyprint">find . -name '*.cs' -exec perl -i.bak -pe 's/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg' {} \;</pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2009/08/10/iphone-provisioning-profile">iPhone Provisioning Profile</a></h1><div class="meta">@<span class="date">2009-08-10 12:31</span> - <span class="category">iPhone 開発</span></div></div><div class="content"><p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
+<pre class="prettyprint">find . -name '*.cs' -exec perl -i.bak -pe 's/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg' {} \;</pre></div></div></div><div class="post" data-reactid="36"><div class="post-header" data-reactid="37"><h1 class="title" data-reactid="38"><a href="/blog/2009/08/10/iphone-provisioning-profile" data-reactid="39">iPhone Provisioning Profile</a></h1><div class="meta" data-reactid="40"><!-- react-text: 41 -->@<!-- /react-text --><span class="date" data-reactid="42">2009-08-10 12:31</span><!-- react-text: 43 --> - <!-- /react-text --><span class="category" data-reactid="44">iPhone 開発</span></div></div><div class="content" data-reactid="45"><div data-reactid="46"><p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
 改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
 <p>キーチェーンアクセス &#8594; 証明書アシスタント -&gt; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
-<p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/25">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/27">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p></div></div></div><ul class="pagination" data-reactid="47"><li class="pagination__prev-page" data-reactid="48"><a href="/blog/pages/25" data-reactid="49">Newer Posts</a></li><li class="pagination__archives" data-reactid="50"><a href="/blog/archives" data-reactid="51">Archives</a></li><li class="pagination__next-page" data-reactid="52"><a href="/blog/pages/27" data-reactid="53">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="54"><!-- react-text: 55 -->© <!-- /react-text --><!-- react-text: 56 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="57">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-309586-8', 'shuheikagawa.com');
-ga('send', 'pageview');</script></footer></body></html>
+    ga('create', 'UA-309586-8', 'shuheikagawa.com');
+    ga('send', 'pageview');
+  </script></footer></div></div>
+      </body>
+    </html>

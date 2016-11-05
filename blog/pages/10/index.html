@@ -1,10 +1,18 @@
-<!DOCTYPE html><html><head><title>Page 10 - Shuhei Kagawa</title><meta charset="utf-8"><meta name="viewport" content="initial-scale=1"><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:400,700"><link rel="stylesheet" href="/css/style.css"></head><body><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about">About</a></li><li class="menu__item"><a href="/works">Works</a></li><li class="menu__item"><a href="/blog/archives">Archives</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007">How to use ofxOpenCv on of007</a></h1><div class="meta">@<span class="date">2012-04-03 00:36</span> - <span class="category">openFrameworks</span></div></div><div class="content"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
+<!doctype html>
+    <html >
+      <head>
+        <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
+        <title data-react-helmet="true">Page 10</title>
+        <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+      </head>
+      <body>
+        <div><div data-reactroot="" data-reactid="1" data-react-checksum="-723559719"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2012/04/03/how-to-use-ofxopencv-on-of007" data-reactid="19">How to use ofxOpenCv on of007</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2012-04-03 00:36</span><!-- react-text: 23 --> - <!-- /react-text --><span class="category" data-reactid="24">openFrameworks</span></div></div><div class="content" data-reactid="25"><div data-reactid="26"><p>ofxOpenCv を of007 で使うためのちょっとしたメモです。</p>
 <p>1. <code>addons</code> に <code>of/addons/ofxOpenCv</code> をドラッグ。<code>src</code> 以外は参照を消してしまう。</p>
 <p>2. Build Settings -&gt; Linking -&gt; Other Linker Flags に以下を設定。</p>
 <pre><code class="hljs undefined">    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a</code></pre><p>3. Build Settings -&gt; Search Paths -&gt; Header Search Paths に以下を設定。</p>
 <pre><code class="hljs undefined">    $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv
     $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include
-    $(OF_PATH)/addons/ofxOpenCv/src</code></pre></div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/03/category-index-for-octopress">Category index for Octopress</a></h1><div class="meta">@<span class="date">2012-04-03 09:20</span> - <span class="category">Octopress</span></div></div><div class="content"><p>サイドバーにカテゴリー一覧を出してみました。</p>
+    $(OF_PATH)/addons/ofxOpenCv/src</code></pre></div></div></div><div class="post" data-reactid="27"><div class="post-header" data-reactid="28"><h1 class="title" data-reactid="29"><a href="/blog/2012/04/03/category-index-for-octopress" data-reactid="30">Category index for Octopress</a></h1><div class="meta" data-reactid="31"><!-- react-text: 32 -->@<!-- /react-text --><span class="date" data-reactid="33">2012-04-03 09:20</span><!-- react-text: 34 --> - <!-- /react-text --><span class="category" data-reactid="35">Octopress</span></div></div><div class="content" data-reactid="36"><div data-reactid="37"><p>サイドバーにカテゴリー一覧を出してみました。</p>
 <p>_config.yml</p>
 <pre><code class="hljs diff">diff --git a/_config.yml b/_config.yml
 index 5c7d335..7ad03bb 100644
@@ -51,7 +59,7 @@ index bb5fd32..28bf7e0 100644
      # Outputs the post.date as formatted html, with hooks for CSS styling.
      #
      #  +date+ is the date object to format as HTML.</code></pre><p>Gist: <a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
-</div></div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2012/04/02/how-to-use-ofxui">How to use ofxUI</a></h1><div class="meta">@<span class="date">2012-04-02 20:13</span> - <span class="category">openFrameworks</span></div></div><div class="content"><iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div></div></div><div class="post" data-reactid="38"><div class="post-header" data-reactid="39"><h1 class="title" data-reactid="40"><a href="/blog/2012/04/02/how-to-use-ofxui" data-reactid="41">How to use ofxUI</a></h1><div class="meta" data-reactid="42"><!-- react-text: 43 -->@<!-- /react-text --><span class="date" data-reactid="44">2012-04-02 20:13</span><!-- react-text: 45 --> - <!-- /react-text --><span class="category" data-reactid="46">openFrameworks</span></div></div><div class="content" data-reactid="47"><div data-reactid="48"><iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 <p><a href="http://www.syedrezaali.com/blog/?p=2172">ofxUI: A User Interface Addon for OF</a> を使うと openFrameworks に <a href="https://github.com/ofTheo/ofxControlPanel">ofxControlPanel</a> よりもちょっとかっこいい UI を追加することができます。<a href="https://github.com/rezaali/ofxUI">github のページ</a> の Readme を超訳してみました。</p>
 <p>1. <a href="https://github.com/rezaali/ofxUI/downloads">ダウンロードページ</a>から ofxUI をダウンロード。中の <code>src</code> を <code>of/addons</code> の中に移して、名前を <code>ofxUI</code> にします。残りは <code>of/apps</code> に移して <code>ofxUIExamples</code> などとします。すると以下のようなファイル構成になります。</p>
@@ -121,10 +129,14 @@ gui-&gt;loadSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);</c
     }   
 }</code></pre><p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
 <p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
-</div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/pages/9">Newer Posts</a></li><li class="pagination__archives"><a href="/blog/archives">Archives</a></li><li class="pagination__next-page"><a href="/blog/pages/11">Older Posts</a></li></ul></div><footer class="footer">&copy; Shuhei Kagawa<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+</div></div></div><ul class="pagination" data-reactid="49"><li class="pagination__prev-page" data-reactid="50"><a href="/blog/pages/9" data-reactid="51">Newer Posts</a></li><li class="pagination__archives" data-reactid="52"><a href="/blog/archives" data-reactid="53">Archives</a></li><li class="pagination__next-page" data-reactid="54"><a href="/blog/pages/11" data-reactid="55">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="56"><!-- react-text: 57 -->© <!-- /react-text --><!-- react-text: 58 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="59">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-309586-8', 'shuheikagawa.com');
-ga('send', 'pageview');</script></footer></body></html>
+    ga('create', 'UA-309586-8', 'shuheikagawa.com');
+    ga('send', 'pageview');
+  </script></footer></div></div>
+      </body>
+    </html>
