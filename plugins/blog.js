@@ -126,10 +126,10 @@ export function index(config) {
     };
     if (page === 1) {
       locals.prevPage = '/';
-      locals.title = `Page ${page + 1}`;
+      locals.title = `Page ${page + 1} - ${config.title}`;
     } else if (page > 1) {
       locals.prevPage = path.join('/', config.blogDir, 'pages', page.toString());
-      locals.title = `Page ${page + 1}`;
+      locals.title = `Page ${page + 1} - ${config.title}`;
     }
     if (page < Math.ceil(posts.length / 3) - 1) {
       locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2).toString());
