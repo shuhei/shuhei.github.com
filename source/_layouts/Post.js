@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import SocialButtons from './SocialButtons';
 import { PostTypes } from './types';
@@ -6,7 +6,7 @@ import { PostTypes } from './types';
 const Post = ({ post, isPostPage }) => {
   const categories = [...(post.categories || []).map((category, i) => [
     i === 0 ? ' - ' : ', ',
-    <span className="category">{category}</span>
+    <span className="category">{category}</span>,
   ])];
   const content = { __html: post.content };
 
@@ -32,6 +32,7 @@ const Post = ({ post, isPostPage }) => {
 
 Post.propTypes = {
   post: PostTypes,
+  isPostPage: PropTypes.bool,
 };
 
 export default Post;

@@ -18,19 +18,45 @@ import PagePage from '../source/_layouts/PagePage';
 
 const PLUGIN_NAME = 'blog';
 
+function renderPage(component, props) {
+  const contentHtml = renderToString(
+    React.createElement(component, props)
+  );
+  const head = Helmet.rewind();
+
+  // https://github.com/nfl/react-helmet#as-string-output
+  return `
+    <!doctype html>
+    <html ${head.htmlAttributes.toString()}>
+      <head>
+        ${head.meta.toString()}
+        ${head.title.toString()}
+        ${head.link.toString()}
+      </head>
+      <body>
+        <div>${contentHtml}</div>
+      </body>
+    </html>
+  `.trim();
+}
+
 // Returns a function that compiles jade template using caches.
 function templateCache() {
   const compiledTemplates = {};
 
   return (filePath, callback) => {
     let compiled = compiledTemplates[filePath];
-    if (compiled) return callback(null, compiled);
+    if (compiled) {
+      callback(null, compiled);
+      return;
+    }
 
-    fs.readFile(filePath, { encoding: 'utf8' }, function(err, data) {
+    fs.readFile(filePath, { encoding: 'utf8' }, (err, data) => {
       try {
         compiled = jade.compile(data, { filename: filePath });
-      } catch(e) {
-        return callback(e);
+      } catch (e) {
+        callback(e);
+        return;
       }
       compiledTemplates[filePath] = compiled;
       callback(null, compiled);
@@ -39,7 +65,7 @@ function templateCache() {
 }
 
 function toURL(str) {
-  return str.toLowerCase().replace(/'/g, '').replace(/[^a-z1-9\-]/g, ' ').replace(/\s+/g, '-');
+  return str.toLowerCase().replace(/'/g, '').replace(/[^a-z1-9-]/g, ' ').replace(/\s+/g, '-');
 }
 
 export function index(config) {
@@ -51,7 +77,7 @@ export function index(config) {
   function renderTemplateFunc(tmpl, dest, locals) {
     const templateFile = path.join(process.cwd(), config.sourceDir, config.layoutDir, tmpl);
     return (callback) => {
-      getCompiledTemplate(templateFile, function(err, compiled) {
+      getCompiledTemplate(templateFile, (err, compiled) => {
         if (err) {
           callback(err);
           return;
@@ -69,7 +95,7 @@ export function index(config) {
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
           path: path.join(__dirname, config.sourceDir, dest),
-          contents: new Buffer(data)
+          contents: new Buffer(data),
         });
         callback(null, file);
       });
@@ -96,7 +122,7 @@ export function index(config) {
   function localsForPage(page, posts) {
     const locals = {
       site: config,
-      posts: posts.slice(page * perPage, (page + 1) * perPage)
+      posts: posts.slice(page * perPage, (page + 1) * perPage),
     };
     if (page === 1) {
       locals.prevPage = '/';
@@ -117,9 +143,10 @@ export function index(config) {
   }
 
   function flush(cb) {
-    const posts = files.map((file) => {
-      return util._extend({ content: file.contents.toString() }, file.frontMatter);
-    }).reverse();
+    const posts = files.map(file => ({
+      ...file.frontMatter,
+      content: file.contents.toString(),
+    })).reverse();
 
     // Render index pages and archive page in parallel.
     const funcs = [];
@@ -129,7 +156,7 @@ export function index(config) {
     funcs.push(renderReactFunc(IndexPage, 'index.html', localsForPage(0, posts)));
 
     // Index pages.
-    for (let i = 1; i < pageCount; i++) {
+    for (let i = 1; i < pageCount; i += 1) {
       const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
       funcs.push(renderReactFunc(IndexPage, dest, localsForPage(i, posts)));
     }
@@ -138,7 +165,7 @@ export function index(config) {
     const archivePath = path.join(config.blogDir, 'archives', 'index.html');
     const localsForArchive = {
       site: config,
-      posts: posts,
+      posts,
     };
     funcs.push(renderReactFunc(ArchivesPage, archivePath, localsForArchive));
 
@@ -146,63 +173,42 @@ export function index(config) {
     const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
     const localsForRss = {
       site: config,
-      posts: posts.slice(0, 10)
+      posts: posts.slice(0, 10),
     };
     funcs.push(renderTemplateFunc('rss.jade', rssPath, localsForRss));
 
     // Execute in parallel. React's rendering is synchronous thougth.
-    async.parallel(funcs, (err, files) => {
+    async.parallel(funcs, (err, newFiles) => {
       if (err) {
-        console.log('error', err);
+        console.error('error', err);
         this.emit('err', new PluginError(PLUGIN_NAME, err));
-        return cb();
+        cb();
+        return;
       }
-      files.forEach((file) => this.push(file));
+      newFiles.forEach(file => this.push(file));
       cb();
     });
   }
 
   return through(transform, flush);
-};
-
-function renderPage(component, props) {
-  const contentHtml = renderToString(
-    React.createElement(component, props)
-  );
-  const head = Helmet.rewind();
-
-  // https://github.com/nfl/react-helmet#as-string-output
-  return `
-    <!doctype html>
-    <html ${head.htmlAttributes.toString()}>
-      <head>
-        ${head.meta.toString()}
-        ${head.title.toString()}
-        ${head.link.toString()}
-      </head>
-      <body>
-        <div>${contentHtml}</div>
-      </body>
-    </html>
-  `.trim();
 }
 
 export function layout(config) {
-  const getCompiledTemplate = templateCache();
-
   function transform(file, enc, cb) {
     if (!file.frontMatter || !file.frontMatter.layout) {
       this.push(file);
-      return cb();
+      cb();
+      return;
     }
 
-    const { layout } = file.frontMatter;
-    if (layout !== 'post' && layout !== 'page') {
-      this.emit('error', new PluginError(PLUGIN_NAME, `Unknown layout: ${layout} at ${file.path}`));
-      return cb();
+    const { layout: layoutName } = file.frontMatter;
+    if (layoutName !== 'post' && layoutName !== 'page') {
+      this.emit('error', new PluginError(PLUGIN_NAME, `Unknown layout: ${layoutName} at ${file.path}`));
+      cb();
+      return;
     }
 
-    const component = layout === 'post' ? PostPage : PagePage;
+    const component = layoutName === 'post' ? PostPage : PagePage;
     const locals = {
       site: config,
       post: {
@@ -211,25 +217,26 @@ export function layout(config) {
       },
     };
 
+    const newFile = file.clone(false);
     try {
-      file.contents = new Buffer(renderPage(component, locals));
+      newFile.contents = new Buffer(renderPage(component, locals));
+      this.push(newFile);
     } catch (e) {
       this.emit('error', new PluginError(PLUGIN_NAME, e));
-      return cb();
     }
 
-    this.push(file);
     cb();
   }
 
   return through(transform);
-};
+}
 
 export function cleanUrl() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
-      return cb();
+      cb();
+      return;
     }
 
     const components = file.path.split(path.sep);
@@ -241,15 +248,16 @@ export function cleanUrl() {
 
     components.splice(components.length - 1, 1, date[0], date[1], date[2], dirname, 'index.html');
 
-    file.path = components.join(path.sep);
-    file.frontMatter.url = path.join('/blog', date[0], date[1], date[2], dirname)
+    const newFile = file.clone(false);
+    newFile.path = components.join(path.sep);
+    newFile.frontMatter.url = path.join('/blog', date[0], date[1], date[2], dirname);
 
-    this.push(file);
+    this.push(newFile);
     cb();
   }
 
   return through(transform);
-};
+}
 
 export function newPost(title, config) {
   const urlTitle = toURL(title);
@@ -261,15 +269,15 @@ export function newPost(title, config) {
   gutil.log(`Creating new post: ${newPostPath}`);
 
   const writer = fs.createWriteStream(newPostPath);
-  writer.write("---\n");
-  writer.write("layout: post\n");
-  writer.write(util.format("title: \"%s\"\n", title));
-  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H:%M')));
-  writer.write("comments: true\n");
-  writer.write("categories: \n");
-  writer.write("---\n");
+  writer.write('---\n');
+  writer.write('layout: post\n');
+  writer.write(util.format('title: "%s"\n', title));
+  writer.write(util.format('date: %s\n', strftime('%Y-%m-%d %H:%M')));
+  writer.write('comments: true\n');
+  writer.write('categories: \n');
+  writer.write('---\n');
   writer.end();
-};
+}
 
 export function newPage(filename, config) {
   const filenamePattern = /(^.+\/)?(.+)/;
@@ -303,11 +311,11 @@ export function newPage(filename, config) {
   mkdirp.sync(pageDir);
 
   const writer = fs.createWriteStream(filePath);
-  writer.write("---\n");
-  writer.write("layout: page\n");
-  writer.write(util.format("title: \"%s\"\n", title));
-  writer.write(util.format("date: %s\n", strftime('%Y-%m-%d %H:%M')));
-  writer.write("comments: true\n");
-  writer.write("---\n");
+  writer.write('---\n');
+  writer.write('layout: page\n');
+  writer.write(util.format('title: "%s"\n', title));
+  writer.write(util.format('date: %s\n', strftime('%Y-%m-%d %H:%M')));
+  writer.write('comments: true\n');
+  writer.write('---\n');
   writer.end();
-};
+}

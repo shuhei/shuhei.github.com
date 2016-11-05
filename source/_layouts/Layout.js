@@ -12,57 +12,56 @@ const GOOGLE_ANALYTICS_JS = {
 
     ga('create', 'UA-309586-8', 'shuheikagawa.com');
     ga('send', 'pageview');
-  `
+  `,
 };
 
-const Layout = ({ site, title, children }) => {
-  return (
-    <div>
-      <Helmet
-        title={title || site.title}
-        meta={[
-          { charset: 'utf-8' },
-          { name: 'viewport', content: 'initial-scale=1' },
-        ]}
-        link={[
-          { rel: 'icons', sizes: '16x16 32x32 48x48', href: '/favicon.ico' },
-          { rel: 'alternate', type: 'application/rss+xml', title: 'RSS Feed for shuheikagawa.com', href: '/blog/feed/rss.xml' },
-          { rel: 'stylesheet', href: 'http://fonts.googleapis.com/css?family=Asap:4000,700' },
-          { rel: 'stylesheet', href: '/css/style.css' },
-        ]}
-      />
-      <header className="header">
-        <h1 className="header__title">
-          <a href="/">{site.title}</a>
-        </h1>
-        <nav>
-          <ul className="menu">
-            <li className="menu__item">
-              <a href="/about">About</a>
-            </li>
-            <li className="menu__item">
-              <a href="/works">Works</a>
-            </li>
-            <li className="menu__item">
-              <a href="/blog/archives">Archives</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <div className="main">
-        {children}
-      </div>
-      <footer className="footer">
-        © {site.author}
-        <script dangerouslySetInnerHTML={GOOGLE_ANALYTICS_JS} />
-      </footer>
+const Layout = ({ site, title, children }) => (
+  <div>
+    <Helmet
+      title={title || site.title}
+      meta={[
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'initial-scale=1' },
+      ]}
+      link={[
+        { rel: 'icons', sizes: '16x16 32x32 48x48', href: '/favicon.ico' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'RSS Feed for shuheikagawa.com', href: '/blog/feed/rss.xml' },
+        { rel: 'stylesheet', href: 'http://fonts.googleapis.com/css?family=Asap:4000,700' },
+        { rel: 'stylesheet', href: '/css/style.css' },
+      ]}
+    />
+    <header className="header">
+      <h1 className="header__title">
+        <a href="/">{site.title}</a>
+      </h1>
+      <nav>
+        <ul className="menu">
+          <li className="menu__item">
+            <a href="/about">About</a>
+          </li>
+          <li className="menu__item">
+            <a href="/works">Works</a>
+          </li>
+          <li className="menu__item">
+            <a href="/blog/archives">Archives</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div className="main">
+      {children}
     </div>
-  );
-};
+    <footer className="footer">
+      © {site.author}
+      <script dangerouslySetInnerHTML={GOOGLE_ANALYTICS_JS} />
+    </footer>
+  </div>
+);
 
 Layout.propTypes = {
   site: SiteProps.isRequired,
   title: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;
