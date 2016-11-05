@@ -13,3 +13,8 @@ export const PostTypes = PropTypes.shape({
   content: PropTypes.string.isRequired,
   comments: PropTypes.bool.isRequired,
 });
+
+export const PageTypes = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+});

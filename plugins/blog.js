@@ -12,7 +12,9 @@ import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
 import IndexPage from '../source/_layouts/IndexPage';
+import ArchivesPage from '../source/_layouts/ArchivesPage';
 import PostPage from '../source/_layouts/PostPage';
+import PagePage from '../source/_layouts/PagePage';
 
 const PLUGIN_NAME = 'blog';
 
@@ -86,7 +88,7 @@ export function index(config) {
         });
         callback(null, file);
       } catch (e) {
-        callback(new PluginError(PLUGIN_NAME, e));
+        callback(e);
       }
     };
   }
@@ -137,9 +139,8 @@ export function index(config) {
     const localsForArchive = {
       site: config,
       posts: posts,
-      title: 'Archives'
     };
-    funcs.push(renderTemplateFunc('archives.jade', archivePath, localsForArchive));
+    funcs.push(renderReactFunc(ArchivesPage, archivePath, localsForArchive));
 
     // RSS feed.
     const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
@@ -149,7 +150,7 @@ export function index(config) {
     };
     funcs.push(renderTemplateFunc('rss.jade', rssPath, localsForRss));
 
-    // Execute in parallel.
+    // Execute in parallel. React's rendering is synchronous thougth.
     async.parallel(funcs, (err, files) => {
       if (err) {
         console.log('error', err);
@@ -195,6 +196,13 @@ export function layout(config) {
       return cb();
     }
 
+    const { layout } = file.frontMatter;
+    if (layout !== 'post' && layout !== 'page') {
+      this.emit('error', new PluginError(PLUGIN_NAME, `Unknown layout: ${layout} at ${file.path}`));
+      return cb();
+    }
+
+    const component = layout === 'post' ? PostPage : PagePage;
     const locals = {
       site: config,
       post: {
@@ -203,39 +211,15 @@ export function layout(config) {
       },
     };
 
-    if (file.frontMatter.layout === 'post') {
-      try {
-        file.contents = new Buffer(renderPage(PostPage, locals));
-      } catch (e) {
-        this.emit('error', new PluginError(PLUGIN_NAME, e));
-        return cb();
-      }
-
-      this.push(file);
-      cb();
-    } else {
-      const templatePath = path.join(file.cwd,
-                                     config.sourceDir,
-                                     config.layoutDir,
-                                     file.frontMatter.layout + '.jade');
-
-      getCompiledTemplate(templatePath, (err, compiled) => {
-        if (err) {
-          this.emit('error', new PluginError(PLUGIN_NAME, err));
-          return cb();
-        }
-
-        try {
-          file.contents = new Buffer(compiled(locals));
-        } catch(e) {
-          this.emit('error', new PluginError(PLUGIN_NAME, e));
-          return cb();
-        }
-
-        this.push(file);
-        cb();
-      });
+    try {
+      file.contents = new Buffer(renderPage(component, locals));
+    } catch (e) {
+      this.emit('error', new PluginError(PLUGIN_NAME, e));
+      return cb();
     }
+
+    this.push(file);
+    cb();
   }
 
   return through(transform);
