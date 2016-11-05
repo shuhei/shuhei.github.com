@@ -20,7 +20,10 @@
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
     "async": "^1.4.2",
-    "babel-core": "^5.8.24",
+    "babel-core": "^6.18.2",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
     "connect": "^3.3.4",
     "del": "^2.0.2",
     "gh-pagesify": "^0.2.6",
@@ -48,5 +51,10 @@
     "static": "public",
     "deploy": "_deploy",
     "branch": "master"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-helmet": "^3.2.1"
   }
 }

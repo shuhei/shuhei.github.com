@@ -7,9 +7,15 @@ import jade from 'jade';
 import async from 'async';
 import mkdirp from 'mkdirp';
 import strftime from 'strftime';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import Helmet from 'react-helmet';
+
+import PostPage from '../source/_layouts/PostPage';
 
 const PLUGIN_NAME = 'blog';
 
+// Returns a function that compiles jade template using caches.
 function templateCache() {
   const compiledTemplates = {};
 
@@ -140,6 +146,28 @@ export function index(config) {
   return through(transform, flush);
 };
 
+function renderPage(component, props) {
+  const contentHtml = renderToString(
+    React.createElement(component, props)
+  );
+  const head = Helmet.rewind();
+
+  // https://github.com/nfl/react-helmet#as-string-output
+  return `
+    <!doctype html>
+    <html ${head.htmlAttributes.toString()}>
+      <head>
+        ${head.meta.toString()}
+        ${head.title.toString()}
+        ${head.link.toString()}
+      </head>
+      <body>
+        <div>${contentHtml}</div>
+      </body>
+    </html>
+  `.trim();
+}
+
 export function layout(config) {
   const getCompiledTemplate = templateCache();
 
@@ -149,32 +177,48 @@ export function layout(config) {
       return cb();
     }
 
-    const templatePath = path.join(file.cwd,
-                                   config.sourceDir,
-                                   config.layoutDir,
-                                   file.frontMatter.layout + '.jade');
+    const locals = {
+      site: config,
+      post: {
+        ...file.frontMatter,
+        categories: file.frontMatter.categories || [],
+        content: file.contents.toString(),
+      },
+    };
 
-    getCompiledTemplate(templatePath, (err, compiled) => {
-      if (err) {
-        this.emit('error', new PluginError(PLUGIN_NAME, err));
-        return cb();
-      }
-
-      const locals = {
-        site: config,
-        post: util._extend({ content: file.contents.toString() }, file.frontMatter)
-      };
-
+    if (file.frontMatter.layout === 'post') {
       try {
-        file.contents = new Buffer(compiled(locals));
-      } catch(e) {
+        file.contents = new Buffer(renderPage(PostPage, locals));
+      } catch (e) {
         this.emit('error', new PluginError(PLUGIN_NAME, e));
         return cb();
       }
 
       this.push(file);
       cb();
-    });
+    } else {
+      const templatePath = path.join(file.cwd,
+                                     config.sourceDir,
+                                     config.layoutDir,
+                                     file.frontMatter.layout + '.jade');
+
+      getCompiledTemplate(templatePath, (err, compiled) => {
+        if (err) {
+          this.emit('error', new PluginError(PLUGIN_NAME, err));
+          return cb();
+        }
+
+        try {
+          file.contents = new Buffer(compiled(locals));
+        } catch(e) {
+          this.emit('error', new PluginError(PLUGIN_NAME, e));
+          return cb();
+        }
+
+        this.push(file);
+        cb();
+      });
+    }
   }
 
   return through(transform);
