@@ -1,0 +1,10 @@
+{
+  "title": "Shuhei Kagawa",
+  "author": "Shuhei Kagawa",
+  "perPage": 3,
+  "newPageExtension": "markdown",
+  "blogDir": "blog",
+  "sourceDir": "source",
+  "layoutDir": "_layouts",
+  "postDir": "_posts"
+}

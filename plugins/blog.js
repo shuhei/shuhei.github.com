@@ -11,6 +11,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
+import Layout from '../source/_layouts/Layout';
 import IndexPage from '../source/_layouts/IndexPage';
 import ArchivesPage from '../source/_layouts/ArchivesPage';
 import PostPage from '../source/_layouts/PostPage';
@@ -18,13 +19,26 @@ import PagePage from '../source/_layouts/PagePage';
 
 const PLUGIN_NAME = 'blog';
 
+// Escape characters that are valid in JSON but not in JavaScript.
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Issue_with_plain_JSON.stringify_for_use_as_JavaScript
+function jsFriendlyJSONStringify(source) {
+  return JSON.stringify(source)
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
 function renderPage(component, props) {
   const contentHtml = renderToString(
-    React.createElement(component, props)
+    React.createElement(
+      Layout,
+      props,
+      React.createElement(component, props),
+    )
   );
   const head = Helmet.rewind();
 
   // https://github.com/nfl/react-helmet#as-string-output
+  // <!-- --> is necessary to put </script> in the JSON.
   return `
     <!doctype html>
     <html ${head.htmlAttributes.toString()}>
@@ -34,7 +48,11 @@ function renderPage(component, props) {
         ${head.link.toString()}
       </head>
       <body>
-        <div>${contentHtml}</div>
+        <div id="container">${contentHtml}</div>
+        <script><!--
+          window.__PRELOADED_PROPS__ = ${jsFriendlyJSONStringify(props)};
+        --></script>
+        ${head.script.toString()}
       </body>
     </html>
   `.trim();
@@ -119,6 +137,19 @@ export function index(config) {
     };
   }
 
+  function renderJsonFunc(dest, data) {
+    return (callback) => {
+      const jsonDest = dest.replace(/\.html$/, '.json');
+      const file = new gutil.File({
+        cwd: process.cwd(),
+        base: path.join(__dirname, config.sourceDir),
+        path: path.join(__dirname, config.sourceDir, jsonDest),
+        contents: new Buffer(JSON.stringify(data)),
+      });
+      callback(null, file);
+    };
+  }
+
   function localsForPage(page, posts) {
     const locals = {
       site: config,
@@ -128,11 +159,11 @@ export function index(config) {
       locals.prevPage = '/';
       locals.title = `Page ${page + 1} - ${config.title}`;
     } else if (page > 1) {
-      locals.prevPage = path.join('/', config.blogDir, 'pages', page.toString());
+      locals.prevPage = path.join('/', config.blogDir, 'pages', page.toString(), '/');
       locals.title = `Page ${page + 1} - ${config.title}`;
     }
     if (page < Math.ceil(posts.length / 3) - 1) {
-      locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2).toString());
+      locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2, '/').toString());
     }
     return locals;
   }
@@ -153,21 +184,26 @@ export function index(config) {
     const pageCount = Math.ceil(posts.length / perPage);
 
     // Top page.
+    const topLocals = localsForPage(0, posts);
     funcs.push(renderReactFunc(IndexPage, 'index.html', localsForPage(0, posts)));
+    funcs.push(renderJsonFunc('index.html', topLocals.posts));
 
     // Index pages.
     for (let i = 1; i < pageCount; i += 1) {
       const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
-      funcs.push(renderReactFunc(IndexPage, dest, localsForPage(i, posts)));
+      const pageLocals = localsForPage(i, posts);
+      funcs.push(renderReactFunc(IndexPage, dest, pageLocals));
+      funcs.push(renderJsonFunc(dest, pageLocals.posts));
     }
 
     // Archive page.
     const archivePath = path.join(config.blogDir, 'archives', 'index.html');
     const localsForArchive = {
       site: config,
-      posts,
+      posts: posts.map(post => ({ ...post, content: undefined })),
     };
     funcs.push(renderReactFunc(ArchivesPage, archivePath, localsForArchive));
+    funcs.push(renderJsonFunc(archivePath, localsForArchive.posts));
 
     // RSS feed.
     const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
@@ -217,10 +253,15 @@ export function layout(config) {
       },
     };
 
-    const newFile = file.clone(false);
     try {
-      newFile.contents = new Buffer(renderPage(component, locals));
-      this.push(newFile);
+      const htmlFile = file.clone(false);
+      htmlFile.contents = new Buffer(renderPage(component, locals));
+      this.push(htmlFile);
+
+      const jsonFile = file.clone(false);
+      jsonFile.path = jsonFile.path.replace(/\.html$/, '.json');
+      jsonFile.contents = new Buffer(JSON.stringify(locals.post));
+      this.push(jsonFile);
     } catch (e) {
       this.emit('error', new PluginError(PLUGIN_NAME, e));
     }
@@ -250,7 +291,7 @@ export function cleanUrl() {
 
     const newFile = file.clone(false);
     newFile.path = components.join(path.sep);
-    newFile.frontMatter.url = path.join('/blog', date[0], date[1], date[2], dirname);
+    newFile.frontMatter.url = path.join('/blog', date[0], date[1], date[2], dirname, '/');
 
     this.push(newFile);
     cb();

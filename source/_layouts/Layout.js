@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
+import { handleLink } from '../_js/link';
 import { SiteProps } from './types';
 
 const GOOGLE_ANALYTICS_JS = {
@@ -15,10 +16,9 @@ const GOOGLE_ANALYTICS_JS = {
   `,
 };
 
-const Layout = ({ site, title, children }) => (
+const Layout = ({ site, children }) => (
   <div>
     <Helmet
-      title={title || site.title}
       meta={[
         { charset: 'utf-8' },
         { name: 'viewport', content: 'initial-scale=1' },
@@ -29,21 +29,24 @@ const Layout = ({ site, title, children }) => (
         { rel: 'stylesheet', href: 'http://fonts.googleapis.com/css?family=Asap:4000,700' },
         { rel: 'stylesheet', href: '/css/style.css' },
       ]}
+      script={[
+        { src: '/js/index.js' },
+      ]}
     />
     <header className="header">
       <h1 className="header__title">
-        <a href="/">{site.title}</a>
+        <a href="/" onClick={handleLink}>{site.title}</a>
       </h1>
       <nav>
         <ul className="menu">
           <li className="menu__item">
-            <a href="/about">About</a>
+            <a href="/about/" onClick={handleLink}>About</a>
           </li>
           <li className="menu__item">
-            <a href="/works">Works</a>
+            <a href="/works/" onClick={handleLink}>Works</a>
           </li>
           <li className="menu__item">
-            <a href="/blog/archives">Archives</a>
+            <a href="/blog/archives/" onClick={handleLink}>Archives</a>
           </li>
         </ul>
       </nav>
@@ -60,7 +63,6 @@ const Layout = ({ site, title, children }) => (
 
 Layout.propTypes = {
   site: SiteProps.isRequired,
-  title: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 
-import Layout from './Layout';
 import { SiteProps, PageTypes } from './types';
 
 const PagePage = ({ site, post }) => {
@@ -8,7 +8,8 @@ const PagePage = ({ site, post }) => {
   const content = { __html: post.content };
 
   return (
-    <Layout site={site} title={title}>
+    <div>
+      <Helmet title={title} />
       <div className="post">
         <div className="post-header">
           <h1 className="title">
@@ -17,7 +18,7 @@ const PagePage = ({ site, post }) => {
           <div className="content" dangerouslySetInnerHTML={content} />
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

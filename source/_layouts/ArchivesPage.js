@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import Helmet from 'react-helmet';
 
-import Layout from './Layout';
-import { SiteProps, PostTypes } from './types';
+import { handleLink } from '../_js/link';
+import { SiteProps, ArchivePostTypes } from './types';
 
 const ArchivePost = ({ post }) => (
   <div className="post-list-item">
@@ -9,32 +10,33 @@ const ArchivePost = ({ post }) => (
       {post.date.split(' ')[0]}
     </div>
     <div className="post-list-item__title">
-      <a href={post.url}>{post.title}</a>
+      <a href={post.url} onClick={handleLink}>{post.title}</a>
     </div>
   </div>
 );
 
 ArchivePost.propTypes = {
-  post: PostTypes.isRequired,
+  post: ArchivePostTypes.isRequired,
 };
 
 const ArchivesPage = ({ site, posts }) => {
   const title = ['Archives', site.title].join(' - ');
   return (
-    <Layout site={site} title={title}>
+    <div>
+      <Helmet title={title} />
       <div className="post-list">
         <h1 className="title">
           <a href="/blog/archives">Archives</a>
         </h1>
         {posts.map(post => <ArchivePost post={post} key={post.url} />)}
       </div>
-    </Layout>
+    </div>
   );
 };
 
 ArchivesPage.propTypes = {
   site: SiteProps.isRequired,
-  posts: PropTypes.arrayOf(PostTypes).isRequired,
+  posts: PropTypes.arrayOf(ArchivePostTypes).isRequired,
 };
 
 export default ArchivesPage;

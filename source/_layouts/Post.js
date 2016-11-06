@@ -1,9 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-import SocialButtons from './SocialButtons';
 import { PostTypes } from './types';
 
-const Post = ({ post, isPostPage }) => {
+const Post = ({ post }) => {
   const categories = [...(post.categories || []).map((category, i) => [
     i === 0 ? ' - ' : ', ',
     <span className="category">{category}</span>,
@@ -24,7 +23,6 @@ const Post = ({ post, isPostPage }) => {
       </div>
       <div className="content">
         <div dangerouslySetInnerHTML={content} />
-        {isPostPage && <SocialButtons title={post.title} />}
       </div>
     </div>
   );
@@ -32,7 +30,6 @@ const Post = ({ post, isPostPage }) => {
 
 Post.propTypes = {
   post: PostTypes,
-  isPostPage: PropTypes.bool,
 };
 
 export default Post;
