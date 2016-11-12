@@ -19,6 +19,10 @@ export default class Router extends Component {
 
   componentDidMount() {
     addListener(this.updateRoute);
+
+    window.onpopstate = (event) => {
+      this.popState(location.pathname, event.state);
+    };
   }
 
   findRoute(path) {
@@ -38,14 +42,28 @@ export default class Router extends Component {
     fetch(`${path}index.json`)
       .then(res => res.json())
       .then((nextProps) => {
-        // TODO: Update history.
-        // window.history.pushState(nextProps, '', path);
         this.setState({
           component: route.component,
           props: nextProps,
         });
         window.scrollTo(0, 0);
+
+        window.history.pushState(nextProps, '', path);
       });
+  }
+
+  popState(path, previousState) {
+    const route = this.findRoute(path);
+    if (!route) {
+      // TODO: Handle not found.
+      console.warn(`Route not found for ${path}`);
+      return;
+    }
+    this.setState({
+      component: route.component,
+      props: previousState,
+    });
+    window.scrollTo(0, 0);
   }
 
   render() {
