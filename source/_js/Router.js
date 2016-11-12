@@ -33,6 +33,9 @@ export default class Router extends Component {
   }
 
   updateRoute(path) {
+    window.ga('set', 'page', path);
+    window.ga('send', 'pageview');
+
     const route = this.findRoute(path);
     if (!route) {
       // TODO: Handle not found.
@@ -53,6 +56,9 @@ export default class Router extends Component {
   }
 
   popState(path, previousState) {
+    window.ga('set', 'page', path);
+    window.ga('send', 'pageview');
+
     const route = this.findRoute(path);
     if (!route) {
       // TODO: Handle not found.
