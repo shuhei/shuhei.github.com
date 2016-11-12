@@ -163,7 +163,7 @@ export function index(config) {
       locals.title = `Page ${page + 1} - ${config.title}`;
     }
     if (page < Math.ceil(posts.length / 3) - 1) {
-      locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2, '/').toString());
+      locals.nextPage = path.join('/', config.blogDir, 'pages', (page + 2).toString(), '/');
     }
     return locals;
   }
@@ -186,14 +186,14 @@ export function index(config) {
     // Top page.
     const topLocals = localsForPage(0, posts);
     funcs.push(renderReactFunc(IndexPage, 'index.html', localsForPage(0, posts)));
-    funcs.push(renderJsonFunc('index.html', topLocals.posts));
+    funcs.push(renderJsonFunc('index.html', topLocals));
 
     // Index pages.
     for (let i = 1; i < pageCount; i += 1) {
       const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
       const pageLocals = localsForPage(i, posts);
       funcs.push(renderReactFunc(IndexPage, dest, pageLocals));
-      funcs.push(renderJsonFunc(dest, pageLocals.posts));
+      funcs.push(renderJsonFunc(dest, pageLocals));
     }
 
     // Archive page.
@@ -203,7 +203,7 @@ export function index(config) {
       posts: posts.map(post => ({ ...post, content: undefined })),
     };
     funcs.push(renderReactFunc(ArchivesPage, archivePath, localsForArchive));
-    funcs.push(renderJsonFunc(archivePath, localsForArchive.posts));
+    funcs.push(renderJsonFunc(archivePath, localsForArchive));
 
     // RSS feed.
     const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
@@ -260,7 +260,7 @@ export function layout(config) {
 
       const jsonFile = file.clone(false);
       jsonFile.path = jsonFile.path.replace(/\.html$/, '.json');
-      jsonFile.contents = new Buffer(JSON.stringify(locals.post));
+      jsonFile.contents = new Buffer(JSON.stringify(locals));
       this.push(jsonFile);
     } catch (e) {
       this.emit('error', new PluginError(PLUGIN_NAME, e));

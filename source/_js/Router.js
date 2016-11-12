@@ -37,7 +37,6 @@ export default class Router extends Component {
     }
     fetch(`${path}index.json`)
       .then(res => res.json())
-      .then(json => route.props(this.state.props, json))
       .then((nextProps) => {
         // TODO: Update history.
         // window.history.pushState(nextProps, '', path);

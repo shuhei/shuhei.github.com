@@ -17,37 +17,22 @@ const appRoutes = [
   {
     pattern: '/',
     component: IndexPage,
-    props(state, json) {
-      return { ...state, posts: json };
-    },
   },
   {
     pattern: '/blog/pages/\\d+/',
     component: IndexPage,
-    props(state, json) {
-      return { ...state, posts: json };
-    },
   },
   {
     pattern: '/blog/archives/',
     component: ArchivesPage,
-    props(state, json) {
-      return { ...state, posts: json };
-    },
   },
   {
     pattern: '/blog/\\d+/\\d+/\\d+/.*/',
     component: PostPage,
-    props(state, json) {
-      return { ...state, post: json };
-    },
   },
   {
     pattern: '/.*',
     component: PagePage,
-    props(state, json) {
-      return { ...state, post: json };
-    },
   },
 ];
 
