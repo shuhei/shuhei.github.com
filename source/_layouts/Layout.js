@@ -4,18 +4,6 @@ import Helmet from 'react-helmet';
 import { handleLink } from '../_js/link';
 import { SiteProps } from './types';
 
-const GOOGLE_ANALYTICS_JS = {
-  __html: `
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  `,
-};
-
 const Layout = ({ site, children }) => (
   <div>
     <Helmet
@@ -53,7 +41,6 @@ const Layout = ({ site, children }) => (
     </div>
     <footer className="footer">
       © {site.author}
-      <script dangerouslySetInnerHTML={GOOGLE_ANALYTICS_JS} />
     </footer>
   </div>
 );
