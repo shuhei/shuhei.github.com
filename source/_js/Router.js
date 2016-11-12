@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 import { addListener } from './link';
-import Layout from '../_layouts/Layout';
 import { RouteProps } from '../_layouts/types';
 
 export default class Router extends Component {
@@ -51,14 +50,14 @@ export default class Router extends Component {
   }
 
   render() {
-    return (
-      <Layout {...this.state.props}>
-        {React.createElement(
-          this.state.component,
-          this.state.props,
-          null
-        )}
-      </Layout>
+    return React.createElement(
+      this.props.wrapperComponent,
+      this.state.props,
+      React.createElement(
+        this.state.component,
+        this.state.props,
+        null
+      )
     );
   }
 }
@@ -67,4 +66,5 @@ Router.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   initialProps: PropTypes.object.isRequired,
   routes: PropTypes.arrayOf(RouteProps).isRequired,
+  wrapperComponent: PropTypes.func.isRequired,
 };

@@ -6,6 +6,7 @@ import IndexPage from '../_layouts/IndexPage';
 import ArchivesPage from '../_layouts/ArchivesPage';
 import PagePage from '../_layouts/PagePage';
 import PostPage from '../_layouts/PostPage';
+import Layout from '../_layouts/Layout';
 
 const container = document.getElementById('container');
 
@@ -54,6 +55,7 @@ render(
   <Router
     initialProps={preloadedProps}
     routes={appRoutes}
+    wrapperComponent={Layout}
   />,
   container
 );
