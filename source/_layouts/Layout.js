@@ -29,9 +29,6 @@ const Layout = ({ site, children }) => (
         { rel: 'stylesheet', href: 'http://fonts.googleapis.com/css?family=Asap:4000,700' },
         { rel: 'stylesheet', href: '/css/style.css' },
       ]}
-      script={[
-        { src: '/js/index.js' },
-      ]}
     />
     <header className="header">
       <h1 className="header__title">

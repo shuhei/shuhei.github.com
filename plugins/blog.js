@@ -52,7 +52,7 @@ function renderPage(component, props) {
         <script><!--
           window.__PRELOADED_PROPS__ = ${jsFriendlyJSONStringify(props)};
         --></script>
-        ${head.script.toString()}
+        <script src="/js/index.js"></script>
       </body>
     </html>
   `.trim();

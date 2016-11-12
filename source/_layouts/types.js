@@ -25,3 +25,9 @@ export const PageTypes = PropTypes.shape({
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
 });
+
+export const RouteProps = PropTypes.shape({
+  pattern: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
+  props: PropTypes.func.isRequired,
+});

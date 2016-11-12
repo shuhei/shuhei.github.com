@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { addListener } from './link';
-import Layout from '../_layouts/Layout';
+import Router from './Router';
 import IndexPage from '../_layouts/IndexPage';
 import ArchivesPage from '../_layouts/ArchivesPage';
 import PagePage from '../_layouts/PagePage';
@@ -51,43 +50,10 @@ const appRoutes = [
   },
 ];
 
-function findRoute(routes, path) {
-  const normalizedPath = path.replace(/\/index\.html$/, '/');
-  return routes.find(route =>
-    new RegExp(`^${route.pattern}$`).test(normalizedPath)
-  );
-}
-
-function renderPage(component, props) {
-  render(
-    React.createElement(
-      Layout,
-      props,
-      React.createElement(component, props),
-    ),
-    container
-  );
-}
-
-const initialRoute = findRoute(appRoutes, location.pathname);
-renderPage(initialRoute.component, preloadedProps);
-
-let currentProps = preloadedProps;
-const updateRoute = (path) => {
-  const route = findRoute(appRoutes, path);
-  if (!route) {
-    // TODO: Handle not found.
-    console.warn(`Route not found for ${path}`);
-    return;
-  }
-  fetch(`${path}index.json`)
-    .then(res => res.json())
-    .then(json => route.props(currentProps, json))
-    .then((nextProps) => {
-      currentProps = nextProps;
-      renderPage(route.component, currentProps);
-      window.scrollTo(0, 0);
-      window.history.pushState(currentProps, '', path);
-    });
-};
-addListener(updateRoute);
+render(
+  <Router
+    initialProps={preloadedProps}
+    routes={appRoutes}
+  />,
+  container
+);

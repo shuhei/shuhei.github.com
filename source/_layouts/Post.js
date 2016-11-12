@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { handleLink } from '../_js/link';
 import { PostTypes } from './types';
 
 const Post = ({ post }) => {
@@ -13,7 +14,7 @@ const Post = ({ post }) => {
     <div className="post">
       <div className="post-header">
         <h1 className="title">
-          <a href={post.url}>{post.title}</a>
+          <a href={post.url} onClick={handleLink}>{post.title}</a>
         </h1>
         <div className="meta">
           @
