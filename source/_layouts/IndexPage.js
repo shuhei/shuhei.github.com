@@ -14,7 +14,7 @@ const IndexPage = ({ posts, title, prevPage, nextPage }) => (
         {prevPage && <a href={prevPage} onClick={handleLink}>Newer Posts</a>}
       </li>
       <li className="pagination__archives">
-        <a href="/blog/archives">Archives</a>
+        <a href="/blog/archives/" onClick={handleLink}>Archives</a>
       </li>
       <li className="pagination__next-page">
         {nextPage && <a href={nextPage} onClick={handleLink}>Older Posts</a>}
