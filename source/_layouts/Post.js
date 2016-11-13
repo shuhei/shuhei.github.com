@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-import SocialButtons from './SocialButtons';
+import { handleLink } from '../_js/link';
 import { PostTypes } from './types';
 
-const Post = ({ post, isPostPage }) => {
+const Post = ({ post }) => {
   const categories = [...(post.categories || []).map((category, i) => [
     i === 0 ? ' - ' : ', ',
     <span className="category">{category}</span>,
@@ -14,7 +14,7 @@ const Post = ({ post, isPostPage }) => {
     <div className="post">
       <div className="post-header">
         <h1 className="title">
-          <a href={post.url}>{post.title}</a>
+          <a href={post.url} onClick={handleLink}>{post.title}</a>
         </h1>
         <div className="meta">
           @
@@ -24,7 +24,6 @@ const Post = ({ post, isPostPage }) => {
       </div>
       <div className="content">
         <div dangerouslySetInnerHTML={content} />
-        {isPostPage && <SocialButtons title={post.title} />}
       </div>
     </div>
   );
@@ -32,7 +31,6 @@ const Post = ({ post, isPostPage }) => {
 
 Post.propTypes = {
   post: PostTypes,
-  isPostPage: PropTypes.bool,
 };
 
 export default Post;

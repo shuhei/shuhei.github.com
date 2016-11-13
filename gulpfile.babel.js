@@ -4,6 +4,7 @@ import { argv as args } from 'yargs';
 import del from 'del';
 import highlightjs from 'highlight.js';
 import { Renderer } from 'marked';
+import webpack from 'webpack';
 
 import gulp from 'gulp';
 import gutil from 'gulp-util';
@@ -18,16 +19,7 @@ import server from './plugins/server';
 import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
 import branch from './plugins/branch';
 
-const blogConfig = {
-  title: 'Shuhei Kagawa',
-  author: 'Shuhei Kagawa',
-  perPage: 3,
-  newPageExtension: 'markdown',
-  blogDir: 'blog',
-  sourceDir: 'source',
-  layoutDir: '_layouts',
-  postDir: '_posts',
-};
+import siteConfig from './source/_config/site.json';
 
 const publicDir = 'public';
 
@@ -47,14 +39,14 @@ gulp.task('copy', () =>
     // frontMatter messes up binary files and files with `---`.
     .pipe(condition(`${process.cwd()}/source/**/*.{markdown,md,textile}`, frontMatter()))
     .pipe(condition(`${process.cwd()}/source/**/*.{markdown,md}`, markdown({ renderer })))
-    .pipe(layout(blogConfig))
+    .pipe(layout(siteConfig))
     .pipe(gulp.dest(publicDir))
 );
 
 // Compile blog posts, create index and archive pages.
 gulp.task('posts', () => {
   // Aggregates posts and render index and archive pages.
-  const aggregator = index(blogConfig);
+  const aggregator = index(siteConfig);
   aggregator.pipe(gulp.dest('./public'));
 
   return gulp.src('source/_posts/*.*')
@@ -64,8 +56,38 @@ gulp.task('posts', () => {
     .pipe(condition(`${__dirname}/source/**/*.textile`, textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
-    .pipe(layout(blogConfig))
-    .pipe(gulp.dest(path.join('./public', blogConfig.blogDir)));
+    .pipe(layout(siteConfig))
+    .pipe(gulp.dest(path.join('./public', siteConfig.blogDir)));
+});
+
+// Build JavaScript for client.
+gulp.task('js', (callback) => {
+  webpack({
+    entry: './source/_js/index.js',
+    output: {
+      path: './public/js',
+      filename: 'index.js',
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel',
+        },
+        {
+          test: /\.json$/,
+          loader: 'json',
+        },
+      ],
+    },
+  }, (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError('webpack', err);
+    }
+    gutil.log('[webpack]', stats.toString('minimal'));
+    callback();
+  });
 });
 
 // Concat CSS files.
@@ -92,8 +114,9 @@ gulp.task('watch', ['default'], () => {
       return;
     }
     gutil.log('Listening on port 4000');
-    gulp.watch(['./source/**/*.*', '!./source/_{css,posts}/**/*.*'], ['copy']);
+    gulp.watch(['./source/**/*.*', '!./source/_{js,css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layouts}/*.*', ['posts', 'copy']);
+    gulp.watch('./source/_{js,layouts}/**/*.js', ['js']);
     gulp.watch('./source/_css/**/*.css', ['css']);
   });
 });
@@ -104,7 +127,7 @@ gulp.task('newpost', () => {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  newPost(args.title, blogConfig);
+  newPost(args.title, siteConfig);
 });
 
 // Create a new page source file.
@@ -114,9 +137,9 @@ gulp.task('newpage', () => {
     return;
   }
 
-  newPage(args.filename, blogConfig);
+  newPage(args.filename, siteConfig);
 });
 
-gulp.task('build', ['css', 'copy', 'posts']);
+gulp.task('build', ['css', 'js', 'copy', 'posts']);
 
 gulp.task('default', ['build']);

@@ -1,24 +1,12 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
+import { handleLink } from '../_js/link';
 import { SiteProps } from './types';
 
-const GOOGLE_ANALYTICS_JS = {
-  __html: `
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  `,
-};
-
-const Layout = ({ site, title, children }) => (
+const Layout = ({ site, children }) => (
   <div>
     <Helmet
-      title={title || site.title}
       meta={[
         { charset: 'utf-8' },
         { name: 'viewport', content: 'initial-scale=1' },
@@ -32,18 +20,18 @@ const Layout = ({ site, title, children }) => (
     />
     <header className="header">
       <h1 className="header__title">
-        <a href="/">{site.title}</a>
+        <a href="/" onClick={handleLink}>{site.title}</a>
       </h1>
       <nav>
         <ul className="menu">
           <li className="menu__item">
-            <a href="/about">About</a>
+            <a href="/about/" onClick={handleLink}>About</a>
           </li>
           <li className="menu__item">
-            <a href="/works">Works</a>
+            <a href="/works/" onClick={handleLink}>Works</a>
           </li>
           <li className="menu__item">
-            <a href="/blog/archives">Archives</a>
+            <a href="/blog/archives/" onClick={handleLink}>Archives</a>
           </li>
         </ul>
       </nav>
@@ -53,14 +41,12 @@ const Layout = ({ site, title, children }) => (
     </div>
     <footer className="footer">
       © {site.author}
-      <script dangerouslySetInnerHTML={GOOGLE_ANALYTICS_JS} />
     </footer>
   </div>
 );
 
 Layout.propTypes = {
   site: SiteProps.isRequired,
-  title: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
