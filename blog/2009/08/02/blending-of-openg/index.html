@@ -4,9 +4,18 @@
         <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
         <title data-react-helmet="true">OpenGL のブレンディング方法について - Shuhei Kagawa</title>
         <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-309586-8', 'shuheikagawa.com');
+          ga('send', 'pageview');
+        </script>
       </head>
       <body>
-        <div><div data-reactroot="" data-reactid="1" data-react-checksum="-14109019"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div class="post" data-reactid="15"><div class="post-header" data-reactid="16"><h1 class="title" data-reactid="17"><a href="/blog/2009/08/02/blending-of-openg" data-reactid="18">OpenGL のブレンディング方法について</a></h1><div class="meta" data-reactid="19"><!-- react-text: 20 -->@<!-- /react-text --><span class="date" data-reactid="21">2009-08-02 19:03</span><!-- react-text: 22 --> - <!-- /react-text --><span class="category" data-reactid="23">C/C++</span><!-- react-text: 24 -->, <!-- /react-text --><span class="category" data-reactid="25">OpenFrameworks</span></div></div><div class="content" data-reactid="26"><div data-reactid="27"><p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>
+        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="-808778692"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about/" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works/" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives/" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><!-- react-empty: 16 --><div class="post" data-reactid="17"><div class="post-header" data-reactid="18"><h1 class="title" data-reactid="19"><a href="/blog/2009/08/02/blending-of-openg/" data-reactid="20">OpenGL のブレンディング方法について</a></h1><div class="meta" data-reactid="21"><!-- react-text: 22 -->@<!-- /react-text --><span class="date" data-reactid="23">2009-08-02 19:03</span><!-- react-text: 24 --> - <!-- /react-text --><span class="category" data-reactid="25">C/C++</span><!-- react-text: 26 -->, <!-- /react-text --><span class="category" data-reactid="27">OpenFrameworks</span></div></div><div class="content" data-reactid="28"><div data-reactid="29"><p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>
 <p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshopなどでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>
 <h3>まずは有効に</h3>
 <p>ブレンディングを有効にするには以下の関数を呼ばなければなりません。</p>
@@ -43,26 +52,10 @@ glBlendFunc(GL_ONE, GL_ONE);
 glBlendFunc(GL_ONE, GL_ONE);  // そのまま
 ofSetColor(10, 10, 10, 0);  // 少しずつ暗くします
 ofRect(0, 0, ofGetWidth(), ofGetHeight());  // 画面全体に適用します
-</pre></div><div class="social-buttons" data-reactid="28"><a class="twitter-share-button" href="https://twitter.com/share" data-reactid="29">Tweet</a><script data-reactid="30">
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  </script></div></div></div><div class="comments" data-reactid="31"><div id="disqus_thread" data-reactid="32"></div><script data-reactid="33">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'shuheikagawa';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script><noscript data-reactid="34"><!-- react-text: 35 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="36">comments powered by Disqus.</a></noscript></div></div><footer class="footer" data-reactid="37"><!-- react-text: 38 -->© <!-- /react-text --><!-- react-text: 39 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="40">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  </script></footer></div></div>
+</pre></div></div></div><div class="comments" data-reactid="30"><div id="disqus_thread" data-reactid="31"></div><noscript data-reactid="32"><!-- react-text: 33 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="34">comments powered by Disqus.</a></noscript></div></div></div><footer class="footer" data-reactid="35"><!-- react-text: 36 -->© <!-- /react-text --><!-- react-text: 37 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
+        <script><!--
+          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"post":{"layout":"post","title":"OpenGL のブレンディング方法について","published":true,"date":"2009-08-02 19:03","comments":true,"tags":null,"categories":["C/C++","OpenFrameworks"],"url":"/blog/2009/08/02/blending-of-openg/","content":"<p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>\n<p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshopなどでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>\n<h3>まずは有効に</h3>\n<p>ブレンディングを有効にするには以下の関数を呼ばなければなりません。</p>\n<pre class=\"prettyprint\">glEnable(GL_BLEND);</pre>\n<h3>設定関数</h3>\n<p>ブレンドする二つの画像を source と destination とします。OpenGLでは、これから描くのがsource、destinationはフレームバッファ上の画像だそうです。</p>\n<h4>glBlendFunc</h4>\n<p><code>glBlendFunc</code> では、それぞれの画像の <span class=\"caps\">RGBA</span> にかける係数を設定します。下記は一例です。</p>\n<ul>\n\t<li><code>GL_ONE</code>　<span class=\"caps\">RGBA</span> 全てを0にする</li>\n\t<li><code>GL_ZERO</code>　<span class=\"caps\">RGBA</span> 全てそのまま</li>\n\t<li><code>GL_SRC_ALPHA</code>　<span class=\"caps\">RGBA</span> 全てに source のAをかける</li>\n</ul>\n<h4>glBlendEquation</h4>\n<p><code>glBlendEquation</code> では、画像同士の<span class=\"caps\">RGBA</span>を合成する方法を設定します。</p>\n<ul>\n\t<li><code>GL_FUNC_ADD</code> 足す</li>\n\t<li><code>GL_FUNC_SUBTRACT</code> sourceからdestinationを引く</li>\n\t<li><code>GL_FUNC_REVERSE_SUBTRACT</code> destinationからsourceを引く</li>\n\t<li><code>GL_MAX</code> 大きい方をそのまま使う</li>\n\t<li><code>GL_MIN</code> 小さい方をそのまま使う</li>\n</ul>\n<h4>その他</h4>\n<p>iPhone では <code>glBlendEquation</code> ではなく <code>glBlendEquationOES</code> を使いますが、働きは同じもののようです。また <code>glBlendFunc</code> や <code>glBlendEquation</code> では <span class=\"caps\">RGBA</span> 全てを一緒に設定しますが、 <code>glBlendFuncSeparate</code> や <code>glBlendEquationSeparate</code> を用いると <span class=\"caps\">RGB</span> と Alpha を別々に設定できるようです。</p>\n<h3>実例</h3>\n<h4>Additive blending</h4>\n<p>光の表現に。暗めの色を重ねていくと、ぼんやりと光るようないい感じになります。</p>\n<pre class=\"prettyprint\">glBlendEquationOES(GL_FUNC_ADD);  // デフォルトは GL_FUNC_ADD のようで必要ないかも\nglBlendFunc(GL_ONE, GL_ONE);\n// glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR); // こっちの方がいい感じになるとか・・・。</pre>\n<h4>フェードアウト</h4>\n<p>もっといい方法があるかもしれませんが、他にやり方が思いつかなかったので。</p>\n<pre class=\"prettyprint\">glBlendEquationOES(GL_FUNC_REVERSE_SUBTRACT_OES);  // 暗くするため、元画像から引く\nglBlendFunc(GL_ONE, GL_ONE);  // そのまま\nofSetColor(10, 10, 10, 0);  // 少しずつ暗くします\nofRect(0, 0, ofGetWidth(), ofGetHeight());  // 画面全体に適用します\n</pre>"}};
+        --></script>
+        <script src="/js/index.js"></script>
       </body>
     </html>

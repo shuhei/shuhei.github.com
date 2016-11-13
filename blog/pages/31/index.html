@@ -4,9 +4,18 @@
         <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
         <title data-react-helmet="true">Page 31 - Shuhei Kagawa</title>
         <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-309586-8', 'shuheikagawa.com');
+          ga('send', 'pageview');
+        </script>
       </head>
       <body>
-        <div><div data-reactroot="" data-reactid="1" data-react-checksum="-1443560424"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2009/07/05/command-line-args" data-reactid="19">コマンドライン引数</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2009-07-05 13:44</span></div></div><div class="content" data-reactid="23"><div data-reactid="24"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
+        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="-1980532240"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about/" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works/" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives/" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><!-- react-empty: 16 --><div class="post" data-reactid="17"><div class="post-header" data-reactid="18"><h1 class="title" data-reactid="19"><a href="/blog/2009/07/05/command-line-args/" data-reactid="20">コマンドライン引数</a></h1><div class="meta" data-reactid="21"><!-- react-text: 22 -->@<!-- /react-text --><span class="date" data-reactid="23">2009-07-05 13:44</span></div></div><div class="content" data-reactid="24"><div data-reactid="25"><p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
 C++ や Objective-C を触るのにも必要ですからね。</p>
 <p>で、まずは基本のキからということで、</p>
 <pre class="prettyprint">#include &lt;stdio.h&gt;
@@ -20,7 +29,7 @@ int main(int argc, char** argv) {
 }</pre>
 <p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
 コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div></div></div><div class="post" data-reactid="25"><div class="post-header" data-reactid="26"><h1 class="title" data-reactid="27"><a href="/blog/2009/07/03/studying-pointer" data-reactid="28">ポインタの勉強</a></h1><div class="meta" data-reactid="29"><!-- react-text: 30 -->@<!-- /react-text --><span class="date" data-reactid="31">2009-07-03 10:38</span></div></div><div class="content" data-reactid="32"><div data-reactid="33"><p>ポインタについて勉強してみます。</p>
+また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p></div></div></div><div class="post" data-reactid="26"><div class="post-header" data-reactid="27"><h1 class="title" data-reactid="28"><a href="/blog/2009/07/03/studying-pointer/" data-reactid="29">ポインタの勉強</a></h1><div class="meta" data-reactid="30"><!-- react-text: 31 -->@<!-- /react-text --><span class="date" data-reactid="32">2009-07-03 10:38</span></div></div><div class="content" data-reactid="33"><div data-reactid="34"><p>ポインタについて勉強してみます。</p>
 <h3>変数のアドレス</h3>
 <pre class="prettyprint">int value = 10;</pre>
 <p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
@@ -32,19 +41,15 @@ ptr = &amp;a;</pre>
 <p>という感じです。</p>
 <h3>ポインタの指す値</h3>
 <p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>
-<pre class="prettyprint">printf("*ptr の値は %d です。", *ptr); // *ptr の値は 10 です。</pre></div></div></div><div class="post" data-reactid="34"><div class="post-header" data-reactid="35"><h1 class="title" data-reactid="36"><a href="/blog/2009/07/03/concat-cstring-and-tchar" data-reactid="37">CString と TCHAR* の連結</a></h1><div class="meta" data-reactid="38"><!-- react-text: 39 -->@<!-- /react-text --><span class="date" data-reactid="40">2009-07-03 13:00</span></div></div><div class="content" data-reactid="41"><div data-reactid="42"><pre class="prettyprint">CString cstr = foo();
+<pre class="prettyprint">printf("*ptr の値は %d です。", *ptr); // *ptr の値は 10 です。</pre></div></div></div><div class="post" data-reactid="35"><div class="post-header" data-reactid="36"><h1 class="title" data-reactid="37"><a href="/blog/2009/07/03/concat-cstring-and-tchar/" data-reactid="38">CString と TCHAR* の連結</a></h1><div class="meta" data-reactid="39"><!-- react-text: 40 -->@<!-- /react-text --><span class="date" data-reactid="41">2009-07-03 13:00</span></div></div><div class="content" data-reactid="42"><div data-reactid="43"><pre class="prettyprint">CString cstr = foo();
 TCHAR *tchar = bar();
 
 CString concat = cstr + " " + tchar;</pre>
 <p>普通に足せば足せるようです。<br />
-<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p></div></div></div><ul class="pagination" data-reactid="43"><li class="pagination__prev-page" data-reactid="44"><a href="/blog/pages/30" data-reactid="45">Newer Posts</a></li><li class="pagination__archives" data-reactid="46"><a href="/blog/archives" data-reactid="47">Archives</a></li><li class="pagination__next-page" data-reactid="48"><a href="/blog/pages/32" data-reactid="49">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="50"><!-- react-text: 51 -->© <!-- /react-text --><!-- react-text: 52 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="53">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  </script></footer></div></div>
+<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p></div></div></div><ul class="pagination" data-reactid="44"><li class="pagination__prev-page" data-reactid="45"><a href="/blog/pages/30/" data-reactid="46">Newer Posts</a></li><li class="pagination__archives" data-reactid="47"><a href="/blog/archives/" data-reactid="48">Archives</a></li><li class="pagination__next-page" data-reactid="49"><a href="/blog/pages/32/" data-reactid="50">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="51"><!-- react-text: 52 -->© <!-- /react-text --><!-- react-text: 53 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
+        <script><!--
+          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"posts":[{"layout":"post","title":"コマンドライン引数","published":true,"date":"2009-07-05 13:44","comments":true,"tags":null,"categories":[],"url":"/blog/2009/07/05/command-line-args/","content":"<p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />\nC++ や Objective-C を触るのにも必要ですからね。</p>\n<p>で、まずは基本のキからということで、</p>\n<pre class=\"prettyprint\">#include &lt;stdio.h&gt;\n\nint main(int argc, char** argv) {\n  if (argc &gt; 1) {\n    printf(\"Hello, %s!\", argv[1]);\n  } else {\n    printf(\"Hello, World!\");\n  }\n}</pre>\n<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />\nコマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />\nまた、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p>"},{"layout":"post","title":"ポインタの勉強","published":true,"date":"2009-07-03 10:38","comments":true,"tags":null,"categories":[],"url":"/blog/2009/07/03/studying-pointer/","content":"<p>ポインタについて勉強してみます。</p>\n<h3>変数のアドレス</h3>\n<pre class=\"prettyprint\">int value = 10;</pre>\n<p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>\n<h3>ポインタ</h3>\n<p>メモリ上のアドレスを格納する変数がポインタです。</p>\n<pre class=\"prettyprint\">int value = 10;\nint *ptr;\nptr = &amp;a;</pre>\n<p>という感じです。</p>\n<h3>ポインタの指す値</h3>\n<p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>\n<pre class=\"prettyprint\">printf(\"*ptr の値は %d です。\", *ptr); // *ptr の値は 10 です。</pre>"},{"layout":"post","title":"CString と TCHAR* の連結","published":true,"date":"2009-07-03 13:00","comments":true,"tags":null,"categories":[],"url":"/blog/2009/07/03/concat-cstring-and-tchar/","content":"<pre class=\"prettyprint\">CString cstr = foo();\nTCHAR *tchar = bar();\n\nCString concat = cstr + \" \" + tchar;</pre>\n<p>普通に足せば足せるようです。<br />\n<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p>"}],"prevPage":"/blog/pages/30/","title":"Page 31 - Shuhei Kagawa","nextPage":"/blog/pages/32/"};
+        --></script>
+        <script src="/js/index.js"></script>
       </body>
     </html>

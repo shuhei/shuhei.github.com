@@ -4,9 +4,18 @@
         <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
         <title data-react-helmet="true">Ruby の Curses で Hello, World! - Shuhei Kagawa</title>
         <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-309586-8', 'shuheikagawa.com');
+          ga('send', 'pageview');
+        </script>
       </head>
       <body>
-        <div><div data-reactroot="" data-reactid="1" data-react-checksum="536534335"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div class="post" data-reactid="15"><div class="post-header" data-reactid="16"><h1 class="title" data-reactid="17"><a href="/blog/2009/10/16/hello-world-with-curses-of-rub" data-reactid="18">Ruby の Curses で Hello, World!</a></h1><div class="meta" data-reactid="19"><!-- react-text: 20 -->@<!-- /react-text --><span class="date" data-reactid="21">2009-10-16 00:14</span></div></div><div class="content" data-reactid="22"><div data-reactid="23"><p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
+        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="-483185959"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about/" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works/" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives/" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><!-- react-empty: 16 --><div class="post" data-reactid="17"><div class="post-header" data-reactid="18"><h1 class="title" data-reactid="19"><a href="/blog/2009/10/16/hello-world-with-curses-of-rub/" data-reactid="20">Ruby の Curses で Hello, World!</a></h1><div class="meta" data-reactid="21"><!-- react-text: 22 -->@<!-- /react-text --><span class="date" data-reactid="23">2009-10-16 00:14</span></div></div><div class="content" data-reactid="24"><div data-reactid="25"><p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
 <a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />
 参考にしたのは <a href="http://codezine.jp/article/detail/2086">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>
 <pre class="prettyprint">require 'curses'
@@ -36,26 +45,10 @@ close_screen
 end
 
 animate(message)</pre>
-<p>おおー、動きました。逆に新鮮で面白いですね。</p></div><div class="social-buttons" data-reactid="24"><a class="twitter-share-button" href="https://twitter.com/share" data-reactid="25">Tweet</a><script data-reactid="26">
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  </script></div></div></div><div class="comments" data-reactid="27"><div id="disqus_thread" data-reactid="28"></div><script data-reactid="29">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'shuheikagawa';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script><noscript data-reactid="30"><!-- react-text: 31 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="32">comments powered by Disqus.</a></noscript></div></div><footer class="footer" data-reactid="33"><!-- react-text: 34 -->© <!-- /react-text --><!-- react-text: 35 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="36">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  </script></footer></div></div>
+<p>おおー、動きました。逆に新鮮で面白いですね。</p></div></div></div><div class="comments" data-reactid="26"><div id="disqus_thread" data-reactid="27"></div><noscript data-reactid="28"><!-- react-text: 29 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="30">comments powered by Disqus.</a></noscript></div></div></div><footer class="footer" data-reactid="31"><!-- react-text: 32 -->© <!-- /react-text --><!-- react-text: 33 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
+        <script><!--
+          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"post":{"layout":"post","title":"Ruby の Curses で Hello, World!","published":true,"date":"2009-10-16 00:14","comments":true,"tags":null,"categories":[],"url":"/blog/2009/10/16/hello-world-with-curses-of-rub/","content":"<p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />\n<a href=\"http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/\">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />\n参考にしたのは <a href=\"http://codezine.jp/article/detail/2086\">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href=\"http://www.ruby-lang.org/ja/man/html/curses.html\">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>\n<pre class=\"prettyprint\">require 'curses'\n\nmessage = [\n  \"**   **  *******  **       **        *****    **\",\n  \"**   **  **       **       **       **   **   **\",\n  \"*******  *******  **       **       **   **   **\",\n  \"**   **  **       **       **       **   **     \",\n  \"**   **  *******  *******  *******   *****    **\"\n]\n\ndef animate(image)\n  include Curses\n  init_screen\n  y = ((lines - image.size) / 2).truncate\n  (cols - image[0].size).downto(1) do |t|\n    image.size.times do |i|\n      setpos(y + i, t)\n      addstr(image[i])\n    end\n    refresh\n    sleep(0.05)\n    clear\n  end\nclose_screen\nend\n\nanimate(message)</pre>\n<p>おおー、動きました。逆に新鮮で面白いですね。</p>"}};
+        --></script>
+        <script src="/js/index.js"></script>
       </body>
     </html>

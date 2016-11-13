@@ -4,9 +4,18 @@
         <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1"/>
         <title data-react-helmet="true">Xcode で例外発生時のスタックトレースをデバッガに表示 - Shuhei Kagawa</title>
         <link data-react-helmet="true" rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico"/><link data-react-helmet="true" rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"/><link data-react-helmet="true" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700"/><link data-react-helmet="true" rel="stylesheet" href="/css/style.css"/>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-309586-8', 'shuheikagawa.com');
+          ga('send', 'pageview');
+        </script>
       </head>
       <body>
-        <div><div data-reactroot="" data-reactid="1" data-react-checksum="-2050704980"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div class="post" data-reactid="15"><div class="post-header" data-reactid="16"><h1 class="title" data-reactid="17"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode" data-reactid="18">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta" data-reactid="19"><!-- react-text: 20 -->@<!-- /react-text --><span class="date" data-reactid="21">2009-11-14 10:07</span></div></div><div class="content" data-reactid="22"><div data-reactid="23"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
+        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="-37943482"><!-- react-empty: 2 --><header class="header" data-reactid="3"><h1 class="header__title" data-reactid="4"><a href="/" data-reactid="5">Shuhei Kagawa</a></h1><nav data-reactid="6"><ul class="menu" data-reactid="7"><li class="menu__item" data-reactid="8"><a href="/about/" data-reactid="9">About</a></li><li class="menu__item" data-reactid="10"><a href="/works/" data-reactid="11">Works</a></li><li class="menu__item" data-reactid="12"><a href="/blog/archives/" data-reactid="13">Archives</a></li></ul></nav></header><div class="main" data-reactid="14"><div data-reactid="15"><!-- react-empty: 16 --><div class="post" data-reactid="17"><div class="post-header" data-reactid="18"><h1 class="title" data-reactid="19"><a href="/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/" data-reactid="20">Xcode で例外発生時のスタックトレースをデバッガに表示</a></h1><div class="meta" data-reactid="21"><!-- react-text: 22 -->@<!-- /react-text --><span class="date" data-reactid="23">2009-11-14 10:07</span></div></div><div class="content" data-reactid="24"><div data-reactid="25"><p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />
 Objective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>
 <h3>方法</h3>
 <p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>
@@ -19,26 +28,10 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 <h3>シンボリックブレークポイント</h3>
 <p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
 ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
-今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div><div class="social-buttons" data-reactid="24"><a class="twitter-share-button" href="https://twitter.com/share" data-reactid="25">Tweet</a><script data-reactid="26">
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  </script></div></div></div><div class="comments" data-reactid="27"><div id="disqus_thread" data-reactid="28"></div><script data-reactid="29">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'shuheikagawa';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script><noscript data-reactid="30"><!-- react-text: 31 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="32">comments powered by Disqus.</a></noscript></div></div><footer class="footer" data-reactid="33"><!-- react-text: 34 -->© <!-- /react-text --><!-- react-text: 35 -->Shuhei Kagawa<!-- /react-text --><script data-reactid="36">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-309586-8', 'shuheikagawa.com');
-    ga('send', 'pageview');
-  </script></footer></div></div>
+今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p></div></div></div><div class="comments" data-reactid="26"><div id="disqus_thread" data-reactid="27"></div><noscript data-reactid="28"><!-- react-text: 29 -->Please enable JavaScript to view the<!-- /react-text --><a href="https://disqus.com/?ref_noscript" rel="nofollow" data-reactid="30">comments powered by Disqus.</a></noscript></div></div></div><footer class="footer" data-reactid="31"><!-- react-text: 32 -->© <!-- /react-text --><!-- react-text: 33 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
+        <script><!--
+          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"post":{"layout":"post","title":"Xcode で例外発生時のスタックトレースをデバッガに表示","published":true,"date":"2009-11-14 10:07","comments":true,"tags":null,"categories":[],"url":"/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/","content":"<p>iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。<br />\nObjective-C ランタイムの例外送出部分にブレークポイントを設定することで、例外発生時のスタックトレースやコード中のオブジェクトの値をデバッガで詳しく見ることができます。</p>\n<h3>方法</h3>\n<p>&#8220;実行&#8221; =&gt; &#8220;ブレークポイントを管理&#8221; =&gt; &#8220;シンボリックブレークポイントを追加&#8221; を実行します。</p>\n<p><img src=\"/images/2009/11/symbolic_break_point1.png\" alt=\"\" /></p>\n<p>出てきたダイアログに <code>objc_exception_throw</code> と入力。<br />\nこれで、例外が発生した時にブレークされ、デバッガで詳細を見る事ができるようになります。</p>\n<p><img src=\"/images/2009/11/debugger1.png\" alt=\"\" /></p>\n<p>デバッガなので、もちろんコード中のオブジェクトの値を見ることもできます。便利ですね。</p>\n<p>via <a href=\"http://www.markj.net/debugging-tip-objc_exception_throw-breakpoint/\">Debugging Tip – objc_exception_throw breakpoint | markjnet</a></p>\n<h3>シンボリックブレークポイント</h3>\n<p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />\nですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />\n今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p>"}};
+        --></script>
+        <script src="/js/index.js"></script>
       </body>
     </html>

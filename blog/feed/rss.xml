@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 03 Oct 2016 08:35:00 GMT</lastBuildDate><item><title>How to set up and top up a prepaid SIM in Germany</title><link>http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 03 Oct 2016 08:35:00 GMT</lastBuildDate><item><title>How to set up and top up a prepaid SIM in Germany</title><link>http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany/</link><description><![CDATA[
 <p>I have moved to Berlin from Tokyo a week ago. I may or may not write about it later, but I&#39;m going to share more practical stuff today.</p>
 <p>Since I arrived in Germany, I bought two prepaid SIM cards and set up a SIM-free iPhone and a MiFi (mobile WiFi router). It was harder than I thought because I had never used a prepaid SIM before and most of official instructions were in German. I&#39;d like to share what I did for people like me.</p>
 <p>This post is a complement to <a href="http://prepaid-data-sim-card.wikia.com/wiki/Germany">Germany | Prepaid Data SIM Card Wiki | Fandom powered by Wikia</a>. If you haven&#39;t read it yet, read it first.</p>
@@ -22,7 +22,7 @@
 <li>(Optional) Choose your favorite plan (Tarif &amp; SIM-Karte).</li>
 </ol>
 
-]]></description><pubDate>Mon, 03 Oct 2016 08:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany</guid></item><item><title>Draw animated chart on React Native</title><link>http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native</link><description><![CDATA[
+]]></description><pubDate>Mon, 03 Oct 2016 08:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany/</guid></item><item><title>Draw animated chart on React Native</title><link>http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native/</link><description><![CDATA[
 <p>At <a href="http://meguroes.connpass.com/event/32167/">Meguro.es #4</a> on June 21th, 2016, I talked about drawing animated chart on <a href="https://facebook.github.io/react-native/">React Native</a>. The talk was about the things I learned through developing an tiny app, Compare. It&#39;s a super simple app to compare temperatures.</p>
 <p>Before creating it, I had no idea about what temperatures on weather forecast, like 15 degrees Celsius, were actually like. I remember what yesterday was like, but not the numbers. Typical weather forecast apps shows only future temperatures without past records. Thanks to <a href="https://developer.forecast.io/">The Dark Sky Forecast API</a>, the app fetches both of past records and future forecasts, and show them together.</p>
 <p><img src="/images/compare-animated.gif" alt="Compare app"></p>
@@ -37,7 +37,7 @@
 <li><a href="http://browniefed.com/">Jason Brown&#39;s JavaScript without Grammar</a> is an awesome blog. It has lots of articles about React Native and animation on it, which taught me a lot. Also, I found the awesomeness of <code>LayoutAnimation</code> at <a href="https://medium.com/@Jpoliachik/react-native-s-layoutanimation-is-awesome-4a4d317afd3e#.5tnprrm80">Justin Poliachik&#39;s React Native’s LayoutAnimation is Awesome</a>, which is a great post too.</li>
 </ul>
 
-]]></description><pubDate>Mon, 18 Jul 2016 21:43:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native</guid></item><item><title>The Best Part of Angular 2 Offline Compiler</title><link>http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler</link><description><![CDATA[
+]]></description><pubDate>Mon, 18 Jul 2016 21:43:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native/</guid></item><item><title>The Best Part of Angular 2 Offline Compiler</title><link>http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/</link><description><![CDATA[
 <p>A couple of weeks ago, I gave a short talk about Angular offline compiler at <a href="http://ng-sake.connpass.com/event/30746/">ng-sake #3</a>, which is a cozy meetup where Tokyo&#39;s Angular developers hang out drinking beer.</p>
 <script async class="speakerdeck-embed" data-id="384a4e8ded2945fbaa5dc2054409bcb3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -51,7 +51,7 @@
 </ol>
 <p>The step 3 type-checks <code>.ngfactory.ts</code>, and detects typo and type errors in your templates if any. It is a great benefit in addition to skipping the runtime compilation and smaller library size. Looking forward to Angular 2 offline compiler&#39;s official release!</p>
 
-]]></description><pubDate>Fri, 03 Jun 2016 20:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler</guid></item><item><title>Angular 2 with Babel</title><link>http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel</link><description><![CDATA[
+]]></description><pubDate>Fri, 03 Jun 2016 20:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/</guid></item><item><title>Angular 2 with Babel</title><link>http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</link><description><![CDATA[
 <p>Although Angular 2&#39;s primary language is apparently TypeScript, many people want to use Babel as shown in <a href="http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html">a survey</a>.</p>
 <p>However, <a href="https://angular.io">The official documentation</a> targets only TypeScript and ES5. In addition, many pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript&#39;s type annotations for annotating components and services.</p>
 <p>To fill the gap, you can use <a href="https://github.com/shuhei/babel-preset-angular2"><code>babel-preset-angular2</code></a> that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.</p>
@@ -165,7 +165,7 @@ bootstrap(HelloApp, [
 <p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
 <p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
 
-]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel</guid></item><item><title>Incremental search with RxJS switchMap</title><link>http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs</link><description><![CDATA[
+]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</guid></item><item><title>Incremental search with RxJS switchMap</title><link>http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs/</link><description><![CDATA[
 <p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
 <h2 id="switchmap">switchMap</h2>
 <p><code>switchMap(func)</code> is equivalent to <code>map(func).switch()</code>. It keeps subscribing latest observable at the moment and unsubscribing outdated ones so that it only streams events from latest observable at the moment. <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">Take a look at the marble chart for <code>switch</code></a>. It illustrates the behavior well.</p>
@@ -197,7 +197,7 @@ keyword.addEventListener(<span class="hljs-string">'keyup'</span>, e =&gt; {
 keyword$
   .switchMap(search)
   .subscribe(data =&gt; result.textContent = data);</code></pre>
-]]></description><pubDate>Mon, 02 May 2016 00:18:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs</guid></item><item><title>Clean up before exiting in Haskell</title><link>http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell</link><description><![CDATA[
+]]></description><pubDate>Mon, 02 May 2016 00:18:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs/</guid></item><item><title>Clean up before exiting in Haskell</title><link>http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</link><description><![CDATA[
 <p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
 <pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
 
@@ -249,14 +249,14 @@ keyword$
 <span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
 <span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
 
-]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell</guid></item><item><title>One-time binding for ng-if</title><link>http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if</link><description><![CDATA[
+]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</guid></item><item><title>One-time binding for ng-if</title><link>http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</link><description><![CDATA[
 <p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
 <p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
 <p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
 
-]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if</guid></item><item><title>Freeze panes with CSS and a bit of JavaScript</title><link>http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript</link><description><![CDATA[
+]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</guid></item><item><title>Freeze panes with CSS and a bit of JavaScript</title><link>http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</link><description><![CDATA[
 <p>People want fixed-header table. It reminds you what the columns are while you scroll down the table. There are a bunch of fixed-header-table tutorials out there. But most of them kill one of the greatest features of HTML table. The automatic sizing of cells according to their contents. This is because they usually prepare separate <code>&lt;table&gt;</code>s for header and body.</p>
 <p>Also, most of the tutorials only fix a header at the top. But my colleagues wanted more. They wanted to fix headers at the top and left. Just like <a href="http://www.gcflearnfree.org/excel2013/17">Microsoft Excel&#39;s Freeze Panes feature</a>. So what we want now is:</p>
 <ol>
@@ -315,7 +315,7 @@ topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css">
 }</span></code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
 <p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
 
-]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript</guid></item><item><title>Algorithms: Design and Analysis, Part 1</title><link>http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1</link><description><![CDATA[
+]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</guid></item><item><title>Algorithms: Design and Analysis, Part 1</title><link>http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1/</link><description><![CDATA[
 <p>Today I finished the final exam of Stanford&#39;s <a href="https://www.coursera.org/course/algo">&quot;Algorithms: Design and Analysis, Part 1&quot;</a> at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:</p>
 <ul>
 <li><a href="https://github.com/shuhei/algo">shuhei/algo</a></li>
@@ -331,7 +331,7 @@ topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css">
 <p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
 <p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
 
-]]></description><pubDate>Sun, 29 Nov 2015 22:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1</guid></item><item><title>Node.js executable module</title><link>http://shuheikagawa.com//blog/2015/10/25/node-executable-module</link><description><![CDATA[
+]]></description><pubDate>Sun, 29 Nov 2015 22:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1/</guid></item><item><title>Node.js executable module</title><link>http://shuheikagawa.com//blog/2015/10/25/node-executable-module/</link><description><![CDATA[
 <p>You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it&#39;s OK for simple modules.</p>
 <p>To achieve it, you need to detect whether it&#39;s executed as an entry point. According to <a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module">the official documentation of Node</a>:</p>
 <blockquote>
@@ -356,4 +356,4 @@ if (require.main === module) {
 $ node
 &gt; require(<span class="hljs-string">'./sum'</span>)(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
 <span class="hljs-number">7</span></code></pre>
-]]></description><pubDate>Sun, 25 Oct 2015 21:42:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/10/25/node-executable-module</guid></item></channel></rss>
+]]></description><pubDate>Sun, 25 Oct 2015 21:42:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/10/25/node-executable-module/</guid></item></channel></rss>
