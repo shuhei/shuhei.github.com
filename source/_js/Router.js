@@ -79,8 +79,8 @@ export default class Router extends Component {
 
     const route = this.findRoute(path);
     if (!route) {
-      // TODO: Handle not found.
       console.warn(`Route not found for ${path}`);
+      location.href = path;
       return;
     }
     fetch(`${path}index.json`)
@@ -95,6 +95,9 @@ export default class Router extends Component {
 
         resetSpeakerDeck();
         resetDisqus();
+      })
+      .catch(() => {
+        location.href = path;
       });
   }
 
@@ -104,8 +107,8 @@ export default class Router extends Component {
 
     const route = this.findRoute(path);
     if (!route) {
-      // TODO: Handle not found.
       console.warn(`Route not found for ${path}`);
+      location.href = path;
       return;
     }
     this.setState({

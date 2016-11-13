@@ -63,7 +63,10 @@ gulp.task('posts', () => {
 // Build JavaScript for client.
 gulp.task('js', (callback) => {
   webpack({
-    entry: './source/_js/index.js',
+    entry: [
+      'whatwg-fetch',
+      './source/_js/index.js',
+    ],
     output: {
       path: './public/js',
       filename: 'index.js',
