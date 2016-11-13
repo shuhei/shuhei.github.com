@@ -113,6 +113,9 @@ export default class Router extends Component {
       props: previousState,
     });
     window.scrollTo(0, 0);
+
+    // Don't need to trigger SpeakerDeck because its script listens to `popstate` by itself.
+    resetDisqus();
   }
 
   render() {
