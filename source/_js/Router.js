@@ -3,6 +3,14 @@ import React, { Component, PropTypes } from 'react';
 import { addListener } from './link';
 import { RouteProps } from '../_layouts/types';
 
+const loadScript = (src) => {
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  script.src = src;
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+};
+
 const resetDisqus = () => {
   const marker = document.getElementById('disqus_thread');
   if (!marker) {
@@ -17,15 +25,20 @@ const resetDisqus = () => {
     });
   } else {
     // Load Disqus script.
-    /* * * CONFIGURATION VARIABLES * * */
     window.disqus_shortname = 'shuheikagawa';
+    loadScript(`//${window.disqus_shortname}.disqus.com/embed.js`);
+  }
+};
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    const dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = `//${window.disqus_shortname}.disqus.com/embed.js`;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+const resetSpeakerDeck = () => {
+  const embeds = document.getElementsByClassName('speakerdeck-embed');
+  if (embeds.length === 0) {
+    return;
+  }
+  if (window.SpeakerDeck) {
+    window.SpeakerDeck.Embed.init();
+  } else {
+    loadScript('//speakerdeck.com/assets/embed.js');
   }
 };
 
@@ -45,11 +58,12 @@ export default class Router extends Component {
 
   componentDidMount() {
     addListener(this.pushState);
+    resetSpeakerDeck();
     resetDisqus();
 
-    window.onpopstate = (event) => {
+    window.addEventListener('popstate', (event) => {
       this.popState(location.pathname, event.state);
-    };
+    });
   }
 
   findRoute(path) {
@@ -79,6 +93,7 @@ export default class Router extends Component {
         window.scrollTo(0, 0);
         window.history.pushState(nextProps, '', path);
 
+        resetSpeakerDeck();
         resetDisqus();
       });
   }
