@@ -4,6 +4,10 @@ import { addListener } from './link';
 import { RouteProps } from '../_layouts/types';
 
 const resetDisqus = () => {
+  const marker = document.getElementById('disqus_thread');
+  if (!marker) {
+    return;
+  }
   if (window.DISQUS) {
     window.DISQUS.reset({
       reload: true,
@@ -11,6 +15,17 @@ const resetDisqus = () => {
         this.page.url = location.href;
       },
     });
+  } else {
+    // Load Disqus script.
+    /* * * CONFIGURATION VARIABLES * * */
+    window.disqus_shortname = 'shuheikagawa';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    const dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = `//${window.disqus_shortname}.disqus.com/embed.js`;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   }
 };
 
@@ -30,6 +45,7 @@ export default class Router extends Component {
 
   componentDidMount() {
     addListener(this.pushState);
+    resetDisqus();
 
     window.onpopstate = (event) => {
       this.popState(location.pathname, event.state);
