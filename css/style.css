@@ -182,7 +182,7 @@ blockquote p:first-child:before {
   content: open-quote;
   font-family: serif;
   font-size: 3em;
-  font-weight: bold;-0.25em;
+  font-weight: bold;
   line-height: 0.1em;
   margin-right: 0.2em;
   vertical-align: -0.4em;
