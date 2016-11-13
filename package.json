@@ -4,8 +4,8 @@
   "description": "@shuhei's website",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp build",
-    "deploy": "gulp build && gh-pagesify",
+    "start": "NODE_ENV=production gulp build",
+    "deploy": "npm start && gh-pagesify",
     "watch": "gulp watch",
     "lint": "eslint gulpfile.babel.js plugins source/_layouts source/_js"
   },

@@ -14,6 +14,8 @@ import markdown from 'gulp-markdown';
 import frontMatter from 'gulp-front-matter';
 import textile from 'gulp-textile';
 
+import webpackDevConfig from './webpack.config';
+import webpackProductionConfig from './webpack.production.config';
 import condition from './plugins/condition';
 import server from './plugins/server';
 import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
@@ -62,29 +64,8 @@ gulp.task('posts', () => {
 
 // Build JavaScript for client.
 gulp.task('js', (callback) => {
-  webpack({
-    entry: [
-      'whatwg-fetch',
-      './source/_js/index.js',
-    ],
-    output: {
-      path: './public/js',
-      filename: 'index.js',
-    },
-    module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'babel',
-        },
-        {
-          test: /\.json$/,
-          loader: 'json',
-        },
-      ],
-    },
-  }, (err, stats) => {
+  const config = process.env.NODE_ENV === 'production' ? webpackProductionConfig : webpackDevConfig;
+  webpack(config, (err, stats) => {
     if (err) {
       throw new gutil.PluginError('webpack', err);
     }
