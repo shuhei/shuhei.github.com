@@ -38,7 +38,12 @@ function renderPage(component, props) {
   const head = Helmet.rewind();
 
   // https://github.com/nfl/react-helmet#as-string-output
+  //
   // <!-- --> is necessary to put </script> in the JSON.
+  //
+  // It's important to have a <script> tag in head. Otherwise Google Analytics
+  // inserts <script> tag after inline <script> in blog content and makes React
+  // upset.
   return `
     <!doctype html>
     <html ${head.htmlAttributes.toString()}>
@@ -62,6 +67,17 @@ function renderPage(component, props) {
           window.__PRELOADED_PROPS__ = ${jsFriendlyJSONStringify(props)};
         --></script>
         <script src="/js/index.js"></script>
+        <script>
+          /* * * CONFIGURATION VARIABLES * * */
+          var disqus_shortname = 'shuheikagawa';
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
       </body>
     </html>
   `.trim();

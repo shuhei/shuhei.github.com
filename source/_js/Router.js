@@ -3,6 +3,17 @@ import React, { Component, PropTypes } from 'react';
 import { addListener } from './link';
 import { RouteProps } from '../_layouts/types';
 
+const resetDisqus = () => {
+  if (window.DISQUS) {
+    window.DISQUS.reset({
+      reload: true,
+      config() {
+        this.page.url = location.href;
+      },
+    });
+  }
+};
+
 export default class Router extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +25,11 @@ export default class Router extends Component {
       props: props.initialProps,
     };
 
-    this.updateRoute = this.updateRoute.bind(this);
+    this.pushState = this.pushState.bind(this);
   }
 
   componentDidMount() {
-    addListener(this.updateRoute);
+    addListener(this.pushState);
 
     window.onpopstate = (event) => {
       this.popState(location.pathname, event.state);
@@ -32,7 +43,7 @@ export default class Router extends Component {
     );
   }
 
-  updateRoute(path) {
+  pushState(path) {
     window.ga('set', 'page', path);
     window.ga('send', 'pageview');
 
@@ -50,8 +61,9 @@ export default class Router extends Component {
           props: nextProps,
         });
         window.scrollTo(0, 0);
-
         window.history.pushState(nextProps, '', path);
+
+        resetDisqus();
       });
   }
 
