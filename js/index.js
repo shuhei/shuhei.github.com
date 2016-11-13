@@ -21625,7 +21625,7 @@
 	      });
 	      window.scrollTo(0, 0);
 
-	      // Don't need to trigger SpeakerDeck because its script listens to `popstate` by itself.
+	      resetSpeakerDeck();
 	      resetDisqus();
 	    }
 	  }, {
