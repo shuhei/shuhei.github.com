@@ -48,9 +48,13 @@ function renderPage(component, props) {
     <!doctype html>
     <html ${head.htmlAttributes.toString()}>
       <head>
-        ${head.meta.toString()}
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1">
         ${head.title.toString()}
-        ${head.link.toString()}
+        <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Asap:4000,700">
+        <link rel="stylesheet" href="/css/style.css">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -169,7 +173,9 @@ export function index(config) {
       site: config,
       posts: posts.slice(page * perPage, (page + 1) * perPage),
     };
-    if (page === 1) {
+    if (page === 0) {
+      locals.title = config.title;
+    } else if (page === 1) {
       locals.prevPage = '/';
       locals.title = `Page ${page + 1} - ${config.title}`;
     } else if (page > 1) {
