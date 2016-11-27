@@ -27,7 +27,7 @@ After reading the wiki, I chose [O<sub>2</sub>](https://www.o2online.de/) as a n
 
 You can top up your SIM via a call, O<sub>2</sub> mobile app or O<sub>2</sub> website. I used O<sub>2</sub> website because I couldn't make a call with my MiFi and I don't have German AppStore's account. The website is only in German. So it's convenient to use Google Chrome's translation feature.
 
-1. Go to a drug store chain like dm and buy one of O<sub>2</sub> top-up cards like €20. They are usually put next to other prepaid cards like Apple, Google Play, Amazon, Zalando, etc. **The actual top-up code is printed on your receipt**.
+1. Go to a drug store chain like dm and buy one of O<sub>2</sub> top-up cards like €20. They are usually put next to other prepaid cards like Apple, Google Play, Amazon, Zalando, etc. **The actual top-up code is printed on your receipt**. Or you can buy a top-up code online at [aufladen.de](https://www.aufladen.de/en). Thanks, Yan Yankowski for letting me know!
 2. Sign up for [O<sub>2</sub> website](https://login.o2online.de/ngAuth/#/registration/mobile-registrierung).
 3. Enter your phone number (Mobilfunknummer), preliminary password (Vorläufiges Kennwort) and new password (Neues Kennwort). The preliminary password is notified via SMS. If it's for your MiFi, you can access to the MiFi's admin page and read SMS.
 4. Go to Recharge tab (Mein O<sub>2</sub> -> Mein Prepaid -> Guthaben & Aufladen) and enter your top-up card's code.
