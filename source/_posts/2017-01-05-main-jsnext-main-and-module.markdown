@@ -20,7 +20,7 @@ However, it had a problem. If the file specified `jsnext:main` contains ES2015+ 
 
 ## module
 
-Now the name `jsnext:main` is too confusing. I was confused at least. People discussed for a better name, and [`module`](https://github.com/rollup/rollup/wiki/pkg.module) came out that [supersedes `jsnext:main`](https://github.com/rollup/rollup/wiki/jsnext:main).
+Now the name `jsnext:main` is too confusing. I was confused at least. People discussed for a better name, and [`module`](https://github.com/rollup/rollup/wiki/pkg.module) came out that [supersedes `jsnext:main`](https://github.com/rollup/rollup/wiki/jsnext:main). And [it might be standardized](https://nodesource.com/blog/es-modules-and-node-js-hard-choices/).
 
 ## So?
 
