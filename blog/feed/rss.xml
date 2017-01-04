@@ -7,7 +7,6 @@
 <p>However, it had a problem. If the file specified <code>jsnext:main</code> contains ES2015+ features, it won&#39;t run without transpilation on browsers that don&#39;t support those features. But normally people don&#39;t transpile packages in <code>node_modules</code>, and many issues were created on GitHub. To solve the problem, people concluded that <code>jsnext:main</code> shouldn&#39;t have ES2015+ features other than <code>import</code> and <code>export</code>. What an irony.</p>
 <h2 id="module">module</h2>
 <p>Now the name <code>jsnext:main</code> is too confusing. I was confused at least. People discussed for a better name, and <a href="https://github.com/rollup/rollup/wiki/pkg.module"><code>module</code></a> came out that <a href="https://github.com/rollup/rollup/wiki/jsnext:main">supersedes <code>jsnext:main</code></a>.</p>
-<p>TODO: Node.js + ES Module discussion?</p>
 <h2 id="so-">So?</h2>
 <p>I looked into a couple popular repos, and they seem to have both of <code>jsnext:main</code> and <code>module</code> in addition to <code>main</code>.</p>
 <ul>
