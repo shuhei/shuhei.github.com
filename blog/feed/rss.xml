@@ -8,12 +8,12 @@
 <h2 id="module">module</h2>
 <p>Now the name <code>jsnext:main</code> is too confusing. I was confused at least. People discussed for a better name, and <a href="https://github.com/rollup/rollup/wiki/pkg.module"><code>module</code></a> came out that <a href="https://github.com/rollup/rollup/wiki/jsnext:main">supersedes <code>jsnext:main</code></a>. And <a href="https://nodesource.com/blog/es-modules-and-node-js-hard-choices/">it might be standardized</a>.</p>
 <h2 id="so-">So?</h2>
-<p>I looked into a couple popular repos, and they seem to have both of <code>jsnext:main</code> and <code>module</code> in addition to <code>main</code>.</p>
+<p>I looked into a couple of popular repos, and they had both of <code>jsnext:main</code> and <code>module</code> in addition to <code>main</code>.</p>
 <ul>
 <li><a href="https://github.com/reactjs/redux/blob/master/package.json">redux</a></li>
 <li><a href="https://github.com/mrdoob/three.js/blob/dev/package.json">three.js</a></li>
 </ul>
-<p>At this time, it seems like a good idea to have both of them if you want to support tree shaking. If you don&#39;t, just go with only the plain old <code>main</code>.</p>
+<p>At this time, it seems to be a good idea to have both of them if you want to support tree shaking. If you don&#39;t, just go with only the plain old <code>main</code>.</p>
 
 ]]></description><pubDate>Wed, 04 Jan 2017 23:00:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2017/01/05/main-jsnext-main-and-module/</guid></item><item><title>How to set up and top up a prepaid SIM in Germany</title><link>http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany/</link><description><![CDATA[
 <p>I have moved to Berlin from Tokyo a week ago. I may or may not write about it later, but I&#39;m going to share more practical stuff today.</p>
