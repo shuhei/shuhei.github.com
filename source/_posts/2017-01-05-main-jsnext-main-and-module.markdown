@@ -24,9 +24,9 @@ Now the name `jsnext:main` is too confusing. I was confused at least. People dis
 
 ## So?
 
-I looked into a couple popular repos, and they seem to have both of `jsnext:main` and `module` in addition to `main`.
+I looked into a couple of popular repos, and they had both of `jsnext:main` and `module` in addition to `main`.
 
 - [redux](https://github.com/reactjs/redux/blob/master/package.json)
 - [three.js](https://github.com/mrdoob/three.js/blob/dev/package.json)
 
-At this time, it seems like a good idea to have both of them if you want to support tree shaking. If you don't, just go with only the plain old `main`.
+At this time, it seems to be a good idea to have both of them if you want to support tree shaking. If you don't, just go with only the plain old `main`.
