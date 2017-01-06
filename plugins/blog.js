@@ -197,7 +197,7 @@ export function index(config) {
     const posts = files.map(file => ({
       ...file.frontMatter,
       content: file.contents.toString(),
-    })).reverse();
+    })).sort((a, b) => a.date.localeCompare(b.date)).reverse();
 
     // Render index pages and archive page in parallel.
     const funcs = [];
