@@ -3,7 +3,7 @@
 <ul>
 <li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
 </ul>
-<p>Here is the twists and turnes that I wandered to solve the problem.</p>
+<p>Here is the twists and turns that I wandered to solve the problem.</p>
 <h2 id="exports">Exports</h2>
 <p>The code of <code>material-colors</code> looked like the following.</p>
 <p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
