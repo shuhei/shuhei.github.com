@@ -10,7 +10,7 @@ After [my previous post about jsnext:main and module](/blog/2017/01/05/main-jsne
 
 - [colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors](https://github.com/shuhei/material-colors/issues/16).
 
-Here is the twists and turnes that I wandered to solve the problem.
+Here is the twists and turns that I wandered to solve the problem.
 
 ## Exports
 
