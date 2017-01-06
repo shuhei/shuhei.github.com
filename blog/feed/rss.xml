@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Wed, 04 Jan 2017 23:00:00 GMT</lastBuildDate><item><title>main, jsnext:main and module</title><link>http://shuheikagawa.com//blog/2017/01/05/main-jsnext-main-and-module/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Thu, 05 Jan 2017 21:11:00 GMT</lastBuildDate><item><title>How to export CommonJS and ES Module</title><link>http://shuheikagawa.com//blog/2017/01/05/how-to-export-commonjs-and-es-module/</link><description><![CDATA[
+<p>After <a href="/blog/2017/01/05/main-jsnext-main-and-module/">my previous post about jsnext:main and module</a>, there came another issue.</p>
+<ul>
+<li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
+</ul>
+<p>Here is the twists and turnes that I wandered to solve the problem.</p>
+<h2 id="exports">Exports</h2>
+<p>The code of <code>material-colors</code> looked like the following.</p>
+<p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
+<pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
+  red: { <span class="hljs-comment">/* ... */</span> },
+  blue: { <span class="hljs-comment">/* ... */</span> }
+};</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
+<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
+<p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
+<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
+<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
+<h2 id="have-a-default-export">Have a default export</h2>
+<p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  red: red,
+  blue: blue
+};</code></pre><h2 id="so-">So?</h2>
+<p>To keep maximum compatibility for CommonJS and ES Module:</p>
+<ul>
+<li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>
+<li>If your CommonJS module exports multiple things, which essentially exports an object with them as properties, export named exports. In addition to it, it&#39;s safer to have a default export just in case for the problem described above.</li>
+</ul>
+
+]]></description><pubDate>Thu, 05 Jan 2017 21:11:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2017/01/05/how-to-export-commonjs-and-es-module/</guid></item><item><title>main, jsnext:main and module</title><link>http://shuheikagawa.com//blog/2017/01/05/main-jsnext-main-and-module/</link><description><![CDATA[
 <p>Node module&#39;s <code>package.json</code> has <code>main</code> property. It&#39;s the entry point of a package, which is exported when a client <code>require</code>s the package.</p>
 <p>Recently, I got <a href="https://github.com/shuhei/material-colors/issues/13">an issue</a> on one of my popular GitHub repos, <code>material-colors</code>. It claimed that &quot;colors.es2015.js const not supported in older browser (Safari 9)&quot;, which looked pretty obvious to me. ES2015 is a new spec. Why do older browsers support it?</p>
 <p>I totally forgot about it at the time, but <a href="https://github.com/shuhei/material-colors/pull/10">the <code>colors.es2015.js</code> was exposed as the npm package&#39;s <code>jsnext:main</code></a>. And to my surprise, it turned out that <strong><code>jsnext:main</code> shouldn&#39;t have <em>jsnext</em> or ES2015+ features</strong> like <code>const</code>, arrow function and <code>class</code>. What a contradiction!</p>
@@ -332,20 +368,4 @@ topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css">
 }</span></code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
 <p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
 
-]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</guid></item><item><title>Algorithms: Design and Analysis, Part 1</title><link>http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1/</link><description><![CDATA[
-<p>Today I finished the final exam of Stanford&#39;s <a href="https://www.coursera.org/course/algo">&quot;Algorithms: Design and Analysis, Part 1&quot;</a> at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:</p>
-<ul>
-<li><a href="https://github.com/shuhei/algo">shuhei/algo</a></li>
-</ul>
-<p>The course focused on fundamental algorithms and their analysis. What I learned so far were:</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithms">Divide-and-conquer algorithms</a> and analysis with <a href="https://en.wikipedia.org/wiki/Master_theorem">Master Method</a>: <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> and <a href="https://en.wikipedia.org/wiki/Quicksort">quick sort</a></li>
-<li>Graph algorithms: <a href="https://en.wikipedia.org/wiki/Minimum_cut">minimum cut</a>, <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first</a> and <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first</a> search, <a href="https://en.wikipedia.org/wiki/Strongly_connected_component">strongly connected components</a>, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&#39;s shortest-path</a></li>
-<li>Data structures: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">heaps</a>, <a href="https://en.wikipedia.org/wiki/Hash_table">hash tables</a> and <a href="https://en.wikipedia.org/wiki/Binary_search_tree">binary search trees</a></li>
-</ul>
-<p>As a self-taught programmer, I had been away from formal Computer Science topics like big O notation. But after I learned <a href="https://www.coursera.org/learn/machine-learning">Machine Learning</a> and tried to implement some ML algorithms for large datasets a few months ago, I noticed that I needed some knowledge of basic algorithms and mathematical analysis of them.</p>
-<p>The Algorithms course focused not only on algorithms themselves but also on their performance analysis and mathematical proofs. The analysis and proofs are crucial especially for the cases when we design custom algorithms for real-world problems in the future, and more importantly made me more confident about the algorithms.</p>
-<p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
-<p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
-
-]]></description><pubDate>Sun, 29 Nov 2015 22:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2015/11/29/algorithms-part-1/</guid></item></channel></rss>
+]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</guid></item></channel></rss>

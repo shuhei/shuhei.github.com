@@ -19,7 +19,34 @@
         </script>
       </head>
       <body>
-        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="672639841"><header class="header" data-reactid="2"><h1 class="header__title" data-reactid="3"><a href="/" data-reactid="4">Shuhei Kagawa</a></h1><nav data-reactid="5"><ul class="menu" data-reactid="6"><li class="menu__item" data-reactid="7"><a href="/about/" data-reactid="8">About</a></li><li class="menu__item" data-reactid="9"><a href="/works/" data-reactid="10">Works</a></li><li class="menu__item" data-reactid="11"><a href="/blog/archives/" data-reactid="12">Archives</a></li></ul></nav></header><div class="main" data-reactid="13"><div data-reactid="14"><!-- react-empty: 15 --><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2010/03/06/servey-note-ofactiveldap/" data-reactid="19">ActiveLdap 調査メモ</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2010-03-06 19:56</span></div></div><div class="content" data-reactid="23"><div data-reactid="24"><p>未検証ですが、以下の記事から調査したことのメモ。</p>
+        <div id="container"><div data-reactroot="" data-reactid="1" data-react-checksum="-558753058"><header class="header" data-reactid="2"><h1 class="header__title" data-reactid="3"><a href="/" data-reactid="4">Shuhei Kagawa</a></h1><nav data-reactid="5"><ul class="menu" data-reactid="6"><li class="menu__item" data-reactid="7"><a href="/about/" data-reactid="8">About</a></li><li class="menu__item" data-reactid="9"><a href="/works/" data-reactid="10">Works</a></li><li class="menu__item" data-reactid="11"><a href="/blog/archives/" data-reactid="12">Archives</a></li></ul></nav></header><div class="main" data-reactid="13"><div data-reactid="14"><!-- react-empty: 15 --><div class="post" data-reactid="16"><div class="post-header" data-reactid="17"><h1 class="title" data-reactid="18"><a href="/blog/2010/03/13/redmine-with-git/" data-reactid="19">Git + Redmine</a></h1><div class="meta" data-reactid="20"><!-- react-text: 21 -->@<!-- /react-text --><span class="date" data-reactid="22">2010-03-13 13:50</span></div></div><div class="content" data-reactid="23"><div data-reactid="24"><p>自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。</p>
+<h3>サーバにリポジトリを作成</h3>
+<p>Redmine を置いているサーバに空のリポジトリを作ります。</p>
+<pre class="prettyprint">server$ mkdir myapp.git
+server$ cd myapp.git
+server$ git --bare init</pre>
+<h3>リモートリポジトリとして登録</h3>
+<p>ローカルのレポジトリにサーバのリポジトリを登録。Push します。</p>
+<pre class="prettyprint">local$ git remote add origin ssh://username@example.com/path/to/myapp.git
+local$ git push origin master</pre>
+<h3>Redmine の設定</h3>
+<p>プロジェクトの「設定」 =&gt; 「リポジトリ」で以下のように設定。</p>
+<ul>
+	<li>バージョン管理システム =&gt; Git</li>
+	<li>Path to .git directory =&gt; /path/to/myapp.git</li>
+</ul>
+<p>以上で終了です。<br />
+プロジェクトの「リポジトリ」を確認すると、おお、見えました。<br />
+ブラウザで見るとぐちゃぐちゃなのがよくわかります・・・。</p>
+<h3>チケットとコミットの連携</h3>
+<p>コミットメッセージに Redmine のチケット ID を含めることで、チケットとコミットの関連付けが行えます。<br />
+チケット ID 前のキーワードによって、関連付けの仕方を変えることができます。デフォルトでは refs で単純な参照、 fixes で進捗率 100% にするようになっているようです。<br />
+管理  =&gt; 設定 =&gt; リポジトリ で確認、設定できます。</p>
+<h3>参考 <span class="caps">URL</span></h3>
+<ul>
+	<li><a href="http://blog.champierre.com/archives/670">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>
+	<li><a href="http://d.hatena.ne.jp/ntaku/20090526/1243327903">RedmineとGitで作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>
+</ul></div></div></div><div class="post" data-reactid="25"><div class="post-header" data-reactid="26"><h1 class="title" data-reactid="27"><a href="/blog/2010/03/06/servey-note-ofactiveldap/" data-reactid="28">ActiveLdap 調査メモ</a></h1><div class="meta" data-reactid="29"><!-- react-text: 30 -->@<!-- /react-text --><span class="date" data-reactid="31">2010-03-06 19:56</span></div></div><div class="content" data-reactid="32"><div data-reactid="33"><p>未検証ですが、以下の記事から調査したことのメモ。</p>
 <ul>
 	<li><a href="http://jp.rubyist.net/magazine/?0027-ActiveLdap">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>
 	<li><a href="http://www.clear-code.com/archives/rails-seminar-technical-night">Railsで作るActive Directoryと連携した社内システム</a></li>
@@ -39,7 +66,7 @@ script/generete model_active_ldap user</pre>
 	<li>Ruby なら Ruby/<span class="caps">LDAP</span>（OpenLDAP のバインディング）。</li>
 	<li>JRuby なら <span class="caps">JNDI</span>。</li>
 	<li>PureRuby の Net::LDAP は、trunk でないと問題。</li>
-</ul></div></div></div><div class="post" data-reactid="25"><div class="post-header" data-reactid="26"><h1 class="title" data-reactid="27"><a href="/blog/2010/03/06/renew-ruby-environment/" data-reactid="28">Ruby の環境を新しく</a></h1><div class="meta" data-reactid="29"><!-- react-text: 30 -->@<!-- /react-text --><span class="date" data-reactid="31">2010-03-06 19:54</span></div></div><div class="content" data-reactid="32"><div data-reactid="33"><p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />
+</ul></div></div></div><div class="post" data-reactid="34"><div class="post-header" data-reactid="35"><h1 class="title" data-reactid="36"><a href="/blog/2010/03/06/renew-ruby-environment/" data-reactid="37">Ruby の環境を新しく</a></h1><div class="meta" data-reactid="38"><!-- react-text: 39 -->@<!-- /react-text --><span class="date" data-reactid="40">2010-03-06 19:54</span></div></div><div class="content" data-reactid="41"><div data-reactid="42"><p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />
 以下の環境に揃えました。</p>
 <ul>
 	<li>Ruby 1.8.7</li>
@@ -59,35 +86,9 @@ export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
 <p>もともと入っている Ruby が 1.8.6 なので、1.8.7 を入れます。</p>
 <pre class="prettyprint">sudo port install ruby</pre>
 <p>RubyGems も MacPorts から。1.3.4 なのは我慢。</p>
-<pre class="prettyprint">sudo port install rb-rubygems</pre></div></div></div><div class="post" data-reactid="34"><div class="post-header" data-reactid="35"><h1 class="title" data-reactid="36"><a href="/blog/2010/03/01/rails-vim/" data-reactid="37">rails.vim</a></h1><div class="meta" data-reactid="38"><!-- react-text: 39 -->@<!-- /react-text --><span class="date" data-reactid="40">2010-03-01 08:40</span></div></div><div class="content" data-reactid="41"><div data-reactid="42"><p><a href="http://www.vim.org/scripts/script.php?script_id=1567">rails.vim &#8211; Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more : vim online</a> がステキ。<br />
-ダウンロードして、.vim に入れればインストール完了。</p>
-<h3>ファイル間の移動</h3>
-<p>対応するモデルと単体テスト、コントローラとビューと機能テストの間などを行き来できます。</p>
-<ul>
-	<li>:Rmodel</li>
-	<li>:Runittest</li>
-	<li>:Rcontroller</li>
-	<li>:Rview</li>
-	<li>:Rfunctinaltest</li>
-</ul>
-<p>などなど。対応するファイルに飛ぶだけでなく、以下のような感じでパスの指定もできます。</p>
-<p>:Rmodel user<br />
-:Rview users/show</p>
-<p>Tabキーで補完が効くので、大変便利。</p>
-<h3>サーバの起動</h3>
-<p><code>:Rserver</code> とするとコマンドプロンプトが別に開き、サーバが起動されます。</p>
-<h3>Rake の実行</h3>
-<p><code>:Rake task_name</code> で Rake タスクが実行できます。<br />
-例えば単体テストの実行には <code>:Rake test:units</code> 。</p>
-<p>結果はエラーとして出力されるため <code>:cl</code> で確認可能。</p>
-<p>タスク名の補完もきくので、ターミナルより便利！</p>
-<h3>参考<span class="caps">URL</span></h3>
-<ul>
-	<li><a href="http://d.hatena.ne.jp/secondlife/20061222/1166781841">rails.vim まとめ &#8211; 川o・-・）＜2nd life</a></li>
-	<li><a href="http://d.hatena.ne.jp/mig50/20060731/1154356587">rails.vimの使い方(導入編) &#8211; migration!!</a></li>
-</ul></div></div></div><ul class="pagination" data-reactid="43"><li class="pagination__prev-page" data-reactid="44"><a href="/blog/pages/14/" data-reactid="45">Newer Posts</a></li><li class="pagination__archives" data-reactid="46"><a href="/blog/archives/" data-reactid="47">Archives</a></li><li class="pagination__next-page" data-reactid="48"><a href="/blog/pages/16/" data-reactid="49">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="50"><!-- react-text: 51 -->© <!-- /react-text --><!-- react-text: 52 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
+<pre class="prettyprint">sudo port install rb-rubygems</pre></div></div></div><ul class="pagination" data-reactid="43"><li class="pagination__prev-page" data-reactid="44"><a href="/blog/pages/14/" data-reactid="45">Newer Posts</a></li><li class="pagination__archives" data-reactid="46"><a href="/blog/archives/" data-reactid="47">Archives</a></li><li class="pagination__next-page" data-reactid="48"><a href="/blog/pages/16/" data-reactid="49">Older Posts</a></li></ul></div></div><footer class="footer" data-reactid="50"><!-- react-text: 51 -->© <!-- /react-text --><!-- react-text: 52 -->Shuhei Kagawa<!-- /react-text --></footer></div></div>
         <script><!--
-          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"posts":[{"layout":"post","title":"ActiveLdap 調査メモ","published":true,"date":"2010-03-06 19:56","comments":true,"tags":null,"categories":[],"url":"/blog/2010/03/06/servey-note-ofactiveldap/","content":"<p>未検証ですが、以下の記事から調査したことのメモ。</p>\n<ul>\n\t<li><a href=\"http://jp.rubyist.net/magazine/?0027-ActiveLdap\">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>\n\t<li><a href=\"http://www.clear-code.com/archives/rails-seminar-technical-night\">Railsで作るActive Directoryと連携した社内システム</a></li>\n</ul>\n<h3>Rails と併用可</h3>\n<pre class=\"prettyprint\">script/generate scaffold_active_ldap\nscript/generete model_active_ldap user</pre>\n<h3>接続</h3>\n<p>接続はプロセス間共有不可。普通にやると、Passenger はだめ。</p>\n<h4>対策</h4>\n<ul>\n\t<li>ユーザ毎の接続を持たせない。</li>\n\t<li>1 リクエストで完結させる。</li>\n</ul>\n<h3>バックエンド</h3>\n<ul>\n\t<li>Ruby なら Ruby/<span class=\"caps\">LDAP</span>（OpenLDAP のバインディング）。</li>\n\t<li>JRuby なら <span class=\"caps\">JNDI</span>。</li>\n\t<li>PureRuby の Net::LDAP は、trunk でないと問題。</li>\n</ul>"},{"layout":"post","title":"Ruby の環境を新しく","published":true,"date":"2010-03-06 19:54","comments":true,"tags":null,"categories":null,"url":"/blog/2010/03/06/renew-ruby-environment/","content":"<p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />\n以下の環境に揃えました。</p>\n<ul>\n\t<li>Ruby 1.8.7</li>\n\t<li>Ruby Gems 1.3.5（Macbook は1.3.4）</li>\n\t<li>Rails 2.3.5</li>\n</ul>\n<h3>Ubuntu Server 9.10 64 bit</h3>\n<p>Ruby はもともと 1.8.7。RubyGems も 1.3.5。<br />\n入っている Rails のバージョンを上げる。Aptitude で入れると古いので、RubyGems を使う事に。</p>\n<pre class=\"prettyprint\">sudo aptitude remove rails\nsudo gem install rails\nsudo gem install sqlite3-ruby\n\nvi ~/.bashrc\nexport PATH=/var/lib/gem/1.8/bin:$PATH</pre>\n<h3>Mac OS X</h3>\n<p>もともと入っている Ruby が 1.8.6 なので、1.8.7 を入れます。</p>\n<pre class=\"prettyprint\">sudo port install ruby</pre>\n<p>RubyGems も MacPorts から。1.3.4 なのは我慢。</p>\n<pre class=\"prettyprint\">sudo port install rb-rubygems</pre>"},{"layout":"post","title":"rails.vim","published":true,"date":"2010-03-01 08:40","comments":true,"tags":null,"categories":[],"url":"/blog/2010/03/01/rails-vim/","content":"<p><a href=\"http://www.vim.org/scripts/script.php?script_id=1567\">rails.vim &#8211; Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more : vim online</a> がステキ。<br />\nダウンロードして、.vim に入れればインストール完了。</p>\n<h3>ファイル間の移動</h3>\n<p>対応するモデルと単体テスト、コントローラとビューと機能テストの間などを行き来できます。</p>\n<ul>\n\t<li>:Rmodel</li>\n\t<li>:Runittest</li>\n\t<li>:Rcontroller</li>\n\t<li>:Rview</li>\n\t<li>:Rfunctinaltest</li>\n</ul>\n<p>などなど。対応するファイルに飛ぶだけでなく、以下のような感じでパスの指定もできます。</p>\n<p>:Rmodel user<br />\n:Rview users/show</p>\n<p>Tabキーで補完が効くので、大変便利。</p>\n<h3>サーバの起動</h3>\n<p><code>:Rserver</code> とするとコマンドプロンプトが別に開き、サーバが起動されます。</p>\n<h3>Rake の実行</h3>\n<p><code>:Rake task_name</code> で Rake タスクが実行できます。<br />\n例えば単体テストの実行には <code>:Rake test:units</code> 。</p>\n<p>結果はエラーとして出力されるため <code>:cl</code> で確認可能。</p>\n<p>タスク名の補完もきくので、ターミナルより便利！</p>\n<h3>参考<span class=\"caps\">URL</span></h3>\n<ul>\n\t<li><a href=\"http://d.hatena.ne.jp/secondlife/20061222/1166781841\">rails.vim まとめ &#8211; 川o・-・）＜2nd life</a></li>\n\t<li><a href=\"http://d.hatena.ne.jp/mig50/20060731/1154356587\">rails.vimの使い方(導入編) &#8211; migration!!</a></li>\n</ul>"}],"prevPage":"/blog/pages/14/","title":"Page 15 - Shuhei Kagawa","nextPage":"/blog/pages/16/"};
+          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts"},"posts":[{"layout":"post","title":"Git + Redmine","published":true,"date":"2010-03-13 13:50","comments":true,"tags":null,"categories":[],"url":"/blog/2010/03/13/redmine-with-git/","content":"<p>自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。</p>\n<h3>サーバにリポジトリを作成</h3>\n<p>Redmine を置いているサーバに空のリポジトリを作ります。</p>\n<pre class=\"prettyprint\">server$ mkdir myapp.git\nserver$ cd myapp.git\nserver$ git --bare init</pre>\n<h3>リモートリポジトリとして登録</h3>\n<p>ローカルのレポジトリにサーバのリポジトリを登録。Push します。</p>\n<pre class=\"prettyprint\">local$ git remote add origin ssh://username@example.com/path/to/myapp.git\nlocal$ git push origin master</pre>\n<h3>Redmine の設定</h3>\n<p>プロジェクトの「設定」 =&gt; 「リポジトリ」で以下のように設定。</p>\n<ul>\n\t<li>バージョン管理システム =&gt; Git</li>\n\t<li>Path to .git directory =&gt; /path/to/myapp.git</li>\n</ul>\n<p>以上で終了です。<br />\nプロジェクトの「リポジトリ」を確認すると、おお、見えました。<br />\nブラウザで見るとぐちゃぐちゃなのがよくわかります・・・。</p>\n<h3>チケットとコミットの連携</h3>\n<p>コミットメッセージに Redmine のチケット ID を含めることで、チケットとコミットの関連付けが行えます。<br />\nチケット ID 前のキーワードによって、関連付けの仕方を変えることができます。デフォルトでは refs で単純な参照、 fixes で進捗率 100% にするようになっているようです。<br />\n管理  =&gt; 設定 =&gt; リポジトリ で確認、設定できます。</p>\n<h3>参考 <span class=\"caps\">URL</span></h3>\n<ul>\n\t<li><a href=\"http://blog.champierre.com/archives/670\">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>\n\t<li><a href=\"http://d.hatena.ne.jp/ntaku/20090526/1243327903\">RedmineとGitで作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>\n</ul>"},{"layout":"post","title":"ActiveLdap 調査メモ","published":true,"date":"2010-03-06 19:56","comments":true,"tags":null,"categories":[],"url":"/blog/2010/03/06/servey-note-ofactiveldap/","content":"<p>未検証ですが、以下の記事から調査したことのメモ。</p>\n<ul>\n\t<li><a href=\"http://jp.rubyist.net/magazine/?0027-ActiveLdap\">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>\n\t<li><a href=\"http://www.clear-code.com/archives/rails-seminar-technical-night\">Railsで作るActive Directoryと連携した社内システム</a></li>\n</ul>\n<h3>Rails と併用可</h3>\n<pre class=\"prettyprint\">script/generate scaffold_active_ldap\nscript/generete model_active_ldap user</pre>\n<h3>接続</h3>\n<p>接続はプロセス間共有不可。普通にやると、Passenger はだめ。</p>\n<h4>対策</h4>\n<ul>\n\t<li>ユーザ毎の接続を持たせない。</li>\n\t<li>1 リクエストで完結させる。</li>\n</ul>\n<h3>バックエンド</h3>\n<ul>\n\t<li>Ruby なら Ruby/<span class=\"caps\">LDAP</span>（OpenLDAP のバインディング）。</li>\n\t<li>JRuby なら <span class=\"caps\">JNDI</span>。</li>\n\t<li>PureRuby の Net::LDAP は、trunk でないと問題。</li>\n</ul>"},{"layout":"post","title":"Ruby の環境を新しく","published":true,"date":"2010-03-06 19:54","comments":true,"tags":null,"categories":null,"url":"/blog/2010/03/06/renew-ruby-environment/","content":"<p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。<br />\n以下の環境に揃えました。</p>\n<ul>\n\t<li>Ruby 1.8.7</li>\n\t<li>Ruby Gems 1.3.5（Macbook は1.3.4）</li>\n\t<li>Rails 2.3.5</li>\n</ul>\n<h3>Ubuntu Server 9.10 64 bit</h3>\n<p>Ruby はもともと 1.8.7。RubyGems も 1.3.5。<br />\n入っている Rails のバージョンを上げる。Aptitude で入れると古いので、RubyGems を使う事に。</p>\n<pre class=\"prettyprint\">sudo aptitude remove rails\nsudo gem install rails\nsudo gem install sqlite3-ruby\n\nvi ~/.bashrc\nexport PATH=/var/lib/gem/1.8/bin:$PATH</pre>\n<h3>Mac OS X</h3>\n<p>もともと入っている Ruby が 1.8.6 なので、1.8.7 を入れます。</p>\n<pre class=\"prettyprint\">sudo port install ruby</pre>\n<p>RubyGems も MacPorts から。1.3.4 なのは我慢。</p>\n<pre class=\"prettyprint\">sudo port install rb-rubygems</pre>"}],"prevPage":"/blog/pages/14/","title":"Page 15 - Shuhei Kagawa","nextPage":"/blog/pages/16/"};
         --></script>
         <script src="/js/index.js"></script>
       </body>
