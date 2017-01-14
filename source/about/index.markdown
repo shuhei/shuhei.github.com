@@ -7,11 +7,12 @@ sharing: true
 footer: true
 ---
 
-Hi, my name is Shuhei. I'm a programmer based in Berlin, focusing on JavaScript, Ruby and Haskell these days.
+Hi, my name is Shuhei. I'm a programmer based in Berlin, focusing on JavaScript, and learning Haskell & Rust these days.
 
 When I don't sit in front of my laptop, I wander around the streets of Berlin, give a look at the spines of my book collection, or enjoy local IPAs.
 
 ## Accounts
+
 - [Github @shuhei](https://github.com/shuhei)
 - [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
 - [Stack Overflow](http://stackoverflow.com/)
