@@ -101,7 +101,7 @@ end
 
 Let's review Factory Girl's `create` and `build`. [`create`](http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#create-instance_method) instantiates an model saving it into the database just like `ActiveRecord::Base.create` does. [`build`](http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build-instance_method) only instantiates an model without saving it just like `ActiveRecord::Base.new` does.
 
-The following usage of `FactoryGirl.build` seems harmful. `build` doesn't save a `Comment` into the database while `create` does, right?
+The following usage of `FactoryGirl.build` seems harmless. `build` doesn't save a `Comment` into the database while `create` does, right?
 
 ```ruby
 describe Comment
