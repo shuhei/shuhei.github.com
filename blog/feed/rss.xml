@@ -8,8 +8,8 @@
 <p>The code of <code>material-colors</code> looked like the following.</p>
 <p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
 <pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
-  red: { <span class="hljs-comment">/* ... */</span> },
-  blue: { <span class="hljs-comment">/* ... */</span> }
+  <span class="hljs-attr">red</span>: { <span class="hljs-comment">/* ... */</span> },
+  <span class="hljs-attr">blue</span>: { <span class="hljs-comment">/* ... */</span> }
 };</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
@@ -25,8 +25,8 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  red: red,
-  blue: blue
+  <span class="hljs-attr">red</span>: red,
+  <span class="hljs-attr">blue</span>: blue
 };</code></pre><h2 id="so-">So?</h2>
 <p>To keep maximum compatibility for CommonJS and ES Module:</p>
 <ul>
@@ -111,8 +111,8 @@
 <h2 id="how-to-use-it">How to use it</h2>
 <pre><code class="hljs sh">npm install -D babel-preset-es2015 babel-preset-angular2</code></pre><p>Add <code>presets</code> to <code>.babelrc</code>. Note that the <code>presets</code>&#39; order is important.</p>
 <pre><code class="hljs json">{
-  "<span class="hljs-attribute">presets</span>": <span class="hljs-value">[<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
-</span>}</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
+}</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
 <h2 id="supported-annotations">Supported annotations</h2>
 <table>
 <thead>
@@ -169,17 +169,17 @@
 <p>Property decorator in Babel is marked &quot;Partial&quot; because <code>babel-plugin-transform-decorators-legacy</code> ignores class properties without initializers.</p>
 <p>You can emulate parameter decorator and type annotation with plain ES2015 like the following but it&#39;s a little bit counterintuitive.</p>
 <pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
-  constructor(foo: Foo, @Optional() bar: Bar) {
+  <span class="hljs-keyword">constructor</span>(foo: Foo, @Optional() bar: Bar) {
     <span class="hljs-comment">// Do something with foo and bar.</span>
   }
 }
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
-  static get parameters() {
+  <span class="hljs-keyword">static</span> get parameters() {
     <span class="hljs-keyword">return</span> [[Foo], [Bar, Optional()]];
   }
 
-  constructor(foo, bar) {
+  <span class="hljs-keyword">constructor</span>(foo, bar) {
     <span class="hljs-comment">// Do something with foo and bar.</span>
   }
 }</code></pre><h2 id="polyfills">Polyfills</h2>
@@ -199,16 +199,16 @@
 
 bootstrap(HelloApp, [
   ROUTER_PROVIDERS,
-  provide(LocationStrategy, { useClass: HashLocationStrategy })
-]).catch(err =&gt; <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
+  provide(LocationStrategy, { <span class="hljs-attr">useClass</span>: HashLocationStrategy })
+]).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
 <h2 id="module-resolution">Module resolution</h2>
 <p>You can use any module resolver as long as it works with Babel. I&#39;ll pick <a href="http://browserify.org/">Browserify</a> here for its simplicity.</p>
 <pre><code class="hljs js">npm install -D browserify babelify</code></pre><p>Add a <code>build</code> script to your <code>package.json</code> assuming that your bootstrap script locates at <code>src/index.js</code>.</p>
 <pre><code class="hljs json">{
-  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">build</span>": <span class="hljs-value"><span class="hljs-string">"browserify -t babelify src/index &gt; public/bundle.js"</span>
-  </span>}
-</span>}</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"browserify -t babelify src/index &gt; public/bundle.js"</span>
+  }
+}</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
 <p>Of course you can use other module resolvers like Webpack or SystemJS.</p>
 <h2 id="offline-compilation">Offline compilation</h2>
 <p>This is not yet available for Babel. Not completed even for TypeScript.</p>
@@ -228,8 +228,8 @@ bootstrap(HelloApp, [
 <p><a class="jsbin-embed" href="http://jsbin.com/megiqo/embed?output">JS Bin on jsbin.com</a><script async src="http://static.jsbin.com/js/embed.min.js?3.35.12"></script></p>
 <p><code>search</code> function mocks an AJAX request. It returns a <code>Promise</code> that resolves after a random delay.</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search</span>(<span class="hljs-params">keyword</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
-    setTimeout(() =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       resolve(<span class="hljs-string">'Result of '</span> + keyword);
     }, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>);
   });
@@ -240,19 +240,19 @@ bootstrap(HelloApp, [
 keyword.addEventListener(<span class="hljs-string">'keyup'</span>, e =&gt; {
   <span class="hljs-keyword">const</span> value = e.target.value;
   search(value)
-    .then(data =&gt; result.textContent = data);
+    .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> result.textContent = data);
 });</code></pre><p><code>switchMap</code> guarantees that the last keyword&#39;s result is finally shown.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> keyword = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'keyword-with'</span>);
 <span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'result-with'</span>);
 
 <span class="hljs-keyword">const</span> keyword$ = Rx.Observable.fromEvent(keyword, <span class="hljs-string">'keyup'</span>)
-  .map(e =&gt; e.target.value);
+  .map(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.target.value);
 keyword$
   .switchMap(search)
-  .subscribe(data =&gt; result.textContent = data);</code></pre>
+  .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> result.textContent = data);</code></pre>
 ]]></description><pubDate>Mon, 02 May 2016 00:18:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs/</guid></item><item><title>Clean up before exiting in Haskell</title><link>http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</link><description><![CDATA[
 <p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
-<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+<pre><code class="hljs hs"><span class="hljs-keyword">import</span> System.Process (<span class="hljs-title">system</span>)
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
 <span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
@@ -267,8 +267,8 @@ keyword$
 <span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> ()
 <span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>But the code does not reach the line that shows the cursor because <code>life</code> is a infinite loop. If I quit the program with <code>Ctrl+C</code>, the cursor remains hidden.</p>
 <p>So I wrote a function that loops <code>a -&gt; IO a</code> until interrupted by a signal, referring to <a href="http://stackoverflow.com/a/18430872/822317">unix - Killing a Haskell binary - Stack Overflow</a>. It manages a state of whether the program was interrupted in a <code>MVar</code> and stops the loop when interrupted.</p>
-<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Concurrent.MVar <span class="hljs-container">(<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)</span></span>
-<span class="hljs-import"><span class="hljs-keyword">import</span> System.Posix.Signals <span class="hljs-container">(<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)</span></span>
+<pre><code class="hljs hs"><span class="hljs-keyword">import</span> Control.Concurrent.MVar (<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)
+<span class="hljs-keyword">import</span> System.Posix.Signals (<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)
 
 <span class="hljs-title">loopUntilInterruption</span> :: (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
 <span class="hljs-title">loopUntilInterruption</span> p init = <span class="hljs-keyword">do</span>
@@ -287,7 +287,7 @@ keyword$
   <span class="hljs-keyword">case</span> val <span class="hljs-keyword">of</span>
     <span class="hljs-type">Just</span> _ -&gt; return ()
     <span class="hljs-type">Nothing</span> -&gt; loop v p x &gt;&gt; return ()</code></pre><p>In the Game of Life, I changed the type of <code>life</code> so that it returns the result of its previous result and loop with <code>loop</code>. Now the clean up code will be called when interrupted by a signal.</p>
-<pre><code class="hljs hs"><span class="hljs-import"><span class="hljs-keyword">import</span> System.Process <span class="hljs-container">(<span class="hljs-title">system</span>)</span></span>
+<pre><code class="hljs hs"><span class="hljs-keyword">import</span> System.Process (<span class="hljs-title">system</span>)
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
 <span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
@@ -305,9 +305,9 @@ keyword$
 ]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</guid></item><item><title>One-time binding for ng-if</title><link>http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</link><description><![CDATA[
 <p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
 <p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
 <p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
 
 ]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</guid></item><item><title>Freeze panes with CSS and a bit of JavaScript</title><link>http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</link><description><![CDATA[
 <p>People want fixed-header table. It reminds you what the columns are while you scroll down the table. There are a bunch of fixed-header-table tutorials out there. But most of them kill one of the greatest features of HTML table. The automatic sizing of cells according to their contents. This is because they usually prepare separate <code>&lt;table&gt;</code>s for header and body.</p>
@@ -341,31 +341,31 @@ keyword$
   <span class="hljs-keyword">return</span> <span class="hljs-string">'translate('</span> + x + <span class="hljs-string">'px, '</span> + y + <span class="hljs-string">'px)'</span>;
 }</code></pre><h2 id="border-collapse-separate-">border-collapse: separate;</h2>
 <p>Another trick is <code>border-collapse: separate;</code>. We usually use <code>border-collapse: collapse;</code> for tables but it leaves borders behind the cells. With <code>border-collapse: collapse;</code>, we can make the borders transformed together with the header cells.</p>
-<pre><code class="hljs css"><span class="hljs-tag">table</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">border-collapse</span>:<span class="hljs-value"> separate</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">border-spacing</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-}</span>
+<pre><code class="hljs css"><span class="hljs-selector-tag">table</span> {
+  <span class="hljs-attribute">border-collapse</span>: separate;
+  <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;
+}
 
-<span class="hljs-tag">th</span>,
-<span class="hljs-tag">td</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">border-bottom</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">border-right</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
-}</span></code></pre><h2 id="dummy-top-left-header-cell">Dummy top left header cell</h2>
+<span class="hljs-selector-tag">th</span>,
+<span class="hljs-selector-tag">td</span> {
+  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+}</code></pre><h2 id="dummy-top-left-header-cell">Dummy top left header cell</h2>
 <p>The last trick is a kind of shame. It&#39;s the top left header cell that should be fixed horizontally and vertically. We can achieve it by the <code>transform</code> property but the other top header cells hides it. I tried to make it rise with <code>z-index</code> but didn&#39;t work. So I created a dummy element that had the same size with the cell.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> topLeft = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
 <span class="hljs-keyword">var</span> computed = <span class="hljs-built_in">window</span>.getComputedStyle(columnHeaders[<span class="hljs-number">0</span>]);
 container.appendChild(topLeft);
 topLeft.classList.add(<span class="hljs-string">'top-left'</span>);
 topLeft.style.width = computed.width;
-topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css"><span class="hljs-class">.top-left</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#eee</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">border-right</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">border-bottom</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-}</span></code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
+topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css"><span class="hljs-selector-class">.top-left</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#eee</span>;
+  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+}</code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
 <p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
 
 ]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</guid></item></channel></rss>
