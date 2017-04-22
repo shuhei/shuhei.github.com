@@ -1,22 +1,23 @@
 module.exports = {
+  context: __dirname,
   entry: [
     'whatwg-fetch',
     './source/_js/index.js',
   ],
   output: {
-    path: './public/js',
+    path: __dirname + '/public/js',
     filename: 'index.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
       },
     ],
   },

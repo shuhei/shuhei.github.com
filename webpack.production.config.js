@@ -3,24 +3,25 @@ const { DefinePlugin, optimize } = require('webpack');
 const { DedupePlugin, UglifyJsPlugin } = optimize;
 
 module.exports = {
+  context: __dirname,
   entry: [
     'whatwg-fetch',
     './source/_js/index.js',
   ],
   output: {
-    path: './public/js',
+    path: __dirname + '/public/js',
     filename: 'index.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
       },
     ],
   },
@@ -30,7 +31,8 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new DedupePlugin(),
-    new UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      sourceMap: true,
+    }),
   ],
 };

@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export const SiteProps = PropTypes.shape({
   title: PropTypes.string.isRequired,

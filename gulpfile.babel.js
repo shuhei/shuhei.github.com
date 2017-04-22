@@ -77,7 +77,7 @@ gulp.task('js', (callback) => {
 // Concat CSS files.
 gulp.task('css', () => {
   const cssFiles = [
-    './node_modules/highlight.js/styles/monokai_sublime.css',
+    './node_modules/highlight.js/styles/monokai-sublime.css',
     './source/_css/**/*.css',
   ];
   return gulp.src(cssFiles)
