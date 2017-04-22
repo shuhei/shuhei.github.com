@@ -4,9 +4,10 @@
   "description": "@shuhei's website",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "NODE_ENV=production gulp build",
-    "deploy": "npm start && gh-pagesify",
-    "watch": "gulp watch",
+    "start": "gulp watch",
+    "build": "NODE_ENV=production gulp build",
+    "clean": "gulp clean",
+    "deploy": "npm run clean && npm run build && gh-pages -d public -b master",
     "lint": "eslint gulpfile.babel.js plugins source/_layouts source/_js",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename"
@@ -35,7 +36,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.5.0",
-    "gh-pagesify": "^1.0.0",
+    "gh-pages": "^0.12.0",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.0",
     "gulp-front-matter": "git+https://github.com/shuhei/gulp-front-matter",
