@@ -50,7 +50,11 @@ When you call `socket.setTimeout()`, a timeout timer is created and restarted be
 - TCP connection is not made in the given timeout after DNS lookup
 - No data read or write in the given timeout after connection, previous data read or write
 
-Then what happens if timeouts happen in all of the cases above? As far as I tried, `timeout` event is triggered only once.
+This might be a bit counter-intuitive. Let's say you called `socket.setTimeout(300)` to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request & response took more than 500 ms, `timeout` event is not emitted at all.
+
+Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.
+
+Then what happens if timeouts happen in all of the steps? As far as I tried, `timeout` event is triggered only once.
 
 Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set timeout for a socket and the socket is reused for another HTTP request? Never mind. `timeout` set in a HTTP request does not affect subsequent HTTP requests because [the timeout is cleaned up when it's kept alive](https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546).
 
