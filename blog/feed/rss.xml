@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Thu, 05 Jan 2017 21:11:00 GMT</lastBuildDate><item><title>How to export CommonJS and ES Module</title><link>http://shuheikagawa.com//blog/2017/01/05/how-to-export-commonjs-and-es-module/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 14 May 2017 21:31:00 GMT</lastBuildDate><item><title>HTTP request timeouts in JavaScript</title><link>http://shuheikagawa.com//blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
+<p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
+<p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
+<h2 id="node-js-http-https-module">Node.js &quot;http&quot;/&quot;https&quot; module</h2>
+<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> module provide <code>request()</code> function, which makes HTTP requests.</p>
+<h3 id="timeouts-on-http-request-">Timeouts on <code>http.request()</code></h3>
+<p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
+<blockquote>
+<p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
+</blockquote>
+<p>So what does it actually do? It internally calls <code>net.createConnection()</code> with its <code>timeout</code> option, which eventually calls <code>socket.setTimeout()</code> before the socket starts connecting.</p>
+<p>There is also <a href="http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback"><code>http.ClientRequest.setTimeout()</code></a>. Its documentation says:</p>
+<blockquote>
+<p>Once a socket is assigned to this request and is connected <code>socket.setTimeout()</code> will be called.</p>
+</blockquote>
+<p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
+<p>Either of them don&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
+<p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
+<h3 id="net-socket-settimeout-">net.Socket.setTimeout()</h3>
+<p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
+<blockquote>
+<p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default net.Socket do not have a timeout.</p>
+</blockquote>
+<p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
+<ol>
+<li>Start connecting</li>
+<li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
+<li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
+<li>Read data or write data</li>
+</ol>
+<p>When you call <code>socket.setTimeout()</code>, a timeout timer is created and restarted before connecting, after <code>lookup</code>, after <code>connect</code> and each data read &amp; write. So the <code>timeout</code> event is emitted on one of the following cases:</p>
+<ul>
+<li>DNS lookup doesn&#39;t finish in the given timeout</li>
+<li>TCP connection is not made in the given timeout after DNS lookup</li>
+<li>No data read or write in the given timeout after connection, previous data read or write</li>
+</ul>
+<p>Then what happens if timeouts happen in all of the cases above? As far as I tried, <code>timeout</code> event is triggered only once.</p>
+<p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in a HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
+<h3 id="http-keep-alive-tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
+<p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
+<p>So, how are they different?</p>
+<ul>
+<li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
+<li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
+</ul>
+<h3 id="so-">So?</h3>
+<p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
+<h2 id="third-party-modules">Third-party modules</h2>
+<h3 id="-request-module">&quot;request&quot; module</h3>
+<p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
+<blockquote>
+<p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
+</blockquote>
+<p>However, as far as I checked the implementation, <code>timeout</code> is not applied to the timing of response headers as of v2.81.1.</p>
+<p>Currently this module emits the two types of timeout errors:</p>
+<ul>
+<li><code>ESOCKETTIMEDOUT</code>: Emitted from <code>http.ClientRequest.setTimeout()</code> described above, which uses <code>socket.setTimeout()</code>.</li>
+<li><code>ETIMEDOUT</code>: Emitted when a connection is not established in the given timeout. It was applied to the timing of response headers before v2.76.0.</li>
+</ul>
+<p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
+<p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
+<h3 id="-axios-module">&quot;axios&quot; module</h3>
+<p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
+<h2 id="browser-apis">Browser APIs</h2>
+<p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
+<h3 id="xmlhttprequest">XMLHttpRequest</h3>
+<p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not say about the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
+<h3 id="fetch-">fetch()</h3>
+<p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
+  <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'timeout'</span>));
+    }, msecs);
+  });
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race(timeout, promise);
+}
+
+withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
+  .then(doSomething)
+  .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Most of the HTTP request APIs in JavaScript don&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use the exiting low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
+
+]]></description><pubDate>Sun, 14 May 2017 21:31:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2017/05/13/http-request-timeouts-in-javascript/</guid></item><item><title>How to export CommonJS and ES Module</title><link>http://shuheikagawa.com//blog/2017/01/05/how-to-export-commonjs-and-es-module/</link><description><![CDATA[
 <p>After <a href="/blog/2017/01/05/main-jsnext-main-and-module/">my previous post about jsnext:main and module</a>, there came another issue.</p>
 <ul>
 <li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
@@ -309,63 +393,4 @@ keyword$
 <p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
 
-]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</guid></item><item><title>Freeze panes with CSS and a bit of JavaScript</title><link>http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</link><description><![CDATA[
-<p>People want fixed-header table. It reminds you what the columns are while you scroll down the table. There are a bunch of fixed-header-table tutorials out there. But most of them kill one of the greatest features of HTML table. The automatic sizing of cells according to their contents. This is because they usually prepare separate <code>&lt;table&gt;</code>s for header and body.</p>
-<p>Also, most of the tutorials only fix a header at the top. But my colleagues wanted more. They wanted to fix headers at the top and left. Just like <a href="http://www.gcflearnfree.org/excel2013/17">Microsoft Excel&#39;s Freeze Panes feature</a>. So what we want now is:</p>
-<ol>
-<li>Automatic sizing of cells according to their contents</li>
-<li>Freeze panes</li>
-</ol>
-<p>We want to use only one <code>&lt;table&gt;</code> to easily achive the goal 1. But at the same time, we want to separate the movement of the headers from other cells to achieve the goal 2. Then <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">CSS3&#39;s <code>transform</code> property</a> came to my mind. It allows you to transform <strong>only rendering</strong> of an element without interfering its sibling nodes.</p>
-<p>So I gave it a shot and here&#39;s the result.</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/katabi/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script></p>
-<h2 id="transform-translate-">transform: translate()</h2>
-<p>I used JavaScript to dynamically set <code>transform: translate(x, y);</code> to the header cells sending them back to the top/left edge of the container.</p>
-<pre><code class="hljs js">container.addEventListener(<span class="hljs-string">'scroll'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> x = container.scrollLeft;
-  <span class="hljs-keyword">var</span> y = container.scrollTop;
-
-  leftHeaders.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">leftHeader</span>) </span>{
-    leftHeader.style.transform = translate(x, <span class="hljs-number">0</span>);
-  });
-  topHeaders.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">topHeader, i</span>) </span>{
-    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">0</span>) {
-      topHeader.style.transform = translate(x, y);
-    } <span class="hljs-keyword">else</span> {
-      topHeader.style.transform = translate(<span class="hljs-number">0</span>, y);
-    }
-  });
-});
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">translate</span>(<span class="hljs-params">x, y</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">'translate('</span> + x + <span class="hljs-string">'px, '</span> + y + <span class="hljs-string">'px)'</span>;
-}</code></pre><h2 id="border-collapse-separate-">border-collapse: separate;</h2>
-<p>Another trick is <code>border-collapse: separate;</code>. We usually use <code>border-collapse: collapse;</code> for tables but it leaves borders behind the cells. With <code>border-collapse: collapse;</code>, we can make the borders transformed together with the header cells.</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">table</span> {
-  <span class="hljs-attribute">border-collapse</span>: separate;
-  <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;
-}
-
-<span class="hljs-selector-tag">th</span>,
-<span class="hljs-selector-tag">td</span> {
-  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
-  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
-}</code></pre><h2 id="dummy-top-left-header-cell">Dummy top left header cell</h2>
-<p>The last trick is a kind of shame. It&#39;s the top left header cell that should be fixed horizontally and vertically. We can achieve it by the <code>transform</code> property but the other top header cells hides it. I tried to make it rise with <code>z-index</code> but didn&#39;t work. So I created a dummy element that had the same size with the cell.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> topLeft = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
-<span class="hljs-keyword">var</span> computed = <span class="hljs-built_in">window</span>.getComputedStyle(columnHeaders[<span class="hljs-number">0</span>]);
-container.appendChild(topLeft);
-topLeft.classList.add(<span class="hljs-string">'top-left'</span>);
-topLeft.style.width = computed.width;
-topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css"><span class="hljs-selector-class">.top-left</span> {
-  <span class="hljs-attribute">background</span>: <span class="hljs-number">#eee</span>;
-  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
-  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
-  <span class="hljs-attribute">box-sizing</span>: border-box;
-  <span class="hljs-attribute">position</span>: absolute;
-  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
-}</code></pre><h2 id="compatibility-and-performance">Compatibility and performance</h2>
-<p>As far as I&#39;ve tested with the latest Chrome, Firefox and Safari on Mac, it worked well without any performance issue. I&#39;ll test it with more large table on other browsers including IE and add the result later.</p>
-
-]]></description><pubDate>Mon, 11 Jan 2016 10:24:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/</guid></item></channel></rss>
+]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</guid></item></channel></rss>
