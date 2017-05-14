@@ -51,7 +51,7 @@ gulp.task('posts', () => {
   const aggregator = index(siteConfig);
   aggregator.pipe(gulp.dest('./public'));
 
-  return gulp.src('source/_posts/*.*')
+  return gulp.src('source/_posts/*.{markdown,textile}')
     .pipe(plumber())
     .pipe(frontMatter())
     .pipe(condition(`${__dirname}/source/**/*.{markdown,md}`, markdown({ renderer })))
