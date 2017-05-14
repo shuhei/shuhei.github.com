@@ -9,9 +9,9 @@ These days I have been working on a Node.js front-end server that calls back-end
 
 As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.
 
-## Node.js "http"/"https" module
+## Node.js "http"/"https"
 
-Let's start with the standard library of Node.js. `http` and `https` module provide `request()` function, which makes HTTP requests.
+Let's start with the standard library of Node.js. `http` and `https` provide `request()` function, which makes HTTP requests.
 
 ### Timeouts on `http.request()`
 
