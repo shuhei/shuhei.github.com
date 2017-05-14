@@ -34,7 +34,9 @@
 <li>TCP connection is not made in the given timeout after DNS lookup</li>
 <li>No data read or write in the given timeout after connection, previous data read or write</li>
 </ul>
-<p>Then what happens if timeouts happen in all of the cases above? As far as I tried, <code>timeout</code> event is triggered only once.</p>
+<p>This might be a bit counter-intuitive. Let&#39;s say you called <code>socket.setTimeout(300)</code> to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request &amp; response took more than 500 ms, <code>timeout</code> event is not emitted at all.</p>
+<p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
+<p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
 <p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in a HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
 <h3 id="http-keep-alive-tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
 <p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
