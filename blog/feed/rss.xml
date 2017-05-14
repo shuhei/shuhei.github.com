@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 14 May 2017 21:31:00 GMT</lastBuildDate><item><title>HTTP request timeouts in JavaScript</title><link>http://shuheikagawa.com//blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
 <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
 <p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
-<h2 id="node-js-http-https-module">Node.js &quot;http&quot;/&quot;https&quot; module</h2>
-<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> module provide <code>request()</code> function, which makes HTTP requests.</p>
+<h2 id="node-js-http-https-">Node.js &quot;http&quot;/&quot;https&quot;</h2>
+<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
 <h3 id="timeouts-on-http-request-">Timeouts on <code>http.request()</code></h3>
 <p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
 <blockquote>
