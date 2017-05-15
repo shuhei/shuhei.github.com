@@ -113,7 +113,7 @@ function withTimeout(msecs, promise) {
       reject(new Error('timeout'));
     }, msecs);
   });
-  return Promise.race(timeout, promise);
+  return Promise.race([timeout, promise]);
 }
 
 withTimeout(1000, fetch('https://foo.com/bar/'))
