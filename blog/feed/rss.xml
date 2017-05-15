@@ -75,7 +75,7 @@
       reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'timeout'</span>));
     }, msecs);
   });
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race(timeout, promise);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race([timeout, promise]);
 }
 
 withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
