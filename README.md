@@ -30,7 +30,7 @@ Use `gulp` to build static files.
 ```
 gulp
 # or
-yarn start
+npm start
 ```
 
 When writing articles or developing templates, watch file changes.
@@ -38,7 +38,7 @@ When writing articles or developing templates, watch file changes.
 ```
 gulp watch
 # or
-yarn run watch
+npm run watch
 ```
 
 ### EMFILE
@@ -63,5 +63,5 @@ Error: EMFILE, readdir '/Users/shuhei/work/shuheikagawa.com/source/works/radiati
 Deploy to GitHub Pages.
 
 ```
-yarn run deploy
+npm run deploy
 ```
