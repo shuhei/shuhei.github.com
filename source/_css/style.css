@@ -174,7 +174,7 @@ th, td {
 .hljs {
   line-height: 1.5em;
   padding: 10px 15px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 code {
   background-color: #f8f8f2;
