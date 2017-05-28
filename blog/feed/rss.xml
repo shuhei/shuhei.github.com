@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 14 May 2017 21:31:00 GMT</lastBuildDate><item><title>HTTP request timeouts in JavaScript</title><link>http://shuheikagawa.com//blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 28 May 2017 14:28:00 GMT</lastBuildDate><item><title>Getting Memory Usage in Linux and Docker</title><link>http://shuheikagawa.com//blog/2017/05/27/memory-usage/</link><description><![CDATA[
+<p>Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> os = <span class="hljs-built_in">require</span>(<span class="hljs-string">'os'</span>);
+
+<span class="hljs-keyword">const</span> total = os.totalmem();
+<span class="hljs-keyword">const</span> free = os.freemem();
+<span class="hljs-keyword">const</span> usage = (free - total) / total * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
+<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
+<p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
+<p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
+<p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
+<pre><code class="hljs undefined">$ free -m
+             total  used  free  shared  buffers cached
+Mem:          3950   285  3665     183       12    188
+-/+ buffers/cache:    84  3866
+Swap:         1896     0  1896</code></pre><p>So, what are they actually? According to <a href="http://man7.org/linux/man-pages/man5/proc.5.html">the manual of <code>/proc/meminfo</code></a>, which is a pseudo file and the data source of <code>free</code>, <code>top</code> and friends:</p>
+<pre><code class="hljs undefined">Buffers %lu
+       Relatively temporary storage for raw disk blocks that
+       shouldn't get tremendously large (20MB or so).
+
+Cached %lu
+       In-memory cache for files read from the disk (the page
+       cache).  Doesn't include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
+<p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
+<h2 id="memavailable">MemAvailable</h2>
+<p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>
+<pre><code class="hljs undefined">MemAvailable %lu (since Linux 3.14)
+       An estimate of how much memory is available for
+       starting new applications, without swapping.</code></pre><pre><code class="hljs undefined">$ cat /proc/meminfo
+MemTotal:        4045572 kB
+MemFree:         3753648 kB
+MemAvailable:    3684028 kB
+Buffers:           13048 kB
+Cached:           193336 kB
+...</code></pre><p>Its background is explained well in <a href="https://github.com/torvalds/linux/commit/34e431b0ae398fc54ea69ff85ec700722c9da773">the commit in Linux Kernel</a>, but essentially it excludes non-freeable page cache and includes reclaimable slab memory. <a href="https://github.com/torvalds/linux/blob/v4.12-rc2/mm/page_alloc.c#L4341-L4382">The current implementation in Linux v4.12-rc2</a> still looks almost same.</p>
+<p>Some implementation of <code>free -m</code> have <code>available</code> column. For example, on Boot2Docker:</p>
+<pre><code class="hljs undefined">$ free -m
+       total  used  free  shared  buff/cache  available
+Mem:    3950    59  3665     183         226       3597
+Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html">available on AWS CloudWatch metrics</a> via <code>--mem-avail</code> flag.</p>
+<h2 id="some-background-about-docker">Some background about Docker</h2>
+<p>My another question was &quot;Are those metrics same in Docker?&quot;. Before diving into this question, let&#39;s check how docker works.</p>
+<p>According to <a href="https://docs.docker.com/engine/docker-overview/#the-underlying-technology">Docker Overview: The Underlying Technology</a>, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Linux_namespaces">namespaces</a>: Isolate PIDs, hostnames, user IDs, network accesses, IPC, etc.</li>
+<li><a href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a>: Limit resource usage</li>
+<li><a href="https://en.wikipedia.org/wiki/UnionFS">UnionFS</a>: Isolate file system</li>
+</ul>
+<p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
+<p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
+<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
+<p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
+<pre><code class="hljs undefined">$ docker stats
+CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
+fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></pre><p>But if you want to get the memory usage in the container or get more detailed metrics, it gets complicated. <a href="https://fabiokung.com/2014/03/13/memory-inside-linux-containers/">Memory inside Linux containers</a> describes the difficulties in details.</p>
+<p><code>/proc/meminfo</code> and <code>sysinfo</code>, which is used by <code>os.totalmem()</code> and <code>os.freemem()</code> of Node.js, are not isolated, you get metrics of host OS if you use normal utilities like <code>top</code> and <code>free</code> in a Docker container.</p>
+<p>To get metrics specific to your Docker container, <a href="https://docs.docker.com/engine/admin/runmetrics/">you can check pseudo files in <code>/sys/fs/cgroup/memory/</code></a>. They are not standardized according to <a href="https://fabiokung.com/2014/03/13/memory-inside-linux-containers/">Memory inside Linux containers</a> though.</p>
+<pre><code class="hljs undefined">$ cat /sys/fs/cgroup/memory/memory.usage_in_bytes
+303104
+$ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+9223372036854771712</code></pre><p><code>memory.limit_in_bytes</code> returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with <code>/proc/meminfo</code> or commands that use it.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It was a longer journey than I initially thought. My takeaways are:</p>
+<ul>
+<li>Available Memory &gt; Free Memory</li>
+<li>Use <code>MemAvailable</code> if available (pun intended)</li>
+<li>Processes in a Docker container run directly in host OS</li>
+<li>Understand what you are measuring exactly, especially in a Docker container</li>
+</ul>
+
+]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2017/05/27/memory-usage/</guid></item><item><title>HTTP request timeouts in JavaScript</title><link>http://shuheikagawa.com//blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
 <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
 <p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
 <h2 id="node-js-http-https-">Node.js &quot;http&quot;/&quot;https&quot;</h2>
@@ -388,11 +458,4 @@ keyword$
 <span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
 <span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
 
-]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</guid></item><item><title>One-time binding for ng-if</title><link>http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</link><description><![CDATA[
-<p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
-<p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
-<p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
-
-]]></description><pubDate>Tue, 05 Apr 2016 21:58:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/05/one-time-binding-for-ng-if/</guid></item></channel></rss>
+]]></description><pubDate>Tue, 05 Apr 2016 22:32:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/04/06/clean-up-before-exiting-in-haskell/</guid></item></channel></rss>
