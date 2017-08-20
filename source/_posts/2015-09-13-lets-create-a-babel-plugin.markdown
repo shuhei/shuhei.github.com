@@ -284,5 +284,5 @@ Let's create awesome babel plugins!
 
 ### Projects
 
-- [shuhei/babel-plugin-auto-assign](https://github.com/estree/estree) The case study project in this article.
+- [shuhei/babel-plugin-auto-assign](https://github.com/shuhei/babel-plugin-auto-assign) The case study project in this article.
 - [shuhei/babel-plugin-angular2-annotations](https://github.com/shuhei/babel-plugin-angular2-annotations) A plugin for building Angular 2 app with Babel. It supports TypeScript-like method parameter decorators by monkey-patching Babylon.
