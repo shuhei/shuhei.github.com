@@ -6,6 +6,8 @@ comments: true
 categories: [JavaScript, Babel]
 ---
 
+**[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend [thejameskyle/babel-handbook](https://github.com/thejameskyle/babel-handbook/) as more up-to-date documentation.**
+
 [Babel](https://babeljs.io/) is the great tool that transpiles ES2015, ES7, JSX and such into ES5 and make them available on the browsers. If you are a person like me, you might use it on a daily basis.
 
 In addition to to [the built-in transformers](https://babeljs.io/docs/advanced/transformers/), you can add your own transpilation rules by employing third-party plugins. For example, I have been developing [a plugin that enables you to write Angular 2 apps with Babel](https://github.com/shuhei/babel-plugin-angular2-annotations) lately. It is easier to develop than you may think. Let me introduce how to create a plugin for Babel 5.x.
