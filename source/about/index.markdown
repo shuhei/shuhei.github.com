@@ -22,6 +22,7 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 
 ## Talks
 
+- 2017/9 [Building a Pixel Art Editor with Elm](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm)
 - 2016/5 [Angular 2 Offline Compiler](https://speakerdeck.com/shuhei/angular-2-offline-compiler)
 - 2016/3 [Weird Attractors](https://speakerdeck.com/shuhei/weird-attractors)
 - 2015/12 [Angular 2](https://speakerdeck.com/shuhei/angular-2-at-js-ojisan-number-6-3) at [JS Ojisan #6-3](https://atnd.org/events/71991)
