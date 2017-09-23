@@ -17,7 +17,7 @@ We want to use only one `<table>` to easily achive the goal 1. But at the same t
 
 So I gave it a shot and here's the result.
 
-<a class="jsbin-embed" href="http://jsbin.com/katabi/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script>
+<a href="https://jsbin.com/katabi/edit" target="_blank">JS Bin on jsbin.com</a>
 
 ## transform: translate()
 

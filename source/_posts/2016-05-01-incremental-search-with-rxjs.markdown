@@ -18,7 +18,7 @@ RxJS leads us to better design separating data flow and side-effects. In additio
 
 Here is an example. Type fast in the text fields. **Without switchMap** sometimes shows a wrong result while **With switchMap** always works fine.
 
-<a class="jsbin-embed" href="http://jsbin.com/megiqo/embed?output">JS Bin on jsbin.com</a><script async src="http://static.jsbin.com/js/embed.min.js?3.35.12"></script>
+<a href="http://jsbin.com/megiqo/edit" target="_blank">JS Bin on jsbin.com</a>
 
 `search` function mocks an AJAX request. It returns a `Promise` that resolves after a random delay.
 
