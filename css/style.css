@@ -318,9 +318,16 @@ code {
   .post-list-item,
   .pagination,
   .comments {
-    width: 90%;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
   }
   .post-list-item__title {
     width: 100%;
+  }
+  .hljs {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 1.4em 20px;
   }
 }
