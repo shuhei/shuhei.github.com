@@ -25,13 +25,19 @@ import siteConfig from './source/_config/site.json';
 
 const publicDir = 'public';
 
-// Custom renderer to add `hljs` class to code blocks.
-// https://github.com/chjj/marked/pull/418
 const renderer = new Renderer();
+// Add `hljs` class to code blocks.
+// https://github.com/chjj/marked/pull/418
 renderer.code = (code, language) => {
   const validLang = !!(language && highlightjs.getLanguage(language));
   const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
+// Responsive table
+// https://www.w3schools.com/howto/howto_css_table_responsive.asp
+renderer.table = (header, body) => {
+  const table = Renderer.prototype.table.call(this, header, body);
+  return `<div class="table-wrapper">${table}</div>`;
 };
 
 // Copy static pages compiling markdown files.
