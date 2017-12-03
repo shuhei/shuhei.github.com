@@ -53,9 +53,9 @@ function renderPage(component, props, css) {
     <html ${head.htmlAttributes.toString()}>
       <head>
         <meta charset="utf-8">
-        <link rel="prefetch" href="${fontCSS}">
-        <link rel="prefetch" href="${jsURL}">
-        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin="">
+        <link rel="preload" href="${fontCSS}">
+        <link rel="preload" href="${jsURL}">
+        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <meta name="viewport" content="initial-scale=1">
         ${head.title.toString()}
         <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
