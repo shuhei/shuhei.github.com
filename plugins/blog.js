@@ -10,6 +10,7 @@ import strftime from 'strftime';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import CleanCSS from 'clean-css';
 
 import Layout from '../source/_layouts/Layout';
 import IndexPage from '../source/_layouts/IndexPage';
@@ -27,7 +28,7 @@ function jsFriendlyJSONStringify(source) {
     .replace(/\u2029/g, '\\u2029');
 }
 
-function renderPage(component, props) {
+function renderPage(component, props, css) {
   const contentHtml = renderToString(
     React.createElement(
       Layout,
@@ -53,8 +54,7 @@ function renderPage(component, props) {
         ${head.title.toString()}
         <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
         <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Asap:4000,700">
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Asap:400,700">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -64,6 +64,7 @@ function renderPage(component, props) {
           ga('create', 'UA-309586-8', 'shuheikagawa.com');
           ga('send', 'pageview');
         </script>
+        <style>${css}</style>
       </head>
       <body>
         <div id="container">${contentHtml}</div>
@@ -104,10 +105,18 @@ function toURL(str) {
   return str.toLowerCase().replace(/'/g, '').replace(/[^a-z1-9-]/g, ' ').replace(/\s+/g, '-');
 }
 
+function readCssFiles(filePaths) {
+  const concatenated = filePaths
+    .map(css => fs.readFileSync(css, { encoding: 'utf8' }))
+    .join('\n');
+  return new CleanCSS({}).minify(concatenated).styles;
+}
+
 export function index(config) {
   const files = [];
   const perPage = config.perPage || 3;
   const getCompiledTemplate = templateCache();
+  const css = readCssFiles(config.cssFiles);
 
   // Return a function that renders `tmpl` with `locals` data into `dest`.
   function renderTemplateFunc(tmpl, dest, locals) {
@@ -141,7 +150,7 @@ export function index(config) {
   function renderReactFunc(component, dest, locals) {
     return (callback) => {
       try {
-        const data = renderPage(component, locals);
+        const data = renderPage(component, locals, css);
         const file = new gutil.File({
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
@@ -250,6 +259,8 @@ export function index(config) {
 }
 
 export function layout(config) {
+  const css = readCssFiles(config.cssFiles);
+
   function transform(file, enc, cb) {
     if (!file.frontMatter || !file.frontMatter.layout) {
       this.push(file);
@@ -275,7 +286,7 @@ export function layout(config) {
 
     try {
       const htmlFile = file.clone(false);
-      htmlFile.contents = new Buffer(renderPage(component, locals));
+      htmlFile.contents = new Buffer(renderPage(component, locals, css));
       this.push(htmlFile);
 
       const jsonFile = file.clone(false);

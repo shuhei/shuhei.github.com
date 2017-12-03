@@ -6,5 +6,9 @@
   "blogDir": "blog",
   "sourceDir": "source",
   "layoutDir": "_layouts",
-  "postDir": "_posts"
+  "postDir": "_posts",
+  "cssFiles": [
+    "node_modules/highlight.js/styles/monokai-sublime.css",
+    "source/_css/style.css"
+  ]
 }

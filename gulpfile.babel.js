@@ -80,18 +80,6 @@ gulp.task('js', (callback) => {
   });
 });
 
-// Concat CSS files.
-gulp.task('css', () => {
-  const cssFiles = [
-    './node_modules/highlight.js/styles/monokai-sublime.css',
-    './source/_css/**/*.css',
-  ];
-  return gulp.src(cssFiles)
-    .pipe(plumber())
-    .pipe(concat('style.css'))
-    .pipe(gulp.dest('./public/css'));
-});
-
 gulp.task('clean', (cb) => {
   del([publicDir], cb);
 });
@@ -107,7 +95,6 @@ gulp.task('watch', ['default'], () => {
     gulp.watch(['./source/**/*.*', '!./source/_{js,css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layouts}/*.*', ['posts', 'copy']);
     gulp.watch('./source/_{js,layouts}/**/*.js', ['js']);
-    gulp.watch('./source/_css/**/*.css', ['css']);
   });
 });
 
@@ -130,6 +117,6 @@ gulp.task('newpage', () => {
   newPage(args.filename, siteConfig);
 });
 
-gulp.task('build', ['css', 'js', 'copy', 'posts']);
+gulp.task('build', ['js', 'copy', 'posts']);
 
 gulp.task('default', ['build']);
