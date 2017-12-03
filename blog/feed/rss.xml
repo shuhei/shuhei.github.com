@@ -270,7 +270,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
   <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
 }</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
 <h2 id="supported-annotations">Supported annotations</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Name</th>
@@ -316,7 +316,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 </tr>
 </tbody>
 </table>
-<p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
+</div><p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
 <ul>
 <li><a href="https://babeljs.io/docs/plugins/preset-es2015/">babel-preset-es2015</a></li>
 <li><a href="https://babeljs.io/docs/plugins/transform-class-properties/">babel-plugin-transform-class-properties</a></li>

@@ -238,6 +238,9 @@ blockquote cite:before {
 }
 
 /* table */
+.table-wrapper {
+  overflow-x: auto;
+}
 table {
   border-collapse: collapse;
   margin: 2em 0;
