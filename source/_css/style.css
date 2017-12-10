@@ -5,6 +5,13 @@ body {
   margin: 0;
 }
 
+::-moz-selection {
+  background: #fbf42f;
+}
+::selection {
+  background: #fbf42f;
+}
+
 a {
   color: #000;
   transition: color 300ms ease;

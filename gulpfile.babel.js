@@ -93,7 +93,7 @@ gulp.task('watch', ['default'], () => {
     }
     gutil.log('Listening on port 4000');
     gulp.watch(['./source/**/*.*', '!./source/_{js,css,posts}/**/*.*'], ['copy']);
-    gulp.watch('./source/_{posts,layouts}/*.*', ['posts', 'copy']);
+    gulp.watch('./source/_{posts,layouts,css}/*.*', ['posts', 'copy']);
     gulp.watch('./source/_{js,layouts}/**/*.js', ['js']);
   });
 });
