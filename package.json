@@ -57,6 +57,7 @@
     "textile-js": "^2.0.2",
     "through2": "^2.0.0",
     "webpack": "^3.9.1",
+    "webpack-merge": "^4.1.1",
     "yargs": "^10.0.3"
   },
   "gh-pages": {

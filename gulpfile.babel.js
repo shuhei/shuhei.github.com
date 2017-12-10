@@ -14,8 +14,8 @@ import markdown from 'gulp-markdown';
 import frontMatter from 'gulp-front-matter';
 import textile from 'gulp-textile';
 
-import webpackDevConfig from './webpack.config';
-import webpackProductionConfig from './webpack.production.config';
+import webpackDevConfig from './webpack.dev';
+import webpackProductionConfig from './webpack.production';
 import condition from './plugins/condition';
 import server from './plugins/server';
 import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
