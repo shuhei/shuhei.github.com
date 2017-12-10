@@ -27,7 +27,7 @@ There is also [`http.ClientRequest.setTimeout()`](http://nodejs.org/api/http.htm
 
 So this also calls [`socket.setTimeout()`](http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback).
 
-Either of them don't close the connection when the socket timeouts but only emits a `timeout` event.
+Either of them doesn't close the connection when the socket timeouts but only emits a `timeout` event.
 
 So, what does `socket.setTimeout()` do? Let's check.
 
@@ -35,7 +35,7 @@ So, what does `socket.setTimeout()` do? Let's check.
 
 [The documentation](http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback) says:
 
->Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default net.Socket do not have a timeout.
+>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default `net.Socket` does not have a timeout.
 
 OK, but what does "inactivity on the socket" exactly mean? In a happy path, a TCP socket follows the following steps:
 
@@ -56,7 +56,7 @@ Because the timeout timer is restarted in each step, timeout happens only when a
 
 Then what happens if timeouts happen in all of the steps? As far as I tried, `timeout` event is triggered only once.
 
-Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set timeout for a socket and the socket is reused for another HTTP request? Never mind. `timeout` set in a HTTP request does not affect subsequent HTTP requests because [the timeout is cleaned up when it's kept alive](https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546).
+Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. `timeout` set in an HTTP request does not affect subsequent HTTP requests because [the timeout is cleaned up when it's kept alive](https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546).
 
 ### HTTP Keep-Alive & TCP Keep-Alive
 
@@ -100,11 +100,11 @@ While my initial interest was server-side HTTP requests, I become curious about 
 
 ### XMLHttpRequest
 
-[`XMLHttpRequest.timeout`](http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout) aborts a request after the given timeout and calls `ontimeout` event listeners. The documentation does not say about the exact timing, but I guess that it is until `readyState === 4`, which means that the entire response body has arrived.
+[`XMLHttpRequest.timeout`](http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout) aborts a request after the given timeout and calls `ontimeout` event listeners. The documentation does not explain the exact timing, but I guess that it is until `readyState === 4`, which means that the entire response body has arrived.
 
 ### fetch()
 
-As far as I read [`fetch()`'s documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch), it does not have any way to specify timeout. So we need to handle by ourselves. We can do that easily using [`Promise.race()`](http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race).
+As far as I read [`fetch()`'s documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch), it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using [`Promise.race()`](http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race).
 
 ```js
 function withTimeout(msecs, promise) {
@@ -125,4 +125,4 @@ This kind of external approach works with any HTTP client and timeouts for the o
 
 ## Conclusion
 
-Most of the HTTP request APIs in JavaScript don't offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on high-level abstraction like `Promise` and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use the exiting low-level timeout mechanisms like `socket.setTimeout()` together to save some resources.
+Most of the HTTP request APIs in JavaScript doesn't offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like `Promise` and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like `socket.setTimeout()` together to save some resources.
