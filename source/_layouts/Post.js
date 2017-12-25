@@ -6,7 +6,7 @@ import { PostTypes } from './types';
 const Post = ({ post }) => {
   const categories = [...(post.categories || []).map((category, i) => [
     i === 0 ? ' - ' : ', ',
-    <span className="category">{category}</span>,
+    <span className="category" key={category}>{category}</span>,
   ])];
   const content = { __html: post.content };
 

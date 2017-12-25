@@ -53,8 +53,8 @@ function renderPage(component, props, css) {
     <html ${head.htmlAttributes.toString()}>
       <head>
         <meta charset="utf-8">
-        <link rel="preload" href="${fontCSS}">
-        <link rel="preload" href="${jsURL}">
+        <link rel="preload" href="${fontCSS}" as="style">
+        <link rel="preload" href="${jsURL}" as="script">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <meta name="viewport" content="initial-scale=1">
         ${head.title.toString()}

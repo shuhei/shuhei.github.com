@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 
 import Router from './Router';
 import IndexPage from '../_layouts/IndexPage';
@@ -12,7 +12,7 @@ const container = document.getElementById('container');
 
 // eslint-disable-next-line no-underscore-dangle
 const preloadedProps = window.__PRELOADED_PROPS__;
-window.history.replaceState(preloadedProps, '', location.pathname);
+window.history.replaceState(preloadedProps, '', window.location.pathname);
 
 const appRoutes = [
   {
@@ -37,7 +37,7 @@ const appRoutes = [
   },
 ];
 
-render(
+hydrate(
   <Router
     initialProps={preloadedProps}
     routes={appRoutes}
