@@ -38,9 +38,9 @@ On the technical side, my team joined a fairly large project and successfully co
 
 ## Side Projects
 
-I enjoyed working with Elm. I flied to Paris for [Elm Europe 2017](https://2017.elmeurope.org/), [rewrote a temperature comparison app](https://github.com/shuhei/elm-compare), built [a mobile-friendly pixel editor](https://github.com/shuhei/pixelm) and [talked about it at Elm Berlin Meetup](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm). I also worked on [an experiment of its compiler-side](https://github.com/w0rm/elm-glsl) in Haskell, however it is still pending.
+I enjoyed working with Elm. I [wrote a weather mobile app](https://github.com/shuhei/elm-compare), flied to Paris for [Elm Europe 2017](https://2017.elmeurope.org/),  built [a mobile-friendly pixel editor](https://github.com/shuhei/pixelm) and [talked about it](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup](https://www.meetup.com/Elm-Berlin/events/242852794/). I also helped [an experiment of its compiler-side](https://github.com/w0rm/elm-glsl) in Haskell, however it is still pending.
 
-I didn't do much with JavaScript for side projects, but wrote [a tiny library for server-side rendering with tagged template literals](https://github.com/shuhei/pelo) while hanging out with friends at a cafe. It's used in the choo ecosystem now.
+I didn't do much with JavaScript for side projects, but wrote [a tiny library for server-side rendering with tagged template literals](https://github.com/shuhei/pelo) while hanging out with friends at a cafe. It's used in [the choo ecosystem](https://github.com/choojs) now.
 
 Aside from building things, I learned monad transformers, etc. from [Haskell Book](http://haskellbook.com/) and machine learning with neural networks from [Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning).
 
