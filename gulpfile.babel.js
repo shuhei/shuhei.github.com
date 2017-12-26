@@ -8,7 +8,6 @@ import webpack from 'webpack';
 
 import gulp from 'gulp';
 import gutil from 'gulp-util';
-import concat from 'gulp-concat';
 import plumber from 'gulp-plumber';
 import markdown from 'gulp-markdown';
 import frontMatter from 'gulp-front-matter';
@@ -29,9 +28,13 @@ const renderer = new Renderer();
 // Add `hljs` class to code blocks.
 // https://github.com/chjj/marked/pull/418
 renderer.code = (code, language) => {
-  const validLang = !!(language && highlightjs.getLanguage(language));
-  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
-  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+  const extension = (language || '').split('.').pop();
+  const isValidLang = !!(extension && highlightjs.getLanguage(extension));
+  const highlighted = isValidLang ? highlightjs.highlight(extension, code).value : code;
+  const filename = extension && extension !== language ?
+    `<div><span class="code__filename">${language}</span></div>` :
+    '';
+  return `<pre><code class="hljs ${extension}">${filename}${highlighted}</code></pre>`;
 };
 // Responsive table
 // https://www.w3schools.com/howto/howto_css_table_responsive.asp

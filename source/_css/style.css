@@ -183,7 +183,7 @@ th, td {
 /* code */
 .hljs {
   line-height: 1.5em;
-  padding: 10px 15px;
+  padding: 15px 20px;
   overflow-x: auto;
 }
 code {
@@ -191,6 +191,13 @@ code {
   padding: 0.1em 0.2em;
   font-size: 0.85em;
   font-family: Monaco, 'Lucida Console', monospace;
+}
+.code__filename {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 5px 10px;
+  font-size: 0.85em;
+  background-color: #666;
 }
 
 /* pagination */
