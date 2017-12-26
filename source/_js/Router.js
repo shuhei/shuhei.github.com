@@ -21,7 +21,7 @@ const resetDisqus = () => {
     window.DISQUS.reset({
       reload: true,
       config() {
-        this.page.url = location.href;
+        this.page.url = window.location.href;
       },
     });
   } else {
@@ -47,8 +47,7 @@ export default class Router extends Component {
   constructor(props) {
     super(props);
 
-
-    const initialRoute = this.findRoute(location.pathname);
+    const initialRoute = this.findRoute(window.location.pathname);
     this.state = {
       component: initialRoute.component,
       props: props.initialProps,
@@ -63,17 +62,17 @@ export default class Router extends Component {
     resetDisqus();
 
     window.addEventListener('popstate', (event) => {
-      this.popState(location.pathname, event.state);
+      this.popState(window.location.pathname, event.state);
     });
   }
 
   findRoute(path) {
     const normalizedPath = path.replace(/\/index\.html$/, '/');
-    return this.props.routes.find(route =>
-      new RegExp(`^${route.pattern}$`).test(normalizedPath)
-    );
+    return this.props.routes
+      .find(route => new RegExp(`^${route.pattern}$`).test(normalizedPath));
   }
 
+  // Handle clicks on internal links.
   pushState(path) {
     window.ga('set', 'page', path);
     window.ga('send', 'pageview');
@@ -81,27 +80,40 @@ export default class Router extends Component {
     const route = this.findRoute(path);
     if (!route) {
       console.warn(`Route not found for ${path}`);
-      location.href = path;
+      window.location.href = path;
       return;
     }
     fetch(`${path}index.json`)
       .then(res => res.json())
       .then((nextProps) => {
+        // Keep the scroll position in history before navigation
+        // in order to restore it with "Go Back" button later.
+        window.history.replaceState({
+          props: this.state.props,
+          scrollPosition: window.scrollY,
+        }, '', window.location.pathname);
+
         this.setState({
           component: route.component,
           props: nextProps,
-        });
-        window.scrollTo(0, 0);
-        window.history.pushState(nextProps, '', path);
+        }, () => {
+          window.scrollTo(0, 0);
+          window.history.pushState({
+            props: nextProps,
+            scrollPosition: 0,
+          }, '', path);
 
-        resetSpeakerDeck();
-        resetDisqus();
+          resetSpeakerDeck();
+          resetDisqus();
+        });
       })
-      .catch(() => {
-        location.href = path;
+      .catch((e) => {
+        console.error('Error navigating to', path, e);
+        window.location.href = path;
       });
   }
 
+  // Handle "Go Back" and "Go Forward".
   popState(path, previousState) {
     window.ga('set', 'page', path);
     window.ga('send', 'pageview');
@@ -109,17 +121,22 @@ export default class Router extends Component {
     const route = this.findRoute(path);
     if (!route) {
       console.warn(`Route not found for ${path}`);
-      location.href = path;
+      window.location.href = path;
       return;
     }
+
     this.setState({
       component: route.component,
-      props: previousState,
-    });
-    window.scrollTo(0, 0);
+      props: previousState.props,
+    }, () => {
+      // Restore scroll position. Not sure why, but this doesn't work without a delay.
+      setTimeout(() => {
+        window.scrollTo(0, previousState.scrollPosition || 0);
+      }, 0);
 
-    resetSpeakerDeck();
-    resetDisqus();
+      resetSpeakerDeck();
+      resetDisqus();
+    });
   }
 
   render() {
@@ -129,8 +146,8 @@ export default class Router extends Component {
       React.createElement(
         this.state.component,
         this.state.props,
-        null
-      )
+        null,
+      ),
     );
   }
 }
