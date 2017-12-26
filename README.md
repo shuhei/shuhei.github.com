@@ -7,6 +7,8 @@ git clone {this repo}
 git checkout source
 git submodule init
 git submodule update
+
+yarn
 ```
 
 ## Add posts and pages
@@ -14,48 +16,19 @@ git submodule update
 To add a post:
 
 ```
-gulp newpost --title 'Hello World!'
+yarn run newpost 'Hello World!'
 ```
 
 To add a page:
 
 ```
-gulp newpage --filename 'foo'
+yarn run newpage 'foo'
 ```
 
-## Build
-
-Use `gulp` to build static files.
+## Start a dev server
 
 ```
-gulp
-# or
-npm start
-```
-
-When writing articles or developing templates, watch file changes.
-
-```
-gulp watch
-# or
-npm run watch
-```
-
-### EMFILE
-
-If you get the following error, change ulimit like `ulimit -n 1024`.
-
-```
-$ gulp
-[19:01:41] Using gulpfile ~/work/shuheikagawa.com/gulpfile.js
-[19:01:41] Starting 'css'...
-[19:01:41] Starting 'copy'...
-[19:01:41] Starting 'posts'...
-
-stream.js:94
-      throw er; // Unhandled stream error in pipe.
-            ^
-Error: EMFILE, readdir '/Users/shuhei/work/shuheikagawa.com/source/works/radiation/css/custom-theme/images'
+yarn start
 ```
 
 ## Deploy
@@ -63,5 +36,5 @@ Error: EMFILE, readdir '/Users/shuhei/work/shuheikagawa.com/source/works/radiati
 Deploy to GitHub Pages.
 
 ```
-npm run deploy
+yarn run deploy
 ```
