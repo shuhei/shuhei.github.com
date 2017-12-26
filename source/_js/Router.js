@@ -43,6 +43,13 @@ const resetSpeakerDeck = () => {
   }
 };
 
+const saveScrollPosition = () => {
+  const newState = Object.assign({}, window.history.state, {
+    scrollPosition: window.scrollY,
+  });
+  window.history.replaceState(newState, '', window.location.pathname);
+};
+
 export default class Router extends Component {
   constructor(props) {
     super(props);
@@ -64,6 +71,11 @@ export default class Router extends Component {
     window.addEventListener('popstate', (event) => {
       this.popState(window.location.pathname, event.state);
     });
+
+    window.history.replaceState({
+      props: this.state.props,
+      scrollPosition: 0,
+    }, '', window.location.pathname);
   }
 
   findRoute(path) {
@@ -86,12 +98,8 @@ export default class Router extends Component {
     fetch(`${path}index.json`)
       .then(res => res.json())
       .then((nextProps) => {
-        // Keep the scroll position in history before navigation
-        // in order to restore it with "Go Back" button later.
-        window.history.replaceState({
-          props: this.state.props,
-          scrollPosition: window.scrollY,
-        }, '', window.location.pathname);
+        // Save scroll position for "Go Back".
+        saveScrollPosition();
 
         this.setState({
           component: route.component,

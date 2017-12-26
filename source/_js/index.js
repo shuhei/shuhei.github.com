@@ -12,7 +12,6 @@ const container = document.getElementById('container');
 
 // eslint-disable-next-line no-underscore-dangle
 const preloadedProps = window.__PRELOADED_PROPS__;
-window.history.replaceState(preloadedProps, '', window.location.pathname);
 
 const appRoutes = [
   {
