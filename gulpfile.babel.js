@@ -25,8 +25,9 @@ import siteConfig from './source/_config/site.json';
 const publicDir = 'public';
 
 const renderer = new Renderer();
-// Add `hljs` class to code blocks.
-// https://github.com/chjj/marked/pull/418
+// - Add `hljs` class to code blocks  https://github.com/chjj/marked/pull/418
+// - Show filename if provided
+// `language` can be a language identifier for highlight.js or a filename with an extension.
 renderer.code = (code, language) => {
   const extension = (language || '').split('.').pop();
   const isValidLang = !!(extension && highlightjs.getLanguage(extension));
