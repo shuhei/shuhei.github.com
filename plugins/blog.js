@@ -77,7 +77,7 @@ function renderPage(component, props, css) {
         <script><!--
           window.__PRELOADED_PROPS__ = ${jsFriendlyJSONStringify(props)};
         --></script>
-        <script src="${jsURL}"></script>
+        <script src="${jsURL}" defer></script>
       </body>
     </html>
   `.trim();
