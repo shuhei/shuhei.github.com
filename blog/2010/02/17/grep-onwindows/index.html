@@ -31,6 +31,6 @@
         <script><!--
           window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"Windows で grep","published":true,"date":"2010-02-17 09:38","comments":true,"tags":null,"categories":["Windows"],"url":"/blog/2010/02/17/grep-onwindows/","content":"<pre class=\"prettyprint\">findstr /n /s /c:\"hello world\" sub_dir\\*</pre>\n<p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。<br />\n/n で行番号表示。/s は再帰的に。</p>\n<pre class=\"prettyprint\">findstr /n /s \"hello world\" sub_dir\\*</pre>\n<p>とすると、&#8220;hello&#8221; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>\n<p>via <a href=\"http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265\">コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &#8211; 主に言語とシステム開発に関して</a></p>"}};
         --></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/index.js" defer></script>
       </body>
     </html>

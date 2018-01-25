@@ -36,6 +36,6 @@ puts h # =&gt; {"hello"=&gt;["world"]}</pre>
         <script><!--
           window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"Ruby の Hash#default","published":true,"date":"2010-02-17 12:45","comments":true,"tags":null,"categories":["Ruby"],"url":"/blog/2010/02/17/hashdefault/","content":"<p>Windows XP の Ruby 1.8.7 で</p>\n<pre class=\"prettyprint\">h = {}\nh.default = []\nh[\"hello\"] &lt;&lt; \"world\"</pre>\n<p>としたとき</p>\n<pre class=\"prettyprint\">puts h.size # =&gt; 1\nputs h # =&gt; {\"hello\"=&gt;[\"world\"]}</pre>\n<p>となるのを期待していたのですが <code>{}</code> と出力されます。<br />\nさらに、なんと以下のようになりました。</p>\n<pre class=\"prettyprint\">puts h[\"foo\"] # =&gt; [\"world\"]</pre>\n<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p>"}};
         --></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/index.js" defer></script>
       </body>
     </html>

@@ -32,6 +32,6 @@
         <script><!--
           window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"karma-6to5-preprocessor","date":"2014-11-13 23:35","comments":true,"categories":["JavaScript","Karma","EcmaScript6"],"url":"/blog/2014/11/13/karma--to--preprocessor/","content":"<p>最近 <a href=\"https://github.com/6to5/6to5\">6to5</a> を使って ES6 を書いています。ES6 を使うには Traceur Compiler なんかもありますが、クライアント側に結構重い runtime を入れる必要があって気が進みません。そこで runtime のいらない 6to5。</p>\n<p>今作っているのは Angular アプリなので、テストは Karma。6to5 の Preprocessor が必要です。当然あるだろうと思って検索したのですが、ない。なかったので作りました。</p>\n<p><a href=\"https://www.npmjs.org/package/karma-6to5-preprocessor\">karma-6to5-preprocessor</a></p>\n<p>ES6 で書いたスクリプトを Karma でテストすることができるようになります。Sourcemap を含めた設定例は README を見てみてください。</p>\n<p>その後、ES6 Module も使うことにして、Browerify の transform として 6to5 と同じ作者が作っている <a href=\"https://github.com/6to5/6to5-browserify\">6to5-browserify</a> を使うようにしました。すると Karma の方でも Browerify を使えばいいので karma-6to5-preprocessor は使う必要がなくなってしまったのです。結構需要がありそうなのに、何でなかったんだろうと思っていたのですが、これで謎がとけました。</p>\n<p>それでも、ES6 Modules は使わないけど ES6 の便利な機能は使いたいという人はいるようで、ちょこちょこダウンロードされています。良かった良かった。</p>\n"}};
         --></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/index.js" defer></script>
       </body>
     </html>

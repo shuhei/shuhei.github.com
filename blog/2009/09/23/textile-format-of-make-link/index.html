@@ -35,6 +35,6 @@
         <script><!--
           window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"Make Link の Textile 2 用フォーマット","published":true,"date":"2009-09-23 10:54","comments":true,"tags":null,"categories":[],"url":"/blog/2009/09/23/textile-format-of-make-link/","content":"<p>Firefox の Addon <a href=\"https://addons.mozilla.org/ja/firefox/addon/142\">Make Link</a> はページのタイトルや <span class=\"caps\">URL</span> からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。<br />\nとうことで、Textile 2 用のフォーマットを作ってみました。</p>\n<h3>ページ名と<span class=\"caps\">URL</span></h3>\n<pre class=\"prettyprint\">\"%text%\":%url</pre>\n<p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>\n<h3>引用（引用元とその<span class=\"caps\">URL</span>付き）</h3>\n<pre class=\"prettyprint\">bq.. %text%\n\n\"??%title%??\":%url%</pre>\n<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p>"}};
         --></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/index.js" defer></script>
       </body>
     </html>

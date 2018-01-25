@@ -35,6 +35,6 @@ draw メソッドの中で、saveFrame() を呼び出せば OK。<br />
         <script><!--
           window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"Proce55ing から 動画を作る","published":true,"date":"2008-12-07 03:09","comments":true,"tags":null,"categories":["Proce55ing"],"url":"/blog/2008/12/07/make-movie-from-proce55ing/","content":"<p>Proce55ing で作った Sketch を動画にする方法です。<br />\nやり方は簡単。</p>\n<p>まず、Proce55ing から連番の静止画を書き出します。<br />\ndraw メソッドの中で、saveFrame() を呼び出せば OK。<br />\nこれで、フレームごとに screen-<span class=\"caps\">XXXX</span>.tif という画像が書き出されます。</p>\n<p>そして、ffmpeg で連番の静止画から動画を作成します。<br />\nコマンドプロンプトで下記のようにすると、30 fps で mpeg ファイルが書き出されます。<br />\nちなみに、%04d の部分は「数字が 4 つ」の意味です。</p>\n<pre class=\"prettyprint\">ffmpeg -r 30 -i \"screen-%04d.tif\" -vcodec mjpeg -sameq test.avi</pre>\n<p>簡単ですね。</p>"}};
         --></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/index.js" defer></script>
       </body>
     </html>
