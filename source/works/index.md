@@ -14,6 +14,7 @@ footer: true
 
 ## Visible Things
 
+- [Pixelm](/pixelm/): A pixel editor optimized for mobile devices and written with Elm.
 - [Weird Attractors](/attractors): Tweaked Strange Attractors.
 - [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
 - Contrib: Check your GitHub Contributions on your phone. Build with React.js and SVG.
