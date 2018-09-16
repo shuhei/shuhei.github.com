@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Node.js under a Microscope - CPU FlameGraph and FlameScope"
+title: "Node.js under a Microscope: CPU FlameGraph and FlameScope"
 date: 2018-09-16 10:56
 comments: true
 categories: [Node.js, Linux]
@@ -10,15 +10,15 @@ Last week, I had an opportunity to talk about profiling Node.js applications on 
 
 ## Background
 
-I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds, but I didn't know why.
+I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn't know why.
 
-My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took `tcpdump` and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network, or *someone else*.
+My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took `tcpdump` and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or *someone else*.
 
 ## CPU Profiling with Linux `perf` Command
 
 Because the weird latency was happening in the application itself, I wanted to know what's going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it **on production**, so profiling was naturally a good fit because of its smaller overhead.
 
-For Node.js, there are mainly two different tools. One is [V8 profiler](https://github.com/v8/v8/wiki/V8-Profiler), and the other is [Linux perf](https://perf.wiki.kernel.org/index.php/Main_Page). V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux `perf` can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to [Node CPU Profiling Roadmap](https://github.com/nodejs/diagnostics/issues/148), it seems that V8 profiler is the one officially supported by the V8 team, but Linux `perf` will keep working for a while. After all, I picked Linux `perf` because of Brendan Gregg's articles about it, low performance overhead and small intervention to applications.
+For Node.js, there are mainly two different tools. One is [V8 profiler](https://github.com/v8/v8/wiki/V8-Profiler), and the other is [Linux perf](https://perf.wiki.kernel.org/index.php/Main_Page). V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux `perf` can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to [Node CPU Profiling Roadmap](https://github.com/nodejs/diagnostics/issues/148), it seems that V8 profiler is the one officially supported by the V8 team, but Linux `perf` will keep working for a while. After all, I picked Linux `perf` because of low performance-overhead and small intervention to applications.
 
 Linux `perf record` records stack traces into a binary file called `perf.data` by default. The binary file has only addresses and file names of functions. `perf script` converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.
 
@@ -45,7 +45,7 @@ Now we have human-readable stack traces, but it's still hard to browse thousands
 
 I found some insights about the application on production with CPU Flame Graph.
 
-- React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, `JSON.parse()` was using 3x more CPU than React. It may be because we had already optimized React server-side rendering though.
+- React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, `JSON.parse()` was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.
 - Gzip decompression was using the almost same amount of CPU as React server-side rendering.
 
 There are a few tools like [FlameGraph](https://github.com/brendangregg/FlameGraph) and [0x](https://github.com/davidmarkclements/0x) to generate CPU Flame Graph from Linux `perf` stack traces. However, I eventually didn't need them because FlameScope, which I'll explain next, can generate CPU Flame Graph too.
@@ -73,7 +73,9 @@ The master process was aggregating application metrics from worker processes, an
 
 FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark & Sweep/Compact garbage collection.
 
-The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance, but it was a problem for V8's garbage collector. The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application's 99 percentile response time improved by hundreds of milliseconds!
+The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8's [generational garbage collector](http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection).
+
+The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application's 99 percentile response time improved by hundreds of milliseconds!
 
 ## Node.js Gotchas
 
