@@ -2,14 +2,17 @@ const Post = require('./Post');
 const Comments = require('./Comments');
 
 const PostPage = ({ site, post }) => {
-  // TODO: Return title.
   const title = [post.title, site.title].join(' - ');
-  return `
+  const body = `
     <div>
       ${Post({ post })}
       ${post.comments ? Comments() : ''}
     </div>
   `;
+  return {
+    title,
+    body,
+  };
 };
 
 module.exports = PostPage;

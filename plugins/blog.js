@@ -20,12 +20,14 @@ const { PluginError } = gutil;
 const PLUGIN_NAME = 'blog';
 
 function renderPage(component, props, css) {
+  const {
+    title,
+    body,
+  } = component(props);
   const contentHtml = Layout({
     ...props,
-    children: component(props),
+    children: body,
   });
-  // TODO: Collect items in head.
-  const head = '';
 
   const fontCSS = '//fonts.googleapis.com/css?family=Asap:400,700';
 
@@ -39,7 +41,7 @@ function renderPage(component, props, css) {
         <link rel="preload" href="${fontCSS}" as="style">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <meta name="viewport" content="initial-scale=1">
-        ${head}
+        <title>${title}</title>
         <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
         <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
         <link rel="stylesheet" href="${fontCSS}">

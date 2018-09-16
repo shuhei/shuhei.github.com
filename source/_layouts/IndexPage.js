@@ -8,7 +8,7 @@ const IndexPage = ({
 }) => {
   const prevLink = prevPage ? `<a href=${prevPage}>Newer Posts</a>` : '';
   const nextLink = nextPage ? `<a href=${nextPage}>Older Posts</a>` : '';
-  return `
+  const body = `
     <div>
       ${posts.map(post => Post({ post }))}
       <ul class="pagination">
@@ -24,6 +24,10 @@ const IndexPage = ({
       </ul>
     </div>
   `;
+  return {
+    title,
+    body,
+  };
 };
 
 module.exports = IndexPage;

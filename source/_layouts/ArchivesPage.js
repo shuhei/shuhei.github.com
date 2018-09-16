@@ -13,10 +13,9 @@ const ArchivePost = ({ post }) => {
 };
 
 const ArchivesPage = ({ site, posts }) => {
-  // TODO: Use title.
   const title = ['Archives', site.title].join(' - ');
   const postList = posts.map(post => ArchivePost({ post })).join('\n');
-  return `
+  const body = `
     <div>
       <div class="post-list">
         <h1 class="title">
@@ -26,6 +25,10 @@ const ArchivesPage = ({ site, posts }) => {
       </div>
     </div>
   `;
+  return {
+    title,
+    body,
+  };
 };
 
 module.exports = ArchivesPage;

@@ -1,8 +1,6 @@
 const PagePage = ({ site, post }) => {
-  // TODO: Use title.
   const title = [post.title, site.title].join(' - ');
-
-  return `
+  const body = `
     <div>
       <div class="post">
         <div class="post-header">
@@ -16,6 +14,10 @@ const PagePage = ({ site, post }) => {
       </div>
     </div>
   `;
+  return {
+    title,
+    body,
+  };
 };
 
 module.exports = PagePage;
