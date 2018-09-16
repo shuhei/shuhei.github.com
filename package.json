@@ -56,12 +56,5 @@
     "static": "public",
     "deploy": "_deploy",
     "branch": "master"
-  },
-  "dependencies": {
-    "prop-types": "^15.5.8",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-helmet": "^5.0.3",
-    "whatwg-fetch": "^2.0.3"
   }
 }
