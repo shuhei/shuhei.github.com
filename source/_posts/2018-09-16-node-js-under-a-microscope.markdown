@@ -43,7 +43,7 @@ Now we have human-readable stack traces, but it's still hard to browse thousands
 ![CPU Flame Graph](/images/flamegraph.png)
 *A CPU Flame Graph from [a sample application](https://github.com/shuhei/perf-playground)*
 
-I found some insights about the application on production with CPU Flame Graph.
+I found some insights about the application on production with CPU Flame Graph:
 
 - React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, `JSON.parse()` was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.
 - Gzip decompression was using the almost same amount of CPU as React server-side rendering.
@@ -63,13 +63,13 @@ To use FlameScope, check out the repository and run the python server. Then put 
 
 I found a couple of exciting insights about the application on production using this tool.
 
-### Example 1 - Heavy Tasks in the Master Process
+### Example 1: Heavy Tasks in the Master Process
 
 The application used [the `cluster` module](https://nodejs.org/api/cluster.html) to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.
 
 The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using `JSON.stringify()` and `JSON.parse()` to deep-copy objects!
 
-### Example 2 - Frequent Garbage Collections
+### Example 2: Frequent Garbage Collections
 
 FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark & Sweep/Compact garbage collection.
 
@@ -79,19 +79,19 @@ The API responses were always promoted to the old generation space causing frequ
 
 ## Node.js Gotchas
 
-`perf script` collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols.
+`perf script` collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:
 
 1. Run your Node.js process with `--perf-basic-prof-only-functions` option. It generates a log file at `/tmp/perf-${pid}.map`. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in `/tmp/perf-${pid}.map` get outdated. [I wrote a script to fix the issue](https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c).
 2. Use [mmarchini/node-linux-perf](https://github.com/mmarchini/node-linux-perf). It generates the same `/tmp/perf-${pid}.map` as `--perf-basic-prof-only-functions` does, but on demand. Because it always freshly generates the file, it doesn't contain outdated symbols. It seems to be the way to go, but I haven't tried this on production yet.
 
-In addition to the above, there are a few more Node.js options that you can use to improve your stack traces. Because the stack traces were already good enough for me, I haven't tried them on production.
+In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven't tried them on production because the stack traces were already good enough for me:
 
 - `--no-turbo-inlining` turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.
 - `--interpreted-frames-native-stack` fixes `Builtin:InterpereterEntryTrampoline` in stack traces. It is available from Node.js 10.4.0. Check out "Interpreted Frames" in [Updates from the Diagnostics Summit](https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961) for more details.
 
 ## Docker Gotchas
 
-It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux `perf` with Docker.
+It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux `perf` with Docker:
 
 1. Run `perf record` and `perf script` in the same Docker container as your application is running
 2. Run `perf record` and `perf script` in the host OS
@@ -130,7 +130,7 @@ NSpid:  21574   6
 $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map
 ```
 
-Now everything is ready! You can use `perf script` as usual.
+Now everything is ready! Then we can use `perf script` as usual.
 
 ```sh
 sudo perf script > stacks.${pid}.out
