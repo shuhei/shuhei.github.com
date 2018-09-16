@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 25 Dec 2017 21:54:00 GMT</lastBuildDate><item><title>2017 in Review</title><link>http://shuheikagawa.com//blog/2017/12/25/2017-in-review/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 16 Sep 2018 08:56:00 GMT</lastBuildDate><item><title>Node.js under a Microscope - CPU FlameGraph and FlameScope</title><link>http://shuheikagawa.com//blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
+<p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
+<h2 id="background">Background</h2>
+<p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds, but I didn&#39;t know why.</p>
+<p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network, or <em>someone else</em>.</p>
+<h2 id="cpu-profiling-with-linux-perf-command">CPU Profiling with Linux <code>perf</code> Command</h2>
+<p>Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
+<p>For Node.js, there are mainly two different tools. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux <code>perf</code> will keep working for a while. After all, I picked Linux <code>perf</code> because of Brendan Gregg&#39;s articles about it, low performance overhead and small intervention to applications.</p>
+<p>Linux <code>perf record</code> records stack traces into a binary file called <code>perf.data</code> by default. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Install dependencies for `perf` command</span>
+sudo apt-get install linux-tools-common linux-tools-$(uname -r)
+<span class="hljs-comment"># Test `perf` command</span>
+sudo perf top
+
+<span class="hljs-comment"># Record stack traces 99 times per second for 30 seconds</span>
+sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
+<span class="hljs-comment"># Generate human readable stack traces</span>
+sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?</p>
+<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
+<p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
+<p><img src="/images/flamegraph.png" alt="CPU Flame Graph">
+<em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
+<p>I found some insights about the application on production with CPU Flame Graph.</p>
+<ul>
+<li>React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, <code>JSON.parse()</code> was using 3x more CPU than React. It may be because we had already optimized React server-side rendering though.</li>
+<li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
+</ul>
+<p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
+<h2 id="flamescope">FlameScope</h2>
+<p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
+<p><img src="/images/flamescope-annotated.png" alt="FlameScope">
+<em>Image from <a href="https://github.com/Netflix/flamescope">Netflix/flamescope</a></em></p>
+<p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
+<p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
+<p>I found a couple of exciting insights about the application on production using this tool.</p>
+<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1 - Heavy Tasks in the Master Process</h3>
+<p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
+<p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
+<h3 id="example-2-frequent-garbage-collections">Example 2 - Frequent Garbage Collections</h3>
+<p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark &amp; Sweep/Compact garbage collection.</p>
+<p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance, but it was a problem for V8&#39;s garbage collector. The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
+<h2 id="node-js-gotchas">Node.js Gotchas</h2>
+<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols.</p>
+<ol>
+<li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
+<li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
+</ol>
+<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces. Because the stack traces were already good enough for me, I haven&#39;t tried them on production.</p>
+<ul>
+<li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
+<li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
+</ul>
+<h2 id="docker-gotchas">Docker Gotchas</h2>
+<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker.</p>
+<ol>
+<li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
+<li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
+</ol>
+<p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
+<p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
+<pre><code class="hljs ">$ ps ax | grep -n 'node --perf'
+21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
+30481 pts/3    S+     0:00 grep --color=auto node --perf
+# or
+$ pgrep -f 'node --perf'
+21574
+
+$ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>
+<p>I learned how to overcome the issue from <a href="http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/">Making FlameGraphs with Containerized Java</a>. I just copied necessary files from the container to the host.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.</span>
+sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
+sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22</code></pre><p>To copy symbol map files, we need to find the <code>pid</code> in the container. We can do it by checking <code>/proc/${host_pid}/status</code>.</p>
+<pre><code class="hljs ">$ cat /proc/21574/status | grep NSpid
+NSpid:  21574   6
+$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! You can use <code>perf script</code> as usual.</p>
+<pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
+<p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
+
+]]></description><pubDate>Sun, 16 Sep 2018 08:56:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2018/09/16/node-js-under-a-microscope/</guid></item><item><title>2017 in Review</title><link>http://shuheikagawa.com//blog/2017/12/25/2017-in-review/</link><description><![CDATA[
 <h2 id="berlin">Berlin</h2>
 <p>I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.</p>
 <p>I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.</p>
@@ -397,36 +478,4 @@ bootstrap(HelloApp, [
 <p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
 <p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
 
-]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</guid></item><item><title>Incremental search with RxJS switchMap</title><link>http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs/</link><description><![CDATA[
-<p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
-<h2 id="switchmap">switchMap</h2>
-<p><code>switchMap(func)</code> is equivalent to <code>map(func).switch()</code>. It keeps subscribing latest observable at the moment and unsubscribing outdated ones so that it only streams events from latest observable at the moment. <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">Take a look at the marble chart for <code>switch</code></a>. It illustrates the behavior well.</p>
-<h2 id="incremental-search">Incremental search</h2>
-<p><code>switchMap</code> is convenient for properly implementing incremental search. Incremental search makes multiple requests to a server. The server can respond in a different order from requests&#39;. Because of the order, a naive implementation may show a wrong result. However, you can effortlessly avoid the caveat if you use <code>switchMap</code>.</p>
-<p>Here is an example. Type fast in the text fields. <strong>Without switchMap</strong> sometimes shows a wrong result while <strong>With switchMap</strong> always works fine.</p>
-<p><a href="http://jsbin.com/megiqo/edit" target="_blank">JS Bin on jsbin.com</a></p>
-<p><code>search</code> function mocks an AJAX request. It returns a <code>Promise</code> that resolves after a random delay.</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search</span>(<span class="hljs-params">keyword</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-      resolve(<span class="hljs-string">'Result of '</span> + keyword);
-    }, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>);
-  });
-}</code></pre><p>A naive implementation always shows the last response at the time. A wrong result is shown if responses come in a different order from requests&#39;. We could add some debouncing to decrease the chance of the wrong order but it still may happen when response time is longer than the debounce time.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> keyword = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'keyword-without'</span>);
-<span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'result-without'</span>);
-
-keyword.addEventListener(<span class="hljs-string">'keyup'</span>, e =&gt; {
-  <span class="hljs-keyword">const</span> value = e.target.value;
-  search(value)
-    .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> result.textContent = data);
-});</code></pre><p><code>switchMap</code> guarantees that the last keyword&#39;s result is finally shown.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> keyword = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'keyword-with'</span>);
-<span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'result-with'</span>);
-
-<span class="hljs-keyword">const</span> keyword$ = Rx.Observable.fromEvent(keyword, <span class="hljs-string">'keyup'</span>)
-  .map(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.target.value);
-keyword$
-  .switchMap(search)
-  .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> result.textContent = data);</code></pre>
-]]></description><pubDate>Mon, 02 May 2016 00:18:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/01/incremental-search-with-rxjs/</guid></item></channel></rss>
+]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</guid></item></channel></rss>

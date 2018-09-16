@@ -48,6 +48,57 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/13/ntlm-hash-with-ruby/>NTLM ハッシュ を求める</a>
+        </h1>
+        <div class="meta">
+          <span class="date">2009-10-13</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの <span class="caps">UTF</span>-16 に符号化したものから <a href="http://en.wikipedia.org/wiki/MD4"><span class="caps">MD4</span></a> でハッシュを作成するのだとか。</p>
+<h3>Ruby で</h3>
+<p>16進数表現の文字列として出力します。もう少しうまい方法がある気がするのですが・・・。<br />
+<span class="caps">NTLM</span> ハッシュの計算そのものは <a href="http://rubyforge.org/projects/rubyntlm/">Ruby/<span class="caps">NTLM</span></a> に頼っています。ちなみに Ruby/<span class="caps">NTLM</span> をインストールするには、 <code>gem install rubyntlm</code> とします。</p>
+<pre class="prettyprint">require 'rubygems'
+require 'net/ntlm'
+
+def ntlm_hash16(password)
+  result = ""
+  hash = Net::NTLM.ntlm_hash(password)
+  hash.size.times do |i|
+    result += sprintf("%02x", hash[i])
+  end
+  result
+end
+
+ntlm_hash16("p@ssw0rd")  #=&gt;  "de26cce0356891a4a020e7c4957afc72"</pre>
+<h4>追記</h4>
+<p><code>sprintf("%02x", hash[i])</code> の部分を、最初は <code>hash[i].to_s(16)</code> と書いていました。しかし、これだと 15 以下の数が来たときに 0 が抜けてしまうので、修正しました。</p>
+<h3>Python で</h3>
+<p>ついでに Python でも。</p>
+<pre class="prettyprint">import hashlib
+def ntlm_hash16(password):
+  result = ""
+  digest = hashlib.new('md4', password.encode('utf-16le')).digest()
+  for ch in digest:
+    result += "%02x" % ord(ch)
+  return result
+
+ntlm_hash16("p@ssw0rd")  #=&gt;  'de26cce0356891a4a020e7c4957afc72'</pre>
+<p>Ruby でも Python でも、さすがに結果は同じようですね。</p>
+<h4>追記</h4>
+<p>Python でも Ruby と同じような間違いをしていました。<br />
+<code>"%02x" % ord(ch)</code> の部分を、最初は <code>hex(ord(ch))[2:]</code> と書いていました。<br />
+いやあ、テストは大事ですね。</p>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/12/get-book-list-from-booklog/>Booklog から本一覧を取得</a>
         </h1>
         <div class="meta">
@@ -185,34 +236,6 @@ draw_points(second_points, 495, 495, "second.png")</pre>
 <p><a href="http://www.flickr.com/photos/branchiopoda/4004511454/" title="first by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" width="495" height="495" alt="first" /></a></p>
 <p>ということで、出てきた動物の名前をいくつか適当に入れると正解に。<br />
 しかし、まだまだ四分の一。先は長いです・・・。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/12/install-cairo-with-gem/>gem で cairo をインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">2009-10-12</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <pre class="prettyprint">sudo gem install cairo</pre>
-<p>でインストールできず、四苦八苦。<br />
-調べてみたところ、下記 <span class="caps">URL</span> に行き当たりました。<br />
-よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
-<p><a lang="cairo-bugs" href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
-<p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
-<pre class="prettyprint">cd cairo-1.8.0
-sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
-sudo ruby extconf.rb
-sudo make
-sudo make install
-</pre>
         </div>
       </div>
     </div>

@@ -48,6 +48,34 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/12/install-cairo-with-gem/>gem で cairo をインストール</a>
+        </h1>
+        <div class="meta">
+          <span class="date">2009-10-12</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <pre class="prettyprint">sudo gem install cairo</pre>
+<p>でインストールできず、四苦八苦。<br />
+調べてみたところ、下記 <span class="caps">URL</span> に行き当たりました。<br />
+よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
+<p><a lang="cairo-bugs" href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
+<p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
+<pre class="prettyprint">cd cairo-1.8.0
+sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
+sudo ruby extconf.rb
+sudo make
+sudo make install
+</pre>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/11/this-weeks-chipped-books/>今週届いた本（Joel on Software、高度試験午前対策など）</a>
         </h1>
         <div class="meta">
@@ -148,62 +176,6 @@ print "".join(map(chr, message))</pre>
 <p>出てきたメッセージから答えを出します。</p>
 <pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
 <p>何だかカンニングしてばかりですね・・・。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/11/grasse/>草</a>
-        </h1>
-        <div class="meta">
-          <span class="date">2009-10-11</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="http://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
-<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
-備忘のために。</p>
-<pre class="prettyprint">int NUM;
-float[] grasses;
-
-void setup()
-{
-  size(495, 140);
-  smooth();
-  background(255);
-
-  NUM = width;
-
-  grasses = new float[NUM];
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    grasses[i] = random(0, 1) * random(0.5, 1);
-  }
-  drawGrasses();
-  save("grasses.png");
-}
-
-void drawGrasses()
-{
-  noFill();
-  colorMode(HSB);
-  for (int i = 0; i &lt; NUM; i++)
-  {
-    stroke(random(50, 100), 200, 200);
-    strokeWeight(width * 0.0015 * random(0.5, 1));
-
-    int x = i * width / (NUM - 1);
-    line(x,
-         height,
-         x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
-         height * (1.0 - grasses[i] * 0.3 - 0.2));
-  }
-}
-</pre>
         </div>
       </div>
     </div>
