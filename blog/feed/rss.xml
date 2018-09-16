@@ -20,7 +20,7 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
 <p><img src="/images/flamegraph.png" alt="CPU Flame Graph">
 <em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
-<p>I found some insights about the application on production with CPU Flame Graph.</p>
+<p>I found some insights about the application on production with CPU Flame Graph:</p>
 <ul>
 <li>React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, <code>JSON.parse()</code> was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.</li>
 <li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
@@ -33,26 +33,26 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
 <p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
 <p>I found a couple of exciting insights about the application on production using this tool.</p>
-<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1 - Heavy Tasks in the Master Process</h3>
+<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1: Heavy Tasks in the Master Process</h3>
 <p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
 <p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
-<h3 id="example-2-frequent-garbage-collections">Example 2 - Frequent Garbage Collections</h3>
+<h3 id="example-2-frequent-garbage-collections">Example 2: Frequent Garbage Collections</h3>
 <p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark &amp; Sweep/Compact garbage collection.</p>
 <p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s <a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection">generational garbage collector</a>.</p>
 <p>The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
 <h2 id="node-js-gotchas">Node.js Gotchas</h2>
-<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols.</p>
+<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:</p>
 <ol>
 <li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
 <li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
 </ol>
-<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces. Because the stack traces were already good enough for me, I haven&#39;t tried them on production.</p>
+<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven&#39;t tried them on production because the stack traces were already good enough for me:</p>
 <ul>
 <li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
 <li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
 </ul>
 <h2 id="docker-gotchas">Docker Gotchas</h2>
-<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker.</p>
+<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker:</p>
 <ol>
 <li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
 <li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
@@ -74,7 +74,7 @@ sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
 sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22</code></pre><p>To copy symbol map files, we need to find the <code>pid</code> in the container. We can do it by checking <code>/proc/${host_pid}/status</code>.</p>
 <pre><code class="hljs ">$ cat /proc/21574/status | grep NSpid
 NSpid:  21574   6
-$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! You can use <code>perf script</code> as usual.</p>
+$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! Then we can use <code>perf script</code> as usual.</p>
 <pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
