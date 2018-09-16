@@ -261,11 +261,6 @@ function layout(config) {
       const htmlFile = file.clone(false);
       htmlFile.contents = Buffer.from(renderPage(component, locals, css));
       this.push(htmlFile);
-
-      const jsonFile = file.clone(false);
-      jsonFile.path = jsonFile.path.replace(/\.html$/, '.json');
-      jsonFile.contents = Buffer.from(JSON.stringify(locals));
-      this.push(jsonFile);
     } catch (e) {
       this.emit('error', new PluginError(PLUGIN_NAME, e));
     }
