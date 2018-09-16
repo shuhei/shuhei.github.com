@@ -1,5 +1,7 @@
+const { formatDate } = require('./date');
+
 const Post = ({ post }) => {
-  const date = post.date.split(' ')[0];
+  const date = formatDate(post.date);
   const categories = (post.categories || []).map(category => (
     `<span class="category">${category}</span>`
   )).join(', ');

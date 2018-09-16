@@ -1,5 +1,7 @@
+const { formatDate } = require('./date');
+
 const ArchivePost = ({ post }) => {
-  const date = post.date.split(' ')[0];
+  const date = formatDate(post.date);
   return `
     <div class="post-list-item">
       <div class="post-list-item__date">
