@@ -1,0 +1,164 @@
+<!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <link rel="preload" href="//fonts.googleapis.com/css?family=Asap:400,700" as="style">
+        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+        <meta name="viewport" content="initial-scale=1">
+        <title>Node.js under a Microscope - CPU FlameGraph and FlameScope - Shuhei Kagawa</title>
+        <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Asap:400,700">
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-309586-8', 'shuheikagawa.com');
+          ga('send', 'pageview');
+        </script>
+        <style>.hljs{display:block;overflow-x:auto;padding:.5em;background:#23241f}.hljs,.hljs-subst,.hljs-tag{color:#f8f8f2}.hljs-emphasis,.hljs-strong{color:#a8a8a2}.hljs-bullet,.hljs-link,.hljs-literal,.hljs-number,.hljs-quote,.hljs-regexp{color:#ae81ff}.hljs-code,.hljs-section,.hljs-selector-class,.hljs-title{color:#a6e22e}.hljs-strong{font-weight:700}.hljs-emphasis{font-style:italic}.hljs-attr,.hljs-keyword,.hljs-name,.hljs-selector-tag{color:#f92672}.hljs-attribute,.hljs-symbol{color:#66d9ef}.hljs-class .hljs-title,.hljs-params{color:#f8f8f2}.hljs-addition,.hljs-built_in,.hljs-builtin-name,.hljs-selector-attr,.hljs-selector-id,.hljs-selector-pseudo,.hljs-string,.hljs-template-variable,.hljs-type,.hljs-variable{color:#e6db74}.hljs-comment,.hljs-deletion,.hljs-meta{color:#75715e}body{background-color:#f8f8f2;font-family:Asap,sans-serif;padding:0;margin:0}::-moz-selection{background:#fbf42f}::selection{background:#fbf42f}a{color:#000;transition:color .3s ease}a:hover{color:#999}blockquote{border-left:10px solid #eeeee0;font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{color:#ccccc0;content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.header{padding:25px 0 10px;text-align:center}.header__title{margin:0 0 15px}.header__title a{text-decoration:none}.menu{list-style-position:outside;list-style-type:none;padding:10px 0;margin:0}.menu__item{display:inline-block;padding:0 20px}.menu__item a{font-weight:700;text-decoration:none}.footer{padding:30px 0;text-align:center}.title a{text-decoration:none}.post,.post-list{background:#fff;border-top:8px solid #fbf52f;padding:30px 0 20px}.post{margin:0 0 40px}.post:last-child{margin-bottom:0}.post .content,.post .post-header{margin:0 auto;width:700px}.post .title{margin:0}.post .meta{color:#999;font-size:small;margin:10px 0 25px}.post-list .title{margin:0 auto 10px;width:700px}.post-list-item{line-height:1.6em;padding:10px 0;margin:0 auto;width:700px}.post-list-item:after{content:"";clear:both;display:block}.post-list-item__date{color:#999;float:left;font-size:small;width:80px}.post-list-item__title{font-size:large;float:left;width:620px;margin:0}.post-list-item__title a{font-weight:700;text-decoration:none}.content{line-height:1.6em}.content img{max-width:100%}.social-buttons{margin:2em 0 0}.comments{margin:0 auto 3em;width:700px}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}.hljs{line-height:1.5em;padding:15px 20px;overflow-x:auto}code{background-color:#f8f8f2;padding:.1em .2em;font-size:.85em;font-family:Monaco,'Lucida Console',monospace}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin:-20px auto 0;width:700px}.pagination:after{content:"";clear:both;display:block}.pagination li{float:left;font-weight:700;min-height:1em}.pagination a{text-decoration:none}.pagination__prev-page{float:left;width:35%}.pagination__prev-page a:before{content:"< "}.pagination__next-page{float:right;text-align:right;width:35%}.pagination__next-page a:after{content:" >"}.pagination__archives{text-align:center;width:30%}@media only screen and (max-width:767px){h1{font-size:24px}.comments,.pagination,.post .content,.post .post-header,.post-list .title,.post-list-item{margin-left:20px;margin-right:20px;width:auto}.post-list-item__title{width:100%}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px}}</style>
+      </head>
+      <body>
+        <div id="container">
+  <div>
+    <header class="header">
+      <h1 class="header__title">
+        <a href="/">Shuhei Kagawa</a>
+      </h1>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="/about/">About</a>
+          </li>
+          <li class="menu__item">
+            <a href="/works/">Works</a>
+          </li>
+          <li class="menu__item">
+            <a href="/blog/archives/">Archives</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main">
+      
+    <div>
+      
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
+          <a href=/blog/2018/09/15/node-js-under-a-microscope/>Node.js under a Microscope - CPU FlameGraph and FlameScope</a>
+        </h1>
+        <div class="meta">
+          <span class="date">2018-09-16 10:56</span>
+          - <span class="category">Node.js</span>, <span class="category">Linux</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>I have been working on Node.js microservices that fetch data from API servers and render HTML with React. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds, but I didn&#39;t know why.</p>
+<p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network, or <em>someone else</em>.</p>
+<h2 id="cpu-profiling-with-linux-perf-">CPU Profiling with Linux <code>perf</code></h2>
+<p>Because the weird latency was happening in the application, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
+<p>For Node.js, there are mainly two different ways. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including libuv and all processes on your OS with very small overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux perf will keep working for a while. Anyway, I picked Linux <code>perf</code> because of Brendan Gregg&#39;s articles about it, low performance overhead and small intervention to applications.</p>
+<p>Linux <code>perf record</code> records stack traces into a binary file. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Install dependencies for `perf` command</span>
+sudo apt-get install linux-tools-common linux-tools-$(uname -r)
+<span class="hljs-comment"># Test `perf` command</span>
+sudo perf top
+
+<span class="hljs-comment"># Record stack traces 99 times per second for 30 seconds</span>
+sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
+<span class="hljs-comment"># Generate human readable stack traces</span>
+sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>The <code>perf record</code> command samples stack traces 99 times a second and saves the 2,970 stack traces into a binary file called <code>perf.data</code>. Then the <code>perf script</code> makes them human-readable. But how can we understand them?</p>
+<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
+<p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
+<p>TODO: Chart here!</p>
+<p>I found some insights about the application on production with CPU Flame Graph.</p>
+<ul>
+<li>React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, <code>JSON.parse()</code> was using 3x more CPU than React. It may be because we had already optimized React server-side rendering though.</li>
+<li>Gzip decompression was using almost same amount of CPU as React server-side rendering.</li>
+</ul>
+<p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
+<h2 id="flamescope">FlameScope</h2>
+<p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is a great tool for visualizing stack traces in a time-series. It shows a heatmap out of strack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
+<p>TODO: Chart here!</p>
+<p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
+<p>I found a couple of interesting insights using this tool.</p>
+<ul>
+<li>The application used <code>cluster</code> module to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for a few seconds continuously! FlameScope showed me that it was caused by metrics aggregation. The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking a lot of time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</li>
+<li>FlameScope showed that worker processes were also not too busy for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark &amp; Sweep/Compact garbage collection. The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cahed big API responses for a while and threw them away after TTL. It was a problem for V8&#39;s garbage collector. The API responses were always promoted to the old generation space causing frequent slow GCs. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</li>
+</ul>
+<p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
+<h2 id="node-js-gotchas">Node.js Gotchas</h2>
+<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time.</p>
+<p>There are two ways to record symbols.</p>
+<ol>
+<li>Run your Node.js process with <code>--perf-basic-prof-only-function</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
+<li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
+</ol>
+<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces. Because the stack traces were already good enough for me, I haven&#39;t tried them on production.</p>
+<ul>
+<li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
+<li><code>--interpreted-frames-native-stack</code> fixes &quot;Builtin:InterpereterEntryTrampoline&quot; in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
+</ul>
+<h2 id="docker-gotchas">Docker Gotchas</h2>
+<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker.</p>
+<ol>
+<li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
+<li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
+</ol>
+<p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
+<p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
+<pre><code class="hljs ">$ ps ax | grep -n 'node --perf'
+21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
+30481 pts/3    S+     0:00 grep --color=auto node --perf
+# or
+$ pgrep -f 'node --perf'
+21574
+
+$ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the sames file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>
+<p>I learned how to overcome the issue from <a href="http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/">Making FlameGraphs with Containerized Java</a>. I simply copied necessary files from the container to the host.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.</span>
+sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
+sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22</code></pre><p>To copy symbol map files, we need to find the <code>pid</code> in the container. We can do it by checking <code>/proc/${host_pid}/status</code>.</p>
+<pre><code class="hljs ">$ cat /proc/21574/status | grep NSpid
+NSpid:  21574   6
+$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! You can use <code>perf script</code> as usual.</p>
+<pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><h2 id="conclusion">Conclusion</h2>
+<p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
+<p>It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and not many resources online were up-to-date. I hope this post would be helpful!</p>
+
+        </div>
+      </div>
+    </div>
+  
+      
+  <div class="comments">
+    <div id="disqus_thread" />
+    <script>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shuheikagawa.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+    </div>
+  
+    </div>
+    <footer class="footer">
+      © Shuhei Kagawa
+    </footer>
+  </div>
+</div>
+      </body>
+    </html>
