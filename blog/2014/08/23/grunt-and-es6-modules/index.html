@@ -1,12 +1,11 @@
 <!doctype html>
-    <html >
+    <html>
       <head>
         <meta charset="utf-8">
         <link rel="preload" href="//fonts.googleapis.com/css?family=Asap:400,700" as="style">
-        <link rel="preload" href="/js/index.js" as="script">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <meta name="viewport" content="initial-scale=1">
-        <title data-react-helmet="true">Grunt と ES6 Modules - Shuhei Kagawa</title>
+        <title>Grunt と ES6 Modules - Shuhei Kagawa</title>
         <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
         <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Asap:400,700">
@@ -22,7 +21,43 @@
         <style>.hljs{display:block;overflow-x:auto;padding:.5em;background:#23241f}.hljs,.hljs-subst,.hljs-tag{color:#f8f8f2}.hljs-emphasis,.hljs-strong{color:#a8a8a2}.hljs-bullet,.hljs-link,.hljs-literal,.hljs-number,.hljs-quote,.hljs-regexp{color:#ae81ff}.hljs-code,.hljs-section,.hljs-selector-class,.hljs-title{color:#a6e22e}.hljs-strong{font-weight:700}.hljs-emphasis{font-style:italic}.hljs-attr,.hljs-keyword,.hljs-name,.hljs-selector-tag{color:#f92672}.hljs-attribute,.hljs-symbol{color:#66d9ef}.hljs-class .hljs-title,.hljs-params{color:#f8f8f2}.hljs-addition,.hljs-built_in,.hljs-builtin-name,.hljs-selector-attr,.hljs-selector-id,.hljs-selector-pseudo,.hljs-string,.hljs-template-variable,.hljs-type,.hljs-variable{color:#e6db74}.hljs-comment,.hljs-deletion,.hljs-meta{color:#75715e}body{background-color:#f8f8f2;font-family:Asap,sans-serif;padding:0;margin:0}::-moz-selection{background:#fbf42f}::selection{background:#fbf42f}a{color:#000;transition:color .3s ease}a:hover{color:#999}blockquote{border-left:10px solid #eeeee0;font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{color:#ccccc0;content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.header{padding:25px 0 10px;text-align:center}.header__title{margin:0 0 15px}.header__title a{text-decoration:none}.menu{list-style-position:outside;list-style-type:none;padding:10px 0;margin:0}.menu__item{display:inline-block;padding:0 20px}.menu__item a{font-weight:700;text-decoration:none}.footer{padding:30px 0;text-align:center}.title a{text-decoration:none}.post,.post-list{background:#fff;border-top:8px solid #fbf52f;padding:30px 0 20px}.post{margin:0 0 40px}.post:last-child{margin-bottom:0}.post .content,.post .post-header{margin:0 auto;width:700px}.post .title{margin:0}.post .meta{color:#999;font-size:small;margin:10px 0 25px}.post-list .title{margin:0 auto 10px;width:700px}.post-list-item{line-height:1.6em;padding:10px 0;margin:0 auto;width:700px}.post-list-item:after{content:"";clear:both;display:block}.post-list-item__date{color:#999;float:left;font-size:small;width:80px}.post-list-item__title{font-size:large;float:left;width:620px;margin:0}.post-list-item__title a{font-weight:700;text-decoration:none}.content{line-height:1.6em}.content img{max-width:100%}.social-buttons{margin:2em 0 0}.comments{margin:0 auto 3em;width:700px}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}.hljs{line-height:1.5em;padding:15px 20px;overflow-x:auto}code{background-color:#f8f8f2;padding:.1em .2em;font-size:.85em;font-family:Monaco,'Lucida Console',monospace}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin:-20px auto 0;width:700px}.pagination:after{content:"";clear:both;display:block}.pagination li{float:left;font-weight:700;min-height:1em}.pagination a{text-decoration:none}.pagination__prev-page{float:left;width:35%}.pagination__prev-page a:before{content:"< "}.pagination__next-page{float:right;text-align:right;width:35%}.pagination__next-page a:after{content:" >"}.pagination__archives{text-align:center;width:30%}@media only screen and (max-width:767px){h1{font-size:24px}.comments,.pagination,.post .content,.post .post-header,.post-list .title,.post-list-item{margin-left:20px;margin-right:20px;width:auto}.post-list-item__title{width:100%}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px}}</style>
       </head>
       <body>
-        <div id="container"><div data-reactroot=""><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav><ul class="menu"><li class="menu__item"><a href="/about/">About</a></li><li class="menu__item"><a href="/works/">Works</a></li><li class="menu__item"><a href="/blog/archives/">Archives</a></li></ul></nav></header><div class="main"><div><div class="post"><div class="post-header"><h1 class="title"><a href="/blog/2014/08/23/grunt-and-es6-modules/">Grunt と ES6 Modules</a></h1><div class="meta">@<span class="date">2014-08-23 01:21</span> - <span class="category">JavaScript</span></div></div><div class="content"><div><p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
+        <div id="container">
+  <div>
+    <header class="header">
+      <h1 class="header__title">
+        <a href="/">Shuhei Kagawa</a>
+      </h1>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="/about/">About</a>
+          </li>
+          <li class="menu__item">
+            <a href="/works/">Works</a>
+          </li>
+          <li class="menu__item">
+            <a href="/blog/archives/">Archives</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main">
+      
+    <div>
+      
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
+          <a href=/blog/2014/08/23/grunt-and-es6-modules/>Grunt と ES6 Modules</a>
+        </h1>
+        <div class="meta">
+          <span class="date">2014-08-23 01:21</span>
+          - <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
 <h2 id="-introduction-to-grunt-https-speakerdeck-com-shuhei-introduction-to-grunt-"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
 <p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
 <p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
@@ -32,10 +67,35 @@
 <p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
 <p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
 <script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-</div></div></div><div class="comments"><div id="disqus_thread"></div><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></div></div><footer class="footer">© <!-- -->Shuhei Kagawa</footer></div></div>
-        <script><!--
-          window.__PRELOADED_PROPS__ = {"site":{"title":"Shuhei Kagawa","author":"Shuhei Kagawa","perPage":3,"newPageExtension":"markdown","blogDir":"blog","sourceDir":"source","layoutDir":"_layouts","postDir":"_posts","cssFiles":["node_modules/highlight.js/styles/monokai-sublime.css","source/_css/style.css"]},"post":{"layout":"post","title":"Grunt と ES6 Modules","date":"2014-08-23 01:21","comments":true,"categories":["JavaScript"],"url":"/blog/2014/08/23/grunt-and-es6-modules/","content":"<p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>\n<h2 id=\"-introduction-to-grunt-https-speakerdeck-com-shuhei-introduction-to-grunt-\"><a href=\"https://speakerdeck.com/shuhei/introduction-to-grunt\">Introduction to Grunt</a></h2>\n<p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href=\"http://qiita.com/shuhei/items/1156a795903b55d6b0d7\">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>\n<p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>\n<script async class=\"speakerdeck-embed\" data-id=\"39e78f00fade0131d88d6a0d18b48761\" data-ratio=\"1.33333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>\n\n<h2 id=\"-start-es6-today-https-speakerdeck-com-shuhei-start-es6-modules-today-\"><a href=\"https://speakerdeck.com/shuhei/start-es6-modules-today\">Start ES6 Today</a></h2>\n<p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>\n<p>結論としては、ES6 Modules はまだ早い。<a href=\"https://github.com/systemjs/systemjs\">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>\n<script async class=\"speakerdeck-embed\" data-id=\"b07645a0fadf0131d88c6a0d18b48761\" data-ratio=\"1.33333333333333\" src=\"//speakerdeck.com/assets/embed.js\"></script>\n"}};
-        --></script>
-        <script src="/js/index.js" defer></script>
+
+        </div>
+      </div>
+    </div>
+  
+      
+  <div class="comments">
+    <div id="disqus_thread" />
+    <script>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shuheikagawa.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+    </div>
+  
+    </div>
+    <footer class="footer">
+      © Shuhei Kagawa
+    </footer>
+  </div>
+</div>
       </body>
     </html>
