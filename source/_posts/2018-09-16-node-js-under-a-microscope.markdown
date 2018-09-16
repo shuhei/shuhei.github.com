@@ -71,7 +71,7 @@ The master process was aggregating application metrics from worker processes, an
 
 ### Example 2: Frequent Garbage Collections
 
-FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by Mark & Sweep/Compact garbage collection.
+FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.
 
 The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8's [generational garbage collector](http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection).
 
