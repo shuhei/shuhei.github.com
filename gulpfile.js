@@ -1,26 +1,29 @@
-import path from 'path';
+const path = require('path');
 
-import { argv as args } from 'yargs';
-import del from 'del';
-import highlightjs from 'highlight.js';
-import { Renderer } from 'marked';
-import webpack from 'webpack';
+const { argv: args } = require('yargs');
+const del = require('del');
+const highlightjs = require('highlight.js');
+const { Renderer } = require('marked');
 
-import gulp from 'gulp';
-import gutil from 'gulp-util';
-import plumber from 'gulp-plumber';
-import markdown from 'gulp-markdown';
-import frontMatter from 'gulp-front-matter';
-import textile from 'gulp-textile';
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const plumber = require('gulp-plumber');
+const markdown = require('gulp-markdown');
+const frontMatter = require('gulp-front-matter');
+const textile = require('gulp-textile');
 
-import webpackDevConfig from './webpack.dev';
-import webpackProductionConfig from './webpack.production';
-import condition from './plugins/condition';
-import server from './plugins/server';
-import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
-import branch from './plugins/branch';
+const condition = require('./plugins/condition');
+const server = require('./plugins/server');
+const {
+  index,
+  layout,
+  cleanUrl,
+  newPost,
+  newPage,
+} = require('./plugins/blog');
+const branch = require('./plugins/branch');
 
-import siteConfig from './source/_config/site.json';
+const siteConfig = require('./source/_config/site.json');
 
 const publicDir = 'public';
 
@@ -32,9 +35,9 @@ renderer.code = (code, language) => {
   const extension = (language || '').split('.').pop();
   const isValidLang = !!(extension && highlightjs.getLanguage(extension));
   const highlighted = isValidLang ? highlightjs.highlight(extension, code).value : code;
-  const filename = extension && extension !== language ?
-    `<div><span class="code__filename">${language}</span></div>` :
-    '';
+  const filename = extension && extension !== language
+    ? `<div><span class="code__filename">${language}</span></div>`
+    : '';
   return `<pre><code class="hljs ${extension}">${filename}${highlighted}</code></pre>`;
 };
 // Responsive table
@@ -45,7 +48,7 @@ renderer.table = (header, body) => {
 };
 
 // Copy static pages compiling markdown files.
-gulp.task('copy', () =>
+gulp.task('copy', () => (
   gulp.src(['source/**/*', '!source/_*', '!source/_*/**/*', 'source/.nojekyll'])
     .pipe(plumber())
     // frontMatter messes up binary files and files with `---`.
@@ -53,7 +56,7 @@ gulp.task('copy', () =>
     .pipe(condition(`${process.cwd()}/source/**/*.{markdown,md}`, markdown({ renderer })))
     .pipe(layout(siteConfig))
     .pipe(gulp.dest(publicDir))
-);
+));
 
 // Compile blog posts, create index and archive pages.
 gulp.task('posts', () => {
@@ -72,18 +75,6 @@ gulp.task('posts', () => {
     .pipe(gulp.dest(path.join('./public', siteConfig.blogDir)));
 });
 
-// Build JavaScript for client.
-gulp.task('js', (callback) => {
-  const config = process.env.NODE_ENV === 'production' ? webpackProductionConfig : webpackDevConfig;
-  webpack(config, (err, stats) => {
-    if (err) {
-      throw new gutil.PluginError('webpack', err);
-    }
-    gutil.log('[webpack]', stats.toString('minimal'));
-    callback();
-  });
-});
-
 gulp.task('clean', (cb) => {
   del([publicDir], cb);
 });
@@ -96,9 +87,8 @@ gulp.task('watch', ['default'], () => {
       return;
     }
     gutil.log('Listening on port 4000');
-    gulp.watch(['./source/**/*.*', '!./source/_{js,css,posts}/**/*.*'], ['copy']);
+    gulp.watch(['./source/**/*.*', '!./source/_{css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layouts,css}/*.*', ['posts', 'copy']);
-    gulp.watch('./source/_{js,layouts}/**/*.js', ['js']);
   });
 });
 
@@ -121,6 +111,6 @@ gulp.task('newpage', () => {
   newPage(args.filename, siteConfig);
 });
 
-gulp.task('build', ['js', 'copy', 'posts']);
+gulp.task('build', ['copy', 'posts']);
 
 gulp.task('default', ['build']);

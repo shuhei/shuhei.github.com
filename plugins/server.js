@@ -1,8 +1,10 @@
-import connect from 'connect';
-import serveStatic from 'serve-static';
-import http from 'http';
+const connect = require('connect');
+const serveStatic = require('serve-static');
+const http = require('http');
 
-export default function (root) {
+function server(root) {
   const app = connect().use(serveStatic(root));
   return http.createServer(app);
 }
+
+module.exports = server;

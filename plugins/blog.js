@@ -1,63 +1,47 @@
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
-import { obj as through } from 'through2';
-import gutil, { PluginError } from 'gulp-util';
-import jade from 'jade';
-import async from 'async';
-import mkdirp from 'mkdirp';
-import strftime from 'strftime';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Helmet from 'react-helmet';
-import CleanCSS from 'clean-css';
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const { obj: through } = require('through2');
+const gutil = require('gulp-util');
+const jade = require('jade');
+const async = require('async');
+const mkdirp = require('mkdirp');
+const strftime = require('strftime');
+const CleanCSS = require('clean-css');
 
-import Layout from '../source/_layouts/Layout';
-import IndexPage from '../source/_layouts/IndexPage';
-import ArchivesPage from '../source/_layouts/ArchivesPage';
-import PostPage from '../source/_layouts/PostPage';
-import PagePage from '../source/_layouts/PagePage';
+const Layout = require('../source/_layouts/Layout');
+const IndexPage = require('../source/_layouts/IndexPage');
+const ArchivesPage = require('../source/_layouts/ArchivesPage');
+const PostPage = require('../source/_layouts/PostPage');
+const PagePage = require('../source/_layouts/PagePage');
+
+const { PluginError } = gutil;
 
 const PLUGIN_NAME = 'blog';
 
-// Escape characters that are valid in JSON but not in JavaScript.
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Issue_with_plain_JSON.stringify_for_use_as_JavaScript
-function jsFriendlyJSONStringify(source) {
-  return JSON.stringify(source)
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
-}
-
 function renderPage(component, props, css) {
-  const contentHtml = renderToString(
-    React.createElement(
-      Layout,
-      props,
-      React.createElement(component, props),
-    )
-  );
-  const head = Helmet.rewind();
+  const {
+    title,
+    body,
+  } = component(props);
+  const contentHtml = Layout({
+    ...props,
+    children: body,
+  });
 
   const fontCSS = '//fonts.googleapis.com/css?family=Asap:400,700';
-  const jsURL = '/js/index.js';
 
-  // https://github.com/nfl/react-helmet#as-string-output
-  //
-  // <!-- --> is necessary to put </script> in the JSON.
-  //
   // It's important to have a <script> tag in head. Otherwise Google Analytics
-  // inserts <script> tag after inline <script> in blog content and makes React
-  // upset.
+  // inserts <script> tag after inline <script>.
   return `
     <!doctype html>
-    <html ${head.htmlAttributes.toString()}>
+    <html>
       <head>
         <meta charset="utf-8">
         <link rel="preload" href="${fontCSS}" as="style">
-        <link rel="preload" href="${jsURL}" as="script">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <meta name="viewport" content="initial-scale=1">
-        ${head.title.toString()}
+        <title>${title}</title>
         <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
         <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
         <link rel="stylesheet" href="${fontCSS}">
@@ -74,10 +58,6 @@ function renderPage(component, props, css) {
       </head>
       <body>
         <div id="container">${contentHtml}</div>
-        <script><!--
-          window.__PRELOADED_PROPS__ = ${jsFriendlyJSONStringify(props)};
-        --></script>
-        <script src="${jsURL}" defer></script>
       </body>
     </html>
   `.trim();
@@ -118,7 +98,7 @@ function readCssFiles(filePaths) {
   return new CleanCSS({}).minify(concatenated).styles;
 }
 
-export function index(config) {
+function index(config) {
   const files = [];
   const perPage = config.perPage || 3;
   const getCompiledTemplate = templateCache();
@@ -146,7 +126,7 @@ export function index(config) {
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
           path: path.join(__dirname, config.sourceDir, dest),
-          contents: new Buffer(data),
+          contents: Buffer.from(data),
         });
         callback(null, file);
       });
@@ -161,7 +141,7 @@ export function index(config) {
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
           path: path.join(__dirname, config.sourceDir, dest),
-          contents: new Buffer(data),
+          contents: Buffer.from(data),
         });
         callback(null, file);
       } catch (e) {
@@ -177,7 +157,7 @@ export function index(config) {
         cwd: process.cwd(),
         base: path.join(__dirname, config.sourceDir),
         path: path.join(__dirname, config.sourceDir, jsonDest),
-        contents: new Buffer(JSON.stringify(data)),
+        contents: Buffer.from(JSON.stringify(data)),
       });
       callback(null, file);
     };
@@ -264,7 +244,7 @@ export function index(config) {
   return through(transform, flush);
 }
 
-export function layout(config) {
+function layout(config) {
   const css = readCssFiles(config.cssFiles);
 
   function transform(file, enc, cb) {
@@ -292,12 +272,12 @@ export function layout(config) {
 
     try {
       const htmlFile = file.clone(false);
-      htmlFile.contents = new Buffer(renderPage(component, locals, css));
+      htmlFile.contents = Buffer.from(renderPage(component, locals, css));
       this.push(htmlFile);
 
       const jsonFile = file.clone(false);
       jsonFile.path = jsonFile.path.replace(/\.html$/, '.json');
-      jsonFile.contents = new Buffer(JSON.stringify(locals));
+      jsonFile.contents = Buffer.from(JSON.stringify(locals));
       this.push(jsonFile);
     } catch (e) {
       this.emit('error', new PluginError(PLUGIN_NAME, e));
@@ -309,7 +289,7 @@ export function layout(config) {
   return through(transform);
 }
 
-export function cleanUrl() {
+function cleanUrl() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
@@ -337,7 +317,7 @@ export function cleanUrl() {
   return through(transform);
 }
 
-export function newPost(title, config) {
+function newPost(title, config) {
   const urlTitle = toURL(title);
   const now = new Date();
   const date = strftime('%Y-%m-%d', now);
@@ -357,7 +337,7 @@ export function newPost(title, config) {
   writer.end();
 }
 
-export function newPage(filename, config) {
+function newPage(filename, config) {
   const filenamePattern = /(^.+\/)?(.+)/;
   const matches = filenamePattern.exec(filename);
   if (!matches) {
@@ -397,3 +377,11 @@ export function newPage(filename, config) {
   writer.write('---\n');
   writer.end();
 }
+
+module.exports = {
+  index,
+  layout,
+  cleanUrl,
+  newPost,
+  newPage,
+};

@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production gulp build",
     "clean": "gulp clean",
     "deploy": "npm run clean && npm run build && gh-pages -d public -b master",
-    "lint": "eslint gulpfile.babel.js plugins source/_layouts source/_js",
+    "lint": "eslint gulpfile.js plugins source/_layouts",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename"
   },
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git://github.com/shuhei/shuhei.github.com.git"
   },
-  "author": "Shuhei Kagawa <shuhei.kagawa@m3.com>",
+  "author": "Shuhei Kagawa <shuhei.kagawa@gmail.com>",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/shuhei/shuhei.github.com/issues"
@@ -24,19 +24,12 @@
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
     "async": "^2.3.0",
-    "babel-core": "^6.18.2",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
     "clean-css": "^4.1.9",
     "connect": "^3.3.4",
     "del": "^3.0.0",
-    "eslint": "^4.13.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "gh-pages": "^1.1.0",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.0",
@@ -56,8 +49,6 @@
     "strftime": "^0.10.0",
     "textile-js": "^2.0.2",
     "through2": "^2.0.0",
-    "webpack": "^3.10.0",
-    "webpack-merge": "^4.1.1",
     "yargs": "^10.0.3"
   },
   "gh-pages": {
@@ -65,12 +56,5 @@
     "static": "public",
     "deploy": "_deploy",
     "branch": "master"
-  },
-  "dependencies": {
-    "prop-types": "^15.5.8",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-helmet": "^5.0.3",
-    "whatwg-fetch": "^2.0.3"
   }
 }

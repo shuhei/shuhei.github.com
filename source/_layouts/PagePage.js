@@ -1,31 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-
-import { SiteProps, PageTypes } from './types';
-
 const PagePage = ({ site, post }) => {
   const title = [post.title, site.title].join(' - ');
-  const content = { __html: post.content };
-
-  return (
+  const body = `
     <div>
-      <Helmet title={title} />
-      <div className="post">
-        <div className="post-header">
-          <h1 className="title">
-            {post.title}
+      <div class="post">
+        <div class="post-header">
+          <h1 class="title">
+            ${post.title}
           </h1>
-          <div className="content" dangerouslySetInnerHTML={content} />
+          <div class="content">
+            ${post.content}
+          </div>
         </div>
       </div>
     </div>
-  );
+  `;
+  return {
+    title,
+    body,
+  };
 };
 
-PagePage.propTypes = {
-  site: SiteProps.isRequired,
-  post: PageTypes.isRequired,
-};
-
-export default PagePage;
+module.exports = PagePage;

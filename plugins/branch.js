@@ -1,6 +1,6 @@
-import { obj as through } from 'through2';
+const { obj: through } = require('through2');
 
-export default function (child) {
+function branch(child) {
   function transform(file, enc, cb) {
     const clone = file.clone();
     clone.frontMatter = file.frontMatter;
@@ -18,3 +18,5 @@ export default function (child) {
 
   return through(transform, flush);
 }
+
+module.exports = branch;
