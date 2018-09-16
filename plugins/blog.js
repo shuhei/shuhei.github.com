@@ -133,7 +133,7 @@ function index(config) {
     };
   }
 
-  function renderReactFunc(component, dest, locals) {
+  function renderPageFunc(component, dest, locals) {
     return (callback) => {
       try {
         const data = renderPage(component, locals, css);
@@ -147,19 +147,6 @@ function index(config) {
       } catch (e) {
         callback(e);
       }
-    };
-  }
-
-  function renderJsonFunc(dest, data) {
-    return (callback) => {
-      const jsonDest = dest.replace(/\.html$/, '.json');
-      const file = new gutil.File({
-        cwd: process.cwd(),
-        base: path.join(__dirname, config.sourceDir),
-        path: path.join(__dirname, config.sourceDir, jsonDest),
-        contents: Buffer.from(JSON.stringify(data)),
-      });
-      callback(null, file);
     };
   }
 
@@ -199,16 +186,13 @@ function index(config) {
     const pageCount = Math.ceil(posts.length / perPage);
 
     // Top page.
-    const topLocals = localsForPage(0, posts);
-    funcs.push(renderReactFunc(IndexPage, 'index.html', localsForPage(0, posts)));
-    funcs.push(renderJsonFunc('index.html', topLocals));
+    funcs.push(renderPageFunc(IndexPage, 'index.html', localsForPage(0, posts)));
 
     // Index pages.
     for (let i = 1; i < pageCount; i += 1) {
       const dest = path.join(config.blogDir, 'pages', (i + 1).toString(), 'index.html');
       const pageLocals = localsForPage(i, posts);
-      funcs.push(renderReactFunc(IndexPage, dest, pageLocals));
-      funcs.push(renderJsonFunc(dest, pageLocals));
+      funcs.push(renderPageFunc(IndexPage, dest, pageLocals));
     }
 
     // Archive page.
@@ -217,8 +201,7 @@ function index(config) {
       site: config,
       posts: posts.map(post => ({ ...post, content: undefined })),
     };
-    funcs.push(renderReactFunc(ArchivesPage, archivePath, localsForArchive));
-    funcs.push(renderJsonFunc(archivePath, localsForArchive));
+    funcs.push(renderPageFunc(ArchivesPage, archivePath, localsForArchive));
 
     // RSS feed.
     const rssPath = path.join(config.blogDir, 'feed', 'rss.xml');
@@ -228,7 +211,7 @@ function index(config) {
     };
     funcs.push(renderTemplateFunc('rss.jade', rssPath, localsForRss));
 
-    // Execute in parallel. React's rendering is synchronous thougth.
+    // Execute in parallel. Rendering is synchronous thougth.
     async.parallel(funcs, (err, newFiles) => {
       if (err) {
         console.error('error', err);
