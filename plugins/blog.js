@@ -1,19 +1,21 @@
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
-import { obj as through } from 'through2';
-import gutil, { PluginError } from 'gulp-util';
-import jade from 'jade';
-import async from 'async';
-import mkdirp from 'mkdirp';
-import strftime from 'strftime';
-import CleanCSS from 'clean-css';
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const { obj: through } = require('through2');
+const gutil = require('gulp-util');
+const jade = require('jade');
+const async = require('async');
+const mkdirp = require('mkdirp');
+const strftime = require('strftime');
+const CleanCSS = require('clean-css');
 
 const Layout = require('../source/_layouts/Layout');
 const IndexPage = require('../source/_layouts/IndexPage');
 const ArchivesPage = require('../source/_layouts/ArchivesPage');
 const PostPage = require('../source/_layouts/PostPage');
 const PagePage = require('../source/_layouts/PagePage');
+
+const { PluginError } = gutil;
 
 const PLUGIN_NAME = 'blog';
 
@@ -94,7 +96,7 @@ function readCssFiles(filePaths) {
   return new CleanCSS({}).minify(concatenated).styles;
 }
 
-export function index(config) {
+function index(config) {
   const files = [];
   const perPage = config.perPage || 3;
   const getCompiledTemplate = templateCache();
@@ -240,7 +242,7 @@ export function index(config) {
   return through(transform, flush);
 }
 
-export function layout(config) {
+function layout(config) {
   const css = readCssFiles(config.cssFiles);
 
   function transform(file, enc, cb) {
@@ -285,7 +287,7 @@ export function layout(config) {
   return through(transform);
 }
 
-export function cleanUrl() {
+function cleanUrl() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
       this.push(file);
@@ -313,7 +315,7 @@ export function cleanUrl() {
   return through(transform);
 }
 
-export function newPost(title, config) {
+function newPost(title, config) {
   const urlTitle = toURL(title);
   const now = new Date();
   const date = strftime('%Y-%m-%d', now);
@@ -333,7 +335,7 @@ export function newPost(title, config) {
   writer.end();
 }
 
-export function newPage(filename, config) {
+function newPage(filename, config) {
   const filenamePattern = /(^.+\/)?(.+)/;
   const matches = filenamePattern.exec(filename);
   if (!matches) {
@@ -373,3 +375,11 @@ export function newPage(filename, config) {
   writer.write('---\n');
   writer.end();
 }
+
+module.exports = {
+  index,
+  layout,
+  cleanUrl,
+  newPost,
+  newPage,
+};

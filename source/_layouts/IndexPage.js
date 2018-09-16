@@ -1,6 +1,11 @@
 const Post = require('./Post');
 
-const IndexPage = ({ posts, title, prevPage, nextPage }) => {
+const IndexPage = ({
+  posts,
+  title,
+  prevPage,
+  nextPage,
+}) => {
   const prevLink = prevPage ? `<a href=${prevPage}>Newer Posts</a>` : '';
   const nextLink = nextPage ? `<a href=${nextPage}>Older Posts</a>` : '';
   return `

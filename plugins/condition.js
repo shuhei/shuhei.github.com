@@ -1,10 +1,10 @@
-import { obj as through } from 'through2';
-import minimatch from 'minimatch';
+const { obj: through } = require('through2');
+const minimatch = require('minimatch');
 
 // TODO: Why don't you use gulp-if?
-export default function (condition, child, branch) {
+function condition(cond, child, branch) {
   function transform(file, enc, cb) {
-    if (minimatch(file.path, condition)) {
+    if (minimatch(file.path, cond)) {
       if (branch) {
         child.write(file);
         cb();
@@ -29,3 +29,5 @@ export default function (condition, child, branch) {
 
   return through(transform, flush);
 }
+
+module.exports = condition;
