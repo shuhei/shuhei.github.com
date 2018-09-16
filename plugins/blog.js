@@ -176,10 +176,14 @@ function index(config) {
   }
 
   function flush(cb) {
-    const posts = files.map(file => ({
-      ...file.frontMatter,
-      content: file.contents.toString(),
-    })).sort((a, b) => a.date.localeCompare(b.date)).reverse();
+    const posts = files
+      .filter(file => (file.frontMatter && file.frontMatter.status) !== 'draft')
+      .map(file => ({
+        ...file.frontMatter,
+        content: file.contents.toString(),
+      }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .reverse();
 
     // Render index pages and archive page in parallel.
     const funcs = [];
