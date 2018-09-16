@@ -16,13 +16,13 @@ yarn
 To add a post:
 
 ```
-yarn run newpost 'Hello World!'
+yarn newpost 'Hello World!'
 ```
 
 To add a page:
 
 ```
-yarn run newpage 'foo'
+yarn newpage 'foo'
 ```
 
 ## Start a dev server
@@ -36,5 +36,5 @@ yarn start
 Deploy to GitHub Pages.
 
 ```
-yarn run deploy
+yarn deploy
 ```

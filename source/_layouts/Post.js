@@ -1,4 +1,5 @@
 const Post = ({ post }) => {
+  const date = post.date.split(' ')[0];
   const categories = (post.categories || []).map(category => (
     `<span class="category">${category}</span>`
   )).join(', ');
@@ -10,7 +11,7 @@ const Post = ({ post }) => {
           <a href=${post.url}>${post.title}</a>
         </h1>
         <div class="meta">
-          <span class="date">${post.date}</span>
+          <span class="date">${date}</span>
           ${categories.length > 0 ? `- ${categories}` : ''}
         </div>
       </div>
