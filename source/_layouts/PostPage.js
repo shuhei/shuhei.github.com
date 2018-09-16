@@ -1,24 +1,15 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-
-import Post from './Post';
-import Comments from './Comments';
-import { SiteProps, PostTypes } from './types';
+const Post = require('./Post');
+const Comments = require('./Comments');
 
 const PostPage = ({ site, post }) => {
+  // TODO: Return title.
   const title = [post.title, site.title].join(' - ');
-  return (
+  return `
     <div>
-      <Helmet title={title} />
-      <Post post={post} />
-      {post.comments && <Comments />}
+      ${Post({ post })}
+      ${post.comments ? Comments() : ''}
     </div>
-  );
+  `;
 };
 
-PostPage.propTypes = {
-  site: SiteProps.isRequired,
-  post: PostTypes.isRequired,
-};
-
-export default PostPage;
+module.exports = PostPage;

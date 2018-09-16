@@ -1,36 +1,26 @@
-import React from 'react';
-
-import { handleLink } from '../_js/link';
-import { PostTypes } from './types';
-
 const Post = ({ post }) => {
-  const categories = [...(post.categories || []).map((category, i) => [
-    i === 0 ? ' - ' : ', ',
-    <span className="category" key={category}>{category}</span>,
-  ])];
-  const content = { __html: post.content };
+  const categories = (post.categories || []).map(category => (
+    `<span class="category">${category}</span>`
+  )).join(', ');
 
-  return (
-    <div className="post">
-      <div className="post-header">
-        <h1 className="title">
-          <a href={post.url} onClick={handleLink}>{post.title}</a>
+  return `
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
+          <a href=${post.url}>${post.title}</a>
         </h1>
-        <div className="meta">
-          @
-          <span className="date">{post.date}</span>
-          {categories}
+        <div class="meta">
+          <span class="date">${post.date}</span>
+          ${categories.length > 0 ? `- ${categories}` : ''}
         </div>
       </div>
-      <div className="content">
-        <div dangerouslySetInnerHTML={content} />
+      <div class="content">
+        <div>
+          ${post.content}
+        </div>
       </div>
     </div>
-  );
+  `;
 };
 
-Post.propTypes = {
-  post: PostTypes,
-};
-
-export default Post;
+module.exports = Post;

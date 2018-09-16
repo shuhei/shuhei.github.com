@@ -1,41 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import { handleLink } from '../_js/link';
-import { SiteProps } from './types';
-
-const Layout = ({ site, children }) => (
+const Layout = ({ site, children }) => (`
   <div>
-    <header className="header">
-      <h1 className="header__title">
-        <a href="/" onClick={handleLink}>{site.title}</a>
+    <header class="header">
+      <h1 class="header__title">
+        <a href="/">${site.title}</a>
       </h1>
       <nav>
-        <ul className="menu">
-          <li className="menu__item">
-            <a href="/about/" onClick={handleLink}>About</a>
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="/about/">About</a>
           </li>
-          <li className="menu__item">
-            <a href="/works/" onClick={handleLink}>Works</a>
+          <li class="menu__item">
+            <a href="/works/">Works</a>
           </li>
-          <li className="menu__item">
-            <a href="/blog/archives/" onClick={handleLink}>Archives</a>
+          <li class="menu__item">
+            <a href="/blog/archives/">Archives</a>
           </li>
         </ul>
       </nav>
     </header>
-    <div className="main">
-      {children}
+    <div class="main">
+      ${children}
     </div>
-    <footer className="footer">
-      © {site.author}
+    <footer class="footer">
+      © ${site.author}
     </footer>
   </div>
-);
+`);
 
-Layout.propTypes = {
-  site: SiteProps.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-export default Layout;
+module.exports = Layout;

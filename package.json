@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production gulp build",
     "clean": "gulp clean",
     "deploy": "npm run clean && npm run build && gh-pages -d public -b master",
-    "lint": "eslint gulpfile.babel.js plugins source/_layouts source/_js",
+    "lint": "eslint gulpfile.babel.js plugins source/_layouts",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename"
   },
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git://github.com/shuhei/shuhei.github.com.git"
   },
-  "author": "Shuhei Kagawa <shuhei.kagawa@m3.com>",
+  "author": "Shuhei Kagawa <shuhei.kagawa@gmail.com>",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/shuhei/shuhei.github.com/issues"
@@ -56,8 +56,6 @@
     "strftime": "^0.10.0",
     "textile-js": "^2.0.2",
     "through2": "^2.0.0",
-    "webpack": "^3.10.0",
-    "webpack-merge": "^4.1.1",
     "yargs": "^10.0.3"
   },
   "gh-pages": {

@@ -4,7 +4,6 @@ import { argv as args } from 'yargs';
 import del from 'del';
 import highlightjs from 'highlight.js';
 import { Renderer } from 'marked';
-import webpack from 'webpack';
 
 import gulp from 'gulp';
 import gutil from 'gulp-util';
@@ -13,8 +12,6 @@ import markdown from 'gulp-markdown';
 import frontMatter from 'gulp-front-matter';
 import textile from 'gulp-textile';
 
-import webpackDevConfig from './webpack.dev';
-import webpackProductionConfig from './webpack.production';
 import condition from './plugins/condition';
 import server from './plugins/server';
 import { index, layout, cleanUrl, newPost, newPage } from './plugins/blog';
@@ -72,18 +69,6 @@ gulp.task('posts', () => {
     .pipe(gulp.dest(path.join('./public', siteConfig.blogDir)));
 });
 
-// Build JavaScript for client.
-gulp.task('js', (callback) => {
-  const config = process.env.NODE_ENV === 'production' ? webpackProductionConfig : webpackDevConfig;
-  webpack(config, (err, stats) => {
-    if (err) {
-      throw new gutil.PluginError('webpack', err);
-    }
-    gutil.log('[webpack]', stats.toString('minimal'));
-    callback();
-  });
-});
-
 gulp.task('clean', (cb) => {
   del([publicDir], cb);
 });
@@ -96,9 +81,8 @@ gulp.task('watch', ['default'], () => {
       return;
     }
     gutil.log('Listening on port 4000');
-    gulp.watch(['./source/**/*.*', '!./source/_{js,css,posts}/**/*.*'], ['copy']);
+    gulp.watch(['./source/**/*.*', '!./source/_{css,posts}/**/*.*'], ['copy']);
     gulp.watch('./source/_{posts,layouts,css}/*.*', ['posts', 'copy']);
-    gulp.watch('./source/_{js,layouts}/**/*.js', ['js']);
   });
 });
 
@@ -121,6 +105,6 @@ gulp.task('newpage', () => {
   newPage(args.filename, siteConfig);
 });
 
-gulp.task('build', ['js', 'copy', 'posts']);
+gulp.task('build', ['copy', 'posts']);
 
 gulp.task('default', ['build']);

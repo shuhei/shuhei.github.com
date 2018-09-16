@@ -1,43 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-
-import { handleLink } from '../_js/link';
-import { SiteProps, ArchivePostTypes } from './types';
-
-const ArchivePost = ({ post }) => (
-  <div className="post-list-item">
-    <div className="post-list-item__date">
-      {post.date.split(' ')[0]}
+const ArchivePost = ({ post }) => {
+  const date = post.date.split(' ')[0];
+  return `
+    <div class="post-list-item">
+      <div class="post-list-item__date">
+        ${date}
+      </div>
+      <div class="post-list-item__title">
+        <a href=${post.url}>${post.title}</a>
+      </div>
     </div>
-    <div className="post-list-item__title">
-      <a href={post.url} onClick={handleLink}>{post.title}</a>
-    </div>
-  </div>
-);
-
-ArchivePost.propTypes = {
-  post: ArchivePostTypes.isRequired,
+  `;
 };
 
 const ArchivesPage = ({ site, posts }) => {
+  // TODO: Use title.
   const title = ['Archives', site.title].join(' - ');
-  return (
+  const postList = posts.map(post => ArchivePost({ post })).join('\n');
+  return `
     <div>
-      <Helmet title={title} />
-      <div className="post-list">
-        <h1 className="title">
+      <div class="post-list">
+        <h1 class="title">
           <a href="/blog/archives">Archives</a>
         </h1>
-        {posts.map(post => <ArchivePost post={post} key={post.url} />)}
+        ${postList}
       </div>
     </div>
-  );
+  `;
 };
 
-ArchivesPage.propTypes = {
-  site: SiteProps.isRequired,
-  posts: PropTypes.arrayOf(ArchivePostTypes).isRequired,
-};
-
-export default ArchivesPage;
+module.exports = ArchivesPage;
