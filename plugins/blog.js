@@ -314,7 +314,7 @@ function newPost(title, config) {
   writer.write(util.format('title: "%s"\n', title));
   writer.write(util.format('date: %s\n', strftime('%Y-%m-%d %H:%M')));
   writer.write('comments: true\n');
-  writer.write('categories: \n');
+  writer.write('categories: []\n');
   writer.write('---\n');
   writer.end();
 }
