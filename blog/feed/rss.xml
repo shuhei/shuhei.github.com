@@ -1,4 +1,76 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 16 Sep 2018 08:56:00 GMT</lastBuildDate><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>http://shuheikagawa.com//blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sat, 29 Dec 2018 21:10:00 GMT</lastBuildDate><item><title>Histogram for Time-Series Metrics on Node.js</title><link>http://shuheikagawa.com//blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</link><description><![CDATA[
+<h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
+<p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
+<p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
+<p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
+<h2 id="eds-based-histogram">EDS-based Histogram</h2>
+<p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
+<p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
+<p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
+<p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
+So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
+<p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
+<h2 id="hdr-histogram">HDR Histogram</h2>
+<p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
+<p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
+<p>OK, I&#39;m sold.</p>
+<h2 id="benchmark-on-node-js">Benchmark on Node.js</h2>
+<p>Then, how can I use HDR Histogram on Node.js? I found three implementations:</p>
+<ul>
+<li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a>: JS implementation in the same GitHub org as the Java implementation</li>
+<li><a href="https://github.com/mcollina/native-hdr-histogram">native-hdr-histogram</a>: A binding to a C implementation</li>
+<li><a href="https://github.com/kiggundu/node-hdr-histogram">node-hdr-histogram</a>: A binding to the Java implementation</li>
+</ul>
+<p>Also EDS-based histogram implementations:</p>
+<ul>
+<li><a href="https://github.com/mikejihbe/metrics">metrics</a>: The library I&#39;m using at work</li>
+<li><a href="https://github.com/yaorg/node-measured/tree/master/packages/measured-core">measured-core</a>: Actively maintained and widely used by Node.js developers (<a href="https://twitter.com/_vigneshh/status/1078287577394880512">Thanks @_vigneshh for letting me know!</a>)</li>
+</ul>
+<p>I compared them, excluding <code>node-hdr-histogram</code> because I think it’s an overkill to run JVM only for metrics (and won&#39;t perform well anyway). The benchmark code is on <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">a gist</a>, and here is the result on Node.js 10.14.2.</p>
+<p>Adding 10K values to a histogram:</p>
+<ul>
+<li>metrics: 173 ops/sec ±2.00% (80 runs sampled)</li>
+<li>measured: 421 ops/sec ±1.19% (90 runs sampled)</li>
+<li>hdr-histogram-js: 1,769 ops/sec ±1.84% (92 runs sampled)</li>
+<li>native-hdr-histogram: 1,516 ops/sec ±0.82% (92 runs sampled)</li>
+</ul>
+<p>Extracting 12 different percentiles from a histogram:</p>
+<ul>
+<li>metrics: 1,721 ops/sec ±1.93% (92 runs sampled)</li>
+<li>measured: 3,709 ops/sec ±0.78% (93 runs sampled)</li>
+<li>measured (weighted percentiles): 2,383 ops/sec ±1.30% (90 runs sampled)</li>
+<li>hdr-histogram-js: 3,509 ops/sec ±0.61% (93 runs sampled)</li>
+<li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
+</ul>
+<p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
+<h2 id="reset-strategy">Reset Strategy</h2>
+<p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
+<p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
+<ul>
+<li>Reset on snapshot</li>
+<li>Reset periodically</li>
+<li>Reset periodically by chunks (rolling time window)</li>
+<li>Never reset</li>
+</ul>
+<p><em>Reset on snapshot</em> looks a bit hacky (we need to keep metrics collection only once in an interval) but should be easy to implement and practical. <em>Rolling time window</em> looks more rigorous, but a bit tedious to implement, especially about choosing the right parameters.</p>
+<p>I made a quick survey of popular libraries and frameworks.</p>
+<ul>
+<li>Hysterix: <a href="https://github.com/Netflix/Hystrix/blob/v1.5.18/hystrix-core/src/main/java/com/netflix/hystrix/metric/consumer/RollingCommandLatencyDistributionStream.java">HdrHistogram + rolling time window</a></li>
+<li>Finagle: <a href="https://github.com/twitter/finagle/blob/finagle-18.12.0/finagle-core/src/main/scala/com/twitter/finagle/util/WindowedPercentileHistogram.scala">HdrHistogram + rolling time window</a></li>
+<li>Resilience4j: Uses Prometheus?</li>
+<li>Prometheus: Supports <a href="https://prometheus.io/docs/practices/histograms/">Histogram and Summary</a> by its own implementation</li>
+<li><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics">rolling-metrics</a>: Supports HdrHistogram and multiple strategies including rolling time window.</li>
+<li><a href="https://github.com/erikvanoosten/metrics-scala">metrics-scala</a>: Supports HdrHistogram + only reset on snapshot strategy. Depends on <a href="https://bitbucket.org/marshallpierce/hdrhistogram-metrics-reservoir">hdrhistogram-metrics-reservoir</a>.</li>
+</ul>
+<p><em>Rolling time window</em> strategy seems to be most popular, but I couldn’t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I’ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series.</li>
+<li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js.</li>
+<li>We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</li>
+</ul>
+
+]]></description><pubDate>Sat, 29 Dec 2018 21:10:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>http://shuheikagawa.com//blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
 <p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
 <h2 id="background">Background</h2>
 <p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
@@ -365,118 +437,4 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 </ol>
 <p>The step 3 type-checks <code>.ngfactory.ts</code>, and detects typo and type errors in your templates if any. It is a great benefit in addition to skipping the runtime compilation and smaller library size. Looking forward to Angular 2 offline compiler&#39;s official release!</p>
 
-]]></description><pubDate>Fri, 03 Jun 2016 20:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/</guid></item><item><title>Angular 2 with Babel</title><link>http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</link><description><![CDATA[
-<p>Although Angular 2&#39;s primary language is apparently TypeScript, many people want to use Babel as shown in <a href="http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html">a survey</a>.</p>
-<p>However, <a href="https://angular.io">The official documentation</a> targets only TypeScript and ES5. In addition, many pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript&#39;s type annotations for annotating components and services.</p>
-<p>To fill the gap, you can use <a href="https://github.com/shuhei/babel-preset-angular2"><code>babel-preset-angular2</code></a> that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.</p>
-<h2 id="how-to-use-it">How to use it</h2>
-<pre><code class="hljs sh">npm install -D babel-preset-es2015 babel-preset-angular2</code></pre><p>Add <code>presets</code> to <code>.babelrc</code>. Note that the <code>presets</code>&#39; order is important.</p>
-<pre><code class="hljs json">{
-  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
-}</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
-<h2 id="supported-annotations">Supported annotations</h2>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Example</th>
-<th>EcmaScript</th>
-<th>TypeScript</th>
-<th>Babel*</th>
-<th>Babel + angular2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Class decorator</td>
-<td><code>@Component()</code></td>
-<td>Stage 1</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Property decorator</td>
-<td><code>@Input()</code></td>
-<td>Stage 1</td>
-<td>Yes</td>
-<td>Partial*</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Parameter decorator</td>
-<td><code>@Optional()</code></td>
-<td>Stage 0</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Type annotation</td>
-<td><code>foo: Foo</code></td>
-<td>-</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div><p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
-<ul>
-<li><a href="https://babeljs.io/docs/plugins/preset-es2015/">babel-preset-es2015</a></li>
-<li><a href="https://babeljs.io/docs/plugins/transform-class-properties/">babel-plugin-transform-class-properties</a></li>
-<li><a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">babel-plugin-transform-decorators-legacy</a> (not literally official but maintained by <a href="https://github.com/loganfsmyth">@loganfsmyth</a>, one of Babel&#39;s core contributors)</li>
-</ul>
-<p>Property decorator in Babel is marked &quot;Partial&quot; because <code>babel-plugin-transform-decorators-legacy</code> ignores class properties without initializers.</p>
-<p>You can emulate parameter decorator and type annotation with plain ES2015 like the following but it&#39;s a little bit counterintuitive.</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
-  <span class="hljs-keyword">constructor</span>(foo: Foo, @Optional() bar: Bar) {
-    <span class="hljs-comment">// Do something with foo and bar.</span>
-  }
-}
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloComponent</span> </span>{
-  <span class="hljs-keyword">static</span> get parameters() {
-    <span class="hljs-keyword">return</span> [[Foo], [Bar, Optional()]];
-  }
-
-  <span class="hljs-keyword">constructor</span>(foo, bar) {
-    <span class="hljs-comment">// Do something with foo and bar.</span>
-  }
-}</code></pre><h2 id="polyfills">Polyfills</h2>
-<p>Angular 2 beta versions had polyfill bundles but RC versions don&#39;t. But never mind. We can just import them before bootstrapping our app.</p>
-<pre><code class="hljs sh">npm install -S babel-polyfill zone.js</code></pre><p><code>src/index.js</code></p>
-<pre><code class="hljs js"><span class="hljs-comment">// Import polyfills.</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">'babel-polyfill'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js/dist/zone.js'</span>;
-
-<span class="hljs-comment">// Bootstrap app!</span>
-<span class="hljs-keyword">import</span> {provide} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> {bootstrap} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
-<span class="hljs-keyword">import</span> {ROUTER_PROVIDERS} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
-<span class="hljs-keyword">import</span> {LocationStrategy, HashLocationStrategy} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
-
-<span class="hljs-keyword">import</span> {HelloApp} <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>;
-
-bootstrap(HelloApp, [
-  ROUTER_PROVIDERS,
-  provide(LocationStrategy, { <span class="hljs-attr">useClass</span>: HashLocationStrategy })
-]).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
-<h2 id="module-resolution">Module resolution</h2>
-<p>You can use any module resolver as long as it works with Babel. I&#39;ll pick <a href="http://browserify.org/">Browserify</a> here for its simplicity.</p>
-<pre><code class="hljs js">npm install -D browserify babelify</code></pre><p>Add a <code>build</code> script to your <code>package.json</code> assuming that your bootstrap script locates at <code>src/index.js</code>.</p>
-<pre><code class="hljs json">{
-  <span class="hljs-attr">"scripts"</span>: {
-    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"browserify -t babelify src/index &gt; public/bundle.js"</span>
-  }
-}</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
-<p>Of course you can use other module resolvers like Webpack or SystemJS.</p>
-<h2 id="offline-compilation">Offline compilation</h2>
-<p>This is not yet available for Babel. Not completed even for TypeScript.</p>
-<p>The <a href="https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli"><code>compiler_cli</code></a> seems to be deeply integrated with TypeScript compiler. It <strong>statically</strong> collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.</p>
-<p>I&#39;m thinking of working on it once the TypeScript version is published and the compiler API becomes more stable.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
-<p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
-
-]]></description><pubDate>Sun, 08 May 2016 13:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/05/08/angular-2-with-babel/</guid></item></channel></rss>
+]]></description><pubDate>Fri, 03 Jun 2016 20:47:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/</guid></item></channel></rss>

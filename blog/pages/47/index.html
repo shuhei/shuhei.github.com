@@ -48,6 +48,31 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/08/12/virtual-python-in-sakura-internet/>さくらのサーバに virtual-python を入れる</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 12, 2008</span>
+          - <span class="category">Python</span>, <span class="category">さくらインターネット</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。<br />
+問題は他にあった気がしますが、easy install は使えるようになりました。</p>
+<p>参考にしたのは、以下のサイト。</p>
+<ul>
+<li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットにpythonを再インストール &#8211; cimada-ism</a></li>
+<li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python開発環境を整えよう</a></li>
+</ul>
+<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。<br />
+これについては、必要になるまで放置。</p>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/08/02/building-names-ingoogle-maps/>Google Maps に建物名</a>
         </h1>
         <div class="meta">
@@ -82,40 +107,6 @@
 <p>同じことをしようとすると、Python では、以下。</p>
 <pre class="prettyprint">output = ",".join(arr)</pre>
 <p>少し変態っぽいですね。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/06/22/install-python-modules-in-sakura-internet/>さくらのサーバに Python モジュールをインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 22, 2008</span>
-          - <span class="category">Python</span>, <span class="category">さくらインターネット</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。<br />
-インストール場所は、<code>$HOME/lib/python</code>に。</p>
-<p>$<span class="caps">HOME</span>/.cshrc で環境変数を設定。</p>
-<pre class="prettyprint"> setenv PYTHONPATH $HOME/lib/python</pre>
-<p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記でOKでした。</p>
-<pre class="prettyprint">python setup.py install --home=~</pre>
-<p>今日インストールしたのは以下。</p>
-<ul>
-	<li>Universal Feedparser</li>
-	<li>Python Imaging Library</li>
-	<li>Beautiful Soup</li>
-	<li>IPython（モジュール？）</li>
-	<li>MySQLdb</li>
-	<li><del>NumPy</del></li>
-	<li><del>matplotlib</del></li>
-	<li>pydelicious</li>
-	<li>Element Tree</li>
-</ul>
         </div>
       </div>
     </div>

@@ -48,6 +48,43 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/03/06/servey-note-ofactiveldap/>ActiveLdap 調査メモ</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Mar 6, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>未検証ですが、以下の記事から調査したことのメモ。</p>
+<ul>
+	<li><a href="http://jp.rubyist.net/magazine/?0027-ActiveLdap">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>
+	<li><a href="http://www.clear-code.com/archives/rails-seminar-technical-night">Railsで作るActive Directoryと連携した社内システム</a></li>
+</ul>
+<h3>Rails と併用可</h3>
+<pre class="prettyprint">script/generate scaffold_active_ldap
+script/generete model_active_ldap user</pre>
+<h3>接続</h3>
+<p>接続はプロセス間共有不可。普通にやると、Passenger はだめ。</p>
+<h4>対策</h4>
+<ul>
+	<li>ユーザ毎の接続を持たせない。</li>
+	<li>1 リクエストで完結させる。</li>
+</ul>
+<h3>バックエンド</h3>
+<ul>
+	<li>Ruby なら Ruby/<span class="caps">LDAP</span>（OpenLDAP のバインディング）。</li>
+	<li>JRuby なら <span class="caps">JNDI</span>。</li>
+	<li>PureRuby の Net::LDAP は、trunk でないと問題。</li>
+</ul>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/03/06/renew-ruby-environment/>Ruby の環境を新しく</a>
         </h1>
         <div class="meta">
@@ -121,33 +158,6 @@ export PATH=/var/lib/gem/1.8/bin:$PATH</pre>
 	<li><a href="http://d.hatena.ne.jp/secondlife/20061222/1166781841">rails.vim まとめ &#8211; 川o・-・）＜2nd life</a></li>
 	<li><a href="http://d.hatena.ne.jp/mig50/20060731/1154356587">rails.vimの使い方(導入編) &#8211; migration!!</a></li>
 </ul>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/02/17/hashdefault/>Ruby の Hash#default</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Feb 17, 2010</span>
-          - <span class="category">Ruby</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Windows XP の Ruby 1.8.7 で</p>
-<pre class="prettyprint">h = {}
-h.default = []
-h["hello"] &lt;&lt; "world"</pre>
-<p>としたとき</p>
-<pre class="prettyprint">puts h.size # =&gt; 1
-puts h # =&gt; {"hello"=&gt;["world"]}</pre>
-<p>となるのを期待していたのですが <code>{}</code> と出力されます。<br />
-さらに、なんと以下のようになりました。</p>
-<pre class="prettyprint">puts h["foo"] # =&gt; ["world"]</pre>
-<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p>
         </div>
       </div>
     </div>

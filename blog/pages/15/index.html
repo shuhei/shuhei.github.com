@@ -48,6 +48,35 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/05/01/the-program-being-debugged-is-not-being-run/>The program being debugged is not being run.</a>
+        </h1>
+        <div class="meta">
+          <span class="date">May 1, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
+そんなの見ればわかります。理由を書いてください。理由を。<br />
+アプリのインストール自体はできているのですが、デバッグができないようです。</p>
+<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
+オーガナイザで provisioning profile を一旦消して、新しくダウンロードしたやつを入れ直そうというものです。</p>
+<p>しかし &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&#8221;+&#8221; で上書きしようとしても効果なし。</p>
+<p>&#8220;<span class="caps">IPHONE</span> <span class="caps">DEVELOMENT</span>&#8220; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。<br />
+めでたしめでたし。</p>
+<h3>追記</h3>
+<p>・・・と思ったら、また同じエラーが出ました。<br />
+ソースをいじってコンパイルし直した直後に出るみたい。<br />
+その後もう一回試すと、ちゃんと起動しています。<br />
+うーん、不思議です・・・。</p>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/04/14/upgrade-to-snow-leopard/>今さら Snow Leopard にアップグレード</a>
         </h1>
         <div class="meta">
@@ -134,29 +163,6 @@ $ which ruby
 <p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
 <a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
 <p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/03/16/flash-platform-camp-tokyo/>Flash Platform Camp Tokyo を見てきた</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Mar 16, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>今日 Flash Platform Camp Tokyo に行ってきました。<br />
-Flash <span class="caps">CS5</span>、Flash Player 10.1、<span class="caps">AIR2</span>.0 の新機能紹介や、Ralph Hauwert, Mario Klingemann, 深津さん、新藤さん、Erik Natzke らのセッション。</p>
-<p>（内容まとめ。あとで書く）</p>
-<p>最近開発プロセスやアプリケーション設計、プログラミング言語そのものなど、いわば How の方に興味が移っていました。<br />
-会社で What を選びにくい状況で、ついついそうなってしまっていたのかもしれません。<br />
-しかし、今回のイベントでやはり How より What の方が面白いと再確認。とにかく何かを作ることを忘れないようにしようと思いました。</p>
-<p>こういう普段と違う世界を見るのは、自分を遠くから見る良いきっかけになりますね。今後も面白そうなものを見つけて参加していきたいです。</p>
         </div>
       </div>
     </div>

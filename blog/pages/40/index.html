@@ -48,6 +48,34 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/11/23/artoolkit-on-vc2005express/>Visual C++ 2005 Express Edition で ARToolkit</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Nov 23, 2008</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>ARToolkit、やっと自作プロジェクトで動きました。<br />
+Visual Studio の設定について書いたものはありましたが、プロジェクトの設定について詳しく書いたものがなかったので、メモ。</p>
+<p>プロジェクトの新規作成時に、Win32 コンソールアプリケーション &#8594; Windowsアプリケーション。</p>
+<p>出力先フォルダには、ARtoolkit/bin にある <span class="caps">DLL</span> ファイルや Data フォルダをコピーしておきます。</p>
+<p>プロジェクトの設定を下記のように変更。</p>
+<ul>
+	<li>C/C++ &#8594; 全般 -&gt; 追加のインクルードディレクトリ = ARToolkit/include</li>
+	<li>リンカ &#8594; 全般 -&gt; インクリメンタルリンクを有効にする = 既定値</li>
+	<li>リンカ &#8594; 全般 -&gt; 追加のライブラリディレクトリ = ARToolkit/lib</li>
+	<li>リンカ &#8594; 入力 -&gt; 追加の依存ファイル = libARd.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib</li>
+</ul>
+<p>これで何とか動くように思います。</p>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/11/16/bookkeeping-problems-collection/>簿記の問題集</a>
         </h1>
         <div class="meta">
@@ -84,30 +112,6 @@
         <div>
           <p>「崎」の右上が「立」になっている字は環境依存文字だそうです。<br />
 これのせいで2、3時間ハマりました・・・。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/10/14/software-developer/>ソフトウェア開発技術者</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 14, 2008</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>残り一週間を切った昨日、やっと過去問一回分を解いてみました。</p>
-<p>これが思ったよりも難しい。<br />
-基礎知識があまりないので、午前問題が一番ヤバそうです。<br />
-午後は少し勉強すればあとは考えるだけでなんとかなりそう。</p>
-<p>一回分を解くのに五時間半もかかるのでなかなか手をだせなかったのですが、もっと早く解いてみるべきでした。<br />
-まぁ、ギリギリで受かれば効率が良い訳ですが。</p>
-<p>今後の課題は何事にも余裕を持って行動すること。<br />
-そのためにはやることを減らさなければならないわけですが。</p>
         </div>
       </div>
     </div>

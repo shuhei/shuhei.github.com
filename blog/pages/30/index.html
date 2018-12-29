@@ -48,6 +48,25 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/02/openframeworks-on-iphon/>iPhone で OpenFrameworks</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 2, 2009</span>
+          - <span class="category">C/C++</span>, <span class="category">iPhone 開発</span>, <span class="category">OpenFrameworks</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>二次元で Strange Attractor 的なものをつくってみました。パーティクルの点描ではなく軌跡を描いています。</p>
+<p><a href="http://www.flickr.com/photos/branchiopoda/3780153165/" title="Attractor2D by shuhei kagawa, on Flickr"><img src="http://farm4.static.flickr.com/3479/3780153165_68805a6ef5.jpg" width="269" height="500" alt="Attractor2D" /></a></p>
+<p>Processing と全く同じような感じで書けるので、よけいなことに労力を費やさずにすみます。今後 iPhone で OpenFrameworks を使って行くならば、UIKit との組み合わせ方と、審査が通るかどうかを調べなければいけませんね。</p>
+        </div>
+      </div>
+    </div>
+  ,
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/02/blending-of-openg/>OpenGL のブレンディング方法について</a>
         </h1>
         <div class="meta">
@@ -132,39 +151,6 @@ pa = NULL;
 pb = NULL;
 // pc = NULL;  // エラー！ポインタ自体が const なため</pre>
 <p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
-        </div>
-      </div>
-    </div>
-  ,
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/28/cannot-initialize-members-of-base-class/>基本クラスのメンバを初期化できない</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 28, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>またまた少しはまりました。</p>
-<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。<br />
-以下のように書くとエラーになります。</p>
-<pre class="prettyprint">class A {
-protected:
-  int foo;
-};
-
-class B : public A {
-public:
-  B(int value) : foo(value) {
-  }
-};</pre>
-<p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
-なかなか面倒なものですね。</p>
-<p>参考サイト<br />
-<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; <span class="caps">A7M</span> の日記</a></p>
         </div>
       </div>
     </div>
