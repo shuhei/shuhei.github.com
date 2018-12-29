@@ -91,8 +91,8 @@ I made a quick survey of popular libraries and frameworks.
 
 *Rolling time window* strategy seems to be most popular, but I couldn't find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I'll probably start with *reset on snapshot* strategy and see if it works well.
 
-## Summary
+## Conclusion
 
-- HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series.
-- [hdr-histogram-js](https://github.com/HdrHistogram/HdrHistogramJS) is accurate and performant. It seems to be the best option on Node.js.
-- We need a way to remove old values from a histogram. *Reset on snapshot* is easy and practical, but *rolling time window* is more rigorous.
+HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. [hdr-histogram-js](https://github.com/HdrHistogram/HdrHistogramJS) is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. *Reset on snapshot* is easy and practical, but *rolling time window* is more rigorous.
+
+After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.
