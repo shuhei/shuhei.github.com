@@ -48,7 +48,7 @@ Also EDS-based histogram implementations:
 - [metrics](https://github.com/mikejihbe/metrics): The library I'm using at work
 - [measured-core](https://github.com/yaorg/node-measured/tree/master/packages/measured-core): Actively maintained and widely used by Node.js developers ([Thanks @_vigneshh for letting me know!](https://twitter.com/_vigneshh/status/1078287577394880512))
 
-I compared them, excluding `node-hdr-histogram` because I think it’s an overkill to run JVM only for metrics (and won't perform well anyway). The benchmark code is on [a gist](https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f), and here is the result on Node.js 10.14.2.
+I compared them, excluding `node-hdr-histogram` because I think it's an overkill to run JVM only for metrics (and won't perform well anyway). The benchmark code is on [a gist](https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f), and here is the result on Node.js 10.14.2.
 
 Adding 10K values to a histogram:
 
@@ -89,7 +89,7 @@ I made a quick survey of popular libraries and frameworks.
 - [rolling-metrics](https://github.com/vladimir-bukhtoyarov/rolling-metrics): Supports HdrHistogram and multiple strategies including rolling time window.
 - [metrics-scala](https://github.com/erikvanoosten/metrics-scala): Supports HdrHistogram + only reset on snapshot strategy. Depends on [hdrhistogram-metrics-reservoir](https://bitbucket.org/marshallpierce/hdrhistogram-metrics-reservoir).
 
-*Rolling time window* strategy seems to be most popular, but I couldn’t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I’ll probably start with *reset on snapshot* strategy and see if it works well.
+*Rolling time window* strategy seems to be most popular, but I couldn't find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I'll probably start with *reset on snapshot* strategy and see if it works well.
 
 ## Summary
 
