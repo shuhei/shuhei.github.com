@@ -8,7 +8,6 @@ const async = require("async");
 const mkdirp = require("mkdirp");
 const strftime = require("strftime");
 
-const readCssFiles = require("./css");
 const Layout = require("../source/_layouts/Layout");
 const IndexPage = require("../source/_layouts/IndexPage");
 const ArchivesPage = require("../source/_layouts/ArchivesPage");
