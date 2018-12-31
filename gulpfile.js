@@ -39,8 +39,8 @@ gulp.task("copy", ["css"], () => {
       .src(["source/**/*", "!source/_*", "!source/_*/**/*", "source/.nojekyll"])
       .pipe(plumber())
       // frontMatter messes up binary files and files with `---`.
-      .pipe(gulpIf("*.{markdown,md,textile}", frontMatter()))
-      .pipe(gulpIf(`*.{markdown,md}`, markdown({ renderer })))
+      .pipe(gulpIf("**/*.{markdown,md,textile}", frontMatter()))
+      .pipe(gulpIf(`**/*.{markdown,md}`, markdown({ renderer })))
       .pipe(layout(config))
       .pipe(gulp.dest(publicDir))
   );
@@ -61,8 +61,8 @@ gulp.task("posts", ["css"], () => {
     .src("source/_posts/*.{markdown,md,textile}")
     .pipe(plumber())
     .pipe(frontMatter())
-    .pipe(gulpIf("*.{markdown,md}", markdown({ renderer })))
-    .pipe(gulpIf("*.textile", textile()))
+    .pipe(gulpIf("**/*.{markdown,md}", markdown({ renderer })))
+    .pipe(gulpIf("**/*.textile", textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
     .pipe(layout(config))

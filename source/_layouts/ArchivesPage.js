@@ -18,13 +18,11 @@ const ArchivesPage = ({ site, posts }) => {
   const title = ["Archives", site.title].join(" - ");
   const postList = posts.map(post => ArchivePost({ post })).join("\n");
   const body = `
-    <div>
-      <div class="post-list">
-        <h1 class="title">
-          <a href="/blog/archives">Archives</a>
-        </h1>
-        ${postList}
-      </div>
+    <div class="post-list">
+      <h1 class="title">
+        <a href="/blog/archives">Archives</a>
+      </h1>
+      ${postList}
     </div>
   `;
   return {
