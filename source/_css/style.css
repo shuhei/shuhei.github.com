@@ -264,7 +264,8 @@ blockquote cite:before {
   .header {
     display: block;
   }
-  .post {
+  .post,
+  .post-list {
     padding-top: 10px;
   }
   .title {
@@ -273,8 +274,8 @@ blockquote cite:before {
   .menu__item {
     padding: 0 20px 0 0;
   }
-  .post-list-item__title {
-    width: 100%;
+  .post-list-item {
+    display: block;
   }
   .hljs {
     margin-left: -20px;
