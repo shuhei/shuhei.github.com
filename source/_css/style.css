@@ -30,7 +30,6 @@ blockquote {
 }
 
 blockquote p:first-child:before {
-  color: #ccccc0;
   content: open-quote;
   font-family: serif;
   font-size: 3em;
@@ -48,14 +47,15 @@ blockquote cite:before {
   content: "- ";
 }
 
+/* header */
 .header {
   padding: 25px 0 10px;
-  text-align: center;
 }
 .header__title {
   margin: 0 0 15px;
 }
 .header__title a {
+  color: var(--text-color);
   text-decoration: none;
 }
 .menu {
@@ -69,6 +69,7 @@ blockquote cite:before {
   padding: 0 20px;
 }
 .menu__item a {
+  color: var(--text-color);
   font-weight: bold;
   text-decoration: none;
 }
@@ -78,15 +79,18 @@ blockquote cite:before {
   text-align: center;
 }
 
+/* title */
+.title {
+  font-size: 42px;
+}
 .title a {
+  color: var(--text-color);
   text-decoration: none;
 }
 
 /* post */
 .post,
 .post-list{
-  background: #fff;
-  border-top: 8px solid #fbf52f;
   padding: 30px 0 20px;
 }
 
@@ -96,29 +100,20 @@ blockquote cite:before {
 .post:last-child {
   margin-bottom: 0;
 }
-.post .post-header,
-.post .content {
-  margin: 0 auto;
-  width: 700px;
-}
 .post .title {
   margin: 0;
 }
 .post .meta {
-  color: #999;
   font-size: small;
   margin: 10px 0 25px;
 }
 
 .post-list .title {
-  margin: 0 auto 10px;
-  width: 700px;
+  margin-bottom: 10px;
 }
 .post-list-item {
   line-height: 1.6em;
   padding: 10px 0;
-  margin: 0 auto;
-  width: 700px;
 }
 .post-list-item:after {
   content: "";
@@ -126,15 +121,14 @@ blockquote cite:before {
   display: block;
 }
 .post-list-item__date {
-  color: #999;
   float: left;
   font-size: small;
-  width: 80px;
+  width: 90px;
 }
 .post-list-item__title {
   font-size: large;
   float: left;
-  width: 620px;
+  width: 610px;
   margin: 0;
 }
 .post-list-item__title a {
@@ -144,7 +138,7 @@ blockquote cite:before {
 
 /* content */
 .content {
-  line-height: 1.6em;
+  line-height: 1.7em;
 }
 .content img {
   max-width: 100%;
@@ -156,8 +150,7 @@ blockquote cite:before {
 
 /* comments */
 .comments {
-  margin: 0 auto 3em;
-  width: 700px;
+  margin-bottom: 3em;
 }
 
 /* table */
@@ -187,7 +180,7 @@ th, td {
   overflow-x: auto;
 }
 code {
-  background-color: #f8f8f2;
+  background-color: var(--code-bg-color);
   padding: 0.1em 0.2em;
   font-size: 0.85em;
   font-family: Monaco, 'Lucida Console', monospace;
@@ -205,8 +198,7 @@ code {
   list-style-position: outside;
   list-style-type: none;
   padding: 0;
-  margin: -20px auto 0px;
-  width: 700px;
+  margin-top: -20px;
 }
 .pagination:after {
   content: "";
@@ -241,19 +233,13 @@ code {
   width: 30%;
 }
 
+/* mobile */
 @media only screen and (max-width: 767px) {
-  h1 {
-    font-size: 24px;
-  }
-  .post .post-header,
-  .post .content,
-  .post-list .title,
-  .post-list-item,
-  .pagination,
-  .comments {
-    margin-left: 20px;
-    margin-right: 20px;
+  .container {
     width: auto;
+  }
+  .title {
+    font-size: 24px;
   }
   .post-list-item__title {
     width: 100%;

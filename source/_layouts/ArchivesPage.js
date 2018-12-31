@@ -1,4 +1,4 @@
-const { formatDate } = require('./date');
+const { formatDate } = require("./date");
 
 const ArchivePost = ({ post }) => {
   const date = formatDate(post.date);
@@ -15,8 +15,8 @@ const ArchivePost = ({ post }) => {
 };
 
 const ArchivesPage = ({ site, posts }) => {
-  const title = ['Archives', site.title].join(' - ');
-  const postList = posts.map(post => ArchivePost({ post })).join('\n');
+  const title = ["Archives", site.title].join(" - ");
+  const postList = posts.map(post => ArchivePost({ post })).join("\n");
   const body = `
     <div>
       <div class="post-list">
@@ -29,7 +29,7 @@ const ArchivesPage = ({ site, posts }) => {
   `;
   return {
     title,
-    body,
+    body
   };
 };
 

@@ -1,10 +1,10 @@
-const Layout = ({ site, children }) => (`
-  <div>
+const Layout = ({ site, children }) => `
+  <div class="container">
     <header class="header">
       <h1 class="header__title">
         <a href="/">${site.title}</a>
       </h1>
-      <nav>
+      <nav class="header__nav">
         <ul class="menu">
           <li class="menu__item">
             <a href="/about/">About</a>
@@ -25,6 +25,6 @@ const Layout = ({ site, children }) => (`
       © ${site.author}
     </footer>
   </div>
-`);
+`;
 
 module.exports = Layout;

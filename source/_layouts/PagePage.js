@@ -1,5 +1,5 @@
 const PagePage = ({ site, post }) => {
-  const title = [post.title, site.title].join(' - ');
+  const title = [post.title, site.title].join(" - ");
   const body = `
     <div>
       <div class="post">
@@ -16,7 +16,7 @@ const PagePage = ({ site, post }) => {
   `;
   return {
     title,
-    body,
+    body
   };
 };
 

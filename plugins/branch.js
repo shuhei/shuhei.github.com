@@ -1,4 +1,4 @@
-const { obj: through } = require('through2');
+const { obj: through } = require("through2");
 
 function branch(child) {
   function transform(file, enc, cb) {

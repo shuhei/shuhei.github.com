@@ -1,10 +1,10 @@
-const { formatDate } = require('./date');
+const { formatDate } = require("./date");
 
 const Post = ({ post }) => {
   const date = formatDate(post.date);
-  const categories = (post.categories || []).map(category => (
-    `<span class="category">${category}</span>`
-  )).join(', ');
+  const categories = (post.categories || [])
+    .map(category => `<span class="category">${category}</span>`)
+    .join(", ");
 
   return `
     <div class="post">
@@ -14,7 +14,7 @@ const Post = ({ post }) => {
         </h1>
         <div class="meta">
           <span class="date">${date}</span>
-          ${categories.length > 0 ? `- ${categories}` : ''}
+          ${categories.length > 0 ? `- ${categories}` : ""}
         </div>
       </div>
       <div class="content">

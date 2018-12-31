@@ -1,7 +1,7 @@
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric"
 });
 
 function formatDate(dateStr) {
@@ -9,5 +9,5 @@ function formatDate(dateStr) {
 }
 
 module.exports = {
-  formatDate,
+  formatDate
 };

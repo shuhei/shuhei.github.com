@@ -1,16 +1,11 @@
-const Post = require('./Post');
+const Post = require("./Post");
 
-const IndexPage = ({
-  posts,
-  title,
-  prevPage,
-  nextPage,
-}) => {
-  const prevLink = prevPage ? `<a href=${prevPage}>Newer Posts</a>` : '';
-  const nextLink = nextPage ? `<a href=${nextPage}>Older Posts</a>` : '';
+const IndexPage = ({ posts, title, prevPage, nextPage }) => {
+  const prevLink = prevPage ? `<a href=${prevPage}>Newer Posts</a>` : "";
+  const nextLink = nextPage ? `<a href=${nextPage}>Older Posts</a>` : "";
   const body = `
     <div>
-      ${posts.map(post => Post({ post }))}
+      ${posts.map(post => Post({ post })).join("\n")}
       <ul class="pagination">
         <li class="pagination__prev-page">
           ${prevLink}
@@ -26,7 +21,7 @@ const IndexPage = ({
   `;
   return {
     title,
-    body,
+    body
   };
 };
 

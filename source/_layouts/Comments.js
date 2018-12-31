@@ -1,4 +1,4 @@
-const Comments = () => (`
+const Comments = () => `
   <div class="comments">
     <div id="disqus_thread" />
     <script>
@@ -14,6 +14,6 @@ const Comments = () => (`
       <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
     </noscript>
   </div>
-`);
+`;
 
 module.exports = Comments;
