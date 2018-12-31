@@ -25,7 +25,8 @@ function renderPage(component, props, css) {
     children: body
   });
 
-  const fontCSS = "//fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700";
+  const fontCSS =
+    "//fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400";
 
   // It's important to have a <script> tag in head. Otherwise Google Analytics
   // inserts <script> tag after inline <script>.

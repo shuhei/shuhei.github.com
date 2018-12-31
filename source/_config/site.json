@@ -8,7 +8,7 @@
   "layoutDir": "_layouts",
   "postDir": "_posts",
   "cssFiles": [
-    "node_modules/highlight.js/styles/monokai-sublime.css",
+    "node_modules/highlight.js/styles/atom-one-light.css",
     "source/_css/style.css"
   ]
 }
