@@ -191,6 +191,7 @@ code {
   padding: 15px 20px;
   overflow-x: auto;
   background-color: var(--code-bg-color) !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* blockquote */
