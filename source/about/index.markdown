@@ -13,8 +13,9 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 
 ## Accounts
 
-- [Github @shuhei](https://github.com/shuhei)
+- [GitHub @shuhei](https://github.com/shuhei)
 - [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
+- [npm](https://www.npmjs.com/~shuhei)
 - [Stack Overflow](http://stackoverflow.com/)
 - [Speaker Deck](https://speakerdeck.com/shuhei)
 - [LinkedIn](http://www.linkedin.com/in/shuheikagawa)

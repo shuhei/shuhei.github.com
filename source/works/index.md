@@ -15,6 +15,7 @@ footer: true
 ## Visible Things
 
 - [Pixelm](/pixelm/): A pixel editor optimized for mobile devices and written with Elm.
+- [Compare](https://github.com/shuhei/Compare): A super-simple mobile app to compare temperatures of yesterday and today
 - [Weird Attractors](/attractors): Tweaked Strange Attractors.
 - [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
 - Contrib: Check your GitHub Contributions on your phone. Build with React.js and SVG.
