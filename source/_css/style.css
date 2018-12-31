@@ -232,7 +232,6 @@ blockquote cite:before {
   justify-content: space-between;
 }
 .pagination li {
-  font-weight: bold;
   min-height: 1em;
   width: 33%;
 }
