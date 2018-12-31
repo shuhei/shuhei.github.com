@@ -1,7 +1,18 @@
+/* red-ish */
+/*
 :root {
   --bg-color: #f9f4f3;
   --text-color: #3a2624;
   --highlight-color: #d6210f;
+  --code-bg-color: #ffffff;
+}
+*/
+
+/* beige and blue */
+:root {
+  --bg-color: #f7f0e7;
+  --text-color: #2d1e14;
+  --highlight-color: #095ae8;
   --code-bg-color: #ffffff;
 }
 
@@ -34,20 +45,20 @@ a:hover {
   display: flex;
 }
 .header__title {
-  margin: 0;
+  margin: 0 10px 0 0;
   flex-grow: 1;
 }
 .header__title a {
-  color: var(--text-color);
+  color: var(--highlight-color);
   text-decoration: none;
 }
 .header__nav {
-  flow-grow: 1;
+  flex-grow: 0;
 }
 .menu {
   list-style-position: outside;
   list-style-type: none;
-  padding: 10px 0;
+  padding: 15px 0;
   margin: 0;
 }
 .menu__item {
@@ -55,13 +66,13 @@ a:hover {
   padding: 0 0 0 20px;
 }
 .menu__item a {
-  /* font-weight: bold; */
+  color: var(--text-color);
   text-decoration: none;
 }
 
 /* footer */
 .footer {
-  padding: 30px 0;
+  padding: 50px 0 30px;
   text-align: center;
 }
 
@@ -81,12 +92,16 @@ a:hover {
   padding: 30px 0 20px;
 }
 
-.post {
-  margin: 0 0 40px;
+/* separator only for index pages */
+.post:not(:first-child):before {
+  content: "* * *";
+  font-weight: bold;
+  display: block;
+  margin: 0 auto 40px;
+  font-size: 50px;
+  text-align: center;
 }
-.post:last-child {
-  margin-bottom: 0;
-}
+
 .post .meta {
   font-size: small;
   margin: 10px 0 25px;
@@ -164,7 +179,8 @@ th, td {
 }
 code {
   background-color: var(--code-bg-color);
-  padding: 0.1em 0.2em;
+  line-height: 1em;
+  padding: 0.1em 0.3em 0.2em;
   font-size: 0.85em;
   font-family: Monaco, 'Lucida Console', monospace;
 }
@@ -209,12 +225,14 @@ blockquote cite:before {
   list-style-position: outside;
   list-style-type: none;
   padding: 0;
-  margin-top: -20px;
+  margin-top: 20px;
   display: flex;
+  justify-content: space-between;
 }
 .pagination li {
   font-weight: bold;
   min-height: 1em;
+  width: 33%;
 }
 .pagination a {
   text-decoration: none;
@@ -231,8 +249,8 @@ blockquote cite:before {
   content: " >";
 }
 .pagination__archives {
-  text-align: center;
   flex-grow: 1;
+  text-align: center;
 }
 
 /* mobile */
@@ -243,6 +261,9 @@ blockquote cite:before {
   /* Put the menu below the title */
   .header {
     display: block;
+  }
+  .post {
+    padding-top: 10px;
   }
   .title {
     font-size: 24px;
