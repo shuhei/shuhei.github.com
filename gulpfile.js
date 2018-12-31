@@ -10,7 +10,7 @@ const markdown = require("gulp-markdown");
 const frontMatter = require("gulp-front-matter");
 const textile = require("gulp-textile");
 
-const condition = require("./plugins/condition");
+const gulpIf = require("gulp-if");
 const server = require("./plugins/server");
 const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
 const branch = require("./plugins/branch");
@@ -39,18 +39,8 @@ gulp.task("copy", ["css"], () => {
       .src(["source/**/*", "!source/_*", "!source/_*/**/*", "source/.nojekyll"])
       .pipe(plumber())
       // frontMatter messes up binary files and files with `---`.
-      .pipe(
-        condition(
-          `${process.cwd()}/source/**/*.{markdown,md,textile}`,
-          frontMatter()
-        )
-      )
-      .pipe(
-        condition(
-          `${process.cwd()}/source/**/*.{markdown,md}`,
-          markdown({ renderer })
-        )
-      )
+      .pipe(gulpIf("*.{markdown,md,textile}", frontMatter()))
+      .pipe(gulpIf(`*.{markdown,md}`, markdown({ renderer })))
       .pipe(layout(config))
       .pipe(gulp.dest(publicDir))
   );
@@ -68,16 +58,11 @@ gulp.task("posts", ["css"], () => {
   aggregator.pipe(gulp.dest("./public"));
 
   return gulp
-    .src("source/_posts/*.{markdown,textile}")
+    .src("source/_posts/*.{markdown,md,textile}")
     .pipe(plumber())
     .pipe(frontMatter())
-    .pipe(
-      condition(
-        `${__dirname}/source/**/*.{markdown,md}`,
-        markdown({ renderer })
-      )
-    )
-    .pipe(condition(`${__dirname}/source/**/*.textile`, textile()))
+    .pipe(gulpIf("*.{markdown,md}", markdown({ renderer })))
+    .pipe(gulpIf("*.textile", textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
     .pipe(layout(config))
