@@ -7,8 +7,8 @@ const jade = require("jade");
 const async = require("async");
 const mkdirp = require("mkdirp");
 const strftime = require("strftime");
-const CleanCSS = require("clean-css");
 
+const readCssFiles = require("./css");
 const Layout = require("../source/_layouts/Layout");
 const IndexPage = require("../source/_layouts/IndexPage");
 const ArchivesPage = require("../source/_layouts/ArchivesPage");
@@ -26,7 +26,7 @@ function renderPage(component, props, css) {
     children: body
   });
 
-  const fontCSS = "//fonts.googleapis.com/css?family=Asap:400,700";
+  const fontCSS = "//fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700";
 
   // It's important to have a <script> tag in head. Otherwise Google Analytics
   // inserts <script> tag after inline <script>.
@@ -92,18 +92,10 @@ function toURL(str) {
     .replace(/\s+/g, "-");
 }
 
-function readCssFiles(filePaths) {
-  const concatenated = filePaths
-    .map(css => fs.readFileSync(css, { encoding: "utf8" }))
-    .join("\n");
-  return new CleanCSS({}).minify(concatenated).styles;
-}
-
 function index(config) {
   const files = [];
   const perPage = config.perPage || 3;
   const getCompiledTemplate = templateCache();
-  const css = readCssFiles(config.cssFiles);
 
   // Return a function that renders `tmpl` with `locals` data into `dest`.
   function renderTemplateFunc(tmpl, dest, locals) {
@@ -142,7 +134,7 @@ function index(config) {
   function renderPageFunc(component, dest, locals) {
     return callback => {
       try {
-        const data = renderPage(component, locals, css);
+        const data = renderPage(component, locals, config.css);
         const file = new gutil.File({
           cwd: process.cwd(),
           base: path.join(__dirname, config.sourceDir),
@@ -257,8 +249,6 @@ function index(config) {
 }
 
 function layout(config) {
-  const css = readCssFiles(config.cssFiles);
-
   function transform(file, enc, cb) {
     if (!file.frontMatter || !file.frontMatter.layout) {
       this.push(file);
@@ -290,7 +280,9 @@ function layout(config) {
 
     try {
       const htmlFile = file.clone(false);
-      htmlFile.contents = Buffer.from(renderPage(component, locals, css));
+      htmlFile.contents = Buffer.from(
+        renderPage(component, locals, config.css)
+      );
       this.push(htmlFile);
     } catch (e) {
       this.emit("error", new PluginError(PLUGIN_NAME, e));

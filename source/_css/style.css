@@ -1,62 +1,48 @@
+:root {
+  --bg-color: #f9f4f3;
+  --text-color: #3a2624;
+  --highlight-color: #d6210f;
+  --code-bg-color: #ffffff;
+}
+
 body {
-  background-color: #f8f8f2;
-  font-family: 'Asap', sans-serif;
+  font-family: 'IBM Plex Sans', 'Asap', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
   padding: 0;
   margin: 0;
 }
 
-::-moz-selection {
-  background: #fbf42f;
-}
-::selection {
-  background: #fbf42f;
+.container {
+  width: 700px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 
+/* link */
 a {
-  color: #000;
+  color: var(--highlight-color);
   transition: color 300ms ease;
 }
 a:hover {
-  color: #999;
-}
-
-/* https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
-blockquote {
-  border-left: 10px solid #eeeee0;
-  font-style: italic;
-  padding: 0.1em 1.2em;
-  margin-left: 0;
-  quotes: "\201C""\201D""\2018""\2019";
-}
-
-blockquote p:first-child:before {
-  content: open-quote;
-  font-family: serif;
-  font-size: 3em;
-  font-weight: bold;
-  line-height: 0.1em;
-  margin-right: 0.2em;
-  vertical-align: -0.4em;
-}
-
-blockquote cite {
-  color: #999990;
-}
-
-blockquote cite:before {
-  content: "- ";
+  opacity: 0.8;
 }
 
 /* header */
 .header {
   padding: 25px 0 10px;
+  display: flex;
 }
 .header__title {
-  margin: 0 0 15px;
+  margin: 0;
+  flex-grow: 1;
 }
 .header__title a {
   color: var(--text-color);
   text-decoration: none;
+}
+.header__nav {
+  flow-grow: 1;
 }
 .menu {
   list-style-position: outside;
@@ -66,14 +52,14 @@ blockquote cite:before {
 }
 .menu__item {
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
 }
 .menu__item a {
-  color: var(--text-color);
-  font-weight: bold;
+  /* font-weight: bold; */
   text-decoration: none;
 }
 
+/* footer */
 .footer {
   padding: 30px 0;
   text-align: center;
@@ -82,6 +68,7 @@ blockquote cite:before {
 /* title */
 .title {
   font-size: 42px;
+  margin: 0;
 }
 .title a {
   color: var(--text-color);
@@ -99,9 +86,6 @@ blockquote cite:before {
 }
 .post:last-child {
   margin-bottom: 0;
-}
-.post .title {
-  margin: 0;
 }
 .post .meta {
   font-size: small;
@@ -132,7 +116,6 @@ blockquote cite:before {
   margin: 0;
 }
 .post-list-item__title a {
-  font-weight: bold;
   text-decoration: none;
 }
 
@@ -151,6 +134,13 @@ blockquote cite:before {
 /* comments */
 .comments {
   margin-bottom: 3em;
+}
+
+/* list */
+ul,
+ol {
+  list-style-position: outside;
+  padding-left: 1.4em;
 }
 
 /* table */
@@ -191,6 +181,34 @@ code {
   padding: 5px 10px;
   font-size: 0.85em;
   background-color: #666;
+}
+
+/* blockquote */
+/* https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
+blockquote {
+  border-left: 5px solid var(--text-color);
+  font-style: italic;
+  padding: 0.1em 1.2em;
+  margin-left: 0;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote p:first-child:before {
+  content: open-quote;
+  font-family: serif;
+  font-size: 3em;
+  font-weight: bold;
+  line-height: 0.1em;
+  margin-right: 0.2em;
+  vertical-align: -0.4em;
+}
+
+blockquote cite {
+  color: #999990;
+}
+
+blockquote cite:before {
+  content: "- ";
 }
 
 /* pagination */
@@ -238,8 +256,15 @@ code {
   .container {
     width: auto;
   }
+  /* Put the menu below the title */
+  .header {
+    display: block;
+  }
   .title {
     font-size: 24px;
+  }
+  .menu__item {
+    padding: 0 20px 0 0;
   }
   .post-list-item__title {
     width: 100%;

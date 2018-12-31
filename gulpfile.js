@@ -16,6 +16,7 @@ const condition = require("./plugins/condition");
 const server = require("./plugins/server");
 const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
 const branch = require("./plugins/branch");
+const readCssFiles = require("./plugins/css");
 
 const siteConfig = require("./source/_config/site.json");
 
@@ -44,32 +45,50 @@ renderer.table = (header, body) => {
   return `<div class="table-wrapper">${table}</div>`;
 };
 
+// HACK: Build CSS and keep it in a variable.
+let css;
+gulp.task("css", async () => {
+  css = await readCssFiles(siteConfig.cssFiles);
+});
+
 // Copy static pages compiling markdown files.
-gulp.task("copy", () =>
-  gulp
-    .src(["source/**/*", "!source/_*", "!source/_*/**/*", "source/.nojekyll"])
-    .pipe(plumber())
-    // frontMatter messes up binary files and files with `---`.
-    .pipe(
-      condition(
-        `${process.cwd()}/source/**/*.{markdown,md,textile}`,
-        frontMatter()
+gulp.task("copy", ["css"], () => {
+  const config = {
+    ...siteConfig,
+    css
+  };
+
+  return (
+    gulp
+      .src(["source/**/*", "!source/_*", "!source/_*/**/*", "source/.nojekyll"])
+      .pipe(plumber())
+      // frontMatter messes up binary files and files with `---`.
+      .pipe(
+        condition(
+          `${process.cwd()}/source/**/*.{markdown,md,textile}`,
+          frontMatter()
+        )
       )
-    )
-    .pipe(
-      condition(
-        `${process.cwd()}/source/**/*.{markdown,md}`,
-        markdown({ renderer })
+      .pipe(
+        condition(
+          `${process.cwd()}/source/**/*.{markdown,md}`,
+          markdown({ renderer })
+        )
       )
-    )
-    .pipe(layout(siteConfig))
-    .pipe(gulp.dest(publicDir))
-);
+      .pipe(layout(config))
+      .pipe(gulp.dest(publicDir))
+  );
+});
 
 // Compile blog posts, create index and archive pages.
-gulp.task("posts", () => {
+gulp.task("posts", ["css"], () => {
+  const config = {
+    ...siteConfig,
+    css
+  };
+
   // Aggregates posts and render index and archive pages.
-  const aggregator = index(siteConfig);
+  const aggregator = index(config);
   aggregator.pipe(gulp.dest("./public"));
 
   return gulp
@@ -85,7 +104,7 @@ gulp.task("posts", () => {
     .pipe(condition(`${__dirname}/source/**/*.textile`, textile()))
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
-    .pipe(layout(siteConfig))
+    .pipe(layout(config))
     .pipe(gulp.dest(path.join("./public", siteConfig.blogDir)));
 });
 
