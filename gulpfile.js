@@ -23,12 +23,12 @@ const publicDir = "public";
 
 // HACK: Build CSS and keep it in a variable.
 let css;
-gulp.task("css", async () => {
+async function buildCss() {
   css = await readCssFiles(siteConfig.cssFiles);
-});
+}
 
 // Copy static pages compiling markdown files.
-gulp.task("copy", ["css"], () => {
+function copyFiles() {
   const config = {
     ...siteConfig,
     css
@@ -44,10 +44,11 @@ gulp.task("copy", ["css"], () => {
       .pipe(layout(config))
       .pipe(gulp.dest(publicDir))
   );
-});
+}
+const copy = gulp.series(buildCss, copyFiles);
 
 // Compile blog posts, create index and archive pages.
-gulp.task("posts", ["css"], () => {
+function buildPosts() {
   const config = {
     ...siteConfig,
     css
@@ -55,7 +56,7 @@ gulp.task("posts", ["css"], () => {
 
   // Aggregates posts and render index and archive pages.
   const aggregator = index(config);
-  aggregator.pipe(gulp.dest("./public"));
+  aggregator.pipe(gulp.dest(publicDir));
 
   return gulp
     .src("source/_posts/*.{markdown,md,textile}")
@@ -66,45 +67,60 @@ gulp.task("posts", ["css"], () => {
     .pipe(cleanUrl())
     .pipe(branch(aggregator))
     .pipe(layout(config))
-    .pipe(gulp.dest(path.join("./public", siteConfig.blogDir)));
-});
+    .pipe(gulp.dest(path.join(publicDir, siteConfig.blogDir)));
+}
+const posts = gulp.series(buildCss, buildPosts);
 
-gulp.task("clean", cb => {
-  del([publicDir], cb);
-});
-
-// Build the site, launch a dev server and watch changes.
-gulp.task("watch", ["default"], () => {
-  server("./public").listen(4000, err => {
-    if (err) {
-      gutil.log(err);
-      return;
-    }
-    gutil.log("Listening on port 4000");
-    gulp.watch(["./source/**/*.*", "!./source/_{css,posts}/**/*.*"], ["copy"]);
-    gulp.watch("./source/_{posts,layouts,css}/*.*", ["posts", "copy"]);
-  });
-});
+function clean() {
+  return del([publicDir]);
+}
 
 // Create a new post source file.
-gulp.task("newpost", () => {
+function newpost() {
   if (!args.title) {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
   newPost(args.title, siteConfig);
-});
+}
 
 // Create a new page source file.
-gulp.task("newpage", () => {
+function newpage() {
   if (!args.filename) {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
     return;
   }
 
   newPage(args.filename, siteConfig);
-});
+}
 
-gulp.task("build", ["copy", "posts"]);
+const build = gulp.parallel(copy, posts);
 
-gulp.task("default", ["build"]);
+// Launch a dev server and watch changes.
+function startWatch() {
+  server(publicDir).listen(4000, err => {
+    if (err) {
+      gutil.log(err);
+      return;
+    }
+    gutil.log("Listening on port 4000");
+    gulp.watch(
+      ["./source/**/*.*", "!./source/_{css,layouts,posts}/**/*.*"],
+      copy
+    );
+    // TODO: Reload layout JavaScript files when they are changed.
+    gulp.watch("./source/_{posts,layouts,css}/*.*", build);
+  });
+}
+const watch = gulp.series(build, startWatch);
+
+module.exports = {
+  clean,
+  copy,
+  posts,
+  newpost,
+  newpage,
+  build,
+  watch,
+  default: build
+};
