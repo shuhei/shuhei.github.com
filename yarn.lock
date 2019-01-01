@@ -1684,13 +1684,6 @@ gulp-match@^1.0.3:
   dependencies:
     minimatch "^3.0.3"
 
-gulp-plumber@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-plumber/-/gulp-plumber-1.1.0.tgz#f12176c2d0422f60306c242fff6a01a394faba09"
-  dependencies:
-    gulp-util "^3"
-    through2 "^2"
-
 gulp-textile@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/gulp-textile/-/gulp-textile-0.0.1.tgz#23c4aff157715a6193d118476913bcc8b9c4e3c8"
@@ -1699,7 +1692,7 @@ gulp-textile@0.0.1:
     textile-js "~0.1.7"
     through2 "~0.4.1"
 
-gulp-util@^3, gulp-util@^3.0.0, gulp-util@^3.0.3:
+gulp-util@^3.0.0, gulp-util@^3.0.3:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -3964,7 +3957,7 @@ through2@^0.5.0:
     readable-stream "~1.0.17"
     xtend "~3.0.0"
 
-through2@^2, through2@^2.0.0, through2@^2.0.1:
+through2@^2.0.0, through2@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:

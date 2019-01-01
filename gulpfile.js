@@ -1,11 +1,11 @@
 const path = require("path");
+const Stream = require("stream");
 
 const { argv: args } = require("yargs");
 const del = require("del");
 
 const gulp = require("gulp");
 const gutil = require("gulp-util");
-const plumber = require("gulp-plumber");
 const markdown = require("gulp-markdown");
 const frontMatter = require("gulp-front-matter");
 const textile = require("gulp-textile");
@@ -34,15 +34,19 @@ function copyFiles() {
     css
   };
 
-  return (
-    gulp
-      .src(["source/**/*", "!source/_*", "!source/_*/**/*", "source/.nojekyll"])
-      .pipe(plumber())
-      // frontMatter messes up binary files and files with `---`.
-      .pipe(gulpIf("**/*.{markdown,md,textile}", frontMatter()))
-      .pipe(gulpIf(`**/*.{markdown,md}`, markdown({ renderer })))
-      .pipe(layout(config))
-      .pipe(gulp.dest(publicDir))
+  return Stream.pipeline(
+    gulp.src([
+      "source/**/*",
+      "!source/_*",
+      "!source/_*/**/*",
+      "source/.nojekyll"
+    ]),
+    // Apply frontMatter only to whitelisted files because it messes up binary
+    // files and files with `---`.
+    gulpIf("**/*.{markdown,md,textile}", frontMatter()),
+    gulpIf(`**/*.{markdown,md}`, markdown({ renderer })),
+    layout(config),
+    gulp.dest(publicDir)
   );
 }
 const copy = gulp.series(buildCss, copyFiles);
@@ -58,16 +62,16 @@ function buildPosts() {
   const aggregator = index(config);
   aggregator.pipe(gulp.dest(publicDir));
 
-  return gulp
-    .src("source/_posts/*.{markdown,md,textile}")
-    .pipe(plumber())
-    .pipe(frontMatter())
-    .pipe(gulpIf("**/*.{markdown,md}", markdown({ renderer })))
-    .pipe(gulpIf("**/*.textile", textile()))
-    .pipe(cleanUrl())
-    .pipe(branch(aggregator))
-    .pipe(layout(config))
-    .pipe(gulp.dest(path.join(publicDir, siteConfig.blogDir)));
+  return Stream.pipeline(
+    gulp.src("source/_posts/*.{markdown,md,textile}"),
+    frontMatter(),
+    gulpIf("**/*.{markdown,md}", markdown({ renderer })),
+    gulpIf("**/*.textile", textile()),
+    cleanUrl(),
+    branch(aggregator),
+    layout(config),
+    gulp.dest(path.join(publicDir, siteConfig.blogDir))
+  );
 }
 const posts = gulp.series(buildCss, buildPosts);
 
