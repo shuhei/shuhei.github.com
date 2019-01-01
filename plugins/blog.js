@@ -20,44 +20,12 @@ const PLUGIN_NAME = "blog";
 
 function renderPage(component, props, css) {
   const { title, body } = component(props);
-  const contentHtml = Layout({
+  return Layout({
     ...props,
+    css,
+    title,
     children: body
   });
-
-  const fontCSS =
-    "//fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400";
-
-  // It's important to have a <script> tag in head. Otherwise Google Analytics
-  // inserts <script> tag after inline <script>.
-  return `
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <link rel="preload" href="${fontCSS}" as="style">
-        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
-        <meta name="viewport" content="initial-scale=1">
-        <title>${title}</title>
-        <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
-        <link rel="stylesheet" href="${fontCSS}">
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-309586-8', 'shuheikagawa.com');
-          ga('send', 'pageview');
-        </script>
-        <style>${css}</style>
-      </head>
-      <body>
-        ${contentHtml}
-      </body>
-    </html>
-  `.trim();
 }
 
 // Returns a function that compiles jade template using caches.
