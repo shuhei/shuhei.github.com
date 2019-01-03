@@ -56,7 +56,7 @@ function toURL(str) {
   return str
     .toLowerCase()
     .replace(/'/g, "")
-    .replace(/[^a-z1-9-]/g, " ")
+    .replace(/[^a-z0-9-]/g, " ")
     .replace(/\s+/g, "-");
 }
 
