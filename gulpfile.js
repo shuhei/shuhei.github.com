@@ -81,21 +81,21 @@ function clean() {
 
 // Create a new post source file.
 function newpost() {
-  if (!args.title) {
+  if (typeof args.title !== "string") {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
     return;
   }
-  newPost(args.title, siteConfig);
+  return newPost(args.title, siteConfig);
 }
 
 // Create a new page source file.
 function newpage() {
-  if (!args.filename) {
+  if (typeof args.filename !== "string") {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
     return;
   }
 
-  newPage(args.filename, siteConfig);
+  return newPage(args.filename, siteConfig);
 }
 
 const build = gulp.parallel(copy, posts);

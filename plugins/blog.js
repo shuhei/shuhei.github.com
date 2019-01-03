@@ -326,6 +326,7 @@ function newPost(title, config) {
   writer.write("categories: []\n");
   writer.write("---\n");
   writer.end();
+  return writer;
 }
 
 function newPage(filename, config) {
@@ -372,6 +373,7 @@ function newPage(filename, config) {
   writer.write("comments: true\n");
   writer.write("---\n");
   writer.end();
+  return writer;
 }
 
 module.exports = {
