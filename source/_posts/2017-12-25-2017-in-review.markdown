@@ -3,7 +3,7 @@ layout: post
 title: "2017 in Review"
 date: 2017-12-25 22:54
 comments: true
-categories: 
+categories: []
 ---
 
 ## Berlin
