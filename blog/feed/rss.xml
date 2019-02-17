@@ -63,6 +63,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <li><a href="https://github.com/erikvanoosten/metrics-scala">metrics-scala</a>: Supports HdrHistogram + only reset on snapshot strategy. Depends on <a href="https://bitbucket.org/marshallpierce/hdrhistogram-metrics-reservoir">hdrhistogram-metrics-reservoir</a>.</li>
 </ul>
 <p><em>Rolling time window</em> strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
+<p><strong>Update on Jan 11, 2019:</strong> I wrote <a href="https://github.com/shuhei/rolling-window">a package to use HDR histogram with rolling time window</a>.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
