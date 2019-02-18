@@ -44,7 +44,7 @@ In June, my team had a series of incidents on one of our applications, but we di
 
 ## Side Projects
 
-Not many side projects. I have learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into [the knowledge repo](https://github.com/shuhei/knowledge). Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, [pollen](https://github.com/shuhei/pollen). It's been working without issues for 1.5 months!
+Not many side projects. I have learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into [the knowledge repo](https://github.com/shuhei/knowledge) inspired by [yoshuawuyts/knowledge](https://github.com/yoshuawuyts/knowledge). Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, [pollen](https://github.com/shuhei/pollen). It's been working without issues for 1.5 months!
 
 Some other unfinished pieces:
 
