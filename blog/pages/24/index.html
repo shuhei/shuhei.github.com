@@ -49,6 +49,63 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/12/get-book-list-from-booklog/>Booklog から本一覧を取得</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 12, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="http://booklog.jp/">web 本棚サービス ブクログ</a> がリニューアルしたというので <a href="http://www.booklog.jp/users/branchiopoda">再開しました</a> 。ペパボの公式サービスとなり、メンテナンスやサービスの追加をどんどんやって行くそうです。<br />
+今回のリニューアルで一番うれしいのが、本の登録機能の強化です。</p>
+<blockquote>
+<p>ご要望で最も多かったものの一つが、もっと本を簡単に登録したい！ １冊１冊登録するのが面倒くさい！というものでした。 今回のリニューアルでは、 ページ遷移をせずに、簡単に複数の本を登録できるように改善しています。</p>
+<p><a href="http://info.booklog.jp/?eid=78"><cite>ブクログがリニューアルいたしました。 | ブクログお知らせブログ</cite></a></p>
+</blockquote>
+<p>さくさく登録できて素晴らしいです。</p>
+<p>今のところ <span class="caps">API</span> はないようで、何かをしたいときにはスクレイピングする必要があります。<br />
+とりあえず Ruby で本の一覧を取得してみました。</p>
+<pre class="prettyprint">require 'rubygems'
+require 'hpricot'
+require 'open-uri'
+
+class Book
+  def initialize(title, url)
+    @title = title
+    @url = url
+  end
+  def asin
+    @url.split("/").last
+  end
+  attr_accessor :title, :url
+end
+
+def get_books(username)
+  doc = Hpricot(open("http://www.booklog.jp/users/#{username}/All?display=list"))
+  books = []
+  (doc/"div#shelf div.list ul li").each do |book|
+    title = (book/:a).first.inner_html
+    url = (book/:a).first[:href]
+    books.push(Book.new(title, url))
+  end
+  books
+end
+
+books = get_books("branchiopoda")
+books.each do |book|
+  puts "#{book.title} =&gt; #{book.asin}"
+end</pre>
+<p>一覧から取れるのはタイトルと <span class="caps">ASIN</span> コードだけなので、それ以上の情報を得るには、個別のページや Amazon の <span class="caps">API</span> を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の <span class="caps">API</span> の公開に期待です。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/12/python-challenge-from-8-to-9/>Python Challenge Lv. 8 - 9</a>
         </h1>
         <div class="meta">
@@ -159,38 +216,6 @@ sudo ruby extconf.rb
 sudo make
 sudo make install
 </pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/11/this-weeks-chipped-books/>今週届いた本（Joel on Software、高度試験午前対策など）</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 11, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h3>エッセー</h3>
-<p>プログラマによるエッセー的な本を三冊。どれも有名な本ですね。</p>
-<ul>
-	<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
-	<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
-	<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
-</ul>
-<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。<br />
-エッセー的なものはどんどん読めて良いかな、と思って購入してみました。<br />
-ちょこちょこ読んで行こうと思います。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前1・2対応</a></h3>
-<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。<br />
-しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。<br />
-まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。<br />
-試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p>
         </div>
       </div>
     </div>
