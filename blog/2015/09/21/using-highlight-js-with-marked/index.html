@@ -65,19 +65,34 @@
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> marked, { Renderer } <span class="hljs-keyword">from</span> <span class="hljs-string">'marked'</span>;
 <span class="hljs-keyword">import</span> highlightjs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;
 
+<span class="hljs-keyword">const</span> escapeMap = {
+  <span class="hljs-string">"&amp;"</span>: <span class="hljs-string">"&amp;amp;"</span>,
+  <span class="hljs-string">"&lt;"</span>: <span class="hljs-string">"&amp;lt;"</span>,
+  <span class="hljs-string">"&gt;"</span>: <span class="hljs-string">"&amp;gt;"</span>,
+  <span class="hljs-string">'"'</span>: <span class="hljs-string">"&amp;quot;"</span>,
+  <span class="hljs-string">"'"</span>: <span class="hljs-string">"&amp;#39;"</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeForHTML</span>(<span class="hljs-params">input</span>) </span>{
+  <span class="hljs-keyword">return</span> input.replace(<span class="hljs-regexp">/([&amp;&lt;&gt;'"])/g</span>, char =&gt; escapeMap[char]);
+}
+
 <span class="hljs-comment">// Create your custom renderer.</span>
 <span class="hljs-keyword">const</span> renderer = <span class="hljs-keyword">new</span> Renderer();
 renderer.code = <span class="hljs-function">(<span class="hljs-params">code, language</span>) =&gt;</span> {
   <span class="hljs-comment">// Check whether the given language is valid for highlight.js.</span>
   <span class="hljs-keyword">const</span> validLang = !!(language &amp;&amp; highlightjs.getLanguage(language));
   <span class="hljs-comment">// Highlight only if the language is valid.</span>
-  <span class="hljs-keyword">const</span> highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  <span class="hljs-keyword">const</span> highlighted = validLang
+    ? highlightjs.highlight(language, code).value
+    : escapeForHTML(code);
   <span class="hljs-comment">// Render the highlighted code with `hljs` class.</span>
   <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class="hljs <span class="hljs-subst">${language}</span>"&gt;<span class="hljs-subst">${highlighted}</span>&lt;/code&gt;&lt;/pre&gt;`</span>;
 };
 
 <span class="hljs-comment">// Set the renderer to marked.</span>
-marked.setOptions({ renderer });</code></pre>
+marked.setOptions({ renderer });</code></pre><p><strong>EDIT on Feb 24, 2019:</strong> The code snippet above was originally meant to be used for this blog and didn&#39;t have proper XSS protection for handling user inputs. Oleksii pointed out in a comment that it was vulnerable to XSS when <code>language</code> was not specified. I fixed the issue by escaping <code>code</code> for HTML. Thanks a lot, Oleksii!</p>
+
         </div>
       </div>
     </div>

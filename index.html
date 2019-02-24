@@ -257,11 +257,11 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 </ol>
 <p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
 <p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
-<pre><code class="hljs ">$ ps ax | grep -n 'node --perf'
+<pre><code class="hljs ">$ ps ax | grep -n &#39;node --perf&#39;
 21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
 30481 pts/3    S+     0:00 grep --color=auto node --perf
 # or
-$ pgrep -f 'node --perf'
+$ pgrep -f &#39;node --perf&#39;
 21574
 
 $ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>

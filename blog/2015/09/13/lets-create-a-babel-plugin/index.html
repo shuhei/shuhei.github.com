@@ -231,7 +231,7 @@ npm install</code></pre><p>The following structure should have been generated:</
 }</code></pre><h2 id="run-">Run!</h2>
 <p>Use <code>--optional es7.decorators</code> option in order to support decorators. You can specify plugins by file path in addition to plugin name, which is convenient for development.</p>
 <pre><code class="hljs ">npm run build
-echo '@autoAssign class Hello { constructor(foo, bar, baz) {} }' | babel --optional es7.decorators --plugins ./lib/index.js</code></pre><p>Here comes the result!</p>
+echo &#39;@autoAssign class Hello { constructor(foo, bar, baz) {} }&#39; | babel --optional es7.decorators --plugins ./lib/index.js</code></pre><p>Here comes the result!</p>
 <pre><code class="hljs js"><span class="hljs-meta">"use strict"</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }

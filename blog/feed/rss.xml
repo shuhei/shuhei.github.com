@@ -166,11 +166,11 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 </ol>
 <p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
 <p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
-<pre><code class="hljs ">$ ps ax | grep -n 'node --perf'
+<pre><code class="hljs ">$ ps ax | grep -n &#39;node --perf&#39;
 21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
 30481 pts/3    S+     0:00 grep --color=auto node --perf
 # or
-$ pgrep -f 'node --perf'
+$ pgrep -f &#39;node --perf&#39;
 21574
 
 $ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>
@@ -228,11 +228,11 @@ Mem:          3950   285  3665     183       12    188
 Swap:         1896     0  1896</code></pre><p>So, what are they actually? According to <a href="http://man7.org/linux/man-pages/man5/proc.5.html">the manual of <code>/proc/meminfo</code></a>, which is a pseudo file and the data source of <code>free</code>, <code>top</code> and friends:</p>
 <pre><code class="hljs ">Buffers %lu
        Relatively temporary storage for raw disk blocks that
-       shouldn't get tremendously large (20MB or so).
+       shouldn&#39;t get tremendously large (20MB or so).
 
 Cached %lu
        In-memory cache for files read from the disk (the page
-       cache).  Doesn't include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
+       cache).  Doesn&#39;t include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
 <p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
 <h2 id="memavailable">MemAvailable</h2>
 <p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>

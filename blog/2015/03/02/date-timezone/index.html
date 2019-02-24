@@ -85,7 +85,7 @@ expect(Person.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs
                       else value
                       end
 end</code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
-<pre><code class="hljs Gemfile">gem 'date_timezone'</code></pre><pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ActiveRecord::Base</span>
+<pre><code class="hljs Gemfile">gem &#39;date_timezone&#39;</code></pre><pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ActiveRecord::Base</span>
   <span class="hljs-keyword">include</span> DateTimezone
 
   <span class="hljs-comment"># birth_date :date</span>
