@@ -262,10 +262,14 @@ FactoryGirl.create(<span class="hljs-symbol">:comment</span>, <span class="hljs-
 renderer.code = <span class="hljs-function">(<span class="hljs-params">code, language</span>) =&gt;</span> {
   <span class="hljs-comment">// Check whether the given language is valid for highlight.js.</span>
   <span class="hljs-keyword">const</span> validLang = !!(language &amp;&amp; highlightjs.getLanguage(language));
+
   <span class="hljs-comment">// Highlight only if the language is valid.</span>
+  <span class="hljs-comment">// highlight.js escapes HTML in the code, but we need to escape by ourselves</span>
+  <span class="hljs-comment">// when we don't use it.</span>
   <span class="hljs-keyword">const</span> highlighted = validLang
     ? highlightjs.highlight(language, code).value
     : escapeForHTML(code);
+
   <span class="hljs-comment">// Render the highlighted code with `hljs` class.</span>
   <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class="hljs <span class="hljs-subst">${language}</span>"&gt;<span class="hljs-subst">${highlighted}</span>&lt;/code&gt;&lt;/pre&gt;`</span>;
 };
