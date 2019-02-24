@@ -18,13 +18,27 @@ Here's the outcome:
 import marked, { Renderer } from 'marked';
 import highlightjs from 'highlight.js';
 
+const escapeMap = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+};
+
+function escapeForHTML(input) {
+  return input.replace(/([&<>'"])/g, char => escapeMap[char]);
+}
+
 // Create your custom renderer.
 const renderer = new Renderer();
 renderer.code = (code, language) => {
   // Check whether the given language is valid for highlight.js.
   const validLang = !!(language && highlightjs.getLanguage(language));
   // Highlight only if the language is valid.
-  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  const highlighted = validLang
+    ? highlightjs.highlight(language, code).value
+    : escapeForHTML(code);
   // Render the highlighted code with `hljs` class.
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
@@ -32,3 +46,5 @@ renderer.code = (code, language) => {
 // Set the renderer to marked.
 marked.setOptions({ renderer });
 ```
+
+**EDIT on Feb 24, 2019:** The code snippet above was originally meant to be used for this blog and didn't have proper XSS protection for handling user inputs. Oleksii pointed out in a comment that it was vulnerable to XSS when `language` was not specified. I fixed the issue by escaping `code` for HTML. Thanks a lot, Oleksii!
