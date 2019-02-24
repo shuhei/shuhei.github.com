@@ -1,6 +1,18 @@
 const marked = require("marked");
 const highlightjs = require("highlight.js");
 
+const escapeMap = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+};
+
+function escapeForHTML(input) {
+  return input.replace(/([&<>'"])/g, char => escapeMap[char]);
+}
+
 const renderer = new marked.Renderer();
 
 // - Add `hljs` class to code blocks  https://github.com/chjj/marked/pull/418
@@ -11,7 +23,7 @@ renderer.code = (code, language) => {
   const isValidLang = !!(extension && highlightjs.getLanguage(extension));
   const highlighted = isValidLang
     ? highlightjs.highlight(extension, code).value
-    : code;
+    : escapeForHTML(code);
   const filename =
     extension && extension !== language
       ? `<div><span class="code__filename">${language}</span></div>`

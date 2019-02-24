@@ -10,7 +10,8 @@
     "deploy": "yarn clean && yarn build && gh-pages -d public -b master",
     "lint": "eslint gulpfile.js plugins source/_layouts",
     "newpost": "gulp newpost --title",
-    "newpage": "gulp newpage --filename"
+    "newpage": "gulp newpage --filename",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "gulp-util": "^3.0.3",
     "highlight.js": "^9.11.0",
     "jade": "^1.9.2",
+    "jest": "^24.1.0",
     "js-yaml": "^3.2.6",
     "marked": "^0.3.5",
     "mkdirp": "^0.5.0",
