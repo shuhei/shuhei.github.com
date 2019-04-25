@@ -49,6 +49,29 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2016/04/05/one-time-binding-for-ng-if/>One-time binding for ng-if</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Apr 5, 2016</span>
+          - <span class="category">JavaScript</span>, <span class="category">AngularJS</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>AngularJS&#39;s <a href="https://docs.angularjs.org/guide/expression#one-time-binding">one-time binding</a> is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is <code>undefined</code> for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take <code>boolean</code> expressions like <code>ng-if</code>.</p>
+<p>Here&#39;s an ordinary piece of AngularJS template. It shows &#39;Something&#39; when <code>obj.prop</code> exists.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>It works almost fine. But it keeps watching the expression when the message is hidden. Guess what?</p>
+<p>Yes! It keeps watching while the expression is <code>undefined</code>. Let&#39;s make sure that it&#39;s always <code>boolean</code>.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"::!!obj.prop"</span>&gt;</span>Something<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>Here we see the birth of a new operator <code>::!!</code>!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2016/01/11/freeze-panes-with-css-and-a-bit-of-javascript/>Freeze panes with CSS and a bit of JavaScript</a>
         </h1>
         <div class="meta">
@@ -148,47 +171,6 @@ topLeft.style.height = computed.height;</code></pre><pre><code class="hljs css">
 <p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
 <p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2015/10/25/node-executable-module/>Node.js executable module</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 25, 2015</span>
-          - <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it&#39;s OK for simple modules.</p>
-<p>To achieve it, you need to detect whether it&#39;s executed as an entry point. According to <a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module">the official documentation of Node</a>:</p>
-<blockquote>
-<p>When a file is run directly from Node.js, <code>require.main</code> is set to its module. That means that you can determine whether a file has been run directly by testing</p>
-<pre><code class="hljs ">require.main === module</code></pre></blockquote>
-<p>For example:</p>
-<pre><code class="hljs js"><span class="hljs-meta">#!/usr/bin/env node</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a + b;
-}
-
-<span class="hljs-built_in">module</span>.exports = sum;
-
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">require</span>.main === <span class="hljs-built_in">module</span>) {
-  <span class="hljs-keyword">var</span> a = <span class="hljs-built_in">parseInt</span>(process.argv[<span class="hljs-number">2</span>], <span class="hljs-number">10</span>);
-  <span class="hljs-keyword">var</span> b = <span class="hljs-built_in">parseInt</span>(process.argv[<span class="hljs-number">3</span>], <span class="hljs-number">10</span>);
-  <span class="hljs-built_in">console</span>.log(sum(a, b));
-}</code></pre><p>Then you can use it as an executable and a module.</p>
-<pre><code class="hljs sh">$ node sum.js 3 4
-7
-$ node
-&gt; require(<span class="hljs-string">'./sum'</span>)(3, 4)
-7</code></pre>
         </div>
       </div>
     </div>

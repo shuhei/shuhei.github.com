@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Tue, 19 Feb 2019 00:20:00 GMT</lastBuildDate><item><title>2018 in Review</title><link>http://shuheikagawa.com//blog/2019/02/18/2018-in-review/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>http://shuheikagawa.com</link><atom:link href="http://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Thu, 25 Apr 2019 21:29:00 GMT</lastBuildDate><item><title>Check Your server.keepAliveTimeout</title><link>http://shuheikagawa.com//blog/2019/04/25/keep-alive-timeout/</link><description><![CDATA[
+<p>One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it. The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn&#39;t bothered investigating it.</p>
+<pre><code class="hljs ">clients -&gt; AWS ELB -&gt; Node.js server</code></pre><p>I recently came across a post, <a href="https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4">A tale of unexpected ELB behavior.</a>. It says ELB pre-connects to backend servers and it can cause a race condition where ELB thinks a connection is open but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found <a href="https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340">Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer</a>. It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server&#39;s keep alive idle timeout longer than the load balancer&#39;s timeout. This seemed applicable even to AWS ELB and Node.js server.</p>
+<p>According to <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout">AWS documentation</a>, Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:</p>
+<blockquote>
+<p>We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.</p>
+</blockquote>
+<p><a href="https://nodejs.org/api/http.html#http_server_keepalivetimeout">Node.js <code>http</code>/<code>https</code> server has 5 seconds keep alive timeout by default</a>. I wanted to make it longer. With <a href="https://expressjs.com/">Express</a>, we can do it like the following:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-comment">// Set up the app...</span>
+<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">8080</span>);
+
+server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
+<p>As a hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> in the internet, which exactly describes the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5 second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
+
+]]></description><pubDate>Thu, 25 Apr 2019 21:29:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2019/04/25/keep-alive-timeout/</guid></item><item><title>2018 in Review</title><link>http://shuheikagawa.com//blog/2019/02/18/2018-in-review/</link><description><![CDATA[
 <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
 <p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
 <h2 id="move">Move</h2>
@@ -443,19 +460,4 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <li>(Optional) Choose your favorite plan (Tarif &amp; SIM-Karte).</li>
 </ol>
 
-]]></description><pubDate>Mon, 03 Oct 2016 08:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany/</guid></item><item><title>Draw animated chart on React Native</title><link>http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native/</link><description><![CDATA[
-<p>At <a href="http://meguroes.connpass.com/event/32167/">Meguro.es #4</a> on June 21th, 2016, I talked about drawing animated chart on <a href="https://facebook.github.io/react-native/">React Native</a>. The talk was about the things I learned through developing an tiny app, Compare. It&#39;s a super simple app to compare temperatures.</p>
-<p>Before creating it, I had no idea about what temperatures on weather forecast, like 15 degrees Celsius, were actually like. I remember what yesterday was like, but not the numbers. Typical weather forecast apps shows only future temperatures without past records. Thanks to <a href="https://developer.forecast.io/">The Dark Sky Forecast API</a>, the app fetches both of past records and future forecasts, and show them together.</p>
-<p><img src="/images/compare-animated.gif" alt="Compare app"></p>
-<p>The app&#39;s source code is on GitHub:</p>
-<p><a href="https://github.com/shuhei/Compare">shuhei/Compare</a></p>
-<p>There might have been some charting libraries to draw similar charts, but I like to write things from scratch. I like to reinvent the wheel especially when it&#39;s a side project. Thanks to that, I found a way to animate smooth paths with the <code>Animated</code> library.</p>
-<script async class="speakerdeck-embed" data-id="3deb649c92814572ac3412a78bb5b688" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>If I have to add something to the slides:</p>
-<ul>
-<li>It&#39;s fun to develop on React Native, and super easy to start. If you know React and CSS, you can apply your familiar ideas to mobile app development. And they are actually powerful.</li>
-<li><a href="http://browniefed.com/">Jason Brown&#39;s JavaScript without Grammar</a> is an awesome blog. It has lots of articles about React Native and animation on it, which taught me a lot. Also, I found the awesomeness of <code>LayoutAnimation</code> at <a href="https://medium.com/@Jpoliachik/react-native-s-layoutanimation-is-awesome-4a4d317afd3e#.5tnprrm80">Justin Poliachik&#39;s React Native’s LayoutAnimation is Awesome</a>, which is a great post too.</li>
-</ul>
-
-]]></description><pubDate>Mon, 18 Jul 2016 21:43:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/07/18/draw-animated-chart-with-react-native/</guid></item></channel></rss>
+]]></description><pubDate>Mon, 03 Oct 2016 08:35:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2016/10/03/prepaid-sim-in-germany/</guid></item></channel></rss>
