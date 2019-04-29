@@ -64,7 +64,7 @@
 <p>I won&#39;t write much about it here because it&#39;s still in its early stage and I couldn&#39;t make <code>@angular/compiler-cli</code> work without modification.</p>
 <p>The only thing I want to stress here is that it enables us to <strong>statically type-check our templates with TypeScript</strong>, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn&#39;t be able to detect mistakes in templates until they are evaluated at the runtime.</p>
 <p>The steps would be the following:</p>
-<ol>
+<ol start="undefined">
 <li>Angular 2 offline compiler compiles templates into TypeScript files with <code>.ngfactory.ts</code> extension.</li>
 <li>You prepare another bootstrap script that imports the root <code>.ngfactory.ts</code> and bootstraps your app with it.</li>
 <li>TypeScript compiler compiles the bootstrap script, other TypeScript files and <code>.ngfactory.ts</code> files into JavaScript.</li>

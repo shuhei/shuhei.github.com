@@ -63,7 +63,7 @@
 <li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
 </ul>
 <p>Here is the twists and turns that I wandered to solve the problem.</p>
-<h2 id="exports">Exports</h2>
+<h2>Exports</h2>
 <p>The code of <code>material-colors</code> looked like the following.</p>
 <p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
 <pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
@@ -72,13 +72,13 @@
 };</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
-<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
+<h2>Problem of having only named exports</h2>
 <p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
-<h2 id="have-a-default-export">Have a default export</h2>
+<h2>Have a default export</h2>
 <p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
@@ -86,7 +86,7 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
   <span class="hljs-attr">red</span>: red,
   <span class="hljs-attr">blue</span>: blue
-};</code></pre><h2 id="so-">So?</h2>
+};</code></pre><h2>So?</h2>
 <p>To keep maximum compatibility for CommonJS and ES Module:</p>
 <ul>
 <li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>

@@ -49,6 +49,36 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/>The Best Part of Angular 2 Offline Compiler</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 3, 2016</span>
+          - <span class="category">JavaScript</span>, <span class="category">Angular 2</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>A couple of weeks ago, I gave a short talk about Angular offline compiler at <a href="http://ng-sake.connpass.com/event/30746/">ng-sake #3</a>, which is a cozy meetup where Tokyo&#39;s Angular developers hang out drinking beer.</p>
+<script async class="speakerdeck-embed" data-id="384a4e8ded2945fbaa5dc2054409bcb3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>I won&#39;t write much about it here because it&#39;s still in its early stage and I couldn&#39;t make <code>@angular/compiler-cli</code> work without modification.</p>
+<p>The only thing I want to stress here is that it enables us to <strong>statically type-check our templates with TypeScript</strong>, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn&#39;t be able to detect mistakes in templates until they are evaluated at the runtime.</p>
+<p>The steps would be the following:</p>
+<ol start="undefined">
+<li>Angular 2 offline compiler compiles templates into TypeScript files with <code>.ngfactory.ts</code> extension.</li>
+<li>You prepare another bootstrap script that imports the root <code>.ngfactory.ts</code> and bootstraps your app with it.</li>
+<li>TypeScript compiler compiles the bootstrap script, other TypeScript files and <code>.ngfactory.ts</code> files into JavaScript.</li>
+</ol>
+<p>The step 3 type-checks <code>.ngfactory.ts</code>, and detects typo and type errors in your templates if any. It is a great benefit in addition to skipping the runtime compilation and smaller library size. Looking forward to Angular 2 offline compiler&#39;s official release!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2016/05/08/angular-2-with-babel/>Angular 2 with Babel</a>
         </h1>
         <div class="meta">
@@ -61,12 +91,12 @@
           <p>Although Angular 2&#39;s primary language is apparently TypeScript, many people want to use Babel as shown in <a href="http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html">a survey</a>.</p>
 <p>However, <a href="https://angular.io">The official documentation</a> targets only TypeScript and ES5. In addition, many pages are not yet available for ES5. That is because Angular 2 relies heavily on cutting-edge ES7 decorators and TypeScript&#39;s type annotations for annotating components and services.</p>
 <p>To fill the gap, you can use <a href="https://github.com/shuhei/babel-preset-angular2"><code>babel-preset-angular2</code></a> that supports all the decorators and annotations available in TypeScript. With the preset, you can follow the official documentation for TypeScript to learn Angular 2 itself.</p>
-<h2 id="how-to-use-it">How to use it</h2>
+<h2>How to use it</h2>
 <pre><code class="hljs sh">npm install -D babel-preset-es2015 babel-preset-angular2</code></pre><p>Add <code>presets</code> to <code>.babelrc</code>. Note that the <code>presets</code>&#39; order is important.</p>
 <pre><code class="hljs json">{
   <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"es2015"</span>, <span class="hljs-string">"angular2"</span>]
 }</code></pre><p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
-<h2 id="supported-annotations">Supported annotations</h2>
+<h2>Supported annotations</h2>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -78,8 +108,7 @@
 <th>Babel + angular2</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Class decorator</td>
 <td><code>@Component()</code></td>
 <td>Stage 1</td>
@@ -111,8 +140,7 @@
 <td>No</td>
 <td>Yes</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </div><p>&quot;Babel*&quot; above means Babel with the following official plugins:</p>
 <ul>
 <li><a href="https://babeljs.io/docs/plugins/preset-es2015/">babel-preset-es2015</a></li>
@@ -135,7 +163,7 @@
   <span class="hljs-keyword">constructor</span>(foo, bar) {
     <span class="hljs-comment">// Do something with foo and bar.</span>
   }
-}</code></pre><h2 id="polyfills">Polyfills</h2>
+}</code></pre><h2>Polyfills</h2>
 <p>Angular 2 beta versions had polyfill bundles but RC versions don&#39;t. But never mind. We can just import them before bootstrapping our app.</p>
 <pre><code class="hljs sh">npm install -S babel-polyfill zone.js</code></pre><p><code>src/index.js</code></p>
 <pre><code class="hljs js"><span class="hljs-comment">// Import polyfills.</span>
@@ -154,7 +182,7 @@ bootstrap(HelloApp, [
   ROUTER_PROVIDERS,
   provide(LocationStrategy, { <span class="hljs-attr">useClass</span>: HashLocationStrategy })
 ]).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));</code></pre><p>Note that we can use <code>babel-polyfill</code> that includes <code>core-js</code> instead of <code>es6-shim</code> and <code>reflect-metadata</code>. According to <a href="https://github.com/angular/angular/issues/5755">use core-js instead of es6-shim</a>, we can use whatever ES6 + ES7 polyfill we like.</p>
-<h2 id="module-resolution">Module resolution</h2>
+<h2>Module resolution</h2>
 <p>You can use any module resolver as long as it works with Babel. I&#39;ll pick <a href="http://browserify.org/">Browserify</a> here for its simplicity.</p>
 <pre><code class="hljs js">npm install -D browserify babelify</code></pre><p>Add a <code>build</code> script to your <code>package.json</code> assuming that your bootstrap script locates at <code>src/index.js</code>.</p>
 <pre><code class="hljs json">{
@@ -163,11 +191,11 @@ bootstrap(HelloApp, [
   }
 }</code></pre><pre><code class="hljs sh">npm run build</code></pre><p>Isn&#39;t this simple? <code>babelify</code> automatically finds your <code>.babelrc</code> and uses the presets specified above.</p>
 <p>Of course you can use other module resolvers like Webpack or SystemJS.</p>
-<h2 id="offline-compilation">Offline compilation</h2>
+<h2>Offline compilation</h2>
 <p>This is not yet available for Babel. Not completed even for TypeScript.</p>
 <p>The <a href="https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli"><code>compiler_cli</code></a> seems to be deeply integrated with TypeScript compiler. It <strong>statically</strong> collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.</p>
 <p>I&#39;m thinking of working on it once the TypeScript version is published and the compiler API becomes more stable.</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2>Conclusion</h2>
 <p>I&#39;ve presented how to use TypeScript-specific annotations in Babel. You can enjoy Angular 2 with your favorite transpiler.</p>
 <p>See <a href="https://github.com/shuhei/babel-angular2-app"><code>babel-angular2-app</code></a> for more complete example.</p>
 
@@ -189,9 +217,9 @@ bootstrap(HelloApp, [
       <div class="content">
         <div>
           <p>RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a> of RxJS 5, which is equivalent to <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md"><code>flatMapLatest</code></a> in RxJS 4.</p>
-<h2 id="switchmap">switchMap</h2>
+<h2>switchMap</h2>
 <p><code>switchMap(func)</code> is equivalent to <code>map(func).switch()</code>. It keeps subscribing latest observable at the moment and unsubscribing outdated ones so that it only streams events from latest observable at the moment. <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">Take a look at the marble chart for <code>switch</code></a>. It illustrates the behavior well.</p>
-<h2 id="incremental-search">Incremental search</h2>
+<h2>Incremental search</h2>
 <p><code>switchMap</code> is convenient for properly implementing incremental search. Incremental search makes multiple requests to a server. The server can respond in a different order from requests&#39;. Because of the order, a naive implementation may show a wrong result. However, you can effortlessly avoid the caveat if you use <code>switchMap</code>.</p>
 <p>Here is an example. Type fast in the text fields. <strong>Without switchMap</strong> sometimes shows a wrong result while <strong>With switchMap</strong> always works fine.</p>
 <p><a href="http://jsbin.com/megiqo/edit" target="_blank">JS Bin on jsbin.com</a></p>
@@ -219,74 +247,6 @@ keyword.addEventListener(<span class="hljs-string">'keyup'</span>, e =&gt; {
 keyword$
   .switchMap(search)
   .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> result.textContent = data);</code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2016/04/06/clean-up-before-exiting-in-haskell/>Clean up before exiting in Haskell</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 6, 2016</span>
-          - <span class="category">Haskell</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Once upon a time (or a several days ago), I was reading <a href="http://amzn.to/22Qe9zf">Programming in Haskell</a>. When I ran 9.7&#39;s Game of Life, which shows Game of Life animation on the terminal, the terminal&#39;s cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.</p>
-<pre><code class="hljs hs"><span class="hljs-keyword">import</span> System.Process (<span class="hljs-title">system</span>)
-
-<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
-  <span class="hljs-comment">-- Hide the cursor</span>
-  system <span class="hljs-string">"tput civis"</span>
-  <span class="hljs-comment">-- Show the Game of Life</span>
-  life glider
-  <span class="hljs-comment">-- Show the cursor (but the code does not reach here!)</span>
-  system <span class="hljs-string">"tput cvvis"</span>
-  return ()
-
-<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> ()
-<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>But the code does not reach the line that shows the cursor because <code>life</code> is a infinite loop. If I quit the program with <code>Ctrl+C</code>, the cursor remains hidden.</p>
-<p>So I wrote a function that loops <code>a -&gt; IO a</code> until interrupted by a signal, referring to <a href="http://stackoverflow.com/a/18430872/822317">unix - Killing a Haskell binary - Stack Overflow</a>. It manages a state of whether the program was interrupted in a <code>MVar</code> and stops the loop when interrupted.</p>
-<pre><code class="hljs hs"><span class="hljs-keyword">import</span> Control.Concurrent.MVar (<span class="hljs-type">MVar</span>, <span class="hljs-title">newEmptyMVar</span>, <span class="hljs-title">putMVar</span>, <span class="hljs-title">tryTakeMVar</span>)
-<span class="hljs-keyword">import</span> System.Posix.Signals (<span class="hljs-type">Handler</span>, <span class="hljs-type">Handler(CatchOnce)</span>, <span class="hljs-title">installHandler</span>, <span class="hljs-title">sigINT</span>, <span class="hljs-title">sigTERM</span>)
-
-<span class="hljs-title">loopUntilInterruption</span> :: (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
-<span class="hljs-title">loopUntilInterruption</span> p init = <span class="hljs-keyword">do</span>
-  v &lt;- newEmptyMVar
-  installHandler sigINT (handler v) <span class="hljs-type">Nothing</span>
-  installHandler sigTERM (handler v) <span class="hljs-type">Nothing</span>
-  loop v p init
-
-<span class="hljs-title">handler</span> :: <span class="hljs-type">MVar</span> () -&gt; <span class="hljs-type">Handler</span>
-<span class="hljs-title">handler</span> v = <span class="hljs-type">CatchOnce</span> $ putMVar v ()
-
-<span class="hljs-title">loop</span> :: <span class="hljs-type">MVar</span> () -&gt; (a -&gt; <span class="hljs-type">IO</span> a) -&gt; a -&gt; <span class="hljs-type">IO</span> ()
-<span class="hljs-title">loop</span> v p prev = <span class="hljs-keyword">do</span>
-  x &lt;- p prev
-  val &lt;- tryTakeMVar v
-  <span class="hljs-keyword">case</span> val <span class="hljs-keyword">of</span>
-    <span class="hljs-type">Just</span> _ -&gt; return ()
-    <span class="hljs-type">Nothing</span> -&gt; loop v p x &gt;&gt; return ()</code></pre><p>In the Game of Life, I changed the type of <code>life</code> so that it returns the result of its previous result and loop with <code>loop</code>. Now the clean up code will be called when interrupted by a signal.</p>
-<pre><code class="hljs hs"><span class="hljs-keyword">import</span> System.Process (<span class="hljs-title">system</span>)
-
-<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
-  <span class="hljs-comment">-- Hide the cursor</span>
-  system <span class="hljs-string">"tput civis"</span>
-  <span class="hljs-comment">-- Loop until interrupted</span>
-  loopUntilInterruption life glider
-  <span class="hljs-comment">-- Show the cursor (the code will reach here now!)</span>
-  system <span class="hljs-string">"tput cvvis"</span>
-  return ()
-
-<span class="hljs-title">life</span> :: <span class="hljs-type">Board</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">Board</span>
-<span class="hljs-title">glider</span> :: <span class="hljs-type">Board</span></code></pre><p>And they lived happily ever after.</p>
-
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v3/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="initial-scale=1">
-      <title>Shuhei Kagawa</title>
+      <title>DNS Polling for Reliability - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -121,106 +121,23 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
       </div>
     </div>
   
+    
+  <div class="comments">
+    <div id="disqus_thread" />
+    <script>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shuheikagawa.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+  </div>
 
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/04/25/keep-alive-timeout/>Check Your server.keepAliveTimeout</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 25, 2019</span>
-          - <span class="category">Node.js</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (<code>HTTPCode_ELB_502_Count</code>). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn&#39;t bothered investigating it for a while.</p>
-<pre><code class="hljs ">clients -&gt; AWS ELB -&gt; Node.js server</code></pre><p>I recently came across a post, <a href="https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4">A tale of unexpected ELB behavior.</a> It says ELB pre-connects to backend servers, and it can cause a race condition where ELB thinks a connection is open, but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found <a href="https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340">Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer</a>. It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server&#39;s keep alive idle timeout longer than the load balancer&#39;s timeout. This advice seemed applicable even to AWS ELB and Node.js server.</p>
-<p>According to <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout">AWS documentation</a>, Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:</p>
-<blockquote>
-<p>We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.</p>
-</blockquote>
-<p><a href="https://nodejs.org/api/http.html#http_server_keepalivetimeout">Node.js <code>http</code>/<code>https</code> server has 5 seconds keep alive timeout by default</a>. I wanted to make it longer. With <a href="https://expressjs.com/">Express</a>, we can do it like the following:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
-
-<span class="hljs-keyword">const</span> app = express();
-<span class="hljs-comment">// Set up the app...</span>
-<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">8080</span>);
-
-server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
-<p>As hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
-<h2>Update on April 29, 2019</h2>
-<p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
-<pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;
-server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-number">1000</span>; <span class="hljs-comment">// This should be bigger than `keepAliveTimeout + your server's expected response time`</span></code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/02/18/2018-in-review/>2018 in Review</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Feb 19, 2019</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
-<p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
-<h2>Move</h2>
-<p>We had lived in an apartment on the border of Schöneberg and Wilmersdorf for 2 years, and decided to move out at the end of October without extending the contract. We spent two or three months for flat search, and a month and a half for moving, buying furniture and setting up the new apartment. After all, we like the new area and are looking forward to spend time on the balcony in the summer.</p>
-<p>In the meanwhile, I got my left arm injured and it took a few months to recover.</p>
-<h2>Travel</h2>
-<p>I visited two new countries and seven new cities. I wanted to visit a few more counties, but could not manage mainly because of the moving.</p>
-<ul>
-<li>Tokyo, Japan in Feburary</li>
-<li>Spreewald, Germany in March</li>
-<li>Amsterdam, Netherlands for React Amsterdam in April</li>
-<li>Leipzig, Germany in May</li>
-<li>Vienna, Austria for a wedding party in July</li>
-<li>München, Germany for Oktoberfest in September</li>
-<li>Köln and Düsseldorf, Germany in November</li>
-</ul>
-<h2>German Language</h2>
-<p>After finishing an A2 course at office, I started a B1 course at <a href="https://www.speakeasysprachzeug.de/en">Speakeasy</a>. I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going there.</p>
-<h2>Work</h2>
-<p>It has been 2 years since I started working at Zalando. 2017 was about architecture migration from a monolith to microservices. 2018 was about optimization (and the next migration already started...).</p>
-<p>In addition to front-end tasks, I focused more on non-feature stuff.</p>
-<p>In the first half of the year, I focused on web (frontend) performance optimization. My team&#39;s work was featured in a blog post, <a href="https://jobs.zalando.com/tech/blog/loading-time-matters/">Loading Time Matters</a>, on the company blog.</p>
-<p>In June, my team had a series of incidents on one of our applications, but we didn&#39;t know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find <a href="http://www.brendangregg.com/sysperfbook.html">Systems Performance by Brendan Gregg</a>, which is one of my all-time favorite technical books. As a by-product of the research/learning, I did profiling on production Node.js servers and made some performance improvements. Wrote about it on <a href="/blog/2018/09/16/node-js-under-a-microscope/">Node.js under a Microscope: CPU FlameGraph and FlameScope</a>.</p>
-<h2>Side Projects</h2>
-<p>Not many side projects. I have learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into <a href="https://github.com/shuhei/knowledge">the knowledge repo</a> inspired by <a href="https://github.com/yoshuawuyts/knowledge">yoshuawuyts/knowledge</a>. Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, <a href="https://github.com/shuhei/pollen">pollen</a>. It&#39;s been working without issues for 1.5 months!</p>
-<p>Some other unfinished pieces:</p>
-<ul>
-<li>Wrote some Haskell for <a href="https://github.com/shuhei/elm-compiler/pull/1">a GLSL parser</a> in the Elm compiler with <a href="https://github.com/w0rm">@w0rm</a>, but it&#39;s pending</li>
-<li>Experimented Node.js profiling at <a href="https://github.com/shuhei/perf-playground">perf-playground</a></li>
-<li>Played around with image formats at <a href="https://github.com/shuhei/incomplete-image-parser">incomplete-image-parser</a></li>
-<li>Tried to write a Node.js profiler inspired by <a href="https://github.com/rbspy/rbspy">rbspy</a>, but gave up to figure out memory layout of V8 objects</li>
-<li>Investigated an issue with <a href="https://github.com/facebook/react/issues/11538#issuecomment-390386520">React + Google Translate</a></li>
-</ul>
-<h2>2019</h2>
-<p>In 2018, I focused on tiny things such as shaving 100s of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.</p>
-
-        </div>
-      </div>
-    </div>
-  
-    <ul class="pagination">
-      <li class="pagination__prev-page">
-        
-      </li>
-      <li class="pagination__archives">
-        <a href="/blog/archives/">Archives</a>
-      </li>
-      <li class="pagination__next-page">
-        <a href=/blog/pages/2/>Older Posts</a>
-      </li>
-    </ul>
   
         </div>
         <footer class="footer">

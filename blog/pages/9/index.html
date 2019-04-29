@@ -49,6 +49,56 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2015/03/02/date-timezone/>Assign Time/time string in UTC to ActiveRecord date attribute</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Mar 2, 2015</span>
+          - <span class="category">Ruby</span>, <span class="category">Rails</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><strong>TL;DR: <code>gem &#39;date_timezone&#39;</code> in <code>Gemfile</code> and <code>include DateTimezone</code> in ActiveRecord models if you are on the east side of the prime meridian.</strong></p>
+<p>ActiveRecord is great. It automatically converts data <a href="https://github.com/rails/rails/tree/v4.2.0/activerecord/lib/active_record/type">according to the type of database column</a>. That&#39;s why we can throw request params, whose values are often strings, into mass assignment methods like <code>create</code> and <code>update</code> without manual conversion. The conversion works perfectly in most of the cases except for <code>date</code> attribute.</p>
+<p>To <code>date</code> attribute, we can assign <code>Date</code> and date string like <code>&#39;2015-03-02&#39;</code> without any problem. However, <code>Time</code> and time string with different time zone, usualy UTC, don&#39;t work well here. Their own time zones are not taken into account when converted to <code>Date</code>.</p>
+<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> &lt; Rails::Application</span>
+  config.time_zone = <span class="hljs-string">'Tokyo'</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ActiveRecord::Base</span>
+  <span class="hljs-comment"># birth_date :date</span>
+<span class="hljs-keyword">end</span>
+
+expect(Person.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-02'</span>).birth_date).to eq(Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
+expect(Person.new(<span class="hljs-symbol">birth_date:</span> Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
+expect(Person.new(<span class="hljs-symbol">birth_date:</span> Time.zone.local(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)).birth_date).to eq(Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
+
+<span class="hljs-comment"># But...</span>
+expect(Person.new(<span class="hljs-symbol">birth_date:</span> Time.utc(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>)).birth_date).to eq(Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))
+expect(Person.new(<span class="hljs-symbol">birth_date:</span> <span class="hljs-string">'2015-03-01T15:00:00.000Z'</span>).birth_date).to eq(Date.new(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))</code></pre><p>There may be several cases that we have to assign <code>Time</code> or time string in different time zone to <code>date</code> attribute. My own case was a Single Page Application built with AngularJS that sends JavaScript&#39;s <code>Date</code> object to Rails API. JavaScript&#39;s <code>JSON.parse()</code> serializes <code>Date</code> into a string of ISO 8601 format in UTC time zone. This is problematic to the people on the east side of the prime meridian because they get different date when they express their beginning of date in UTC.</p>
+<pre><code class="hljs javascript"><span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2015</span>, <span class="hljs-number">3</span> - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) });
+<span class="hljs-comment">// '{"date":"2015-03-01T15:00:00.000Z"}'</span></code></pre><p>I could have controlled front-end code to always send date string like <code>&#39;2015-03-02&#39;</code> or converted the ISO 8601 string with <code>Time.zone.parse</code> in Rails controllers. But those approaches seemed error prone. I wanted to take care of it at the bottom, ActiveRecord model. I created a concern to override <code>date</code>-column mutators like the following. It converts <code>Time</code> and time string to <code>TimeWithZone</code> with the application&#39;s time zone.</p>
+<pre><code class="hljs ">def birth_date=(value)
+  self[:birth_date] = case value
+                      when String then Time.zone.parse(value)
+                      when Time then value.in_time_zone
+                      else value
+                      end
+end</code></pre><p>The concern was extracted as a gem, <a href="https://github.com/shuhei/date_timezone">date_timezone</a>.</p>
+<pre><code class="hljs Gemfile">gem &#39;date_timezone&#39;</code></pre><pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ActiveRecord::Base</span>
+  <span class="hljs-keyword">include</span> DateTimezone
+
+  <span class="hljs-comment"># birth_date :date</span>
+<span class="hljs-keyword">end</span></code></pre><p>If you are creating Rails application on the east side of the prime meridian and in trouble with the same issue as mine, please try it and share what you think.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2015/02/15/playing-with-vanilla-webgl-api/>Playing with vanilla WebGL API</a>
         </h1>
         <div class="meta">
@@ -65,17 +115,17 @@
 <p><a href="/blurred-cube"><img src="/images/blurred-cube-webgl.png" alt="Blurred Cube"></a></p>
 <p><a href="/blurred-cube">Blurred Cube</a></p>
 <p>The hardest part was randomly moving the cube&#39;s edges. Because I couldn&#39;t randomly move vertices on the array buffer, I had to rewrite buffer data frame by frame. It might be inefficient, but it works well on my laptop at least.</p>
-<h2 id="steps-for-drawing-with-webgl">Steps for drawing with WebGL</h2>
+<h2>Steps for drawing with WebGL</h2>
 <p>The exercises on <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> split steps into two phases, <code>init</code> and <code>draw</code>, like <a href="https://processing.org/">Processing</a>. Here I leave a note on general steps in them for later use.</p>
-<h3 id="init">Init</h3>
-<ol>
+<h3>Init</h3>
+<ol start="undefined">
 <li>Compile shaders and link them into a program. If you have attributes in vertex shader, don&#39;t forget to set attribute location before linking. If you have uniforms, get their locations after linking for later use.</li>
 <li>Create buffers and assign data to them.</li>
 <li>Create element buffers and assign data to them if necessary.</li>
 <li>Create textures and assign data to them if necessary. You can use textures in fragment shader via texture unit number as uniform.</li>
 </ol>
-<h3 id="draw">Draw</h3>
-<ol>
+<h3>Draw</h3>
+<ol start="undefined">
 <li>Use program, assign data to uniforms. If they don&#39;t change frame by frame, you can do this in the setup phase.</li>
 <li>Bind buffer. If you have only one buffer, you may have done this in the setup phase.</li>
 <li>Draw arrays or elements.</li>
@@ -104,36 +154,6 @@
 <p>ES6 で書いたスクリプトを Karma でテストすることができるようになります。Sourcemap を含めた設定例は README を見てみてください。</p>
 <p>その後、ES6 Module も使うことにして、Browerify の transform として 6to5 と同じ作者が作っている <a href="https://github.com/6to5/6to5-browserify">6to5-browserify</a> を使うようにしました。すると Karma の方でも Browerify を使えばいいので karma-6to5-preprocessor は使う必要がなくなってしまったのです。結構需要がありそうなのに、何でなかったんだろうと思っていたのですが、これで謎がとけました。</p>
 <p>それでも、ES6 Modules は使わないけど ES6 の便利な機能は使いたいという人はいるようで、ちょこちょこダウンロードされています。良かった良かった。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2014/09/27/land-prices-on-ios/>WebGL な日本の地価マップをタッチ対応してみた</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 27, 2014</span>
-          - <span class="category">WebGL</span>, <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>iOS 8 の Safari で WebGL が動くようになったので、以前作った日本の地価の 3D で表示するやつをタッチ対応してみました。</p>
-<p><img src="/images/webland-ios.png" alt="Land Prices in Japan on iOS 8 Safari"></p>
-<p><a href="/webland">Land Prices in Japan</a></p>
-<p>ソースは <a href="https://github.com/shuhei/webland">GitHub にあります</a>。</p>
-<p>タッチ対応というのは、大体以下のような感じです。</p>
-<ul>
-<li>Viewport が動かないように調整。</li>
-<li>ドラッグで上下左右に動けるように。タッチデバイスかどうがで、タッチ系のイベントを使うかマウス系のイベントを使うかを切り替えています。</li>
-<li>ピンチでズームできるように。難しいかなと思ったんですが、<code>gesturestart</code>, <code>gesturechange</code>, <code>gestureend</code> イベントがあったので簡単でした。</li>
-<li>ダブルタップで視点を切り替えられるように。ダブルタップやダブルクリックのイベントというのは特にないので、<code>touchstart</code> の時に一個前のイベントの時刻と比較して判断しています。</li>
-</ul>
-<p>早速買い換えた iPhone 6 Plus でぬるぬる動く上に、iPhone 5 でも余裕で動きます。直接触れるので、画面は小さいものの PC より楽しいなあと思いました。今後はモバイルでの WebGL が面白そうですね。</p>
 
         </div>
       </div>

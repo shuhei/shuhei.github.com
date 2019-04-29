@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v3/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="initial-scale=1">
-      <title>Playing with vanilla WebGL API - Shuhei Kagawa</title>
+      <title>Page 55 - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -49,59 +49,45 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2015/02/15/playing-with-vanilla-webgl-api/>Playing with vanilla WebGL API</a>
+          <a href=/blog/2008/05/11/easily/>気楽に</a>
         </h1>
         <div class="meta">
-          <span class="date">Feb 15, 2015</span>
-          - <span class="category">JavaScript</span>, <span class="category">WebGL</span>
+          <span class="date">May 11, 2008</span>
+          - <span class="category">読書</span>
         </div>
       </div>
       <div class="content">
         <div>
-          <p>Started writing in English on a whim.</p>
-<p>I&#39;ve been learning vanilla WebGL with <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> since the last weekend. It took some time for me to understand concepts like array buffer and element buffer but it was fun to learn the basics that we stand on.</p>
-<p>The team behind <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> creates a set of utility modules called <a href="http://stack.gl/"><code>stackgl</code></a>. It embraces the UNIX philosophy, &quot;Write programs that do one thing and do it well.&quot; Even though the workshop doesn&#39;t use <code>stackgl</code> libraries, I liked the way the exercises were organized as small modules.</p>
-<p>Before moving to another workshop module, <a href="https://github.com/stackgl/shader-school">shader-school</a>, I ported my old openFrameworks experiment with vanilla WebGL and Audio User Media in order to check if I could use what I learned so far.</p>
-<p><a href="/blurred-cube"><img src="/images/blurred-cube-webgl.png" alt="Blurred Cube"></a></p>
-<p><a href="/blurred-cube">Blurred Cube</a></p>
-<p>The hardest part was randomly moving the cube&#39;s edges. Because I couldn&#39;t randomly move vertices on the array buffer, I had to rewrite buffer data frame by frame. It might be inefficient, but it works well on my laptop at least.</p>
-<h2>Steps for drawing with WebGL</h2>
-<p>The exercises on <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> split steps into two phases, <code>init</code> and <code>draw</code>, like <a href="https://processing.org/">Processing</a>. Here I leave a note on general steps in them for later use.</p>
-<h3>Init</h3>
-<ol start="undefined">
-<li>Compile shaders and link them into a program. If you have attributes in vertex shader, don&#39;t forget to set attribute location before linking. If you have uniforms, get their locations after linking for later use.</li>
-<li>Create buffers and assign data to them.</li>
-<li>Create element buffers and assign data to them if necessary.</li>
-<li>Create textures and assign data to them if necessary. You can use textures in fragment shader via texture unit number as uniform.</li>
-</ol>
-<h3>Draw</h3>
-<ol start="undefined">
-<li>Use program, assign data to uniforms. If they don&#39;t change frame by frame, you can do this in the setup phase.</li>
-<li>Bind buffer. If you have only one buffer, you may have done this in the setup phase.</li>
-<li>Draw arrays or elements.</li>
-</ol>
-
+          <p>メインのブログは知人・友人が見る日記、といった感じなので、プログラミングやビジネスっぽいことは書きにくいところがあります。<br />
+というわけで、このへんに勉強したことでも気楽に書いていこうかなと。</p>
+<p><h3>VMWare</h3></p>
+<p><span class="caps">UNIX</span> や Linux っぽい環境に慣れていこうかと思い、VMware Player で環境構築しようとしてみたところ、メンテナンス中でダウンロードできず。<br />
+残念、また今度。</p>
+<p><h3>最近の読書</h3></p>
+<p>「マーケティング実践講座」読了。<br />
+マーケティングの雰囲気だけ感じました。<br />
+もうちょっと実例系を読んでみようかなと。</p>
+<p>「戦略的データマイニング」途中まで。<br />
+アカデミックからのアプローチ。<br />
+意外にサクサク読めます。</p>
+<p>「定量分析実践講座」途中まで。<br />
+統計分析と勘違いして買ったけど、数字で考える意志決定の本でした。<br />
+これはこれで面白いです。</p>
         </div>
       </div>
     </div>
   
-    
-  <div class="comments">
-    <div id="disqus_thread" />
-    <script>
-      (function () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://shuheikagawa.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>
-      Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-    </noscript>
-  </div>
-
+    <ul class="pagination">
+      <li class="pagination__prev-page">
+        <a href=/blog/pages/54/>Newer Posts</a>
+      </li>
+      <li class="pagination__archives">
+        <a href="/blog/archives/">Archives</a>
+      </li>
+      <li class="pagination__next-page">
+        
+      </li>
+    </ul>
   
         </div>
         <footer class="footer">

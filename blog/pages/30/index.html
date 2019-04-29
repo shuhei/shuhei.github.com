@@ -49,6 +49,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/10/iphone-provisioning-profile/>iPhone Provisioning Profile</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 10, 2009</span>
+          - <span class="category">iPhone 開発</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
+改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
+<p>キーチェーンアクセス &#8594; 証明書アシスタント -&gt; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
+<p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/02/wordpress-textile-plugin/>Wordpress の Textile プラグイン</a>
         </h1>
         <div class="meta">
@@ -88,26 +109,6 @@
 <h3><a href="http://amazon.co.jp/o/ASIN/0131495054/nanataisan-22">xUnit Test Patterns: Refactoring Test Code</a></h3>
 <p>何となく買ってみたら 900 ページ近くもあってビックリ。</p>
 <p>うーん、あんまり買ってませんね。その上、実際に読んだのはレガシーコード改善ガイドのみ。7月は、飲んだり会社に遅くまでいたりで、本を読む気力・体力がなかったことが原因かもしれません。8月はもうすこしゆったり過ごしたいと思います。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/08/02/openframeworks-on-iphon/>iPhone で OpenFrameworks</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 2, 2009</span>
-          - <span class="category">C/C++</span>, <span class="category">iPhone 開発</span>, <span class="category">OpenFrameworks</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>二次元で Strange Attractor 的なものをつくってみました。パーティクルの点描ではなく軌跡を描いています。</p>
-<p><a href="http://www.flickr.com/photos/branchiopoda/3780153165/" title="Attractor2D by shuhei kagawa, on Flickr"><img src="http://farm4.static.flickr.com/3479/3780153165_68805a6ef5.jpg" width="269" height="500" alt="Attractor2D" /></a></p>
-<p>Processing と全く同じような感じで書けるので、よけいなことに労力を費やさずにすみます。今後 iPhone で OpenFrameworks を使って行くならば、UIKit との組み合わせ方と、審査が通るかどうかを調べなければいけませんね。</p>
         </div>
       </div>
     </div>

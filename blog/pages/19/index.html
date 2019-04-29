@@ -49,6 +49,34 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/02/17/hashdefault/>Ruby の Hash#default</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Feb 17, 2010</span>
+          - <span class="category">Ruby</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Windows XP の Ruby 1.8.7 で</p>
+<pre class="prettyprint">h = {}
+h.default = []
+h["hello"] &lt;&lt; "world"</pre>
+<p>としたとき</p>
+<pre class="prettyprint">puts h.size # =&gt; 1
+puts h # =&gt; {"hello"=&gt;["world"]}</pre>
+<p>となるのを期待していたのですが <code>{}</code> と出力されます。<br />
+さらに、なんと以下のようになりました。</p>
+<pre class="prettyprint">puts h["foo"] # =&gt; ["world"]</pre>
+<p>つまり、Hash のデフォルト値は一つの値を使い回しているということ。その場でコピーが作られる訳ではないようです。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/02/17/grep-onwindows/>Windows で grep</a>
         </h1>
         <div class="meta">
@@ -119,30 +147,6 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
 -Xms40m
 -Xmx512m</pre>
 <p>via <a href="http://aotan2008.eco.coocan.jp/blog/archives/2009/06/08133609.php">Eclipseの起動エラー（<span class="caps">JVM</span> terminated. Exit code=-1） &#8211; がんばれ！aotan2008</a></p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/01/16/update-macports/>MacPorts のアップデート</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 16, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>port search xxx として出てくるものが古いときに。</p>
-<p>MacPorts をアップデート。</p>
-<pre class="prettyprint">sudo port selfupdate</pre>
-<p>パッケージを更新。</p>
-<pre class="prettyprint">sudo port sync</pre>
-<p>たまにやった方がいいようですね。</p>
-<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPortsをちゃんと使うために調べてみた &#8211; kanonjiの日記</a></p>
         </div>
       </div>
     </div>

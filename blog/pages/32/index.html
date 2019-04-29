@@ -49,6 +49,40 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/07/28/cannot-initialize-members-of-base-class/>基本クラスのメンバを初期化できない</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 28, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>またまた少しはまりました。</p>
+<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。<br />
+以下のように書くとエラーになります。</p>
+<pre class="prettyprint">class A {
+protected:
+  int foo;
+};
+
+class B : public A {
+public:
+  B(int value) : foo(value) {
+  }
+};</pre>
+<p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
+なかなか面倒なものですね。</p>
+<p>参考サイト<br />
+<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; <span class="caps">A7M</span> の日記</a></p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/07/28/former-declaration-of-class/>クラスの前方宣言</a>
         </h1>
         <div class="meta">
@@ -99,28 +133,6 @@ class A の宣言の前にBの前方宣言が必要なんですね。</p>
           <p>ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。</p>
 <p>最近、会社で C++ コードをいじっていて、C 言語的なもろもろに慣れてきました。家でも C 言語的なものを触りつつ <span class="caps">TDD</span> とかもしてみたいと思って Xcode を開いたところ、なんと C++ ではリファクタリング機能がきかないとのこと。しかし Xcode の見た目は好きなので Xcode を使いたい。ということで、Objective-C を再開することにしました。</p>
 <p>以前触ったときは、アプリを公開する事なくうやむやになってしまったので、今度こそ何か公開できればいいなと思っています。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/27/byline/>Byline</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 27, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>iPhone の <span class="caps">RSS</span> リーダ。</p>
-<p>画像キャッシュができるなど、良いとは聞いていましたが、以前は記事がフィード毎に分けられないようだったので採用を見送っていました。</p>
-<p>その間使っていたのは NetNewsWire。iPhoneアプリは軽快動作でステキな出来なのですが、本体のウェブサイトが重すぎて使い物にならない代物で、いつか乗り換えたいと思っていました。</p>
-<p>先日 Byline が何かのセールで 200 円くらいにまで下がっていたので購入。使ってみたところ、カテゴリ毎だけでなくフィード毎の分類もできるようになっていたので、乗り換えを決意。ウェブサービスの方を Google Reader へと乗り換え、めでたく移行完了。</p>
-<p>Byline は動作と見た目を合わせて妙な安定感があっていいですね。さらに画像のキャッシュはとても便利。通勤電車の中でもストレスフリーでフィードを読めます。<span class="caps">RSS</span> の読みすぎで目が悪くなったり読書の時間が減っても困るので、ほどほどにしようとは思いますが。</p>
         </div>
       </div>
     </div>
