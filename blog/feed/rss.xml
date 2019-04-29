@@ -14,7 +14,10 @@
 
 server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
 <p>As hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
-
+<h2 id="update-on-april-29-2019">Update on April 29, 2019</h2>
+<p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
+<pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;
+server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-number">1000</span>; <span class="hljs-comment">// This should be bigger than `keepAliveTimeout + your server's expected response time`</span></code></pre>
 ]]></description><pubDate>Thu, 25 Apr 2019 21:29:00 GMT</pubDate><guid isPermaLink="false">http://shuheikagawa.com//blog/2019/04/25/keep-alive-timeout/</guid></item><item><title>2018 in Review</title><link>http://shuheikagawa.com//blog/2019/02/18/2018-in-review/</link><description><![CDATA[
 <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
 <p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
