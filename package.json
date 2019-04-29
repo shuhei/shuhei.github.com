@@ -48,7 +48,7 @@
     "highlight.js": "^9.11.0",
     "jade": "^1.9.2",
     "jest": "^24.6.0",
-    "marked": "^0.3.5",
+    "marked": "^0.6.2",
     "mkdirp": "^0.5.0",
     "postcss": "^7.0.7",
     "postcss-clean": "^1.1.0",
