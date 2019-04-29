@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DNS Polling for Reliability"
-date: 2019-02-24 18:01
+date: 2019-04-30 00:14
 comments: true
 categories: [Node.js]
 ---
@@ -12,7 +12,7 @@ My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 ins
 
 ## Node.js is Vulnerable to DNS Failures
 
-In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we haven't paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can't call servers without knowing their IP addresses.
+In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn't paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can't call servers without knowing their IP addresses.
 
 Node.js is especially vulnerable to DNS lookup failures because:
 
@@ -24,11 +24,9 @@ Node.js is especially vulnerable to DNS lookup failures because:
 
 We can make DNS lookups fast and reliable by caching it. [An issue on the nodejs/node repo](https://github.com/nodejs/node/issues/5893) recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.
 
-However, it's not always easy depending on the platform that you are using. My team was using a platform where we just deploy your application Docker container, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform owner to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence.
+However, it's not always easy depending on the platform that you are using. My team was using a platform where we just deploy your application Docker container, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform owner to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence when they were focusing on a new generation platform.
 
-Because the incidents didn't happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while.
-
-So, I decided to implement DNS caching on the application layer with Node.js.
+Because the incidents didn't happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.
 
 ## DNS Caching and Prefetching with Node.js
 
@@ -45,15 +43,15 @@ To avoid making DNS lookups on demand, we can prefetch DNS records and always pr
 
 There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.
 
-We have been using HTTP Keep-Alive for good performance. However, we couldn't keep the Keep-Alive connections for a long time because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the `activeSocketTTL` option of `keepaliveagent`. However, this is not optimal because IP addresses don't change most of the time.
+We have been using HTTP Keep-Alive for good performance. However, we couldn't keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the `activeSocketTTL` option of `keepaliveagent`. However, this is not optimal because IP addresses don't change most of the time.
 
 The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.
 
 ## Result
 
-I wrote [pollen](https://github.com/shuhei/pollen) and migrated our servers to C5 again with the package. No issues happened after two months. So, it seems that DNS failure was the cause and the package can mitigate it.
+I wrote [pollen](https://github.com/shuhei/pollen) and migrated our servers to C5 again with the package. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.
 
-I expected performance improvement because of fewer TCP/TLS handshakes, but I couldn't find much difference in latency.
+I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn't find much difference in latency.
 
 ## How to Use It
 
@@ -88,6 +86,6 @@ const req = https.request({
 
 Give [pollen](https://github.com/shuhei/pollen) a try if you are:
 
+- seeing DNS timeouts on outbound API calls
 - using DNS for service discovery
 - running your Node.js servers without DNS caching
-- seeing DNS timeouts on outbound API calls
