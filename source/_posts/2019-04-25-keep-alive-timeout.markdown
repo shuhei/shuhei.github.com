@@ -33,3 +33,12 @@ server.keepAliveTimeout = 61 * 1000;
 And the ELB 502 errors disappeared!
 
 As hindsight, there was already [Dealing with Intermittent 502's between an AWS ALB and Express Web Server](https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/) on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy ([Skipper as k8s ingress](https://github.com/zalando-incubator/kube-ingress-aws-controller)) and another Node.js server at work. I hope this issue becomes more widely known.
+
+## Update on April 29, 2019
+
+Oleksii told me in a comment that only `server.keepAliveTimeout` was not enough on Node.js 10.15.2. It turned out that we also need to configure `server.headersTimeout` longer than `server.keepAliveTimeout` on Node.js 10.15.2 and newer. See [his issue on GitHub](https://github.com/nodejs/node/issues/27363) for more details. Thanks, Oleksii!
+
+```js
+server.keepAliveTimeout = 61 * 1000;
+server.headersTimeout = 65 * 1000; // This should be bigger than `keepAliveTimeout + your server's expected response time`
+```
