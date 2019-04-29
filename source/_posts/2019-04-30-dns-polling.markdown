@@ -82,6 +82,63 @@ const req = https.request({
 });
 ```
 
+## Bonus: DNS Lookup Metrics
+
+Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. `pollen` emits events for this purpose.
+
+```js
+dnsPolling.on('resolve:success', ({ hostname, duration, update }) => {
+  // Hypothetical functions to update metrics...
+  recordDnsLookup();
+  recordDnsLatency(duration);
+
+  if (update) {
+    logger.info({ hostname, duration }, 'IP addresses updated');
+  }
+});
+dnsPolling.on('resolve:error', ({ hostname, duration, error }) => {
+  // Hypothetical functions to update metrics...
+  recordDnsLookup();
+  recordDnsLatency(duration);
+  recordDnsError();
+
+  logger.warn({ hostname, err: error, duration }, 'DNS lookup error');
+});
+```
+
+I was surprised by DNS lookups occasionally taking 1.5 seconds. I guess it's because the libc resolver retries after 1.5 seconds, but I haven't looked into it deeply.
+
+Because `pollen` makes fewer DNS lookups, the events don't happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out [Histogram for Time-Series Metrics on Node.js](/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/) for more details.
+
+Even if you don't use `pollen`, it is a good idea to monitor DNS lookups.
+
+```js
+const lookupWithMetrics = (hostname, options, callback) => {
+  const cb = callback || options;
+  const startTime = Date.now();
+
+  function onLookup(err, address, family) {
+    const duration = Date.now() - startTime;
+    cb(err, address, family);
+
+		// Hypothetical functions to update metrics...
+    recordDnsLookup();
+    recordDnsLatency(duration);
+    if (err) {
+      recordDnsError();
+      logger.warn({ hostname, err, duration }, 'DNS lookup error');
+    }
+  }
+
+  return dns.lookup(hostname, options, onLookup);
+};
+
+const req = https.request({
+  ...,
+  lookup: lookupWithMetrics
+});
+```
+
 ## Conclusion
 
 Give [pollen](https://github.com/shuhei/pollen) a try if you are:
@@ -89,3 +146,5 @@ Give [pollen](https://github.com/shuhei/pollen) a try if you are:
 - seeing DNS timeouts on outbound API calls
 - using DNS for service discovery
 - running your Node.js servers without DNS caching
+
+Also, don't forget to monitor DNS lookups!
