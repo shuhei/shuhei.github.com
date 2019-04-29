@@ -109,6 +109,52 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
   <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
   lookup: dnsPolling.getLookup(hostname),
   agent,
+});</code></pre><h2>Bonus: DNS Lookup Metrics</h2>
+<p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
+<pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">'resolve:success'</span>, ({ hostname, duration, update }) =&gt; {
+  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
+  recordDnsLookup();
+  recordDnsLatency(duration);
+
+  <span class="hljs-keyword">if</span> (update) {
+    logger.info({ hostname, duration }, <span class="hljs-string">'IP addresses updated'</span>);
+  }
+});
+dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, duration, error }) =&gt; {
+  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
+  recordDnsLookup();
+  recordDnsLatency(duration);
+  recordDnsError();
+
+  logger.warn({ hostname, <span class="hljs-attr">err</span>: error, duration }, <span class="hljs-string">'DNS lookup error'</span>);
+});</code></pre><p>I was surprised by DNS lookups occasionally taking 1.5 seconds. I guess it&#39;s because the libc resolver retries after 1.5 seconds, but I haven&#39;t looked into it deeply.</p>
+<p>Because <code>pollen</code> makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">Histogram for Time-Series Metrics on Node.js</a> for more details.</p>
+<p>Even if you don&#39;t use <code>pollen</code>, it is a good idea to monitor DNS lookups.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> dns = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dns'</span>);
+
+<span class="hljs-keyword">const</span> lookupWithMetrics = <span class="hljs-function">(<span class="hljs-params">hostname, options, callback</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> cb = callback || options;
+  <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onLookup</span>(<span class="hljs-params">err, address, family</span>) </span>{
+    <span class="hljs-keyword">const</span> duration = <span class="hljs-built_in">Date</span>.now() - startTime;
+    cb(err, address, family);
+
+        <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
+    recordDnsLookup();
+    recordDnsLatency(duration);
+    <span class="hljs-keyword">if</span> (err) {
+      recordDnsError();
+      logger.warn({ hostname, err, duration }, <span class="hljs-string">'DNS lookup error'</span>);
+    }
+  }
+
+  <span class="hljs-keyword">return</span> dns.lookup(hostname, options, onLookup);
+};
+
+<span class="hljs-keyword">const</span> req = https.request({
+  ...,
+  <span class="hljs-attr">lookup</span>: lookupWithMetrics
 });</code></pre><h2>Conclusion</h2>
 <p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
 <ul>
@@ -116,6 +162,7 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
 <li>using DNS for service discovery</li>
 <li>running your Node.js servers without DNS caching</li>
 </ul>
+<p>Also, don&#39;t forget to monitor DNS lookups!</p>
 
         </div>
       </div>
