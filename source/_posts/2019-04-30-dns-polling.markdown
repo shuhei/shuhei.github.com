@@ -113,6 +113,8 @@ Because `pollen` makes fewer DNS lookups, the events don't happen frequently. I 
 Even if you don't use `pollen`, it is a good idea to monitor DNS lookups.
 
 ```js
+const dns = require('dns');
+
 const lookupWithMetrics = (hostname, options, callback) => {
   const cb = callback || options;
   const startTime = Date.now();
