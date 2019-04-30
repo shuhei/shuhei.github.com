@@ -28,7 +28,7 @@
 <p>We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the <code>activeSocketTTL</code> option of <code>keepaliveagent</code>. However, this is not optimal because IP addresses don&#39;t change most of the time.</p>
 <p>The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.</p>
 <h2>Result</h2>
-<p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a> and migrated our servers to C5 again with the package. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
+<p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a>, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
 <p>I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.</p>
 <h2>How to Use It</h2>
 <pre><code class="hljs sh">npm i -S @shuhei/pollen
