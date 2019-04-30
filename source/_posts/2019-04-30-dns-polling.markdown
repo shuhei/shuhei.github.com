@@ -49,7 +49,7 @@ The DNS caching and prefetching tell us when IP addresses change. So we can keep
 
 ## Result
 
-I wrote [pollen](https://github.com/shuhei/pollen) and migrated our servers to C5 again with the package. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.
+I wrote [pollen](https://github.com/shuhei/pollen), tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.
 
 I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn't find much difference in latency.
 
