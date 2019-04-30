@@ -24,7 +24,7 @@ Node.js is especially vulnerable to DNS lookup failures because:
 
 We can make DNS lookups fast and reliable by caching it. [An issue on the nodejs/node repo](https://github.com/nodejs/node/issues/5893) recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.
 
-However, it's not always easy depending on the platform that you are using. My team was using [a platform where we just deploy your application Docker container](https://stups.io/), and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new platform using k8s. (They eventually added per-node DNS caching to the new platform using k8s later, but that's another story...)
+However, it's not always easy depending on the platform that you are using. My team was using [a platform where we just deploy your application Docker container](https://stups.io/), and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won't move to it because of reasons...)
 
 Because the incidents didn't happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.
 
@@ -106,7 +106,7 @@ dnsPolling.on('resolve:error', ({ hostname, duration, error }) => {
 });
 ```
 
-I was surprised by DNS lookups occasionally taking 1.5 seconds. I guess it's because the libc resolver retries after 1.5 seconds, but I haven't looked into it deeply.
+I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of [c-ares](https://c-ares.haxx.se/), but I'm not sure yet ([its default timeout seems to be 5 seconds...](https://c-ares.haxx.se/ares_init_options.html)).
 
 Because `pollen` makes fewer DNS lookups, the events don't happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out [Histogram for Time-Series Metrics on Node.js](/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/) for more details.
 
