@@ -6,19 +6,23 @@ comments: true
 categories: [Rust]
 ---
 
-I have been reading [Writing an Interpreter in Go](https://compilerbook.com/) and [Writing a Compiler in Go](https://interpreterbook.com/) by [Thorsten Ball](https://thorstenball.com/) and implementing the Monkey programming language in Rust.
+I have been reading [Writing an Interpreter in Go](https://compilerbook.com/) and [Writing a Compiler in Go](https://interpreterbook.com/) by [Thorsten Ball](https://thorstenball.com/) and [implementing the Monkey programming language in Rust](https://github.com/shuhei/cymbal).
 
-TODO: Link to the repository.
+The first book is about writing a parser and an interpreter for a programming language called Monkey. Monkey's feature set is pretty limited, but it has some interesting features that modern programming languages have, such as function as a first-class citizen, closures, etc.
 
-I had some ideas about parser, interpreter and compiler before reading the books thanks to prior projects. I followed [Write Yourself a Scheme in 48 Hours](https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours), tried to write a GLSL parser for Elm, and learned a bit about assembly to understand V8 stacktraces. But I haven't had a complete idea of function call convention, how to implement closures, etc. Now I can confidently say what is on the stack and what is on the heap.
+TODO: Show a code snippet!
 
-Also, this knowledge about compiler and virtual machine was useful to understand concepts of Rust itself. Rust needs to know about the sizes of types because it needs to allocate values of the types on the stack. TODO: More examples.
+The second book taught me to write a compiler and a virtual machine to execute instructions that the compiler generates.
+
+Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my prior projects. I had followed [Write Yourself a Scheme in 48 Hours](https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours), had tried to write a GLSL parser for Elm, and had learned a bit about assembly to understand V8 stacktraces. But I hadn't had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.
+
+Also, this knowledge about compiler and virtual machine was useful to understand some of the concepts of Rust itself. Rust needs to know about the sizes of types because it needs to allocate values of the types on the stack. ------------TODO: More examples.
 
 ## How I started
 
-Personally I wanted to learn Rust by implementing something not so trivial. I wrote two simple command line tools with Rust, but they were a bit too small.
+Before starting this project, I had written two simple command line tools with Rust, but they were too small to learn different aspects of Rust. I wanted to learn Rust by implementing something not too trivial.
 
-I bought "Writing an Interpreter in Go" more than a year ago, but had left it in my bookshelf. Recently I wanted to re-learn Go a bit for work. I took the book from my bookshelf and started following the code in the book with Go. I did ??? chapters and new Go syntax stopped appearing. The initial purpose of re-learning Go was achieved. Then Rust came to my mind.
+I had bought "Writing an Interpreter in Go" more than a year ago, but had left it in my bookshelf. Recently I wanted to re-learn Go a bit for work. I took the book from my bookshelf and started following the code in the book with Go. I did ??? chapters and new Go syntax stopped appearing. The initial purpose of re-learning Go was achieved. Then Rust came to my mind.
 
 ## How it was like
 
