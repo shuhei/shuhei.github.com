@@ -18,7 +18,7 @@ In the meanwhile, I got my left arm injured and it took a few months to recover.
 
 ## Travel
 
-I visited two new countries and seven new cities. I wanted to visit a few more counties, but could not manage mainly because of the moving.
+I visited two new countries and seven new cities. I wanted to visit a few more countries, but could not manage mainly because of the moving.
 
 - Tokyo, Japan in Feburary
 - Spreewald, Germany in March
@@ -30,7 +30,7 @@ I visited two new countries and seven new cities. I wanted to visit a few more c
 
 ## German Language
 
-After finishing an A2 course at office, I started a B1 course at [Speakeasy](https://www.speakeasysprachzeug.de/en). I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going there.
+After finishing an A2 course at office, I started a B1 course at [Speakeasy](https://www.speakeasysprachzeug.de/en). I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going to the course.
 
 ## Work
 
@@ -40,11 +40,11 @@ In addition to front-end tasks, I focused more on non-feature stuff.
 
 In the first half of the year, I focused on web (frontend) performance optimization. My team's work was featured in a blog post, [Loading Time Matters](https://jobs.zalando.com/tech/blog/loading-time-matters/), on the company blog.
 
-In June, my team had a series of incidents on one of our applications, but we didn't know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find [Systems Performance by Brendan Gregg](http://www.brendangregg.com/sysperfbook.html), which is one of my all-time favorite technical books. As a by-product of the research/learning, I did profiling on production Node.js servers and made some performance improvements. Wrote about it on [Node.js under a Microscope: CPU FlameGraph and FlameScope](/blog/2018/09/16/node-js-under-a-microscope/).
+In June, my team had a series of incidents on one of our applications, but we didn't know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find [Systems Performance by Brendan Gregg](http://www.brendangregg.com/sysperfbook.html), which is one of my all-time favorite technical books. As a by-product of the research/learning, I profiled Node.js servers on production and made some performance improvements. Wrote about it on [Node.js under a Microscope: CPU FlameGraph and FlameScope](/blog/2018/09/16/node-js-under-a-microscope/).
 
 ## Side Projects
 
-Not many side projects. I have learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into [the knowledge repo](https://github.com/shuhei/knowledge) inspired by [yoshuawuyts/knowledge](https://github.com/yoshuawuyts/knowledge). Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, [pollen](https://github.com/shuhei/pollen). It's been working without issues for 1.5 months!
+I didn't worked on many side projects in 2018. Instead, I learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into [the knowledge repo](https://github.com/shuhei/knowledge) inspired by [yoshuawuyts/knowledge](https://github.com/yoshuawuyts/knowledge). Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, [pollen](https://github.com/shuhei/pollen). It's been working without issues for 1.5 months!
 
 Some other unfinished pieces:
 
@@ -56,4 +56,4 @@ Some other unfinished pieces:
 
 ## 2019
 
-In 2018, I focused on tiny things such as shaving 100s of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.
+In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.
