@@ -23,6 +23,7 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 
 ## Talks
 
+- June 2018, [https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production] at [FullStackJS Berlin v0.8.0](https://www.meetup.com/fullstack-berlin/events/261255967/)
 - September 2017, [Building a Pixel Art Editor with Elm](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup #4](https://www.meetup.com/Elm-Berlin/events/242852794/)
 - May 2016, [Angular 2 Offline Compiler](https://speakerdeck.com/shuhei/angular-2-offline-compiler) at [ng-sake #3](https://ng-sake.connpass.com/event/30746/)
 - March 2016, [Weird Attractors](https://speakerdeck.com/shuhei/weird-attractors) at [WebGL Beginners Meetup](https://web3dj.connpass.com/event/30009/)
