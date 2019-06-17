@@ -42,7 +42,7 @@
     "gulp-concat": "^2.5.0",
     "gulp-front-matter": "git+https://github.com/shuhei/gulp-front-matter",
     "gulp-if": "^2.0.2",
-    "gulp-markdown": "^1.0.0",
+    "gulp-markdown": "^4.0.0",
     "gulp-textile": "0.0.1",
     "gulp-util": "^3.0.3",
     "highlight.js": "^9.11.0",
