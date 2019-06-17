@@ -3,7 +3,7 @@ const path = require("path");
 const util = require("util");
 const { obj: through } = require("through2");
 const gutil = require("gulp-util");
-const jade = require("jade");
+const pug = require("pug");
 const async = require("async");
 const mkdirp = require("mkdirp");
 const strftime = require("strftime");
@@ -28,7 +28,7 @@ function renderPage(component, props, css) {
   });
 }
 
-// Returns a function that compiles jade template using caches.
+// Returns a function that compiles pug template using caches.
 function templateCache() {
   const compiledTemplates = {};
 
@@ -41,7 +41,7 @@ function templateCache() {
 
     fs.readFile(filePath, { encoding: "utf8" }, (err, data) => {
       try {
-        compiled = jade.compile(data, { filename: filePath });
+        compiled = pug.compile(data, { filename: filePath });
       } catch (e) {
         callback(e);
         return;
@@ -198,7 +198,7 @@ function index(config) {
       site: config,
       posts: posts.slice(0, 10)
     };
-    funcs.push(renderTemplateFunc("rss.jade", rssPath, localsForRss));
+    funcs.push(renderTemplateFunc("rss.pug", rssPath, localsForRss));
 
     // Execute in parallel. Rendering is synchronous thougth.
     async.parallel(funcs, (err, newFiles) => {
