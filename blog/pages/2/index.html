@@ -58,22 +58,22 @@
       </div>
       <div class="content">
         <div>
-          <h2>The &quot;metrics&quot; library</h2>
+          <h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
 <p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
 <p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
 <p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
-<h2>EDS-based Histogram</h2>
+<h2 id="eds-based-histogram">EDS-based Histogram</h2>
 <p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
 <p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
 <p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
 <p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
 So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
-<h2>HDR Histogram</h2>
+<h2 id="hdr-histogram">HDR Histogram</h2>
 <p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
 <p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
 <p>OK, I&#39;m sold.</p>
-<h2>Benchmark on Node.js</h2>
+<h2 id="benchmark-on-nodejs">Benchmark on Node.js</h2>
 <p>Then, how can I use HDR Histogram on Node.js? I found three implementations:</p>
 <ul>
 <li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a>: JS implementation in the same GitHub org as the Java implementation</li>
@@ -102,7 +102,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
 </ul>
 <p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
-<h2>Reset Strategy</h2>
+<h2 id="reset-strategy">Reset Strategy</h2>
 <p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
 <p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
 <ul>
@@ -123,7 +123,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 </ul>
 <p><em>Rolling time window</em> strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
 <p><strong>Update on Jan 11, 2019:</strong> I wrote <a href="https://github.com/shuhei/rolling-window">a package to use HDR histogram with rolling time window</a>.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
 
@@ -145,10 +145,10 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
       <div class="content">
         <div>
           <p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
-<h2>Background</h2>
+<h2 id="background">Background</h2>
 <p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
 <p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or <em>someone else</em>.</p>
-<h2>CPU Profiling with Linux <code>perf</code> Command</h2>
+<h2 id="cpu-profiling-with-linux-perf-command">CPU Profiling with Linux <code>perf</code> Command</h2>
 <p>Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
 <p>For Node.js, there are mainly two different tools. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux <code>perf</code> will keep working for a while. After all, I picked Linux <code>perf</code> because of low performance-overhead and small intervention to applications.</p>
 <p>Linux <code>perf record</code> records stack traces into a binary file called <code>perf.data</code> by default. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
@@ -161,7 +161,7 @@ sudo perf top
 sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
 <span class="hljs-comment"># Generate human readable stack traces</span>
 sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?</p>
-<h2>CPU Flame Graph</h2>
+<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
 <p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
 <p><img src="/images/flamegraph.png" alt="CPU Flame Graph">
 <em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
@@ -171,23 +171,23 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
 </ul>
 <p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
-<h2>FlameScope</h2>
+<h2 id="flamescope">FlameScope</h2>
 <p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
 <p><img src="/images/flamescope-annotated.png" alt="FlameScope">
 <em>Image from <a href="https://github.com/Netflix/flamescope">Netflix/flamescope</a></em></p>
 <p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
 <p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
 <p>I found a couple of exciting insights about the application on production using this tool.</p>
-<h3>Example 1: Heavy Tasks in the Master Process</h3>
+<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1: Heavy Tasks in the Master Process</h3>
 <p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
 <p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
-<h3>Example 2: Frequent Garbage Collections</h3>
+<h3 id="example-2-frequent-garbage-collections">Example 2: Frequent Garbage Collections</h3>
 <p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.</p>
 <p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s <a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection">generational garbage collector</a>.</p>
 <p>The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
-<h2>Node.js Gotchas</h2>
+<h2 id="nodejs-gotchas">Node.js Gotchas</h2>
 <p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:</p>
-<ol start="undefined">
+<ol>
 <li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
 <li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
 </ol>
@@ -196,9 +196,9 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
 <li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
 </ul>
-<h2>Docker Gotchas</h2>
+<h2 id="docker-gotchas">Docker Gotchas</h2>
 <p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker:</p>
-<ol start="undefined">
+<ol>
 <li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
 <li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
 </ol>
@@ -221,7 +221,7 @@ sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.
 NSpid:  21574   6
 $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! Then we can use <code>perf script</code> as usual.</p>
 <pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
 <p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
 
@@ -242,26 +242,26 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>
       </div>
       <div class="content">
         <div>
-          <h2>Berlin</h2>
+          <h2 id="berlin">Berlin</h2>
 <p>I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.</p>
 <p>I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.</p>
-<h2>Travels</h2>
+<h2 id="travels">Travels</h2>
 <p>I traveled more than ever. The destinations were Germany (Dresden, Heidelberg, Frankfurt, Köln), Italy (Venice, Florence, Bologna), France (Paris), UK (London), Portugal (Lisbon) and Japan (Tokyo). I had fun in each of them, but if I have to choose one, I will name Lisbon. The city is full of what I miss in Berlin. Fresh and inexpensive seafood, views from hills, cute ceramic tiles, and beautiful weather. The sky was clear on every single day while I was there, and the highest temperature was 18 degrees in December!</p>
-<h2>Beer</h2>
+<h2 id="beer">Beer</h2>
 <p>I am glad to have found <a href="https://untappd.com/fuerstwiacekbrew">Fuerst Wiacek</a>. Their <a href="https://untappd.com/b/fuerst-wiacek-german-movies/2155675">German Movies</a> is my No.1 beer so far. <a href="http://biererei-berlin.de/">Biererei</a> is a gem in Berlin, where I can buy fresh craft beers from Europe with growlers.</p>
 <p>British ale was a discovery to me. I liked pubs in London a lot. I also attended <a href="https://www.brlohack.de/english/">the first craft beer hackathon in the world</a> and won 12 crates of craft beer...!</p>
-<h2>Shopping</h2>
+<h2 id="shopping">Shopping</h2>
 <p>I bought <a href="https://ergodox-ez.com/">an ergonomic keyboard</a> and <a href="https://billerbeck.info/en/products/82/neck-support-pillow-novum">a neck support pillow</a>. Both of them lifted up my quality of life. My body is getting older.</p>
-<h2>Language Learning</h2>
+<h2 id="language-learning">Language Learning</h2>
 <p>I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.</p>
-<h2>Work</h2>
+<h2 id="work">Work</h2>
 <p>I was lucky to join an awesome team. We work together and hang out together. <a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/">A research at Google shows that psychological safety is a key to team effectiveness.</a> I feel it on my team.</p>
 <p>On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.</p>
-<h2>Side Projects</h2>
+<h2 id="side-projects">Side Projects</h2>
 <p>I enjoyed working with Elm. I <a href="https://github.com/shuhei/elm-compare">wrote a mobile weather app</a>, flew to Paris for <a href="https://2017.elmeurope.org/">Elm Europe 2017</a>,  built <a href="https://github.com/shuhei/pixelm">a mobile-friendly pixel editor</a> and <a href="https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm">talked about it</a> at <a href="https://www.meetup.com/Elm-Berlin/events/242852794/">Elm Berlin Meetup</a>. I also helped <a href="https://github.com/w0rm/elm-glsl">an experiment of its compiler-side</a> in Haskell, although it is still pending.</p>
 <p>I didn&#39;t do much with JavaScript for side projects but wrote <a href="https://github.com/shuhei/pelo">a tiny library for server-side rendering with tagged template literals</a> while hanging out with friends at a cafe. It&#39;s used in <a href="https://github.com/choojs">the choo ecosystem</a> now.</p>
 <p>Aside from building things, I learned monad transformers, etc. from <a href="http://haskellbook.com/">Haskell Book</a> and machine learning with neural networks from <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization on Coursera</a>.</p>
-<h2>.then()</h2>
+<h2 id="then">.then()</h2>
 <p>After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!</p>
 
         </div>

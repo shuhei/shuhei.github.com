@@ -60,21 +60,21 @@
         <div>
           <p>In December 2018, I wrote a package to poll and cache DNS records, <a href="https://github.com/shuhei/pollen">pollen</a>, as a mitigation for incidents at work.</p>
 <p>My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and <code>tcpdump</code>, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.</p>
-<h2>Node.js is Vulnerable to DNS Failures</h2>
+<h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
 <p>In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.</p>
 <p>Node.js is especially vulnerable to DNS lookup failures because:</p>
-<ol start="undefined">
+<ol>
 <li>Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.</li>
 <li>Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.<ul>
 <li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the threadpool like file IO and GZIP encoding/decoding.</li>
 </ul>
 </li>
 </ol>
-<h2>Caching at OS-level</h2>
+<h2 id="caching-at-os-level">Caching at OS-level</h2>
 <p>We can make DNS lookups fast and reliable by caching it. <a href="https://github.com/nodejs/node/issues/5893">An issue on the nodejs/node repo</a> recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.</p>
 <p>However, it&#39;s not always easy depending on the platform that you are using. My team was using <a href="https://stups.io/">a platform where we just deploy your application Docker container</a>, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)</p>
 <p>Because the incidents didn&#39;t happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.</p>
-<h2>DNS Caching and Prefetching with Node.js</h2>
+<h2 id="dns-caching-and-prefetching-with-nodejs">DNS Caching and Prefetching with Node.js</h2>
 <p>There were already some DNS caching packages:</p>
 <ul>
 <li><a href="https://github.com/yahoo/dnscache">yahoo/dnscache</a></li>
@@ -82,14 +82,14 @@
 </ul>
 <p>The packages looked great, but there was an edge case that they didn&#39;t cover. Both of the packages throw away caches after some time (<code>dnscache</code> uses <code>ttl</code> option and <code>lookup-dns-cache</code> uses the TTL that DNS servers return) and make DNS lookups again. This poses a risk where HTTP requests fail if DNS servers are down at the time.</p>
 <p>To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn&#39;t change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.</p>
-<h2>HTTP Keep-Alive (Persistent Connection)</h2>
+<h2 id="http-keep-alive-persistent-connection">HTTP Keep-Alive (Persistent Connection)</h2>
 <p>There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.</p>
 <p>We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the <code>activeSocketTTL</code> option of <code>keepaliveagent</code>. However, this is not optimal because IP addresses don&#39;t change most of the time.</p>
 <p>The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.</p>
-<h2>Result</h2>
+<h2 id="result">Result</h2>
 <p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a>, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
 <p>I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.</p>
-<h2>How to Use It</h2>
+<h2 id="how-to-use-it">How to Use It</h2>
 <pre><code class="hljs sh">npm i -S @shuhei/pollen
 <span class="hljs-comment"># or</span>
 yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">'https'</span>);
@@ -109,7 +109,7 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
   <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
   lookup: dnsPolling.getLookup(hostname),
   agent,
-});</code></pre><h2>Bonus: DNS Lookup Metrics</h2>
+});</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
 <p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
 <pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">'resolve:success'</span>, ({ hostname, duration, update }) =&gt; {
   <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
@@ -155,7 +155,7 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 <span class="hljs-keyword">const</span> req = https.request({
   ...,
   <span class="hljs-attr">lookup</span>: lookupWithMetrics
-});</code></pre><h2>Conclusion</h2>
+});</code></pre><h2 id="conclusion">Conclusion</h2>
 <p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
 <ul>
 <li>seeing DNS timeouts on outbound API calls</li>
@@ -196,7 +196,7 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 
 server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
 <p>As hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
-<h2>Update on April 29, 2019</h2>
+<h2 id="update-on-april-29-2019">Update on April 29, 2019</h2>
 <p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
 <pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;
 server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-number">1000</span>; <span class="hljs-comment">// This should be bigger than `keepAliveTimeout + your server's expected response time`</span></code></pre>
@@ -219,10 +219,10 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
         <div>
           <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
 <p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
-<h2>Move</h2>
+<h2 id="move">Move</h2>
 <p>We had lived in an apartment on the border of Schöneberg and Wilmersdorf for 2 years, and decided to move out at the end of October without extending the contract. We spent two or three months for flat search, and a month and a half for moving, buying furniture and setting up the new apartment. After all, we like the new area and are looking forward to spend time on the balcony in the summer.</p>
 <p>In the meanwhile, I got my left arm injured and it took a few months to recover.</p>
-<h2>Travel</h2>
+<h2 id="travel">Travel</h2>
 <p>I visited two new countries and seven new cities. I wanted to visit a few more countries, but could not manage mainly because of the moving.</p>
 <ul>
 <li>Tokyo, Japan in Feburary</li>
@@ -233,14 +233,14 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <li>München, Germany for Oktoberfest in September</li>
 <li>Köln and Düsseldorf, Germany in November</li>
 </ul>
-<h2>German Language</h2>
+<h2 id="german-language">German Language</h2>
 <p>After finishing an A2 course at office, I started a B1 course at <a href="https://www.speakeasysprachzeug.de/en">Speakeasy</a>. I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going to the course.</p>
-<h2>Work</h2>
+<h2 id="work">Work</h2>
 <p>It has been 2 years since I started working at Zalando. 2017 was about architecture migration from a monolith to microservices. 2018 was about optimization (and the next migration already started...).</p>
 <p>In addition to front-end tasks, I focused more on non-feature stuff.</p>
 <p>In the first half of the year, I focused on web (frontend) performance optimization. My team&#39;s work was featured in a blog post, <a href="https://jobs.zalando.com/tech/blog/loading-time-matters/">Loading Time Matters</a>, on the company blog.</p>
 <p>In June, my team had a series of incidents on one of our applications, but we didn&#39;t know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find <a href="http://www.brendangregg.com/sysperfbook.html">Systems Performance by Brendan Gregg</a>, which is one of my all-time favorite technical books. As a by-product of the research/learning, I profiled Node.js servers on production and made some performance improvements. Wrote about it on <a href="/blog/2018/09/16/node-js-under-a-microscope/">Node.js under a Microscope: CPU FlameGraph and FlameScope</a>.</p>
-<h2>Side Projects</h2>
+<h2 id="side-projects">Side Projects</h2>
 <p>I didn&#39;t worked on many side projects in 2018. Instead, I learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into <a href="https://github.com/shuhei/knowledge">the knowledge repo</a> inspired by <a href="https://github.com/yoshuawuyts/knowledge">yoshuawuyts/knowledge</a>. Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, <a href="https://github.com/shuhei/pollen">pollen</a>. It&#39;s been working without issues for 1.5 months!</p>
 <p>Some other unfinished pieces:</p>
 <ul>
@@ -250,7 +250,7 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <li>Tried to write a Node.js profiler inspired by <a href="https://github.com/rbspy/rbspy">rbspy</a>, but gave up to figure out memory layout of V8 objects</li>
 <li>Investigated an issue with <a href="https://github.com/facebook/react/issues/11538#issuecomment-390386520">React + Google Translate</a></li>
 </ul>
-<h2>2019</h2>
+<h2 id="2019">2019</h2>
 <p>In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.</p>
 
         </div>

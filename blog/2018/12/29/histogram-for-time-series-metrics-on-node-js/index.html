@@ -58,22 +58,22 @@
       </div>
       <div class="content">
         <div>
-          <h2>The &quot;metrics&quot; library</h2>
+          <h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
 <p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
 <p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
 <p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
-<h2>EDS-based Histogram</h2>
+<h2 id="eds-based-histogram">EDS-based Histogram</h2>
 <p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
 <p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
 <p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
 <p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
 So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
-<h2>HDR Histogram</h2>
+<h2 id="hdr-histogram">HDR Histogram</h2>
 <p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
 <p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
 <p>OK, I&#39;m sold.</p>
-<h2>Benchmark on Node.js</h2>
+<h2 id="benchmark-on-nodejs">Benchmark on Node.js</h2>
 <p>Then, how can I use HDR Histogram on Node.js? I found three implementations:</p>
 <ul>
 <li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a>: JS implementation in the same GitHub org as the Java implementation</li>
@@ -102,7 +102,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
 </ul>
 <p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
-<h2>Reset Strategy</h2>
+<h2 id="reset-strategy">Reset Strategy</h2>
 <p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
 <p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
 <ul>
@@ -123,7 +123,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 </ul>
 <p><em>Rolling time window</em> strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
 <p><strong>Update on Jan 11, 2019:</strong> I wrote <a href="https://github.com/shuhei/rolling-window">a package to use HDR histogram with rolling time window</a>.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
 

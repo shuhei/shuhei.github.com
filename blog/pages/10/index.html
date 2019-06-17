@@ -89,12 +89,12 @@
       <div class="content">
         <div>
           <p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
-<h2><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
+<h2 id="introduction-to-grunt"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
 <p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
 <p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
 <script async class="speakerdeck-embed" data-id="39e78f00fade0131d88d6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-<h2><a href="https://speakerdeck.com/shuhei/start-es6-modules-today">Start ES6 Today</a></h2>
+<h2 id="start-es6-today"><a href="https://speakerdeck.com/shuhei/start-es6-modules-today">Start ES6 Today</a></h2>
 <p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
 <p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
 <script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
@@ -120,15 +120,15 @@
 <p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js">shuhei.github.io / gulpfile.babel.js</a></p>
 <p>ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。</p>
 <p>機能は本当に最小限で、記事ページ、静的ページと index, archive の生成だけです。</p>
-<h2>経緯</h2>
+<h2 id="経緯">経緯</h2>
 <p>動機は Jekyll が重くビルドに時間がかかること。他のもっと良いのがないかなあと思っていたのですが、そもそも大した機能は必要ないので、今年の初めにはまっていた gulp で自作しました。</p>
 <p>ビルドの部分は、ファイルを変換して書き出すという gulp でやりやすいタスクです。ただ GitHub Pages にデプロイする部分は git のコマンド実行が続くため面倒で、その部分だけ gulp で実装せずにRakefile をそのまま残していました。</p>
 <p>どうも気持ち悪かったので、ついに重い腰を上げて書いてみました。当初 child_process を使って書いたのですが、<a href="https://github.com/sun-zheng-an/gulp-shell">gulp-shell</a>を見つけて使うようにしたらすっきりしました。</p>
-<h2>操作</h2>
+<h2 id="操作">操作</h2>
 <p>gulp でビルドします。</p>
 <pre><code class="hljs shell">gulp</code></pre><p>表示を確認しながら編集したいときは、以下でローカルにサーバが立ち上がり、ファイル変更時にビルドしなおしてくれます。</p>
 <pre><code class="hljs shell">gulp watch</code></pre><p>デプロイも gulp タスクです。</p>
-<pre><code class="hljs shell">gulp deploy</code></pre><h2>感想</h2>
+<pre><code class="hljs shell">gulp deploy</code></pre><h2 id="感想">感想</h2>
 <p>当たり前の感想ですが、gulp はデプロイのようなタスクには向いてないものの、 静的サイトの生成には悪くないなと思いました。</p>
 <p>とは言え、サイト全体の情報を扱うのはやりにくいです。現在は index, archive のページを、各記事の stream から分岐して作っています。また、必要ないと思いサイドバーをつけていないのですが、つける場合には一旦全記事を読み込んでサイドバー向けの情報を作ってから各記事のページにくっつける必要があります。その辺は今後の課題ですかね。</p>
 

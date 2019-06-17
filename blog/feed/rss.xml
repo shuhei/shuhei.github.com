@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 29 Apr 2019 22:14:00 GMT</lastBuildDate><item><title>DNS Polling for Reliability</title><link>https://shuheikagawa.com/blog/2019/04/30/dns-polling/</link><description><![CDATA[
 <p>In December 2018, I wrote a package to poll and cache DNS records, <a href="https://github.com/shuhei/pollen">pollen</a>, as a mitigation for incidents at work.</p>
 <p>My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and <code>tcpdump</code>, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.</p>
-<h2>Node.js is Vulnerable to DNS Failures</h2>
+<h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
 <p>In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.</p>
 <p>Node.js is especially vulnerable to DNS lookup failures because:</p>
-<ol start="undefined">
+<ol>
 <li>Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.</li>
 <li>Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.<ul>
 <li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the threadpool like file IO and GZIP encoding/decoding.</li>
 </ul>
 </li>
 </ol>
-<h2>Caching at OS-level</h2>
+<h2 id="caching-at-os-level">Caching at OS-level</h2>
 <p>We can make DNS lookups fast and reliable by caching it. <a href="https://github.com/nodejs/node/issues/5893">An issue on the nodejs/node repo</a> recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.</p>
 <p>However, it&#39;s not always easy depending on the platform that you are using. My team was using <a href="https://stups.io/">a platform where we just deploy your application Docker container</a>, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)</p>
 <p>Because the incidents didn&#39;t happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.</p>
-<h2>DNS Caching and Prefetching with Node.js</h2>
+<h2 id="dns-caching-and-prefetching-with-nodejs">DNS Caching and Prefetching with Node.js</h2>
 <p>There were already some DNS caching packages:</p>
 <ul>
 <li><a href="https://github.com/yahoo/dnscache">yahoo/dnscache</a></li>
@@ -23,14 +23,14 @@
 </ul>
 <p>The packages looked great, but there was an edge case that they didn&#39;t cover. Both of the packages throw away caches after some time (<code>dnscache</code> uses <code>ttl</code> option and <code>lookup-dns-cache</code> uses the TTL that DNS servers return) and make DNS lookups again. This poses a risk where HTTP requests fail if DNS servers are down at the time.</p>
 <p>To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn&#39;t change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.</p>
-<h2>HTTP Keep-Alive (Persistent Connection)</h2>
+<h2 id="http-keep-alive-persistent-connection">HTTP Keep-Alive (Persistent Connection)</h2>
 <p>There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.</p>
 <p>We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the <code>activeSocketTTL</code> option of <code>keepaliveagent</code>. However, this is not optimal because IP addresses don&#39;t change most of the time.</p>
 <p>The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.</p>
-<h2>Result</h2>
+<h2 id="result">Result</h2>
 <p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a>, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
 <p>I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.</p>
-<h2>How to Use It</h2>
+<h2 id="how-to-use-it">How to Use It</h2>
 <pre><code class="hljs sh">npm i -S @shuhei/pollen
 <span class="hljs-comment"># or</span>
 yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">'https'</span>);
@@ -50,7 +50,7 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
   <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
   lookup: dnsPolling.getLookup(hostname),
   agent,
-});</code></pre><h2>Bonus: DNS Lookup Metrics</h2>
+});</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
 <p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
 <pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">'resolve:success'</span>, ({ hostname, duration, update }) =&gt; {
   <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
@@ -96,7 +96,7 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 <span class="hljs-keyword">const</span> req = https.request({
   ...,
   <span class="hljs-attr">lookup</span>: lookupWithMetrics
-});</code></pre><h2>Conclusion</h2>
+});</code></pre><h2 id="conclusion">Conclusion</h2>
 <p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
 <ul>
 <li>seeing DNS timeouts on outbound API calls</li>
@@ -121,17 +121,17 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 
 server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
 <p>As hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
-<h2>Update on April 29, 2019</h2>
+<h2 id="update-on-april-29-2019">Update on April 29, 2019</h2>
 <p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
 <pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;
 server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-number">1000</span>; <span class="hljs-comment">// This should be bigger than `keepAliveTimeout + your server's expected response time`</span></code></pre>
 ]]></description><pubDate>Thu, 25 Apr 2019 21:29:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</guid></item><item><title>2018 in Review</title><link>https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</link><description><![CDATA[
 <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
 <p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
-<h2>Move</h2>
+<h2 id="move">Move</h2>
 <p>We had lived in an apartment on the border of Schöneberg and Wilmersdorf for 2 years, and decided to move out at the end of October without extending the contract. We spent two or three months for flat search, and a month and a half for moving, buying furniture and setting up the new apartment. After all, we like the new area and are looking forward to spend time on the balcony in the summer.</p>
 <p>In the meanwhile, I got my left arm injured and it took a few months to recover.</p>
-<h2>Travel</h2>
+<h2 id="travel">Travel</h2>
 <p>I visited two new countries and seven new cities. I wanted to visit a few more countries, but could not manage mainly because of the moving.</p>
 <ul>
 <li>Tokyo, Japan in Feburary</li>
@@ -142,14 +142,14 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <li>München, Germany for Oktoberfest in September</li>
 <li>Köln and Düsseldorf, Germany in November</li>
 </ul>
-<h2>German Language</h2>
+<h2 id="german-language">German Language</h2>
 <p>After finishing an A2 course at office, I started a B1 course at <a href="https://www.speakeasysprachzeug.de/en">Speakeasy</a>. I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going to the course.</p>
-<h2>Work</h2>
+<h2 id="work">Work</h2>
 <p>It has been 2 years since I started working at Zalando. 2017 was about architecture migration from a monolith to microservices. 2018 was about optimization (and the next migration already started...).</p>
 <p>In addition to front-end tasks, I focused more on non-feature stuff.</p>
 <p>In the first half of the year, I focused on web (frontend) performance optimization. My team&#39;s work was featured in a blog post, <a href="https://jobs.zalando.com/tech/blog/loading-time-matters/">Loading Time Matters</a>, on the company blog.</p>
 <p>In June, my team had a series of incidents on one of our applications, but we didn&#39;t know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find <a href="http://www.brendangregg.com/sysperfbook.html">Systems Performance by Brendan Gregg</a>, which is one of my all-time favorite technical books. As a by-product of the research/learning, I profiled Node.js servers on production and made some performance improvements. Wrote about it on <a href="/blog/2018/09/16/node-js-under-a-microscope/">Node.js under a Microscope: CPU FlameGraph and FlameScope</a>.</p>
-<h2>Side Projects</h2>
+<h2 id="side-projects">Side Projects</h2>
 <p>I didn&#39;t worked on many side projects in 2018. Instead, I learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into <a href="https://github.com/shuhei/knowledge">the knowledge repo</a> inspired by <a href="https://github.com/yoshuawuyts/knowledge">yoshuawuyts/knowledge</a>. Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, <a href="https://github.com/shuhei/pollen">pollen</a>. It&#39;s been working without issues for 1.5 months!</p>
 <p>Some other unfinished pieces:</p>
 <ul>
@@ -159,26 +159,26 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <li>Tried to write a Node.js profiler inspired by <a href="https://github.com/rbspy/rbspy">rbspy</a>, but gave up to figure out memory layout of V8 objects</li>
 <li>Investigated an issue with <a href="https://github.com/facebook/react/issues/11538#issuecomment-390386520">React + Google Translate</a></li>
 </ul>
-<h2>2019</h2>
+<h2 id="2019">2019</h2>
 <p>In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.</p>
 
 ]]></description><pubDate>Tue, 19 Feb 2019 00:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</guid></item><item><title>Histogram for Time-Series Metrics on Node.js</title><link>https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</link><description><![CDATA[
-<h2>The &quot;metrics&quot; library</h2>
+<h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
 <p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
 <p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
 <p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
-<h2>EDS-based Histogram</h2>
+<h2 id="eds-based-histogram">EDS-based Histogram</h2>
 <p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
 <p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
 <p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
 <p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
 So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
-<h2>HDR Histogram</h2>
+<h2 id="hdr-histogram">HDR Histogram</h2>
 <p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
 <p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
 <p>OK, I&#39;m sold.</p>
-<h2>Benchmark on Node.js</h2>
+<h2 id="benchmark-on-nodejs">Benchmark on Node.js</h2>
 <p>Then, how can I use HDR Histogram on Node.js? I found three implementations:</p>
 <ul>
 <li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a>: JS implementation in the same GitHub org as the Java implementation</li>
@@ -207,7 +207,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
 </ul>
 <p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
-<h2>Reset Strategy</h2>
+<h2 id="reset-strategy">Reset Strategy</h2>
 <p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
 <p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
 <ul>
@@ -228,16 +228,16 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 </ul>
 <p><em>Rolling time window</em> strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
 <p><strong>Update on Jan 11, 2019:</strong> I wrote <a href="https://github.com/shuhei/rolling-window">a package to use HDR histogram with rolling time window</a>.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
 
 ]]></description><pubDate>Sat, 29 Dec 2018 21:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
 <p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
-<h2>Background</h2>
+<h2 id="background">Background</h2>
 <p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
 <p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or <em>someone else</em>.</p>
-<h2>CPU Profiling with Linux <code>perf</code> Command</h2>
+<h2 id="cpu-profiling-with-linux-perf-command">CPU Profiling with Linux <code>perf</code> Command</h2>
 <p>Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
 <p>For Node.js, there are mainly two different tools. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux <code>perf</code> will keep working for a while. After all, I picked Linux <code>perf</code> because of low performance-overhead and small intervention to applications.</p>
 <p>Linux <code>perf record</code> records stack traces into a binary file called <code>perf.data</code> by default. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
@@ -250,7 +250,7 @@ sudo perf top
 sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
 <span class="hljs-comment"># Generate human readable stack traces</span>
 sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?</p>
-<h2>CPU Flame Graph</h2>
+<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
 <p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
 <p><img src="/images/flamegraph.png" alt="CPU Flame Graph">
 <em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
@@ -260,23 +260,23 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
 </ul>
 <p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
-<h2>FlameScope</h2>
+<h2 id="flamescope">FlameScope</h2>
 <p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
 <p><img src="/images/flamescope-annotated.png" alt="FlameScope">
 <em>Image from <a href="https://github.com/Netflix/flamescope">Netflix/flamescope</a></em></p>
 <p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
 <p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
 <p>I found a couple of exciting insights about the application on production using this tool.</p>
-<h3>Example 1: Heavy Tasks in the Master Process</h3>
+<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1: Heavy Tasks in the Master Process</h3>
 <p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
 <p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
-<h3>Example 2: Frequent Garbage Collections</h3>
+<h3 id="example-2-frequent-garbage-collections">Example 2: Frequent Garbage Collections</h3>
 <p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.</p>
 <p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s <a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection">generational garbage collector</a>.</p>
 <p>The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
-<h2>Node.js Gotchas</h2>
+<h2 id="nodejs-gotchas">Node.js Gotchas</h2>
 <p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:</p>
-<ol start="undefined">
+<ol>
 <li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
 <li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
 </ol>
@@ -285,9 +285,9 @@ sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code
 <li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
 <li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
 </ul>
-<h2>Docker Gotchas</h2>
+<h2 id="docker-gotchas">Docker Gotchas</h2>
 <p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker:</p>
-<ol start="undefined">
+<ol>
 <li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
 <li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
 </ol>
@@ -310,31 +310,31 @@ sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.
 NSpid:  21574   6
 $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! Then we can use <code>perf script</code> as usual.</p>
 <pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
 <p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
 
 ]]></description><pubDate>Sun, 16 Sep 2018 08:56:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</guid></item><item><title>2017 in Review</title><link>https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</link><description><![CDATA[
-<h2>Berlin</h2>
+<h2 id="berlin">Berlin</h2>
 <p>I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.</p>
 <p>I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.</p>
-<h2>Travels</h2>
+<h2 id="travels">Travels</h2>
 <p>I traveled more than ever. The destinations were Germany (Dresden, Heidelberg, Frankfurt, Köln), Italy (Venice, Florence, Bologna), France (Paris), UK (London), Portugal (Lisbon) and Japan (Tokyo). I had fun in each of them, but if I have to choose one, I will name Lisbon. The city is full of what I miss in Berlin. Fresh and inexpensive seafood, views from hills, cute ceramic tiles, and beautiful weather. The sky was clear on every single day while I was there, and the highest temperature was 18 degrees in December!</p>
-<h2>Beer</h2>
+<h2 id="beer">Beer</h2>
 <p>I am glad to have found <a href="https://untappd.com/fuerstwiacekbrew">Fuerst Wiacek</a>. Their <a href="https://untappd.com/b/fuerst-wiacek-german-movies/2155675">German Movies</a> is my No.1 beer so far. <a href="http://biererei-berlin.de/">Biererei</a> is a gem in Berlin, where I can buy fresh craft beers from Europe with growlers.</p>
 <p>British ale was a discovery to me. I liked pubs in London a lot. I also attended <a href="https://www.brlohack.de/english/">the first craft beer hackathon in the world</a> and won 12 crates of craft beer...!</p>
-<h2>Shopping</h2>
+<h2 id="shopping">Shopping</h2>
 <p>I bought <a href="https://ergodox-ez.com/">an ergonomic keyboard</a> and <a href="https://billerbeck.info/en/products/82/neck-support-pillow-novum">a neck support pillow</a>. Both of them lifted up my quality of life. My body is getting older.</p>
-<h2>Language Learning</h2>
+<h2 id="language-learning">Language Learning</h2>
 <p>I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.</p>
-<h2>Work</h2>
+<h2 id="work">Work</h2>
 <p>I was lucky to join an awesome team. We work together and hang out together. <a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/">A research at Google shows that psychological safety is a key to team effectiveness.</a> I feel it on my team.</p>
 <p>On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.</p>
-<h2>Side Projects</h2>
+<h2 id="side-projects">Side Projects</h2>
 <p>I enjoyed working with Elm. I <a href="https://github.com/shuhei/elm-compare">wrote a mobile weather app</a>, flew to Paris for <a href="https://2017.elmeurope.org/">Elm Europe 2017</a>,  built <a href="https://github.com/shuhei/pixelm">a mobile-friendly pixel editor</a> and <a href="https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm">talked about it</a> at <a href="https://www.meetup.com/Elm-Berlin/events/242852794/">Elm Berlin Meetup</a>. I also helped <a href="https://github.com/w0rm/elm-glsl">an experiment of its compiler-side</a> in Haskell, although it is still pending.</p>
 <p>I didn&#39;t do much with JavaScript for side projects but wrote <a href="https://github.com/shuhei/pelo">a tiny library for server-side rendering with tagged template literals</a> while hanging out with friends at a cafe. It&#39;s used in <a href="https://github.com/choojs">the choo ecosystem</a> now.</p>
 <p>Aside from building things, I learned monad transformers, etc. from <a href="http://haskellbook.com/">Haskell Book</a> and machine learning with neural networks from <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization on Coursera</a>.</p>
-<h2>.then()</h2>
+<h2 id="then">.then()</h2>
 <p>After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!</p>
 
 ]]></description><pubDate>Mon, 25 Dec 2017 21:54:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</guid></item><item><title>Getting Memory Usage in Linux and Docker</title><link>https://shuheikagawa.com/blog/2017/05/27/memory-usage/</link><description><![CDATA[
@@ -344,7 +344,7 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>
 <span class="hljs-keyword">const</span> total = os.totalmem();
 <span class="hljs-keyword">const</span> free = os.freemem();
 <span class="hljs-keyword">const</span> usage = (free - total) / total * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
-<h2>Buffers and Cached Memory</h2>
+<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
 <p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
 <p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
 <p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
@@ -361,7 +361,7 @@ Cached %lu
        In-memory cache for files read from the disk (the page
        cache).  Doesn&#39;t include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
 <p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
-<h2>MemAvailable</h2>
+<h2 id="memavailable">MemAvailable</h2>
 <p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>
 <pre><code class="hljs ">MemAvailable %lu (since Linux 3.14)
        An estimate of how much memory is available for
@@ -377,7 +377,7 @@ Cached:           193336 kB
        total  used  free  shared  buff/cache  available
 Mem:    3950    59  3665     183         226       3597
 Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html">available on AWS CloudWatch metrics</a> via <code>--mem-avail</code> flag.</p>
-<h2>Some background about Docker</h2>
+<h2 id="some-background-about-docker">Some background about Docker</h2>
 <p>My another question was &quot;Are those metrics same in Docker?&quot;. Before diving into this question, let&#39;s check how docker works.</p>
 <p>According to <a href="https://docs.docker.com/engine/docker-overview/#the-underlying-technology">Docker Overview: The Underlying Technology</a>, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:</p>
 <ul>
@@ -387,7 +387,7 @@ Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amaz
 </ul>
 <p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
 <p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
-<h2>Memory Metrics on Docker Container</h2>
+<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
 <p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
 <pre><code class="hljs ">$ docker stats
 CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
@@ -398,7 +398,7 @@ fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></
 303104
 $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 9223372036854771712</code></pre><p><code>memory.limit_in_bytes</code> returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with <code>/proc/meminfo</code> or commands that use it.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>It was a longer journey than I initially thought. My takeaways are:</p>
 <ul>
 <li>Available Memory &gt; Free Memory</li>
@@ -410,9 +410,9 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 ]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item><item><title>HTTP request timeouts in JavaScript</title><link>https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
 <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
 <p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
-<h2>Node.js &quot;http&quot;/&quot;https&quot;</h2>
+<h2 id="nodejs-httphttps">Node.js &quot;http&quot;/&quot;https&quot;</h2>
 <p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
-<h3>Timeouts on <code>http.request()</code></h3>
+<h3 id="timeouts-on-httprequest">Timeouts on <code>http.request()</code></h3>
 <p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
 <blockquote>
 <p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
@@ -425,13 +425,13 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
 <p>Either of them doesn&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
 <p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
-<h3>net.Socket.setTimeout()</h3>
+<h3 id="netsocketsettimeout">net.Socket.setTimeout()</h3>
 <p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
 <blockquote>
 <p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default <code>net.Socket</code> does not have a timeout.</p>
 </blockquote>
 <p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
-<ol start="undefined">
+<ol>
 <li>Start connecting</li>
 <li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
 <li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
@@ -447,17 +447,17 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
 <p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
 <p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in an HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
-<h3>HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
+<h3 id="http-keep-alive--tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
 <p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
 <p>So, how are they different?</p>
 <ul>
 <li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
 <li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
 </ul>
-<h3>So?</h3>
+<h3 id="so">So?</h3>
 <p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
-<h2>Third-party modules</h2>
-<h3>&quot;request&quot; module</h3>
+<h2 id="third-party-modules">Third-party modules</h2>
+<h3 id="request-module">&quot;request&quot; module</h3>
 <p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
 <blockquote>
 <p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
@@ -470,13 +470,13 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 </ul>
 <p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
 <p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
-<h3>&quot;axios&quot; module</h3>
+<h3 id="axios-module">&quot;axios&quot; module</h3>
 <p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
-<h2>Browser APIs</h2>
+<h2 id="browser-apis">Browser APIs</h2>
 <p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
-<h3>XMLHttpRequest</h3>
+<h3 id="xmlhttprequest">XMLHttpRequest</h3>
 <p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not explain the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
-<h3>fetch()</h3>
+<h3 id="fetch">fetch()</h3>
 <p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
   <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
@@ -490,7 +490,7 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
   .then(doSomething)
   .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
 
 ]]></description><pubDate>Sun, 14 May 2017 21:31:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</guid></item><item><title>How to export CommonJS and ES Module</title><link>https://shuheikagawa.com/blog/2017/01/05/how-to-export-commonjs-and-es-module/</link><description><![CDATA[
@@ -499,7 +499,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
 </ul>
 <p>Here is the twists and turns that I wandered to solve the problem.</p>
-<h2>Exports</h2>
+<h2 id="exports">Exports</h2>
 <p>The code of <code>material-colors</code> looked like the following.</p>
 <p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
 <pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
@@ -508,13 +508,13 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 };</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
-<h2>Problem of having only named exports</h2>
+<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
 <p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
-<h2>Have a default export</h2>
+<h2 id="have-a-default-export">Have a default export</h2>
 <p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
@@ -522,7 +522,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
   <span class="hljs-attr">red</span>: red,
   <span class="hljs-attr">blue</span>: blue
-};</code></pre><h2>So?</h2>
+};</code></pre><h2 id="so">So?</h2>
 <p>To keep maximum compatibility for CommonJS and ES Module:</p>
 <ul>
 <li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>
@@ -533,12 +533,12 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <p>Node module&#39;s <code>package.json</code> has <code>main</code> property. It&#39;s the entry point of a package, which is exported when a client <code>require</code>s the package.</p>
 <p>Recently, I got <a href="https://github.com/shuhei/material-colors/issues/13">an issue</a> on one of my popular GitHub repos, <code>material-colors</code>. It claimed that &quot;colors.es2015.js const not supported in older browser (Safari 9)&quot;, which looked pretty obvious to me. ES2015 is a new spec. Why do older browsers support it?</p>
 <p>I totally forgot about it at the time, but <a href="https://github.com/shuhei/material-colors/pull/10">the <code>colors.es2015.js</code> was exposed as the npm package&#39;s <code>jsnext:main</code></a>. And to my surprise, it turned out that <strong><code>jsnext:main</code> shouldn&#39;t have <em>jsnext</em> or ES2015+ features</strong> like <code>const</code>, arrow function and <code>class</code>. What a contradiction!</p>
-<h2>jsnext:main</h2>
+<h2 id="jsnextmain">jsnext:main</h2>
 <p>Module bundlers that utilizes tree shaking to reduce bundle size, like Rollup and Webpack 2, require packages to expose ES Modules with <code>import</code> and <code>export</code>. So they invented a non-standard property called <code>jsnext:main</code>.</p>
 <p>However, it had a problem. If the file specified <code>jsnext:main</code> contains ES2015+ features, it won&#39;t run without transpilation on browsers that don&#39;t support those features. But normally people don&#39;t transpile packages in <code>node_modules</code>, and many issues were created on GitHub. To solve the problem, people concluded that <code>jsnext:main</code> shouldn&#39;t have ES2015+ features other than <code>import</code> and <code>export</code>. What an irony.</p>
-<h2>module</h2>
+<h2 id="module">module</h2>
 <p>Now the name <code>jsnext:main</code> is too confusing. I was confused at least. People discussed for a better name, and <a href="https://github.com/rollup/rollup/wiki/pkg.module"><code>module</code></a> came out that <a href="https://github.com/rollup/rollup/wiki/jsnext:main">supersedes <code>jsnext:main</code></a>. And <a href="https://nodesource.com/blog/es-modules-and-node-js-hard-choices/">it might be standardized</a>.</p>
-<h2>So?</h2>
+<h2 id="so">So?</h2>
 <p>I looked into a couple of popular repos, and they had both of <code>jsnext:main</code> and <code>module</code> in addition to <code>main</code>.</p>
 <ul>
 <li><a href="https://github.com/reactjs/redux/blob/master/package.json">redux</a></li>

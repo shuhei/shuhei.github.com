@@ -64,7 +64,7 @@
 <span class="hljs-keyword">const</span> total = os.totalmem();
 <span class="hljs-keyword">const</span> free = os.freemem();
 <span class="hljs-keyword">const</span> usage = (free - total) / total * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
-<h2>Buffers and Cached Memory</h2>
+<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
 <p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
 <p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
 <p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
@@ -81,7 +81,7 @@ Cached %lu
        In-memory cache for files read from the disk (the page
        cache).  Doesn&#39;t include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
 <p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
-<h2>MemAvailable</h2>
+<h2 id="memavailable">MemAvailable</h2>
 <p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>
 <pre><code class="hljs ">MemAvailable %lu (since Linux 3.14)
        An estimate of how much memory is available for
@@ -97,7 +97,7 @@ Cached:           193336 kB
        total  used  free  shared  buff/cache  available
 Mem:    3950    59  3665     183         226       3597
 Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html">available on AWS CloudWatch metrics</a> via <code>--mem-avail</code> flag.</p>
-<h2>Some background about Docker</h2>
+<h2 id="some-background-about-docker">Some background about Docker</h2>
 <p>My another question was &quot;Are those metrics same in Docker?&quot;. Before diving into this question, let&#39;s check how docker works.</p>
 <p>According to <a href="https://docs.docker.com/engine/docker-overview/#the-underlying-technology">Docker Overview: The Underlying Technology</a>, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:</p>
 <ul>
@@ -107,7 +107,7 @@ Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amaz
 </ul>
 <p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
 <p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
-<h2>Memory Metrics on Docker Container</h2>
+<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
 <p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
 <pre><code class="hljs ">$ docker stats
 CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
@@ -118,7 +118,7 @@ fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></
 303104
 $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 9223372036854771712</code></pre><p><code>memory.limit_in_bytes</code> returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with <code>/proc/meminfo</code> or commands that use it.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>It was a longer journey than I initially thought. My takeaways are:</p>
 <ul>
 <li>Available Memory &gt; Free Memory</li>
@@ -146,9 +146,9 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
         <div>
           <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
 <p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
-<h2>Node.js &quot;http&quot;/&quot;https&quot;</h2>
+<h2 id="nodejs-httphttps">Node.js &quot;http&quot;/&quot;https&quot;</h2>
 <p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
-<h3>Timeouts on <code>http.request()</code></h3>
+<h3 id="timeouts-on-httprequest">Timeouts on <code>http.request()</code></h3>
 <p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
 <blockquote>
 <p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
@@ -161,13 +161,13 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
 <p>Either of them doesn&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
 <p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
-<h3>net.Socket.setTimeout()</h3>
+<h3 id="netsocketsettimeout">net.Socket.setTimeout()</h3>
 <p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
 <blockquote>
 <p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default <code>net.Socket</code> does not have a timeout.</p>
 </blockquote>
 <p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
-<ol start="undefined">
+<ol>
 <li>Start connecting</li>
 <li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
 <li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
@@ -183,17 +183,17 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
 <p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
 <p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in an HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
-<h3>HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
+<h3 id="http-keep-alive--tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
 <p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
 <p>So, how are they different?</p>
 <ul>
 <li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
 <li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
 </ul>
-<h3>So?</h3>
+<h3 id="so">So?</h3>
 <p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
-<h2>Third-party modules</h2>
-<h3>&quot;request&quot; module</h3>
+<h2 id="third-party-modules">Third-party modules</h2>
+<h3 id="request-module">&quot;request&quot; module</h3>
 <p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
 <blockquote>
 <p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
@@ -206,13 +206,13 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 </ul>
 <p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
 <p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
-<h3>&quot;axios&quot; module</h3>
+<h3 id="axios-module">&quot;axios&quot; module</h3>
 <p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
-<h2>Browser APIs</h2>
+<h2 id="browser-apis">Browser APIs</h2>
 <p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
-<h3>XMLHttpRequest</h3>
+<h3 id="xmlhttprequest">XMLHttpRequest</h3>
 <p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not explain the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
-<h3>fetch()</h3>
+<h3 id="fetch">fetch()</h3>
 <p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
   <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
@@ -226,7 +226,7 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
   .then(doSomething)
   .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
 
         </div>
@@ -251,7 +251,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
 </ul>
 <p>Here is the twists and turns that I wandered to solve the problem.</p>
-<h2>Exports</h2>
+<h2 id="exports">Exports</h2>
 <p>The code of <code>material-colors</code> looked like the following.</p>
 <p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
 <pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
@@ -260,13 +260,13 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 };</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
-<h2>Problem of having only named exports</h2>
+<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
 <p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
 <span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
-<h2>Have a default export</h2>
+<h2 id="have-a-default-export">Have a default export</h2>
 <p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
@@ -274,7 +274,7 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
   <span class="hljs-attr">red</span>: red,
   <span class="hljs-attr">blue</span>: blue
-};</code></pre><h2>So?</h2>
+};</code></pre><h2 id="so">So?</h2>
 <p>To keep maximum compatibility for CommonJS and ES Module:</p>
 <ul>
 <li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>

@@ -115,17 +115,17 @@ end</code></pre><p>The concern was extracted as a gem, <a href="https://github.c
 <p><a href="/blurred-cube"><img src="/images/blurred-cube-webgl.png" alt="Blurred Cube"></a></p>
 <p><a href="/blurred-cube">Blurred Cube</a></p>
 <p>The hardest part was randomly moving the cube&#39;s edges. Because I couldn&#39;t randomly move vertices on the array buffer, I had to rewrite buffer data frame by frame. It might be inefficient, but it works well on my laptop at least.</p>
-<h2>Steps for drawing with WebGL</h2>
+<h2 id="steps-for-drawing-with-webgl">Steps for drawing with WebGL</h2>
 <p>The exercises on <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> split steps into two phases, <code>init</code> and <code>draw</code>, like <a href="https://processing.org/">Processing</a>. Here I leave a note on general steps in them for later use.</p>
-<h3>Init</h3>
-<ol start="undefined">
+<h3 id="init">Init</h3>
+<ol>
 <li>Compile shaders and link them into a program. If you have attributes in vertex shader, don&#39;t forget to set attribute location before linking. If you have uniforms, get their locations after linking for later use.</li>
 <li>Create buffers and assign data to them.</li>
 <li>Create element buffers and assign data to them if necessary.</li>
 <li>Create textures and assign data to them if necessary. You can use textures in fragment shader via texture unit number as uniform.</li>
 </ol>
-<h3>Draw</h3>
-<ol start="undefined">
+<h3 id="draw">Draw</h3>
+<ol>
 <li>Use program, assign data to uniforms. If they don&#39;t change frame by frame, you can do this in the setup phase.</li>
 <li>Bind buffer. If you have only one buffer, you may have done this in the setup phase.</li>
 <li>Draw arrays or elements.</li>

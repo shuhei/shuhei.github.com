@@ -64,7 +64,7 @@
 <span class="hljs-keyword">const</span> total = os.totalmem();
 <span class="hljs-keyword">const</span> free = os.freemem();
 <span class="hljs-keyword">const</span> usage = (free - total) / total * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
-<h2>Buffers and Cached Memory</h2>
+<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
 <p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
 <p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
 <p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
@@ -81,7 +81,7 @@ Cached %lu
        In-memory cache for files read from the disk (the page
        cache).  Doesn&#39;t include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
 <p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
-<h2>MemAvailable</h2>
+<h2 id="memavailable">MemAvailable</h2>
 <p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>
 <pre><code class="hljs ">MemAvailable %lu (since Linux 3.14)
        An estimate of how much memory is available for
@@ -97,7 +97,7 @@ Cached:           193336 kB
        total  used  free  shared  buff/cache  available
 Mem:    3950    59  3665     183         226       3597
 Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html">available on AWS CloudWatch metrics</a> via <code>--mem-avail</code> flag.</p>
-<h2>Some background about Docker</h2>
+<h2 id="some-background-about-docker">Some background about Docker</h2>
 <p>My another question was &quot;Are those metrics same in Docker?&quot;. Before diving into this question, let&#39;s check how docker works.</p>
 <p>According to <a href="https://docs.docker.com/engine/docker-overview/#the-underlying-technology">Docker Overview: The Underlying Technology</a>, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:</p>
 <ul>
@@ -107,7 +107,7 @@ Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amaz
 </ul>
 <p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
 <p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
-<h2>Memory Metrics on Docker Container</h2>
+<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
 <p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
 <pre><code class="hljs ">$ docker stats
 CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
@@ -118,7 +118,7 @@ fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></
 303104
 $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 9223372036854771712</code></pre><p><code>memory.limit_in_bytes</code> returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with <code>/proc/meminfo</code> or commands that use it.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>It was a longer journey than I initially thought. My takeaways are:</p>
 <ul>
 <li>Available Memory &gt; Free Memory</li>
