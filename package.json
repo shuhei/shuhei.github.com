@@ -30,10 +30,10 @@
   "devDependencies": {
     "async": "^2.3.0",
     "connect": "^3.3.4",
-    "del": "^3.0.0",
+    "del": "^4.1.1",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.1",
     "gh-pages": "^1.1.0",
