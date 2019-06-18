@@ -83,7 +83,7 @@ function clean() {
 function newpost() {
   if (typeof args.title !== "string") {
     gutil.log('Specify title: gulp newpost --title "Hello World"');
-    return;
+    process.exit(1);
   }
   return newPost(args.title, siteConfig);
 }
@@ -92,7 +92,7 @@ function newpost() {
 function newpage() {
   if (typeof args.filename !== "string") {
     gutil.log('Specify filename: gulp newpage --filename "hello"');
-    return;
+    process.exit(1);
   }
 
   return newPage(args.filename, siteConfig);
