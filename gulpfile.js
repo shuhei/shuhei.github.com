@@ -1,8 +1,9 @@
 const path = require("path");
-const Stream = require("stream");
+const util = require("util");
 
 const { argv: args } = require("yargs");
 const del = require("del");
+const Stream = require("readable-stream");
 
 const gulp = require("gulp");
 const gutil = require("gulp-util");
@@ -19,6 +20,8 @@ const renderer = require("./plugins/markdown-renderer");
 
 const siteConfig = require("./source/_config/site.json");
 
+const pipeline = util.promisify(Stream.pipeline);
+
 const publicDir = "public";
 
 // HACK: Build CSS and keep it in a variable.
@@ -34,7 +37,7 @@ function copyFiles() {
     css
   };
 
-  return Stream.pipeline(
+  return pipeline(
     gulp.src([
       "source/**/*",
       "!source/_*",
@@ -62,7 +65,7 @@ function buildPosts() {
   const aggregator = index(config);
   aggregator.pipe(gulp.dest(publicDir));
 
-  return Stream.pipeline(
+  return pipeline(
     gulp.src("source/_posts/*.{markdown,md,textile}"),
     frontMatter(),
     gulpIf("**/*.{markdown,md}", markdown({ renderer })),

@@ -54,6 +54,7 @@
     "postcss-custom-properties": "^8.0.9",
     "prettier": "^1.15.3",
     "pug": "^2.0.3",
+    "readable-stream": "^3.4.0",
     "serve-static": "^1.9.1",
     "strftime": "^0.10.0",
     "textile-js": "^2.0.2",
