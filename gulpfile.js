@@ -2,7 +2,6 @@ const path = require("path");
 const util = require("util");
 
 const { argv: args } = require("yargs");
-const del = require("del");
 const Stream = require("readable-stream");
 
 const gulp = require("gulp");
@@ -78,10 +77,6 @@ function buildPosts() {
 }
 const posts = gulp.series(buildCss, buildPosts);
 
-function clean() {
-  return del([publicDir]);
-}
-
 // Create a new post source file.
 function newpost() {
   if (typeof args.title !== "string") {
@@ -122,7 +117,6 @@ function startWatch() {
 const watch = gulp.series(build, startWatch);
 
 module.exports = {
-  clean,
   copy,
   posts,
   newpost,
