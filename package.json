@@ -28,9 +28,8 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
-    "async": "^2.3.0",
     "connect": "^3.3.4",
-    "del": "^4.1.1",
+    "del": "^5.0.0",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^5.0.0",
@@ -53,12 +52,12 @@
     "postcss-clean": "^1.1.0",
     "postcss-custom-properties": "^8.0.9",
     "prettier": "^1.15.3",
-    "pug": "^2.0.3",
+    "pug": "^2.0.4",
     "readable-stream": "^3.4.0",
     "serve-static": "^1.9.1",
     "strftime": "^0.10.0",
     "textile-js": "^2.0.2",
-    "through2": "^2.0.0",
+    "through2": "^3.0.1",
     "yargs": "^10.0.3"
   },
   "gh-pages": {

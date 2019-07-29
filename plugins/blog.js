@@ -4,7 +4,6 @@ const util = require("util");
 const { obj: through } = require("through2");
 const gutil = require("gulp-util");
 const pug = require("pug");
-const async = require("async");
 const mkdirp = require("mkdirp");
 const strftime = require("strftime");
 
@@ -15,10 +14,12 @@ const PostPage = require("../source/_layouts/PostPage");
 const PagePage = require("../source/_layouts/PagePage");
 
 const { PluginError } = gutil;
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 const PLUGIN_NAME = "blog";
 
-function renderPage(component, props, css) {
+function renderPageContent(component, props, css) {
   const { title, body } = component(props);
   return Layout({
     ...props,
@@ -32,23 +33,16 @@ function renderPage(component, props, css) {
 function templateCache() {
   const compiledTemplates = {};
 
-  return (filePath, callback) => {
+  return async filePath => {
     let compiled = compiledTemplates[filePath];
     if (compiled) {
-      callback(null, compiled);
-      return;
+      return compiled;
     }
 
-    fs.readFile(filePath, { encoding: "utf8" }, (err, data) => {
-      try {
-        compiled = pug.compile(data, { filename: filePath });
-      } catch (e) {
-        callback(e);
-        return;
-      }
-      compiledTemplates[filePath] = compiled;
-      callback(null, compiled);
-    });
+    const data = await readFile(filePath, { encoding: "utf8" });
+    compiled = pug.compile(data, { filename: filePath });
+    compiledTemplates[filePath] = compiled;
+    return compiled;
   };
 }
 
@@ -65,55 +59,34 @@ function index(config) {
   const perPage = config.perPage || 3;
   const getCompiledTemplate = templateCache();
 
-  // Return a function that renders `tmpl` with `locals` data into `dest`.
-  function renderTemplateFunc(tmpl, dest, locals) {
+  // Render `tmpl` with `locals` data into `dest`.
+  async function renderTemplate(tmpl, dest, locals) {
     const templateFile = path.join(
       process.cwd(),
       config.sourceDir,
       config.layoutDir,
       tmpl
     );
-    return callback => {
-      getCompiledTemplate(templateFile, (err, compiled) => {
-        if (err) {
-          callback(err);
-          return;
-        }
+    const compiled = await getCompiledTemplate(templateFile);
+    const data = compiled(locals);
 
-        let data;
-        try {
-          data = compiled(locals);
-        } catch (e) {
-          callback(e);
-          return;
-        }
-
-        const file = new gutil.File({
-          cwd: process.cwd(),
-          base: path.join(__dirname, config.sourceDir),
-          path: path.join(__dirname, config.sourceDir, dest),
-          contents: Buffer.from(data)
-        });
-        callback(null, file);
-      });
-    };
+    return new gutil.File({
+      cwd: process.cwd(),
+      base: path.join(__dirname, config.sourceDir),
+      path: path.join(__dirname, config.sourceDir, dest),
+      contents: Buffer.from(data)
+    });
   }
 
-  function renderPageFunc(component, dest, locals) {
-    return callback => {
-      try {
-        const data = renderPage(component, locals, config.css);
-        const file = new gutil.File({
-          cwd: process.cwd(),
-          base: path.join(__dirname, config.sourceDir),
-          path: path.join(__dirname, config.sourceDir, dest),
-          contents: Buffer.from(data)
-        });
-        callback(null, file);
-      } catch (e) {
-        callback(e);
-      }
-    };
+  async function renderPage(component, dest, locals) {
+    const data = renderPageContent(component, locals, config.css);
+
+    return new gutil.File({
+      cwd: process.cwd(),
+      base: path.join(__dirname, config.sourceDir),
+      path: path.join(__dirname, config.sourceDir, dest),
+      contents: Buffer.from(data)
+    });
   }
 
   function localsForPage(page, posts) {
@@ -164,13 +137,11 @@ function index(config) {
       .reverse();
 
     // Render index pages and archive page in parallel.
-    const funcs = [];
+    const promises = [];
     const pageCount = Math.ceil(posts.length / perPage);
 
     // Top page.
-    funcs.push(
-      renderPageFunc(IndexPage, "index.html", localsForPage(0, posts))
-    );
+    promises.push(renderPage(IndexPage, "index.html", localsForPage(0, posts)));
 
     // Index pages.
     for (let i = 1; i < pageCount; i += 1) {
@@ -181,7 +152,7 @@ function index(config) {
         "index.html"
       );
       const pageLocals = localsForPage(i, posts);
-      funcs.push(renderPageFunc(IndexPage, dest, pageLocals));
+      promises.push(renderPage(IndexPage, dest, pageLocals));
     }
 
     // Archive page.
@@ -190,7 +161,7 @@ function index(config) {
       site: config,
       posts: posts.map(post => ({ ...post, content: undefined }))
     };
-    funcs.push(renderPageFunc(ArchivesPage, archivePath, localsForArchive));
+    promises.push(renderPage(ArchivesPage, archivePath, localsForArchive));
 
     // RSS feed.
     const rssPath = path.join(config.blogDir, "feed", "rss.xml");
@@ -198,19 +169,20 @@ function index(config) {
       site: config,
       posts: posts.slice(0, 10)
     };
-    funcs.push(renderTemplateFunc("rss.pug", rssPath, localsForRss));
+    promises.push(renderTemplate("rss.pug", rssPath, localsForRss));
 
     // Execute in parallel. Rendering is synchronous thougth.
-    async.parallel(funcs, (err, newFiles) => {
-      if (err) {
+    Promise.all(promises).then(
+      newFiles => {
+        newFiles.forEach(file => this.push(file));
+        cb();
+      },
+      err => {
         console.error("error", err);
         this.emit("err", new PluginError(PLUGIN_NAME, err));
         cb();
-        return;
       }
-      newFiles.forEach(file => this.push(file));
-      cb();
-    });
+    );
   }
 
   return through(transform, flush);
@@ -249,7 +221,7 @@ function layout(config) {
     try {
       const htmlFile = file.clone(false);
       htmlFile.contents = Buffer.from(
-        renderPage(component, locals, config.css)
+        renderPageContent(component, locals, config.css)
       );
       this.push(htmlFile);
     } catch (e) {
@@ -262,6 +234,8 @@ function layout(config) {
   return through(transform);
 }
 
+// Create a transform stream that adds a clean URL and a path to a file with a
+// front matter. It passes through files without front matters.
 function cleanUrl() {
   function transform(file, enc, cb) {
     if (!file.frontMatter) {
@@ -308,28 +282,25 @@ function cleanUrl() {
   return through(transform);
 }
 
-function newPost(title, config) {
-  const urlTitle = toURL(title);
-  const now = new Date();
-  const date = strftime("%Y-%m-%d", now);
-  const filename = util.format("%s-%s.markdown", date, urlTitle);
+async function newPost(title, config) {
+  const filename = `${strftime("%Y-%m-%d")}-${toURL(title)}.markdown`;
   const newPostPath = path.join(config.sourceDir, config.postDir, filename);
 
   gutil.log(`Creating new post: ${newPostPath}`);
 
-  const writer = fs.createWriteStream(newPostPath);
-  writer.write("---\n");
-  writer.write("layout: post\n");
-  writer.write(util.format('title: "%s"\n', title));
-  writer.write(util.format("date: %s\n", strftime("%Y-%m-%d %H:%M")));
-  writer.write("comments: true\n");
-  writer.write("categories: []\n");
-  writer.write("---\n");
-  writer.end();
-  return writer;
+  const content = `---
+layout: post
+title: ${title}
+date: ${strftime("%Y-%m-%d %H:%M")}
+comments: true
+categories: []
+---
+`;
+
+  await writeFile(newPostPath, content);
 }
 
-function newPage(filename, config) {
+async function newPage(filename, config) {
   const filenamePattern = /(^.+\/)?(.+)/;
   const matches = filenamePattern.exec(filename);
   if (!matches) {
@@ -359,21 +330,21 @@ function newPage(filename, config) {
 
   const pageDir = dirComponents.map(toURL).join("/");
 
-  const filePath = util.format("%s/%s.%s", pageDir, file, extension);
+  const filePath = `${pageDir}/${file}.${extension}`;
 
-  gutil.log(util.format("Creating new page: %s", filePath));
+  gutil.log(`Creating new page: ${filePath}`);
 
   mkdirp.sync(pageDir);
 
-  const writer = fs.createWriteStream(filePath);
-  writer.write("---\n");
-  writer.write("layout: page\n");
-  writer.write(util.format('title: "%s"\n', title));
-  writer.write(util.format("date: %s\n", strftime("%Y-%m-%d %H:%M")));
-  writer.write("comments: true\n");
-  writer.write("---\n");
-  writer.end();
-  return writer;
+  const content = `---
+layout: page
+title: ${title}
+date: ${strftime("%Y-%m-%d %H:%M")}
+comments: true
+---
+`;
+
+  await writeFile(filePath, content);
 }
 
 module.exports = {
