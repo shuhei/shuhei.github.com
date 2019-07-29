@@ -8,6 +8,7 @@ const readFile = util.promisify(fs.readFile);
 
 const processor = postcss([customProperties(), clean()]);
 
+// Read CSS files, concatenate them, and apply postcss to the concatenated file.
 async function readCssFiles(filePaths) {
   const promises = filePaths.map(css => readFile(css, { encoding: "utf8" }));
   const concatenated = (await Promise.all(promises)).join("\n");
