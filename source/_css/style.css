@@ -1,19 +1,20 @@
-/* red-ish */
-/*
-:root {
-  --bg-color: #f9f4f3;
-  --text-color: #3a2624;
-  --highlight-color: #d6210f;
-  --code-bg-color: #ffffff;
-}
-*/
-
 /* beige and blue */
 :root {
   --bg-color: #f7f0e7;
   --text-color: #2d1e14;
   --highlight-color: #095ae8;
   --code-bg-color: #ffffff;
+  --code-text-color: var(--text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #312b3a;
+    --text-color: #f7f0e7;
+    --highlight-color: #9dc8fb;
+    --code-bg-color: #f7f0e7;
+    --code-text-color: var(--bg-color);
+  }
 }
 
 body {
@@ -174,6 +175,7 @@ th, td {
 /* code */
 code {
   background-color: var(--code-bg-color);
+  color: var(--code-text-color);
   line-height: 1em;
   padding: 0.1em 0.3em 0.2em;
   font-size: 0.85em;
