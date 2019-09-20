@@ -19,6 +19,7 @@
   },
   "author": "Shuhei Kagawa <shuhei.kagawa@gmail.com>",
   "license": "BSD-2-Clause",
+  "private": true,
   "engines": {
     "node": ">=10.0.0",
     "yarn": ">=1.12.0"
