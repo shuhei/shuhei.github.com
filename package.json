@@ -30,8 +30,8 @@
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
     "connect": "^3.3.4",
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.1",
