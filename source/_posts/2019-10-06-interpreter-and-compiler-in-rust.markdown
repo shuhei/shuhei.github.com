@@ -6,9 +6,9 @@ comments: true
 categories: [Rust]
 ---
 
-In the spring of this year, I read [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) by [Thorsten Ball](https://thorstenball.com/), and implemented [an interpreter and a compiler](https://github.com/shuhei/cymbal) from the books in Rust. (I started writing this post in April, but left unfinished for six months. Now I'm finishing it.)
+In the spring of this year, I read [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) by [Thorsten Ball](https://thorstenball.com/), and implemented [an interpreter and a compiler](https://github.com/shuhei/cymbal) from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I'm finishing it.)
 
-The first book _Writing an Interpreter in Go_ is about writing a parser and an interpreter for a programming language called Monkey. Monkey's feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.
+The first book [Writing an Interpreter in Go](https://interpreterbook.com/) is about writing a parser and an interpreter for a programming language called Monkey. Monkey's feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.
 
 ```js
 let fibonacci = fn(x) {
@@ -25,7 +25,7 @@ let fibonacci = fn(x) {
 fibonacci(15);
 ```
 
-The second book _Writing a Compiler in Go_ taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression `1 + 2` is compiled into:
+The second book [Writing a Compiler in Go](https://compilerbook.com/) taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression `1 + 2` is compiled into:
 
 ```rs
 // Constants
@@ -45,9 +45,9 @@ vec![
 
 ## How I started
 
-I had bought _Writing an Interpreter in Go_ more in 2017, but it had been sleeping in my bookshelf ([Tsundoku](https://en.wikipedia.org/wiki/Tsundoku)). Recently, I wanted to relearn a little Go for work. I took the book from my bookshelf and started following the book—typing the code in Go. I did two chapters, and new Go syntax stopped appearing. I achieved my initial purpose—relearning Go—earlier than I thought because the book used a limited set of Go's language features. Then Rust came to my mind.
+I had bought _Writing an Interpreter in Go_ more in 2017, but it had been sleeping in my bookshelf ([Tsundoku](https://en.wikipedia.org/wiki/Tsundoku)). Recently, I wanted to relearn a little Go for work. I took the book from my bookshelf and started following the book—typing the code in Go. I did two chapters, and new Go syntaxes stopped appearing. I achieved my initial purpose—relearning Go—earlier than I thought because the book used a limited set of Go's language features. Then Rust came to my mind.
 
-Before starting this project, I had written two simple command line tools with Rust ([colortty](https://github.com/shuhei/colortty) and [ynan26](https://github.com/shuhei/ynan26)), but they were too small to learn different aspects of Rust. I wanted to learn more by implementing something not trivial.
+Before starting this project, I had written two simple command-line tools with Rust ([colortty](https://github.com/shuhei/colortty) and [ynan26](https://github.com/shuhei/ynan26)), but they were too small to learn different aspects of Rust. I wanted to learn more by implementing something not trivial.
 
 ## Good things about Rust
 
@@ -104,12 +104,12 @@ struct SymbolTable {
 
 ## I learned basics of how programs work at low-level
 
-Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my prior projects. But I hadn't had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.
+Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my previous projects. But I hadn't had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.
 
 Also, the knowledge about stack was useful to understand some of the concepts of Rust itself. Rust's compiler to know the sizes of types because it needs to generate machine code that allocates values of the types on the stack.
 
 ## Conclusion
 
-It was a fun project. I learned something, but there are much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.
+It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.
 
 [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) are great. I liked their hands-on approach with many unit tests.
