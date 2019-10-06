@@ -6,7 +6,7 @@ comments: true
 categories: [Rust]
 ---
 
-In the spring of this year, I read [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) by [Thorsten Ball](https://thorstenball.com/), and implemented [an interpreter and a compiler](https://github.com/shuhei/cymbal)) from the books in Rust. (I started writing this post in April, but left unfinished for six months. Now I'm finishing it.)
+In the spring of this year, I read [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) by [Thorsten Ball](https://thorstenball.com/), and implemented [an interpreter and a compiler](https://github.com/shuhei/cymbal) from the books in Rust. (I started writing this post in April, but left unfinished for six months. Now I'm finishing it.)
 
 The first book _Writing an Interpreter in Go_ is about writing a parser and an interpreter for a programming language called Monkey. Monkey's feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.
 
