@@ -1,12 +1,12 @@
 ---
 layout: post
 title: Migrating from bash to zsh
-date: 2019-10-08 23:20
-comments: true
-categories: [Mac]
+date: 2019-10-09 23:20
+comments: false
+categories: [zsh]
 ---
 
-I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up this morning. The applications that I use seemed to work fine on Catalina. But the shell started complaining.
+I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up this morning. The applications that I use seemed to work fine on Catalina. But bash started complaining when I started new sessions.
 
 ```console
 The default interactive shell is now zsh.
@@ -26,13 +26,13 @@ chsh -s /bin/zsh
 
 However, it didn't change the default shell of tmux. I restarted sessions in tmux, and restarted iTerm 2 and the tmux server. But tmux still started bash sessions. Why?
 
-I googled. There was [a Q&A for the exact problem](https://superuser.com/questions/253786/how-can-i-make-tmux-use-my-default-shell) on superuser. Actually, I had written `bash` in `tmux.conf` to share Mac's clipboard with tmux.
+I googled. There was [a Q&A for the exact problem](https://superuser.com/questions/253786/how-can-i-make-tmux-use-my-default-shell) on superuser. The `default-command` option of tmux is the default shell. I had a hardcoded `bash` there! By the way, `reattach-to-user-namespace` is for sharing Mac's clipboard with tmux.
 
 ```
 set-option -g default-command "reattach-to-user-namespace -l bash"
 ```
 
-I updated it so that I can migrate to any shell in the future!
+I updated it with `SHELL` environment variable so that I can migrate to any shell in the future!
 
 ```
 set-option -g default-command "reattach-to-user-namespace -l ${SHELL}"
@@ -40,12 +40,15 @@ set-option -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
 ## Command prompt
 
-Then I installed [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and copied my `.bash_profile` to `.zshrc`.
+Then I installed [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and copied my `.bash_profile` to `.zshrc`. Most of the content of my `.bash_profile` were aliases and `PATH`s. They worked fine on zsh too.
 
-OK, zsh has a different format for prompt. oh-my-zsh provides a lot of nice propmt themes, but I wanted to keep using the one that I had configured with bash. Let's write one for zsh.
+But zsh has a different format for prompt. oh-my-zsh provides a lot of nice prompt themes, but I wanted to keep using the one that I had configured with bash. Let's migrate it to zsh.
 
-We can put custom themes at
-`.oh-my-zsh/custom/themes`. I moved the `custom` directory to [my dotfiles repo](https://github.com/shuhei/dotfiles) and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.
+oh-my-zsh has a directory for custom themes (`.oh-my-zsh/custom/themes`). I moved the `custom` directory to [my dotfiles repo](https://github.com/shuhei/dotfiles) and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.
+
+Eventually, I came up with a theme like this:
+
+![my custom theme](/images/zsh_prompt.png)
 
 ```bash
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}("
@@ -54,34 +57,48 @@ ZSH_THEME_GIT_PROMPT_DIRTY="*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 # %~ is the current working directory relative to the home directory
-PROMPT='[%{$FG[228]%}%~%{$reset_color%}]'
+PROMPT='[$FG[228]%~%{$reset_color%}]'
 PROMPT+=' $(git_prompt_info)'
-PROMPT+=' %(?.%{$FG[154]%}.%{$FG[005]%})€%{$reset_color%} '
+PROMPT+=' %(?.$FG[154].$FG[009])€%{$reset_color%} '
 ```
 
-## Colors
+An oh-my-zsh theme defines a variable called `PROPMT`. Aside from [its syntax](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html), I was confused of how and when `PROMPT` was evaluated. As a hindsight, it is a string that is built only once when a session starts or `source .zshrc`. Every time a prompt is shown, `PROMPT` is evaluated, meaning escapes (starting with `%`) and variables in it are expanded.
+
+### Colors
+
+At the beginning, I was baffled by how to specify colors. For example, the following `PROMPT` shows "some red text" in red.
 
 ```bash
-PROMPT="%{$fg[red]%}some red text%{$reset_color%}"
+PROMPT='%{$fg[red]%}some red text%{$reset_color%}'
 ```
+
+`$fg[red]` has the code that makes its following text red. `$reset_color` has the code that resets the color. The tricky part is that they need to be surrounded by `%{` and `%}` in `PROMPT`.
 
 [zsh provides handy variables for colors](https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117).
 
 - `reset_color`
-- `fg`, `fg_bold`, `fg_no_bold`
+- `fg`, `fg_bold`, `fg_no_bold`: They are associative arrays (similar to JavaScript objects).
 - `bg`, `bg_bold`, `bg_no_bold`
-
-The tricky part is that they need to be surrounded by `%{` and `%}` in `PROMPT`.
 
 Also, [oh-my-zsh provides 256 colors](https://github.com/robbyrussell/oh-my-zsh/blob/b09aed9cc7e2099f3e7f2aa2632660bc510f3e35/lib/spectrum.zsh).
 
-- `FX`
-- `FG`
-- `BG`
+- `FX`: This has codes for text effects like `FX[underline]`.
+- `FG`: 256 colors for foreground like `FG[102]`.
+- `BG`: 256 colors for background like `BG[123]`.
 
-`spectrum_ls` and `spectrum_bls` commands show you all the available colors!
+`spectrum_ls` and `spectrum_bls` commands show you all the 256 colors! Note that values in `FX`, `FG` and `BG` are already surrounded by `%{` and `%}` and we don't need to do it again.
 
-## Exit code
+We can examine those variables in the terminal.
+
+```sh
+echo "${fg[yellow]}hello${reset_color} ${bg[green]}world${reset_color}"
+
+# `(kv)` extracts key values from an associative array.
+echo ${(kv)fg}
+echo ${(kv)FG}
+```
+
+### Exit code
 
 With bash, [I had a trick to change the color of the prompt by the previous command's exit code](http://localhost:4000/blog/2015/10/18/color-prompt-by-exit-code/). How can I do this with zsh?
 
@@ -97,12 +114,14 @@ Surprisingly, [zsh prompt expression has a special syntax for switching prompt b
 The following expression shows the Euro sign in green if the exit code is 0 and in red if the exit code is non-zero.
 
 ```bash
-%(?.%{$FG[154]%}.%{$FG[005]%})€%{$reset_color%}
+%(?.%{$fg[green]%}.%{$fg[red]%})€%{$reset_color%}
 ```
 
-## Git info
+### Git info
 
-`git_prompt_info` function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by `ZSH_THEME_GIT_PROMPT_*` variables.
+`git_prompt_info()` function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by `ZSH_THEME_GIT_PROMPT_*` variables.
+
+I wrote something like this:
 
 ```bash
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}("
@@ -119,12 +138,6 @@ I thought it was done and went back to work. But when I switched git branch, the
 PROMPT='... $(git_prompt_info) ...'
 ```
 
-## Evaluation of PROMPT
+## Conclusion
 
-As a hindsight, now I can summarize how it works.
-
-`PROPMT` is a string that is built only once when a session starts or `source .zshrc`. Every time a prompt is shown, the string is evaluated. Variables and commands in it are expanded.
-
-http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-
-It's different from bash's [`PROMPT_COMMAND`](http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x264.html), which is a function that is executed every time a prompt is shown.
+So, I have migrated my terminal from bash to zsh. My initial motivation was passive (bash is deprecated in Catalina), but it's always fun to try something new (to me). Looking forward to trying cool zsh plugins and tricks!
