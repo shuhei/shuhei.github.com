@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 06 Oct 2019 21:32:00 GMT</lastBuildDate><item><title>Writing an Interpreter and a Compiler in Rust</title><link>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Wed, 09 Oct 2019 21:20:00 GMT</lastBuildDate><item><title>Migrating from bash to zsh</title><link>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</link><description><![CDATA[
+<p>I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.</p>
+<pre><code class="hljs console">The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.</code></pre><p>I asked whether I should migrate to zsh on Twitter. Three people said &quot;yes&quot; as if it was common sense. OK, let&#39;s migrate.</p>
+<h2 id="changing-the-default-shell-of-tmux">Changing the default shell of tmux</h2>
+<p>First, I followed the instruction from Apple.</p>
+<pre><code class="hljs sh">chsh -s /bin/zsh</code></pre><p>However, it didn&#39;t change the default shell of tmux. I restarted sessions in tmux, and restarted iTerm 2 and the tmux server. But tmux still started bash sessions. Why?</p>
+<p>I googled. There was <a href="https://superuser.com/questions/253786/how-can-i-make-tmux-use-my-default-shell">a Q&amp;A for the exact problem</a> on superuser. The <code>default-command</code> option of tmux is the default shell. I had a hardcoded <code>bash</code> there! By the way, <code>reattach-to-user-namespace</code> is for sharing Mac&#39;s clipboard with tmux.</p>
+<pre><code class="hljs ">set-option -g default-command &quot;reattach-to-user-namespace -l bash&quot;</code></pre><p>I updated it with <code>SHELL</code> environment variable so that I can migrate to any shell in the future!</p>
+<pre><code class="hljs ">set-option -g default-command &quot;reattach-to-user-namespace -l ${SHELL}&quot;</code></pre><h2 id="command-prompt">Command prompt</h2>
+<p>Then I installed <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> and copied my <code>.bash_profile</code> to <code>.zshrc</code>. Most of the content of my <code>.bash_profile</code> were aliases and <code>PATH</code>s. They worked fine on zsh too.</p>
+<p>But zsh has a different format for prompt. oh-my-zsh provides a lot of nice prompt themes, but I wanted to keep using the one that I had configured with bash. Let&#39;s migrate it to zsh.</p>
+<p>oh-my-zsh has a directory for custom themes (<code>.oh-my-zsh/custom/themes</code>). I moved the <code>custom</code> directory to <a href="https://github.com/shuhei/dotfiles">my dotfiles repo</a> and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.</p>
+<p>Eventually, I came up with a theme like this:</p>
+<p><img src="/images/zsh_prompt.png" alt="my custom theme"></p>
+<pre><code class="hljs bash">ZSH_THEME_GIT_PROMPT_PREFIX=<span class="hljs-string">"%{<span class="hljs-variable">$fg</span>[white]%}("</span>
+ZSH_THEME_GIT_PROMPT_SUFFIX=<span class="hljs-string">"%{<span class="hljs-variable">$fg</span>[white]%})%{<span class="hljs-variable">$reset_color</span>%}"</span>
+ZSH_THEME_GIT_PROMPT_DIRTY=<span class="hljs-string">"*"</span>
+ZSH_THEME_GIT_PROMPT_CLEAN=<span class="hljs-string">""</span>
+
+<span class="hljs-comment"># %~ is the current working directory relative to the home directory</span>
+PROMPT=<span class="hljs-string">'[$FG[228]%~%{$reset_color%}]'</span>
+PROMPT+=<span class="hljs-string">' $(git_prompt_info)'</span>
+PROMPT+=<span class="hljs-string">' %(?.$FG[154].$FG[009])€%{$reset_color%} '</span></code></pre><p>An oh-my-zsh theme defines a variable called <code>PROMPT</code>. Aside from <a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html">its syntax</a>, I was confused of how and when <code>PROMPT</code> was evaluated. In hindsight, it is a string that is built once when a session starts or <code>source .zshrc</code>. Every time a prompt is shown, <code>PROMPT</code> is evaluated, meaning escapes (starting with <code>%</code>) and variables in it are expanded.</p>
+<h3 id="colors">Colors</h3>
+<p>At the beginning, I was baffled by how to specify colors. For example, the following <code>PROMPT</code> shows &quot;some red text&quot; in red.</p>
+<pre><code class="hljs bash">PROMPT=<span class="hljs-string">'%{$fg[red]%}some red text%{$reset_color%}'</span></code></pre><p><code>$fg[red]</code> has the code that makes its following text red. <code>$reset_color</code> has the code that resets the color. The tricky part is that these codes need to be surrounded by <code>%{</code> and <code>%}</code> in <code>PROMPT</code>.</p>
+<p><a href="https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117">zsh provides handy variables for colors</a>.</p>
+<ul>
+<li><code>reset_color</code></li>
+<li><code>fg</code>, <code>fg_bold</code>, <code>fg_no_bold</code>: They are associative arrays (similar to JavaScript objects).</li>
+<li><code>bg</code>, <code>bg_bold</code>, <code>bg_no_bold</code></li>
+</ul>
+<p>Also, <a href="https://github.com/robbyrussell/oh-my-zsh/blob/b09aed9cc7e2099f3e7f2aa2632660bc510f3e35/lib/spectrum.zsh">oh-my-zsh provides 256 colors</a>.</p>
+<ul>
+<li><code>FX</code>: This has codes for text effects like <code>FX[underline]</code>.</li>
+<li><code>FG</code>: 256 colors for foreground like <code>FG[102]</code>.</li>
+<li><code>BG</code>: 256 colors for background like <code>BG[123]</code>.</li>
+</ul>
+<p><code>spectrum_ls</code> and <code>spectrum_bls</code> commands show you all the 256 colors! Note that values in <code>FX</code>, <code>FG</code> and <code>BG</code> are already surrounded by <code>%{</code> and <code>%}</code>, and we don&#39;t need to do it again.</p>
+<p>We can examine those variables in the terminal.</p>
+<pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${fg[yellow]}</span>hello<span class="hljs-variable">${reset_color}</span> <span class="hljs-variable">${bg[green]}</span>world<span class="hljs-variable">${reset_color}</span>"</span>
+
+<span class="hljs-comment"># `(kv)` extracts key values from an associative array.</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">${(kv)fg}</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">${(kv)FG}</span></code></pre><h3 id="exit-code">Exit code</h3>
+<p>With bash, <a href="/blog/2015/10/18/color-prompt-by-exit-code/">I had a trick to change the color of the prompt by the previous command&#39;s exit code</a>. How can I achieve this with zsh?</p>
+<p><img src="/images/exit_code.png" alt="Change color by exit code"></p>
+<p>Surprisingly, <a href="https://stackoverflow.com/questions/4466245/customize-zshs-prompt-when-displaying-previous-command-exit-code">zsh prompt expression has a special syntax for switching prompt by exit code</a>. To be accurate, it&#39;s a combination of a ternary operator and <code>?</code> for exit code check.</p>
+<pre><code class="hljs bash"><span class="hljs-comment"># Shows "foo" if the exit code is 0 and "bar" if the exit code is non-zero.</span>
+%(?.foo.bar)</code></pre><p>The following expression shows the Euro sign in green if the exit code is 0 and in red if the exit code is non-zero.</p>
+<pre><code class="hljs bash">%(?.%{<span class="hljs-variable">$fg</span>[green]%}.%{<span class="hljs-variable">$fg</span>[red]%})€%{<span class="hljs-variable">$reset_color</span>%}</code></pre><h3 id="git-info">Git info</h3>
+<p><code>git_prompt_info()</code> function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by <code>ZSH_THEME_GIT_PROMPT_*</code> variables.</p>
+<p>I wrote something like this:</p>
+<pre><code class="hljs bash">ZSH_THEME_GIT_PROMPT_PREFIX=<span class="hljs-string">"%{<span class="hljs-variable">$fg</span>[white]%}("</span>
+ZSH_THEME_GIT_PROMPT_SUFFIX=<span class="hljs-string">"%{<span class="hljs-variable">$fg</span>[white]%})%{<span class="hljs-variable">$reset_color</span>%}"</span>
+ZSH_THEME_GIT_PROMPT_DIRTY=<span class="hljs-string">"*"</span>
+ZSH_THEME_GIT_PROMPT_CLEAN=<span class="hljs-string">""</span>
+
+PROMPT=<span class="hljs-string">"... <span class="hljs-variable">$(git_prompt_info)</span> ..."</span></code></pre><p>I thought it was done and went back to work. But when I switched the git branch, the prompt stayed the same. Why? I googled again. There was <a href="https://github.com/robbyrussell/oh-my-zsh/issues/4826">an issue</a> for the same problem. The <code>PROMPT</code> needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it&#39;s defined!</p>
+<pre><code class="hljs bash">PROMPT=<span class="hljs-string">'... $(git_prompt_info) ...'</span></code></pre><h2 id="conclusion">Conclusion</h2>
+<p>I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it&#39;s always fun to try something new (to me). I&#39;m looking forward to trying cool zsh plugins and tricks!</p>
+
+]]></description><pubDate>Wed, 09 Oct 2019 21:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</guid></item><item><title>Writing an Interpreter and a Compiler in Rust</title><link>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</link><description><![CDATA[
 <p>In the spring of this year, I read <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> by <a href="https://thorstenball.com/">Thorsten Ball</a>, and implemented <a href="https://github.com/shuhei/cymbal">an interpreter and a compiler</a> from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)</p>
 <p>The first book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> fibonacci = fn(x) {
@@ -568,40 +632,4 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
 <h2 id="conclusion">Conclusion</h2>
 <p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
 
-]]></description><pubDate>Sun, 14 May 2017 21:31:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</guid></item><item><title>How to export CommonJS and ES Module</title><link>https://shuheikagawa.com/blog/2017/01/05/how-to-export-commonjs-and-es-module/</link><description><![CDATA[
-<p>After <a href="/blog/2017/01/05/main-jsnext-main-and-module/">my previous post about jsnext:main and module</a>, there came another issue.</p>
-<ul>
-<li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
-</ul>
-<p>Here is the twists and turns that I wandered to solve the problem.</p>
-<h2 id="exports">Exports</h2>
-<p>The code of <code>material-colors</code> looked like the following.</p>
-<p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
-<pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">red</span>: { <span class="hljs-comment">/* ... */</span> },
-  <span class="hljs-attr">blue</span>: { <span class="hljs-comment">/* ... */</span> }
-};</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
-<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
-<p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
-<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
-<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
-<h2 id="have-a-default-export">Have a default export</h2>
-<p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">red</span>: red,
-  <span class="hljs-attr">blue</span>: blue
-};</code></pre><h2 id="so">So?</h2>
-<p>To keep maximum compatibility for CommonJS and ES Module:</p>
-<ul>
-<li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>
-<li>If your CommonJS module exports multiple things, which essentially exports an object with them as properties, export named exports. In addition to it, it&#39;s safer to have a default export just in case for the problem described above.</li>
-</ul>
-
-]]></description><pubDate>Thu, 05 Jan 2017 21:11:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/01/05/how-to-export-commonjs-and-es-module/</guid></item></channel></rss>
+]]></description><pubDate>Sun, 14 May 2017 21:31:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</guid></item></channel></rss>

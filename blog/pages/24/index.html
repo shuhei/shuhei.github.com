@@ -49,6 +49,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/27/get-book-list-of-booklog-b-rss/>Booklog の本一覧をRSSから取得</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 27, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、<span class="caps">RSS</span> を使うともっと楽にできるようです。<br />
+以下のように、<span class="caps">GET</span> のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
+<p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
+<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/19/install-git/>git をインストール</a>
         </h1>
         <div class="meta">
@@ -122,58 +143,6 @@ end
 
 animate(message)</pre>
 <p>おおー、動きました。逆に新鮮で面白いですね。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/13/ntlm-hash-with-ruby/>NTLM ハッシュ を求める</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 13, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの <span class="caps">UTF</span>-16 に符号化したものから <a href="http://en.wikipedia.org/wiki/MD4"><span class="caps">MD4</span></a> でハッシュを作成するのだとか。</p>
-<h3>Ruby で</h3>
-<p>16進数表現の文字列として出力します。もう少しうまい方法がある気がするのですが・・・。<br />
-<span class="caps">NTLM</span> ハッシュの計算そのものは <a href="http://rubyforge.org/projects/rubyntlm/">Ruby/<span class="caps">NTLM</span></a> に頼っています。ちなみに Ruby/<span class="caps">NTLM</span> をインストールするには、 <code>gem install rubyntlm</code> とします。</p>
-<pre class="prettyprint">require 'rubygems'
-require 'net/ntlm'
-
-def ntlm_hash16(password)
-  result = ""
-  hash = Net::NTLM.ntlm_hash(password)
-  hash.size.times do |i|
-    result += sprintf("%02x", hash[i])
-  end
-  result
-end
-
-ntlm_hash16("p@ssw0rd")  #=&gt;  "de26cce0356891a4a020e7c4957afc72"</pre>
-<h4>追記</h4>
-<p><code>sprintf("%02x", hash[i])</code> の部分を、最初は <code>hash[i].to_s(16)</code> と書いていました。しかし、これだと 15 以下の数が来たときに 0 が抜けてしまうので、修正しました。</p>
-<h3>Python で</h3>
-<p>ついでに Python でも。</p>
-<pre class="prettyprint">import hashlib
-def ntlm_hash16(password):
-  result = ""
-  digest = hashlib.new('md4', password.encode('utf-16le')).digest()
-  for ch in digest:
-    result += "%02x" % ord(ch)
-  return result
-
-ntlm_hash16("p@ssw0rd")  #=&gt;  'de26cce0356891a4a020e7c4957afc72'</pre>
-<p>Ruby でも Python でも、さすがに結果は同じようですね。</p>
-<h4>追記</h4>
-<p>Python でも Ruby と同じような間違いをしていました。<br />
-<code>"%02x" % ord(ch)</code> の部分を、最初は <code>hex(ord(ch))[2:]</code> と書いていました。<br />
-いやあ、テストは大事ですね。</p>
         </div>
       </div>
     </div>

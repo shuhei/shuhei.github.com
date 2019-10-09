@@ -49,6 +49,108 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2017/05/13/http-request-timeouts-in-javascript/>HTTP request timeouts in JavaScript</a>
+        </h1>
+        <div class="meta">
+          <span class="date">May 14, 2017</span>
+          - <span class="category">JavaScript</span>, <span class="category">Node.js</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
+<p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
+<h2 id="nodejs-httphttps">Node.js &quot;http&quot;/&quot;https&quot;</h2>
+<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
+<h3 id="timeouts-on-httprequest">Timeouts on <code>http.request()</code></h3>
+<p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
+<blockquote>
+<p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
+</blockquote>
+<p>So what does it actually do? It internally calls <code>net.createConnection()</code> with its <code>timeout</code> option, which eventually calls <code>socket.setTimeout()</code> before the socket starts connecting.</p>
+<p>There is also <a href="http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback"><code>http.ClientRequest.setTimeout()</code></a>. Its documentation says:</p>
+<blockquote>
+<p>Once a socket is assigned to this request and is connected <code>socket.setTimeout()</code> will be called.</p>
+</blockquote>
+<p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
+<p>Either of them doesn&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
+<p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
+<h3 id="netsocketsettimeout">net.Socket.setTimeout()</h3>
+<p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
+<blockquote>
+<p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default <code>net.Socket</code> does not have a timeout.</p>
+</blockquote>
+<p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
+<ol>
+<li>Start connecting</li>
+<li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
+<li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
+<li>Read data or write data</li>
+</ol>
+<p>When you call <code>socket.setTimeout()</code>, a timeout timer is created and restarted before connecting, after <code>lookup</code>, after <code>connect</code> and each data read &amp; write. So the <code>timeout</code> event is emitted on one of the following cases:</p>
+<ul>
+<li>DNS lookup doesn&#39;t finish in the given timeout</li>
+<li>TCP connection is not made in the given timeout after DNS lookup</li>
+<li>No data read or write in the given timeout after connection, previous data read or write</li>
+</ul>
+<p>This might be a bit counter-intuitive. Let&#39;s say you called <code>socket.setTimeout(300)</code> to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request &amp; response took more than 500 ms, <code>timeout</code> event is not emitted at all.</p>
+<p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
+<p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
+<p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in an HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
+<h3 id="http-keep-alive--tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
+<p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
+<p>So, how are they different?</p>
+<ul>
+<li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
+<li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
+</ul>
+<h3 id="so">So?</h3>
+<p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
+<h2 id="third-party-modules">Third-party modules</h2>
+<h3 id="request-module">&quot;request&quot; module</h3>
+<p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
+<blockquote>
+<p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
+</blockquote>
+<p>However, as far as I checked the implementation, <code>timeout</code> is not applied to the timing of response headers as of v2.81.1.</p>
+<p>Currently this module emits the two types of timeout errors:</p>
+<ul>
+<li><code>ESOCKETTIMEDOUT</code>: Emitted from <code>http.ClientRequest.setTimeout()</code> described above, which uses <code>socket.setTimeout()</code>.</li>
+<li><code>ETIMEDOUT</code>: Emitted when a connection is not established in the given timeout. It was applied to the timing of response headers before v2.76.0.</li>
+</ul>
+<p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
+<p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
+<h3 id="axios-module">&quot;axios&quot; module</h3>
+<p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
+<h2 id="browser-apis">Browser APIs</h2>
+<p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
+<h3 id="xmlhttprequest">XMLHttpRequest</h3>
+<p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not explain the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
+<h3 id="fetch">fetch()</h3>
+<p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
+  <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'timeout'</span>));
+    }, msecs);
+  });
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race([timeout, promise]);
+}
+
+withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
+  .then(doSomething)
+  .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2017/01/05/how-to-export-commonjs-and-es-module/>How to export CommonJS and ES Module</a>
         </h1>
         <div class="meta">
@@ -125,46 +227,6 @@
 <li><a href="https://github.com/mrdoob/three.js/blob/dev/package.json">three.js</a></li>
 </ul>
 <p>At this time, it seems to be a good idea to have both of them if you want to support tree shaking. If you don&#39;t, just go with only the plain old <code>main</code>.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2016/10/03/prepaid-sim-in-germany/>How to set up and top up a prepaid SIM in Germany</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 3, 2016</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>I have moved to Berlin from Tokyo a week ago. I may or may not write about it later, but I&#39;m going to share more practical stuff today.</p>
-<p>Since I arrived in Germany, I bought two prepaid SIM cards and set up a SIM-free iPhone and a MiFi (mobile WiFi router). It was harder than I thought because I had never used a prepaid SIM before and most of official instructions were in German. I&#39;d like to share what I did for people like me.</p>
-<p>This post is a complement to <a href="http://prepaid-data-sim-card.wikia.com/wiki/Germany">Germany | Prepaid Data SIM Card Wiki | Fandom powered by Wikia</a>. If you haven&#39;t read it yet, read it first.</p>
-<h2 id="initial-setup">Initial setup</h2>
-<p>After reading the wiki, I chose <a href="https://www.o2online.de/">O<sub>2</sub></a> as a network provider because of its rate and availability in Berlin&#39;s subway.</p>
-<ol>
-<li>Go to a large electronics store like Saturn.</li>
-<li>Find an O<sub>2</sub> prepaid SIM.</li>
-<li>Bring it to an O<sub>2</sub> representative in the store and ask her to activate it.</li>
-<li>Go to the casher and pay for the SIM card.</li>
-<li>Insert the SIM card into your phone/MiFi. You can ask shop staffs to open SIM card slot.</li>
-<li>Unlock the SIM card. <strong>PIN is on the white card that contains the SIM card. Also its phone number (Rufnummer) is on the same card.</strong></li>
-</ol>
-<h2 id="topping-up">Topping up</h2>
-<p>You can top up your SIM via a call, O<sub>2</sub> mobile app or O<sub>2</sub> website. I used O<sub>2</sub> website because I couldn&#39;t make a call with my MiFi and I don&#39;t have German AppStore&#39;s account. The website is only in German. So it&#39;s convenient to use Google Chrome&#39;s translation feature.</p>
-<ol>
-<li>Go to a drug store chain like dm and buy one of O<sub>2</sub> top-up cards like €20. They are usually put next to other prepaid cards like Apple, Google Play, Amazon, Zalando, etc. <strong>The actual top-up code is printed on your receipt</strong>. Or you can buy a top-up code online at <a href="https://www.aufladen.de/en">aufladen.de</a>. Thanks, Yan Yankowski for letting me know!</li>
-<li>Sign up for <a href="https://login.o2online.de/ngAuth/#/registration/mobile-registrierung">O<sub>2</sub> website</a>.</li>
-<li>Enter your phone number (Mobilfunknummer), preliminary password (Vorläufiges Kennwort) and new password (Neues Kennwort). The preliminary password is notified via SMS. If it&#39;s for your MiFi, you can access to the MiFi&#39;s admin page and read SMS.</li>
-<li>Go to Recharge tab (Mein O<sub>2</sub> -&gt; Mein Prepaid -&gt; Guthaben &amp; Aufladen) and enter your top-up card&#39;s code.</li>
-<li>(Optional) Choose your favorite plan (Tarif &amp; SIM-Karte).</li>
-</ol>
 
         </div>
       </div>
