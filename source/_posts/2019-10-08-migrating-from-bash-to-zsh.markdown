@@ -62,7 +62,7 @@ PROMPT+=' $(git_prompt_info)'
 PROMPT+=' %(?.$FG[154].$FG[009])€%{$reset_color%} '
 ```
 
-An oh-my-zsh theme defines a variable called `PROMPT`. Aside from [its syntax](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html), I was confused of how and when `PROMPT` was evaluated. In hindsight, it is a string that is built once when a session starts or `source .zshrc`. Every time a prompt is shown, `PROMPT` is evaluated, meaning escapes (starting with `%`) and variables in it are expanded.
+Each oh-my-zsh theme defines a variable called `PROMPT`. Aside from [its syntax](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html), I was not sure how and when `PROMPT` was evaluated. In hindsight, it is a string that is built once when a session starts or `source .zshrc`. Every time a prompt is shown, `PROMPT` is evaluated, meaning escapes (starting with `%`) and variables in it are expanded.
 
 ### Colors
 
