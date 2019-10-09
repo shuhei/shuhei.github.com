@@ -6,7 +6,7 @@ comments: false
 categories: [zsh]
 ---
 
-I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up this morning. The applications that I use seemed to work fine on Catalina. But bash started complaining when I started new sessions.
+I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining when I started new sessions.
 
 ```console
 The default interactive shell is now zsh.
@@ -14,7 +14,7 @@ To update your account to use zsh, please run `chsh -s /bin/zsh`.
 For more details, please visit https://support.apple.com/kb/HT208050.
 ```
 
-I asked whether I should migrate to zsh on Twitter. Three people said "yes" as if it were a common sense. OK, let's migrate.
+I asked whether I should migrate to zsh on Twitter. Three people said "yes" as if it was common sense. OK, let's migrate.
 
 ## Changing the default shell of tmux
 
@@ -62,7 +62,7 @@ PROMPT+=' $(git_prompt_info)'
 PROMPT+=' %(?.$FG[154].$FG[009])€%{$reset_color%} '
 ```
 
-An oh-my-zsh theme defines a variable called `PROPMT`. Aside from [its syntax](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html), I was confused of how and when `PROMPT` was evaluated. As a hindsight, it is a string that is built only once when a session starts or `source .zshrc`. Every time a prompt is shown, `PROMPT` is evaluated, meaning escapes (starting with `%`) and variables in it are expanded.
+An oh-my-zsh theme defines a variable called `PROMPT`. Aside from [its syntax](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html), I was confused of how and when `PROMPT` was evaluated. In hindsight, it is a string that is built once when a session starts or `source .zshrc`. Every time a prompt is shown, `PROMPT` is evaluated, meaning escapes (starting with `%`) and variables in it are expanded.
 
 ### Colors
 
@@ -72,7 +72,7 @@ At the beginning, I was baffled by how to specify colors. For example, the follo
 PROMPT='%{$fg[red]%}some red text%{$reset_color%}'
 ```
 
-`$fg[red]` has the code that makes its following text red. `$reset_color` has the code that resets the color. The tricky part is that they need to be surrounded by `%{` and `%}` in `PROMPT`.
+`$fg[red]` has the code that makes its following text red. `$reset_color` has the code that resets the color. The tricky part is that these codes need to be surrounded by `%{` and `%}` in `PROMPT`.
 
 [zsh provides handy variables for colors](https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117).
 
@@ -86,7 +86,7 @@ Also, [oh-my-zsh provides 256 colors](https://github.com/robbyrussell/oh-my-zsh/
 - `FG`: 256 colors for foreground like `FG[102]`.
 - `BG`: 256 colors for background like `BG[123]`.
 
-`spectrum_ls` and `spectrum_bls` commands show you all the 256 colors! Note that values in `FX`, `FG` and `BG` are already surrounded by `%{` and `%}` and we don't need to do it again.
+`spectrum_ls` and `spectrum_bls` commands show you all the 256 colors! Note that values in `FX`, `FG` and `BG` are already surrounded by `%{` and `%}`, and we don't need to do it again.
 
 We can examine those variables in the terminal.
 
@@ -132,7 +132,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 PROMPT="... $(git_prompt_info) ..."
 ```
 
-I thought it was done and went back to work. But when I switched git branch, the prompt stayed same. Why? I googled again. There was [an issue](https://github.com/robbyrussell/oh-my-zsh/issues/4826) for the exactly same problem. The `PROPMT` needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it's defined!
+I thought it was done and went back to work. But when I switched the git branch, the prompt stayed the same. Why? I googled again. There was [an issue](https://github.com/robbyrussell/oh-my-zsh/issues/4826) for the same problem. The `PROMPT` needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it's defined!
 
 ```bash
 PROMPT='... $(git_prompt_info) ...'
@@ -140,4 +140,4 @@ PROMPT='... $(git_prompt_info) ...'
 
 ## Conclusion
 
-So, I have migrated my terminal from bash to zsh. My initial motivation was passive (bash is deprecated in Catalina), but it's always fun to try something new (to me). Looking forward to trying cool zsh plugins and tricks!
+I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it's always fun to try something new (to me). I'm looking forward to trying cool zsh plugins and tricks!
