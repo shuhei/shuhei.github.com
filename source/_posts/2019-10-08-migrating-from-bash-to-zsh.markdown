@@ -8,7 +8,7 @@ categories: [Mac]
 
 I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up this morning. The applications that I use seemed to work fine on Catalina. But the shell started complaining.
 
-```
+```console
 The default interactive shell is now zsh.
 To update your account to use zsh, please run `chsh -s /bin/zsh`.
 For more details, please visit https://support.apple.com/kb/HT208050.
@@ -47,7 +47,7 @@ OK, zsh has a different format for prompt. oh-my-zsh provides a lot of nice prop
 We can put custom themes at
 `.oh-my-zsh/custom/themes`. I moved the `custom` directory to [my dotfiles repo](https://github.com/shuhei/dotfiles) and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.
 
-```
+```bash
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%})%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
@@ -61,11 +61,25 @@ PROMPT+=' %(?.%{$FG[154]%}.%{$FG[005]%})€%{$reset_color%} '
 
 ## Colors
 
-```
+```bash
 PROMPT="%{$fg[red]%}some red text%{$reset_color%}"
 ```
 
-We can also use more specific colors by `$FG[123]` I used `spectrum_ls` command to check available color codes.
+[zsh provides handy variables for colors](https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117).
+
+- `reset_color`
+- `fg`, `fg_bold`, `fg_no_bold`
+- `bg`, `bg_bold`, `bg_no_bold`
+
+The tricky part is that they need to be surrounded by `%{` and `%}` in `PROMPT`.
+
+Also, [oh-my-zsh provides 256 colors](https://github.com/robbyrussell/oh-my-zsh/blob/b09aed9cc7e2099f3e7f2aa2632660bc510f3e35/lib/spectrum.zsh).
+
+- `FX`
+- `FG`
+- `BG`
+
+`spectrum_ls` and `spectrum_bls` commands show you all the available colors!
 
 ## Exit code
 
@@ -75,14 +89,14 @@ With bash, [I had a trick to change the color of the prompt by the previous comm
 
 Surprisingly, [zsh prompt expression has a special syntax for switching prompt by exit code](https://stackoverflow.com/questions/4466245/customize-zshs-prompt-when-displaying-previous-command-exit-code). To be accurate, it's a combination of a ternary operator and `?` for exit code check.
 
-```
+```bash
 # Shows "foo" if the exit code is 0 and "bar" if the exit code is non-zero.
 %(?.foo.bar)
 ```
 
 The following expression shows the Euro sign in green if the exit code is 0 and in red if the exit code is non-zero.
 
-```
+```bash
 %(?.%{$FG[154]%}.%{$FG[005]%})€%{$reset_color%}
 ```
 
@@ -90,7 +104,7 @@ The following expression shows the Euro sign in green if the exit code is 0 and 
 
 `git_prompt_info` function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by `ZSH_THEME_GIT_PROMPT_*` variables.
 
-```
+```bash
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%})%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
@@ -101,7 +115,7 @@ PROMPT="... $(git_prompt_info) ..."
 
 I thought it was done and went back to work. But when I switched git branch, the prompt stayed same. Why? I googled again. There was [an issue](https://github.com/robbyrussell/oh-my-zsh/issues/4826) for the exactly same problem. The `PROPMT` needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it's defined!
 
-```
+```bash
 PROMPT='... $(git_prompt_info) ...'
 ```
 
