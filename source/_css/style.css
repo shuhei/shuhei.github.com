@@ -176,9 +176,8 @@ th, td {
 code {
   background-color: var(--code-bg-color);
   color: var(--code-text-color);
-  line-height: 1em;
-  padding: 0.1em 0.3em 0.2em;
-  font-size: 0.85em;
+  padding: 0.1em 0.3em 0.1em;
+  font-size: 0.9em;
   font-family: 'Fira Mono', monospace;
 }
 .code__filename {
