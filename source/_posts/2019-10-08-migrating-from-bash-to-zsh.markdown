@@ -6,7 +6,7 @@ comments: false
 categories: [zsh]
 ---
 
-I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.
+A few days ago, I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.
 
 ```console
 The default interactive shell is now zsh.
