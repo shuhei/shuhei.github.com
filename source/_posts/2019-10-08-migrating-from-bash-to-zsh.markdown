@@ -100,7 +100,7 @@ echo ${(kv)FG}
 
 ### Exit code
 
-With bash, [I had a trick to change the color of the prompt by the previous command's exit code](http://localhost:4000/blog/2015/10/18/color-prompt-by-exit-code/). How can I do this with zsh?
+With bash, [I had a trick to change the color of the prompt by the previous command's exit code](/blog/2015/10/18/color-prompt-by-exit-code/). How can I achieve this with zsh?
 
 ![Change color by exit code](/images/exit_code.png)
 
