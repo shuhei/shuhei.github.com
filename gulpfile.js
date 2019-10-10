@@ -15,6 +15,7 @@ const server = require("./plugins/server");
 const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
 const branch = require("./plugins/branch");
 const readCssFiles = require("./plugins/css");
+const summarize = require("./plugins/summarize");
 const renderer = require("./plugins/markdown-renderer");
 
 const siteConfig = require("./source/_config/site.json");
@@ -71,6 +72,9 @@ function buildPosts() {
     gulpIf("**/*.textile", textile()),
     cleanUrl(),
     branch(aggregator),
+    summarize({
+      hostname: config.hostname
+    }),
     layout(config),
     gulp.dest(path.join(publicDir, siteConfig.blogDir))
   );

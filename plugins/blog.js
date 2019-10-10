@@ -20,11 +20,13 @@ const writeFile = util.promisify(fs.writeFile);
 const PLUGIN_NAME = "blog";
 
 function renderPageContent(component, props, css) {
-  const { title, body } = component(props);
+  const { title, body, image, description } = component(props);
   return Layout({
     ...props,
     css,
     title,
+    image,
+    description,
     children: body
   });
 }

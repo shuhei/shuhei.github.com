@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "connect": "^3.3.4",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
