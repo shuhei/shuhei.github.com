@@ -14,7 +14,9 @@ const PagePage = ({ site, post }) => {
   `;
   return {
     title,
-    body
+    body,
+    image: post.image,
+    description: post.description
   };
 };
 

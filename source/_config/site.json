@@ -1,6 +1,7 @@
 {
   "title": "Shuhei Kagawa",
   "author": "Shuhei Kagawa",
+  "hostname": "https://shuheikagawa.com",
   "perPage": 3,
   "newPageExtension": "markdown",
   "blogDir": "blog",

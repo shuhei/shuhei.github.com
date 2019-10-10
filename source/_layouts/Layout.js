@@ -31,9 +31,36 @@ const preloads = [
   ...fonts.map(font => preloadFont(font))
 ].join("\n");
 
+function escapeAttr(str) {
+  return str
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function meta(name, content) {
+  if (!content) {
+    return null;
+  }
+  return `<meta name="${escapeAttr(name)}" content="${escapeAttr(content)}">`;
+}
+
 // It's important to have a <script> tag in head. Otherwise Google Analytics
 // inserts <script> tag after inline <script>.
-function Layout({ site, css, title, children }) {
+function Layout({ site, css, title, image, description, children }) {
+  const metaTags = [
+    meta("description", description),
+    meta("og:title", title),
+    meta("og:site_name", site.title),
+    meta("og:description", description),
+    meta("og:image", image),
+    meta("twitter:card", "summary"),
+    meta("twitter:site", "@shuheikagawa"),
+    meta("twitter:title", title),
+    meta("twitter:description", description),
+    meta("twitter:image", image)
+  ].filter(Boolean);
+
   return `<!doctype html>
   <html>
     <head>
@@ -47,11 +74,7 @@ function Layout({ site, css, title, children }) {
       ${googleAnalytics}
       <style>${css}</style>
       <link rel="stylesheet" href="${fontCSS}">
-      <meta name="og:title" content="${title}">
-      <meta name="og:site_name" content="${site.title}">
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:site" content="@shuheikagawa">
-      <meta name="twitter:title" content="${title}">
+      ${metaTags.join("\n")}
     </head>
     <body>
       <div class="container">
