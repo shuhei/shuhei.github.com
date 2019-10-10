@@ -47,6 +47,11 @@ function Layout({ site, css, title, children }) {
       ${googleAnalytics}
       <style>${css}</style>
       <link rel="stylesheet" href="${fontCSS}">
+      <meta name="og:title" content="${title}">
+      <meta name="og:site_name" content="${site.title}">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@shuheikagawa">
+      <meta name="twitter:title" content="${title}">
     </head>
     <body>
       <div class="container">
