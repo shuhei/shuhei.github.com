@@ -6,7 +6,7 @@ comments: true
 categories: [JavaScript, Three.js]
 ---
 
-[![Land Prices in Japan](http://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/webland/)
+[![Land Prices in Japan](https://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/webland/)
 
 [日本の地価を視覚化](/webland/)してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。
 
@@ -16,7 +16,7 @@ categories: [JavaScript, Three.js]
 
 データソースは[国土交通省の土地総合情報システム](http://www.land.mlit.go.jp/webland/)です。データの取得、加工は Ruby のスクリプトでやりました。JSON ファイルにしています。
 
-視覚化は Chrome Expreriments の [WebGL Globe](http://www.chromeexperiments.com/globe) のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。
+視覚化は Chrome Expreriments の [WebGL Globe](https://www.chromeexperiments.com/globe) のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。
 
 三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと [postprocessing](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing) といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。
 

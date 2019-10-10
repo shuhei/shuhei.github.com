@@ -4,11 +4,10 @@ title: "Surface"
 published: true
 date: 2010-07-10 19:03
 comments: true
-tags: 
 categories: []
 ---
-<a href="http://www.flickr.com/photos/branchiopoda/4764366632/" title="Surface by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4079/4764366632_14665c42ff.jpg" width="500" height="250" alt="Surface"></a>
-<a href="http://www.flickr.com/photos/branchiopoda/4779669194/" title="surface_3 by shuhei kagawa, on Flickr"><img src="http://farm5.static.flickr.com/4139/4779669194_19ce3b4159.jpg" width="500" height="250" alt="surface_3"></a>
+<a href="https://www.flickr.com/photos/branchiopoda/4764366632/" title="Surface by shuhei kagawa, on Flickr"><img src="https://farm5.static.flickr.com/4079/4764366632_14665c42ff.jpg" width="500" height="250" alt="Surface"></a>
+<a href="https://www.flickr.com/photos/branchiopoda/4779669194/" title="surface_3 by shuhei kagawa, on Flickr"><img src="https://farm5.static.flickr.com/4139/4779669194_19ce3b4159.jpg" width="500" height="250" alt="surface_3"></a>
 
 しばらく続けてみます。
 
