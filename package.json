@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
+    "@ibm/plex": "^3.0.0",
+    "canvas": "^2.6.0",
     "cheerio": "^1.0.0-rc.3",
     "connect": "^3.3.4",
     "eslint": "^6.5.1",
