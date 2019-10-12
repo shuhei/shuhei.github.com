@@ -32,7 +32,13 @@ function summarize(options) {
       const $ = cheerio.load(html);
 
       // Pick the first image src if exists.
-      if (!file.frontMatter.image) {
+      if (file.frontMatter.image) {
+        // eslint-disable-next-line no-param-reassign
+        file.frontMatter.image = normalizeUrl(
+          file.frontMatter.image,
+          options.hostname
+        );
+      } else {
         const $img = $("img");
         if ($img.length > 0) {
           const src = $img.attr("src");
