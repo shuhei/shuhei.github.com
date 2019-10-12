@@ -22,7 +22,7 @@ footer: true
 - [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
 - [Perfume Dev](/perfume_dev/): Perfume's choreography data visualized with Three.js.
 - [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
-- [Dymaxion Paint](/works/dymaxion-paint/): Something made with Three.js.
+- [Dymaxion Paint](/dymaxion-paint/): An interactive demo that I made with Three.js. You can paint on a dymaxion.
 - TenderLearn (Front-end and back-end development)
 - [Go Board](/goban.js/): A Go game implementation in JavaScript.
 - [My Tweet Stats](/works/tweet/): My tweet stats visualized with Protoviz.

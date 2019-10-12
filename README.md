@@ -5,8 +5,6 @@
 ```
 git clone {this repo}
 git checkout source
-git submodule init
-git submodule update
 
 yarn
 ```
