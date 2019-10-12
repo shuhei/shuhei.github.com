@@ -20,8 +20,8 @@ footer: true
 - [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
 - Contrib: Check your GitHub Contributions on your phone. Build with React.js and SVG.
 - [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
-- [Perfume Dev](/works/perfume_dev/): Perfume's choreography data visualized with Three.js.
-- [*** Books](/works/bookshelf/): Books in my bookshelf.
+- [Perfume Dev](/perfume_dev/): Perfume's choreography data visualized with Three.js.
+- [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
 - [Dymaxion Paint](/works/dymaxion-paint/): Something made with Three.js.
 - TenderLearn (Front-end and back-end development)
 - [Go Board](/works/goban.js/): A Go game implementation in JavaScript.
