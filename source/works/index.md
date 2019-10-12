@@ -24,7 +24,7 @@ footer: true
 - [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
 - [Dymaxion Paint](/works/dymaxion-paint/): Something made with Three.js.
 - TenderLearn (Front-end and back-end development)
-- [Go Board](/works/goban.js/): A Go game implementation in JavaScript.
+- [Go Board](/goban.js/): A Go game implementation in JavaScript.
 - [My Tweet Stats](/works/tweet/): My tweet stats visualized with Protoviz.
 - [Groundscape Design Institute](http://www.groundscape.jp/): A website for an association for civil engineers, architects, landscape designers and etc. Made with WordPress.
 - [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/): A website for an urban design workshop. Made with Flash and ActionScript 3.

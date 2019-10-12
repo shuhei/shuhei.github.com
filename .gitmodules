@@ -1,6 +1,3 @@
-[submodule "source/works/goban.js"]
-	path = source/works/goban.js
-	url = git://github.com/shuhei/goban.js.git
 [submodule "source/works/dymaxion-paint"]
 	path = source/works/dymaxion-paint
 	url = git://github.com/shuhei/dymaxion-paint.git
