@@ -1,5 +1,8 @@
+const path = require("path");
 const { obj: through } = require("through2");
+const Vinyl = require("vinyl");
 const cheerio = require("cheerio");
+const createTitleImage = require("./title-image");
 
 function normalizeUrl(url, hostname) {
   if (!url) {
@@ -26,7 +29,7 @@ function limitText(text, length) {
 }
 
 function summarize(options) {
-  function transform(file, enc, cb) {
+  async function transform(file, enc, cb) {
     if (file.frontMatter) {
       const html = file.contents.toString();
       const $ = cheerio.load(html);
@@ -42,9 +45,36 @@ function summarize(options) {
         const $img = $("img");
         if ($img.length > 0) {
           const src = $img.attr("src");
+          // TODO: Check the image dimension.
           const image = normalizeUrl(src, options.hostname);
           if (image) {
             Object.assign(file.frontMatter, { image });
+          }
+        } else {
+          try {
+            const buffer = await createTitleImage({
+              title: file.frontMatter.title,
+              subtitle: "shuheikagawa.com"
+            });
+            const imagePath = path.join(path.dirname(file.path), "title.png");
+            const imageFile = new Vinyl({
+              cwd: file.cwd,
+              base: file.base,
+              path: imagePath,
+              contents: buffer
+            });
+            const imageUrl = normalizeUrl(
+              `/blog/${imageFile.relative}`,
+              options.hostname
+            );
+            // eslint-disable-next-line no-param-reassign
+            file.frontMatter.image = imageUrl;
+            this.push(imageFile);
+          } catch (e) {
+            // TODO: Is this the right way to throw an error?
+            this.emit(e);
+            cb();
+            return;
           }
         }
       }
