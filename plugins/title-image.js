@@ -25,7 +25,7 @@ function getSubtitleFont(size) {
   return `normal ${size}px 'IBM Plex Sans'`;
 }
 
-function calculateLayout({ ctx, text, maxFontSize, rect }) {
+function fitTextIntoRectangle({ ctx, text, maxFontSize, rect }) {
   if (DEBUG) {
     ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
     ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
@@ -41,13 +41,13 @@ function calculateLayout({ ctx, text, maxFontSize, rect }) {
       let i;
       let size;
       let subtext;
-      // Pick words as long as they fit into the width.
+      // Remove words until the rest fit into the width.
       for (i = words.length; i >= 0; i -= 1) {
         subtext = words.slice(0, i).join(" ");
         size = ctx.measureText(subtext);
 
         if (DEBUG) {
-          ctx.strokeStyle = "rgba(0, 0, 0, 0.1)";
+          ctx.strokeStyle = "rgba(0, 0, 0, 0.2)";
           ctx.strokeText(subtext, rect.x, y + size.emHeightAscent);
         }
 
@@ -74,9 +74,8 @@ function calculateLayout({ ctx, text, maxFontSize, rect }) {
     const space = rect.y + rect.height - y;
     if (words.length === 0 && space >= 0) {
       // The title fits into the image with the font size.
-      // Let's draw the title.
+      // Vertically centering the text in the given rectangle.
       const centeredLines = lines.map(line => {
-        // Vertically centering the text in the given rectangle.
         return {
           ...line,
           y: line.y + space / 2
@@ -116,7 +115,7 @@ function createTitleImage({ title, subtitle }) {
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const { lines, fontSize } = calculateLayout({
+    const { lines, fontSize } = fitTextIntoRectangle({
       ctx,
       text: title,
       maxFontSize: titleFontSize,

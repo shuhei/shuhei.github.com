@@ -38,27 +38,26 @@ function escapeAttr(str) {
     .replace(/>/g, "&gt;");
 }
 
-function meta(name, content) {
+function meta(attrName, attrValue, content) {
   if (!content) {
     return null;
   }
-  return `<meta name="${escapeAttr(name)}" content="${escapeAttr(content)}">`;
+  const attr = escapeAttr(attrValue);
+  return `<meta ${attrName}="${attr}" content="${escapeAttr(content)}">`;
 }
 
 // It's important to have a <script> tag in head. Otherwise Google Analytics
 // inserts <script> tag after inline <script>.
 function Layout({ site, css, title, image, description, children }) {
   const metaTags = [
-    meta("description", description),
-    meta("og:title", title),
-    meta("og:site_name", site.title),
-    meta("og:description", description),
-    meta("og:image", image),
-    meta("twitter:card", "summary_large_image"),
-    meta("twitter:site", "@shuheikagawa"),
-    meta("twitter:title", title),
-    meta("twitter:description", description),
-    meta("twitter:image", image)
+    meta("name", "description", description),
+    meta("name", "twitter:card", "summary_large_image"),
+    meta("name", "twitter:site", "@shuheikagawa"),
+    // Open Graph metadata needs `property` instead of `name`.
+    meta("property", "og:title", title),
+    meta("property", "og:site_name", site.title),
+    meta("property", "og:description", description),
+    meta("property", "og:image", image)
   ].filter(Boolean);
 
   return `<!doctype html>
