@@ -54,7 +54,7 @@ function Layout({ site, css, title, image, description, children }) {
     meta("og:site_name", site.title),
     meta("og:description", description),
     meta("og:image", image),
-    meta("twitter:card", "summary"),
+    meta("twitter:card", "summary_large_image"),
     meta("twitter:site", "@shuheikagawa"),
     meta("twitter:title", title),
     meta("twitter:description", description),
