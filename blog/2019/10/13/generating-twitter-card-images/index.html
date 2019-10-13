@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v3/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="initial-scale=1">
-      <title>Generating Twitter Card images from blog post titles - Shuhei Kagawa</title>
+      <title>Generating Twitter Card Images from Blog Post Titles - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -25,7 +25,7 @@
       <meta name="description" content="Twitter Cards show links to your website bigger on the timeline. This post explains how I generated images for Twitter Cards from blog post titles using node-canvas, inspired by Hatena Blog.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Generating Twitter Card images from blog post titles - Shuhei Kagawa">
+<meta property="og:title" content="Generating Twitter Card Images from Blog Post Titles - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content="Twitter Cards show links to your website bigger on the timeline. This post explains how I generated images for Twitter Cards from blog post titles using node-canvas, inspired by Hatena Blog.">
 <meta property="og:image" content="https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/title.png">
@@ -56,7 +56,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card images from blog post titles</a>
+          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
         </h1>
         <div class="meta">
           <span class="date">Oct 13, 2019</span>
@@ -91,7 +91,7 @@
 <p>There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.</p>
 <p>The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):</p>
 <p><img src="/images/twitter-card-image-font-sizes.png" alt="Try smaller font sizes"></p>
-<p>I eventually came up with JavaScript code like this:</p>
+<p>I eventually came up with JavaScript code like this (<a href="https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js">the full code is on GitHub</a>):</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fitTextIntoRectangle</span>(<span class="hljs-params">{ ctx, text, maxFontSize, rect }</span>) </span>{
   <span class="hljs-comment">// Reduce font size until the title fits into the image.</span>
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> fontSize = maxFontSize; fontSize &gt; <span class="hljs-number">0</span>; fontSize -= <span class="hljs-number">1</span>) {

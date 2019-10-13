@@ -53,7 +53,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card images from blog post titles</a>
+          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
         </h1>
         <div class="meta">
           <span class="date">Oct 13, 2019</span>
@@ -88,7 +88,7 @@
 <p>There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.</p>
 <p>The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):</p>
 <p><img src="/images/twitter-card-image-font-sizes.png" alt="Try smaller font sizes"></p>
-<p>I eventually came up with JavaScript code like this:</p>
+<p>I eventually came up with JavaScript code like this (<a href="https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js">the full code is on GitHub</a>):</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fitTextIntoRectangle</span>(<span class="hljs-params">{ ctx, text, maxFontSize, rect }</span>) </span>{
   <span class="hljs-comment">// Reduce font size until the title fits into the image.</span>
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> fontSize = maxFontSize; fontSize &gt; <span class="hljs-number">0</span>; fontSize -= <span class="hljs-number">1</span>) {
