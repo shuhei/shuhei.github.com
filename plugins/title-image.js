@@ -101,7 +101,7 @@ function createTitleImage({ title, subtitle }) {
   const height = 357;
   const xPadding = 30;
   const paddingTop = 20;
-  const paddingBottom = 30;
+  const paddingBottom = 40;
   const paddingAboveSubtitle = 15;
   const titleFontSize = 50;
   const subtitleFontSize = 18;
