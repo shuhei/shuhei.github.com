@@ -27,7 +27,7 @@ Twitter's bots look for `<meta>` tags in your page. If your page has a certain m
 <meta name="twitter:image" content="https://test.com/images/foo.png" />
 ```
 
-Uh, they look a bit too platform-specific. `twitter:card` and `twitter:site` are specific to Twitter, but what about `twitter:title`, `twitter:description` and `twitter:image`? Twitter's bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. Be careful that the attribute name of Open Graph metadata is `property` instead of `name`!
+Uh, they look a bit too platform-specific. `twitter:card` and `twitter:site` are specific to Twitter, but what about `twitter:title`, `twitter:description` and `twitter:image`? Twitter's bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. So, we can use the `og:` tags instead of `twitter:` tags. Be careful that the attribute name of Open Graph metadata is `property` instead of `name`!
 
 ```html
 <meta property="og:title" content="My Blog Post" />
