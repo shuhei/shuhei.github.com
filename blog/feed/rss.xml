@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Wed, 09 Oct 2019 21:20:00 GMT</lastBuildDate><item><title>Migrating from bash to zsh</title><link>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 13 Oct 2019 14:59:00 GMT</lastBuildDate><item><title>Generating Twitter Card images from blog post titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
+<p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Well, I didn&#39;t know.</p>
+<p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
+<p><img src="/images/twitter-card.png" alt="Twitter Card preview"></p>
+<h2 id="meta-tags">Meta tags</h2>
+<p>Twitter&#39;s bots look for <code>&lt;meta&gt;</code> tags in your page. If your page has a certain meta tags, it shows a Twitter Cards for links to the page. Check <a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">the documentation</a> for more details. The <code>&lt;meta&gt;</code> tags look like these:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:card"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"summary_large_image"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:site"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"@your_twitter_account"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><p>Uh, they look a bit too platform-specific. <code>twitter:card</code> and <code>twitter:site</code> are specific to Twitter, but what about <code>twitter:title</code>, <code>twitter:description</code> and <code>twitter:image</code>? Twitter&#39;s bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. Be careful that the attribute name of Open Graph metadata is <code>property</code> instead of <code>name</code>!</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><h2 id="homemade-static-site-generator">Homemade static site generator</h2>
+<p><a href="https://github.com/shuhei/shuhei.github.com">My blog</a> is built with <a href="https://github.com/gulpjs/gulp">gulp</a> and some custom plugins and deployed to GitHub Pages. I started the blog with <a href="https://github.com/octopress/octopress">Octopress</a> several years ago and rewrote it with gulp when I was fascinated with gulp and JavaScript build tools. I once added React as a template engine and removed it later. Because of the history, its directory structure stays similar to the original one of Octopress. I write markdown files like <code>source/_posts/2019-10-13-foo.md</code> and the build system generates HTMLs like <code>/blog/2019/10/13/foo/index.html</code>.</p>
+<p>To add Open Graph meta tags, I wrote a gulp plugin. Each gulp plugin is a transform stream that consumes and produces <a href="https://github.com/gulpjs/vinyl">vinyl</a> file objects. First, I made the plugin to extract image URLs from HTML and added necessary meta tags to the HTML template for <code>&lt;head&gt;</code> tag. Now, posts with at least one image got Twitter Cards.</p>
+<h2 id="image-generation-and-text-wrapping">Image generation and text wrapping</h2>
+<p>Most of my posts didn&#39;t have any images, while Twitter Cards don&#39;t look great without images. But I&#39;m too lazy to create an image for each blog post manually.</p>
+<p>I found that <a href="https://hatenablog.com/">Hatena Blog</a>, a blogging platform in Japan, was <a href="https://twitter.com/search?q=%23%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0">generating images from blog post titles and descriptions</a>. It&#39;s a neat idea to promote blog posts without manual effort of blog authors. Can I replicate the image generation?</p>
+<p>I found that many image-generation npm packages were using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>. It provides the canvas API for Node.js and supports export options, including PNG. I decided to try that.</p>
+<p>The canvas API was easy to use for me, but it doesn&#39;t provide text wrapping. I needed to come up with a way to break texts into lines. As <a href="https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element">a Q&amp;A on Stackoverflow</a> suggested, I used <code>ctx.measureText(text)</code> to measure the width of the text and remove words until the subtext fits the given width. And do the same for the remaining text.</p>
+<p>The first line of this text wrapping algorithm is visualized as follows (it actually happens on the same line, but showing each try in its line for illustration):</p>
+<p><img src="/images/twitter-card-image-line-break.png" alt="Wrapping text"></p>
+<p>There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.</p>
+<p>The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):</p>
+<p><img src="/images/twitter-card-image-font-sizes.png" alt="Try smaller font sizes"></p>
+<p>I eventually came up with JavaScript code like this:</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fitTextIntoRectangle</span>(<span class="hljs-params">{ ctx, text, maxFontSize, rect }</span>) </span>{
+  <span class="hljs-comment">// Reduce font size until the title fits into the image.</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> fontSize = maxFontSize; fontSize &gt; <span class="hljs-number">0</span>; fontSize -= <span class="hljs-number">1</span>) {
+    ctx.font = getTitleFont(fontSize);
+    <span class="hljs-keyword">let</span> words = text.split(<span class="hljs-string">" "</span>);
+    <span class="hljs-keyword">let</span> { y } = rect;
+    <span class="hljs-keyword">const</span> lines = [];
+    <span class="hljs-keyword">while</span> (words.length &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">let</span> i;
+      <span class="hljs-keyword">let</span> size;
+      <span class="hljs-keyword">let</span> subtext;
+      <span class="hljs-comment">// Remove words until the rest fit into the width.</span>
+      <span class="hljs-keyword">for</span> (i = words.length; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">1</span>) {
+        subtext = words.slice(<span class="hljs-number">0</span>, i).join(<span class="hljs-string">" "</span>);
+        size = ctx.measureText(subtext);
+
+        <span class="hljs-keyword">if</span> (size.width &lt;= rect.width) {
+          <span class="hljs-keyword">break</span>;
+        }
+      }
+
+      <span class="hljs-keyword">if</span> (i &lt;= <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// A word doesn't fit into a line. Try a smaller font size.</span>
+        <span class="hljs-keyword">break</span>;
+      }
+
+      lines.push({
+        <span class="hljs-attr">text</span>: subtext,
+        <span class="hljs-attr">x</span>: rect.x,
+        <span class="hljs-attr">y</span>: y + size.emHeightAscent
+      });
+
+      words = words.slice(i);
+      y += size.emHeightAscent + size.emHeightDescent;
+    }
+
+    <span class="hljs-keyword">const</span> space = rect.y + rect.height - y;
+    <span class="hljs-keyword">if</span> (words.length === <span class="hljs-number">0</span> &amp;&amp; space &gt;= <span class="hljs-number">0</span>) {
+      <span class="hljs-comment">// The title fits into the image with the font size.</span>
+      <span class="hljs-comment">// Vertically centering the text in the given rectangle.</span>
+      <span class="hljs-keyword">const</span> centeredLines = lines.map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> {
+          ...line,
+          <span class="hljs-attr">y</span>: line.y + space / <span class="hljs-number">2</span>
+        };
+      });
+      <span class="hljs-keyword">return</span> {
+        fontSize,
+        <span class="hljs-attr">lines</span>: centeredLines
+      };
+    }
+  }
+
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+    <span class="hljs-string">`Text layout failed: The given text '<span class="hljs-subst">${text}</span>' did not fit into the given rectangle <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(
+      rect
+    )}</span> even with the smallest font size (1)`</span>
+  );
+}</code></pre><h2 id="font">Font</h2>
+<p>My website is using <a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a> via Google Fonts. I wanted to use the same font in the images. Fortunately, node-canvas provides an API to load fonts, and the font is available also on npm.</p>
+<pre><code class="hljs sh">yarn add -D @ibm/plex</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> { registerFont } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"canvas"</span>);
+
+registerFont(
+  <span class="hljs-string">"./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf"</span>,
+  {
+    <span class="hljs-attr">family</span>: <span class="hljs-string">"IBM Plex Sans"</span>,
+    <span class="hljs-attr">weight</span>: <span class="hljs-string">"bold"</span>
+  }
+);
+
+<span class="hljs-comment">// ...</span>
+
+ctx.font = <span class="hljs-string">"bold 30px 'IBM Plex Sans'"</span>;</code></pre><h2 id="done">Done!</h2>
+<p>So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!</p>
+
+]]></description><pubDate>Sun, 13 Oct 2019 14:59:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</guid></item><item><title>Migrating from bash to zsh</title><link>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</link><description><![CDATA[
 <p>A few days ago, I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.</p>
 <pre><code class="hljs console">The default interactive shell is now zsh.
 To update your account to use zsh, please run `chsh -s /bin/zsh`.
@@ -546,90 +649,4 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <li>Understand what you are measuring exactly, especially in a Docker container</li>
 </ul>
 
-]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item><item><title>HTTP request timeouts in JavaScript</title><link>https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</link><description><![CDATA[
-<p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
-<p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
-<h2 id="nodejs-httphttps">Node.js &quot;http&quot;/&quot;https&quot;</h2>
-<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
-<h3 id="timeouts-on-httprequest">Timeouts on <code>http.request()</code></h3>
-<p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
-<blockquote>
-<p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
-</blockquote>
-<p>So what does it actually do? It internally calls <code>net.createConnection()</code> with its <code>timeout</code> option, which eventually calls <code>socket.setTimeout()</code> before the socket starts connecting.</p>
-<p>There is also <a href="http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback"><code>http.ClientRequest.setTimeout()</code></a>. Its documentation says:</p>
-<blockquote>
-<p>Once a socket is assigned to this request and is connected <code>socket.setTimeout()</code> will be called.</p>
-</blockquote>
-<p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
-<p>Either of them doesn&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
-<p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
-<h3 id="netsocketsettimeout">net.Socket.setTimeout()</h3>
-<p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
-<blockquote>
-<p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default <code>net.Socket</code> does not have a timeout.</p>
-</blockquote>
-<p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
-<ol>
-<li>Start connecting</li>
-<li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
-<li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
-<li>Read data or write data</li>
-</ol>
-<p>When you call <code>socket.setTimeout()</code>, a timeout timer is created and restarted before connecting, after <code>lookup</code>, after <code>connect</code> and each data read &amp; write. So the <code>timeout</code> event is emitted on one of the following cases:</p>
-<ul>
-<li>DNS lookup doesn&#39;t finish in the given timeout</li>
-<li>TCP connection is not made in the given timeout after DNS lookup</li>
-<li>No data read or write in the given timeout after connection, previous data read or write</li>
-</ul>
-<p>This might be a bit counter-intuitive. Let&#39;s say you called <code>socket.setTimeout(300)</code> to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request &amp; response took more than 500 ms, <code>timeout</code> event is not emitted at all.</p>
-<p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
-<p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
-<p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in an HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
-<h3 id="http-keep-alive--tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
-<p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
-<p>So, how are they different?</p>
-<ul>
-<li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
-<li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
-</ul>
-<h3 id="so">So?</h3>
-<p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
-<h2 id="third-party-modules">Third-party modules</h2>
-<h3 id="request-module">&quot;request&quot; module</h3>
-<p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
-<blockquote>
-<p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
-</blockquote>
-<p>However, as far as I checked the implementation, <code>timeout</code> is not applied to the timing of response headers as of v2.81.1.</p>
-<p>Currently this module emits the two types of timeout errors:</p>
-<ul>
-<li><code>ESOCKETTIMEDOUT</code>: Emitted from <code>http.ClientRequest.setTimeout()</code> described above, which uses <code>socket.setTimeout()</code>.</li>
-<li><code>ETIMEDOUT</code>: Emitted when a connection is not established in the given timeout. It was applied to the timing of response headers before v2.76.0.</li>
-</ul>
-<p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
-<p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
-<h3 id="axios-module">&quot;axios&quot; module</h3>
-<p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
-<h2 id="browser-apis">Browser APIs</h2>
-<p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
-<h3 id="xmlhttprequest">XMLHttpRequest</h3>
-<p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not explain the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
-<h3 id="fetch">fetch()</h3>
-<p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
-  <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-      reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'timeout'</span>));
-    }, msecs);
-  });
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race([timeout, promise]);
-}
-
-withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
-  .then(doSomething)
-  .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
-
-]]></description><pubDate>Sun, 14 May 2017 21:31:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</guid></item></channel></rss>
+]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item></channel></rss>
