@@ -61,7 +61,7 @@ The algorithm for the first edge case is visualized as follows (it tries smaller
 
 ![Try smaller font sizes](/images/twitter-card-image-font-sizes.png)
 
-I eventually came up with JavaScript code like this:
+I eventually came up with JavaScript code like this ([the full code is on GitHub](https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js)):
 
 ```js
 function fitTextIntoRectangle({ ctx, text, maxFontSize, rect }) {
