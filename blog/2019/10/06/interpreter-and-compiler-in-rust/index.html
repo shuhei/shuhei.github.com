@@ -1,0 +1,173 @@
+<!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+			<link rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400" as="style">
+<link rel="preload" href="https://fonts.gstatic.com/s/firamono/v6/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v3/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v3/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <meta name="viewport" content="initial-scale=1">
+      <title>Writing an Interpreter and a Compiler in Rust - Shuhei Kagawa</title>
+      <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
+      <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
+      <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-309586-8', 'shuheikagawa.com');
+  ga('send', 'pageview');
+</script>
+      <style>.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment,.hljs-quote{color:#a0a1a7;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e45649}.hljs-literal{color:#0184bb}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#50a14f}.hljs-built_in,.hljs-class .hljs-title{color:#c18401}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#4078f2}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}:root{--bg-color:#f7f0e7;--text-color:#2d1e14;--highlight-color:#095ae8;--code-bg-color:#ffffff;--code-text-color:var(--text-color)}@media (prefers-color-scheme:dark){:root{--bg-color:#312b3a;--text-color:#f7f0e7;--highlight-color:#9dc8fb;--code-bg-color:#f7f0e7;--code-text-color:var(--bg-color)}}body{font-family:'IBM Plex Sans',sans-serif;background:#f7f0e7;background:var(--bg-color);color:#2d1e14;color:var(--text-color);padding:0;margin:0}.container{width:700px;padding:0 20px;margin:0 auto}a{color:#095ae8;color:var(--highlight-color);transition:color .5s ease}a:hover{opacity:.7}.header{padding:20px 0 10px;display:flex}.header__title{margin:0 10px 0 0;flex-grow:1}.header__title a{color:#095ae8;color:var(--highlight-color);text-decoration:none}.header__nav{flex-grow:0}.menu{list-style-position:outside;list-style-type:none;padding:15px 0;margin:0}.menu__item{display:inline-block;padding:0 0 0 20px}.menu__item a{color:#2d1e14;color:var(--text-color);text-decoration:none}.footer{padding:50px 0 30px;text-align:center}.title{font-size:42px;margin:0}.title a{color:#2d1e14;color:var(--text-color);text-decoration:none}.post,.post-list{padding:30px 0 20px}.post:not(:first-child):before{content:"* * *";font-weight:700;display:block;margin:0 auto 45px;font-size:50px;text-align:center}.post .meta{font-size:small;margin:10px 0 25px}.post-list .title{margin-bottom:10px}.post-list-item{line-height:1.6em;padding:10px 0;display:flex}.post-list-item__date{font-size:small;width:90px}.post-list-item__title{font-size:large;margin:0}.post-list-item__title a{text-decoration:none}.content{line-height:1.7em}.content img{max-width:100%}.social-buttons{margin:2em 0 0}.comments{margin-bottom:3em}ol,ul{list-style-position:outside;padding-left:1.4em}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}code{background-color:#fff;background-color:var(--code-bg-color);color:#2d1e14;color:var(--code-text-color);padding:.1em .3em .1em;font-size:.9em;font-family:'Fira Mono',monospace}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.hljs{line-height:1.5em;padding:15px 20px;overflow-x:auto;background-color:#fff!important;background-color:var(--code-bg-color)!important;-webkit-overflow-scrolling:touch}blockquote{border-left:5px solid #2d1e14;border-left:5px solid var(--text-color);font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin-top:20px;display:flex;justify-content:space-between}.pagination li{min-height:1em;width:33%}.pagination a{text-decoration:none}.pagination__prev-page a:before{content:"< "}.pagination__next-page{text-align:right}.pagination__next-page a:after{content:" >"}.pagination__archives{flex-grow:1;text-align:center}@media only screen and (max-width:767px){.container{width:auto}.header{display:block}.post,.post-list{padding-top:10px}.title{font-size:24px}.menu__item{padding:0 20px 0 0}.post-list-item{display:block}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px}}</style>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400">
+      <meta name="description" content="In the spring of this year, I read Writing an Interpreter in Go and Writing a Compiler in Go by Thorsten Ball, and implemented an interpreter and a compiler fro...">
+<meta name="og:title" content="Writing an Interpreter and a Compiler in Rust - Shuhei Kagawa">
+<meta name="og:site_name" content="Shuhei Kagawa">
+<meta name="og:description" content="In the spring of this year, I read Writing an Interpreter in Go and Writing a Compiler in Go by Thorsten Ball, and implemented an interpreter and a compiler fro...">
+<meta name="og:image" content="https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/title.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@shuheikagawa">
+<meta name="twitter:title" content="Writing an Interpreter and a Compiler in Rust - Shuhei Kagawa">
+<meta name="twitter:description" content="In the spring of this year, I read Writing an Interpreter in Go and Writing a Compiler in Go by Thorsten Ball, and implemented an interpreter and a compiler fro...">
+<meta name="twitter:image" content="https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/title.png">
+    </head>
+    <body>
+      <div class="container">
+        <header class="header">
+          <h1 class="header__title">
+            <a href="/">Shuhei Kagawa</a>
+          </h1>
+          <nav class="header__nav">
+            <ul class="menu">
+              <li class="menu__item">
+                <a href="/about/">About</a>
+              </li>
+              <li class="menu__item">
+                <a href="/works/">Works</a>
+              </li>
+              <li class="menu__item">
+                <a href="/blog/archives/">Archives</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <div class="main">
+          
+    
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
+          <a href=/blog/2019/10/06/interpreter-and-compiler-in-rust/>Writing an Interpreter and a Compiler in Rust</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 6, 2019</span>
+          - <span class="category">Rust</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>In the spring of this year, I read <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> by <a href="https://thorstenball.com/">Thorsten Ball</a>, and implemented <a href="https://github.com/shuhei/cymbal">an interpreter and a compiler</a> from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)</p>
+<p>The first book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> fibonacci = fn(x) {
+    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) {
+        <span class="hljs-number">0</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span>) {
+            <span class="hljs-number">1</span>
+        } <span class="hljs-keyword">else</span> {
+            fibonacci(x - <span class="hljs-number">1</span>) + fibonacci(x - <span class="hljs-number">2</span>)
+        }
+    }
+};
+fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <a href="https://compilerbook.com/">Writing a Compiler in Go</a> taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression <code>1 + 2</code> is compiled into:</p>
+<pre><code class="hljs rs"><span class="hljs-comment">// Constants</span>
+<span class="hljs-built_in">vec!</span>[
+    Object::Integer(<span class="hljs-number">1</span>),
+    Object::Integer(<span class="hljs-number">2</span>),
+]
+
+<span class="hljs-comment">// Instructions</span>
+<span class="hljs-built_in">vec!</span>[
+    make_u16(OpCode::Constant, <span class="hljs-number">0</span>),
+    make_u16(OpCode::Constant, <span class="hljs-number">1</span>),
+    make(OpCode::Add),
+    make(OpCode::Pop),
+]</code></pre><h2 id="how-i-started">How I started</h2>
+<p>I had bought <em>Writing an Interpreter in Go</em> more in 2017, but it had been sleeping in my bookshelf (<a href="https://en.wikipedia.org/wiki/Tsundoku">Tsundoku</a>). Recently, I wanted to relearn a little Go for work. I took the book from my bookshelf and started following the book—typing the code in Go. I did two chapters, and new Go syntaxes stopped appearing. I achieved my initial purpose—relearning Go—earlier than I thought because the book used a limited set of Go&#39;s language features. Then Rust came to my mind.</p>
+<p>Before starting this project, I had written two simple command-line tools with Rust (<a href="https://github.com/shuhei/colortty">colortty</a> and <a href="https://github.com/shuhei/ynan26">ynan26</a>), but they were too small to learn different aspects of Rust. I wanted to learn more by implementing something not trivial.</p>
+<h2 id="good-things-about-rust">Good things about Rust</h2>
+<p>First, I rewrote what I had written in Go with Rust and continued the rest of the book. The implementation in Rust was less redundant than the one in Go. Also, it was more type-safe thanks to <code>enum</code>s and <code>Result</code>. Especially <code>enum</code>s were perfect for AST (Abstract Syntax Tree) and evaluated objects.</p>
+<pre><code class="hljs rs"><span class="hljs-comment">// An example of AST</span>
+<span class="hljs-meta">#[derive(Debug, PartialEq, Clone, Hash, Eq)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Expression</span></span> {
+    Identifier(<span class="hljs-built_in">String</span>),
+    IntegerLiteral(<span class="hljs-built_in">i64</span>),
+    StringLiteral(<span class="hljs-built_in">String</span>),
+    Boolean(<span class="hljs-built_in">bool</span>),
+    Array(<span class="hljs-built_in">Vec</span>&lt;Expression&gt;),
+    Hash(HashLiteral),
+    Index(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
+    Prefix(Prefix, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
+    Infix(Infix, <span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
+    If(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, BlockStatement, <span class="hljs-built_in">Option</span>&lt;BlockStatement&gt;),
+    FunctionLiteral(<span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">String</span>&gt;, BlockStatement),
+    Call(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Vec</span>&lt;Expression&gt;),
+}</code></pre><p>However, harder parts came later when the compiler and the virtual machine grew complex.</p>
+<h2 id="nested-symbol-tables-were-a-linked-list">Nested symbol tables were a linked list</h2>
+<p>To implement nested scopes, the Compiler Book uses self-recursive <code>struct</code>s for nested symbol tables. I was struggling with their ownership. I tried <code>Rc</code> and <code>RefCell</code>, but still was not able to get through them.</p>
+<p>Then, I went to Rust Hack and Learn—a local meetup at Mozilla Berlin office—and asked how to get over ownership rules. One person (sorry, I didn&#39;t ask his name!) recommended me a book <a href="https://rust-unofficial.github.io/too-many-lists/">Learn Rust With Entirely Too Many Linked Lists </a>.</p>
+<p>The book introduces several versions of linked list implementations in Rust even though its precaution is not to implement linked lists in Rust. It had some techniques that I had recently learned, and much more. After a while, I realized that I had been trying to implement a linked list. Then I changed the self-recursive <code>struct</code> to a <code>Vec</code>, and it solved most of my headaches. So, the book&#39;s precaution was right. Don&#39;t implement a liked list.</p>
+<pre><code class="hljs rs"><span class="hljs-comment">// Before</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolTable</span></span> {
+  store: HashMap&lt;<span class="hljs-built_in">String</span>, Symbol&gt;,
+
+  <span class="hljs-comment">// This is a linked list!</span>
+  outer: <span class="hljs-built_in">Option</span>&lt;SymbolTable&gt;;
+}
+
+<span class="hljs-comment">// After</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolStore</span></span> {
+  store: HashMap&lt;<span class="hljs-built_in">String</span>, Symbol&gt;,
+}
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolTable</span></span> {
+  current: SymbolLayer;
+  outers: <span class="hljs-built_in">Vec</span>&lt;SymbolStore&gt;;
+}</code></pre><h2 id="i-learned-basics-of-how-programs-work-at-low-level">I learned basics of how programs work at low-level</h2>
+<p>Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my previous projects. But I hadn&#39;t had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.</p>
+<p>Also, the knowledge about stack was useful to understand some of the concepts of Rust itself. Rust&#39;s compiler to know the sizes of types because it needs to generate machine code that allocates values of the types on the stack.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.</p>
+<p><a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> are great. I liked their hands-on approach with many unit tests.</p>
+
+        </div>
+      </div>
+    </div>
+  
+    
+  <div class="comments">
+    <div id="disqus_thread" />
+    <script>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shuheikagawa.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+  
+        </div>
+        <footer class="footer">
+          © Shuhei Kagawa
+        </footer>
+      </div>
+    </body>
+  </html>
