@@ -73,9 +73,7 @@ function summarize(options) {
             file.frontMatter.image = imageUrl;
             this.push(imageFile);
           } catch (e) {
-            // TODO: Is this the right way to throw an error?
-            this.emit(e);
-            cb();
+            cb(e);
             return;
           }
         }

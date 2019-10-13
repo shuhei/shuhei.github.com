@@ -62,13 +62,17 @@ function calculateLayout({ ctx, text, maxFontSize, rect }) {
     if (words.length === 0 && space >= 0) {
       // The title fits into the image with the font size.
       // Let's draw the title.
-      return lines.map(line => {
+      const centeredLines = lines.map(line => {
         // Vertically centering the text in the given rectangle.
         return {
           ...line,
           y: line.y + space / 2
         };
       });
+      return {
+        fontSize,
+        lines: centeredLines
+      };
     }
   }
 
@@ -98,7 +102,7 @@ function createTitleImage({ title, subtitle }) {
 
     const { lines, fontSize } = calculateLayout({
       ctx,
-      title,
+      text: title,
       maxFontSize: titleFontSize,
       rect: {
         x: padding,
@@ -110,8 +114,8 @@ function createTitleImage({ title, subtitle }) {
 
     ctx.fillStyle = blueColor;
     ctx.font = getTitleFont(fontSize);
-    lines.forEach(({ text, yPosition }) => {
-      ctx.fillText(text, padding, yPosition);
+    lines.forEach(({ text, x, y }) => {
+      ctx.fillText(text, x, y);
     });
 
     ctx.fillStyle = darkColor;
