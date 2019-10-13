@@ -8,7 +8,7 @@ image: auto
 categories: [JavaScript]
 ---
 
-Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn't show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Well, I didn't know.
+Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn't show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn't know.
 
 [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards) give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using [node-canvas](https://github.com/Automattic/node-canvas), inspired by [Hatena Blog](https://hatenablog.com/).
 
