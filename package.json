@@ -61,6 +61,7 @@
     "strftime": "^0.10.0",
     "textile-js": "^2.0.2",
     "through2": "^3.0.1",
+    "vinyl": "^2.2.0",
     "yargs": "^14.0.0"
   },
   "gh-pages": {
