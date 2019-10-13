@@ -1,4 +1,5 @@
 const path = require("path");
+const { parse: parseUrl } = require("url");
 const { obj: through } = require("through2");
 const Vinyl = require("vinyl");
 const cheerio = require("cheerio");
@@ -51,10 +52,11 @@ function summarize(options) {
             Object.assign(file.frontMatter, { image });
           }
         } else {
+          const subtitle = parseUrl(options.hostname).hostname;
           try {
             const buffer = await createTitleImage({
               title: file.frontMatter.title,
-              subtitle: "shuheikagawa.com"
+              subtitle
             });
             const imagePath = path.join(path.dirname(file.path), "title.png");
             const imageFile = new Vinyl({
@@ -64,7 +66,7 @@ function summarize(options) {
               contents: buffer
             });
             const imageUrl = normalizeUrl(
-              `/blog/${imageFile.relative}`,
+              path.join("/", options.blogDir, imageFile.relative),
               options.hostname
             );
             // eslint-disable-next-line no-param-reassign

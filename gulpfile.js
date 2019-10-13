@@ -73,7 +73,8 @@ function buildPosts() {
     cleanUrl(),
     branch(aggregator),
     summarize({
-      hostname: config.hostname
+      hostname: siteConfig.hostname,
+      blogDir: siteConfig.blogDir
     }),
     layout(config),
     gulp.dest(path.join(publicDir, siteConfig.blogDir))
