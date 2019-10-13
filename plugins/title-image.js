@@ -15,6 +15,8 @@ registerFont(path.join(sansDir, "IBMPlexSans-Regular.otf"), {
   weight: "normal"
 });
 
+const DEBUG = !!process.env.DEBUG_TITLE_IMAGE;
+
 function getTitleFont(size) {
   return `bold ${size}px 'IBM Plex Sans'`;
 }
@@ -24,6 +26,11 @@ function getSubtitleFont(size) {
 }
 
 function calculateLayout({ ctx, text, maxFontSize, rect }) {
+  if (DEBUG) {
+    ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
+    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+  }
+
   // Try font sizes from a big one until the title fits into the image.
   for (let fontSize = maxFontSize; fontSize > 0; fontSize -= 1) {
     ctx.font = getTitleFont(fontSize);
@@ -38,12 +45,18 @@ function calculateLayout({ ctx, text, maxFontSize, rect }) {
       for (i = words.length; i >= 0; i -= 1) {
         subtext = words.slice(0, i).join(" ");
         size = ctx.measureText(subtext);
+
+        if (DEBUG) {
+          ctx.strokeStyle = "rgba(0, 0, 0, 0.1)";
+          ctx.strokeText(subtext, rect.x, y + size.emHeightAscent);
+        }
+
         if (size.width <= rect.width) {
           break;
         }
       }
 
-      if (i === 0) {
+      if (i <= 0) {
         // A word doesn't fit into a line. Try a smaller font size.
         break;
       }
@@ -84,9 +97,12 @@ function calculateLayout({ ctx, text, maxFontSize, rect }) {
 }
 
 function createTitleImage({ title, subtitle }) {
-  const width = 600;
-  const height = 300;
-  const padding = 20;
+  const width = 680;
+  const height = 357;
+  const xPadding = 30;
+  const paddingTop = 20;
+  const paddingBottom = 30;
+  const paddingAboveSubtitle = 15;
   const titleFontSize = 50;
   const subtitleFontSize = 18;
   const backgroundColor = "#f7f0e7";
@@ -105,10 +121,15 @@ function createTitleImage({ title, subtitle }) {
       text: title,
       maxFontSize: titleFontSize,
       rect: {
-        x: padding,
-        y: padding,
-        width: width - padding * 2,
-        height: height - padding * 2.5 - subtitleFontSize
+        x: xPadding,
+        y: paddingTop,
+        width: width - xPadding * 2,
+        height:
+          height -
+          paddingTop -
+          paddingAboveSubtitle -
+          subtitleFontSize -
+          paddingBottom
       }
     });
 
@@ -120,7 +141,7 @@ function createTitleImage({ title, subtitle }) {
 
     ctx.fillStyle = darkColor;
     ctx.font = getSubtitleFont(subtitleFontSize);
-    ctx.fillText(subtitle, padding, height - padding);
+    ctx.fillText(subtitle, xPadding, height - paddingBottom);
 
     canvas.toBuffer((err, result) => {
       if (err) {
