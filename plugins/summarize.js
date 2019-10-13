@@ -36,7 +36,7 @@ function summarize(options) {
       const $ = cheerio.load(html);
 
       // Pick the first image src if exists.
-      if (file.frontMatter.image) {
+      if (file.frontMatter.image && file.frontMatter.image !== "auto") {
         // eslint-disable-next-line no-param-reassign
         file.frontMatter.image = normalizeUrl(
           file.frontMatter.image,
@@ -44,7 +44,7 @@ function summarize(options) {
         );
       } else {
         const $img = $("img");
-        if ($img.length > 0) {
+        if ($img.length > 0 && file.frontMatter.image !== "auto") {
           const src = $img.attr("src");
           // TODO: Check the image dimension.
           const image = normalizeUrl(src, options.hostname);
