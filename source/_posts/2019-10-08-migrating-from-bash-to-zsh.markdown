@@ -45,7 +45,7 @@ Then I installed [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and copi
 
 But zsh has a different format for prompt. oh-my-zsh provides a lot of nice prompt themes, but I wanted to keep using the one that I had configured with bash. Let's migrate it to zsh.
 
-oh-my-zsh has a directory for custom themes (`.oh-my-zsh/custom/themes`). I moved the `custom` directory to [my dotfiles repo](https://github.com/shuhei/dotfiles) and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.
+~~oh-my-zsh has a directory for custom themes (`.oh-my-zsh/custom/themes`). I moved the `custom` directory to [my dotfiles repo](https://github.com/shuhei/dotfiles) and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.~~ [Update on Oct 24, 2019] I realized that this symlink approach prevents updates of oh-my-zsh because it modifies the files in the git local clone of oh-my-zsh. [The official customization guide](https://github.com/robbyrussell/oh-my-zsh/wiki/Customization) recommends to use `ZSH_CUSTOM` variable to specify the location of a custom directory. Now I'm using `ZSH_CUSTOM` to point to a directory in my dotfiles repo.
 
 Eventually, I came up with a theme like this:
 
