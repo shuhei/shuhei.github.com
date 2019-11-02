@@ -9,16 +9,16 @@ const googleAnalytics = `<script>
 </script>`;
 
 const fontCSS =
-  "https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400";
+  "https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400&display=swap";
 
 // Preload woff2 because all browsers that support preload support woff2.
 const fonts = [
   // Fira Mono 400
-  "https://fonts.gstatic.com/s/firamono/v6/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2",
+  "https://fonts.gstatic.com/s/firamono/v8/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2",
   // IBM Plex Sans 400
-  "https://fonts.gstatic.com/s/ibmplexsans/v3/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2",
+  "https://fonts.gstatic.com/s/ibmplexsans/v7/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2",
   // IBM Plex Sans 700
-  "https://fonts.gstatic.com/s/ibmplexsans/v3/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2"
+  "https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2"
 ];
 
 function preloadFont(href) {
