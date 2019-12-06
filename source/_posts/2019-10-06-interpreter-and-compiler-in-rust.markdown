@@ -92,7 +92,7 @@ struct SymbolTable {
 }
 
 // After
-struct SymbolStore {
+struct SymbolLayer {
   store: HashMap<String, Symbol>,
 }
 
