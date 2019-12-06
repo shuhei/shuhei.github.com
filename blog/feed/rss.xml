@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 13 Oct 2019 14:59:00 GMT</lastBuildDate><item><title>Generating Twitter Card Images from Blog Post Titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 13 Oct 2019 07:59:00 GMT</lastBuildDate><item><title>Generating Twitter Card Images from Blog Post Titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
 <p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.</p>
 <p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
 <p><img src="/images/twitter-card.png" alt="Twitter Card preview"></p>
@@ -101,7 +101,7 @@ registerFont(
 ctx.font = <span class="hljs-string">"bold 30px 'IBM Plex Sans'"</span>;</code></pre><h2 id="done">Done!</h2>
 <p>So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!</p>
 
-]]></description><pubDate>Sun, 13 Oct 2019 14:59:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</guid></item><item><title>Migrating from bash to zsh</title><link>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</link><description><![CDATA[
+]]></description><pubDate>Sun, 13 Oct 2019 07:59:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</guid></item><item><title>Migrating from bash to zsh</title><link>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</link><description><![CDATA[
 <p>A few days ago, I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.</p>
 <pre><code class="hljs console">The default interactive shell is now zsh.
 To update your account to use zsh, please run `chsh -s /bin/zsh`.
@@ -165,7 +165,7 @@ PROMPT=<span class="hljs-string">"... <span class="hljs-variable">$(git_prompt_i
 <pre><code class="hljs bash">PROMPT=<span class="hljs-string">'... $(git_prompt_info) ...'</span></code></pre><h2 id="conclusion">Conclusion</h2>
 <p>I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it&#39;s always fun to try something new (to me). I&#39;m looking forward to trying cool zsh plugins and tricks!</p>
 
-]]></description><pubDate>Wed, 09 Oct 2019 21:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</guid></item><item><title>Writing an Interpreter and a Compiler in Rust</title><link>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</link><description><![CDATA[
+]]></description><pubDate>Wed, 09 Oct 2019 14:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</guid></item><item><title>Writing an Interpreter and a Compiler in Rust</title><link>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</link><description><![CDATA[
 <p>In the spring of this year, I read <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> by <a href="https://thorstenball.com/">Thorsten Ball</a>, and implemented <a href="https://github.com/shuhei/cymbal">an interpreter and a compiler</a> from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)</p>
 <p>The first book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> fibonacci = fn(x) {
@@ -226,7 +226,7 @@ fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <
 }
 
 <span class="hljs-comment">// After</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolStore</span></span> {
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolLayer</span></span> {
   store: HashMap&lt;<span class="hljs-built_in">String</span>, Symbol&gt;,
 }
 
@@ -240,7 +240,7 @@ fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <
 <p>It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.</p>
 <p><a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> are great. I liked their hands-on approach with many unit tests.</p>
 
-]]></description><pubDate>Sun, 06 Oct 2019 21:32:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</guid></item><item><title>DNS Polling for Reliability</title><link>https://shuheikagawa.com/blog/2019/04/30/dns-polling/</link><description><![CDATA[
+]]></description><pubDate>Sun, 06 Oct 2019 14:32:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</guid></item><item><title>DNS Polling for Reliability</title><link>https://shuheikagawa.com/blog/2019/04/30/dns-polling/</link><description><![CDATA[
 <p>In December 2018, I wrote a package to poll and cache DNS records, <a href="https://github.com/shuhei/pollen">pollen</a>, as a mitigation for incidents at work.</p>
 <p>My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and <code>tcpdump</code>, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.</p>
 <h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
@@ -347,7 +347,7 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 </ul>
 <p>Also, don&#39;t forget to monitor DNS lookups!</p>
 
-]]></description><pubDate>Mon, 29 Apr 2019 22:14:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/30/dns-polling/</guid></item><item><title>Check Your server.keepAliveTimeout</title><link>https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</link><description><![CDATA[
+]]></description><pubDate>Mon, 29 Apr 2019 15:14:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/30/dns-polling/</guid></item><item><title>Check Your server.keepAliveTimeout</title><link>https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</link><description><![CDATA[
 <p>One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (<code>HTTPCode_ELB_502_Count</code>). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn&#39;t bothered investigating it for a while.</p>
 <pre><code class="hljs ">clients -&gt; AWS ELB -&gt; Node.js server</code></pre><p>I recently came across a post, <a href="https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4">A tale of unexpected ELB behavior.</a> It says ELB pre-connects to backend servers, and it can cause a race condition where ELB thinks a connection is open, but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found <a href="https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340">Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer</a>. It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server&#39;s keep alive idle timeout longer than the load balancer&#39;s timeout. This advice seemed applicable even to AWS ELB and Node.js server.</p>
 <p>According to <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout">AWS documentation</a>, Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:</p>
@@ -367,7 +367,7 @@ server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hlj
 <p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
 <pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;
 server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-number">1000</span>; <span class="hljs-comment">// This should be bigger than `keepAliveTimeout + your server's expected response time`</span></code></pre>
-]]></description><pubDate>Thu, 25 Apr 2019 21:29:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</guid></item><item><title>2018 in Review</title><link>https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</link><description><![CDATA[
+]]></description><pubDate>Thu, 25 Apr 2019 14:29:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</guid></item><item><title>2018 in Review</title><link>https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</link><description><![CDATA[
 <p>Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!</p>
 <p><img src="/images/tempelhof.jpg" alt="Sunset at Tempelhof in April"></p>
 <h2 id="move">Move</h2>
@@ -404,7 +404,7 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <h2 id="2019">2019</h2>
 <p>In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.</p>
 
-]]></description><pubDate>Tue, 19 Feb 2019 00:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</guid></item><item><title>Histogram for Time-Series Metrics on Node.js</title><link>https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</link><description><![CDATA[
+]]></description><pubDate>Mon, 18 Feb 2019 16:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</guid></item><item><title>Histogram for Time-Series Metrics on Node.js</title><link>https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</link><description><![CDATA[
 <h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
 <p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
 <p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
@@ -474,7 +474,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
 
-]]></description><pubDate>Sat, 29 Dec 2018 21:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
+]]></description><pubDate>Sat, 29 Dec 2018 13:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
 <p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
 <h2 id="background">Background</h2>
 <p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
@@ -556,7 +556,7 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>
 <p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
 <p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
 
-]]></description><pubDate>Sun, 16 Sep 2018 08:56:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</guid></item><item><title>2017 in Review</title><link>https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</link><description><![CDATA[
+]]></description><pubDate>Sun, 16 Sep 2018 01:56:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</guid></item><item><title>2017 in Review</title><link>https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</link><description><![CDATA[
 <h2 id="berlin">Berlin</h2>
 <p>I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.</p>
 <p>I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.</p>
@@ -579,7 +579,7 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>
 <h2 id="then">.then()</h2>
 <p>After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!</p>
 
-]]></description><pubDate>Mon, 25 Dec 2017 21:54:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</guid></item><item><title>Getting Memory Usage in Linux and Docker</title><link>https://shuheikagawa.com/blog/2017/05/27/memory-usage/</link><description><![CDATA[
+]]></description><pubDate>Mon, 25 Dec 2017 13:54:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</guid></item><item><title>Getting Memory Usage in Linux and Docker</title><link>https://shuheikagawa.com/blog/2017/05/27/memory-usage/</link><description><![CDATA[
 <p>Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> os = <span class="hljs-built_in">require</span>(<span class="hljs-string">'os'</span>);
 
@@ -649,4 +649,4 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 <li>Understand what you are measuring exactly, especially in a Docker container</li>
 </ul>
 
-]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item></channel></rss>
+]]></description><pubDate>Sun, 28 May 2017 07:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item></channel></rss>
