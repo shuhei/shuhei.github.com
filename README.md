@@ -2,7 +2,7 @@
 
 ## Setup
 
-```
+```sh
 git clone {this repo}
 git checkout source
 
@@ -13,19 +13,19 @@ yarn
 
 To add a post:
 
-```
+```sh
 yarn newpost 'Hello World!'
 ```
 
 To add a page:
 
-```
+```sh
 yarn newpage 'foo'
 ```
 
 ## Start a dev server
 
-```
+```sh
 yarn start
 ```
 
@@ -33,6 +33,6 @@ yarn start
 
 Deploy to GitHub Pages.
 
-```
+```sh
 yarn deploy
 ```
