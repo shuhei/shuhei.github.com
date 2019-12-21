@@ -48,3 +48,18 @@ Deploy to GitHub Pages.
 ```sh
 yarn deploy
 ```
+
+## Configuration
+
+- hosting: GitHub Pages
+- domain registrar: Google Domains
+- DNS: Cloudflare
+- CDN: Cloudflare
+
+The domain `shuheikagawa.com` is resolved to IP addresses of Cloudflare CDN. Cloudflare CDN serves static contents whose origin is GitHub Pages.
+
+Other services:
+
+- blog comments: Disqus
+- web fonts: Google Fonts
+- analytics: Google Analytics
