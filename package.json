@@ -11,7 +11,8 @@
     "lint": "eslint gulpfile.js plugins source/_layouts",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename",
-    "test": "jest"
+    "test": "jest",
+    "test-text-images": "node plugins/manual-tests/title-image.js"
   },
   "repository": {
     "type": "git",
