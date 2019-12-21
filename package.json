@@ -9,6 +9,7 @@
     "clean": "rm -rf public",
     "deploy": "yarn clean && yarn build && gh-pages -d public -b master",
     "lint": "eslint gulpfile.js plugins source/_layouts",
+    "serve": "gulp serve",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename",
     "test": "jest",

@@ -11,7 +11,7 @@ const frontMatter = require("gulp-front-matter");
 const textile = require("gulp-textile");
 
 const gulpIf = require("gulp-if");
-const server = require("./plugins/server");
+const startServer = require("./plugins/serve");
 const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
 const branch = require("./plugins/branch");
 const readCssFiles = require("./plugins/css");
@@ -103,23 +103,20 @@ function newpage() {
 
 const build = gulp.parallel(copy, posts);
 
-// Launch a dev server and watch changes.
-function startWatch() {
-  server(publicDir).listen(4000, err => {
-    if (err) {
-      gutil.log(err);
-      return;
-    }
-    gutil.log("Listening on port 4000");
-    gulp.watch(
-      ["./source/**/*.*", "!./source/_{css,layouts,posts}/**/*.*"],
-      copy
-    );
-    // TODO: Reload layout JavaScript files when they are changed.
-    gulp.watch("./source/_{posts,layouts,css}/*.*", build);
-  });
+function serve() {
+  return startServer(publicDir);
 }
-const watch = gulp.series(build, startWatch);
+
+function startWatching() {
+  gulp.watch(
+    ["./source/**/*.*", "!./source/_{css,layouts,posts}/**/*.*"],
+    copy
+  );
+  // TODO: Reload layout JavaScript files when they are changed.
+  gulp.watch("./source/_{posts,layouts,css}/*.*", build);
+}
+
+const watch = gulp.series(build, serve, startWatching);
 
 module.exports = {
   copy,
@@ -128,5 +125,6 @@ module.exports = {
   newpage,
   build,
   watch,
+  serve,
   default: build
 };
