@@ -20,24 +20,17 @@ jobs:
         run: |
           npm install -g yarn
 
-      # Cache yarn's cache directory
-      # https://github.com/actions/cache/blob/master/examples.md#node---yarn
-      - name: get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
+      # Cypress action caches dependencies too.
+      - name: install, build and E2E tests
+        uses: cypress-io/github-action@v1
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          build: yarn build
+          start: yarn serve
+          wait-on: "http://localhost:4000"
 
-      - name: install, build, and test
+      - name: lint and unit test
         run: |
-          yarn install --frozen-lockfile
           yarn lint
           yarn test
-          yarn build
-          yarn e2e
         env:
           CI: true
