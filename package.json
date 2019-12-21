@@ -12,7 +12,9 @@
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename",
     "test": "jest",
-    "test-text-images": "node plugins/manual-tests/title-image.js"
+    "test-text-images": "node plugins/manual-tests/title-image.js",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "canvas": "^2.6.0",
     "cheerio": "^1.0.0-rc.3",
     "connect": "^3.3.4",
+    "cypress": "^3.8.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",
