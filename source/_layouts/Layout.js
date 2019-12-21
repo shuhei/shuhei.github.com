@@ -61,7 +61,7 @@ function Layout({ site, css, title, image, description, children }) {
   ].filter(Boolean);
 
   return `<!doctype html>
-  <html>
+  <html lang="en">
     <head>
       <meta charset="utf-8">
 			${preloads}
