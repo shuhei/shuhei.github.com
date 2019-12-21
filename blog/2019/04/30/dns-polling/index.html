@@ -1,5 +1,5 @@
 <!doctype html>
-  <html>
+  <html lang="en">
     <head>
       <meta charset="utf-8">
 			<link rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400&display=swap" as="style">
@@ -114,7 +114,7 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
   hostname,
   <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
   <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
-  lookup: dnsPolling.getLookup(hostname),
+  <span class="hljs-attr">lookup</span>: dnsPolling.getLookup(hostname),
   agent,
 });</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
 <p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
