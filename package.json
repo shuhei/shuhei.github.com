@@ -13,8 +13,8 @@
     "newpage": "gulp newpage --filename",
     "test": "jest",
     "test-text-images": "node plugins/manual-tests/title-image.js",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "e2e": "cypress run",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
