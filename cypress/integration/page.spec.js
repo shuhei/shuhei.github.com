@@ -1,7 +1,7 @@
 /* global cy */
 describe("shuheikagawa.com", () => {
   it("opens top page", () => {
-    cy.visit("https://shuheikagawa.com/");
+    cy.visit("http://localhost:4000/");
   });
 
   it("opens about page", () => {
