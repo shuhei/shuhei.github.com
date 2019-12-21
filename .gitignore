@@ -14,4 +14,3 @@ vendor
 node_modules
 dist
 plugins/manual-tests/images
-cypress/integration/examples
