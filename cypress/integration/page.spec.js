@@ -9,11 +9,11 @@ Cypress.on("window:before:load", win => {
   });
 });
 
-const host = "http://localhost:4000";
+const host = Cypress.config("baseUrl");
 
 describe("shuheikagawa.com", () => {
   beforeEach(() => {
-    cy.visit(`${host}/`);
+    cy.visit("/");
   });
 
   it("sends a page view event to Google Analtics", () => {

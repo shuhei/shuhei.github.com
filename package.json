@@ -15,7 +15,9 @@
     "test": "jest",
     "test-text-images": "node plugins/manual-tests/title-image.js",
     "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run:live": "Cypress_baseUrl=https://shuheikagawa.com cypress run",
+    "cy:run:open": "Cypress_baseUrl=https://shuheikagawa.com cypress open"
   },
   "repository": {
     "type": "git",
