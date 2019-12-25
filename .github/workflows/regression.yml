@@ -1,0 +1,27 @@
+name: Live regression test
+
+on:
+  schedule:
+    # Run every hour
+    - cron: "25 * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Cypress action caches dependencies too.
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v1
+        with:
+          config: baseUrl=https://shuheikagawa.com
