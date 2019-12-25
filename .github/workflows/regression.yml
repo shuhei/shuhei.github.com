@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Cypress action caches dependencies too.
+      # Caching doesn't work on scheduled actions, but there is no way to
+      # disable caching and suppress warnings.
+      # https://github.com/actions/cache/issues/63
       - name: Run E2E tests
         uses: cypress-io/github-action@v1
         with:
