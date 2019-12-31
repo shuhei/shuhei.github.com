@@ -1,0 +1,74 @@
+---
+layout: post
+title: 2019 in Review
+date: 2019-12-31 22:00
+comments: true
+categories: []
+---
+
+Traveled a lot. Got a bike. Saved a bit. Lived in a new apartment.
+
+## Travels
+
+I visited six new countries. Because I spent most of my vacation days in Japan, each of the other trips was two or three nights.
+
+- January: Japan
+- March: Budapest, Hungary
+- April: Athens, Greece
+- April: Wrocław, Poland
+- June: Prague, Czech Republic
+- August: Brussels and Bruges, Belgium
+- September: Munich, Germany
+- October: Dubrovnik, Croatia
+- November: Japan
+
+## Bike
+
+I bought a bike at Decathlon in June and had a lot of fun with it. I used it to commute and made day trips to around Berlin. [Blankenfelde](https://goo.gl/maps/F9TjZxxLNSPZKSDV6) is my favorite so far. I can't wait for the next Spring.
+
+## Budgeting
+
+I started using [YNAB](https://www.youneedabudget.com/) at the end of the last year because a few of my friends were using it. I have used it through the year, and it's the first budgeting system that worked well for me. It helps us traveling regularly while saving money.
+
+## Books
+
+I bought 55 physical books and 5 ebooks. That's more than three times of the last year, probably because of a dedicated budget for buying books.
+
+I finished reading 14 books and stranded somewhere in the middle of many books. _Quiet_ made me more introverted and now I spend more time at home. _Bad Blood_ and _Educated_ blew my mind.
+
+## Food
+
+Unagi. The raw tartar in Prague. Oysters and mussels and golden ale in Bruges.
+Anago.
+
+## Drink
+
+The best beer in 2019 was a porter at [Kontynuacja](https://goo.gl/maps/9X7UMJnqB1MrzqJcA) in Wrocław, Poland. The city had high quality craft beers, and everything that I drank was amazing.
+
+I had a chance to meet one of the my most favorite brewers, Fuerst Wiacek, at a tap takeover event at Biererei Bar. I bought a T-shirt.
+
+The trip to Brussels was epic as well because I visited a traditional lambic brewery where they still brew beer with yeasts in the air of the building! After tasting sour lambic, I bought a T-shirt there too.
+
+In spite of the encounters with good beers, I don't drink as much as I used to. After I started commuting by bike, I didn't want to get drunk and ride a bike. Even after I stopped commuting with my bike in the winter, the momentum kept going. I drank almost every day in Japan as an exception, but I almost quit drinking again after coming back to Berlin.
+
+On the other hand, I started drinking bubble tea regularly. There is a [Comebuy](http://www.comebuy2002.de/) shop near my office. I tried several bubble tea shops in Tokyo, and found that only one of them was better than Comebuy.
+
+## Work
+
+I am still working at the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay.
+
+My team and I started on-call duties. Before that, my team's applications had been taken care by another on-call team, and we tried to make sure that they didn't get called. Out focus on reliability hasn't changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.
+
+I started interviewing regularly, mostly on coding. I'm still not used to it, and there's more to learn.
+
+## Side Projects
+
+In the first half or the year, I wrote [a small metrics utility](https://github.com/shuhei/rolling-window) for work and [a toy interpreter and compiler in Rust](/blog/2019/10/06/interpreter-and-compiler-in-rust/) for fun. In the last half, I spent time learning algorithms on LeetCode and books.
+
+## Conferences & Meetups
+
+I attended two conferences, JSConf EU and JSConf JP, and spoke at a meetup.
+
+## 2020
+
+2020 is a new decade!
