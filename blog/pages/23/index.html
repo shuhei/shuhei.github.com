@@ -53,6 +53,33 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/12/31/japanese-on-irb/>irb で日本語表示</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 31, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <pre class="prettyprint">$irb
+irb(main):001:0&gt;puts "あああ"
+"\343\201\202\343\201\202\343\201\202"
+=&gt; nil</pre>
+<p>上の例のように、日本語出力が読めない問題。</p>
+<p>$<span class="caps">KCODE</span> に使用中のターミナルの文字コードを設定すれば良いようです。<br />
+<span class="caps">UTF</span>-8 なら <code>$KCODE = 'u'</code> 、<span class="caps">EUC</span>-JP なら <code>$KCODE = 'e'</code> など。<br />
+irb コマンドのオプションでも指定できます。<br />
+<code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
+<p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今Ruby勉強中 &#8211; Rubyist</a></p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/12/09/ascii/>ascii コード</a>
         </h1>
         <div class="meta">
@@ -115,62 +142,6 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 <p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。<br />
 ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。<br />
 今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/>Navigation-based Application に TabBar を追加</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Nov 7, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>iPhone プロジェクトの新規作成時に &#8220;Navigation-based Application&#8221; を選んだ場合に、後から TabBar を追加する方法です。<br />
-InterfaceBuilder での設定が画像入りの説明なしではよくわからず、苦戦したのでメモしておきます。</p>
-<h3>InterfaceBuilder の設定</h3>
-<h4>Tab Bar Controller の追加</h4>
-<p>まず、InterfaceBuilder で MainWindow.xib を開きます。<br />
-Navigation Controller を削除して Tab Bar Controller を追加します。</p>
-<h4>Tab Bar Controller の下に Navigation Controller を</h4>
-<p>Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の &#8220;Tab Bar Controller&#8221; =&gt; &#8220;View Controllers&#8221; の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。</p>
-<p><img src="/images/2009/11/TabBarController_Inspector1.png" alt="" /></p>
-<p>すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。</p>
-<h4>Navigation Controller の下に Root View Controller を</h4>
-<p>この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。<br />
-一番左側のタブで <span class="caps">NIB</span> Name を、Inspectorで一番右側のタブで Class を設定します。</p>
-<p><img src="/images/2009/11/SetRootViewControllerNIB1.png" alt="" /><br />
-<img src="/images/2009/11/SetRootViewControllerClass1.png" alt="" /></p>
-<p>以上を保存して IB を閉じます。</p>
-<h3>コードの修正</h3>
-<p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。<br />
-以下、アプリケーションの名前を Hoge だったとして、 HogeAppDelegate.h と .m を編集します。</p>
-<h4>HogeDelegate.h</h4>
-<pre class="prettyprint">@interface HogeAppDelegate : NSObject  {
-  UIWindow *window;
-  UITabBarController *tabBarController;
-}
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-
-@end</pre>
-<h4>HogeAppDelegate.m</h4>
-<pre class="prettyprint">- (void)applicationDidFinishLaunching:(UIApplication *)application {
-  [window addSubview:[tabBarController view]];
-  [window makeKeyAndVisible];
-}</pre>
-<p><code>synsthesize</code> と <code>dealloc</code> 中の <code>release</code> も忘れずに変更します。</p>
-<h3>App Delegate の Outlet のつなぎ変え</h3>
-<p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。<br />
-再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
-<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p>
         </div>
       </div>
     </div>

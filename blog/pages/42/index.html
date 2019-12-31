@@ -53,6 +53,33 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/12/07/make-movie-from-proce55ing/>Proce55ing から 動画を作る</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 7, 2008</span>
+          - <span class="category">Proce55ing</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Proce55ing で作った Sketch を動画にする方法です。<br />
+やり方は簡単。</p>
+<p>まず、Proce55ing から連番の静止画を書き出します。<br />
+draw メソッドの中で、saveFrame() を呼び出せば OK。<br />
+これで、フレームごとに screen-<span class="caps">XXXX</span>.tif という画像が書き出されます。</p>
+<p>そして、ffmpeg で連番の静止画から動画を作成します。<br />
+コマンドプロンプトで下記のようにすると、30 fps で mpeg ファイルが書き出されます。<br />
+ちなみに、%04d の部分は「数字が 4 つ」の意味です。</p>
+<pre class="prettyprint">ffmpeg -r 30 -i "screen-%04d.tif" -vcodec mjpeg -sameq test.avi</pre>
+<p>簡単ですね。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/12/06/mysql-int-timestamp-to-datetime/>MySQL で INT 型のタイムスタンプから DATETIME 型</a>
         </h1>
         <div class="meta">
@@ -96,32 +123,6 @@ Visual Studio の設定について書いたものはありましたが、プロ
 	<li>リンカ &#8594; 入力 -&gt; 追加の依存ファイル = libARd.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib</li>
 </ul>
 <p>これで何とか動くように思います。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/11/16/bookkeeping-problems-collection/>簿記の問題集</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Nov 16, 2008</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>今日、簿記の3級を受けてきました。<br />
-たぶん合格してるはず。</p>
-<p>人にもらった問題集が良かったので、メモしておきます。<br />
-一橋出版の日商簿記検定模擬試験問題集。<br />
-模擬試験と過去問で合計11回分のボリュームです。</p>
-<p>結局、3回分しか解かなかったんですが、問題に慣れることができました。<br />
-解説も十分詳しいです。</p>
-<p>もし2級や1級を受ける場合は、教科書的な本をパラパラ見て、これを解けばよさそう。<br />
-やはり、試験対策は過去問に限りますね。</p>
         </div>
       </div>
     </div>

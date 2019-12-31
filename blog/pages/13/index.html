@@ -53,6 +53,35 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2014/01/31/webland/>日本の地価</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 31, 2014</span>
+          - <span class="category">JavaScript</span>, <span class="category">Three.js</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="/webland/"><img src="https://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg" alt="Land Prices in Japan"></a></p>
+<p><a href="/webland/">日本の地価を視覚化</a>してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。</p>
+<ul>
+<li><a href="/webland/">Land Prices in Japan</a></li>
+<li><a href="https://github.com/shuhei/webland">フロントエンドのソース</a></li>
+<li><a href="https://github.com/shuhei/webland-scraper">データ取得と加工用スクリプト</a></li>
+</ul>
+<p>データソースは<a href="http://www.land.mlit.go.jp/webland/">国土交通省の土地総合情報システム</a>です。データの取得、加工は Ruby のスクリプトでやりました。JSON ファイルにしています。</p>
+<p>視覚化は Chrome Expreriments の <a href="https://www.chromeexperiments.com/globe">WebGL Globe</a> のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。</p>
+<p>三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing">postprocessing</a> といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。</p>
+<p>スペースボタンを押すと真横からのビューに切り替わります。都市の高さが際立っていますね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2014/01/30/introduction-to-react/>React</a>
         </h1>
         <div class="meta">
@@ -101,27 +130,6 @@
 <p>どれも JavaScript ネタ。仕事の半分くらいは Ruby を書いているのですが・・・。</p>
 <p>一個目のは、外に置いてあるサーバとローカルのクライアント（両方 Node.js）を iPhone の Safari を介して WebSockets でつないでインターネットする、というやつです。Softbank がテザリングを始める前に着手して、ちょこちょこ作ってる間にサービスが始まってしまい、モチベーションが大いに削がれたといういわくつき。</p>
 <p>二個名、三個目のはタイトルそのままの内容です。どちらも markdown から HTML+JS のプレゼンを生成しています。コードを載せやすくて良いのですが、字が小さくて見にくいと不評。画像も貼りにくいし、次回からは Keynote で作ろうかなあ。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2012/06/01/3d-lut/>3D LUT</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 1, 2012</span>
-          - <span class="category">openFrameworks</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは <code>examples</code> が充実していることです。ディレクトリ構成上も <code>apps</code> から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
-<p>Instagram 風の例を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたいです。</p>
-<p><a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
 
         </div>
       </div>

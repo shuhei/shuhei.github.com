@@ -53,6 +53,71 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2012/04/03/category-index-for-octopress/>Category index for Octopress</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Apr 3, 2012</span>
+          - <span class="category">Octopress</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>サイドバーにカテゴリー一覧を出してみました。</p>
+<p>_config.yml</p>
+<pre><code class="hljs diff">diff --git a/_config.yml b/_config.yml
+index 5c7d335..7ad03bb 100644
+<span class="hljs-comment">--- a/_config.yml</span>
+<span class="hljs-comment">+++ b/_config.yml</span>
+@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
+
+ # list each of the sidebar modules you want to include, in the order you want them to appear.
+ # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+<span class="hljs-deletion">-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]</span>
+<span class="hljs-addition">+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.</span>
+
+ # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+ # and add an array with the asides you want to use.</code></pre><p>source/_includes/custom/asides/categories.html</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Categories<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    {% for category in site.categories %}
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>{{ category | category_link }}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    {% endfor %}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></code></pre><p>2013-10-27 編集: 現在はデフォルトで <code>category_link</code> メソッドが追加されているので、以下の修正は不要です。</p>
+<p>plugins/category_generator.rb</p>
+<pre><code class="hljs diff">diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb
+index bb5fd32..28bf7e0 100644
+<span class="hljs-comment">--- a/plugins/category_generator.rb</span>
+<span class="hljs-comment">+++ b/plugins/category_generator.rb</span>
+@@ -156,6 +156,18 @@ module Jekyll
+       end
+     end
+
+<span class="hljs-addition">+    # Outputs a link of a category.</span>
+<span class="hljs-addition">+    # </span>
+<span class="hljs-addition">+    #  +category+ is an item of site.categories.</span>
+<span class="hljs-addition">+    #</span>
+<span class="hljs-addition">+    # Returns string</span>
+<span class="hljs-addition">+    # </span>
+<span class="hljs-addition">+    def category_link(category)</span>
+<span class="hljs-addition">+      dir = @context.registers[:site].config['category_dir']</span>
+<span class="hljs-addition">+      category = category[0]</span>
+<span class="hljs-addition">+      "&lt;a class='category' href='/#{dir}/#{category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase}/'&gt;#{category}&lt;/a&gt;"</span>
+<span class="hljs-addition">+    end</span>
+<span class="hljs-addition">+</span>
+     # Outputs the post.date as formatted html, with hooks for CSS styling.
+     #
+     #  +date+ is the date object to format as HTML.</code></pre><p>Gist: <a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2012/04/03/how-to-use-ofxopencv-on-of007/>How to use ofxOpenCv on of007</a>
         </h1>
         <div class="meta">
@@ -157,41 +222,6 @@ gui-&gt;loadSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);</c
 }</code></pre><p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
 <p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/07/22/toeic-official-workbook-vol-4-1/>TOEIC 新公式問題集 vol.4 (1)</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 22, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>初 <span class="caps">TOEIC</span> が今週末に迫ってきたので、練習問題を解いてみました。</p>
-<ul>
-	<li>Part 1: 9 / 10</li>
-	<li>Part 2: 27 / 30</li>
-	<li>Part 3: 27 / 30</li>
-	<li>Part 4: 25 / 30</li>
-	<li>Part 5: 35 / 40</li>
-	<li>Part 6: 10 / 12</li>
-	<li>Part 7: 47 / 48</li>
-</ul>
-<p>換算点は 805 &#8211; 925 とのこと。<br />
-0 &#8211; 200 を 10 &#8211; 990 に線形に投影すると 892 点。<br />
-<a href="/blog/2009/05/24/toeic/">前回</a> よりも良くなっているようです。</p>
-<p>Part 7 が劇的に改善されています。最近洋書を読むようにしているからでしょう。<br />
-弱点はやはりリスニングの Part 2, 3, 4 と、単語・語法の Part 5 です。<br />
-前者は問題文先読みの試験テクニックを練習すればもう少し向上する気がします。<br />
-Part 5 は費用対効果が少なさそうですが、コツコツやるしかありませんかね。</p>
-<p>とりあえず、日曜日まで毎日解いていこうと思います。</p>
         </div>
       </div>
     </div>
