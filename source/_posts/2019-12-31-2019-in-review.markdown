@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 2019 in Review
-date: 2019-12-31 23:35
+date: 2019-12-31 23:50
 comments: true
 categories: []
 ---
@@ -63,3 +63,7 @@ In the first half of the year, I wrote [a small metrics utility](https://github.
 ## Conferences & Meetups
 
 I attended two conferences, JSConf EU and JSConf JP, and had a chance to [speak at a meetup](https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production).
+
+## 2020
+
+Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!
