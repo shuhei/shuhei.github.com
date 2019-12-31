@@ -6,7 +6,7 @@ comments: true
 categories: [Vim]
 ---
 
-In December, I spent some time cleaning up my terminal setup. Dust had accumulated in a year, and my terminal was getting slower. It was time to dust off.
+In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.
 
 Here are highlights of [the changes](https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d).
 
