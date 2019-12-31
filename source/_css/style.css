@@ -3,8 +3,25 @@
   --bg-color: #f7f0e7;
   --text-color: #2d1e14;
   --highlight-color: #095ae8;
-  --code-bg-color: #ffffff;
-  --code-text-color: var(--text-color);
+  --code-bg-color: var(--code-base);
+  --code-text-color: var(--code-mono-1);
+
+  /* Syntax highlighting from highlight.js */
+  /* Based on Atom One Light */
+  /* https://github.com/atom/atom/tree/master/packages/one-light-syntax */
+  /* --code-base:    #fafafa; */
+  --code-base:    #ffffff;
+  --code-mono-1:  #383142;
+  --code-mono-2:  #686b77;
+  --code-mono-3:  #a0a1a7;
+  --code-hue-1:   #0184bb; /* cyan */
+  --code-hue-2:   #4078f2; /* blue */
+  --code-hue-3:   #a626a4; /* purple */
+  --code-hue-4:   #50a14f; /* green */
+  --code-hue-5:   #e45649; /* red 1 */
+  --code-hue-5-2: #c91243; /* red 2 */
+  --code-hue-6:   #986801; /* orange 1 */
+  --code-hue-6-2: #c18401; /* orange 2 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,8 +29,25 @@
     --bg-color: #312b3a;
     --text-color: #f7f0e7;
     --highlight-color: #9dc8fb;
-    --code-bg-color: #f7f0e7;
-    --code-text-color: var(--bg-color);
+
+    /* Based on Atom One Dark */
+    /* https://github.com/atom/atom/tree/master/packages/one-dark-syntax */
+    /* --code-base:    #282c34; */
+    /* A bit darker color for higher contrast */
+    --code-base:    #141a24;
+    /* --code-mono-1:  #abb2bf; */
+    /* A bit lighter color for higher contract */
+    --code-mono-1:  #d4dcea;
+    --code-mono-2:  #818896;
+    --code-mono-3:  #5c6370;
+    --code-hue-1:   #56b6c2; /* cyan */
+    --code-hue-2:   #61aeee; /* blue */
+    --code-hue-3:   #c678dd; /* purple */
+    --code-hue-4:   #98c379; /* green */
+    --code-hue-5:   #e06c75; /* red 1 */
+    --code-hue-5-2: #be5046; /* red 2 */
+    --code-hue-6:   #d19a66; /* orange 1 */
+    --code-hue-6-2: #e6c07b; /* orange 2 */
   }
 }
 
@@ -187,12 +221,87 @@ code {
   font-size: 0.85em;
   background-color: #666;
 }
+
 .hljs {
+  display: block;
   line-height: 1.5em;
   padding: 15px 20px;
   overflow-x: auto;
-  background-color: var(--code-bg-color) !important;
   -webkit-overflow-scrolling: touch;
+
+  background-color: var(--code-bg-color);
+  color: var(--code-text-color);
+}
+
+.hljs-comment,
+.hljs-quote {
+  /* color: var(--code-mono-3); */
+  /* Using mono-2 for higher contrast */
+  color: var(--code-mono-2);
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: var(--code-hue-3);
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: var(--code-hue-5);
+}
+
+.hljs-literal {
+  color: var(--code-hue-1);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: var(--code-hue-4);
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: var(--code-hue-6-2);
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: var(--code-hue-6);
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: var(--code-hue-2);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
 }
 
 /* blockquote */
