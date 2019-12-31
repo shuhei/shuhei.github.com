@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Winter Terminal (mostly Vim) Cleaning
-date: 2019-12-30 17:06
+date: 2019-12-31 15:20
 comments: true
 categories: [Vim]
 ---
