@@ -10,7 +10,7 @@ categories: []
 
 ## Travels
 
-I visited six new countries and enjoyed each of them. There are many more places to visit in Europe. I'll keep travelling in 2020.
+I visited six new countries and enjoyed each of them. There are many more places to visit in Europe. I'll keep traveling in 2020.
 
 - January: Japan
 - March: Budapest, Hungary
@@ -28,37 +28,37 @@ I bought an entry-level road bike at Decathlon in June. I used it for commuting 
 
 ## Budgeting
 
-I started using [YNAB](https://www.youneedabudget.com/) at the end of the last year because a few of my friends were using it. I have used it through the year, and it's the first budgeting system that worked well for me. It helps us traveling regularly while saving money.
+I started using [YNAB](https://www.youneedabudget.com/) at the end of the last year because a few of my friends were using it. I have used it throughout the year, and it's the first budgeting system that worked well for me. It helps us traveling regularly while saving money.
 
 ## Books
 
-I bought 55 physical books and 5 ebooks. That's more than three times of the last year, probably because of a dedicated budget for buying books.
+I bought 55 physical books and 5 ebooks. That's three times more than the last year, probably because of a dedicated budget for buying books.
 
 I finished reading 14 books and stranded somewhere in the middle of many books. _Quiet_ made me more introverted and now I spend more time at home. _Bad Blood_ and _Educated_ blew my mind.
 
 ## Drink
 
-While it's hard to name the best food of the year, the best beer of 2019 was a porter at [Kontynuacja](https://goo.gl/maps/9X7UMJnqB1MrzqJcA) in Wrocław, Poland. The city had high quality craft beers, and everything that I drank was amazing.
+While it's hard to name the best food of the year, the best beer of 2019 was a porter at [Kontynuacja](https://goo.gl/maps/9X7UMJnqB1MrzqJcA) in Wrocław, Poland. The city had high-quality craft beers, and everything that I drank was amazing.
 
-I had a chance to meet one of the my most favorite brewers, Fuerst Wiacek, at a tap takeover event at Biererei Bar. I bought a T-shirt.
+I had a chance to meet one of my most favorite brewers, Fuerst Wiacek, at a tap takeover event at Biererei Bar. I bought a T-shirt.
 
 The trip to Brussels was epic as well because I visited a traditional lambic brewery where they still brew beer with yeasts in the air of the building! After tasting sour lambic, I bought a T-shirt there too.
 
 In spite of the encounters with good beers, I don't drink as much as I used to anymore. When I started commuting by bike, I didn't want to get drunk and ride a bike. Even after I stopped commuting with my bike in the winter, the momentum kept going. I drank almost every day in Japan as an exception, but I almost quit drinking again after coming back to Berlin.
 
-On the other hand, I started drinking bubble tea regularly. There is a [Comebuy](http://www.comebuy2002.de/) shop near my office. I tried several bubble tea shops in Tokyo, and found that only few were better than Comebuy—I liked Yi Fang most.
+On the other hand, I started drinking bubble tea regularly. There is a [Comebuy](http://www.comebuy2002.de/) shop near my office. I tried several bubble tea shops in Tokyo and found that only a few were better than Comebuy—I liked Yi Fang most.
 
 ## Work
 
-I am still working at the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.
+I am still working on the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.
 
-My team and I started on-call duties. Before that, my team's applications had been taken care by another on-call team, and we tried to make sure that they didn't get called. Our focus on reliability hasn't changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.
+My team and I started on-call duties. Before that, another on-call team was taking care of my team's applications, and we tried to make sure that they didn't get called. Our focus on reliability hasn't changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.
 
 I started interviewing regularly, mostly on coding. I'm still not used to it, and there's more to learn.
 
 ## Side Projects
 
-In the first half or the year, I wrote [a small metrics utility](https://github.com/shuhei/rolling-window) for work and [a toy interpreter and compiler in Rust](/blog/2019/10/06/interpreter-and-compiler-in-rust/) for fun. In the last half, I focused more on learning classic algorithms than side projects.
+In the first half of the year, I wrote [a small metrics utility](https://github.com/shuhei/rolling-window) for work and [a toy interpreter and compiler in Rust](/blog/2019/10/06/interpreter-and-compiler-in-rust/) for fun. In the last half, I focused more on learning classic algorithms than side projects.
 
 ## Conferences & Meetups
 
