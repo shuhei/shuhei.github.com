@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Tue, 31 Dec 2019 22:35:00 GMT</lastBuildDate><item><title>2019 in Review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Tue, 31 Dec 2019 22:50:00 GMT</lastBuildDate><item><title>2019 in Review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
 <p><img src="/images/2019-aegina.jpg" alt="Aegina island in April"></p>
 <h2 id="travels">Travels</h2>
 <p>I visited six new countries and enjoyed each of them. There are many more places to visit in Europe. I&#39;ll keep traveling in 2020.</p>
@@ -34,8 +34,10 @@
 <p>In the first half of the year, I wrote <a href="https://github.com/shuhei/rolling-window">a small metrics utility</a> for work and <a href="/blog/2019/10/06/interpreter-and-compiler-in-rust/">a toy interpreter and compiler in Rust</a> for fun. In the last half, I focused more on learning classic algorithms than side projects.</p>
 <h2 id="conferences--meetups">Conferences &amp; Meetups</h2>
 <p>I attended two conferences, JSConf EU and JSConf JP, and had a chance to <a href="https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production">speak at a meetup</a>.</p>
+<h2 id="2020">2020</h2>
+<p>Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!</p>
 
-]]></description><pubDate>Tue, 31 Dec 2019 22:35:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</guid></item><item><title>Winter Terminal (mostly Vim) Cleaning</title><link>https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</link><description><![CDATA[
+]]></description><pubDate>Tue, 31 Dec 2019 22:50:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</guid></item><item><title>Winter Terminal (mostly Vim) Cleaning</title><link>https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</link><description><![CDATA[
 <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
 <p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
 <h2 id="faster-text-rendering">Faster Text Rendering</h2>
