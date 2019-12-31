@@ -53,6 +53,39 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/19/install-git/>git をインストール</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 19, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>会社では構成管理に Subversion を使っています。<br />
+特に困っていることもないのですが、見識を広めるため家の MacBook に git を入れてみました。</p>
+<p><a href="http://code.google.com/p/git-osx-installer/">インストーラ</a> もあるようですが、管理が楽そうな MacPorts を使用。</p>
+<pre class="prettyprint">port search git</pre>
+<p>いろいろ出てきますが、git-core だけでよさそうです。</p>
+<pre class="prettyprint">port variants git-core</pre>
+<p>でオプションが出てきます。<br />
+全部入りにしてみました。</p>
+<pre class="prettyprint">sudo port install git-core +doc +gitweb +svn +bash_completion</pre>
+<p>何だか Perl5 のライブラリがたくさん入りました。<br />
+bash 補完は以下を.profileに貼付けると良いとのこと。</p>
+<pre class="prettyprint">if [ -f /opt/local/etc/bash_completion ]; then
+  . /opt/local/etc/bash_completion
+fi</pre>
+<p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。<br />
+branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branchをちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/16/hello-world-with-curses-of-rub/>Ruby の Curses で Hello, World!</a>
         </h1>
         <div class="meta">
@@ -145,63 +178,6 @@ ntlm_hash16("p@ssw0rd")  #=&gt;  'de26cce0356891a4a020e7c4957afc72'</pre>
 <p>Python でも Ruby と同じような間違いをしていました。<br />
 <code>"%02x" % ord(ch)</code> の部分を、最初は <code>hex(ord(ch))[2:]</code> と書いていました。<br />
 いやあ、テストは大事ですね。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/12/get-book-list-from-booklog/>Booklog から本一覧を取得</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 12, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://booklog.jp/">web 本棚サービス ブクログ</a> がリニューアルしたというので <a href="http://www.booklog.jp/users/branchiopoda">再開しました</a> 。ペパボの公式サービスとなり、メンテナンスやサービスの追加をどんどんやって行くそうです。<br />
-今回のリニューアルで一番うれしいのが、本の登録機能の強化です。</p>
-<blockquote>
-<p>ご要望で最も多かったものの一つが、もっと本を簡単に登録したい！ １冊１冊登録するのが面倒くさい！というものでした。 今回のリニューアルでは、 ページ遷移をせずに、簡単に複数の本を登録できるように改善しています。</p>
-<p><a href="http://info.booklog.jp/?eid=78"><cite>ブクログがリニューアルいたしました。 | ブクログお知らせブログ</cite></a></p>
-</blockquote>
-<p>さくさく登録できて素晴らしいです。</p>
-<p>今のところ <span class="caps">API</span> はないようで、何かをしたいときにはスクレイピングする必要があります。<br />
-とりあえず Ruby で本の一覧を取得してみました。</p>
-<pre class="prettyprint">require 'rubygems'
-require 'hpricot'
-require 'open-uri'
-
-class Book
-  def initialize(title, url)
-    @title = title
-    @url = url
-  end
-  def asin
-    @url.split("/").last
-  end
-  attr_accessor :title, :url
-end
-
-def get_books(username)
-  doc = Hpricot(open("http://www.booklog.jp/users/#{username}/All?display=list"))
-  books = []
-  (doc/"div#shelf div.list ul li").each do |book|
-    title = (book/:a).first.inner_html
-    url = (book/:a).first[:href]
-    books.push(Book.new(title, url))
-  end
-  books
-end
-
-books = get_books("branchiopoda")
-books.each do |book|
-  puts "#{book.title} =&gt; #{book.asin}"
-end</pre>
-<p>一覧から取れるのはタイトルと <span class="caps">ASIN</span> コードだけなので、それ以上の情報を得るには、個別のページや Amazon の <span class="caps">API</span> を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の <span class="caps">API</span> の公開に期待です。</p>
         </div>
       </div>
     </div>

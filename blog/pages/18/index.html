@@ -53,6 +53,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/03/18/circle-packing/>Circle Packing</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Mar 18, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="https://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" width="500" height="333" alt="circle packing" /></a></p>
+<p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。<br />
+<a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
+<p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/03/16/flash-platform-camp-tokyo/>Flash Platform Camp Tokyo を見てきた</a>
         </h1>
         <div class="meta">
@@ -101,51 +122,6 @@ Flash <span class="caps">CS5</span>、Flash Player 10.1、<span class="caps">AIR
 <p>root ログインはユーザ名がばれているため禁止。使わないし。</p>
 <h3>試行回数の制限</h3>
 <p>鍵認証の場合はあまり関係ないかな？</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/03/13/redmine-with-git/>Git + Redmine</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Mar 13, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。</p>
-<h3>サーバにリポジトリを作成</h3>
-<p>Redmine を置いているサーバに空のリポジトリを作ります。</p>
-<pre class="prettyprint">server$ mkdir myapp.git
-server$ cd myapp.git
-server$ git --bare init</pre>
-<h3>リモートリポジトリとして登録</h3>
-<p>ローカルのレポジトリにサーバのリポジトリを登録。Push します。</p>
-<pre class="prettyprint">local$ git remote add origin ssh://username@example.com/path/to/myapp.git
-local$ git push origin master</pre>
-<h3>Redmine の設定</h3>
-<p>プロジェクトの「設定」 =&gt; 「リポジトリ」で以下のように設定。</p>
-<ul>
-	<li>バージョン管理システム =&gt; Git</li>
-	<li>Path to .git directory =&gt; /path/to/myapp.git</li>
-</ul>
-<p>以上で終了です。<br />
-プロジェクトの「リポジトリ」を確認すると、おお、見えました。<br />
-ブラウザで見るとぐちゃぐちゃなのがよくわかります・・・。</p>
-<h3>チケットとコミットの連携</h3>
-<p>コミットメッセージに Redmine のチケット ID を含めることで、チケットとコミットの関連付けが行えます。<br />
-チケット ID 前のキーワードによって、関連付けの仕方を変えることができます。デフォルトでは refs で単純な参照、 fixes で進捗率 100% にするようになっているようです。<br />
-管理  =&gt; 設定 =&gt; リポジトリ で確認、設定できます。</p>
-<h3>参考 <span class="caps">URL</span></h3>
-<ul>
-	<li><a href="http://blog.champierre.com/archives/670">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>
-	<li><a href="http://d.hatena.ne.jp/ntaku/20090526/1243327903">RedmineとGitで作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>
-</ul>
         </div>
       </div>
     </div>

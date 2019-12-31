@@ -1,0 +1,125 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+			<link rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400&display=swap" as="style">
+<link rel="preload" href="https://fonts.gstatic.com/s/firamono/v8/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <meta name="viewport" content="initial-scale=1">
+      <title>Winter Terminal (mostly Vim) Cleaning - Shuhei Kagawa</title>
+      <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
+      <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
+      <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-309586-8', 'shuheikagawa.com');
+  ga('send', 'pageview');
+</script>
+      <style>.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment,.hljs-quote{color:#a0a1a7;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e45649}.hljs-literal{color:#0184bb}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#50a14f}.hljs-built_in,.hljs-class .hljs-title{color:#c18401}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#4078f2}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}:root{--bg-color:#f7f0e7;--text-color:#2d1e14;--highlight-color:#095ae8;--code-bg-color:#ffffff;--code-text-color:var(--text-color)}@media (prefers-color-scheme:dark){:root{--bg-color:#312b3a;--text-color:#f7f0e7;--highlight-color:#9dc8fb;--code-bg-color:#f7f0e7;--code-text-color:var(--bg-color)}}body{font-family:'IBM Plex Sans',sans-serif;background:#f7f0e7;background:var(--bg-color);color:#2d1e14;color:var(--text-color);padding:0;margin:0}.container{width:700px;padding:0 20px;margin:0 auto}a{color:#095ae8;color:var(--highlight-color);transition:color .5s ease}a:hover{opacity:.7}.header{padding:20px 0 10px;display:flex}.header__title{margin:0 10px 0 0;flex-grow:1}.header__title a{color:#095ae8;color:var(--highlight-color);text-decoration:none}.header__nav{flex-grow:0}.menu{list-style-position:outside;list-style-type:none;padding:15px 0;margin:0}.menu__item{display:inline-block;padding:0 0 0 20px}.menu__item a{color:#2d1e14;color:var(--text-color);text-decoration:none}.footer{padding:50px 0 30px;text-align:center}.title{font-size:42px;margin:0}.title a{color:#2d1e14;color:var(--text-color);text-decoration:none}.post,.post-list{padding:30px 0 20px}.post:not(:first-child):before{content:"* * *";font-weight:700;display:block;margin:0 auto 45px;font-size:50px;text-align:center}.post .meta{font-size:small;margin:10px 0 25px}.post-list .title{margin-bottom:10px}.post-list-item{line-height:1.6em;padding:10px 0;display:flex}.post-list-item__date{font-size:small;width:90px}.post-list-item__title{font-size:large;margin:0}.post-list-item__title a{text-decoration:none}.content{line-height:1.7em}.content img{max-width:100%}.social-buttons{margin:2em 0 0}.comments{margin-bottom:3em}ol,ul{list-style-position:outside;padding-left:1.4em}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}code{background-color:#fff;background-color:var(--code-bg-color);color:#2d1e14;color:var(--code-text-color);padding:.1em .3em .1em;font-size:.9em;font-family:'Fira Mono',monospace}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.hljs{line-height:1.5em;padding:15px 20px;overflow-x:auto;background-color:#fff!important;background-color:var(--code-bg-color)!important;-webkit-overflow-scrolling:touch}blockquote{border-left:5px solid #2d1e14;border-left:5px solid var(--text-color);font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin-top:20px;display:flex;justify-content:space-between}.pagination li{min-height:1em;width:33%}.pagination a{text-decoration:none}.pagination__prev-page a:before{content:"< "}.pagination__next-page{text-align:right}.pagination__next-page a:after{content:" >"}.pagination__archives{flex-grow:1;text-align:center}@media only screen and (max-width:767px){.container{width:auto}.header{display:block}.post,.post-list{padding-top:10px}.title{font-size:24px}.menu__item{padding:0 20px 0 0}.post-list-item{display:block}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px}}</style>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400&display=swap">
+      <meta name="description" content="In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off. Here are...">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@shuheikagawa">
+<meta property="og:title" content="Winter Terminal (mostly Vim) Cleaning - Shuhei Kagawa">
+<meta property="og:site_name" content="Shuhei Kagawa">
+<meta property="og:description" content="In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off. Here are...">
+<meta property="og:image" content="https://shuheikagawa.com/blog/2019/12/30/winter-terminal-cleaning/title.png">
+    </head>
+    <body>
+      <div class="container">
+        <header class="header">
+          <h1 class="header__title">
+            <a href="/">Shuhei Kagawa</a>
+          </h1>
+          <nav class="header__nav">
+            <ul class="menu">
+              <li class="menu__item">
+                <a href="/about/">About</a>
+              </li>
+              <li class="menu__item">
+                <a href="/works/">Works</a>
+              </li>
+              <li class="menu__item">
+                <a href="/blog/archives/">Archives</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <div class="main">
+          
+    
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
+          <a href=/blog/2019/12/30/winter-terminal-cleaning/>Winter Terminal (mostly Vim) Cleaning</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 30, 2019</span>
+          - <span class="category">Vim</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
+<p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
+<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
+<p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
+<p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
+<p>I tried <a href="https://github.com/jwilm/alacritty">Alacritty</a>, and it was much faster! I had been using Alacritty before but switched back to iTerm2 for font ligatures. Now I didn&#39;t care much about font ligatures—ligatures look pretty, but glyphs for <code>!=</code> and <code>!==</code> confused me in JavaScript. So I switched to Alacritty again.</p>
+<p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
+<h2 id="fzfvim">fzf.vim</h2>
+<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
+<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<ul>
+<li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
+</li>
+<li><p>Configured Vim to open <code>:help</code> in a vertical split. <code>:help</code> is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">help</span> <span class="hljs-keyword">wincmd</span> H</code></pre></li>
+<li><p>Sorted out JavaScript/JSX/TypeScript syntax highlighting. Vim sets <code>javascriptreact</code> to <code>.jsx</code> and <code>typescriptreact</code> to <code>.tsx</code> by default. But those file types don&#39;t work well with the plugin ecosystem because plugins for <code>javascript</code>/<code>typescript</code> file types don&#39;t work with <code>javascriptreact</code>/<code>typescriptreact</code> and popular JSX/TSX plugins use <code>javascript.jsx</code> and <code>typescript.tsx</code>.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.jsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=javascript.jsx
+<span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.tsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=typescript.tsx</code></pre></li>
+<li><p>Stopped unnecessarily lazy-loading Vim plugins with <a href="https://github.com/Shougo/dein.vim">dein.vim</a>. I had configured file-type-specific plugins as lazy plugins of dein.vim without understanding much. The truth was that lazy plugins are meaningful only for plugins with <code>plugin</code> directory. Most of the file-type-specific plugins don&#39;t have <code>plugin</code> directory and are lazily loaded by default with <code>ftdetect</code> and <code>ftplugin</code>. <code>:echo dein#check_lazy_plugins()</code> shows those plugins that are ill-configured. I finally learned <a href="https://learnvimscriptthehardway.stevelosh.com/chapters/42.html">what those plugin directories do</a> after using Vim for several years...</p>
+</li>
+<li><p>Reviewed key mappings and removed waiting time by avoiding mappings that prefixed other mappings. For example, I had mappings of <code>,g</code> and <code>,gr</code>. <code>,g</code> was slow because Vim had to wait for a while to determine it was <code>,g</code> or <code>,gr</code>.</p>
+</li>
+<li><p>Tried Vim 8 but switched back to Neovim. Vim 8 worked well, but tiny details looked smoother in Neovim. For example, when syntax highlighting hangs up, Vim 8 hangs up while Neovim disables syntax highlighting and goes on.</p>
+</li>
+<li><p>Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.</p>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  
+    
+  <div class="comments">
+    <div id="disqus_thread" />
+    <script>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shuheikagawa.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+  
+        </div>
+        <footer class="footer">
+          © Shuhei Kagawa
+        </footer>
+      </div>
+    </body>
+  </html>

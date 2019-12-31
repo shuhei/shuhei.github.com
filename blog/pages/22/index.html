@@ -53,6 +53,59 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/01/11/install-passenger/>Ubuntu Server に Passenger をインストール</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 11, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h3>Aptitude ではだめ</h3>
+<p>とりあえずは apt-get と思い、下記のようにしたらとしたら libapache2-mod-php5 などが消されて焦りました。</p>
+<pre class="prettyprint">sudo apt-get install libapache2-mod-passenger</pre>
+<p>Aptitude を使うと、Passenger と <span class="caps">PHP</span> 5 は共存できないようです。<br />
+それぞれが依存している apache2-mpm-worker と apache2-mpm-prefork が共存できないのが原因のよう。<br />
+via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu日本語フォーラム / ubuntu 9.04 passenger と　php5は共存できない？</a></p>
+<h3>Gem でインストール</h3>
+<p>しょうがないので <span class="caps">PHP</span> 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
+<pre class="prettyprint">sudo gem install passenger
+sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
+<p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
+<pre class="prettyprint">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
+<h3>設定ファイルの記述</h3>
+<p>httpd.conf には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
+<p>/etc/apache2/mods-available/passenger.load</p>
+<pre class="prettyprint">LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</pre>
+<p>/etc/apache2/mods-available/passenger.conf</p>
+<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
+  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
+  PassengerRuby /usr/bin/ruby1.8
+&lt;/ifModule&gt;</pre>
+<p>モジュールを有効に。<br />
+mods-enabled から mods-available にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
+<pre class="prettyprint">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
+sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</pre>
+<h3>サブディレクトリで公開</h3>
+<p>ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。</p>
+<pre class="prettyprint">sudo ln -s /path/to/app-name/public /path/to/www/app-name</pre>
+<p>そして、Apache の設定ファイルに少し付け足します。</p>
+<p>/etc/apache2/mods-available/passenger.conf</p>
+<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
+  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
+  PassengerRuby /usr/bin/ruby1.8
+  RailsBaseURI /app-name
+&lt;/ifModule&gt;</pre>
+<p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab &#8211; blog: PassengerでRedmineをサブディレクトリに公開</a></p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/01/04/build-biffpop-for-mydnsjp/>MyDNS.jp 用に biffpop をビルド</a>
         </h1>
         <div class="meta">
@@ -138,45 +191,6 @@ irb(main):001:0&gt;puts "あああ"
 irb コマンドのオプションでも指定できます。<br />
 <code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
 <p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今Ruby勉強中 &#8211; Rubyist</a></p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/12/09/ascii/>ascii コード</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Dec 9, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
-<blockquote>
-<p>Poem.</p>
-<p>You translated my poem,<br />
-I congratulate you.<br />
-I wish I could rhyme with poem,<br />
-but its very hard to.<br />
-I just beguiled you,</p>
-</blockquote>
-<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre class="prettyprint">class String
-  def bin
-    Integer('0b' + self)
-  end
-end
-
-def decode(ascii)
-  0.step(ascii.size - 1, 8) do |num|
-    puts ascii[num..(num + 7)].bin.chr
-  end
-end</pre>
-<p>作る方は簡単でしょうが、読む方は大変です。</p>
         </div>
       </div>
     </div>

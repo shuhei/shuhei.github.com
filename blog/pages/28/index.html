@@ -53,6 +53,84 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/10/python-challenge-from-0-to-5/>Python Challenge Lv. 0 - 5</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 10, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
+プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。<br />
+最近マイブームな Ruby で。</p>
+<p>以下、ネタバレ注意です。</p>
+<h3>Level 0</h3>
+<pre class="prettyprint">2 ** 38</pre>
+<h3>Level 1</h3>
+<pre class="prettyprint">cipher = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
+abc = ("a"[0] .. "z"[0]).to_a
+cde = ("c"[0] .. "z"[0]).to_a + ["a"[0], "b"[0]]
+dict = Hash[*abc.zip(cde).flatten]
+cipher.bytes do |ch|
+  ch = dict[ch] if dict.has_key?(ch)
+  printf("%c", ch)
+end</pre>
+<h3>Level 2</h3>
+<p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
+<pre class="prettyprint">File.open("mess_2.txt") do |f|
+  while ch = f.getc
+    printf("%c", ch) if ("a"[0] .. "z"[0]).include?(ch)
+  end
+end</pre>
+<p>ファイルの中身を1バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
+<h3>Level 3</h3>
+<pre class="prettyprint">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
+File.open("mess_3.txt") do |f|
+  p f.read.scan(pattern).to_s
+end</pre>
+<p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
+<h3>Level 4</h3>
+<pre class="prettyprint">num = "12345"
+require "net/http"
+def get_nothing(num)
+  return Net::HTTP.get URI.parse("http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + num)
+end
+400.times do
+  content = get_nothing(num)
+  m = /and the next nothing is ([0-9]+)/.match(content)
+  p num
+  p content
+  if m != nil then
+    num = m[1]
+  else
+    exit
+  end
+end</pre>
+<p>途中でひっかけがありますが・・・。そこは手作業で。</p>
+<h3>Level 5</h3>
+<p>意味がわからずカンニング。<br />
+<a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a><br />
+Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
+<pre class="prettyprint">import urllib, pickle
+uri = "http://www.pythonchallenge.com/pc/def/banner.p"
+obj = pickle.load(urllib.urlopen(uri))
+for line in obj:
+  l = ""
+  for pair in line:
+    l += pair[0] * pair[1]
+    print l</pre>
+<h3>今日はここまで</h3>
+<p>続きはまた今度。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/09/30/exec-windows-command-with-ruby/>Ruby で Windows のコマンド実行</a>
         </h1>
         <div class="meta">
@@ -86,33 +164,6 @@
 時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
 <p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。<br />
 <a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/23/textile-format-of-make-link/>Make Link の Textile 2 用フォーマット</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 23, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Firefox の Addon <a href="https://addons.mozilla.org/ja/firefox/addon/142">Make Link</a> はページのタイトルや <span class="caps">URL</span> からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。<br />
-とうことで、Textile 2 用のフォーマットを作ってみました。</p>
-<h3>ページ名と<span class="caps">URL</span></h3>
-<pre class="prettyprint">"%text%":%url</pre>
-<p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>
-<h3>引用（引用元とその<span class="caps">URL</span>付き）</h3>
-<pre class="prettyprint">bq.. %text%
-
-"??%title%??":%url%</pre>
-<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p>
         </div>
       </div>
     </div>

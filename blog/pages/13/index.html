@@ -53,6 +53,35 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2014/01/30/introduction-to-react/>React</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 30, 2014</span>
+          - <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>社内勉強会で Facebook の UI ライブラリ <a href="http://facebook.github.io/react/index.html">React</a> について発表しました。</p>
+<ul>
+<li>1/20 <a href="https://speakerdeck.com/shuhei/introduction-to-react">Introduction to React // Speaker Deck</a></li>
+<li><a href="https://github.com/shuhei/react-sample-counter">サンプルコード</a></li>
+</ul>
+<script async class="speakerdeck-embed" data-id="868ac76063e60131e1ad6e04b6941de4" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>酔っぱらって記憶のないまま作った資料を修正したアルコール駆動スライド。前回までの反省を活かして、Keynote で資料作ったらやっぱり楽でした。でもコードがちょっと読みにくいのが課題です。Keynote がシンタックスハイライトしてくれると言うことないのですが。</p>
+<p>・・・と書いてからググってみたら、<a href="https://gist.github.com/jimbojsb/1630790">ちょうどいいの</a>がありました。RTF なら貼れるということですね。次回はこれを試してみます。</p>
+<p>内容については React の宣言的に書けるところと Virtual DOM がアツいと思ってカッとなって発表した感じです。日本語の React 情報はあまりなかったみたいで、そこそこ見られたりブクマされました。何か発表するのもいいものですね。</p>
+<p>それにしても、<a href="http://facebook.github.io/react/docs/getting-started.html">React のドキュメント</a>は本当によく書かれています。これまで読んだものの中で一番というくらい。何が良いかというと、普通疑問に思うようなことが全て先回りして書かれていることですね。特に <a href="http://facebook.github.io/react/tips/introduction.html">TIPS</a> のところ。また <a href="http://facebook.github.io/react/docs/why-react.html">Why React?</a> のところに書かれている <a href="http://37signals.com/svn/posts/3124-give-it-five-minutes">Give it five minutes</a> も良かった。技術情報だけでなく、思想についても書かれている React のドキュメント、オススメです。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2013/10/27/tech-talks/>最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
         </h1>
         <div class="meta">
@@ -93,27 +122,6 @@
           <p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは <code>examples</code> が充実していることです。ディレクトリ構成上も <code>apps</code> から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
 <p>Instagram 風の例を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたいです。</p>
 <p><a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/>普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 7, 2012</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
-<pre><code class="hljs rb">watch(<span class="hljs-string">'(.*)\.coffee'</span>) { <span class="hljs-params">|md|</span> system <span class="hljs-string">"coffee -o js -c <span class="hljs-subst">#{md[<span class="hljs-number">0</span>]}</span>"</span> }
-watch(<span class="hljs-string">'sass\/(.*)\.s[ac]ss'</span>) { <span class="hljs-params">|md|</span> system <span class="hljs-string">"compass compile <span class="hljs-subst">#{md[<span class="hljs-number">0</span>]}</span>"</span> }</code></pre><p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
 
         </div>
       </div>

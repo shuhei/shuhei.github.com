@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 13 Oct 2019 14:59:00 GMT</lastBuildDate><item><title>Generating Twitter Card Images from Blog Post Titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 30 Dec 2019 16:06:00 GMT</lastBuildDate><item><title>Winter Terminal (mostly Vim) Cleaning</title><link>https://shuheikagawa.com/blog/2019/12/30/winter-terminal-cleaning/</link><description><![CDATA[
+<p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
+<p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
+<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
+<p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
+<p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
+<p>I tried <a href="https://github.com/jwilm/alacritty">Alacritty</a>, and it was much faster! I had been using Alacritty before but switched back to iTerm2 for font ligatures. Now I didn&#39;t care much about font ligatures—ligatures look pretty, but glyphs for <code>!=</code> and <code>!==</code> confused me in JavaScript. So I switched to Alacritty again.</p>
+<p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
+<h2 id="fzfvim">fzf.vim</h2>
+<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
+<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<ul>
+<li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
+</li>
+<li><p>Configured Vim to open <code>:help</code> in a vertical split. <code>:help</code> is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">help</span> <span class="hljs-keyword">wincmd</span> H</code></pre></li>
+<li><p>Sorted out JavaScript/JSX/TypeScript syntax highlighting. Vim sets <code>javascriptreact</code> to <code>.jsx</code> and <code>typescriptreact</code> to <code>.tsx</code> by default. But those file types don&#39;t work well with the plugin ecosystem because plugins for <code>javascript</code>/<code>typescript</code> file types don&#39;t work with <code>javascriptreact</code>/<code>typescriptreact</code> and popular JSX/TSX plugins use <code>javascript.jsx</code> and <code>typescript.tsx</code>.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.jsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=javascript.jsx
+<span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.tsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=typescript.tsx</code></pre></li>
+<li><p>Stopped unnecessarily lazy-loading Vim plugins with <a href="https://github.com/Shougo/dein.vim">dein.vim</a>. I had configured file-type-specific plugins as lazy plugins of dein.vim without understanding much. The truth was that lazy plugins are meaningful only for plugins with <code>plugin</code> directory. Most of the file-type-specific plugins don&#39;t have <code>plugin</code> directory and are lazily loaded by default with <code>ftdetect</code> and <code>ftplugin</code>. <code>:echo dein#check_lazy_plugins()</code> shows those plugins that are ill-configured. I finally learned <a href="https://learnvimscriptthehardway.stevelosh.com/chapters/42.html">what those plugin directories do</a> after using Vim for several years...</p>
+</li>
+<li><p>Reviewed key mappings and removed waiting time by avoiding mappings that prefixed other mappings. For example, I had mappings of <code>,g</code> and <code>,gr</code>. <code>,g</code> was slow because Vim had to wait for a while to determine it was <code>,g</code> or <code>,gr</code>.</p>
+</li>
+<li><p>Tried Vim 8 but switched back to Neovim. Vim 8 worked well, but tiny details looked smoother in Neovim. For example, when syntax highlighting hangs up, Vim 8 hangs up while Neovim disables syntax highlighting and goes on.</p>
+</li>
+<li><p>Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.</p>
+</li>
+</ul>
+
+]]></description><pubDate>Mon, 30 Dec 2019 16:06:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/30/winter-terminal-cleaning/</guid></item><item><title>Generating Twitter Card Images from Blog Post Titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
 <p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.</p>
 <p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
 <p><img src="/images/twitter-card.png" alt="Twitter Card preview"></p>
@@ -579,74 +609,4 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>
 <h2 id="then">.then()</h2>
 <p>After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!</p>
 
-]]></description><pubDate>Mon, 25 Dec 2017 21:54:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</guid></item><item><title>Getting Memory Usage in Linux and Docker</title><link>https://shuheikagawa.com/blog/2017/05/27/memory-usage/</link><description><![CDATA[
-<p>Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> os = <span class="hljs-built_in">require</span>(<span class="hljs-string">'os'</span>);
-
-<span class="hljs-keyword">const</span> total = os.totalmem();
-<span class="hljs-keyword">const</span> free = os.freemem();
-<span class="hljs-keyword">const</span> usage = (free - total) / total * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
-<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
-<p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
-<p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
-<p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
-<pre><code class="hljs ">$ free -m
-             total  used  free  shared  buffers cached
-Mem:          3950   285  3665     183       12    188
--/+ buffers/cache:    84  3866
-Swap:         1896     0  1896</code></pre><p>So, what are they actually? According to <a href="http://man7.org/linux/man-pages/man5/proc.5.html">the manual of <code>/proc/meminfo</code></a>, which is a pseudo file and the data source of <code>free</code>, <code>top</code> and friends:</p>
-<pre><code class="hljs ">Buffers %lu
-       Relatively temporary storage for raw disk blocks that
-       shouldn&#39;t get tremendously large (20MB or so).
-
-Cached %lu
-       In-memory cache for files read from the disk (the page
-       cache).  Doesn&#39;t include SwapCached.</code></pre><p>I am still not sure what exactly <code>Buffers</code> contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. <code>Cached</code> contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.</p>
-<p>If you are interested, <a href="https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output">What is the difference between Buffers and Cached columns in /proc/meminfo output?</a> on Quora has more details about <code>Buffers</code> and <code>Cached</code>.</p>
-<h2 id="memavailable">MemAvailable</h2>
-<p>So, should we use <code>free + buffers + cached</code>? <code>/proc/meminfo</code> has an even better metric called <code>MemAvailable</code>.</p>
-<pre><code class="hljs ">MemAvailable %lu (since Linux 3.14)
-       An estimate of how much memory is available for
-       starting new applications, without swapping.</code></pre><pre><code class="hljs ">$ cat /proc/meminfo
-MemTotal:        4045572 kB
-MemFree:         3753648 kB
-MemAvailable:    3684028 kB
-Buffers:           13048 kB
-Cached:           193336 kB
-...</code></pre><p>Its background is explained well in <a href="https://github.com/torvalds/linux/commit/34e431b0ae398fc54ea69ff85ec700722c9da773">the commit in Linux Kernel</a>, but essentially it excludes non-freeable page cache and includes reclaimable slab memory. <a href="https://github.com/torvalds/linux/blob/v4.12-rc2/mm/page_alloc.c#L4341-L4382">The current implementation in Linux v4.12-rc2</a> still looks almost same.</p>
-<p>Some implementation of <code>free -m</code> have <code>available</code> column. For example, on Boot2Docker:</p>
-<pre><code class="hljs ">$ free -m
-       total  used  free  shared  buff/cache  available
-Mem:    3950    59  3665     183         226       3597
-Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html">available on AWS CloudWatch metrics</a> via <code>--mem-avail</code> flag.</p>
-<h2 id="some-background-about-docker">Some background about Docker</h2>
-<p>My another question was &quot;Are those metrics same in Docker?&quot;. Before diving into this question, let&#39;s check how docker works.</p>
-<p>According to <a href="https://docs.docker.com/engine/docker-overview/#the-underlying-technology">Docker Overview: The Underlying Technology</a>, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Linux_namespaces">namespaces</a>: Isolate PIDs, hostnames, user IDs, network accesses, IPC, etc.</li>
-<li><a href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a>: Limit resource usage</li>
-<li><a href="https://en.wikipedia.org/wiki/UnionFS">UnionFS</a>: Isolate file system</li>
-</ul>
-<p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
-<p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
-<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
-<p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
-<pre><code class="hljs ">$ docker stats
-CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
-fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></pre><p>But if you want to get the memory usage in the container or get more detailed metrics, it gets complicated. <a href="https://fabiokung.com/2014/03/13/memory-inside-linux-containers/">Memory inside Linux containers</a> describes the difficulties in details.</p>
-<p><code>/proc/meminfo</code> and <code>sysinfo</code>, which is used by <code>os.totalmem()</code> and <code>os.freemem()</code> of Node.js, are not isolated, you get metrics of host OS if you use normal utilities like <code>top</code> and <code>free</code> in a Docker container.</p>
-<p>To get metrics specific to your Docker container, <a href="https://docs.docker.com/engine/admin/runmetrics/">you can check pseudo files in <code>/sys/fs/cgroup/memory/</code></a>. They are not standardized according to <a href="https://fabiokung.com/2014/03/13/memory-inside-linux-containers/">Memory inside Linux containers</a> though.</p>
-<pre><code class="hljs ">$ cat /sys/fs/cgroup/memory/memory.usage_in_bytes
-303104
-$ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
-9223372036854771712</code></pre><p><code>memory.limit_in_bytes</code> returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with <code>/proc/meminfo</code> or commands that use it.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>It was a longer journey than I initially thought. My takeaways are:</p>
-<ul>
-<li>Available Memory &gt; Free Memory</li>
-<li>Use <code>MemAvailable</code> if available (pun intended)</li>
-<li>Processes in a Docker container run directly in host OS</li>
-<li>Understand what you are measuring exactly, especially in a Docker container</li>
-</ul>
-
-]]></description><pubDate>Sun, 28 May 2017 14:28:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/05/27/memory-usage/</guid></item></channel></rss>
+]]></description><pubDate>Mon, 25 Dec 2017 21:54:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</guid></item></channel></rss>

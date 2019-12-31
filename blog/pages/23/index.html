@@ -53,6 +53,45 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/12/09/ascii/>ascii コード</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 9, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
+<blockquote>
+<p>Poem.</p>
+<p>You translated my poem,<br />
+I congratulate you.<br />
+I wish I could rhyme with poem,<br />
+but its very hard to.<br />
+I just beguiled you,</p>
+</blockquote>
+<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
+<pre class="prettyprint">class String
+  def bin
+    Integer('0b' + self)
+  end
+end
+
+def decode(ascii)
+  0.step(ascii.size - 1, 8) do |num|
+    puts ascii[num..(num + 7)].bin.chr
+  end
+end</pre>
+<p>作る方は簡単でしょうが、読む方は大変です。</p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/>Xcode で例外発生時のスタックトレースをデバッガに表示</a>
         </h1>
         <div class="meta">
@@ -132,32 +171,6 @@ Navigation Controller を削除して Tab Bar Controller を追加します。</
 <p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。<br />
 再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
 <p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/11/07/resize-images-with-imagemagick/>ImageMagick で画像を一括リサイズ</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Nov 7, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>特定の名前の画像をリサイズします。</p>
-<pre class="prettyprint">#! /bin/bash
-
-for f in rect_*.png;
-do
-  convert -resize 12x12! $f $f
-done</pre>
-<p>コマンドラインは便利ですねー。<br />
-ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p>
         </div>
       </div>
     </div>
