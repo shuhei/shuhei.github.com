@@ -43,7 +43,9 @@ yarn start
 
 ## Deploy
 
-Deploy to GitHub Pages.
+GitHub Action deploys each push to the `source` branch to GitHub Pages.
+
+To deploy manually:
 
 ```sh
 yarn deploy
