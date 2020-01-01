@@ -391,4 +391,7 @@ blockquote cite:before {
     margin-right: -20px;
     padding: 1.4em 20px;
   }
+  li .hljs {
+    margin-left: 0;
+  }
 }
