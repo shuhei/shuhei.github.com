@@ -216,7 +216,8 @@ th, td {
 code {
   background-color: var(--code-bg-color);
   color: var(--code-text-color);
-  padding: 0.1em 0.3em 0.1em;
+  padding: 0.1em 0.4em 0.1em;
+  border-radius: 0.4em;
   font-size: 0.9em;
   font-family: 'Fira Mono', monospace;
 }
@@ -396,8 +397,10 @@ blockquote cite:before {
     margin-left: -20px;
     margin-right: -20px;
     padding: 1.4em 20px;
+    border-radius: 0;
   }
   li .hljs {
     margin-left: 0;
+    border-radius: 0.4em;
   }
 }
