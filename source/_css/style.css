@@ -6,43 +6,37 @@
   --code-bg-color: hsl(var(--syntax-hue), var(--syntax-saturation), var(--syntax-brightness));
   --code-text-color: var(--code-mono-1);
 
-  /* Based on Atom One Light */
+  /* Based on Atom One Light, but higher contrast for a11y */
   /* https://github.com/atom/atom/tree/master/packages/one-light-syntax */
   --syntax-hue: 230;
   --syntax-saturation: 1%;
-  /* --syntax-brightness: 98%; */
-  /* A bit lighter color for higher contrast */
   --syntax-brightness: 100%;
 
   --code-mono-1:  hsl(var(--syntax-hue), 8%, 24%);
   --code-mono-2:  hsl(var(--syntax-hue), 6%, 44%);
   --code-mono-3:  hsl(var(--syntax-hue), 4%, 64%);
   --code-hue-1:   hsl(198, 99%, 37%); /* cyan */
-  --code-hue-2:   hsl(221, 87%, 60%); /* blue */
+  --code-hue-2:   hsl(221, 76%, 47%); /* blue */
   --code-hue-3:   hsl(301, 63%, 40%); /* purple */
-  --code-hue-4:   hsl(119, 34%, 47%); /* green */
-  --code-hue-5:   hsl(  5, 74%, 59%); /* red 1 */
+  --code-hue-4:   hsl(119, 72%, 31%); /* green */
+  --code-hue-5:   hsl(  5, 68%, 48%); /* red 1 */
   --code-hue-5-2: hsl(344, 84%, 43%); /* red 2 */
   --code-hue-6:   hsl( 41, 99%, 30%); /* orange 1 */
-  --code-hue-6-2: hsl( 41, 99%, 38%); /* orange 2 */
+  --code-hue-6-2: hsl( 41, 99%, 30%); /* orange 2 */
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: drk) {
   :root {
     --bg-color: #312b3a;
     --text-color: #f7f0e7;
     --highlight-color: #9dc8fb;
 
-    /* Based on Atom One Dark */
+    /* Based on Atom One Dark, but higher contrast for a11y */
     /* https://github.com/atom/atom/tree/master/packages/one-dark-syntax */
     --syntax-hue: 220;
     --syntax-saturation: 13%;
-    /* --syntax-brightness: 18%; */
-    /* A bit darker color for higher contrast */
     --syntax-brightness: 11%;
 
-    /* --code-mono-1:  hsl(var(--syntax-hue), 14%, 71%); */
-    /* A bit lighter color for higher contract */
     --code-mono-1:  hsl(var(--syntax-hue), 14%, 87%);
     --code-mono-2:  hsl(var(--syntax-hue),  9%, 55%);
     --code-mono-3:  hsl(var(--syntax-hue), 10%, 40%);
