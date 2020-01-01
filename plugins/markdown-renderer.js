@@ -1,4 +1,4 @@
-const marked = require("marked");
+const { marked } = require("gulp-markdown");
 const highlightjs = require("highlight.js");
 
 const escapeMap = {

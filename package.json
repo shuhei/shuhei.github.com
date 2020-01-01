@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
-    "@ibm/plex": "^3.0.0",
+    "@ibm/plex": "^4.0.2",
     "canvas": "^2.6.0",
     "cheerio": "^1.0.0-rc.3",
     "connect": "^3.3.4",
@@ -51,12 +51,11 @@
     "gulp-concat": "^2.5.0",
     "gulp-front-matter": "^1.3.0",
     "gulp-if": "^3.0.0",
-    "gulp-markdown": "^4.0.0",
+    "gulp-markdown": "^5.0.1",
     "gulp-textile": "0.0.1",
     "gulp-util": "^3.0.3",
     "highlight.js": "^9.11.0",
     "jest": "^24.9.0",
-    "marked": "^0.6.2",
     "mkdirp": "^0.5.0",
     "postcss": "^7.0.7",
     "postcss-clean": "^1.1.0",
@@ -69,7 +68,7 @@
     "textile-js": "^2.0.2",
     "through2": "^3.0.1",
     "vinyl": "^2.2.0",
-    "yargs": "^14.0.0"
+    "yargs": "^15.0.2"
   },
   "gh-pages": {
     "repository": "shuhei/shuhei.github.com",
