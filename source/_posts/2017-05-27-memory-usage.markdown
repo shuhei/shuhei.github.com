@@ -9,11 +9,11 @@ categories: [Linux, Docker]
 Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.
 
 ```js
-const os = require('os');
+const os = require("os");
 
 const total = os.totalmem();
 const free = os.freemem();
-const usage = (free - total) / total * 100;
+const usage = ((free - total) / total) * 100;
 ```
 
 So, they are basically from OS, which was [Alpine Linux](https://alpinelinux.org/) on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?
@@ -26,7 +26,7 @@ After some research, or googling, I concluded that it was not a problem. Most of
 
 Actually `free -m` command provides a row for `used` and `free` taking buffers and cached into consideration.
 
-```
+```console
 $ free -m
              total  used  free  shared  buffers cached
 Mem:          3950   285  3665     183       12    188
@@ -54,13 +54,13 @@ If you are interested, [What is the difference between Buffers and Cached column
 
 So, should we use `free + buffers + cached`? `/proc/meminfo` has an even better metric called `MemAvailable`.
 
-```
+```console
 MemAvailable %lu (since Linux 3.14)
        An estimate of how much memory is available for
        starting new applications, without swapping.
 ```
 
-```
+```console
 $ cat /proc/meminfo
 MemTotal:        4045572 kB
 MemFree:         3753648 kB
@@ -74,7 +74,7 @@ Its background is explained well in [the commit in Linux Kernel](https://github.
 
 Some implementation of `free -m` have `available` column. For example, on Boot2Docker:
 
-```
+```console
 $ free -m
        total  used  free  shared  buff/cache  available
 Mem:    3950    59  3665     183         226       3597
@@ -101,7 +101,7 @@ Because of the namespaces, `ps` command lists processes of Docker containers in 
 
 If you want to monitor a Docker container's memory usage from outside of the container, it's easy. You can use `docker stats`.
 
-```
+```console
 $ docker stats
 CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
 fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2
@@ -113,7 +113,7 @@ But if you want to get the memory usage in the container or get more detailed me
 
 To get metrics specific to your Docker container, [you can check pseudo files in `/sys/fs/cgroup/memory/`](https://docs.docker.com/engine/admin/runmetrics/). They are not standardized according to [Memory inside Linux containers](https://fabiokung.com/2014/03/13/memory-inside-linux-containers/) though.
 
-```
+```console
 $ cat /sys/fs/cgroup/memory/memory.usage_in_bytes
 303104
 $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
