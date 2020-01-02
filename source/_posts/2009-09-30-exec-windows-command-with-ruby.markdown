@@ -4,9 +4,12 @@ title: "Ruby で Windows のコマンド実行"
 published: true
 date: 2009-09-30 10:49
 comments: true
-tags: 
-categories: 
+tags:
+categories: [Ruby]
 ---
+
 バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。
 
-pre(prettyprint). ret = system "cmd.exe /c dir"
+```rb
+ret = system "cmd.exe /c dir"
+```

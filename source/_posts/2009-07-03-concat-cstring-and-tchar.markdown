@@ -4,13 +4,15 @@ title: "CString と TCHAR* の連結"
 published: true
 date: 2009-07-03 13:00
 comments: true
-tags: 
+tags:
 categories: []
 ---
-pre(prettyprint).. CString cstr = foo();
+
+```cpp
+CString cstr = foo();
 TCHAR *tchar = bar();
 
 CString concat = cstr + " " + tchar;
+```
 
-p. 普通に足せば足せるようです。
-@*tchar@ を足すと @tchar@ の最初の一文字だけ連結されます。
+普通に足せば足せるようです。`*tchar` を足すと `tchar` の最初の一文字だけ連結されます。
