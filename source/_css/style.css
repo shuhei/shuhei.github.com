@@ -25,7 +25,7 @@
   --code-hue-6-2: hsl( 41, 99%, 30%); /* orange 2 */
 }
 
-@media (prefers-color-scheme: drk) {
+@media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #312b3a;
     --text-color: #f7f0e7;
