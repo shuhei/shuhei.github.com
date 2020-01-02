@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 /* global Cypress, cy */
 
 // Stub Google Analytics
