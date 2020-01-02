@@ -70,13 +70,13 @@
 <h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
 <p>In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.</p>
 <p>Node.js is especially vulnerable to DNS lookup failures because:</p>
-<ol>
+<ul>
 <li>Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.</li>
 <li>Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.<ul>
-<li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the threadpool like file IO and GZIP encoding/decoding.</li>
+<li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the thread pool like file IO and gzip encoding/decoding.</li>
 </ul>
 </li>
-</ol>
+</ul>
 <h2 id="caching-at-os-level">Caching at OS-level</h2>
 <p>We can make DNS lookups fast and reliable by caching it. <a href="https://github.com/nodejs/node/issues/5893">An issue on the nodejs/node repo</a> recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.</p>
 <p>However, it&#39;s not always easy depending on the platform that you are using. My team was using <a href="https://stups.io/">a platform where we just deploy your application Docker container</a>, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)</p>
@@ -99,8 +99,8 @@
 <h2 id="how-to-use-it">How to Use It</h2>
 <pre><code class="hljs sh">npm i -S @shuhei/pollen
 <span class="hljs-comment"># or</span>
-yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">'https'</span>);
-<span class="hljs-keyword">const</span> { DnsPolling, HttpsAgent } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@shuhei/pollen'</span>);
+yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">"https"</span>);
+<span class="hljs-keyword">const</span> { DnsPolling, HttpsAgent } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@shuhei/pollen"</span>);
 
 <span class="hljs-keyword">const</span> dnsPolling = <span class="hljs-keyword">new</span> DnsPolling({
   <span class="hljs-attr">interval</span>: <span class="hljs-number">30</span> * <span class="hljs-number">1000</span> <span class="hljs-comment">// 30 seconds by default</span>
@@ -109,35 +109,35 @@ yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs
 <span class="hljs-comment">// It accepts all the options of `agentkeepalive`.</span>
 <span class="hljs-keyword">const</span> agent = <span class="hljs-keyword">new</span> HttpsAgent();
 
-<span class="hljs-keyword">const</span> hostname = <span class="hljs-string">'shuheikagawa.com'</span>;
+<span class="hljs-keyword">const</span> hostname = <span class="hljs-string">"shuheikagawa.com"</span>;
 <span class="hljs-keyword">const</span> req = https.request({
   hostname,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+  <span class="hljs-attr">path</span>: <span class="hljs-string">"/"</span>,
   <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
   <span class="hljs-attr">lookup</span>: dnsPolling.getLookup(hostname),
-  agent,
+  agent
 });</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
 <p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
-<pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">'resolve:success'</span>, ({ hostname, duration, update }) =&gt; {
+<pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">"resolve:success"</span>, ({ hostname, duration, update }) =&gt; {
   <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
   recordDnsLookup();
   recordDnsLatency(duration);
 
   <span class="hljs-keyword">if</span> (update) {
-    logger.info({ hostname, duration }, <span class="hljs-string">'IP addresses updated'</span>);
+    logger.info({ hostname, duration }, <span class="hljs-string">"IP addresses updated"</span>);
   }
 });
-dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, duration, error }) =&gt; {
+dnsPolling.on(<span class="hljs-string">"resolve:error"</span>, ({ hostname, duration, error }) =&gt; {
   <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
   recordDnsLookup();
   recordDnsLatency(duration);
   recordDnsError();
 
-  logger.warn({ hostname, <span class="hljs-attr">err</span>: error, duration }, <span class="hljs-string">'DNS lookup error'</span>);
+  logger.warn({ hostname, <span class="hljs-attr">err</span>: error, duration }, <span class="hljs-string">"DNS lookup error"</span>);
 });</code></pre><p>I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of <a href="https://c-ares.haxx.se/">c-ares</a>, but I&#39;m not sure yet (<a href="https://c-ares.haxx.se/ares_init_options.html">its default timeout seems to be 5 seconds...</a>).</p>
 <p>Because <code>pollen</code> makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">Histogram for Time-Series Metrics on Node.js</a> for more details.</p>
 <p>Even if you don&#39;t use <code>pollen</code>, it is a good idea to monitor DNS lookups.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> dns = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dns'</span>);
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> dns = <span class="hljs-built_in">require</span>(<span class="hljs-string">"dns"</span>);
 
 <span class="hljs-keyword">const</span> lookupWithMetrics = <span class="hljs-function">(<span class="hljs-params">hostname, options, callback</span>) =&gt;</span> {
   <span class="hljs-keyword">const</span> cb = callback || options;
@@ -147,12 +147,12 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
     <span class="hljs-keyword">const</span> duration = <span class="hljs-built_in">Date</span>.now() - startTime;
     cb(err, address, family);
 
-        <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
+    <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
     recordDnsLookup();
     recordDnsLatency(duration);
     <span class="hljs-keyword">if</span> (err) {
       recordDnsError();
-      logger.warn({ hostname, err, duration }, <span class="hljs-string">'DNS lookup error'</span>);
+      logger.warn({ hostname, err, duration }, <span class="hljs-string">"DNS lookup error"</span>);
     }
   }
 
@@ -160,7 +160,7 @@ dnsPolling.on(<span class="hljs-string">'resolve:error'</span>, ({ hostname, dur
 };
 
 <span class="hljs-keyword">const</span> req = https.request({
-  ...,
+  <span class="hljs-comment">// ...</span>
   <span class="hljs-attr">lookup</span>: lookupWithMetrics
 });</code></pre><h2 id="conclusion">Conclusion</h2>
 <p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
