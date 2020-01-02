@@ -16,9 +16,9 @@ In the microservice world, we work hard to make remote procedure calls (with HTT
 
 Node.js is especially vulnerable to DNS lookup failures because:
 
-1. Node.js standard library doesn't have DNS cache by default while other languages/runtimes like Java and Go have it by default.
-2. Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.
-  - Before [Node 10.12.0](https://github.com/nodejs/node/pull/22997), it was even worse because slow DNS queries affected other tasks in the threadpool like file IO and GZIP encoding/decoding.
+- Node.js standard library doesn't have DNS cache by default while other languages/runtimes like Java and Go have it by default.
+- Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.
+  - Before [Node 10.12.0](https://github.com/nodejs/node/pull/22997), it was even worse because slow DNS queries affected other tasks in the thread pool like file IO and gzip encoding/decoding.
 
 ## Caching at OS-level
 
@@ -62,8 +62,8 @@ yarn add @shuhei/pollen
 ```
 
 ```js
-const https = require('https');
-const { DnsPolling, HttpsAgent } = require('@shuhei/pollen');
+const https = require("https");
+const { DnsPolling, HttpsAgent } = require("@shuhei/pollen");
 
 const dnsPolling = new DnsPolling({
   interval: 30 * 1000 // 30 seconds by default
@@ -72,13 +72,13 @@ const dnsPolling = new DnsPolling({
 // It accepts all the options of `agentkeepalive`.
 const agent = new HttpsAgent();
 
-const hostname = 'shuheikagawa.com';
+const hostname = "shuheikagawa.com";
 const req = https.request({
   hostname,
-  path: '/',
+  path: "/",
   // Make sure to call `getLookup()` for each request!
   lookup: dnsPolling.getLookup(hostname),
-  agent,
+  agent
 });
 ```
 
@@ -87,22 +87,22 @@ const req = https.request({
 Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. `pollen` emits events for this purpose.
 
 ```js
-dnsPolling.on('resolve:success', ({ hostname, duration, update }) => {
+dnsPolling.on("resolve:success", ({ hostname, duration, update }) => {
   // Hypothetical functions to update metrics...
   recordDnsLookup();
   recordDnsLatency(duration);
 
   if (update) {
-    logger.info({ hostname, duration }, 'IP addresses updated');
+    logger.info({ hostname, duration }, "IP addresses updated");
   }
 });
-dnsPolling.on('resolve:error', ({ hostname, duration, error }) => {
+dnsPolling.on("resolve:error", ({ hostname, duration, error }) => {
   // Hypothetical functions to update metrics...
   recordDnsLookup();
   recordDnsLatency(duration);
   recordDnsError();
 
-  logger.warn({ hostname, err: error, duration }, 'DNS lookup error');
+  logger.warn({ hostname, err: error, duration }, "DNS lookup error");
 });
 ```
 
@@ -113,7 +113,7 @@ Because `pollen` makes fewer DNS lookups, the events don't happen frequently. I 
 Even if you don't use `pollen`, it is a good idea to monitor DNS lookups.
 
 ```js
-const dns = require('dns');
+const dns = require("dns");
 
 const lookupWithMetrics = (hostname, options, callback) => {
   const cb = callback || options;
@@ -123,12 +123,12 @@ const lookupWithMetrics = (hostname, options, callback) => {
     const duration = Date.now() - startTime;
     cb(err, address, family);
 
-		// Hypothetical functions to update metrics...
+    // Hypothetical functions to update metrics...
     recordDnsLookup();
     recordDnsLatency(duration);
     if (err) {
       recordDnsError();
-      logger.warn({ hostname, err, duration }, 'DNS lookup error');
+      logger.warn({ hostname, err, duration }, "DNS lookup error");
     }
   }
 
@@ -136,7 +136,7 @@ const lookupWithMetrics = (hostname, options, callback) => {
 };
 
 const req = https.request({
-  ...,
+  // ...
   lookup: lookupWithMetrics
 });
 ```
