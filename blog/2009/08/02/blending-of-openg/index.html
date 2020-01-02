@@ -66,43 +66,40 @@
       <div class="content">
         <div>
           <p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>
-<p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshopなどでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>
-<h3>まずは有効に</h3>
+<p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshop などでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>
+<h2 id="まずは有効に">まずは有効に</h2>
 <p>ブレンディングを有効にするには以下の関数を呼ばなければなりません。</p>
-<pre class="prettyprint">glEnable(GL_BLEND);</pre>
-<h3>設定関数</h3>
-<p>ブレンドする二つの画像を source と destination とします。OpenGLでは、これから描くのがsource、destinationはフレームバッファ上の画像だそうです。</p>
-<h4>glBlendFunc</h4>
-<p><code>glBlendFunc</code> では、それぞれの画像の <span class="caps">RGBA</span> にかける係数を設定します。下記は一例です。</p>
+<pre><code class="hljs cpp">glEnable(GL_BLEND);</code></pre><h2 id="設定関数">設定関数</h2>
+<p>ブレンドする二つの画像を source と destination とします。OpenGL では、これから描くのが source、destination はフレームバッファ上の画像だそうです。</p>
+<h3 id="glblendfunc">glBlendFunc</h3>
+<p><code>glBlendFunc</code> では、それぞれの画像の RGBA にかける係数を設定します。下記は一例です。</p>
 <ul>
-	<li><code>GL_ONE</code>　<span class="caps">RGBA</span> 全てを0にする</li>
-	<li><code>GL_ZERO</code>　<span class="caps">RGBA</span> 全てそのまま</li>
-	<li><code>GL_SRC_ALPHA</code>　<span class="caps">RGBA</span> 全てに source のAをかける</li>
+<li><code>GL_ONE</code> RGBA 全てを 0 にする</li>
+<li><code>GL_ZERO</code> RGBA 全てそのまま</li>
+<li><code>GL_SRC_ALPHA</code> RGBA 全てに source の A をかける</li>
 </ul>
-<h4>glBlendEquation</h4>
-<p><code>glBlendEquation</code> では、画像同士の<span class="caps">RGBA</span>を合成する方法を設定します。</p>
+<h3 id="glblendequation">glBlendEquation</h3>
+<p><code>glBlendEquation</code> では、画像同士の RGBA を合成する方法を設定します。</p>
 <ul>
-	<li><code>GL_FUNC_ADD</code> 足す</li>
-	<li><code>GL_FUNC_SUBTRACT</code> sourceからdestinationを引く</li>
-	<li><code>GL_FUNC_REVERSE_SUBTRACT</code> destinationからsourceを引く</li>
-	<li><code>GL_MAX</code> 大きい方をそのまま使う</li>
-	<li><code>GL_MIN</code> 小さい方をそのまま使う</li>
+<li><code>GL_FUNC_ADD</code> 足す</li>
+<li><code>GL_FUNC_SUBTRACT</code> source から destination を引く</li>
+<li><code>GL_FUNC_REVERSE_SUBTRACT</code> destination から source を引く</li>
+<li><code>GL_MAX</code> 大きい方をそのまま使う</li>
+<li><code>GL_MIN</code> 小さい方をそのまま使う</li>
 </ul>
-<h4>その他</h4>
-<p>iPhone では <code>glBlendEquation</code> ではなく <code>glBlendEquationOES</code> を使いますが、働きは同じもののようです。また <code>glBlendFunc</code> や <code>glBlendEquation</code> では <span class="caps">RGBA</span> 全てを一緒に設定しますが、 <code>glBlendFuncSeparate</code> や <code>glBlendEquationSeparate</code> を用いると <span class="caps">RGB</span> と Alpha を別々に設定できるようです。</p>
-<h3>実例</h3>
-<h4>Additive blending</h4>
+<h3 id="その他">その他</h3>
+<p>iPhone では <code>glBlendEquation</code> ではなく <code>glBlendEquationOES</code> を使いますが、働きは同じもののようです。また <code>glBlendFunc</code> や <code>glBlendEquation</code> では RGBA 全てを一緒に設定しますが、 <code>glBlendFuncSeparate</code> や <code>glBlendEquationSeparate</code> を用いると RGB と Alpha を別々に設定できるようです。</p>
+<h2 id="実例">実例</h2>
+<h3 id="additive-blending">Additive blending</h3>
 <p>光の表現に。暗めの色を重ねていくと、ぼんやりと光るようないい感じになります。</p>
-<pre class="prettyprint">glBlendEquationOES(GL_FUNC_ADD);  // デフォルトは GL_FUNC_ADD のようで必要ないかも
+<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_ADD); <span class="hljs-comment">// デフォルトは GL_FUNC_ADD のようで必要ないかも</span>
 glBlendFunc(GL_ONE, GL_ONE);
-// glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR); // こっちの方がいい感じになるとか・・・。</pre>
-<h4>フェードアウト</h4>
+<span class="hljs-comment">// glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR); // こっちの方がいい感じになるとか・・・。</span></code></pre><h3 id="フェードアウト">フェードアウト</h3>
 <p>もっといい方法があるかもしれませんが、他にやり方が思いつかなかったので。</p>
-<pre class="prettyprint">glBlendEquationOES(GL_FUNC_REVERSE_SUBTRACT_OES);  // 暗くするため、元画像から引く
-glBlendFunc(GL_ONE, GL_ONE);  // そのまま
-ofSetColor(10, 10, 10, 0);  // 少しずつ暗くします
-ofRect(0, 0, ofGetWidth(), ofGetHeight());  // 画面全体に適用します
-</pre>
+<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_REVERSE_SUBTRACT_OES); <span class="hljs-comment">// 暗くするため、元画像から引く</span>
+glBlendFunc(GL_ONE, GL_ONE); <span class="hljs-comment">// そのまま</span>
+ofSetColor(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// 少しずつ暗くします</span>
+ofRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ofGetWidth(), ofGetHeight()); <span class="hljs-comment">// 画面全体に適用します</span></code></pre>
         </div>
       </div>
     </div>

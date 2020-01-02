@@ -60,28 +60,29 @@
         </h1>
         <div class="meta">
           <span class="date">Jul 28, 2009</span>
-          
+          - <span class="category">C++</span>
         </div>
       </div>
       <div class="content">
         <div>
           <p>またまた少しはまりました。</p>
-<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。<br />
+<p>C++ のコンストラクタは、基本クラスのメンバを初期化できないそうです。
 以下のように書くとエラーになります。</p>
-<pre class="prettyprint">class A {
-protected:
-  int foo;
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-keyword">int</span> foo;
 };
 
-class B : public A {
-public:
-  B(int value) : foo(value) {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> :</span> <span class="hljs-keyword">public</span> A {
+<span class="hljs-keyword">public</span>:
+  B(<span class="hljs-keyword">int</span> value) : foo(value) {
   }
-};</pre>
-<p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。<br />
-なかなか面倒なものですね。</p>
-<p>参考サイト<br />
-<a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 &#8211; <span class="caps">A7M</span> の日記</a></p>
+};</code></pre><p>親クラスのコンストラクタでも初期化をしていると、子クラスのコンストラクタで初期化しても上書きされてしまうからでしょうか。なかなか面倒なものですね。</p>
+<p>参考サイト:</p>
+<ul>
+<li><a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 - A7M の日記</a></li>
+</ul>
+
         </div>
       </div>
     </div>

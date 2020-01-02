@@ -57,32 +57,32 @@
         </h1>
         <div class="meta">
           <span class="date">Jul 28, 2009</span>
-          
+          - <span class="category">C++</span>
         </div>
       </div>
       <div class="content">
         <div>
-          <p>1時間ほどハマりました。<br />
-下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
+          <p>1 時間ほどハマりました。下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
 <blockquote>
-<p><span class="caps">C4430</span>: 型指定子がありません &#8211; int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
+<p>C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
 </blockquote>
-<pre class="prettyprint">enum GREETING { HELLO, NI_HAO, CIAO };
+<pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> GREETING { HELLO, NI_HAO, CIAO };
 
-class A {
-public:
-  GREETING foo(B* b);  // コンパイルエラー！
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">GREETING <span class="hljs-title">foo</span><span class="hljs-params">(B* b)</span></span>;  <span class="hljs-comment">// コンパイルエラー！</span>
 }
 
-class B {
-public:
-  void bar(A* a);
-}</pre>
-<p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<br />
-class A の宣言の前にBの前方宣言が必要なんですね。</p>
-<pre class="prettyprint">class B;</pre>
-<p>一回勉強したのですが、すっかり忘れていました。<br />
-この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bar</span><span class="hljs-params">(A* a)</span></span>;
+}</code></pre><p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<code>class A</code> の宣言の前に B の前方宣言が必要なんですね。</p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span>;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
+  <span class="hljs-comment">// ...</span>
+}</code></pre><p>一回勉強したのですが、すっかり忘れていました。この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p>
+
         </div>
       </div>
     </div>

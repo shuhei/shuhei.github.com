@@ -94,12 +94,11 @@ int main(int argc, char** argv) {
       </div>
       <div class="content">
         <div>
-          <pre class="prettyprint">CString cstr = foo();
+          <pre><code class="hljs cpp">CString cstr = foo();
 TCHAR *tchar = bar();
 
-CString concat = cstr + " " + tchar;</pre>
-<p>普通に足せば足せるようです。<br />
-<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p>
+CString concat = cstr + <span class="hljs-string">" "</span> + tchar;</code></pre><p>普通に足せば足せるようです。<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p>
+
         </div>
       </div>
     </div>
