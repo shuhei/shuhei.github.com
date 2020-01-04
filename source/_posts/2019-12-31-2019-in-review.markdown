@@ -10,7 +10,7 @@ categories: []
 
 ## Travels
 
-I visited six new countries and enjoyed each of them. There are many more places to visit in Europe. I'll keep traveling in 2020.
+I visited six new countries and enjoyed each of them.
 
 - January: Japan
 - March: Budapest, Hungary
@@ -21,6 +21,8 @@ I visited six new countries and enjoyed each of them. There are many more places
 - September: Munich, Germany
 - October: Dubrovnik, Croatia
 - November: Japan
+
+There are many more places to visit in Europe. I'll keep traveling in 2020.
 
 ## Bike
 
