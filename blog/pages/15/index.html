@@ -151,7 +151,7 @@ index bb5fd32..28bf7e0 100644
       </div>
       <div class="content">
         <div>
-          <iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/36385123" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
 
 <p><a href="http://www.syedrezaali.com/blog/?p=2172">ofxUI: A User Interface Addon for OF</a> を使うと openFrameworks に <a href="https://github.com/ofTheo/ofxControlPanel">ofxControlPanel</a> よりもちょっとかっこいい UI を追加することができます。<a href="https://github.com/rezaali/ofxUI">github のページ</a> の Readme を超訳してみました。</p>
 <p>1. <a href="https://github.com/rezaali/ofxUI/downloads">ダウンロードページ</a>から ofxUI をダウンロード。中の <code>src</code> を <code>of/addons</code> の中に移して、名前を <code>ofxUI</code> にします。残りは <code>of/apps</code> に移して <code>ofxUIExamples</code> などとします。すると以下のようなファイル構成になります。</p>
@@ -188,10 +188,10 @@ index bb5fd32..28bf7e0 100644
 {
 
 }</code></pre><p>10. <code>setup()</code> の中で初期化。引数は GUI の左上の点の座標と幅と高さです。</p>
-<pre><code class="hljs cpp">gui = <span class="hljs-keyword">new</span> ofxUICanvas(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">320</span>,<span class="hljs-number">320</span>);          <span class="hljs-comment">//ofxUICanvas(float x, float y, float width, float height)         </span></code></pre><p>11. <code>exit()</code> はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。</p>
+<pre><code class="hljs cpp">gui = <span class="hljs-keyword">new</span> ofxUICanvas(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">320</span>,<span class="hljs-number">320</span>);          <span class="hljs-comment">//ofxUICanvas(float x, float y, float width, float height)</span></code></pre><p>11. <code>exit()</code> はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。</p>
 <pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::<span class="hljs-built_in">exit</span>()
 {
-  gui-&gt;saveSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);    
+  gui-&gt;saveSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);
   <span class="hljs-keyword">delete</span> gui;
 }</code></pre><p>12. GUI にウィジェット（UI 部品のこと）を追加する。最後から二番目の行は、リスナー／コールバックを追加することで、ウィジェットがユーザに操作されたときに何をすればいいか GUI に教えています。よくわからなくても気にしない。また、最後の行は GUI に XML に保存された設定を読み込んでいます。ファイルがなければ、ウィジェットのデフォルトの値が使用されます。</p>
 <pre><code class="hljs cpp">gui-&gt;addWidgetDown(<span class="hljs-keyword">new</span> ofxUILabel(<span class="hljs-string">"OFXUI TUTORIAL"</span>, OFX_UI_FONT_LARGE));
@@ -200,25 +200,25 @@ ofAddListener(gui-&gt;newGUIEvent, <span class="hljs-keyword">this</span>, &amp;
 gui-&gt;loadSettings(<span class="hljs-string">"GUI/guiSettings.xml"</span>);</code></pre><p>13. ユーザが UI を操作したときに呼ばれます。操作されたウィジェットに関する処理を書きましょう。</p>
 <pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::guiEvent(ofxUIEventArgs &amp;e)
 {
-    <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"BACKGROUND VALUE"</span>)    
+    <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"BACKGROUND VALUE"</span>)
     {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
+        ofxUISlider *slider = (ofxUISlider *) e.widget;
         ofBackground(slider-&gt;getScaledValue());
-    }  
+    }
 }</code></pre><p>14. フルスクリーンモードとウィンドウモードを切り替えるためにトグルを追加します。<code>setup()</code> メソッドの中で他のウィジェットの後に以下を追加。もしこれをもうひとつの <code>addWidgetDown</code> の呼び出しの前に書けば、トグルはスライダーの上に置かれます。</p>
 <pre><code class="hljs cpp">gui-&gt;addWidgetDown(<span class="hljs-keyword">new</span> ofxUIToggle(<span class="hljs-number">32</span>, <span class="hljs-number">32</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">"FULLSCREEN"</span>));</code></pre><p>15. &quot;FULLSCREEN&quot; トグルウィジェットに対応するため、<code>guiEvent</code> メソッドにもう一つ機能を追加します。結局のところ、こんな風に見えるはず。</p>
 <pre><code class="hljs cpp"><span class="hljs-keyword">void</span> testApp::guiEvent(ofxUIEventArgs &amp;e)
 {
     <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"BACKGROUND VALUE"</span>)
     {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
+        ofxUISlider *slider = (ofxUISlider *) e.widget;
         ofBackground(slider-&gt;getScaledValue());
     }
     <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e.widget-&gt;getName() == <span class="hljs-string">"FULLSCREEN"</span>)
     {
         ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
         ofSetFullscreen(toggle-&gt;getValue());
-    }   
+    }
 }</code></pre><p>こんな感じで他のウィジェットを置いて操作できるようにすることができます。</p>
 <p>サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。</p>
 
