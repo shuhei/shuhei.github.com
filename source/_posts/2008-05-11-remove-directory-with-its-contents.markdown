@@ -4,9 +4,10 @@ title: "ディレクトリを中見ごと消す"
 published: true
 date: 2008-05-11 10:12
 comments: true
-tags: 
 categories: [UNIX/LINUX]
 ---
 メモ。
 
-pre(prettyprint). rm -rf hogehoge
+```sh
+rm -rf hogehoge
+```
