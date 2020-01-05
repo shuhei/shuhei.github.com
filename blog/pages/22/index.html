@@ -90,42 +90,33 @@ sudo ufw enable</pre>
       </div>
       <div class="content">
         <div>
-          <h3>Aptitude ではだめ</h3>
-<p>とりあえずは apt-get と思い、下記のようにしたらとしたら libapache2-mod-php5 などが消されて焦りました。</p>
-<pre class="prettyprint">sudo apt-get install libapache2-mod-passenger</pre>
-<p>Aptitude を使うと、Passenger と <span class="caps">PHP</span> 5 は共存できないようです。<br />
-それぞれが依存している apache2-mpm-worker と apache2-mpm-prefork が共存できないのが原因のよう。<br />
-via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu日本語フォーラム / ubuntu 9.04 passenger と　php5は共存できない？</a></p>
-<h3>Gem でインストール</h3>
-<p>しょうがないので <span class="caps">PHP</span> 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
-<pre class="prettyprint">sudo gem install passenger
-sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
-<p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
-<pre class="prettyprint">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</pre>
-<h3>設定ファイルの記述</h3>
-<p>httpd.conf には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
-<p>/etc/apache2/mods-available/passenger.load</p>
-<pre class="prettyprint">LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</pre>
-<p>/etc/apache2/mods-available/passenger.conf</p>
-<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
-  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
-  PassengerRuby /usr/bin/ruby1.8
-&lt;/ifModule&gt;</pre>
-<p>モジュールを有効に。<br />
-mods-enabled から mods-available にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
-<pre class="prettyprint">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
-sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</pre>
-<h3>サブディレクトリで公開</h3>
+          <h2 id="aptitude-ではだめ">Aptitude ではだめ</h2>
+<p>とりあえずは <code>apt-get</code> と思い、下記のようにしたらとしたら <code>libapache2-mod-php5</code> などが消されて焦りました。</p>
+<pre><code class="hljs sh">sudo apt-get install libapache2-mod-passenger</code></pre><p>Aptitude を使うと、Passenger と PHP 5 は共存できないようです。それぞれが依存している <code>apache2-mpm-worker</code> と <code>apache2-mpm-prefork</code> が共存できないのが原因のよう。</p>
+<p>via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu 日本語フォーラム / ubuntu 9.04 passenger と　 php5 は共存できない？</a></p>
+<h2 id="gem-でインストール">Gem でインストール</h2>
+<p>しょうがないので PHP 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
+<pre><code class="hljs sh">sudo gem install passenger
+sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
+<pre><code class="hljs sh">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><h2 id="設定ファイルの記述">設定ファイルの記述</h2>
+<p><code>httpd.conf</code> には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
+<p><code>/etc/apache2/mods-available/passenger.load</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</code></pre><p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
+  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
+  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
+<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>モジュールを有効に。<code>mods-enabled</code> から <code>mods-available</code> にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
+<pre><code class="hljs sh">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
+sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</code></pre><h2 id="サブディレクトリで公開">サブディレクトリで公開</h2>
 <p>ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。</p>
-<pre class="prettyprint">sudo ln -s /path/to/app-name/public /path/to/www/app-name</pre>
-<p>そして、Apache の設定ファイルに少し付け足します。</p>
-<p>/etc/apache2/mods-available/passenger.conf</p>
-<pre class="prettyprint">&lt;ifModule mod_passenger.c&gt;
-  PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.9
-  PassengerRuby /usr/bin/ruby1.8
-  RailsBaseURI /app-name
-&lt;/ifModule&gt;</pre>
-<p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab &#8211; blog: PassengerでRedmineをサブディレクトリに公開</a></p>
+<pre><code class="hljs sh">sudo ln -s /path/to/app-name/public /path/to/www/app-name</code></pre><p>そして、Apache の設定ファイルに少し付け足します。</p>
+<p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
+  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
+  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
+  <span class="hljs-attribute">RailsBaseURI</span> /app-name
+<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab - blog: Passenger で Redmine をサブディレクトリに公開</a></p>
+
         </div>
       </div>
     </div>
