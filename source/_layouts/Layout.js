@@ -66,7 +66,7 @@ function Layout({ site, css, title, image, description, children }) {
       <meta charset="utf-8">
 			${preloads}
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <meta name="viewport" content="initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>${title}</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
