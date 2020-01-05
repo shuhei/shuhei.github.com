@@ -4,11 +4,11 @@ title: "How to use ofxUI"
 published: true
 date: 2012-04-02 20:13
 comments: true
-tags: 
+tags:
 categories: [openFrameworks]
 ---
 
-<iframe src="//player.vimeo.com/video/36385123" width="700" height="525" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/36385123" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
 
 [ofxUI: A User Interface Addon for OF](http://www.syedrezaali.com/blog/?p=2172) を使うと openFrameworks に [ofxControlPanel](https://github.com/ofTheo/ofxControlPanel) よりもちょっとかっこいい UI を追加することができます。[github のページ](https://github.com/rezaali/ofxUI) の Readme を超訳してみました。
 
@@ -67,7 +67,7 @@ void testApp::guiEvent(ofxUIEventArgs &e)
 10\. `setup()` の中で初期化。引数は GUI の左上の点の座標と幅と高さです。
 
 ```cpp
-gui = new ofxUICanvas(0,0,320,320);          //ofxUICanvas(float x, float y, float width, float height)         
+gui = new ofxUICanvas(0,0,320,320);          //ofxUICanvas(float x, float y, float width, float height)
 ```
 
 11\. `exit()` はアプリの終了前に呼ばれます。ここでは設定の保存と gui オブジェクトの破棄を行います（変数がポインタなので参照先を解放しないとメモリリーク）。
@@ -75,7 +75,7 @@ gui = new ofxUICanvas(0,0,320,320);          //ofxUICanvas(float x, float y, flo
 ```cpp
 void testApp::exit()
 {
-  gui->saveSettings("GUI/guiSettings.xml");    
+  gui->saveSettings("GUI/guiSettings.xml");
   delete gui;
 }
 ```
@@ -94,11 +94,11 @@ gui->loadSettings("GUI/guiSettings.xml");
 ```cpp
 void testApp::guiEvent(ofxUIEventArgs &e)
 {
-    if(e.widget->getName() == "BACKGROUND VALUE")    
+    if(e.widget->getName() == "BACKGROUND VALUE")
     {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
+        ofxUISlider *slider = (ofxUISlider *) e.widget;
         ofBackground(slider->getScaledValue());
-    }  
+    }
 }
 ```
 
@@ -115,18 +115,17 @@ void testApp::guiEvent(ofxUIEventArgs &e)
 {
     if(e.widget->getName() == "BACKGROUND VALUE")
     {
-        ofxUISlider *slider = (ofxUISlider *) e.widget;   
+        ofxUISlider *slider = (ofxUISlider *) e.widget;
         ofBackground(slider->getScaledValue());
     }
     else if(e.widget->getName() == "FULLSCREEN")
     {
         ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
         ofSetFullscreen(toggle->getValue());
-    }   
+    }
 }
 ```
 
 こんな感じで他のウィジェットを置いて操作できるようにすることができます。
 
 サンプルコードを見れば、もっと複雑なウィジェットの使い方をしらべることもできます。ここで紹介したコードもサンプルコードの中に入っているので、わからなくなったら見てみるとよいでしょう。
-
