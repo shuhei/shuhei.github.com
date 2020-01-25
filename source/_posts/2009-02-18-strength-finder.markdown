@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Strength Finder"
+published: true
+date: 2009-02-18 00:22
+comments: true
+tags:
+categories: [読書]
+---
+
+本屋で見つけた [「さあ、才能に目覚めよう」](http://www.amazon.co.jp/gp/product/4532149479) という本を読んでみました。
+いくら弱点を克服してもトップにはなれないから、強みを見つけて育てよう、という趣旨の本。
+たしかにその通りだと思います。
+
+本の表紙裏についてるアカウントで Strength Finder というウェブテストが受けられます。
+強みは大人になるともう変化しないのだそうで、テストは一回しかできないという徹底ぶり。
+それによると僕の強みは以下だそうです。
+
+- Maximizer（最上志向）
+- Input（収集性）
+- Adaptability（適応性）
+- Individualization（個別化）
+- Relator （親密性）
+
+言われてみるとそういう気もしますが、少し意外でした。
+さて、どう活かしていきますかねえ。

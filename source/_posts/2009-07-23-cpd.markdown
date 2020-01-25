@@ -1,0 +1,16 @@
+---
+layout: post
+title: "CPD"
+published: true
+date: 2009-07-23 19:12
+comments: true
+tags:
+categories: []
+---
+
+[developerWorks](http://www.ibm.com/developerworks/jp/) の [進化するアーキテクチャーと新方式の設計: 設計のためのリファクタリング](http://www.ibm.com/developerworks/jp/java/library/j-eaed5/) という記事で、コードの重複を検出するツールが紹介されています。
+CPD という名前で、Copy/Paste Detector の略だとか。
+
+[PMD &#8211; Finding copied and pasted code](http://pmd.sourceforge.net/cpd.html)
+
+PMD という静的コード解析ツールの一部として入手できます。
