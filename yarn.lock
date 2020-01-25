@@ -6743,9 +6743,10 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-textile-js@^2.0.2:
+textile-js@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/textile-js/-/textile-js-2.0.4.tgz#4869cf7b4310d9b915912a62f56e9ad8323c9e84"
+  integrity sha512-x/cwuDQxItNGvKK0oiDWEyOdMrzIqsKJff/hvXwYsR5Sr9vqJ26IvyAZn/VuxLXHc57j1YA9oZgE8/QhSkERHA==
 
 textile-js@~0.1.7:
   version "0.1.11"

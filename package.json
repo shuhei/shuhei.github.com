@@ -41,7 +41,6 @@
     "connect": "^3.3.4",
     "cypress": "^3.8.0",
     "eslint": "^6.5.1",
-    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.1",
@@ -65,7 +64,7 @@
     "readable-stream": "^3.4.0",
     "serve-static": "^1.9.1",
     "strftime": "^0.10.0",
-    "textile-js": "^2.0.2",
+    "textile-js": "^2.0.4",
     "through2": "^3.0.1",
     "vinyl": "^2.2.0",
     "yargs": "^15.0.2"
