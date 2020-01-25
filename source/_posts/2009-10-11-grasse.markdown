@@ -7,7 +7,7 @@ comments: true
 categories: []
 ---
 
-[![Grasses.pde](https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png)](https://www.flickr.com/photos/branchiopoda/3998672572/ "Grasses.pde by shuhei kagawa, on Flickr")
+[![Grasses.pde](https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png "=495x140")](https://www.flickr.com/photos/branchiopoda/3998672572/ "Grasses.pde by shuhei kagawa, on Flickr")
 
 パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。
 備忘のために。
