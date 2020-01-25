@@ -62,12 +62,11 @@
       </div>
       <div class="content">
         <div>
-          <pre class="prettyprint">findstr /n /s /c:"hello world" sub_dir\*</pre>
-<p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。<br />
+          <pre><code class="hljs ">findstr /n /s /c:&quot;hello world&quot; sub_dir\*</code></pre><p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。
 /n で行番号表示。/s は再帰的に。</p>
-<pre class="prettyprint">findstr /n /s "hello world" sub_dir\*</pre>
-<p>とすると、&#8220;hello&#8221; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>
+<pre><code class="hljs ">findstr /n /s &quot;hello world&quot; sub_dir\*</code></pre><p>とすると、&#8220;hello&#8221; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>
 <p>via <a href="http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265">コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &#8211; 主に言語とシステム開発に関して</a></p>
+
         </div>
       </div>
     </div>
@@ -85,9 +84,9 @@
       </div>
       <div class="content">
         <div>
-          <p>Eclipse <span class="caps">IDE</span> for Java EE Developers (based on Eclipse 3.5 <span class="caps">SR1</span>) をダウンロードしてから最初の起動時に &#8220;<span class="caps">JVM</span> Terminated.&#8221; 的なエラー。<br />
+          <p>Eclipse IDE for Java EE Developers (based on Eclipse 3.5 SR1) をダウンロードしてから最初の起動時に &#8220;JVM Terminated.&#8221; 的なエラー。
 eclipse.ini を修正。</p>
-<pre class="prettyprint">-startup
+<pre><code class="hljs ">-startup
 plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
 --launcher.library
 plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
@@ -102,9 +101,8 @@ org.eclipse.platform
 -vmargs
 -Dosgi.requiredJavaVersion=1.5
 -Xms40m
--Xmx512m</pre>
-<p>上を下に。</p>
-<pre class="prettyprint">-startup
+-Xmx512m</code></pre><p>上を下に。</p>
+<pre><code class="hljs ">-startup
 plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
 --launcher.library
 plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
@@ -121,8 +119,8 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
 -vmargs
 -Dosgi.requiredJavaVersion=1.6
 -Xms40m
--Xmx512m</pre>
-<p>via <a href="http://aotan2008.eco.coocan.jp/blog/archives/2009/06/08133609.php">Eclipseの起動エラー（<span class="caps">JVM</span> terminated. Exit code=-1） &#8211; がんばれ！aotan2008</a></p>
+-Xmx512m</code></pre><p>via <a href="http://aotan2008.eco.coocan.jp/blog/archives/2009/06/08133609.php">Eclipse の起動エラー（JVM terminated. Exit code=-1） &#8211; がんばれ！aotan2008</a></p>
+
         </div>
       </div>
     </div>
@@ -142,11 +140,10 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
         <div>
           <p>port search xxx として出てくるものが古いときに。</p>
 <p>MacPorts をアップデート。</p>
-<pre class="prettyprint">sudo port selfupdate</pre>
-<p>パッケージを更新。</p>
-<pre class="prettyprint">sudo port sync</pre>
-<p>たまにやった方がいいようですね。</p>
-<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPortsをちゃんと使うために調べてみた &#8211; kanonjiの日記</a></p>
+<pre><code class="hljs ">sudo port selfupdate</code></pre><p>パッケージを更新。</p>
+<pre><code class="hljs ">sudo port sync</code></pre><p>たまにやった方がいいようですね。</p>
+<p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPorts をちゃんと使うために調べてみた &#8211; kanonji の日記</a></p>
+
         </div>
       </div>
     </div>

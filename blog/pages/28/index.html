@@ -62,10 +62,10 @@
       </div>
       <div class="content">
         <div>
-          <p><a href="https://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
-<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
+          <p><a href="https://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" alt="Grasses.pde" width="495" height="140"></a></p>
+<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。
 備忘のために。</p>
-<pre class="prettyprint">int NUM;
+<pre><code class="hljs ">int NUM;
 float[] grasses;
 
 void setup()
@@ -82,7 +82,7 @@ void setup()
     grasses[i] = random(0, 1) * random(0.5, 1);
   }
   drawGrasses();
-  save("grasses.png");
+  save(&quot;grasses.png&quot;);
 }
 
 void drawGrasses()
@@ -100,8 +100,7 @@ void drawGrasses()
          x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
          height * (1.0 - grasses[i] * 0.3 - 0.2));
   }
-}
-</pre>
+}</code></pre>
         </div>
       </div>
     </div>
@@ -119,40 +118,36 @@ void drawGrasses()
       </div>
       <div class="content">
         <div>
-          <p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。<br />
-プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。<br />
+          <p>ふと mixi の Python コミュニティを覗いたら <a href="http://www.pythonchallenge.com">Python Challenge</a> なるものを発見。
+プログラムを書いて解いてゆくクイズです。面白そうなのでやってみました。
 最近マイブームな Ruby で。</p>
 <p>以下、ネタバレ注意です。</p>
-<h3>Level 0</h3>
-<pre class="prettyprint">2 ** 38</pre>
-<h3>Level 1</h3>
-<pre class="prettyprint">cipher = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
-abc = ("a"[0] .. "z"[0]).to_a
-cde = ("c"[0] .. "z"[0]).to_a + ["a"[0], "b"[0]]
+<h2 id="level-0">Level 0</h2>
+<pre><code class="hljs ">2 ** 38</code></pre><h2 id="level-1">Level 1</h2>
+<pre><code class="hljs ">cipher = &quot;g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&#39;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.&quot;
+abc = (&quot;a&quot;[0] .. &quot;z&quot;[0]).to_a
+cde = (&quot;c&quot;[0] .. &quot;z&quot;[0]).to_a + [&quot;a&quot;[0], &quot;b&quot;[0]]
 dict = Hash[*abc.zip(cde).flatten]
 cipher.bytes do |ch|
   ch = dict[ch] if dict.has_key?(ch)
-  printf("%c", ch)
-end</pre>
-<h3>Level 2</h3>
+  printf(&quot;%c&quot;, ch)
+end</code></pre><h2 id="level-2">Level 2</h2>
 <p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
-<pre class="prettyprint">File.open("mess_2.txt") do |f|
+<pre><code class="hljs ">File.open(&quot;mess_2.txt&quot;) do |f|
   while ch = f.getc
-    printf("%c", ch) if ("a"[0] .. "z"[0]).include?(ch)
+    printf(&quot;%c&quot;, ch) if (&quot;a&quot;[0] .. &quot;z&quot;[0]).include?(ch)
   end
-end</pre>
-<p>ファイルの中身を1バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
-<h3>Level 3</h3>
-<pre class="prettyprint">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
-File.open("mess_3.txt") do |f|
+end</code></pre><p>ファイルの中身を 1 バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
+<h2 id="level-3">Level 3</h2>
+<pre><code class="hljs ">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
+File.open(&quot;mess_3.txt&quot;) do |f|
   p f.read.scan(pattern).to_s
-end</pre>
-<p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
-<h3>Level 4</h3>
-<pre class="prettyprint">num = "12345"
-require "net/http"
+end</code></pre><p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
+<h2 id="level-4">Level 4</h2>
+<pre><code class="hljs ">num = &quot;12345&quot;
+require &quot;net/http&quot;
 def get_nothing(num)
-  return Net::HTTP.get URI.parse("http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + num)
+  return Net::HTTP.get URI.parse(&quot;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&quot; + num)
 end
 400.times do
   content = get_nothing(num)
@@ -164,22 +159,21 @@ end
   else
     exit
   end
-end</pre>
-<p>途中でひっかけがありますが・・・。そこは手作業で。</p>
-<h3>Level 5</h3>
-<p>意味がわからずカンニング。<br />
-<a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a><br />
+end</code></pre><p>途中でひっかけがありますが・・・。そこは手作業で。</p>
+<h2 id="level-5">Level 5</h2>
+<p>意味がわからずカンニング。
+<a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a>
 Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
-<pre class="prettyprint">import urllib, pickle
-uri = "http://www.pythonchallenge.com/pc/def/banner.p"
+<pre><code class="hljs ">import urllib, pickle
+uri = &quot;http://www.pythonchallenge.com/pc/def/banner.p&quot;
 obj = pickle.load(urllib.urlopen(uri))
 for line in obj:
-  l = ""
+  l = &quot;&quot;
   for pair in line:
     l += pair[0] * pair[1]
-    print l</pre>
-<h3>今日はここまで</h3>
+    print l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
 <p>続きはまた今度。</p>
+
         </div>
       </div>
     </div>

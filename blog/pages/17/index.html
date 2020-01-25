@@ -62,32 +62,26 @@
       </div>
       <div class="content">
         <div>
-          <p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。<br />
-自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。<br />
+          <p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。
+自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。
 <a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
 <ul>
-	<li><a href="http://rvm.beginrescueend.com/rvm/install/"><span class="caps">RVM</span>: Ruby Version Manager &#8211; Installing <span class="caps">RVM</span></a></li>
-	<li><a href="http://d.hatena.ne.jp/mirakui/20100502/1272849327">rvm: 複数のRubyを共存させる最新のやり方 &#8211; 床のトルストイ、ゲイとするとのこと</a></li>
+<li><a href="http://rvm.beginrescueend.com/rvm/install/">RVM: Ruby Version Manager &#8211; Installing RVM</a></li>
+<li><a href="http://d.hatena.ne.jp/mirakui/20100502/1272849327">rvm: 複数の Ruby を共存させる最新のやり方 &#8211; 床のトルストイ、ゲイとするとのこと</a></li>
 </ul>
-<p>を参考にインストール。<br />
+<p>を参考にインストール。
 公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。</p>
-<pre class="prettyprint">$ bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</pre>
-<p>した後 .bashrc の最後に以下を記載。</p>
-<pre class="prettyprint">$ [[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm</pre>
-<p>これでターミナルを再起動すれば完了です。</p>
-<pre class="prettyprint">$ rvm list known</pre>
-<p>とするとインストール可能なバージョンのリストを出力してくれます。<br />
+<pre><code class="hljs ">$ bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</code></pre><p>した後 .bashrc の最後に以下を記載。</p>
+<pre><code class="hljs ">$ [[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm</code></pre><p>これでターミナルを再起動すれば完了です。</p>
+<pre><code class="hljs ">$ rvm list known</code></pre><p>とするとインストール可能なバージョンのリストを出力してくれます。
 下記で 1.9.1 をインストール。</p>
-<pre class="prettyprint">$ rvm install 1.9.1</pre>
-<p>irb, gem, rake なども一緒にインストールして管理してくれます。<br />
+<pre><code class="hljs ">$ rvm install 1.9.1</code></pre><p>irb, gem, rake なども一緒にインストールして管理してくれます。
 1.8.7 系もインストール。</p>
-<pre class="prettyprint">$ rvm install 1.8.7</pre>
-<p>使用する Ruby を変えるには・・・。</p>
-<pre class="prettyprint">$ rvm use 1.8.7</pre>
-<p>情報を見るには下記。</p>
-<pre class="prettyprint">$ rvm info 1.8.7</pre>
-<p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。<br />
+<pre><code class="hljs ">$ rvm install 1.8.7</code></pre><p>使用する Ruby を変えるには・・・。</p>
+<pre><code class="hljs ">$ rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
+<pre><code class="hljs ">$ rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
 1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p>
+
         </div>
       </div>
     </div>
@@ -105,17 +99,18 @@
       </div>
       <div class="content">
         <div>
-          <p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。<br />
-再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。<br />
-syslog を見ると Out of memory で kernel が apache2 を kill している様子。<br />
+          <p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。
+再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。
+syslog を見ると Out of memory で kernel が apache2 を kill している様子。
 運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
-<p>積んでるメモリはたった 512MB。<br />
-人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。<br />
+<p>積んでるメモリはたった 512MB。
+人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。
 おそらく、クローラのアクセスに耐えられなくなるのでしょう。</p>
-<p>定期的な再起動、Apache や <span class="caps">PHP</span> の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。<br />
-&#8220;Super&#8221; Cache とはなかなかの名前です。<br />
+<p>定期的な再起動、Apache や PHP の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。
+&#8220;Super&#8221; Cache とはなかなかの名前です。
 インストールはとても簡単。</p>
 <p>さて、一ヶ月後どうなることやら。</p>
+
         </div>
       </div>
     </div>
@@ -133,19 +128,20 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
       </div>
       <div class="content">
         <div>
-          <p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
-そんなの見ればわかります。理由を書いてください。理由を。<br />
+          <p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。
+そんなの見ればわかります。理由を書いてください。理由を。
 アプリのインストール自体はできているのですが、デバッグができないようです。</p>
-<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
+<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。
 オーガナイザで provisioning profile を一旦消して、新しくダウンロードしたやつを入れ直そうというものです。</p>
-<p>しかし &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&#8221;+&#8221; で上書きしようとしても効果なし。</p>
-<p>&#8220;<span class="caps">IPHONE</span> <span class="caps">DEVELOMENT</span>&#8220; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。<br />
+<p>しかし &#8220;DEVICES&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&#8221;+&#8221; で上書きしようとしても効果なし。</p>
+<p>&#8220;IPHONE DEVELOMENT&#8220; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;DEVICES&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。
 めでたしめでたし。</p>
-<h3>追記</h3>
-<p>・・・と思ったら、また同じエラーが出ました。<br />
-ソースをいじってコンパイルし直した直後に出るみたい。<br />
-その後もう一回試すと、ちゃんと起動しています。<br />
+<h2 id="追記">追記</h2>
+<p>・・・と思ったら、また同じエラーが出ました。
+ソースをいじってコンパイルし直した直後に出るみたい。
+その後もう一回試すと、ちゃんと起動しています。
 うーん、不思議です・・・。</p>
+
         </div>
       </div>
     </div>

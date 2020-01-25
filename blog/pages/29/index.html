@@ -63,10 +63,11 @@
       <div class="content">
         <div>
           <p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
-<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。<br />
+<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。
 時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
-<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。<br />
+<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。
 <a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p>
+
         </div>
       </div>
     </div>
@@ -84,16 +85,15 @@
       </div>
       <div class="content">
         <div>
-          <p>Firefox の Addon <a href="https://addons.mozilla.org/ja/firefox/addon/142">Make Link</a> はページのタイトルや <span class="caps">URL</span> からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。<br />
+          <p>Firefox の Addon <a href="https://addons.mozilla.org/ja/firefox/addon/142">Make Link</a> はページのタイトルや URL からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。
 とうことで、Textile 2 用のフォーマットを作ってみました。</p>
-<h3>ページ名と<span class="caps">URL</span></h3>
-<pre class="prettyprint">"%text%":%url</pre>
-<p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>
-<h3>引用（引用元とその<span class="caps">URL</span>付き）</h3>
-<pre class="prettyprint">bq.. %text%
+<h2 id="ページ名と-url">ページ名と URL</h2>
+<pre><code class="hljs ">&quot;%text%&quot;:%url</code></pre><p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>
+<h2 id="引用（引用元とその-url-付き）">引用（引用元とその URL 付き）</h2>
+<pre><code class="hljs ">bq.. %text%
 
-"??%title%??":%url%</pre>
-<p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p>
+&quot;??%title%??&quot;:%url%</code></pre><p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p>
+
         </div>
       </div>
     </div>
@@ -112,8 +112,9 @@
       <div class="content">
         <div>
           <p>先日別のブログで使っている Textpattern のバージョンを 4.0.5 から 4.2.0 に上げたのですが、 コメントの本文が表示されなくなっていることに気がつきました。</p>
-<p>コメント本文を表示するタグが <code>txp:message</code> から <code>txp:comment_message</code> に変更になっていたようです。<br />
+<p>コメント本文を表示するタグが <code>txp:message</code> から <code>txp:comment_message</code> に変更になっていたようです。
 4.0.5 から 4.2.0 までのどこかで変更になったのでしょうね。</p>
+
         </div>
       </div>
     </div>

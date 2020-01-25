@@ -101,8 +101,8 @@
         <div>
           <p>例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。</p>
 <p><code>~/.vimrc</code> の中で、</p>
-<pre class="prettyprint">autocmd FileType cs setlocal noexpandtab</pre>
-<p>もっといろいろ書くときは <code>~/.vim/ftplugin/cs.vim</code> などに書くと良いとか。</p>
+<pre><code class="hljs ">autocmd FileType cs setlocal noexpandtab</code></pre><p>もっといろいろ書くときは <code>~/.vim/ftplugin/cs.vim</code> などに書くと良いとか。</p>
+
         </div>
       </div>
     </div>
@@ -120,10 +120,11 @@
       </div>
       <div class="content">
         <div>
-          <p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。<br />
+          <p>Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。
 改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
 <p>キーチェーンアクセス &#8594; 証明書アシスタント -&gt; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
 <p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p>
+
         </div>
       </div>
     </div>

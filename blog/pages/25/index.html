@@ -62,10 +62,11 @@
       </div>
       <div class="content">
         <div>
-          <p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、<span class="caps">RSS</span> を使うともっと楽にできるようです。<br />
-以下のように、<span class="caps">GET</span> のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
+          <p>以前 <a href="/blog/2009/10/12/get-book-list-from-booklog/">リスト形式の本棚からスクレイピングして本の一覧を取得する記事</a> を書きましたが、RSS を使うともっと楽にできるようです。
+以下のように、GET のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
 <p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
-<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 <span class="caps">URL</span> が入っているのでなかなか使えそうですね。</p>
+<p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 URL が入っているのでなかなか使えそうですね。</p>
+
         </div>
       </div>
     </div>
@@ -83,22 +84,19 @@
       </div>
       <div class="content">
         <div>
-          <p>会社では構成管理に Subversion を使っています。<br />
+          <p>会社では構成管理に Subversion を使っています。
 特に困っていることもないのですが、見識を広めるため家の MacBook に git を入れてみました。</p>
 <p><a href="http://code.google.com/p/git-osx-installer/">インストーラ</a> もあるようですが、管理が楽そうな MacPorts を使用。</p>
-<pre class="prettyprint">port search git</pre>
-<p>いろいろ出てきますが、git-core だけでよさそうです。</p>
-<pre class="prettyprint">port variants git-core</pre>
-<p>でオプションが出てきます。<br />
+<pre><code class="hljs ">port search git</code></pre><p>いろいろ出てきますが、git-core だけでよさそうです。</p>
+<pre><code class="hljs ">port variants git-core</code></pre><p>でオプションが出てきます。
 全部入りにしてみました。</p>
-<pre class="prettyprint">sudo port install git-core +doc +gitweb +svn +bash_completion</pre>
-<p>何だか Perl5 のライブラリがたくさん入りました。<br />
-bash 補完は以下を.profileに貼付けると良いとのこと。</p>
-<pre class="prettyprint">if [ -f /opt/local/etc/bash_completion ]; then
+<pre><code class="hljs ">sudo port install git-core +doc +gitweb +svn +bash_completion</code></pre><p>何だか Perl5 のライブラリがたくさん入りました。
+bash 補完は以下を.profile に貼付けると良いとのこと。</p>
+<pre><code class="hljs ">if [ -f /opt/local/etc/bash_completion ]; then
   . /opt/local/etc/bash_completion
-fi</pre>
-<p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。<br />
-branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branchをちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p>
+fi</code></pre><p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。
+branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branch をちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p>
+
         </div>
       </div>
     </div>
@@ -116,17 +114,17 @@ branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221
       </div>
       <div class="content">
         <div>
-          <p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。<br />
-<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。<br />
-参考にしたのは <a href="http://codezine.jp/article/detail/2086">RubyのCursesを使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Rubyリファレンスマニュアル</a> 。</p>
-<pre class="prettyprint">require 'curses'
+          <p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。
+<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。
+参考にしたのは <a href="http://codezine.jp/article/detail/2086">Ruby の Curses を使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Ruby リファレンスマニュアル</a> 。</p>
+<pre><code class="hljs ">require &#39;curses&#39;
 
 message = [
-  "**   **  *******  **       **        *****    **",
-  "**   **  **       **       **       **   **   **",
-  "*******  *******  **       **       **   **   **",
-  "**   **  **       **       **       **   **     ",
-  "**   **  *******  *******  *******   *****    **"
+  &quot;**   **  *******  **       **        *****    **&quot;,
+  &quot;**   **  **       **       **       **   **   **&quot;,
+  &quot;*******  *******  **       **       **   **   **&quot;,
+  &quot;**   **  **       **       **       **   **     &quot;,
+  &quot;**   **  *******  *******  *******   *****    **&quot;
 ]
 
 def animate(image)
@@ -145,8 +143,8 @@ def animate(image)
 close_screen
 end
 
-animate(message)</pre>
-<p>おおー、動きました。逆に新鮮で面白いですね。</p>
+animate(message)</code></pre><p>おおー、動きました。逆に新鮮で面白いですね。</p>
+
         </div>
       </div>
     </div>

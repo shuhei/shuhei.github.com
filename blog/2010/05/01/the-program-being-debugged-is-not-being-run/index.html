@@ -65,19 +65,20 @@
       </div>
       <div class="content">
         <div>
-          <p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。<br />
-そんなの見ればわかります。理由を書いてください。理由を。<br />
+          <p>久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。
+そんなの見ればわかります。理由を書いてください。理由を。
 アプリのインストール自体はできているのですが、デバッグができないようです。</p>
-<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。<br />
+<p><a href="http://stackoverflow.com/questions/1727169/xcode-fails-to-run-app-on-device-saying-the-program-being-debugged-is-not-being">XCode fails to run app on device, saying the program being debugged is not being run &#8211; Stack Overflow</a> を読んでためしてみました。
 オーガナイザで provisioning profile を一旦消して、新しくダウンロードしたやつを入れ直そうというものです。</p>
-<p>しかし &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&#8221;+&#8221; で上書きしようとしても効果なし。</p>
-<p>&#8220;<span class="caps">IPHONE</span> <span class="caps">DEVELOMENT</span>&#8220; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;<span class="caps">DEVICES</span>&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。<br />
+<p>しかし &#8220;DEVICES&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; のところの &#8220;-&#8221; ボタンで消そうとしてみたものの、何故か消えず。&#8221;+&#8221; で上書きしようとしても効果なし。</p>
+<p>&#8220;IPHONE DEVELOMENT&#8220; =&gt; &#8220;Provisioning Profiles&#8221; のところで消して &#8220;DEVICES&#8220; =&gt; &#8220;iPhone&#8221; =&gt; &#8220;Provisionning&#8221; で入れ直したら上手く動きました。
 めでたしめでたし。</p>
-<h3>追記</h3>
-<p>・・・と思ったら、また同じエラーが出ました。<br />
-ソースをいじってコンパイルし直した直後に出るみたい。<br />
-その後もう一回試すと、ちゃんと起動しています。<br />
+<h2 id="追記">追記</h2>
+<p>・・・と思ったら、また同じエラーが出ました。
+ソースをいじってコンパイルし直した直後に出るみたい。
+その後もう一回試すと、ちゃんと起動しています。
 うーん、不思議です・・・。</p>
+
         </div>
       </div>
     </div>

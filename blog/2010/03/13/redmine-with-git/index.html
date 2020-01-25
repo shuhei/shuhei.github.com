@@ -66,33 +66,32 @@
       <div class="content">
         <div>
           <p>自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。</p>
-<h3>サーバにリポジトリを作成</h3>
+<h2 id="サーバにリポジトリを作成">サーバにリポジトリを作成</h2>
 <p>Redmine を置いているサーバに空のリポジトリを作ります。</p>
-<pre class="prettyprint">server$ mkdir myapp.git
+<pre><code class="hljs ">server$ mkdir myapp.git
 server$ cd myapp.git
-server$ git --bare init</pre>
-<h3>リモートリポジトリとして登録</h3>
+server$ git --bare init</code></pre><h2 id="リモートリポジトリとして登録">リモートリポジトリとして登録</h2>
 <p>ローカルのレポジトリにサーバのリポジトリを登録。Push します。</p>
-<pre class="prettyprint">local$ git remote add origin ssh://username@example.com/path/to/myapp.git
-local$ git push origin master</pre>
-<h3>Redmine の設定</h3>
+<pre><code class="hljs ">local$ git remote add origin ssh://username@example.com/path/to/myapp.git
+local$ git push origin master</code></pre><h2 id="redmine-の設定">Redmine の設定</h2>
 <p>プロジェクトの「設定」 =&gt; 「リポジトリ」で以下のように設定。</p>
 <ul>
-	<li>バージョン管理システム =&gt; Git</li>
-	<li>Path to .git directory =&gt; /path/to/myapp.git</li>
+<li>バージョン管理システム =&gt; Git</li>
+<li>Path to .git directory =&gt; /path/to/myapp.git</li>
 </ul>
-<p>以上で終了です。<br />
-プロジェクトの「リポジトリ」を確認すると、おお、見えました。<br />
+<p>以上で終了です。
+プロジェクトの「リポジトリ」を確認すると、おお、見えました。
 ブラウザで見るとぐちゃぐちゃなのがよくわかります・・・。</p>
-<h3>チケットとコミットの連携</h3>
-<p>コミットメッセージに Redmine のチケット ID を含めることで、チケットとコミットの関連付けが行えます。<br />
-チケット ID 前のキーワードによって、関連付けの仕方を変えることができます。デフォルトでは refs で単純な参照、 fixes で進捗率 100% にするようになっているようです。<br />
-管理  =&gt; 設定 =&gt; リポジトリ で確認、設定できます。</p>
-<h3>参考 <span class="caps">URL</span></h3>
+<h2 id="チケットとコミットの連携">チケットとコミットの連携</h2>
+<p>コミットメッセージに Redmine のチケット ID を含めることで、チケットとコミットの関連付けが行えます。
+チケット ID 前のキーワードによって、関連付けの仕方を変えることができます。デフォルトでは refs で単純な参照、 fixes で進捗率 100% にするようになっているようです。
+管理 =&gt; 設定 =&gt; リポジトリ で確認、設定できます。</p>
+<h2 id="参考-url">参考 URL</h2>
 <ul>
-	<li><a href="http://blog.champierre.com/archives/670">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>
-	<li><a href="http://d.hatena.ne.jp/ntaku/20090526/1243327903">RedmineとGitで作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>
+<li><a href="http://blog.champierre.com/archives/670">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>
+<li><a href="http://d.hatena.ne.jp/ntaku/20090526/1243327903">Redmine と Git で作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>
 </ul>
+
         </div>
       </div>
     </div>

@@ -65,21 +65,21 @@
       </div>
       <div class="content">
         <div>
-          <p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
+          <p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。
 C++ や Objective-C を触るのにも必要ですからね。</p>
 <p>で、まずは基本のキからということで、</p>
-<pre class="prettyprint">#include &lt;stdio.h&gt;
+<pre><code class="hljs ">#include &lt;stdio.h&gt;
 
 int main(int argc, char** argv) {
   if (argc &gt; 1) {
-    printf("Hello, %s!", argv[1]);
+    printf(&quot;Hello, %s!&quot;, argv[1]);
   } else {
-    printf("Hello, World!");
+    printf(&quot;Hello, World!&quot;);
   }
-}</pre>
-<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
+}</code></pre><p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。
+コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。
 また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p>
+
         </div>
       </div>
     </div>

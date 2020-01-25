@@ -65,10 +65,10 @@
       </div>
       <div class="content">
         <div>
-          <p><a href="https://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" width="495" height="140" alt="Grasses.pde" /></a></p>
-<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。<br />
+          <p><a href="https://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" alt="Grasses.pde" width="495" height="140"></a></p>
+<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。
 備忘のために。</p>
-<pre class="prettyprint">int NUM;
+<pre><code class="hljs ">int NUM;
 float[] grasses;
 
 void setup()
@@ -85,7 +85,7 @@ void setup()
     grasses[i] = random(0, 1) * random(0.5, 1);
   }
   drawGrasses();
-  save("grasses.png");
+  save(&quot;grasses.png&quot;);
 }
 
 void drawGrasses()
@@ -103,8 +103,7 @@ void drawGrasses()
          x + width * random(-0.1, 0.1) * random(-0.15, 0.15),
          height * (1.0 - grasses[i] * 0.3 - 0.2));
   }
-}
-</pre>
+}</code></pre>
         </div>
       </div>
     </div>

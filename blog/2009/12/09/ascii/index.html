@@ -68,16 +68,16 @@
           <p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
 <blockquote>
 <p>Poem.</p>
-<p>You translated my poem,<br />
-I congratulate you.<br />
-I wish I could rhyme with poem,<br />
-but its very hard to.<br />
-I just beguiled you,</p>
 </blockquote>
+<p>You translated my poem,
+I congratulate you.
+I wish I could rhyme with poem,
+but its very hard to.
+I just beguiled you,</p>
 <p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre class="prettyprint">class String
+<pre><code class="hljs ">class String
   def bin
-    Integer('0b' + self)
+    Integer(&#39;0b&#39; + self)
   end
 end
 
@@ -85,8 +85,8 @@ def decode(ascii)
   0.step(ascii.size - 1, 8) do |num|
     puts ascii[num..(num + 7)].bin.chr
   end
-end</pre>
-<p>作る方は簡単でしょうが、読む方は大変です。</p>
+end</code></pre><p>作る方は簡単でしょうが、読む方は大変です。</p>
+
         </div>
       </div>
     </div>

@@ -62,17 +62,14 @@
       </div>
       <div class="content">
         <div>
-          <p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。<br />
+          <p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
 Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。</p>
-<pre class="prettyprint">sudo ufw default DENY
-sudo ufw enable</pre>
-<p>とやって有効化。<br />
-ウェブサーバならば <span class="caps">HTTP</span> を許可します。</p>
-<pre class="prettyprint">sudo ufw allow http</pre>
-<p><span class="caps">LAN</span> 内からだけ <span class="caps">SSH</span> を許可。</p>
-<pre class="prettyprint">sudo ufw allow from 192.168.1.0/24 to any port ssh</pre>
-<p><span class="caps">SSH</span> へのログイン試行回数を制限。</p>
-<pre class="prettyprint">sudo ufw limit ssh</pre>
+<pre><code class="hljs ">sudo ufw default DENY
+sudo ufw enable</code></pre><p>とやって有効化。
+ウェブサーバならば HTTP を許可します。</p>
+<pre><code class="hljs ">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
+<pre><code class="hljs ">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
+<pre><code class="hljs ">sudo ufw limit ssh</code></pre>
         </div>
       </div>
     </div>
@@ -134,55 +131,55 @@ sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/
       </div>
       <div class="content">
         <div>
-          <p>無料ダイナミック <span class="caps">DNS</span> サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。<br />
-<span class="caps">POP</span> のクライアントソフトとして説明ページでおすすめされていた <a href="http://www.nakata-jp.org/computer/freesoft/biffpop.html">biffpop</a> をビルドする際につまずいたのでメモ。<br />
+          <p>無料ダイナミック DNS サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。
+POP のクライアントソフトとして説明ページでおすすめされていた <a href="http://www.nakata-jp.org/computer/freesoft/biffpop.html">biffpop</a> をビルドする際につまずいたのでメモ。
 環境は Ubuntu Server 9.10 64 bit。</p>
 <p>ソースをダウンロードして make すると、下記のようなエラー。</p>
 <blockquote>
-<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_<span class="caps">SSL</span>  -c -Wall biffpop.c -o biffpop.o<br />
-biffpop.c:24:25: error: openssl/ssl.h: No such file or directory<br />
-biffpop.c:25:25: error: openssl/err.h: No such file or directory<br />
-biffpop.c:47: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token<br />
-biffpop.c: In function ‘main’:<br />
-biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_<span class="caps">COMMON</span>’ undeclared (first use in this function)<br />
-biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
-biffpop.c:124: error: for each function it appears in.)<br />
-biffpop.c:127: warning: implicit declaration of function ‘SSL_load_error_strings’<br />
-biffpop.c:128: warning: implicit declaration of function ‘SSL_library_init’<br />
-biffpop.c:129: error: ‘ctx’ undeclared (first use in this function)<br />
-biffpop.c:129: warning: implicit declaration of function ‘SSL_CTX_new’<br />
-biffpop.c:129: warning: implicit declaration of function ‘SSLv23_client_method’<br />
-biffpop.c:130: warning: implicit declaration of function ‘ERR_print_errors_fp’<br />
-biffpop.c:138: warning: implicit declaration of function ‘SSL_CTX_free’<br />
-biffpop.c:139: warning: implicit declaration of function ‘ERR_free_strings’<br />
-biffpop.c: In function ‘readConfigFileSub’:<br />
-biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
-biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
+<p>cc -O3 -DIPv6 -DKILLLIST -DUSE_SSL -c -Wall biffpop.c -o biffpop.o
+biffpop.c:24:25: error: openssl/ssl.h: No such file or directory
+biffpop.c:25:25: error: openssl/err.h: No such file or directory
+biffpop.c:47: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘<strong>attribute</strong>’ before ‘*’ token
+biffpop.c: In function ‘main’:
+biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_COMMON’ undeclared (first use in this function)
+biffpop.c:124: error: (Each undeclared identifier is reported only once
+biffpop.c:124: error: for each function it appears in.)
+biffpop.c:127: warning: implicit declaration of function ‘SSL_load_error_strings’
+biffpop.c:128: warning: implicit declaration of function ‘SSL_library_init’
+biffpop.c:129: error: ‘ctx’ undeclared (first use in this function)
+biffpop.c:129: warning: implicit declaration of function ‘SSL_CTX_new’
+biffpop.c:129: warning: implicit declaration of function ‘SSLv23_client_method’
+biffpop.c:130: warning: implicit declaration of function ‘ERR_print_errors_fp’
+biffpop.c:138: warning: implicit declaration of function ‘SSL_CTX_free’
+biffpop.c:139: warning: implicit declaration of function ‘ERR_free_strings’
+biffpop.c: In function ‘readConfigFileSub’:
+biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’
+biffpop.c:440: warning: assignment makes pointer from integer without a cast
 make: *** [biffpop.o] Error 1</p>
 </blockquote>
-<p>OpenSSL は入っているのにおかしいな、と思ったのですが、libssl-dev がいるっぽいです。<br />
+<p>OpenSSL は入っているのにおかしいな、と思ったのですが、libssl-dev がいるっぽいです。
 <a href="http://forum.qmailrocks.org/archive/index.php/t-963.html">openssl/ssl.h: No such file or directory [Archive] &#8211; Qmailrocks.org Forum</a></p>
-<pre class="prettyprint">sudo apt-get install libssl-dev
-make</pre>
-<p>まだ少しエラー。</p>
+<pre><code class="hljs ">sudo apt-get install libssl-dev
+make</code></pre><p>まだ少しエラー。</p>
 <blockquote>
-<p>cc -O3 -DIPv6 -<span class="caps">DKILLLIST</span> -DUSE_<span class="caps">SSL</span>  -c -Wall biffpop.c -o biffpop.o<br />
-biffpop.c: In function ‘main’:<br />
-biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_<span class="caps">COMMON</span>’ undeclared (first use in this function)<br />
-biffpop.c:124: error: (Each undeclared identifier is reported only once<br />
-biffpop.c:124: error: for each function it appears in.)<br />
-biffpop.c: In function ‘readConfigFileSub’:<br />
-biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’<br />
-biffpop.c:440: warning: assignment makes pointer from integer without a cast<br />
+<p>cc -O3 -DIPv6 -DKILLLIST -DUSE_SSL -c -Wall biffpop.c -o biffpop.o
+biffpop.c: In function ‘main’:
+biffpop.c:124: error: ‘_RE_SYNTAX_POSIX_COMMON’ undeclared (first use in this function)
+biffpop.c:124: error: (Each undeclared identifier is reported only once
+biffpop.c:124: error: for each function it appears in.)
+biffpop.c: In function ‘readConfigFileSub’:
+biffpop.c:439: warning: implicit declaration of function ‘re_compile_pattern’
+biffpop.c:440: warning: assignment makes pointer from integer without a cast
 make: *** [biffpop.o] Error 1</p>
 </blockquote>
-<p>今度は regex.h のエラー。ソースを見てみると <code>_RE_SYNTAX_POSIX_COMMON</code> は <code>#ifdef __USE_GNU</code> で囲まれています。<br />
+<p>今度は regex.h のエラー。ソースを見てみると <code>_RE_SYNTAX_POSIX_COMMON</code> は <code>#ifdef __USE_GNU</code> で囲まれています。
 <code>__USE_GNU</code> をオンにするには <code>#define _GNU_SOURCE</code> するか <code>cc -D _GNU_SOURCE</code> すれば良いらしい。</p>
-<p>・・・ということまではわかりましたが、よく考えると上記二つは <code>-DKILLLIST</code> と <code>-DUSE_SSL</code> をつけなければ起きないエラーです。<span class="caps">SSL</span>も正規表現によるメールの削除も、今回の用途には必要ありません。</p>
-<p>Makefile を よく読むと <code>#FLAGS  = -O3      # for mydns.jp system simple function</code> と書いてありました。<br />
-親切にも MyDNS ユーザ用のオプションが用意されていた訳です。<br />
-この行のコメントを外し、フルオプションの方（ <code>FLAGS  = -O3 -DIPv6 -DKILLLIST -DUSE_SSL # full option IPv6, Kill List &amp; SSL</code> ）をコメントアウトすると、ビルドできました。<br />
+<p>・・・ということまではわかりましたが、よく考えると上記二つは <code>-DKILLLIST</code> と <code>-DUSE_SSL</code> をつけなければ起きないエラーです。SSL も正規表現によるメールの削除も、今回の用途には必要ありません。</p>
+<p>Makefile を よく読むと <code>#FLAGS = -O3 # for mydns.jp system simple function</code> と書いてありました。
+親切にも MyDNS ユーザ用のオプションが用意されていた訳です。
+この行のコメントを外し、フルオプションの方（ <code>FLAGS = -O3 -DIPv6 -DKILLLIST -DUSE_SSL # full option IPv6, Kill List &amp; SSL</code> ）をコメントアウトすると、ビルドできました。
 めでたしめでたし。</p>
+
         </div>
       </div>
     </div>

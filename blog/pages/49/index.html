@@ -63,13 +63,14 @@
       <div class="content">
         <div>
           <p>先日 DB をいじっていたら、間違えてこのブログのテーブルを一部消してしまいまい、ログインすることができなくなりました。</p>
-<p>復旧作業のついでに、場所を変えて新しいバージョン（Wordpress 2.6 日本語版）を入れなおしました。<br />
-復旧作業は、DB からエクスポートしたデータを延々手でコピペするというもの。<br />
-投稿時刻のコピペが意外とめんどくさかったです。<br />
+<p>復旧作業のついでに、場所を変えて新しいバージョン（Wordpress 2.6 日本語版）を入れなおしました。
+復旧作業は、DB からエクスポートしたデータを延々手でコピペするというもの。
+投稿時刻のコピペが意外とめんどくさかったです。
 もうちょっと記事数が多ければ、自動化したのですが・・・。</p>
-<p>ちなみに、どうして nanataisan.net というドメインを取ったかというと、7to3.net が <span class="caps">AS3</span> や Java のパッケージ名として使えなかったからです。<br />
-パッケージ名は net.nanataisan のようにドメイン名を逆さにしたものを使う決まりなのですが、先頭に数字が来るとダメなのだとか。<br />
+<p>ちなみに、どうして nanataisan.net というドメインを取ったかというと、7to3.net が AS3 や Java のパッケージ名として使えなかったからです。
+パッケージ名は net.nanataisan のようにドメイン名を逆さにしたものを使う決まりなのですが、先頭に数字が来るとダメなのだとか。
 ドメイン名の使用を進めるなら、ドメイン名と同じ命名規則にしてほしいものですね。</p>
+
         </div>
       </div>
     </div>
@@ -87,59 +88,59 @@
       </div>
       <div class="content">
         <div>
-          <p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。<br />
+          <p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。
 <a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">WordPress › SyntaxHighlighter « WordPress Plugins</a></p>
 <p>デフォルトでサポートされているのが以下。</p>
 <ul>
-	<li>C++</li>
-	<li>C#</li>
-	<li><span class="caps">CSS</span></li>
-	<li>Delphi</li>
-	<li>Java</li>
-	<li>Javascript</li>
-	<li><span class="caps">PHP</span></li>
-	<li>Python</li>
-	<li>Ruby</li>
-	<li>Sql</li>
-	<li>VB</li>
-	<li><span class="caps">XML</span>/<span class="caps">HTML</span></li>
+<li>C++</li>
+<li>C#</li>
+<li>CSS</li>
+<li>Delphi</li>
+<li>Java</li>
+<li>Javascript</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Sql</li>
+<li>VB</li>
+<li>XML/HTML</li>
 </ul>
-<p>これに加えて、Actionscript3、<span class="caps">MXML</span>、Perl、bash も足しました。</p>
-<p>以下、<span class="caps">AS3</span> でテスト。</p>
-<pre class="prettyprint">[sourcecode language='Actionscript']package
+<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
+<p>以下、AS3 でテスト。</p>
+<pre><code class="hljs ">[sourcecode language=&#39;Actionscript&#39;]package
 {
-	import flash.display.Sprite;
+    import flash.display.Sprite;
 
-	/**
-	 * Test class.
-	 */
-	public class Test extends Sprite
-	{
-		/**
-		 * @private
-		 */
-		private var _test:Sprite;
+    /**
+     * Test class.
+     */
+    public class Test extends Sprite
+    {
+        /**
+         * @private
+         */
+        private var _test:Sprite;
 
-		/*
-		 * Constructor.
-		 */
-		public function Test()
-		{
-			_test = new Sprite();
-			_test.graphics.beginFill(0);
-			_test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
-			_test.graphics.endFill();
-			addChild(_test);
-		}
-	}
-}[/sourcecode]</pre>
-<h3>参考<span class="caps">URL</span></h3>
+        /*
+         * Constructor.
+         */
+        public function Test()
+        {
+            _test = new Sprite();
+            _test.graphics.beginFill(0);
+            _test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
+            _test.graphics.endFill();
+            addChild(_test);
+        }
+    }
+}[/sourcecode]</code></pre><h2 id="参考-url">参考 URL</h2>
 <ul>
-	<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpressに<span class="caps">AS3</span>/<span class="caps">MXML</span>のコードハイライトプラグインを導入</a></li>
-	<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
+<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpress に AS3/MXML のコードハイライトプラグインを導入</a></li>
+<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
 </ul>
-<h3><ins>追記</ins></h3>
+<h2 id="ins追記ins"><ins>追記</ins></h2>
 <p><ins>SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。</ins></p>
+
         </div>
       </div>
     </div>
@@ -157,15 +158,16 @@
       </div>
       <div class="content">
         <div>
-          <p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使ってPython環境を再構築してみました。<br />
+          <p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使って Python 環境を再構築してみました。
 問題は他にあった気がしますが、easy install は使えるようになりました。</p>
 <p>参考にしたのは、以下のサイト。</p>
 <ul>
-<li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットにpythonを再インストール &#8211; cimada-ism</a></li>
-<li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python開発環境を整えよう</a></li>
+<li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットに python を再インストール &#8211; cimada-ism</a></li>
+<li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python 開発環境を整えよう</a></li>
 </ul>
-<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。<br />
+<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。
 これについては、必要になるまで放置。</p>
+
         </div>
       </div>
     </div>

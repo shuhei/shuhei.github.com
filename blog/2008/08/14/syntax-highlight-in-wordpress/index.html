@@ -65,59 +65,59 @@
       </div>
       <div class="content">
         <div>
-          <p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。<br />
+          <p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。
 <a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">WordPress › SyntaxHighlighter « WordPress Plugins</a></p>
 <p>デフォルトでサポートされているのが以下。</p>
 <ul>
-	<li>C++</li>
-	<li>C#</li>
-	<li><span class="caps">CSS</span></li>
-	<li>Delphi</li>
-	<li>Java</li>
-	<li>Javascript</li>
-	<li><span class="caps">PHP</span></li>
-	<li>Python</li>
-	<li>Ruby</li>
-	<li>Sql</li>
-	<li>VB</li>
-	<li><span class="caps">XML</span>/<span class="caps">HTML</span></li>
+<li>C++</li>
+<li>C#</li>
+<li>CSS</li>
+<li>Delphi</li>
+<li>Java</li>
+<li>Javascript</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Sql</li>
+<li>VB</li>
+<li>XML/HTML</li>
 </ul>
-<p>これに加えて、Actionscript3、<span class="caps">MXML</span>、Perl、bash も足しました。</p>
-<p>以下、<span class="caps">AS3</span> でテスト。</p>
-<pre class="prettyprint">[sourcecode language='Actionscript']package
+<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
+<p>以下、AS3 でテスト。</p>
+<pre><code class="hljs ">[sourcecode language=&#39;Actionscript&#39;]package
 {
-	import flash.display.Sprite;
+    import flash.display.Sprite;
 
-	/**
-	 * Test class.
-	 */
-	public class Test extends Sprite
-	{
-		/**
-		 * @private
-		 */
-		private var _test:Sprite;
+    /**
+     * Test class.
+     */
+    public class Test extends Sprite
+    {
+        /**
+         * @private
+         */
+        private var _test:Sprite;
 
-		/*
-		 * Constructor.
-		 */
-		public function Test()
-		{
-			_test = new Sprite();
-			_test.graphics.beginFill(0);
-			_test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
-			_test.graphics.endFill();
-			addChild(_test);
-		}
-	}
-}[/sourcecode]</pre>
-<h3>参考<span class="caps">URL</span></h3>
+        /*
+         * Constructor.
+         */
+        public function Test()
+        {
+            _test = new Sprite();
+            _test.graphics.beginFill(0);
+            _test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
+            _test.graphics.endFill();
+            addChild(_test);
+        }
+    }
+}[/sourcecode]</code></pre><h2 id="参考-url">参考 URL</h2>
 <ul>
-	<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpressに<span class="caps">AS3</span>/<span class="caps">MXML</span>のコードハイライトプラグインを導入</a></li>
-	<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
+<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpress に AS3/MXML のコードハイライトプラグインを導入</a></li>
+<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
 </ul>
-<h3><ins>追記</ins></h3>
+<h2 id="ins追記ins"><ins>追記</ins></h2>
 <p><ins>SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。</ins></p>
+
         </div>
       </div>
     </div>

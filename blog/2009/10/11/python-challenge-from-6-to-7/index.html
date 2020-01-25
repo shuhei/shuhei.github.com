@@ -65,50 +65,48 @@
       </div>
       <div class="content">
         <div>
-          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
+          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。
 試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
-<h3>Level 6</h3>
-<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。<br />
-少しカンニングしてみると、<span class="caps">ZIP</span> ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
-<pre class="prettyprint">num = "90052"
-z = zipfile.ZipFile("channel.zip")
+<h2 id="level-6">Level 6</h2>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
+少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre><code class="hljs ">num = &quot;90052&quot;
+z = zipfile.ZipFile(&quot;channel.zip&quot;)
 
 while True:
-  # Print file's comment
-  print z.getinfo(num + ".txt").comment,
+  # Print file&#39;s comment
+  print z.getinfo(num + &quot;.txt&quot;).comment,
   # Get next nothing
-  s = open(num + ".txt").read()
+  s = open(num + &quot;.txt&quot;).read()
   m = pattern.match(s)
   if m:
     num = m.group(1)
   else:
-    break</pre>
-<p>Python で改行なしの出力をするには <code>print "foo",</code> なんですね。<br />
+    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
 いつのまにか Python で解いてしまってますね・・・。</p>
-<h3>Level 7</h3>
-<pre class="prettyprint">from PIL import Image
-image = Image.open("oxygen.png")
+<h2 id="level-7">Level 7</h2>
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
 width = image.size[0]
 data = list(image.getdata())
 
 before = 0
-message = ""
+message = &quot;&quot;
 for x in range(width):
   tmp = data[x + width * 46][0]
   if tmp != before:
-    message += "%c" % (tmp)
+    message += &quot;%c&quot; % (tmp)
     before= tmp
 
-print message</pre>
-<p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
 <blockquote>
 <p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
 </blockquote>
-<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。<br />
-気を取り直して以下。書き方も少し Python らしく（？）。<br />
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
+気を取り直して以下。書き方も少し Python らしく（？）。
 <code>chr</code> という関数があったんですね。</p>
-<pre class="prettyprint">from PIL import Image
-image = Image.open("oxygen.png")
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
 width = image.size[0]
 data = list(image.getdata())
 message = []
@@ -121,10 +119,9 @@ while True:
   else:
     break
 
-print "".join(map(chr, message))</pre>
-<p>出てきたメッセージから答えを出します。</p>
-<pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
-<p>何だかカンニングしてばかりですね・・・。</p>
+print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+
         </div>
       </div>
     </div>

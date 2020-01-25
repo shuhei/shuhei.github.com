@@ -115,16 +115,14 @@ ofRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, o
       <div class="content">
         <div>
           <p>下のように <code>const</code> は型名の前後どちらに書いても同じです。</p>
-<pre class="prettyprint">const int a = 1;
-int const b = 2;</pre>
-<p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique <span class="caps">FAQ</span></a> では、前者がわかりやすくおすすめとされていますが。</p>
+<pre><code class="hljs ">const int a = 1;
+int const b = 2;</code></pre><p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique FAQ</a> では、前者がわかりやすくおすすめとされていますが。</p>
 <p>では、ポインタについてはどうでしょうか？</p>
-<pre class="prettyprint">const int* pa = new int(10);  // "const な int" へのポインタ
-int const* pb = new int(11);  // "const な int " へのポインタ
-int* const pc = new int(12);  // int への  "const なポインタ"</pre>
-<p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
-<pre class="prettyprint">// *pa = 20;  // エラー！ "const な int" の値を変えることはできない
-// *pb = 21;  // エラー！ "const な int" の値を変えることはできない
+<pre><code class="hljs ">const int* pa = new int(10);  // &quot;const な int&quot; へのポインタ
+int const* pb = new int(11);  // &quot;const な int &quot; へのポインタ
+int* const pc = new int(12);  // int への  &quot;const なポインタ&quot;</code></pre><p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
+<pre><code class="hljs ">// *pa = 20;  // エラー！ &quot;const な int&quot; の値を変えることはできない
+// *pb = 21;  // エラー！ &quot;const な int&quot; の値を変えることはできない
 *pc = 23;
 
 delete pa;   // delete はできる
@@ -133,8 +131,8 @@ delete pc;
 
 pa = NULL;
 pb = NULL;
-// pc = NULL;  // エラー！ポインタ自体が const なため</pre>
-<p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
+// pc = NULL;  // エラー！ポインタ自体が const なため</code></pre><p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
+
         </div>
       </div>
     </div>

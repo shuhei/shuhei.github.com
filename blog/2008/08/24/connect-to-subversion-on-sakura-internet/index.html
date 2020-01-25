@@ -66,27 +66,25 @@
       <div class="content">
         <div>
           <ul>
-	<li><a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗</a></li>
-	<li><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功</a></li>
+<li><a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗</a></li>
+<li><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功</a></li>
 </ul>
-<p>上記二つに続けて、さくらインターネットへインストールした Subversion に <span class="caps">SSH</span> でつなぎます。<br />
+<p>上記二つに続けて、さくらインターネットへインストールした Subversion に SSH でつなぎます。
 使うのは TortoiseSVN。</p>
-<h3>公開鍵と秘密鍵</h3>
-<p>puttygen.exe を実行して、マウスをグリグリします。<br />
+<h2 id="公開鍵と秘密鍵">公開鍵と秘密鍵</h2>
+<p>puttygen.exe を実行して、マウスをグリグリします。
 上のテキストエリアに公開鍵、下に秘密鍵が出てきます。</p>
-<h4>公開鍵</h4>
+<h3 id="公開鍵">公開鍵</h3>
 <p>コピペして下記のように編集。</p>
-<pre class="prettyprint">command="/home/username/local/bin/svnserve -t" ssh-rsa 公開鍵</pre>
-<p>authorized_keys という名前で保存し、$<span class="caps">HOME</span>/.ssh/authorized_keys となるようにアップします。</p>
-<h4>秘密鍵</h4>
-<p>コピペして適当な名前で、TortoiseSVN/bin に保存。<br />
+<pre><code class="hljs ">command=&quot;/home/username/local/bin/svnserve -t&quot; ssh-rsa 公開鍵</code></pre><p>authorized_keys という名前で保存し、$HOME/.ssh/authorized_keys となるようにアップします。</p>
+<h3 id="秘密鍵">秘密鍵</h3>
+<p>コピペして適当な名前で、TortoiseSVN/bin に保存。
 これはどこでもいいそうですが、後でパスを指定します。</p>
-<h3>TortoiseSVN の設定</h3>
-<p>適当なフォルダを右クリックし、TortoiseSVN の 設定画面を開きます。<br />
-Network &#8594; <span class="caps">SSH</span> &#8594; <span class="caps">SSH</span> client のところで下記のように設定。</p>
-<pre class="prettyprint">"C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe" -l username -i "C:\Program Files\TortoiseSVN\bin\private_key.ppk"</pre>
-<p>あとは下のような感じでレポジトリにアクセスできます。</p>
-<pre class="prettyprint">svn+ssh://username@hostname/home/username/local/bin/repo</pre>
+<h2 id="tortoisesvn-の設定">TortoiseSVN の設定</h2>
+<p>適当なフォルダを右クリックし、TortoiseSVN の 設定画面を開きます。
+Network &#8594; SSH &#8594; SSH client のところで下記のように設定。</p>
+<pre><code class="hljs ">&quot;C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe&quot; -l username -i &quot;C:\Program Files\TortoiseSVN\bin\private_key.ppk&quot;</code></pre><p>あとは下のような感じでレポジトリにアクセスできます。</p>
+<pre><code class="hljs ">svn+ssh://username@hostname/home/username/local/bin/repo</code></pre>
         </div>
       </div>
     </div>

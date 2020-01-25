@@ -62,21 +62,21 @@
       </div>
       <div class="content">
         <div>
-          <p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。<br />
+          <p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。
 C++ や Objective-C を触るのにも必要ですからね。</p>
 <p>で、まずは基本のキからということで、</p>
-<pre class="prettyprint">#include &lt;stdio.h&gt;
+<pre><code class="hljs ">#include &lt;stdio.h&gt;
 
 int main(int argc, char** argv) {
   if (argc &gt; 1) {
-    printf("Hello, %s!", argv[1]);
+    printf(&quot;Hello, %s!&quot;, argv[1]);
   } else {
-    printf("Hello, World!");
+    printf(&quot;Hello, World!&quot;);
   }
-}</pre>
-<p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。<br />
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。<br />
+}</code></pre><p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。
+コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。
 また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p>
+
         </div>
       </div>
     </div>
@@ -117,18 +117,16 @@ CString concat = cstr + <span class="hljs-string">" "</span> + tchar;</code></pr
       <div class="content">
         <div>
           <p>ポインタについて勉強してみます。</p>
-<h3>変数のアドレス</h3>
-<pre class="prettyprint">int value = 10;</pre>
-<p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
-<h3>ポインタ</h3>
+<h2 id="変数のアドレス">変数のアドレス</h2>
+<pre><code class="hljs ">int value = 10;</code></pre><p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
+<h2 id="ポインタ">ポインタ</h2>
 <p>メモリ上のアドレスを格納する変数がポインタです。</p>
-<pre class="prettyprint">int value = 10;
+<pre><code class="hljs ">int value = 10;
 int *ptr;
-ptr = &amp;a;</pre>
-<p>という感じです。</p>
-<h3>ポインタの指す値</h3>
+ptr = &amp;a;</code></pre><p>という感じです。</p>
+<h2 id="ポインタの指す値">ポインタの指す値</h2>
 <p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>
-<pre class="prettyprint">printf("*ptr の値は %d です。", *ptr); // *ptr の値は 10 です。</pre>
+<pre><code class="hljs ">printf(&quot;*ptr の値は %d です。&quot;, *ptr); // *ptr の値は 10 です。</code></pre>
         </div>
       </div>
     </div>

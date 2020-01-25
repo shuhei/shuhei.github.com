@@ -62,18 +62,16 @@
       </div>
       <div class="content">
         <div>
-          <pre class="prettyprint">sudo gem install cairo</pre>
-<p>でインストールできず、四苦八苦。<br />
-調べてみたところ、下記 <span class="caps">URL</span> に行き当たりました。<br />
+          <pre><code class="hljs ">sudo gem install cairo</code></pre><p>でインストールできず、四苦八苦。
+調べてみたところ、下記 URL に行き当たりました。
 よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
-<p><a lang="cairo-bugs" href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
+<p><a href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
 <p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
-<pre class="prettyprint">cd cairo-1.8.0
+<pre><code class="hljs ">cd cairo-1.8.0
 sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
 sudo ruby extconf.rb
 sudo make
-sudo make install
-</pre>
+sudo make install</code></pre>
         </div>
       </div>
     </div>
@@ -91,21 +89,22 @@ sudo make install
       </div>
       <div class="content">
         <div>
-          <h3>エッセー</h3>
+          <h2 id="エッセー">エッセー</h2>
 <p>プログラマによるエッセー的な本を三冊。どれも有名な本ですね。</p>
 <ul>
-	<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
-	<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
-	<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
+<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
+<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
+<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
 </ul>
-<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。<br />
-エッセー的なものはどんどん読めて良いかな、と思って購入してみました。<br />
+<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。
+エッセー的なものはどんどん読めて良いかな、と思って購入してみました。
 ちょこちょこ読んで行こうと思います。</p>
-<h3><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前1・2対応</a></h3>
-<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。<br />
-しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。<br />
-まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。<br />
+<h2 id="ポケットスタディ-高度試験共通-午前-1・2-対応"><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前 1・2 対応</a></h2>
+<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。
+しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。
+まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。
 試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p>
+
         </div>
       </div>
     </div>
@@ -123,50 +122,48 @@ sudo make install
       </div>
       <div class="content">
         <div>
-          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。<br />
+          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。
 試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
-<h3>Level 6</h3>
-<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。<br />
-少しカンニングしてみると、<span class="caps">ZIP</span> ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
-<pre class="prettyprint">num = "90052"
-z = zipfile.ZipFile("channel.zip")
+<h2 id="level-6">Level 6</h2>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
+少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre><code class="hljs ">num = &quot;90052&quot;
+z = zipfile.ZipFile(&quot;channel.zip&quot;)
 
 while True:
-  # Print file's comment
-  print z.getinfo(num + ".txt").comment,
+  # Print file&#39;s comment
+  print z.getinfo(num + &quot;.txt&quot;).comment,
   # Get next nothing
-  s = open(num + ".txt").read()
+  s = open(num + &quot;.txt&quot;).read()
   m = pattern.match(s)
   if m:
     num = m.group(1)
   else:
-    break</pre>
-<p>Python で改行なしの出力をするには <code>print "foo",</code> なんですね。<br />
+    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
 いつのまにか Python で解いてしまってますね・・・。</p>
-<h3>Level 7</h3>
-<pre class="prettyprint">from PIL import Image
-image = Image.open("oxygen.png")
+<h2 id="level-7">Level 7</h2>
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
 width = image.size[0]
 data = list(image.getdata())
 
 before = 0
-message = ""
+message = &quot;&quot;
 for x in range(width):
   tmp = data[x + width * 46][0]
   if tmp != before:
-    message += "%c" % (tmp)
+    message += &quot;%c&quot; % (tmp)
     before= tmp
 
-print message</pre>
-<p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
 <blockquote>
 <p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
 </blockquote>
-<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。<br />
-気を取り直して以下。書き方も少し Python らしく（？）。<br />
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
+気を取り直して以下。書き方も少し Python らしく（？）。
 <code>chr</code> という関数があったんですね。</p>
-<pre class="prettyprint">from PIL import Image
-image = Image.open("oxygen.png")
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
 width = image.size[0]
 data = list(image.getdata())
 message = []
@@ -179,10 +176,9 @@ while True:
   else:
     break
 
-print "".join(map(chr, message))</pre>
-<p>出てきたメッセージから答えを出します。</p>
-<pre class="prettyprint">print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</pre>
-<p>何だかカンニングしてばかりですね・・・。</p>
+print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+
         </div>
       </div>
     </div>
