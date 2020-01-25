@@ -8,7 +8,6 @@ const gulp = require("gulp");
 const gutil = require("gulp-util");
 const markdown = require("gulp-markdown");
 const frontMatter = require("gulp-front-matter");
-const textile = require("gulp-textile");
 
 const gulpIf = require("gulp-if");
 const startServer = require("./plugins/serve");
@@ -46,7 +45,7 @@ function copyFiles() {
     ]),
     // Apply frontMatter only to whitelisted files because it messes up binary
     // files and files with `---`.
-    gulpIf("**/*.{markdown,md,textile}", frontMatter()),
+    gulpIf("**/*.{markdown,md}", frontMatter()),
     gulpIf(`**/*.{markdown,md}`, markdown({ renderer })),
     layout(config),
     gulp.dest(publicDir)
@@ -66,10 +65,9 @@ function buildPosts() {
   aggregator.pipe(gulp.dest(publicDir));
 
   return pipeline(
-    gulp.src("source/_posts/*.{markdown,md,textile}"),
+    gulp.src("source/_posts/*.{markdown,md}"),
     frontMatter(),
-    gulpIf("**/*.{markdown,md}", markdown({ renderer })),
-    gulpIf("**/*.textile", textile()),
+    markdown({ renderer }),
     cleanUrl(),
     branch(aggregator),
     summarize({
