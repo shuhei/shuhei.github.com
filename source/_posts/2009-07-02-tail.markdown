@@ -1,0 +1,16 @@
+---
+layout: post
+title: "tail"
+published: true
+date: 2009-07-02 19:55
+comments: true
+tags:
+categories: [UNIX/LINUX]
+---
+
+```
+tail -n 50 foo.log
+```
+
+って書くと foo.log の最後の 50 行だけ見られます。ログなどを見るのに便利ですね。
+世の中的には常識なのでしょうが、今日初めて知りました。ヘルプは読んで見るものですね。

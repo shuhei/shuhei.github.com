@@ -1,0 +1,47 @@
+---
+layout: post
+title: "rails.vim"
+published: true
+date: 2010-03-01 08:40
+comments: true
+tags:
+categories: []
+---
+
+[rails.vim &#8211; Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more : vim online](http://www.vim.org/scripts/script.php?script_id=1567) がステキ。
+ダウンロードして、.vim に入れればインストール完了。
+
+## ファイル間の移動
+
+対応するモデルと単体テスト、コントローラとビューと機能テストの間などを行き来できます。
+
+- :Rmodel
+- :Runittest
+- :Rcontroller
+- :Rview
+- :Rfunctinaltest
+
+などなど。対応するファイルに飛ぶだけでなく、以下のような感じでパスの指定もできます。
+
+:Rmodel user
+:Rview users/show
+
+Tab キーで補完が効くので、大変便利。
+
+## サーバの起動
+
+`:Rserver` とするとコマンドプロンプトが別に開き、サーバが起動されます。
+
+## Rake の実行
+
+`:Rake task_name` で Rake タスクが実行できます。
+例えば単体テストの実行には `:Rake test:units` 。
+
+結果はエラーとして出力されるため `:cl` で確認可能。
+
+タスク名の補完もきくので、ターミナルより便利！
+
+## 参考 URL
+
+- [rails.vim まとめ &#8211; 川 o・-・）＜ 2nd life](http://d.hatena.ne.jp/secondlife/20061222/1166781841)
+- [rails.vim の使い方(導入編) &#8211; migration!!](http://d.hatena.ne.jp/mig50/20060731/1154356587)
