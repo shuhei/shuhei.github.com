@@ -57,6 +57,54 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/16/hello-world-with-curses-of-rub/>Ruby の Curses で Hello, World!</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 16, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。
+<a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。
+参考にしたのは <a href="http://codezine.jp/article/detail/2086">Ruby の Curses を使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Ruby リファレンスマニュアル</a> 。</p>
+<pre><code class="hljs ">require &#39;curses&#39;
+
+message = [
+  &quot;**   **  *******  **       **        *****    **&quot;,
+  &quot;**   **  **       **       **       **   **   **&quot;,
+  &quot;*******  *******  **       **       **   **   **&quot;,
+  &quot;**   **  **       **       **       **   **     &quot;,
+  &quot;**   **  *******  *******  *******   *****    **&quot;
+]
+
+def animate(image)
+  include Curses
+  init_screen
+  y = ((lines - image.size) / 2).truncate
+  (cols - image[0].size).downto(1) do |t|
+    image.size.times do |i|
+      setpos(y + i, t)
+      addstr(image[i])
+    end
+    refresh
+    sleep(0.05)
+    clear
+  end
+close_screen
+end
+
+animate(message)</code></pre><p>おおー、動きました。逆に新鮮で面白いですね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/13/ntlm-hash-with-ruby/>NTLM ハッシュ を求める</a>
         </h1>
         <div class="meta">
@@ -155,88 +203,6 @@ books = get_books(<span class="hljs-string">"branchiopoda"</span>)
 books.each <span class="hljs-keyword">do</span> <span class="hljs-params">|book|</span>
   puts <span class="hljs-string">"<span class="hljs-subst">#{book.title}</span> =&gt; <span class="hljs-subst">#{book.asin}</span>"</span>
 <span class="hljs-keyword">end</span></code></pre><p>一覧から取れるのはタイトルと ASIN コードだけなので、それ以上の情報を得るには、個別のページや Amazon の API を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の API の公開に期待です。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/12/python-challenge-from-8-to-9/>Python Challenge Lv. 8 - 9</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 12, 2009</span>
-          - <span class="category">Ruby</span>, <span class="category">Python</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h2 id="level-8">Level 8</h2>
-<p>とりあえず @<area>@ タグの @coords@ 属性を描いてみました。Ruby と <a href="/blog/2009/10/12/install-cairo-with-gem/">苦労してインストールした cairo</a> を使用。</p>
-<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'cairo'</span>
-
-nums = [<span class="hljs-number">179</span>,<span class="hljs-number">284</span>,<span class="hljs-number">214</span>,<span class="hljs-number">311</span>,<span class="hljs-number">255</span>,<span class="hljs-number">320</span>,<span class="hljs-number">281</span>,<span class="hljs-number">226</span>,<span class="hljs-number">319</span>,<span class="hljs-number">224</span>,<span class="hljs-number">363</span>,<span class="hljs-number">309</span>,<span class="hljs-number">339</span>,<span class="hljs-number">222</span>,<span class="hljs-number">371</span>,<span class="hljs-number">225</span>,<span class="hljs-number">411</span>,<span class="hljs-number">229</span>,<span class="hljs-number">404</span>,<span class="hljs-number">242</span>,<span class="hljs-number">415</span>,<span class="hljs-number">252</span>,<span class="hljs-number">428</span>,<span class="hljs-number">233</span>,<span class="hljs-number">428</span>,<span class="hljs-number">214</span>,<span class="hljs-number">394</span>,<span class="hljs-number">207</span>,<span class="hljs-number">383</span>,<span class="hljs-number">205</span>,<span class="hljs-number">390</span>,<span class="hljs-number">195</span>,<span class="hljs-number">423</span>,<span class="hljs-number">192</span>,<span class="hljs-number">439</span>,<span class="hljs-number">193</span>,<span class="hljs-number">442</span>,<span class="hljs-number">209</span>,<span class="hljs-number">440</span>,<span class="hljs-number">215</span>,<span class="hljs-number">450</span>,<span class="hljs-number">221</span>,<span class="hljs-number">457</span>,<span class="hljs-number">226</span>,<span class="hljs-number">469</span>,<span class="hljs-number">202</span>,<span class="hljs-number">475</span>,<span class="hljs-number">187</span>,<span class="hljs-number">494</span>,<span class="hljs-number">188</span>,<span class="hljs-number">494</span>,<span class="hljs-number">169</span>,<span class="hljs-number">498</span>,<span class="hljs-number">147</span>,<span class="hljs-number">491</span>,<span class="hljs-number">121</span>,<span class="hljs-number">477</span>,<span class="hljs-number">136</span>,<span class="hljs-number">481</span>,<span class="hljs-number">96</span>,<span class="hljs-number">471</span>,<span class="hljs-number">94</span>,<span class="hljs-number">458</span>,<span class="hljs-number">98</span>,<span class="hljs-number">444</span>,<span class="hljs-number">91</span>,<span class="hljs-number">420</span>,<span class="hljs-number">87</span>,<span class="hljs-number">405</span>,<span class="hljs-number">92</span>,<span class="hljs-number">391</span>,<span class="hljs-number">88</span>,<span class="hljs-number">376</span>,<span class="hljs-number">82</span>,<span class="hljs-number">350</span>,<span class="hljs-number">79</span>,<span class="hljs-number">330</span>,<span class="hljs-number">82</span>,<span class="hljs-number">314</span>,<span class="hljs-number">85</span>,<span class="hljs-number">305</span>,<span class="hljs-number">90</span>,<span class="hljs-number">299</span>,<span class="hljs-number">96</span>,<span class="hljs-number">290</span>,<span class="hljs-number">103</span>,<span class="hljs-number">276</span>,<span class="hljs-number">110</span>,<span class="hljs-number">262</span>,<span class="hljs-number">114</span>,<span class="hljs-number">225</span>,<span class="hljs-number">123</span>,<span class="hljs-number">212</span>,<span class="hljs-number">125</span>,<span class="hljs-number">185</span>,<span class="hljs-number">133</span>,<span class="hljs-number">138</span>,<span class="hljs-number">144</span>,<span class="hljs-number">118</span>,<span class="hljs-number">160</span>,<span class="hljs-number">97</span>,<span class="hljs-number">168</span>,<span class="hljs-number">87</span>,<span class="hljs-number">176</span>,<span class="hljs-number">110</span>,<span class="hljs-number">180</span>,<span class="hljs-number">145</span>,<span class="hljs-number">176</span>,<span class="hljs-number">153</span>,<span class="hljs-number">176</span>,<span class="hljs-number">150</span>,<span class="hljs-number">182</span>,<span class="hljs-number">137</span>,<span class="hljs-number">190</span>,<span class="hljs-number">126</span>,<span class="hljs-number">194</span>,<span class="hljs-number">121</span>,<span class="hljs-number">198</span>,<span class="hljs-number">126</span>,<span class="hljs-number">203</span>,<span class="hljs-number">151</span>,<span class="hljs-number">205</span>,<span class="hljs-number">160</span>,<span class="hljs-number">195</span>,<span class="hljs-number">168</span>,<span class="hljs-number">217</span>,<span class="hljs-number">169</span>,<span class="hljs-number">234</span>,<span class="hljs-number">170</span>,<span class="hljs-number">260</span>,<span class="hljs-number">174</span>,<span class="hljs-number">282</span>]
-points = []
-<span class="hljs-keyword">while</span> nums.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
-  points.push nums.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">draw_points</span><span class="hljs-params">(points, width, height, filename)</span></span>
-  format = Cairo::FORMAT_ARGB32
-  surface = Cairo::ImageSurface.new(format, width, height)
-  context = Cairo::Context.new(surface)
-
-  context.set_source_rgb(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
-  context.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height)
-  context.fill
-
-  context.set_source_rgb(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
-  context.move_to(points[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], points[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>])
-  points.each <span class="hljs-keyword">do</span> <span class="hljs-params">|p|</span>
-    context.line_to p[<span class="hljs-number">0</span>], p[<span class="hljs-number">1</span>]
-  <span class="hljs-keyword">end</span>
-  context.stroke
-
-  surface.write_to_png(filename)
-<span class="hljs-keyword">end</span>
-
-draw_points(points, <span class="hljs-number">640</span>, <span class="hljs-number">480</span>, <span class="hljs-string">"fly.png"</span>)</code></pre><p>しかし、ただの蠅の輪郭です。リンク部分の形ですね。で、今度は un 文字列を座標に見立てて線を引いてみたりしたのですが・・・。</p>
-<pre><code class="hljs rb">un = <span class="hljs-string">"BZh91AY&amp;SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07&lt;]\xc9\x14\xe1BA\x06\xbe\x084"</span>
-un_points = []
-<span class="hljs-number">0</span>.step(un.size - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
-  un_points.push([un[i], un[i + <span class="hljs-number">1</span>]])
-<span class="hljs-keyword">end</span>
-
-draw_points(points, <span class="hljs-number">640</span>, <span class="hljs-number">480</span>, <span class="hljs-string">"un.png"</span>)</code></pre><p>全然違うようです・・・。こりゃあかんということで、フォーラムにヒントを見に行くと、Python のモジュールを探せ、un と pw の形式をよく見ろとのこと。共通する「BZh91AY&amp;S」でググってみたところ、bzip2 のヘッダ部分だとか。知らんがな。ということで、Python の bz2 モジュールで解凍して答えを得ました。</p>
-<pre><code class="hljs py"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> bz2
-<span class="hljs-meta">&gt;&gt;&gt; </span>un = <span class="hljs-string">"BZh91AY&amp;SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07&lt;]\xc9\x14\xe1BA\x06\xbe\x084"</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>pw = <span class="hljs-string">"BZh91AY&amp;SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13&lt;]\xc9\x14\xe1BBP\x91\xf08"</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>bz2.decompress(pw)
-<span class="hljs-string">'file'</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>bz2.decompress(un)
-<span class="hljs-string">'huge'</span></code></pre><h2 id="level-9">Level 9</h2>
-<p>Level 7 でやってみたのは、こっちの解法だったようです。
-ということで、以下。</p>
-<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'cairo'</span>
-
-first = [略]
-second = [略]
-
-first_points = []
-<span class="hljs-keyword">while</span> first.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
-   first_points.push first.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
-<span class="hljs-keyword">end</span>
-
-second_points = []
-<span class="hljs-keyword">while</span> second.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
-   second_points.push second.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
-<span class="hljs-keyword">end</span>
-
-draw_points(first_points, <span class="hljs-number">495</span>, <span class="hljs-number">495</span>, <span class="hljs-string">"first.png"</span>)
-draw_points(second_points, <span class="hljs-number">495</span>, <span class="hljs-number">495</span>, <span class="hljs-string">"second.png"</span>)</code></pre><p><a href="https://www.flickr.com/photos/branchiopoda/4004511454/" title="first by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" width="495" height="495" alt="first" /></a></p>
-<p>ということで、出てきた動物の名前をいくつか適当に入れると正解に。しかし、まだまだ四分の一。先は長いです・・・。</p>
 
         </div>
       </div>

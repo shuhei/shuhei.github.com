@@ -57,6 +57,88 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/12/python-challenge-from-8-to-9/>Python Challenge Lv. 8 - 9</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 12, 2009</span>
+          - <span class="category">Ruby</span>, <span class="category">Python</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h2 id="level-8">Level 8</h2>
+<p>とりあえず @<area>@ タグの @coords@ 属性を描いてみました。Ruby と <a href="/blog/2009/10/12/install-cairo-with-gem/">苦労してインストールした cairo</a> を使用。</p>
+<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'cairo'</span>
+
+nums = [<span class="hljs-number">179</span>,<span class="hljs-number">284</span>,<span class="hljs-number">214</span>,<span class="hljs-number">311</span>,<span class="hljs-number">255</span>,<span class="hljs-number">320</span>,<span class="hljs-number">281</span>,<span class="hljs-number">226</span>,<span class="hljs-number">319</span>,<span class="hljs-number">224</span>,<span class="hljs-number">363</span>,<span class="hljs-number">309</span>,<span class="hljs-number">339</span>,<span class="hljs-number">222</span>,<span class="hljs-number">371</span>,<span class="hljs-number">225</span>,<span class="hljs-number">411</span>,<span class="hljs-number">229</span>,<span class="hljs-number">404</span>,<span class="hljs-number">242</span>,<span class="hljs-number">415</span>,<span class="hljs-number">252</span>,<span class="hljs-number">428</span>,<span class="hljs-number">233</span>,<span class="hljs-number">428</span>,<span class="hljs-number">214</span>,<span class="hljs-number">394</span>,<span class="hljs-number">207</span>,<span class="hljs-number">383</span>,<span class="hljs-number">205</span>,<span class="hljs-number">390</span>,<span class="hljs-number">195</span>,<span class="hljs-number">423</span>,<span class="hljs-number">192</span>,<span class="hljs-number">439</span>,<span class="hljs-number">193</span>,<span class="hljs-number">442</span>,<span class="hljs-number">209</span>,<span class="hljs-number">440</span>,<span class="hljs-number">215</span>,<span class="hljs-number">450</span>,<span class="hljs-number">221</span>,<span class="hljs-number">457</span>,<span class="hljs-number">226</span>,<span class="hljs-number">469</span>,<span class="hljs-number">202</span>,<span class="hljs-number">475</span>,<span class="hljs-number">187</span>,<span class="hljs-number">494</span>,<span class="hljs-number">188</span>,<span class="hljs-number">494</span>,<span class="hljs-number">169</span>,<span class="hljs-number">498</span>,<span class="hljs-number">147</span>,<span class="hljs-number">491</span>,<span class="hljs-number">121</span>,<span class="hljs-number">477</span>,<span class="hljs-number">136</span>,<span class="hljs-number">481</span>,<span class="hljs-number">96</span>,<span class="hljs-number">471</span>,<span class="hljs-number">94</span>,<span class="hljs-number">458</span>,<span class="hljs-number">98</span>,<span class="hljs-number">444</span>,<span class="hljs-number">91</span>,<span class="hljs-number">420</span>,<span class="hljs-number">87</span>,<span class="hljs-number">405</span>,<span class="hljs-number">92</span>,<span class="hljs-number">391</span>,<span class="hljs-number">88</span>,<span class="hljs-number">376</span>,<span class="hljs-number">82</span>,<span class="hljs-number">350</span>,<span class="hljs-number">79</span>,<span class="hljs-number">330</span>,<span class="hljs-number">82</span>,<span class="hljs-number">314</span>,<span class="hljs-number">85</span>,<span class="hljs-number">305</span>,<span class="hljs-number">90</span>,<span class="hljs-number">299</span>,<span class="hljs-number">96</span>,<span class="hljs-number">290</span>,<span class="hljs-number">103</span>,<span class="hljs-number">276</span>,<span class="hljs-number">110</span>,<span class="hljs-number">262</span>,<span class="hljs-number">114</span>,<span class="hljs-number">225</span>,<span class="hljs-number">123</span>,<span class="hljs-number">212</span>,<span class="hljs-number">125</span>,<span class="hljs-number">185</span>,<span class="hljs-number">133</span>,<span class="hljs-number">138</span>,<span class="hljs-number">144</span>,<span class="hljs-number">118</span>,<span class="hljs-number">160</span>,<span class="hljs-number">97</span>,<span class="hljs-number">168</span>,<span class="hljs-number">87</span>,<span class="hljs-number">176</span>,<span class="hljs-number">110</span>,<span class="hljs-number">180</span>,<span class="hljs-number">145</span>,<span class="hljs-number">176</span>,<span class="hljs-number">153</span>,<span class="hljs-number">176</span>,<span class="hljs-number">150</span>,<span class="hljs-number">182</span>,<span class="hljs-number">137</span>,<span class="hljs-number">190</span>,<span class="hljs-number">126</span>,<span class="hljs-number">194</span>,<span class="hljs-number">121</span>,<span class="hljs-number">198</span>,<span class="hljs-number">126</span>,<span class="hljs-number">203</span>,<span class="hljs-number">151</span>,<span class="hljs-number">205</span>,<span class="hljs-number">160</span>,<span class="hljs-number">195</span>,<span class="hljs-number">168</span>,<span class="hljs-number">217</span>,<span class="hljs-number">169</span>,<span class="hljs-number">234</span>,<span class="hljs-number">170</span>,<span class="hljs-number">260</span>,<span class="hljs-number">174</span>,<span class="hljs-number">282</span>]
+points = []
+<span class="hljs-keyword">while</span> nums.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
+  points.push nums.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">draw_points</span><span class="hljs-params">(points, width, height, filename)</span></span>
+  format = Cairo::FORMAT_ARGB32
+  surface = Cairo::ImageSurface.new(format, width, height)
+  context = Cairo::Context.new(surface)
+
+  context.set_source_rgb(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+  context.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height)
+  context.fill
+
+  context.set_source_rgb(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+  context.move_to(points[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], points[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>])
+  points.each <span class="hljs-keyword">do</span> <span class="hljs-params">|p|</span>
+    context.line_to p[<span class="hljs-number">0</span>], p[<span class="hljs-number">1</span>]
+  <span class="hljs-keyword">end</span>
+  context.stroke
+
+  surface.write_to_png(filename)
+<span class="hljs-keyword">end</span>
+
+draw_points(points, <span class="hljs-number">640</span>, <span class="hljs-number">480</span>, <span class="hljs-string">"fly.png"</span>)</code></pre><p>しかし、ただの蠅の輪郭です。リンク部分の形ですね。で、今度は un 文字列を座標に見立てて線を引いてみたりしたのですが・・・。</p>
+<pre><code class="hljs rb">un = <span class="hljs-string">"BZh91AY&amp;SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07&lt;]\xc9\x14\xe1BA\x06\xbe\x084"</span>
+un_points = []
+<span class="hljs-number">0</span>.step(un.size - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+  un_points.push([un[i], un[i + <span class="hljs-number">1</span>]])
+<span class="hljs-keyword">end</span>
+
+draw_points(points, <span class="hljs-number">640</span>, <span class="hljs-number">480</span>, <span class="hljs-string">"un.png"</span>)</code></pre><p>全然違うようです・・・。こりゃあかんということで、フォーラムにヒントを見に行くと、Python のモジュールを探せ、un と pw の形式をよく見ろとのこと。共通する「BZh91AY&amp;S」でググってみたところ、bzip2 のヘッダ部分だとか。知らんがな。ということで、Python の bz2 モジュールで解凍して答えを得ました。</p>
+<pre><code class="hljs py"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> bz2
+<span class="hljs-meta">&gt;&gt;&gt; </span>un = <span class="hljs-string">"BZh91AY&amp;SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07&lt;]\xc9\x14\xe1BA\x06\xbe\x084"</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>pw = <span class="hljs-string">"BZh91AY&amp;SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13&lt;]\xc9\x14\xe1BBP\x91\xf08"</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>bz2.decompress(pw)
+<span class="hljs-string">'file'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>bz2.decompress(un)
+<span class="hljs-string">'huge'</span></code></pre><h2 id="level-9">Level 9</h2>
+<p>Level 7 でやってみたのは、こっちの解法だったようです。
+ということで、以下。</p>
+<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'cairo'</span>
+
+first = [略]
+second = [略]
+
+first_points = []
+<span class="hljs-keyword">while</span> first.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
+   first_points.push first.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
+<span class="hljs-keyword">end</span>
+
+second_points = []
+<span class="hljs-keyword">while</span> second.size &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
+   second_points.push second.slice!(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
+<span class="hljs-keyword">end</span>
+
+draw_points(first_points, <span class="hljs-number">495</span>, <span class="hljs-number">495</span>, <span class="hljs-string">"first.png"</span>)
+draw_points(second_points, <span class="hljs-number">495</span>, <span class="hljs-number">495</span>, <span class="hljs-string">"second.png"</span>)</code></pre><p><a href="https://www.flickr.com/photos/branchiopoda/4004511454/" title="first by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" width="495" height="495" alt="first" /></a></p>
+<p>ということで、出てきた動物の名前をいくつか適当に入れると正解に。しかし、まだまだ四分の一。先は長いです・・・。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/12/install-cairo-with-gem/>gem で cairo をインストール</a>
         </h1>
         <div class="meta">
@@ -108,80 +190,6 @@ sudo make install</code></pre>
 しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。
 まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。
 試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/11/python-challenge-from-6-to-7/>Python Challenge Lv. 6 - 7</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 11, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。
-試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
-<h2 id="level-6">Level 6</h2>
-<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
-少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
-<pre><code class="hljs ">num = &quot;90052&quot;
-z = zipfile.ZipFile(&quot;channel.zip&quot;)
-
-while True:
-  # Print file&#39;s comment
-  print z.getinfo(num + &quot;.txt&quot;).comment,
-  # Get next nothing
-  s = open(num + &quot;.txt&quot;).read()
-  m = pattern.match(s)
-  if m:
-    num = m.group(1)
-  else:
-    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
-いつのまにか Python で解いてしまってますね・・・。</p>
-<h2 id="level-7">Level 7</h2>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
-data = list(image.getdata())
-
-before = 0
-message = &quot;&quot;
-for x in range(width):
-  tmp = data[x + width * 46][0]
-  if tmp != before:
-    message += &quot;%c&quot; % (tmp)
-    before= tmp
-
-print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
-<blockquote>
-<p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
-</blockquote>
-<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
-気を取り直して以下。書き方も少し Python らしく（？）。
-<code>chr</code> という関数があったんですね。</p>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
-data = list(image.getdata())
-message = []
-i = 0
-while True:
-  color = data[i + width * 46]
-  if color[0] == color[1] == color[2]:
-    message.append(color[2])
-    i += 7
-  else:
-    break
-
-print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
-<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
 
         </div>
       </div>

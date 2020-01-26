@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Tue, 31 Dec 2019 23:50:00 GMT</lastBuildDate><item><title>2019 in Review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 26 Jan 2020 15:57:00 GMT</lastBuildDate><item><title>Responsive Images with a Static Site Generator</title><link>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</link><description><![CDATA[
+<h2 id="responsive-images">Responsive images</h2>
+<p>An <code>img</code> without <code>width</code>/<code>height</code> attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify <code>width</code> and <code>height</code> of <code>img</code> tag to avoid the jump.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/foo.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"600"</span> /&gt;</span></code></pre><p>But <code>img</code> tag with <code>width</code> and <code>height</code> doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without <code>width</code>/<code>height</code> and let them cause page jumps.</p>
+<p>Recently, I came across a similar problem at work and learned a cool technique to create a placeholder of the image&#39;s aspect ratio with <code>padding-top</code>. If the image&#39;s aspect ratio is <code>height/width = 75/100</code>:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>The <code>div</code> works as a placeholder with the image&#39;s aspect ratio that fits the width of its containing element. Because the <code>img</code> tag has <code>position: absolute</code>, it doesn&#39;t cause a page jump when it&#39;s loaded.</p>
+<p>I decided to implement it on this blog. This blog is made with a custom static site generator. I&#39;m not sure if it&#39;s useful for anyone else, but I write how I did it anyway…</p>
+<h2 id="limiting-overstretch">Limiting overstretch</h2>
+<p>In addition to images that are wide enough to always fill the full width of the content area, I had images that are not wide enough to fill the full width of a laptop, but wide enough to fill the full width of a mobile phone. Not to stretch the image on laptops, I decided to go with another wrapper to limit the maximum width of the image. If the image&#39;s width is <code>500px</code>:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"max-width: 500px;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><h2 id="getting-image-dimensions">Getting Image Dimensions</h2>
+<p>The placeholder technique requires image dimensions. I used <a href="https://github.com/image-size/image-size">image-size module</a> to get image dimensions.</p>
+<p>The following function gets dimensions of images in a directory and returns them as a <code>Map</code>.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">"util"</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">promises</span>: fs } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
+<span class="hljs-keyword">const</span> sizeOf = util.promisify(<span class="hljs-built_in">require</span>(<span class="hljs-string">"image-size"</span>).imageSize);
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readImageSizes</span>(<span class="hljs-params">dir</span>) </span>{
+  <span class="hljs-keyword">const</span> files = (<span class="hljs-keyword">await</span> fs.readdir(dir)).filter(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> !f.startsWith(<span class="hljs-string">"."</span>));
+  <span class="hljs-keyword">const</span> promises = files.map(<span class="hljs-keyword">async</span> file =&gt; {
+    <span class="hljs-keyword">const</span> filePath = path.resolve(dir, file);
+    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">await</span> sizeOf(filePath);
+    <span class="hljs-keyword">return</span> [file, dimensions];
+  });
+  <span class="hljs-keyword">const</span> entries = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(promises);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(entries);
+}</code></pre><h2 id="custom-renderer-of-marked">Custom renderer of Marked</h2>
+<p>This blog&#39;s posts are written in Markdown, and its static site generator uses <a href="https://github.com/markedjs/marked">marked</a> to convert Markdown into HTML. One of my favorite things about <code>marked</code> is that we can easily customize its behavior with a custom renderer.</p>
+<p>I used <code>span</code> tags to wrap <code>img</code> tag because they are rendered in <code>p</code> tag, which can&#39;t contain block tags like <code>div</code>.</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomRenderer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">marked</span>.<span class="hljs-title">Renderer</span> </span>{
+  image(src, title, alt) {
+    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.imageDimensions &amp;&amp; <span class="hljs-keyword">this</span>.imageDimensions.get(src);
+    <span class="hljs-keyword">if</span> (dimensions) {
+      <span class="hljs-keyword">const</span> { width, height } = dimensions;
+      <span class="hljs-keyword">const</span> aspectRatio = (height / width) * <span class="hljs-number">100</span>;
+      <span class="hljs-keyword">return</span> (
+        <span class="hljs-string">`&lt;span class="responsive-image-wrapper" style="max-width: <span class="hljs-subst">${width}</span>px;"&gt;`</span> +
+        <span class="hljs-string">`&lt;span class="responsive-image-inner" style="padding-top: <span class="hljs-subst">${aspectRatio}</span>%;"&gt;`</span> +
+        <span class="hljs-string">`&lt;img class="responsive-image" src="<span class="hljs-subst">${src}</span>" alt="<span class="hljs-subst">${alt}</span>"&gt;`</span> +
+        <span class="hljs-string">"&lt;/span&gt;"</span> +
+        <span class="hljs-string">"&lt;/span&gt;"</span>
+      );
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.image(src, title, alt);
+  }
+
+  <span class="hljs-comment">// To set images dimensions when images are changed</span>
+  setImageDimensions(imageDimensions) {
+    <span class="hljs-keyword">this</span>.imageDimensions = imageDimensions;
+  }
+}</code></pre><p>And CSS:</p>
+<pre><code class="hljs css"><span class="hljs-selector-class">.responsive-image-wrapper</span> {
+  <span class="hljs-attribute">display</span>: block;
+}
+<span class="hljs-selector-class">.responsive-image-inner</span> {
+  <span class="hljs-attribute">display</span>: block;
+  <span class="hljs-attribute">position</span>: relative;
+}
+<span class="hljs-selector-class">.responsive-image</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+}</code></pre><h2 id="result">Result</h2>
+<p>Here are a few examples:</p>
+<ul>
+<li><a href="http://localhost:4000/blog/2019/12/31/2019-in-review/">Full width on laptop and mobile</a></li>
+<li><a href="http://localhost:4000/blog/2010/07/10/surface/">Full width on mobile but not on laptop</a></li>
+</ul>
+<p>Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...</p>
+<p>I skipped some details that are specific to my website. The full code is <a href="https://github.com/shuhei/shuhei.github.com/pull/45">on GitHub</a>.</p>
+
+]]></description><pubDate>Sun, 26 Jan 2020 15:57:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</guid></item><item><title>2019 in Review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
 <p><span class="responsive-image-wrapper" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2019-aegina.jpg" alt="Aegina island in April"></span></span></p>
 <h2 id="travels">Travels</h2>
 <p>I visited six new countries and enjoyed each of them.</p>
@@ -547,86 +624,4 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
 <p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
 
-]]></description><pubDate>Sat, 29 Dec 2018 22:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item><item><title>Node.js under a Microscope: CPU FlameGraph and FlameScope</title><link>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</link><description><![CDATA[
-<p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
-<h2 id="background">Background</h2>
-<p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
-<p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or <em>someone else</em>.</p>
-<h2 id="cpu-profiling-with-linux-perf-command">CPU Profiling with Linux <code>perf</code> Command</h2>
-<p>Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
-<p>For Node.js, there are mainly two different tools. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux <code>perf</code> will keep working for a while. After all, I picked Linux <code>perf</code> because of low performance-overhead and small intervention to applications.</p>
-<p>Linux <code>perf record</code> records stack traces into a binary file called <code>perf.data</code> by default. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
-<pre><code class="hljs sh"><span class="hljs-comment"># Install dependencies for `perf` command</span>
-sudo apt-get install linux-tools-common linux-tools-$(uname -r)
-<span class="hljs-comment"># Test `perf` command</span>
-sudo perf top
-
-<span class="hljs-comment"># Record stack traces 99 times per second for 30 seconds</span>
-sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
-<span class="hljs-comment"># Generate human readable stack traces</span>
-sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?</p>
-<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
-<p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
-<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 55.714285714285715%;"><img class="responsive-image" src="/images/flamegraph.png" alt="CPU Flame Graph"></span></span>
-<em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
-<p>I found some insights about the application on production with CPU Flame Graph:</p>
-<ul>
-<li>React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, <code>JSON.parse()</code> was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.</li>
-<li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
-</ul>
-<p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
-<h2 id="flamescope">FlameScope</h2>
-<p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
-<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 68.71428571428572%;"><img class="responsive-image" src="/images/flamescope-annotated.png" alt="FlameScope"></span></span>
-<em>Image from <a href="https://github.com/Netflix/flamescope">Netflix/flamescope</a></em></p>
-<p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
-<p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
-<p>I found a couple of exciting insights about the application on production using this tool.</p>
-<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1: Heavy Tasks in the Master Process</h3>
-<p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
-<p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
-<h3 id="example-2-frequent-garbage-collections">Example 2: Frequent Garbage Collections</h3>
-<p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.</p>
-<p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s <a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection">generational garbage collector</a>.</p>
-<p>The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
-<h2 id="nodejs-gotchas">Node.js Gotchas</h2>
-<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:</p>
-<ol>
-<li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
-<li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
-</ol>
-<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven&#39;t tried them on production because the stack traces were already good enough for me:</p>
-<ul>
-<li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
-<li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
-</ul>
-<h2 id="docker-gotchas">Docker Gotchas</h2>
-<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker:</p>
-<ol>
-<li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
-<li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
-</ol>
-<p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
-<p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
-<pre><code class="hljs ">$ ps ax | grep -n &#39;node --perf&#39;
-21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
-30481 pts/3    S+     0:00 grep --color=auto node --perf
-# or
-$ pgrep -f &#39;node --perf&#39;
-21574
-
-$ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>
-<p>I learned how to overcome the issue from <a href="http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/">Making FlameGraphs with Containerized Java</a>. I just copied necessary files from the container to the host.</p>
-<pre><code class="hljs sh"><span class="hljs-comment"># Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.</span>
-sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
-sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
-sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22</code></pre><p>To copy symbol map files, we need to find the <code>pid</code> in the container. We can do it by checking <code>/proc/${host_pid}/status</code>.</p>
-<pre><code class="hljs ">$ cat /proc/21574/status | grep NSpid
-NSpid:  21574   6
-$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! Then we can use <code>perf script</code> as usual.</p>
-<pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
-<p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
-
-]]></description><pubDate>Sun, 16 Sep 2018 10:56:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</guid></item></channel></rss>
+]]></description><pubDate>Sat, 29 Dec 2018 22:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item></channel></rss>

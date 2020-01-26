@@ -57,6 +57,125 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 13, 2019</span>
+          - <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.</p>
+<p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
+<p><span class="responsive-image-wrapper" style="max-width: 531px;"><span class="responsive-image-inner" style="padding-top: 83.9924670433145%;"><img class="responsive-image" src="/images/twitter-card.png" alt="Twitter Card preview"></span></span></p>
+<h2 id="meta-tags">Meta tags</h2>
+<p>Twitter&#39;s bots look for <code>&lt;meta&gt;</code> tags in your page. If your page has a certain meta tags, it shows a Twitter Cards for links to the page. Check <a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">the documentation</a> for more details. The <code>&lt;meta&gt;</code> tags look like these:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:card"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"summary_large_image"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:site"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"@your_twitter_account"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><p>Uh, they look a bit too platform-specific. <code>twitter:card</code> and <code>twitter:site</code> are specific to Twitter, but what about <code>twitter:title</code>, <code>twitter:description</code> and <code>twitter:image</code>? Twitter&#39;s bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. So, we can use the <code>og:</code> tags instead of <code>twitter:</code> tags. Be careful that the attribute name of Open Graph metadata is <code>property</code> instead of <code>name</code>!</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><h2 id="homemade-static-site-generator">Homemade static site generator</h2>
+<p><a href="https://github.com/shuhei/shuhei.github.com">My blog</a> is built with <a href="https://github.com/gulpjs/gulp">gulp</a> and some custom plugins and deployed to GitHub Pages. I started the blog with <a href="https://github.com/octopress/octopress">Octopress</a> several years ago and rewrote it with gulp when I was fascinated with gulp and JavaScript build tools. I once added React as a template engine and removed it later. Because of the history, its directory structure stays similar to the original one of Octopress. I write markdown files like <code>source/_posts/2019-10-13-foo.md</code> and the build system generates HTMLs like <code>/blog/2019/10/13/foo/index.html</code>.</p>
+<p>To add Open Graph meta tags, I wrote a gulp plugin. Each gulp plugin is a transform stream that consumes and produces <a href="https://github.com/gulpjs/vinyl">vinyl</a> file objects. First, I made the plugin to extract image URLs from HTML and added necessary meta tags to the HTML template for <code>&lt;head&gt;</code> tag. Now, posts with at least one image got Twitter Cards.</p>
+<h2 id="image-generation-and-text-wrapping">Image generation and text wrapping</h2>
+<p>Most of my posts didn&#39;t have any images, while Twitter Cards don&#39;t look great without images. But I&#39;m too lazy to create an image for each blog post manually.</p>
+<p>I found that <a href="https://hatenablog.com/">Hatena Blog</a>, a blogging platform in Japan, was <a href="https://twitter.com/search?q=%23%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0">generating images from blog post titles and descriptions</a>. It&#39;s a neat idea to promote blog posts without manual effort of blog authors. Can I replicate the image generation?</p>
+<p>I found that many image-generation npm packages were using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>. It provides the canvas API for Node.js and supports export options, including PNG. I decided to try that.</p>
+<p>The canvas API was easy to use for me, but it doesn&#39;t provide text wrapping. I needed to come up with a way to break texts into lines. As <a href="https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element">a Q&amp;A on Stackoverflow</a> suggested, I used <code>ctx.measureText(text)</code> to measure the width of the text and remove words until the subtext fits the given width. And do the same for the remaining text.</p>
+<p>The first line of this text wrapping algorithm is visualized as follows (it actually happens on the same line, but showing each try in its line for illustration):</p>
+<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 30.28571428571429%;"><img class="responsive-image" src="/images/twitter-card-image-line-break.png" alt="Wrapping text"></span></span></p>
+<p>There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.</p>
+<p>The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):</p>
+<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 37%;"><img class="responsive-image" src="/images/twitter-card-image-font-sizes.png" alt="Try smaller font sizes"></span></span></p>
+<p>I eventually came up with JavaScript code like this (<a href="https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js">the full code is on GitHub</a>):</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fitTextIntoRectangle</span>(<span class="hljs-params">{ ctx, text, maxFontSize, rect }</span>) </span>{
+  <span class="hljs-comment">// Reduce font size until the title fits into the image.</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> fontSize = maxFontSize; fontSize &gt; <span class="hljs-number">0</span>; fontSize -= <span class="hljs-number">1</span>) {
+    ctx.font = getTitleFont(fontSize);
+    <span class="hljs-keyword">let</span> words = text.split(<span class="hljs-string">" "</span>);
+    <span class="hljs-keyword">let</span> { y } = rect;
+    <span class="hljs-keyword">const</span> lines = [];
+    <span class="hljs-keyword">while</span> (words.length &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">let</span> i;
+      <span class="hljs-keyword">let</span> size;
+      <span class="hljs-keyword">let</span> subtext;
+      <span class="hljs-comment">// Remove words until the rest fit into the width.</span>
+      <span class="hljs-keyword">for</span> (i = words.length; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">1</span>) {
+        subtext = words.slice(<span class="hljs-number">0</span>, i).join(<span class="hljs-string">" "</span>);
+        size = ctx.measureText(subtext);
+
+        <span class="hljs-keyword">if</span> (size.width &lt;= rect.width) {
+          <span class="hljs-keyword">break</span>;
+        }
+      }
+
+      <span class="hljs-keyword">if</span> (i &lt;= <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// A word doesn't fit into a line. Try a smaller font size.</span>
+        <span class="hljs-keyword">break</span>;
+      }
+
+      lines.push({
+        <span class="hljs-attr">text</span>: subtext,
+        <span class="hljs-attr">x</span>: rect.x,
+        <span class="hljs-attr">y</span>: y + size.emHeightAscent
+      });
+
+      words = words.slice(i);
+      y += size.emHeightAscent + size.emHeightDescent;
+    }
+
+    <span class="hljs-keyword">const</span> space = rect.y + rect.height - y;
+    <span class="hljs-keyword">if</span> (words.length === <span class="hljs-number">0</span> &amp;&amp; space &gt;= <span class="hljs-number">0</span>) {
+      <span class="hljs-comment">// The title fits into the image with the font size.</span>
+      <span class="hljs-comment">// Vertically centering the text in the given rectangle.</span>
+      <span class="hljs-keyword">const</span> centeredLines = lines.map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> {
+          ...line,
+          <span class="hljs-attr">y</span>: line.y + space / <span class="hljs-number">2</span>
+        };
+      });
+      <span class="hljs-keyword">return</span> {
+        fontSize,
+        <span class="hljs-attr">lines</span>: centeredLines
+      };
+    }
+  }
+
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+    <span class="hljs-string">`Text layout failed: The given text '<span class="hljs-subst">${text}</span>' did not fit into the given rectangle <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(
+      rect
+    )}</span> even with the smallest font size (1)`</span>
+  );
+}</code></pre><h2 id="font">Font</h2>
+<p>My website is using <a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a> via Google Fonts. I wanted to use the same font in the images. Fortunately, node-canvas provides an API to load fonts, and the font is available also on npm.</p>
+<pre><code class="hljs sh">yarn add -D @ibm/plex</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> { registerFont } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"canvas"</span>);
+
+registerFont(
+  <span class="hljs-string">"./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf"</span>,
+  {
+    <span class="hljs-attr">family</span>: <span class="hljs-string">"IBM Plex Sans"</span>,
+    <span class="hljs-attr">weight</span>: <span class="hljs-string">"bold"</span>
+  }
+);
+
+<span class="hljs-comment">// ...</span>
+
+ctx.font = <span class="hljs-string">"bold 30px 'IBM Plex Sans'"</span>;</code></pre><h2 id="done">Done!</h2>
+<p>So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2019/10/08/migrating-from-bash-to-zsh/>Migrating from bash to zsh</a>
         </h1>
         <div class="meta">
@@ -219,129 +338,6 @@ fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <
 <h2 id="conclusion">Conclusion</h2>
 <p>It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.</p>
 <p><a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> are great. I liked their hands-on approach with many unit tests.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/04/30/dns-polling/>DNS Polling for Reliability</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 30, 2019</span>
-          - <span class="category">Node.js</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>In December 2018, I wrote a package to poll and cache DNS records, <a href="https://github.com/shuhei/pollen">pollen</a>, as a mitigation for incidents at work.</p>
-<p>My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and <code>tcpdump</code>, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.</p>
-<h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
-<p>In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.</p>
-<p>Node.js is especially vulnerable to DNS lookup failures because:</p>
-<ul>
-<li>Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.</li>
-<li>Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.<ul>
-<li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the thread pool like file IO and gzip encoding/decoding.</li>
-</ul>
-</li>
-</ul>
-<h2 id="caching-at-os-level">Caching at OS-level</h2>
-<p>We can make DNS lookups fast and reliable by caching it. <a href="https://github.com/nodejs/node/issues/5893">An issue on the nodejs/node repo</a> recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.</p>
-<p>However, it&#39;s not always easy depending on the platform that you are using. My team was using <a href="https://stups.io/">a platform where we just deploy your application Docker container</a>, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)</p>
-<p>Because the incidents didn&#39;t happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.</p>
-<h2 id="dns-caching-and-prefetching-with-nodejs">DNS Caching and Prefetching with Node.js</h2>
-<p>There were already some DNS caching packages:</p>
-<ul>
-<li><a href="https://github.com/yahoo/dnscache">yahoo/dnscache</a></li>
-<li><a href="https://github.com/eduardbcom/lookup-dns-cache">eduardbcom/lookup-dns-cache</a></li>
-</ul>
-<p>The packages looked great, but there was an edge case that they didn&#39;t cover. Both of the packages throw away caches after some time (<code>dnscache</code> uses <code>ttl</code> option and <code>lookup-dns-cache</code> uses the TTL that DNS servers return) and make DNS lookups again. This poses a risk where HTTP requests fail if DNS servers are down at the time.</p>
-<p>To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn&#39;t change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.</p>
-<h2 id="http-keep-alive-persistent-connection">HTTP Keep-Alive (Persistent Connection)</h2>
-<p>There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.</p>
-<p>We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the <code>activeSocketTTL</code> option of <code>keepaliveagent</code>. However, this is not optimal because IP addresses don&#39;t change most of the time.</p>
-<p>The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.</p>
-<h2 id="result">Result</h2>
-<p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a>, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
-<p>I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.</p>
-<h2 id="how-to-use-it">How to Use It</h2>
-<pre><code class="hljs sh">npm i -S @shuhei/pollen
-<span class="hljs-comment"># or</span>
-yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">"https"</span>);
-<span class="hljs-keyword">const</span> { DnsPolling, HttpsAgent } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@shuhei/pollen"</span>);
-
-<span class="hljs-keyword">const</span> dnsPolling = <span class="hljs-keyword">new</span> DnsPolling({
-  <span class="hljs-attr">interval</span>: <span class="hljs-number">30</span> * <span class="hljs-number">1000</span> <span class="hljs-comment">// 30 seconds by default</span>
-});
-<span class="hljs-comment">// Just a thin wrapper of https://github.com/node-modules/agentkeepalive</span>
-<span class="hljs-comment">// It accepts all the options of `agentkeepalive`.</span>
-<span class="hljs-keyword">const</span> agent = <span class="hljs-keyword">new</span> HttpsAgent();
-
-<span class="hljs-keyword">const</span> hostname = <span class="hljs-string">"shuheikagawa.com"</span>;
-<span class="hljs-keyword">const</span> req = https.request({
-  hostname,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">"/"</span>,
-  <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
-  <span class="hljs-attr">lookup</span>: dnsPolling.getLookup(hostname),
-  agent
-});</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
-<p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
-<pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">"resolve:success"</span>, ({ hostname, duration, update }) =&gt; {
-  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-  recordDnsLookup();
-  recordDnsLatency(duration);
-
-  <span class="hljs-keyword">if</span> (update) {
-    logger.info({ hostname, duration }, <span class="hljs-string">"IP addresses updated"</span>);
-  }
-});
-dnsPolling.on(<span class="hljs-string">"resolve:error"</span>, ({ hostname, duration, error }) =&gt; {
-  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-  recordDnsLookup();
-  recordDnsLatency(duration);
-  recordDnsError();
-
-  logger.warn({ hostname, <span class="hljs-attr">err</span>: error, duration }, <span class="hljs-string">"DNS lookup error"</span>);
-});</code></pre><p>I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of <a href="https://c-ares.haxx.se/">c-ares</a>, but I&#39;m not sure yet (<a href="https://c-ares.haxx.se/ares_init_options.html">its default timeout seems to be 5 seconds...</a>).</p>
-<p>Because <code>pollen</code> makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">Histogram for Time-Series Metrics on Node.js</a> for more details.</p>
-<p>Even if you don&#39;t use <code>pollen</code>, it is a good idea to monitor DNS lookups.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> dns = <span class="hljs-built_in">require</span>(<span class="hljs-string">"dns"</span>);
-
-<span class="hljs-keyword">const</span> lookupWithMetrics = <span class="hljs-function">(<span class="hljs-params">hostname, options, callback</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> cb = callback || options;
-  <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
-
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onLookup</span>(<span class="hljs-params">err, address, family</span>) </span>{
-    <span class="hljs-keyword">const</span> duration = <span class="hljs-built_in">Date</span>.now() - startTime;
-    cb(err, address, family);
-
-    <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-    recordDnsLookup();
-    recordDnsLatency(duration);
-    <span class="hljs-keyword">if</span> (err) {
-      recordDnsError();
-      logger.warn({ hostname, err, duration }, <span class="hljs-string">"DNS lookup error"</span>);
-    }
-  }
-
-  <span class="hljs-keyword">return</span> dns.lookup(hostname, options, onLookup);
-};
-
-<span class="hljs-keyword">const</span> req = https.request({
-  <span class="hljs-comment">// ...</span>
-  <span class="hljs-attr">lookup</span>: lookupWithMetrics
-});</code></pre><h2 id="conclusion">Conclusion</h2>
-<p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
-<ul>
-<li>seeing DNS timeouts on outbound API calls</li>
-<li>using DNS for service discovery</li>
-<li>running your Node.js servers without DNS caching</li>
-</ul>
-<p>Also, don&#39;t forget to monitor DNS lookups!</p>
 
         </div>
       </div>

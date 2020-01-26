@@ -57,6 +57,80 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/11/python-challenge-from-6-to-7/>Python Challenge Lv. 6 - 7</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 11, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。
+試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
+<h2 id="level-6">Level 6</h2>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
+少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre><code class="hljs ">num = &quot;90052&quot;
+z = zipfile.ZipFile(&quot;channel.zip&quot;)
+
+while True:
+  # Print file&#39;s comment
+  print z.getinfo(num + &quot;.txt&quot;).comment,
+  # Get next nothing
+  s = open(num + &quot;.txt&quot;).read()
+  m = pattern.match(s)
+  if m:
+    num = m.group(1)
+  else:
+    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
+いつのまにか Python で解いてしまってますね・・・。</p>
+<h2 id="level-7">Level 7</h2>
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
+width = image.size[0]
+data = list(image.getdata())
+
+before = 0
+message = &quot;&quot;
+for x in range(width):
+  tmp = data[x + width * 46][0]
+  if tmp != before:
+    message += &quot;%c&quot; % (tmp)
+    before= tmp
+
+print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<blockquote>
+<p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
+</blockquote>
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
+気を取り直して以下。書き方も少し Python らしく（？）。
+<code>chr</code> という関数があったんですね。</p>
+<pre><code class="hljs ">from PIL import Image
+image = Image.open(&quot;oxygen.png&quot;)
+width = image.size[0]
+data = list(image.getdata())
+message = []
+i = 0
+while True:
+  color = data[i + width * 46]
+  if color[0] == color[1] == color[2]:
+    message.append(color[2])
+    i += 7
+  else:
+    break
+
+print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/11/grasse/>草</a>
         </h1>
         <div class="meta">
@@ -178,25 +252,6 @@ for line in obj:
     print l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
 <p>続きはまた今度。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/30/exec-windows-command-with-ruby/>Ruby で Windows のコマンド実行</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 30, 2009</span>
-          - <span class="category">Ruby</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
-<pre><code class="hljs rb">ret = system <span class="hljs-string">"cmd.exe /c dir"</span></code></pre>
         </div>
       </div>
     </div>
