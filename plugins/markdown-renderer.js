@@ -26,7 +26,7 @@ function renderAttrs(attrs) {
 }
 
 class CustomRenderer extends marked.Renderer {
-  constructor({ localImagePrefix }) {
+  constructor({ localImagePrefix } = {}) {
     super();
     this.localImagePrefix = localImagePrefix;
   }
@@ -82,7 +82,7 @@ class CustomRenderer extends marked.Renderer {
         `<span class="responsive-image-wrapper" style="max-width: ${width}px;">` +
         // `padding-top` to reserve a space with the aspect ratio.
         `<span class="responsive-image-inner" style="padding-top: ${aspectRatio}%;">` +
-        `<img class="responsive-image" ${renderAttrs({ src, title, alt })}>` +
+        `<img class="responsive-image" ${renderAttrs({ src, alt, title })}>` +
         "</span>" +
         "</span>"
       );
