@@ -14,19 +14,28 @@ const startServer = require("./plugins/serve");
 const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
 const branch = require("./plugins/branch");
 const readCssFiles = require("./plugins/css");
+const readImageSizes = require("./plugins/image-size");
 const summarize = require("./plugins/summarize");
-const renderer = require("./plugins/markdown-renderer");
-
+const MarkdownRenderer = require("./plugins/markdown-renderer");
 const siteConfig = require("./source/_config/site.json");
 
 const pipeline = util.promisify(Stream.pipeline);
 
 const publicDir = "public";
 
+const renderer = new MarkdownRenderer({
+  localImagePrefix: "/images/"
+});
+
 // HACK: Build CSS and keep it in a variable.
 let css;
 async function buildCss() {
   css = await readCssFiles(siteConfig.cssFiles);
+}
+
+async function checkImageSizes() {
+  const imageSizes = await readImageSizes("./source/images");
+  renderer.setImageSizes(imageSizes);
 }
 
 // Copy static pages compiling markdown files.
@@ -78,7 +87,8 @@ function buildPosts() {
     gulp.dest(path.join(publicDir, siteConfig.blogDir))
   );
 }
-const posts = gulp.series(buildCss, buildPosts);
+const postsDeps = gulp.parallel(buildCss, checkImageSizes);
+const posts = gulp.series(postsDeps, buildPosts);
 
 // Create a new post source file.
 function newpost() {
@@ -115,6 +125,27 @@ function startWatching() {
 }
 
 const watch = gulp.series(build, serve, startWatching);
+
+// Task dependencies:
+//
+// watch (serial)
+//   build (parallel)
+//    copy (serial)
+//      buildCss
+//      copyFiles
+//    posts (serial)
+//      postsDeps (parallel)
+//        buildCss
+//        checkImageSizes
+//      buildPosts
+//   serve
+//   startWatching (parallel)
+//    copy
+//    build (parallel)
+//      copy (see above)
+//      posts (see above)
+//  newpost
+//  newpage
 
 module.exports = {
   copy,
