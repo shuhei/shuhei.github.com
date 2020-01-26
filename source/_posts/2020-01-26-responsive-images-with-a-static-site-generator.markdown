@@ -116,8 +116,8 @@ And CSS:
 
 Here are a few examples:
 
-- [Full width on laptop and mobile](http://localhost:4000/blog/2019/12/31/2019-in-review/)
-- [Full width on mobile but not on laptop](http://localhost:4000/blog/2010/07/10/surface/)
+- [Full width on laptop and mobile](/blog/2019/12/31/2019-in-review/)
+- [Full width on mobile but not on laptop](/blog/2010/07/10/surface/)
 
 Yay, no more page jump! Well, web fonts still make the page slightly jump, but that's another story...
 
