@@ -9,7 +9,7 @@ categories: [Ruby, Python]
 
 ## Level 8
 
-とりあえず @<area>@ タグの @coords@ 属性を描いてみました。Ruby と [苦労してインストールした cairo](/blog/2009/10/12/install-cairo-with-gem/) を使用。
+とりあえず `<area>` タグの `coords` 属性を描いてみました。Ruby と [苦労してインストールした cairo](/blog/2009/10/12/install-cairo-with-gem/) を使用。
 
 ```rb
 require 'cairo'
@@ -91,6 +91,6 @@ draw_points(first_points, 495, 495, "first.png")
 draw_points(second_points, 495, 495, "second.png")
 ```
 
-<a href="https://www.flickr.com/photos/branchiopoda/4004511454/" title="first by shuhei kagawa, on Flickr"><img src="https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" width="495" height="495" alt="first" /></a>
+![first](https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png "=495x495")
 
 ということで、出てきた動物の名前をいくつか適当に入れると正解に。しかし、まだまだ四分の一。先は長いです・・・。

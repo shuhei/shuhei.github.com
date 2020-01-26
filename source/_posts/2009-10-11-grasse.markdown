@@ -12,7 +12,7 @@ categories: []
 パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。
 備忘のために。
 
-```
+```processing
 int NUM;
 float[] grasses;
 

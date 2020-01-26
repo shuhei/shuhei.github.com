@@ -6,7 +6,7 @@ comments: true
 categories: [JavaScript, Three.js]
 ---
 
-[![Land Prices in Japan](https://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg)](/webland/)
+[![Land Prices in Japan](https://farm6.staticflickr.com/5480/12236991554_38d0079825_c.jpg "=800x557")](/webland/)
 
 [日本の地価を視覚化](/webland/)してみました。一年くらい前に作ったのですが、どこにも書いていなかったので・・・。
 
