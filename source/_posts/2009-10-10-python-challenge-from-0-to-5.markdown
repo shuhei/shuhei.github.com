@@ -16,13 +16,13 @@ categories: []
 
 ## Level 0
 
-```
+```rb
 2 ** 38
 ```
 
 ## Level 1
 
-```
+```rb
 cipher = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."
 abc = ("a"[0] .. "z"[0]).to_a
 cde = ("c"[0] .. "z"[0]).to_a + ["a"[0], "b"[0]]
@@ -37,7 +37,7 @@ end
 
 ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。
 
-```
+```rb
 File.open("mess_2.txt") do |f|
   while ch = f.getc
     printf("%c", ch) if ("a"[0] .. "z"[0]).include?(ch)
@@ -49,7 +49,7 @@ end
 
 ## Level 3
 
-```
+```rb
 pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
 File.open("mess_3.txt") do |f|
   p f.read.scan(pattern).to_s
@@ -60,7 +60,7 @@ Ruby でグローバルマッチしたい時って `String#scan` 使うしかな
 
 ## Level 4
 
-```
+```rb
 num = "12345"
 require "net/http"
 def get_nothing(num)
@@ -87,7 +87,7 @@ end
 [Python Challenge level 5: “peak hell” | UnixWars](http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800)
 Python の Pickle モジュールを使う問題だとか。知らんがな。
 
-```
+```py
 import urllib, pickle
 uri = "http://www.pythonchallenge.com/pc/def/banner.p"
 obj = pickle.load(urllib.urlopen(uri))

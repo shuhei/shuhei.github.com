@@ -13,13 +13,13 @@ categories: [Python, さくらインターネット]
 
 \$HOME/.cshrc で環境変数を設定。
 
-```
- setenv PYTHONPATH $HOME/lib/python
+```sh
+setenv PYTHONPATH $HOME/lib/python
 ```
 
 ほとんどは、ダウンロードして展開したディレクトリの中で、下記で OK でした。
 
-```
+```sh
 python setup.py install --home=~
 ```
 

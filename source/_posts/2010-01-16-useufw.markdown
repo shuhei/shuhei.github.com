@@ -11,7 +11,7 @@ categories: []
 Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
 Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。
 
-```
+```sh
 sudo ufw default DENY
 sudo ufw enable
 ```
@@ -19,18 +19,18 @@ sudo ufw enable
 とやって有効化。
 ウェブサーバならば HTTP を許可します。
 
-```
+```sh
 sudo ufw allow http
 ```
 
 LAN 内からだけ SSH を許可。
 
-```
+```sh
 sudo ufw allow from 192.168.1.0/24 to any port ssh
 ```
 
 SSH へのログイン試行回数を制限。
 
-```
+```sh
 sudo ufw limit ssh
 ```

@@ -42,7 +42,7 @@ Xcode に戻って AppDelegate を変更し、UINavigationController ではな�
 
 ### HogeDelegate.h
 
-```
+```objc
 @interface HogeAppDelegate : NSObject  {
   UIWindow *window;
   UITabBarController *tabBarController;
@@ -56,7 +56,7 @@ Xcode に戻って AppDelegate を変更し、UINavigationController ではな�
 
 ### HogeAppDelegate.m
 
-```
+```objc
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   [window addSubview:[tabBarController view]];
   [window makeKeyAndVisible];

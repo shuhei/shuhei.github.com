@@ -20,7 +20,7 @@ I just beguiled you,
 
 irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。
 
-```
+```rb
 class String
   def bin
     Integer('0b' + self)

@@ -18,46 +18,46 @@ categories: []
 を参考にインストール。
 公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。
 
-```
-$ bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )
+```sh
+bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )
 ```
 
 した後 .bashrc の最後に以下を記載。
 
-```
-$ [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+```sh
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 ```
 
 これでターミナルを再起動すれば完了です。
 
-```
-$ rvm list known
+```sh
+rvm list known
 ```
 
 とするとインストール可能なバージョンのリストを出力してくれます。
 下記で 1.9.1 をインストール。
 
-```
-$ rvm install 1.9.1
+```sh
+rvm install 1.9.1
 ```
 
 irb, gem, rake なども一緒にインストールして管理してくれます。
 1.8.7 系もインストール。
 
-```
-$ rvm install 1.8.7
+```sh
+rvm install 1.8.7
 ```
 
 使用する Ruby を変えるには・・・。
 
-```
-$ rvm use 1.8.7
+```sh
+rvm use 1.8.7
 ```
 
 情報を見るには下記。
 
-```
-$ rvm info 1.8.7
+```sh
+rvm info 1.8.7
 ```
 
 1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。

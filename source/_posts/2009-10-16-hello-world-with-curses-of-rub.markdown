@@ -12,7 +12,7 @@ categories: []
 [sl コマンド](http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/) のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。
 参考にしたのは [Ruby の Curses を使ってコンソールを制御する（1/2）：CodeZine](http://codezine.jp/article/detail/2086) と [curses &#8211; Ruby リファレンスマニュアル](http://www.ruby-lang.org/ja/man/html/curses.html) 。
 
-```
+```rb
 require 'curses'
 
 message = [

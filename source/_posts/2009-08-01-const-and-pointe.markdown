@@ -10,7 +10,7 @@ categories: [C/C++]
 
 下のように `const` は型名の前後どちらに書いても同じです。
 
-```
+```cpp
 const int a = 1;
 int const b = 2;
 ```
@@ -19,7 +19,7 @@ int const b = 2;
 
 では、ポインタについてはどうでしょうか？
 
-```
+```cpp
 const int* pa = new int(10);  // "const な int" へのポインタ
 int const* pb = new int(11);  // "const な int " へのポインタ
 int* const pc = new int(12);  // int への  "const なポインタ"
@@ -27,7 +27,7 @@ int* const pc = new int(12);  // int への  "const なポインタ"
 
 一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？
 
-```
+```cpp
 // *pa = 20;  // エラー！ "const な int" の値を変えることはできない
 // *pb = 21;  // エラー！ "const な int" の値を変えることはできない
 *pc = 23;

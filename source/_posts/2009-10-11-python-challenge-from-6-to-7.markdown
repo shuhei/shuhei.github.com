@@ -16,7 +16,7 @@ categories: []
 アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
 少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。
 
-```
+```py
 num = "90052"
 z = zipfile.ZipFile("channel.zip")
 
@@ -37,7 +37,7 @@ Python で改行なしの出力をするには `print "foo",` なんですね。
 
 ## Level 7
 
-```
+```py
 from PIL import Image
 image = Image.open("oxygen.png")
 width = image.size[0]
@@ -62,7 +62,7 @@ print message
 気を取り直して以下。書き方も少し Python らしく（？）。
 `chr` という関数があったんですね。
 
-```
+```py
 from PIL import Image
 image = Image.open("oxygen.png")
 width = image.size[0]
@@ -82,7 +82,7 @@ print "".join(map(chr, message))
 
 出てきたメッセージから答えを出します。
 
-```
+```py
 print "".join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))
 ```
 

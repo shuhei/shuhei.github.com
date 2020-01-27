@@ -18,13 +18,13 @@ categories: [Wordpress]
 
 ### classTextile.php の入手
 
-Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。
+Textpattern から `textpattern/lib/classTextile.php` を `wp-content/plugins/text-control-2/text-control/` に持ってきます。
 
 ### textile2.php ではなく classTextile.php を使うように
 
-wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを
+`wp-content/plugins/text-control-2/text-control.php` の 185 行目あたりを
 
-```
+```php
 function tc_post_process($text, $do_text='', $do_char='') {
   if($do_text == 'textile2') {
 
@@ -35,7 +35,7 @@ function tc_post_process($text, $do_text='', $do_char='') {
 
 から
 
-```
+```php
 function tc_post_process($text, $do_text='', $do_char='') {
   if($do_text == 'textile2') {
 
