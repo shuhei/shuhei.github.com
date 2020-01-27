@@ -3,7 +3,7 @@ layout: post
 title: "2017 in Review"
 date: 2017-12-25 22:54
 comments: true
-categories: []
+categories: [Review]
 ---
 
 ## Berlin
@@ -38,7 +38,7 @@ On the technical side, my team joined a relatively large project and completed i
 
 ## Side Projects
 
-I enjoyed working with Elm. I [wrote a mobile weather app](https://github.com/shuhei/elm-compare), flew to Paris for [Elm Europe 2017](https://2017.elmeurope.org/),  built [a mobile-friendly pixel editor](https://github.com/shuhei/pixelm) and [talked about it](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup](https://www.meetup.com/Elm-Berlin/events/242852794/). I also helped [an experiment of its compiler-side](https://github.com/w0rm/elm-glsl) in Haskell, although it is still pending.
+I enjoyed working with Elm. I [wrote a mobile weather app](https://github.com/shuhei/elm-compare), flew to Paris for [Elm Europe 2017](https://2017.elmeurope.org/), built [a mobile-friendly pixel editor](https://github.com/shuhei/pixelm) and [talked about it](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup](https://www.meetup.com/Elm-Berlin/events/242852794/). I also helped [an experiment of its compiler-side](https://github.com/w0rm/elm-glsl) in Haskell, although it is still pending.
 
 I didn't do much with JavaScript for side projects but wrote [a tiny library for server-side rendering with tagged template literals](https://github.com/shuhei/pelo) while hanging out with friends at a cafe. It's used in [the choo ecosystem](https://github.com/choojs) now.
 

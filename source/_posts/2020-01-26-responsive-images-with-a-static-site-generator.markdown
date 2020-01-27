@@ -3,7 +3,7 @@ layout: post
 title: Responsive Images with a Static Site Generator
 date: 2020-01-26 15:57
 comments: true
-categories: [JavaScript]
+categories: [Blog, JavaScript]
 ---
 
 ## Responsive images
