@@ -57,6 +57,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/07/10/surface/>Surface</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 10, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="/works/surface/"><span class="responsive-image-wrapper" style="max-width: 500px;"><span class="responsive-image-inner" style="padding-top: 50%;"><img class="responsive-image" src="https://farm5.static.flickr.com/4079/4764366632_14665c42ff.jpg" alt="Surface"></span></span></a></p>
+<p><a href="/works/surface_3/"><span class="responsive-image-wrapper" style="max-width: 500px;"><span class="responsive-image-inner" style="padding-top: 50%;"><img class="responsive-image" src="https://farm5.static.flickr.com/4139/4779669194_19ce3b4159.jpg" alt="Surface 3"></span></span></a></p>
+<p>しばらく続けてみます。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/07/04/floating-balls/>Floating Balls</a>
         </h1>
         <div class="meta">
@@ -117,35 +138,6 @@
 <pre><code class="hljs sh">rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
 <pre><code class="hljs sh">rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
 1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/06/01/out-of-memory-with-wordpress/>Wordpress で Out of memory</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 1, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。
-再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。
-syslog を見ると Out of memory で kernel が apache2 を kill している様子。
-運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
-<p>積んでるメモリはたった 512MB。
-人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。
-おそらく、クローラのアクセスに耐えられなくなるのでしょう。</p>
-<p>定期的な再起動、Apache や PHP の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。
-&#8220;Super&#8221; Cache とはなかなかの名前です。
-インストールはとても簡単。</p>
-<p>さて、一ヶ月後どうなることやら。</p>
 
         </div>
       </div>

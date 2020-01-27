@@ -57,6 +57,28 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/07/03/concat-cstring-and-tchar/>CString と TCHAR* の連結</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 3, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <pre><code class="hljs cpp">CString cstr = foo();
+TCHAR *tchar = bar();
+
+CString concat = cstr + <span class="hljs-string">" "</span> + tchar;</code></pre><p>普通に足せば足せるようです。<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/07/03/studying-pointer/>ポインタの勉強</a>
         </h1>
         <div class="meta">
@@ -96,30 +118,6 @@ ptr = &amp;a;</code></pre><p>という感じです。</p>
         <div>
           <pre><code class="hljs ">tail -n 50 foo.log</code></pre><p>って書くと foo.log の最後の 50 行だけ見られます。ログなどを見るのに便利ですね。
 世の中的には常識なのでしょうが、今日初めて知りました。ヘルプは読んで見るものですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/06/28/this-weeks-books-090622-28/>今週買った本 090622-28</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 28, 2009</span>
-          - <span class="category">読書</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h2 id="learning-opencv--computer-vision-with-the-opencv-library"><a href="http://amazon.co.jp/o/ASIN/0596516134/nanataisan-22">Learning OpenCV &#8211; Computer Vision with the OpenCV Library</a></h2>
-<p>オライリーの OpenCV 本です。OpenCV のリファレンスというよりは、OpenCV を使ったコンピュータビジョンの解説書といった趣き。まだほとんど読んでいませんが、とても勉強になりそうです。</p>
-<h2 id="創造はシステムである---「失敗学」から「創造学」へ"><a href="http://amazon.co.jp/o/ASIN/4047101885/nanataisan-22">創造はシステムである　- 「失敗学」から「創造学」へ</a></h2>
-<p>半分くらい読みました。創造を「自分で目的を設定して、自分にとって新しい作品や作業を、新たに作ること」と定義。最初の「自分で目的を設定する」ことがなかなかできない自分にぴったりかなと。</p>
-<h2 id="四畳半神話体系"><a href="http://amazon.co.jp/o/ASIN/404387801X/nanataisan-22">四畳半神話体系</a></h2>
-<p>「夜は短し、歩けよ乙女」の森見登美彦の小説。これはまだ 1 ページも読んでいません。衒学趣味かつ馬鹿馬鹿しい世界観が心地良いかなと思って購入。タイトルからするとラブクラフト好きなのでしょうか？「夜は・・・」を読んだ感じでは、あまり結びつきませんが。</p>
 
         </div>
       </div>

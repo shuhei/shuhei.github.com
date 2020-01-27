@@ -57,6 +57,39 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2014/06/08/blog-with-gulp/>Gulp でブログを書く</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 8, 2014</span>
+          - <span class="category">JavaScript</span>, <span class="category">gulp</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。</p>
+<p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js">shuhei.github.io / gulpfile.babel.js</a></p>
+<p>ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。</p>
+<p>機能は本当に最小限で、記事ページ、静的ページと index, archive の生成だけです。</p>
+<h2 id="経緯">経緯</h2>
+<p>動機は Jekyll が重くビルドに時間がかかること。他のもっと良いのがないかなあと思っていたのですが、そもそも大した機能は必要ないので、今年の初めにはまっていた gulp で自作しました。</p>
+<p>ビルドの部分は、ファイルを変換して書き出すという gulp でやりやすいタスクです。ただ GitHub Pages にデプロイする部分は git のコマンド実行が続くため面倒で、その部分だけ gulp で実装せずにRakefile をそのまま残していました。</p>
+<p>どうも気持ち悪かったので、ついに重い腰を上げて書いてみました。当初 child_process を使って書いたのですが、<a href="https://github.com/sun-zheng-an/gulp-shell">gulp-shell</a>を見つけて使うようにしたらすっきりしました。</p>
+<h2 id="操作">操作</h2>
+<p>gulp でビルドします。</p>
+<pre><code class="hljs shell">gulp</code></pre><p>表示を確認しながら編集したいときは、以下でローカルにサーバが立ち上がり、ファイル変更時にビルドしなおしてくれます。</p>
+<pre><code class="hljs shell">gulp watch</code></pre><p>デプロイも gulp タスクです。</p>
+<pre><code class="hljs shell">gulp deploy</code></pre><h2 id="感想">感想</h2>
+<p>当たり前の感想ですが、gulp はデプロイのようなタスクには向いてないものの、 静的サイトの生成には悪くないなと思いました。</p>
+<p>とは言え、サイト全体の情報を扱うのはやりにくいです。現在は index, archive のページを、各記事の stream から分岐して作っています。また、必要ないと思いサイドバーをつけていないのですが、つける場合には一旦全記事を読み込んでサイドバー向けの情報を作ってから各記事のページにくっつける必要があります。その辺は今後の課題ですかね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2014/04/05/transition-to-touch-typing/>タッチタイピングに移行</a>
         </h1>
         <div class="meta">
@@ -114,35 +147,6 @@
 <p>視覚化は Chrome Expreriments の <a href="https://www.chromeexperiments.com/globe">WebGL Globe</a> のコードをもとにいろいろ変えた感じ。Three.js 簡単でいいですね。</p>
 <p>三万点のデータを一気に表示していますが、それなりに動くはずです。一つの Mesh に入れるのがポイント。アニメーションとかやろうと思ったのですが、重いのでやめました。あと <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing">postprocessing</a> といってレンダリング結果のピクセルをさらにシェーダでいじることができるのですが、あまりいい表現がみつからなかったので、これもやめました。というわけで、ただ出しただけになってしまっています。</p>
 <p>スペースボタンを押すと真横からのビューに切り替わります。都市の高さが際立っていますね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2014/01/30/introduction-to-react/>React</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 30, 2014</span>
-          - <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>社内勉強会で Facebook の UI ライブラリ <a href="http://facebook.github.io/react/index.html">React</a> について発表しました。</p>
-<ul>
-<li>1/20 <a href="https://speakerdeck.com/shuhei/introduction-to-react">Introduction to React // Speaker Deck</a></li>
-<li><a href="https://github.com/shuhei/react-sample-counter">サンプルコード</a></li>
-</ul>
-<script async class="speakerdeck-embed" data-id="868ac76063e60131e1ad6e04b6941de4" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>酔っぱらって記憶のないまま作った資料を修正したアルコール駆動スライド。前回までの反省を活かして、Keynote で資料作ったらやっぱり楽でした。でもコードがちょっと読みにくいのが課題です。Keynote がシンタックスハイライトしてくれると言うことないのですが。</p>
-<p>・・・と書いてからググってみたら、<a href="https://gist.github.com/jimbojsb/1630790">ちょうどいいの</a>がありました。RTF なら貼れるということですね。次回はこれを試してみます。</p>
-<p>内容については React の宣言的に書けるところと Virtual DOM がアツいと思ってカッとなって発表した感じです。日本語の React 情報はあまりなかったみたいで、そこそこ見られたりブクマされました。何か発表するのもいいものですね。</p>
-<p>それにしても、<a href="http://facebook.github.io/react/docs/getting-started.html">React のドキュメント</a>は本当によく書かれています。これまで読んだものの中で一番というくらい。何が良いかというと、普通疑問に思うようなことが全て先回りして書かれていることですね。特に <a href="http://facebook.github.io/react/tips/introduction.html">TIPS</a> のところ。また <a href="http://facebook.github.io/react/docs/why-react.html">Why React?</a> のところに書かれている <a href="http://37signals.com/svn/posts/3124-give-it-five-minutes">Give it five minutes</a> も良かった。技術情報だけでなく、思想についても書かれている React のドキュメント、オススメです。</p>
 
         </div>
       </div>

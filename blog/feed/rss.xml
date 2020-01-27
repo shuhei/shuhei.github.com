@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Sun, 26 Jan 2020 15:57:00 GMT</lastBuildDate><item><title>Responsive Images with a Static Site Generator</title><link>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 27 Jan 2020 22:20:00 GMT</lastBuildDate><item><title>Goodbye, Textile</title><link>https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/</link><description><![CDATA[
+<p><a href="https://en.wikipedia.org/wiki/Textile_(markup_language">Textile</a> is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.</p>
+<p>I started using Textile on a blog engine called <a href="https://en.wikipedia.org/wiki/Textpattern">Textpattern</a>. I don&#39;t remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards more commercial one. Textpattern was a new open source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.</p>
+<p>After a few years, Wordpress became a thing, or I realized it did. Even after I moved to Wordpress, I kept writing in Textile. I liked editing Textile more than editing rich text on WYSIWYG editor. I am not sure whether I had heard of Markdown at the time. But it was not as popular or dominant as it is now.</p>
+<p>I started this blog with Textile on Wordpress in 2008 when I started my first job. And I migrated it to Octopress in 2012. I started writing in Markdown with Octopress because it was the lingua franca of GitHub where all the cool things were happening. I had a bit more than a hundred posts in Textile. I kept them in Textile because Octopress supported Textile as well. In 2014, I rebuilt this blog with a handmade static site generator using Gulp. I carried the old Textile files over. I even wrote <a href="https://github.com/shuhei/gulp-textile">gulp-textile</a> plugin, which was just a thin wrapper of <a href="https://github.com/borgar/textile-js">textile-js</a>. It was my first npm package.</p>
+<p>Since then, I implemented a few Markdown-only features like syntax highlighting and responsive table in this blog. The outputs of Markdown and Textile diverged. Last weekend, I wanted to implement <a href="https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/">responsive images</a>. One more Markdown-only feature. Then I thought it was time to convert the Textile files to Markdown.</p>
+<h2 id="converting-textile-to-markdown">Converting Textile to Markdown</h2>
+<p>I didn&#39;t want to convert a hundred posts by hand. I had tried <a href="https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/">tomd</a> a few years ago, but was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don&#39;t remember anymore. So I decided to write a conversion script.</p>
+<p>I used <a href="https://github.com/borgar/textile-js">textile-js</a> to parse Textile. It turned out that <code>textile-js</code> output HTML string or <a href="http://www.jsonml.org/">JsonML</a>. JsonML was new to me. It is basically HTML in JSON format. Each text node is represented as a string. Each element node is represented as an array whose first item is the tag name, optional second item is an object of attributes and the rest are child nodes.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://foo.com"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"foo.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> /&gt;</span> Yay<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre><pre><code class="hljs json">[
+  <span class="hljs-string">"a"</span>,
+  { <span class="hljs-attr">"href"</span>: <span class="hljs-string">"https://foo.com"</span> },
+  [<span class="hljs-string">"img"</span>, { <span class="hljs-attr">"src"</span>: <span class="hljs-string">"foo.png"</span>, <span class="hljs-attr">"alt"</span>: <span class="hljs-string">"Foo"</span> }],
+  <span class="hljs-string">" Yay"</span>
+]</code></pre><p>I wrote a <code>switch</code> statement to handle tags and added tag handlers one by one.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">switch</span> (tag) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"img"</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-comment">/* render &lt;img&gt; */</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"a"</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-comment">/* render &lt;a&gt; */</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Unknown tag: <span class="hljs-subst">${tag}</span>`</span>);
+}</code></pre><p>I also added <code>console.log</code> for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. <a href="https://github.com/shuhei/shuhei.github.com/pull/44">The script worked well to convert more than one hundred posts</a>. The full script is <a href="https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72">on Gist</a>.</p>
+
+]]></description><pubDate>Mon, 27 Jan 2020 22:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/</guid></item><item><title>Responsive Images with a Static Site Generator</title><link>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</link><description><![CDATA[
 <h2 id="responsive-images">Responsive images</h2>
 <p>An <code>img</code> without <code>width</code>/<code>height</code> attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify <code>width</code> and <code>height</code> of <code>img</code> tag to avoid the jump.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/foo.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"600"</span> /&gt;</span></code></pre><p>But <code>img</code> tag with <code>width</code> and <code>height</code> doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without <code>width</code>/<code>height</code> and let them cause page jumps.</p>
@@ -554,74 +578,4 @@ server.headersTimeout = <span class="hljs-number">65</span> * <span class="hljs-
 <h2 id="2019">2019</h2>
 <p>In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.</p>
 
-]]></description><pubDate>Tue, 19 Feb 2019 01:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</guid></item><item><title>Histogram for Time-Series Metrics on Node.js</title><link>https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</link><description><![CDATA[
-<h2 id="the-metrics-library">The &quot;metrics&quot; library</h2>
-<p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
-<p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
-<p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
-<h2 id="eds-based-histogram">EDS-based Histogram</h2>
-<p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
-<p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
-<p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
-<p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
-So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
-<p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
-<h2 id="hdr-histogram">HDR Histogram</h2>
-<p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
-<p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
-<p>OK, I&#39;m sold.</p>
-<h2 id="benchmark-on-nodejs">Benchmark on Node.js</h2>
-<p>Then, how can I use HDR Histogram on Node.js? I found three implementations:</p>
-<ul>
-<li><a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a>: JS implementation in the same GitHub org as the Java implementation</li>
-<li><a href="https://github.com/mcollina/native-hdr-histogram">native-hdr-histogram</a>: A binding to a C implementation</li>
-<li><a href="https://github.com/kiggundu/node-hdr-histogram">node-hdr-histogram</a>: A binding to the Java implementation</li>
-</ul>
-<p>Also EDS-based histogram implementations:</p>
-<ul>
-<li><a href="https://github.com/mikejihbe/metrics">metrics</a>: The library I&#39;m using at work</li>
-<li><a href="https://github.com/yaorg/node-measured/tree/master/packages/measured-core">measured-core</a>: Actively maintained and widely used by Node.js developers (<a href="https://twitter.com/_vigneshh/status/1078287577394880512">Thanks @_vigneshh for letting me know!</a>)</li>
-</ul>
-<p>I compared them, excluding <code>node-hdr-histogram</code> because I think it&#39;s an overkill to run JVM only for metrics (and won&#39;t perform well anyway). The benchmark code is on <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">a gist</a>, and here is the result on Node.js 10.14.2.</p>
-<p>Adding 10K values to a histogram:</p>
-<ul>
-<li>metrics: 173 ops/sec ±2.00% (80 runs sampled)</li>
-<li>measured: 421 ops/sec ±1.19% (90 runs sampled)</li>
-<li>hdr-histogram-js: 1,769 ops/sec ±1.84% (92 runs sampled)</li>
-<li>native-hdr-histogram: 1,516 ops/sec ±0.82% (92 runs sampled)</li>
-</ul>
-<p>Extracting 12 different percentiles from a histogram:</p>
-<ul>
-<li>metrics: 1,721 ops/sec ±1.93% (92 runs sampled)</li>
-<li>measured: 3,709 ops/sec ±0.78% (93 runs sampled)</li>
-<li>measured (weighted percentiles): 2,383 ops/sec ±1.30% (90 runs sampled)</li>
-<li>hdr-histogram-js: 3,509 ops/sec ±0.61% (93 runs sampled)</li>
-<li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
-</ul>
-<p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
-<h2 id="reset-strategy">Reset Strategy</h2>
-<p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
-<p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
-<ul>
-<li>Reset on snapshot</li>
-<li>Reset periodically</li>
-<li>Reset periodically by chunks (rolling time window)</li>
-<li>Never reset</li>
-</ul>
-<p><em>Reset on snapshot</em> looks a bit hacky (we need to keep metrics collection only once in an interval) but should be easy to implement and practical. <em>Rolling time window</em> looks more rigorous, but a bit tedious to implement, especially about choosing the right parameters.</p>
-<p>I made a quick survey of popular libraries and frameworks.</p>
-<ul>
-<li>Hysterix: <a href="https://github.com/Netflix/Hystrix/blob/v1.5.18/hystrix-core/src/main/java/com/netflix/hystrix/metric/consumer/RollingCommandLatencyDistributionStream.java">HdrHistogram + rolling time window</a></li>
-<li>Finagle: <a href="https://github.com/twitter/finagle/blob/finagle-18.12.0/finagle-core/src/main/scala/com/twitter/finagle/util/WindowedPercentileHistogram.scala">HdrHistogram + rolling time window</a></li>
-<li>Resilience4j: Uses Prometheus?</li>
-<li>Prometheus: Supports <a href="https://prometheus.io/docs/practices/histograms/">Histogram and Summary</a> by its own implementation</li>
-<li><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics">rolling-metrics</a>: Supports HdrHistogram and multiple strategies including rolling time window.</li>
-<li><a href="https://github.com/erikvanoosten/metrics-scala">metrics-scala</a>: Supports HdrHistogram + only reset on snapshot strategy. Depends on <a href="https://bitbucket.org/marshallpierce/hdrhistogram-metrics-reservoir">hdrhistogram-metrics-reservoir</a>.</li>
-</ul>
-<p><em>Rolling time window</em> strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with <em>reset on snapshot</em> strategy and see if it works well.</p>
-<p><strong>Update on Jan 11, 2019:</strong> I wrote <a href="https://github.com/shuhei/rolling-window">a package to use HDR histogram with rolling time window</a>.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. <a href="https://github.com/HdrHistogram/HdrHistogramJS">hdr-histogram-js</a> is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. <em>Reset on snapshot</em> is easy and practical, but <em>rolling time window</em> is more rigorous.</p>
-<p>After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.</p>
-
-]]></description><pubDate>Sat, 29 Dec 2018 22:10:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</guid></item></channel></rss>
+]]></description><pubDate>Tue, 19 Feb 2019 01:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</guid></item></channel></rss>

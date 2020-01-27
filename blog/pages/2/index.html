@@ -57,6 +57,55 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter Terminal (mostly Vim) Cleaning</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 31, 2019</span>
+          - <span class="category">Vim</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
+<p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
+<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
+<p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
+<p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
+<p>I tried <a href="https://github.com/jwilm/alacritty">Alacritty</a>, and it was much faster! I had been using Alacritty before but switched back to iTerm2 for font ligatures. Now I didn&#39;t care much about font ligatures—ligatures look pretty, but glyphs for <code>!=</code> and <code>!==</code> confused me in JavaScript. So I switched to Alacritty again.</p>
+<p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
+<h2 id="fzfvim">fzf.vim</h2>
+<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
+<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<ul>
+<li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
+<ul>
+<li><strong>Update on Jan 3, 2020:</strong> I started using <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.</li>
+</ul>
+</li>
+<li><p>Configured Vim to open <code>:help</code> in a vertical split. <code>:help</code> is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">help</span> <span class="hljs-keyword">wincmd</span> H</code></pre></li>
+<li><p>Sorted out JavaScript/JSX/TypeScript syntax highlighting. Vim sets <code>javascriptreact</code> to <code>.jsx</code> and <code>typescriptreact</code> to <code>.tsx</code> by default. But those file types don&#39;t work well with the plugin ecosystem because plugins for <code>javascript</code>/<code>typescript</code> file types don&#39;t work with <code>javascriptreact</code>/<code>typescriptreact</code> and popular JSX/TSX plugins use <code>javascript.jsx</code> and <code>typescript.tsx</code>.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.jsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=javascript.jsx
+<span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.tsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=typescript.tsx</code></pre></li>
+<li><p>Stopped unnecessarily lazy-loading Vim plugins with <a href="https://github.com/Shougo/dein.vim">dein.vim</a>. I had configured file-type-specific plugins as lazy plugins of dein.vim without understanding much. The truth was that lazy plugins are meaningful only for plugins with <code>plugin</code> directory. Most of the file-type-specific plugins don&#39;t have <code>plugin</code> directory and are lazily loaded by default with <code>ftdetect</code> and <code>ftplugin</code>. <code>:echo dein#check_lazy_plugins()</code> shows those plugins that are ill-configured. I finally learned <a href="https://learnvimscriptthehardway.stevelosh.com/chapters/42.html">what those plugin directories do</a> after using Vim for several years...</p>
+</li>
+<li><p>Reviewed key mappings and removed waiting time by avoiding mappings that prefixed other mappings. For example, I had mappings of <code>,g</code> and <code>,gr</code>. <code>,g</code> was slow because Vim had to wait for a while to determine it was <code>,g</code> or <code>,gr</code>.</p>
+</li>
+<li><p>Tried Vim 8 but switched back to Neovim. Vim 8 worked well, but tiny details looked smoother in Neovim. For example, when syntax highlighting hangs up, Vim 8 hangs up while Neovim disables syntax highlighting and goes on.</p>
+</li>
+<li><p>Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.</p>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
         </h1>
         <div class="meta">
@@ -247,97 +296,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN=<span class="hljs-string">""</span>
 PROMPT=<span class="hljs-string">"... <span class="hljs-variable">$(git_prompt_info)</span> ..."</span></code></pre><p>I thought it was done and went back to work. But when I switched the git branch, the prompt stayed the same. Why? I googled again. There was <a href="https://github.com/robbyrussell/oh-my-zsh/issues/4826">an issue</a> for the same problem. The <code>PROMPT</code> needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it&#39;s defined!</p>
 <pre><code class="hljs bash">PROMPT=<span class="hljs-string">'... $(git_prompt_info) ...'</span></code></pre><h2 id="conclusion">Conclusion</h2>
 <p>I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it&#39;s always fun to try something new (to me). I&#39;m looking forward to trying cool zsh plugins and tricks!</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/10/06/interpreter-and-compiler-in-rust/>Writing an Interpreter and a Compiler in Rust</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 6, 2019</span>
-          - <span class="category">Rust</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>In the spring of this year, I read <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> by <a href="https://thorstenball.com/">Thorsten Ball</a>, and implemented <a href="https://github.com/shuhei/cymbal">an interpreter and a compiler</a> from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)</p>
-<p>The first book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> fibonacci = fn(x) {
-    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) {
-        <span class="hljs-number">0</span>
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span>) {
-            <span class="hljs-number">1</span>
-        } <span class="hljs-keyword">else</span> {
-            fibonacci(x - <span class="hljs-number">1</span>) + fibonacci(x - <span class="hljs-number">2</span>)
-        }
-    }
-};
-fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <a href="https://compilerbook.com/">Writing a Compiler in Go</a> taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression <code>1 + 2</code> is compiled into:</p>
-<pre><code class="hljs rs"><span class="hljs-comment">// Constants</span>
-<span class="hljs-built_in">vec!</span>[
-    Object::Integer(<span class="hljs-number">1</span>),
-    Object::Integer(<span class="hljs-number">2</span>),
-]
-
-<span class="hljs-comment">// Instructions</span>
-<span class="hljs-built_in">vec!</span>[
-    make_u16(OpCode::Constant, <span class="hljs-number">0</span>),
-    make_u16(OpCode::Constant, <span class="hljs-number">1</span>),
-    make(OpCode::Add),
-    make(OpCode::Pop),
-]</code></pre><h2 id="how-i-started">How I started</h2>
-<p>I had bought <em>Writing an Interpreter in Go</em> more in 2017, but it had been sleeping in my bookshelf (<a href="https://en.wikipedia.org/wiki/Tsundoku">Tsundoku</a>). Recently, I wanted to relearn a little Go for work. I took the book from my bookshelf and started following the book—typing the code in Go. I did two chapters, and new Go syntaxes stopped appearing. I achieved my initial purpose—relearning Go—earlier than I thought because the book used a limited set of Go&#39;s language features. Then Rust came to my mind.</p>
-<p>Before starting this project, I had written two simple command-line tools with Rust (<a href="https://github.com/shuhei/colortty">colortty</a> and <a href="https://github.com/shuhei/ynan26">ynan26</a>), but they were too small to learn different aspects of Rust. I wanted to learn more by implementing something not trivial.</p>
-<h2 id="good-things-about-rust">Good things about Rust</h2>
-<p>First, I rewrote what I had written in Go with Rust and continued the rest of the book. The implementation in Rust was less redundant than the one in Go. Also, it was more type-safe thanks to <code>enum</code>s and <code>Result</code>. Especially <code>enum</code>s were perfect for AST (Abstract Syntax Tree) and evaluated objects.</p>
-<pre><code class="hljs rs"><span class="hljs-comment">// An example of AST</span>
-<span class="hljs-meta">#[derive(Debug, PartialEq, Clone, Hash, Eq)]</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Expression</span></span> {
-    Identifier(<span class="hljs-built_in">String</span>),
-    IntegerLiteral(<span class="hljs-built_in">i64</span>),
-    StringLiteral(<span class="hljs-built_in">String</span>),
-    Boolean(<span class="hljs-built_in">bool</span>),
-    Array(<span class="hljs-built_in">Vec</span>&lt;Expression&gt;),
-    Hash(HashLiteral),
-    Index(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
-    Prefix(Prefix, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
-    Infix(Infix, <span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Box</span>&lt;Expression&gt;),
-    If(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, BlockStatement, <span class="hljs-built_in">Option</span>&lt;BlockStatement&gt;),
-    FunctionLiteral(<span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">String</span>&gt;, BlockStatement),
-    Call(<span class="hljs-built_in">Box</span>&lt;Expression&gt;, <span class="hljs-built_in">Vec</span>&lt;Expression&gt;),
-}</code></pre><p>However, harder parts came later when the compiler and the virtual machine grew complex.</p>
-<h2 id="nested-symbol-tables-were-a-linked-list">Nested symbol tables were a linked list</h2>
-<p>To implement nested scopes, the Compiler Book uses self-recursive <code>struct</code>s for nested symbol tables. I was struggling with their ownership. I tried <code>Rc</code> and <code>RefCell</code>, but still was not able to get through them.</p>
-<p>Then, I went to Rust Hack and Learn—a local meetup at Mozilla Berlin office—and asked how to get over ownership rules. One person (sorry, I didn&#39;t ask his name!) recommended me a book <a href="https://rust-unofficial.github.io/too-many-lists/">Learn Rust With Entirely Too Many Linked Lists </a>.</p>
-<p>The book introduces several versions of linked list implementations in Rust even though its precaution is not to implement linked lists in Rust. It had some techniques that I had recently learned, and much more. After a while, I realized that I had been trying to implement a linked list. Then I changed the self-recursive <code>struct</code> to a <code>Vec</code>, and it solved most of my headaches. So, the book&#39;s precaution was right. Don&#39;t implement a liked list.</p>
-<pre><code class="hljs rs"><span class="hljs-comment">// Before</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolTable</span></span> {
-  store: HashMap&lt;<span class="hljs-built_in">String</span>, Symbol&gt;,
-
-  <span class="hljs-comment">// This is a linked list!</span>
-  outer: <span class="hljs-built_in">Option</span>&lt;SymbolTable&gt;;
-}
-
-<span class="hljs-comment">// After</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolLayer</span></span> {
-  store: HashMap&lt;<span class="hljs-built_in">String</span>, Symbol&gt;,
-}
-
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SymbolTable</span></span> {
-  current: SymbolLayer;
-  outers: <span class="hljs-built_in">Vec</span>&lt;SymbolStore&gt;;
-}</code></pre><h2 id="i-learned-basics-of-how-programs-work-at-low-level">I learned basics of how programs work at low-level</h2>
-<p>Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my previous projects. But I hadn&#39;t had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.</p>
-<p>Also, the knowledge about stack was useful to understand some of the concepts of Rust itself. Rust&#39;s compiler to know the sizes of types because it needs to generate machine code that allocates values of the types on the stack.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.</p>
-<p><a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> are great. I liked their hands-on approach with many unit tests.</p>
 
         </div>
       </div>

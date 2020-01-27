@@ -57,6 +57,45 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/12/09/ascii/>ascii コード</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 9, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
+<blockquote>
+<p>Poem.</p>
+</blockquote>
+<p>You translated my poem,
+I congratulate you.
+I wish I could rhyme with poem,
+but its very hard to.
+I just beguiled you,</p>
+<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
+<pre><code class="hljs rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bin</span></span>
+    Integer(<span class="hljs-string">'0b'</span> + <span class="hljs-keyword">self</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decode</span><span class="hljs-params">(ascii)</span></span>
+  <span class="hljs-number">0</span>.step(ascii.size - <span class="hljs-number">1</span>, <span class="hljs-number">8</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|num|</span>
+    puts ascii[num..(num + <span class="hljs-number">7</span>)].bin.chr
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>作る方は簡単でしょうが、読む方は大変です。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/11/14/show-stacktrace-of-exception-on-xcode/>Xcode で例外発生時のスタックトレースをデバッガに表示</a>
         </h1>
         <div class="meta">
@@ -134,32 +173,6 @@ Navigation Controller を削除して Tab Bar Controller を追加します。</
 <p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。
 再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
 <p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/11/07/resize-images-with-imagemagick/>ImageMagick で画像を一括リサイズ</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Nov 7, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>特定の名前の画像をリサイズします。</p>
-<pre><code class="hljs ">#! /bin/bash
-
-for f in rect_*.png;
-do
-  convert -resize 12x12! $f $f
-done</code></pre><p>コマンドラインは便利ですねー。
-ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p>
 
         </div>
       </div>

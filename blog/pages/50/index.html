@@ -57,6 +57,76 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/08/14/syntax-highlight-in-wordpress/>Wordpress でコードのシンタックスハイライト</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 14, 2008</span>
+          - <span class="category">Wordpress</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。
+<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">WordPress › SyntaxHighlighter « WordPress Plugins</a></p>
+<p>デフォルトでサポートされているのが以下。</p>
+<ul>
+<li>C++</li>
+<li>C#</li>
+<li>CSS</li>
+<li>Delphi</li>
+<li>Java</li>
+<li>Javascript</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Sql</li>
+<li>VB</li>
+<li>XML/HTML</li>
+</ul>
+<p>これに加えて、Actionscript3、MXML、Perl、bash も足しました。</p>
+<p>以下、AS3 でテスト。</p>
+<pre><code class="hljs ">[sourcecode language=&#39;Actionscript&#39;]package
+{
+    import flash.display.Sprite;
+
+    /**
+     * Test class.
+     */
+    public class Test extends Sprite
+    {
+        /**
+         * @private
+         */
+        private var _test:Sprite;
+
+        /*
+         * Constructor.
+         */
+        public function Test()
+        {
+            _test = new Sprite();
+            _test.graphics.beginFill(0);
+            _test.graphics.drawRect(0, 0, stage.stageWidth / 2, stage.stageHeight / 2);
+            _test.graphics.endFill();
+            addChild(_test);
+        }
+    }
+}[/sourcecode]</code></pre><h2 id="参考-url">参考 URL</h2>
+<ul>
+<li><a href="http://blog.mj-site.net/2008/01/wordpress%E3%81%ABas3mxml%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E5%B0%8E%E5%85%A5.html">Mj-site Blog » wordpress に AS3/MXML のコードハイライトプラグインを導入</a></li>
+<li><a href="http://code.google.com/p/syntaxhighlighter/wiki/Languages">Languages &#8211; syntaxhighlighter &#8211; Google Code &#8211; List of supported languages.</a></li>
+</ul>
+<h2 id="ins追記ins"><ins>追記</ins></h2>
+<p><ins>SyntaxHighlighter プラグインのかわりに Google Code Prettify を使うことにしたため、上のサンプルは正しく表示されません。</ins></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/08/12/virtual-python-in-sakura-internet/>さくらのサーバに virtual-python を入れる</a>
         </h1>
         <div class="meta">
@@ -97,27 +167,6 @@
 <a href="http://googlejapan.blogspot.com/2008/07/google-maps.html">「Google Japan Blog: Google Maps で建物の名前が詳しく見られるようになりました」</a></p>
 <p>すばらしい。
 ゼンリンの住宅地図は大丈夫なんですかね？</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/06/22/implode-on-pytho/>Python で implode</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 22, 2008</span>
-          - <span class="category">Python</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 <code>implode</code>。</p>
-<pre><code class="hljs php">$output = implode(<span class="hljs-string">","</span>, $arr);</code></pre><p>同じことをしようとすると、Python では、以下。</p>
-<pre><code class="hljs py">output = <span class="hljs-string">","</span>.join(arr)</code></pre><p>少し変態っぽいですね。</p>
 
         </div>
       </div>

@@ -57,6 +57,50 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/01/11/install-passenger/>Ubuntu Server に Passenger をインストール</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 11, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h2 id="aptitude-ではだめ">Aptitude ではだめ</h2>
+<p>とりあえずは <code>apt-get</code> と思い、下記のようにしたらとしたら <code>libapache2-mod-php5</code> などが消されて焦りました。</p>
+<pre><code class="hljs sh">sudo apt-get install libapache2-mod-passenger</code></pre><p>Aptitude を使うと、Passenger と PHP 5 は共存できないようです。それぞれが依存している <code>apache2-mpm-worker</code> と <code>apache2-mpm-prefork</code> が共存できないのが原因のよう。</p>
+<p>via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu 日本語フォーラム / ubuntu 9.04 passenger と　 php5 は共存できない？</a></p>
+<h2 id="gem-でインストール">Gem でインストール</h2>
+<p>しょうがないので PHP 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
+<pre><code class="hljs sh">sudo gem install passenger
+sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
+<pre><code class="hljs sh">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><h2 id="設定ファイルの記述">設定ファイルの記述</h2>
+<p><code>httpd.conf</code> には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
+<p><code>/etc/apache2/mods-available/passenger.load</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</code></pre><p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
+  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
+  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
+<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>モジュールを有効に。<code>mods-enabled</code> から <code>mods-available</code> にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
+<pre><code class="hljs sh">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
+sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</code></pre><h2 id="サブディレクトリで公開">サブディレクトリで公開</h2>
+<p>ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。</p>
+<pre><code class="hljs sh">sudo ln -s /path/to/app-name/public /path/to/www/app-name</code></pre><p>そして、Apache の設定ファイルに少し付け足します。</p>
+<p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
+<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
+  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
+  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
+  <span class="hljs-attribute">RailsBaseURI</span> /app-name
+<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab - blog: Passenger で Redmine をサブディレクトリに公開</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/01/04/build-biffpop-for-mydnsjp/>MyDNS.jp 用に biffpop をビルド</a>
         </h1>
         <div class="meta">
@@ -141,45 +185,6 @@ UTF-8 なら <code>$KCODE = &#39;u&#39;</code> 、EUC-JP なら <code>$KCODE = &
 irb コマンドのオプションでも指定できます。
 <code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
 <p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今 Ruby 勉強中 &#8211; Rubyist</a></p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/12/09/ascii/>ascii コード</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Dec 9, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://www.collegehumor.com/picture:1916681">How else would you get away with swearing in a paper? &#8211; CollegeHumor picture</a> を訳してみました。</p>
-<blockquote>
-<p>Poem.</p>
-</blockquote>
-<p>You translated my poem,
-I congratulate you.
-I wish I could rhyme with poem,
-but its very hard to.
-I just beguiled you,</p>
-<p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre><code class="hljs rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bin</span></span>
-    Integer(<span class="hljs-string">'0b'</span> + <span class="hljs-keyword">self</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decode</span><span class="hljs-params">(ascii)</span></span>
-  <span class="hljs-number">0</span>.step(ascii.size - <span class="hljs-number">1</span>, <span class="hljs-number">8</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|num|</span>
-    puts ascii[num..(num + <span class="hljs-number">7</span>)].bin.chr
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre><p>作る方は簡単でしょうが、読む方は大変です。</p>
 
         </div>
       </div>

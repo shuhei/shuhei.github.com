@@ -57,6 +57,35 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/06/01/out-of-memory-with-wordpress/>Wordpress で Out of memory</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 1, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。
+再起動するとほぼ治るのですが、wp_options テーブルが少し壊れていたり。
+syslog を見ると Out of memory で kernel が apache2 を kill している様子。
+運用しているのはほとんど Wordpress だけなので、Wordpress が原因のはず。</p>
+<p>積んでるメモリはたった 512MB。
+人間様のアクセス数はあまりないのですが、検索エンジンのクローラは人並みに来ています。
+おそらく、クローラのアクセスに耐えられなくなるのでしょう。</p>
+<p>定期的な再起動、Apache や PHP の設定、MySQL のクエリキャッシュやメモリ使用量の設定など、対策はいろいろありそうですが、とりあえず今回は楽をして Wordpress のキャッシュプラグイン <a href="http://wordpress.org/extend/plugins/wp-super-cache/">WP Super Cache</a> を入れて様子を見ることにしました。
+&#8220;Super&#8221; Cache とはなかなかの名前です。
+インストールはとても簡単。</p>
+<p>さて、一ヶ月後どうなることやら。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/05/01/the-program-being-debugged-is-not-being-run/>The program being debugged is not being run.</a>
         </h1>
         <div class="meta">
@@ -151,28 +180,6 @@ $ which ruby
 <h2 id="一旦完了">一旦完了</h2>
 <p>とりあえず今日のところはこの辺で一旦完了ということで。
 その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/03/18/circle-packing/>Circle Packing</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Mar 18, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="https://www.flickr.com/photos/branchiopoda/4441104740/" title="circle packing by shuhei kagawa, on Flickr"><span class="responsive-image-wrapper" style="max-width: 500px;"><span class="responsive-image-inner" style="padding-top: 66.60000000000001%;"><img class="responsive-image" src="https://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png" alt="circle packing"></span></span></a></p>
-<p><a href="/blog/2010/03/18/flash-platform-camp-tokyo/">Flash Platform Camp Tokyo</a> での Mario Klingemann の話にあったやつを Processing で作ってみました。
-<a href="/works/auto_circles/">AutoCircles : Built with Processing</a></p>
-<p>写真の色を取りながら、円を描いていきます。円はある程度より大きくなるか、他の円に接するまで大きくなるというルールです。</p>
 
         </div>
       </div>
