@@ -72,8 +72,8 @@
           <p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。
 インストール場所は、<code>$HOME/lib/python</code>に。</p>
 <p>$HOME/.cshrc で環境変数を設定。</p>
-<pre><code class="hljs "> setenv PYTHONPATH $HOME/lib/python</code></pre><p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記で OK でした。</p>
-<pre><code class="hljs ">python setup.py install --home=~</code></pre><p>今日インストールしたのは以下。</p>
+<pre><code class="hljs sh">setenv PYTHONPATH <span class="hljs-variable">$HOME</span>/lib/python</code></pre><p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記で OK でした。</p>
+<pre><code class="hljs sh">python setup.py install --home=~</code></pre><p>今日インストールしたのは以下。</p>
 <ul>
 <li>Universal Feedparser</li>
 <li>Python Imaging Library</li>

@@ -93,20 +93,20 @@
 これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
 <h2 id="手順">手順</h2>
 <h3 id="classtextilephp-の入手">classTextile.php の入手</h3>
-<p>Textpattern から textpattern/lib/classTextile.php を wp-content/plugins/text-control-2/text-control/ に持ってきます。</p>
+<p>Textpattern から <code>textpattern/lib/classTextile.php</code> を <code>wp-content/plugins/text-control-2/text-control/</code> に持ってきます。</p>
 <h3 id="textile2php-ではなく-classtextilephp-を使うように">textile2.php ではなく classTextile.php を使うように</h3>
-<p>wp-content/plugins/text-control-2/text-control.php の 185 行目あたりを</p>
-<pre><code class="hljs ">function tc_post_process($text, $do_text=&#39;&#39;, $do_char=&#39;&#39;) {
-  if($do_text == &#39;textile2&#39;) {
+<p><code>wp-content/plugins/text-control-2/text-control.php</code> の 185 行目あたりを</p>
+<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
+  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
 
-    require_once(&#39;text-control/textile2.php&#39;);
-    $t = new Textile();
+    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/textile2.php'</span>);
+    $t = <span class="hljs-keyword">new</span> Textile();
     $text = $t-&gt;process($text);</code></pre><p>から</p>
-<pre><code class="hljs ">function tc_post_process($text, $do_text=&#39;&#39;, $do_char=&#39;&#39;) {
-  if($do_text == &#39;textile2&#39;) {
+<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
+  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
 
-    require_once(&#39;text-control/classTextile.php&#39;);
-    $t = new Textile();
+    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/classTextile.php'</span>);
+    $t = <span class="hljs-keyword">new</span> Textile();
     $text = $t-&gt;TextileThis($text);</code></pre><p>へ変更します。</p>
 <h2 id="結果">結果</h2>
 <p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。

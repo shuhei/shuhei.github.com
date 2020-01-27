@@ -72,31 +72,31 @@
           <p>以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。
 <a href="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/">sl コマンド</a> のソースを覗くと curse.h なるものを使っています。Ruby でもできるのかな？と思い、やってみました。
 参考にしたのは <a href="http://codezine.jp/article/detail/2086">Ruby の Curses を使ってコンソールを制御する（1/2）：CodeZine</a> と <a href="http://www.ruby-lang.org/ja/man/html/curses.html">curses &#8211; Ruby リファレンスマニュアル</a> 。</p>
-<pre><code class="hljs ">require &#39;curses&#39;
+<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'curses'</span>
 
 message = [
-  &quot;**   **  *******  **       **        *****    **&quot;,
-  &quot;**   **  **       **       **       **   **   **&quot;,
-  &quot;*******  *******  **       **       **   **   **&quot;,
-  &quot;**   **  **       **       **       **   **     &quot;,
-  &quot;**   **  *******  *******  *******   *****    **&quot;
+  <span class="hljs-string">"**   **  *******  **       **        *****    **"</span>,
+  <span class="hljs-string">"**   **  **       **       **       **   **   **"</span>,
+  <span class="hljs-string">"*******  *******  **       **       **   **   **"</span>,
+  <span class="hljs-string">"**   **  **       **       **       **   **     "</span>,
+  <span class="hljs-string">"**   **  *******  *******  *******   *****    **"</span>
 ]
 
-def animate(image)
-  include Curses
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">animate</span><span class="hljs-params">(image)</span></span>
+  <span class="hljs-keyword">include</span> Curses
   init_screen
-  y = ((lines - image.size) / 2).truncate
-  (cols - image[0].size).downto(1) do |t|
-    image.size.times do |i|
+  y = ((lines - image.size) / <span class="hljs-number">2</span>).truncate
+  (cols - image[<span class="hljs-number">0</span>].size).downto(<span class="hljs-number">1</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+    image.size.times <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
       setpos(y + i, t)
       addstr(image[i])
-    end
+    <span class="hljs-keyword">end</span>
     refresh
-    sleep(0.05)
+    sleep(<span class="hljs-number">0</span>.<span class="hljs-number">05</span>)
     clear
-  end
+  <span class="hljs-keyword">end</span>
 close_screen
-end
+<span class="hljs-keyword">end</span>
 
 animate(message)</code></pre><p>おおー、動きました。逆に新鮮で面白いですね。</p>
 

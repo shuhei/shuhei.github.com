@@ -71,12 +71,12 @@
         <div>
           <p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
 Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。</p>
-<pre><code class="hljs ">sudo ufw default DENY
-sudo ufw enable</code></pre><p>とやって有効化。
+<pre><code class="hljs sh">sudo ufw default DENY
+sudo ufw <span class="hljs-built_in">enable</span></code></pre><p>とやって有効化。
 ウェブサーバならば HTTP を許可します。</p>
-<pre><code class="hljs ">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
-<pre><code class="hljs ">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
-<pre><code class="hljs ">sudo ufw limit ssh</code></pre>
+<pre><code class="hljs sh">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
+<pre><code class="hljs sh">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
+<pre><code class="hljs sh">sudo ufw <span class="hljs-built_in">limit</span> ssh</code></pre>
         </div>
       </div>
     </div>

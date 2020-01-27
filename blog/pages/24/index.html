@@ -117,16 +117,16 @@ Navigation Controller を削除して Tab Bar Controller を追加します。</
 <p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。
 以下、アプリケーションの名前を Hoge だったとして、 HogeAppDelegate.h と .m を編集します。</p>
 <h3 id="hogedelegateh">HogeDelegate.h</h3>
-<pre><code class="hljs ">@interface HogeAppDelegate : NSObject  {
-  UIWindow *window;
-  UITabBarController *tabBarController;
+<pre><code class="hljs objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">HogeAppDelegate</span> : <span class="hljs-title">NSObject</span>  </span>{
+  <span class="hljs-built_in">UIWindow</span> *window;
+  <span class="hljs-built_in">UITabBarController</span> *tabBarController;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">retain</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIWindow</span> *window;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">retain</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UITabBarController</span> *tabBarController;
 
-@end</code></pre><h3 id="hogeappdelegatem">HogeAppDelegate.m</h3>
-<pre><code class="hljs ">- (void)applicationDidFinishLaunching:(UIApplication *)application {
+<span class="hljs-keyword">@end</span></code></pre><h3 id="hogeappdelegatem">HogeAppDelegate.m</h3>
+<pre><code class="hljs objc">- (<span class="hljs-keyword">void</span>)applicationDidFinishLaunching:(<span class="hljs-built_in">UIApplication</span> *)application {
   [window addSubview:[tabBarController view]];
   [window makeKeyAndVisible];
 }</code></pre><p><code>synsthesize</code> と <code>dealloc</code> 中の <code>release</code> も忘れずに変更します。</p>

@@ -107,15 +107,15 @@
 </ul>
 <p>を参考にインストール。
 公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。</p>
-<pre><code class="hljs ">$ bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</code></pre><p>した後 .bashrc の最後に以下を記載。</p>
-<pre><code class="hljs ">$ [[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm</code></pre><p>これでターミナルを再起動すれば完了です。</p>
-<pre><code class="hljs ">$ rvm list known</code></pre><p>とするとインストール可能なバージョンのリストを出力してくれます。
+<pre><code class="hljs sh">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</code></pre><p>した後 .bashrc の最後に以下を記載。</p>
+<pre><code class="hljs sh">[[ -s <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm</code></pre><p>これでターミナルを再起動すれば完了です。</p>
+<pre><code class="hljs sh">rvm list known</code></pre><p>とするとインストール可能なバージョンのリストを出力してくれます。
 下記で 1.9.1 をインストール。</p>
-<pre><code class="hljs ">$ rvm install 1.9.1</code></pre><p>irb, gem, rake なども一緒にインストールして管理してくれます。
+<pre><code class="hljs sh">rvm install 1.9.1</code></pre><p>irb, gem, rake なども一緒にインストールして管理してくれます。
 1.8.7 系もインストール。</p>
-<pre><code class="hljs ">$ rvm install 1.8.7</code></pre><p>使用する Ruby を変えるには・・・。</p>
-<pre><code class="hljs ">$ rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
-<pre><code class="hljs ">$ rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
+<pre><code class="hljs sh">rvm install 1.8.7</code></pre><p>使用する Ruby を変えるには・・・。</p>
+<pre><code class="hljs sh">rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
+<pre><code class="hljs sh">rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
 1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p>
 
         </div>

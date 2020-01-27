@@ -74,55 +74,55 @@
 最近マイブームな Ruby で。</p>
 <p>以下、ネタバレ注意です。</p>
 <h2 id="level-0">Level 0</h2>
-<pre><code class="hljs ">2 ** 38</code></pre><h2 id="level-1">Level 1</h2>
-<pre><code class="hljs ">cipher = &quot;g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&#39;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.&quot;
-abc = (&quot;a&quot;[0] .. &quot;z&quot;[0]).to_a
-cde = (&quot;c&quot;[0] .. &quot;z&quot;[0]).to_a + [&quot;a&quot;[0], &quot;b&quot;[0]]
+<pre><code class="hljs rb"><span class="hljs-number">2</span> ** <span class="hljs-number">38</span></code></pre><h2 id="level-1">Level 1</h2>
+<pre><code class="hljs rb">cipher = <span class="hljs-string">"g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."</span>
+abc = (<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).to_a
+cde = (<span class="hljs-string">"c"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).to_a + [<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>], <span class="hljs-string">"b"</span>[<span class="hljs-number">0</span>]]
 dict = Hash[*abc.zip(cde).flatten]
-cipher.bytes do |ch|
-  ch = dict[ch] if dict.has_key?(ch)
-  printf(&quot;%c&quot;, ch)
-end</code></pre><h2 id="level-2">Level 2</h2>
+cipher.bytes <span class="hljs-keyword">do</span> <span class="hljs-params">|ch|</span>
+  ch = dict[ch] <span class="hljs-keyword">if</span> dict.has_key?(ch)
+  printf(<span class="hljs-string">"%c"</span>, ch)
+<span class="hljs-keyword">end</span></code></pre><h2 id="level-2">Level 2</h2>
 <p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
-<pre><code class="hljs ">File.open(&quot;mess_2.txt&quot;) do |f|
-  while ch = f.getc
-    printf(&quot;%c&quot;, ch) if (&quot;a&quot;[0] .. &quot;z&quot;[0]).include?(ch)
-  end
-end</code></pre><p>ファイルの中身を 1 バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
+<pre><code class="hljs rb">File.open(<span class="hljs-string">"mess_2.txt"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span>
+  <span class="hljs-keyword">while</span> ch = f.getc
+    printf(<span class="hljs-string">"%c"</span>, ch) <span class="hljs-keyword">if</span> (<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).<span class="hljs-keyword">include</span>?(ch)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>ファイルの中身を 1 バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
 <h2 id="level-3">Level 3</h2>
-<pre><code class="hljs ">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
-File.open(&quot;mess_3.txt&quot;) do |f|
+<pre><code class="hljs rb">pattern = <span class="hljs-regexp">/[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/</span>
+File.open(<span class="hljs-string">"mess_3.txt"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span>
   p f.read.scan(pattern).to_s
-end</code></pre><p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
+<span class="hljs-keyword">end</span></code></pre><p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
 <h2 id="level-4">Level 4</h2>
-<pre><code class="hljs ">num = &quot;12345&quot;
-require &quot;net/http&quot;
-def get_nothing(num)
-  return Net::HTTP.get URI.parse(&quot;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&quot; + num)
-end
-400.times do
+<pre><code class="hljs rb">num = <span class="hljs-string">"12345"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"net/http"</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_nothing</span><span class="hljs-params">(num)</span></span>
+  <span class="hljs-keyword">return</span> Net::HTTP.get URI.parse(<span class="hljs-string">"http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="</span> + num)
+<span class="hljs-keyword">end</span>
+<span class="hljs-number">400</span>.times <span class="hljs-keyword">do</span>
   content = get_nothing(num)
-  m = /and the next nothing is ([0-9]+)/.match(content)
+  m = <span class="hljs-regexp">/and the next nothing is ([0-9]+)/</span>.match(content)
   p num
   p content
-  if m != nil then
-    num = m[1]
-  else
+  <span class="hljs-keyword">if</span> m != <span class="hljs-literal">nil</span> <span class="hljs-keyword">then</span>
+    num = m[<span class="hljs-number">1</span>]
+  <span class="hljs-keyword">else</span>
     exit
-  end
-end</code></pre><p>途中でひっかけがありますが・・・。そこは手作業で。</p>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>途中でひっかけがありますが・・・。そこは手作業で。</p>
 <h2 id="level-5">Level 5</h2>
 <p>意味がわからずカンニング。
 <a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a>
 Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
-<pre><code class="hljs ">import urllib, pickle
-uri = &quot;http://www.pythonchallenge.com/pc/def/banner.p&quot;
+<pre><code class="hljs py"><span class="hljs-keyword">import</span> urllib, pickle
+uri = <span class="hljs-string">"http://www.pythonchallenge.com/pc/def/banner.p"</span>
 obj = pickle.load(urllib.urlopen(uri))
-for line in obj:
-  l = &quot;&quot;
-  for pair in line:
-    l += pair[0] * pair[1]
-    print l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> obj:
+  l = <span class="hljs-string">""</span>
+  <span class="hljs-keyword">for</span> pair <span class="hljs-keyword">in</span> line:
+    l += pair[<span class="hljs-number">0</span>] * pair[<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">print</span> l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
 <p>続きはまた今度。</p>
 
         </div>

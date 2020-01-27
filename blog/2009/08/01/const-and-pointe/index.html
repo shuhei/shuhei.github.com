@@ -70,23 +70,23 @@
       <div class="content">
         <div>
           <p>下のように <code>const</code> は型名の前後どちらに書いても同じです。</p>
-<pre><code class="hljs ">const int a = 1;
-int const b = 2;</code></pre><p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique FAQ</a> では、前者がわかりやすくおすすめとされていますが。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> <span class="hljs-keyword">const</span> b = <span class="hljs-number">2</span>;</code></pre><p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique FAQ</a> では、前者がわかりやすくおすすめとされていますが。</p>
 <p>では、ポインタについてはどうでしょうか？</p>
-<pre><code class="hljs ">const int* pa = new int(10);  // &quot;const な int&quot; へのポインタ
-int const* pb = new int(11);  // &quot;const な int &quot; へのポインタ
-int* const pc = new int(12);  // int への  &quot;const なポインタ&quot;</code></pre><p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
-<pre><code class="hljs ">// *pa = 20;  // エラー！ &quot;const な int&quot; の値を変えることはできない
-// *pb = 21;  // エラー！ &quot;const な int&quot; の値を変えることはできない
-*pc = 23;
+<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>* pa = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">10</span>);  <span class="hljs-comment">// "const な int" へのポインタ</span>
+<span class="hljs-keyword">int</span> <span class="hljs-keyword">const</span>* pb = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>);  <span class="hljs-comment">// "const な int " へのポインタ</span>
+<span class="hljs-keyword">int</span>* <span class="hljs-keyword">const</span> pc = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">12</span>);  <span class="hljs-comment">// int への  "const なポインタ"</span></code></pre><p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">// *pa = 20;  // エラー！ "const な int" の値を変えることはできない</span>
+<span class="hljs-comment">// *pb = 21;  // エラー！ "const な int" の値を変えることはできない</span>
+*pc = <span class="hljs-number">23</span>;
 
-delete pa;   // delete はできる
-delete pb;   // delete はできる
-delete pc;
+<span class="hljs-keyword">delete</span> pa;   <span class="hljs-comment">// delete はできる</span>
+<span class="hljs-keyword">delete</span> pb;   <span class="hljs-comment">// delete はできる</span>
+<span class="hljs-keyword">delete</span> pc;
 
-pa = NULL;
-pb = NULL;
-// pc = NULL;  // エラー！ポインタ自体が const なため</code></pre><p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
+pa = <span class="hljs-literal">NULL</span>;
+pb = <span class="hljs-literal">NULL</span>;
+<span class="hljs-comment">// pc = NULL;  // エラー！ポインタ自体が const なため</span></code></pre><p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
 
         </div>
       </div>

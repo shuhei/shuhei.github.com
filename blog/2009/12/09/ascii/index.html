@@ -79,17 +79,17 @@ I wish I could rhyme with poem,
 but its very hard to.
 I just beguiled you,</p>
 <p>irb で下のような関数を書いてから、ひたすら 0 と 1 を打ち込み・・・。</p>
-<pre><code class="hljs ">class String
-  def bin
-    Integer(&#39;0b&#39; + self)
-  end
-end
+<pre><code class="hljs rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bin</span></span>
+    Integer(<span class="hljs-string">'0b'</span> + <span class="hljs-keyword">self</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 
-def decode(ascii)
-  0.step(ascii.size - 1, 8) do |num|
-    puts ascii[num..(num + 7)].bin.chr
-  end
-end</code></pre><p>作る方は簡単でしょうが、読む方は大変です。</p>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decode</span><span class="hljs-params">(ascii)</span></span>
+  <span class="hljs-number">0</span>.step(ascii.size - <span class="hljs-number">1</span>, <span class="hljs-number">8</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|num|</span>
+    puts ascii[num..(num + <span class="hljs-number">7</span>)].bin.chr
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>作る方は簡単でしょうが、読む方は大変です。</p>
 
         </div>
       </div>

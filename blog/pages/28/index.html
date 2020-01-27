@@ -71,57 +71,57 @@
 <h2 id="level-6">Level 6</h2>
 <p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
 少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
-<pre><code class="hljs ">num = &quot;90052&quot;
-z = zipfile.ZipFile(&quot;channel.zip&quot;)
+<pre><code class="hljs py">num = <span class="hljs-string">"90052"</span>
+z = zipfile.ZipFile(<span class="hljs-string">"channel.zip"</span>)
 
-while True:
-  # Print file&#39;s comment
-  print z.getinfo(num + &quot;.txt&quot;).comment,
-  # Get next nothing
-  s = open(num + &quot;.txt&quot;).read()
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  <span class="hljs-comment"># Print file's comment</span>
+  <span class="hljs-keyword">print</span> z.getinfo(num + <span class="hljs-string">".txt"</span>).comment,
+  <span class="hljs-comment"># Get next nothing</span>
+  s = open(num + <span class="hljs-string">".txt"</span>).read()
   m = pattern.match(s)
-  if m:
-    num = m.group(1)
-  else:
-    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
+  <span class="hljs-keyword">if</span> m:
+    num = m.group(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span></code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
 いつのまにか Python で解いてしまってますね・・・。</p>
 <h2 id="level-7">Level 7</h2>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
 data = list(image.getdata())
 
-before = 0
-message = &quot;&quot;
-for x in range(width):
-  tmp = data[x + width * 46][0]
-  if tmp != before:
-    message += &quot;%c&quot; % (tmp)
+before = <span class="hljs-number">0</span>
+message = <span class="hljs-string">""</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(width):
+  tmp = data[x + width * <span class="hljs-number">46</span>][<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">if</span> tmp != before:
+    message += <span class="hljs-string">"%c"</span> % (tmp)
     before= tmp
 
-print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<span class="hljs-keyword">print</span> message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
 <blockquote>
 <p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
 </blockquote>
 <p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
 気を取り直して以下。書き方も少し Python らしく（？）。
 <code>chr</code> という関数があったんですね。</p>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
 data = list(image.getdata())
 message = []
-i = 0
-while True:
-  color = data[i + width * 46]
-  if color[0] == color[1] == color[2]:
-    message.append(color[2])
-    i += 7
-  else:
-    break
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  color = data[i + width * <span class="hljs-number">46</span>]
+  <span class="hljs-keyword">if</span> color[<span class="hljs-number">0</span>] == color[<span class="hljs-number">1</span>] == color[<span class="hljs-number">2</span>]:
+    message.append(color[<span class="hljs-number">2</span>])
+    i += <span class="hljs-number">7</span>
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span>
 
-print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
-<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+<span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs py"><span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, [<span class="hljs-number">105</span>, <span class="hljs-number">110</span>, <span class="hljs-number">116</span>, <span class="hljs-number">101</span>, <span class="hljs-number">103</span>, <span class="hljs-number">114</span>, <span class="hljs-number">105</span>, <span class="hljs-number">116</span>, <span class="hljs-number">121</span>]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
 
         </div>
       </div>
@@ -201,55 +201,55 @@ print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセ�
 最近マイブームな Ruby で。</p>
 <p>以下、ネタバレ注意です。</p>
 <h2 id="level-0">Level 0</h2>
-<pre><code class="hljs ">2 ** 38</code></pre><h2 id="level-1">Level 1</h2>
-<pre><code class="hljs ">cipher = &quot;g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&#39;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.&quot;
-abc = (&quot;a&quot;[0] .. &quot;z&quot;[0]).to_a
-cde = (&quot;c&quot;[0] .. &quot;z&quot;[0]).to_a + [&quot;a&quot;[0], &quot;b&quot;[0]]
+<pre><code class="hljs rb"><span class="hljs-number">2</span> ** <span class="hljs-number">38</span></code></pre><h2 id="level-1">Level 1</h2>
+<pre><code class="hljs rb">cipher = <span class="hljs-string">"g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj."</span>
+abc = (<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).to_a
+cde = (<span class="hljs-string">"c"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).to_a + [<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>], <span class="hljs-string">"b"</span>[<span class="hljs-number">0</span>]]
 dict = Hash[*abc.zip(cde).flatten]
-cipher.bytes do |ch|
-  ch = dict[ch] if dict.has_key?(ch)
-  printf(&quot;%c&quot;, ch)
-end</code></pre><h2 id="level-2">Level 2</h2>
+cipher.bytes <span class="hljs-keyword">do</span> <span class="hljs-params">|ch|</span>
+  ch = dict[ch] <span class="hljs-keyword">if</span> dict.has_key?(ch)
+  printf(<span class="hljs-string">"%c"</span>, ch)
+<span class="hljs-keyword">end</span></code></pre><h2 id="level-2">Level 2</h2>
 <p>ターミナルにコピペしたらおかしくなったので、一旦 mess_2.txt に保存。</p>
-<pre><code class="hljs ">File.open(&quot;mess_2.txt&quot;) do |f|
-  while ch = f.getc
-    printf(&quot;%c&quot;, ch) if (&quot;a&quot;[0] .. &quot;z&quot;[0]).include?(ch)
-  end
-end</code></pre><p>ファイルの中身を 1 バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
+<pre><code class="hljs rb">File.open(<span class="hljs-string">"mess_2.txt"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span>
+  <span class="hljs-keyword">while</span> ch = f.getc
+    printf(<span class="hljs-string">"%c"</span>, ch) <span class="hljs-keyword">if</span> (<span class="hljs-string">"a"</span>[<span class="hljs-number">0</span>] .. <span class="hljs-string">"z"</span>[<span class="hljs-number">0</span>]).<span class="hljs-keyword">include</span>?(ch)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>ファイルの中身を 1 バイトずつ読み込んで、アルファベットだけ抜き出します。</p>
 <h2 id="level-3">Level 3</h2>
-<pre><code class="hljs ">pattern = /[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/
-File.open(&quot;mess_3.txt&quot;) do |f|
+<pre><code class="hljs rb">pattern = <span class="hljs-regexp">/[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]/</span>
+File.open(<span class="hljs-string">"mess_3.txt"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span>
   p f.read.scan(pattern).to_s
-end</code></pre><p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
+<span class="hljs-keyword">end</span></code></pre><p>Ruby でグローバルマッチしたい時って <code>String#scan</code> 使うしかないの？</p>
 <h2 id="level-4">Level 4</h2>
-<pre><code class="hljs ">num = &quot;12345&quot;
-require &quot;net/http&quot;
-def get_nothing(num)
-  return Net::HTTP.get URI.parse(&quot;http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=&quot; + num)
-end
-400.times do
+<pre><code class="hljs rb">num = <span class="hljs-string">"12345"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"net/http"</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_nothing</span><span class="hljs-params">(num)</span></span>
+  <span class="hljs-keyword">return</span> Net::HTTP.get URI.parse(<span class="hljs-string">"http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="</span> + num)
+<span class="hljs-keyword">end</span>
+<span class="hljs-number">400</span>.times <span class="hljs-keyword">do</span>
   content = get_nothing(num)
-  m = /and the next nothing is ([0-9]+)/.match(content)
+  m = <span class="hljs-regexp">/and the next nothing is ([0-9]+)/</span>.match(content)
   p num
   p content
-  if m != nil then
-    num = m[1]
-  else
+  <span class="hljs-keyword">if</span> m != <span class="hljs-literal">nil</span> <span class="hljs-keyword">then</span>
+    num = m[<span class="hljs-number">1</span>]
+  <span class="hljs-keyword">else</span>
     exit
-  end
-end</code></pre><p>途中でひっかけがありますが・・・。そこは手作業で。</p>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>途中でひっかけがありますが・・・。そこは手作業で。</p>
 <h2 id="level-5">Level 5</h2>
 <p>意味がわからずカンニング。
 <a href="http://unixwars.com/2007/09/11/python-challenge-level-5-peak-hell/?wscr=1280x800">Python Challenge level 5: “peak hell” | UnixWars</a>
 Python の Pickle モジュールを使う問題だとか。知らんがな。</p>
-<pre><code class="hljs ">import urllib, pickle
-uri = &quot;http://www.pythonchallenge.com/pc/def/banner.p&quot;
+<pre><code class="hljs py"><span class="hljs-keyword">import</span> urllib, pickle
+uri = <span class="hljs-string">"http://www.pythonchallenge.com/pc/def/banner.p"</span>
 obj = pickle.load(urllib.urlopen(uri))
-for line in obj:
-  l = &quot;&quot;
-  for pair in line:
-    l += pair[0] * pair[1]
-    print l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> obj:
+  l = <span class="hljs-string">""</span>
+  <span class="hljs-keyword">for</span> pair <span class="hljs-keyword">in</span> line:
+    l += pair[<span class="hljs-number">0</span>] * pair[<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">print</span> l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
 <p>続きはまた今度。</p>
 
         </div>

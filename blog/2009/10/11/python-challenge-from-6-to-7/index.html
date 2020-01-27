@@ -74,57 +74,57 @@
 <h2 id="level-6">Level 6</h2>
 <p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
 少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
-<pre><code class="hljs ">num = &quot;90052&quot;
-z = zipfile.ZipFile(&quot;channel.zip&quot;)
+<pre><code class="hljs py">num = <span class="hljs-string">"90052"</span>
+z = zipfile.ZipFile(<span class="hljs-string">"channel.zip"</span>)
 
-while True:
-  # Print file&#39;s comment
-  print z.getinfo(num + &quot;.txt&quot;).comment,
-  # Get next nothing
-  s = open(num + &quot;.txt&quot;).read()
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  <span class="hljs-comment"># Print file's comment</span>
+  <span class="hljs-keyword">print</span> z.getinfo(num + <span class="hljs-string">".txt"</span>).comment,
+  <span class="hljs-comment"># Get next nothing</span>
+  s = open(num + <span class="hljs-string">".txt"</span>).read()
   m = pattern.match(s)
-  if m:
-    num = m.group(1)
-  else:
-    break</code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
+  <span class="hljs-keyword">if</span> m:
+    num = m.group(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span></code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
 いつのまにか Python で解いてしまってますね・・・。</p>
 <h2 id="level-7">Level 7</h2>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
 data = list(image.getdata())
 
-before = 0
-message = &quot;&quot;
-for x in range(width):
-  tmp = data[x + width * 46][0]
-  if tmp != before:
-    message += &quot;%c&quot; % (tmp)
+before = <span class="hljs-number">0</span>
+message = <span class="hljs-string">""</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(width):
+  tmp = data[x + width * <span class="hljs-number">46</span>][<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">if</span> tmp != before:
+    message += <span class="hljs-string">"%c"</span> % (tmp)
     before= tmp
 
-print message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<span class="hljs-keyword">print</span> message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
 <blockquote>
 <p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
 </blockquote>
 <p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
 気を取り直して以下。書き方も少し Python らしく（？）。
 <code>chr</code> という関数があったんですね。</p>
-<pre><code class="hljs ">from PIL import Image
-image = Image.open(&quot;oxygen.png&quot;)
-width = image.size[0]
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
 data = list(image.getdata())
 message = []
-i = 0
-while True:
-  color = data[i + width * 46]
-  if color[0] == color[1] == color[2]:
-    message.append(color[2])
-    i += 7
-  else:
-    break
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  color = data[i + width * <span class="hljs-number">46</span>]
+  <span class="hljs-keyword">if</span> color[<span class="hljs-number">0</span>] == color[<span class="hljs-number">1</span>] == color[<span class="hljs-number">2</span>]:
+    message.append(color[<span class="hljs-number">2</span>])
+    i += <span class="hljs-number">7</span>
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span>
 
-print &quot;&quot;.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
-<pre><code class="hljs ">print &quot;&quot;.join(map(chr, [105, 110, 116, 101, 103, 114, 105, 116, 121]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+<span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs py"><span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, [<span class="hljs-number">105</span>, <span class="hljs-number">110</span>, <span class="hljs-number">116</span>, <span class="hljs-number">101</span>, <span class="hljs-number">103</span>, <span class="hljs-number">114</span>, <span class="hljs-number">105</span>, <span class="hljs-number">116</span>, <span class="hljs-number">121</span>]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
 
         </div>
       </div>

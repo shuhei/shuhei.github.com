@@ -71,15 +71,15 @@
         <div>
           <p>ポインタについて勉強してみます。</p>
 <h2 id="変数のアドレス">変数のアドレス</h2>
-<pre><code class="hljs ">int value = 10;</code></pre><p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> value = <span class="hljs-number">10</span>;</code></pre><p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
 <h2 id="ポインタ">ポインタ</h2>
 <p>メモリ上のアドレスを格納する変数がポインタです。</p>
-<pre><code class="hljs ">int value = 10;
-int *ptr;
+<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> value = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> *ptr;
 ptr = &amp;a;</code></pre><p>という感じです。</p>
 <h2 id="ポインタの指す値">ポインタの指す値</h2>
 <p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>
-<pre><code class="hljs ">printf(&quot;*ptr の値は %d です。&quot;, *ptr); // *ptr の値は 10 です。</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-built_in">printf</span>(<span class="hljs-string">"*ptr の値は %d です。"</span>, *ptr); <span class="hljs-comment">// *ptr の値は 10 です。</span></code></pre>
         </div>
       </div>
     </div>
