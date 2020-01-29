@@ -2,8 +2,8 @@ name: Live regression test
 
 on:
   schedule:
-    # Run every hour
-    - cron: "25 * * * *"
+    # Run every day
+    - cron: "25 7 * * *"
 
 jobs:
   build:
