@@ -54,7 +54,7 @@ yarn deploy
 ## Configuration
 
 - hosting: GitHub Pages
-- domain registrar: Google Domains
+- domain registrar: Cloudflare
 - DNS: Cloudflare
 - CDN: Cloudflare
 
