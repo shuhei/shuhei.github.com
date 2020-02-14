@@ -5,15 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node12.8.1-chrome80-ff72
+    container: cypress/browsers:node13.6.0-chrome80-ff72
 
     steps:
       - uses: actions/checkout@v1
-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
 
       - name: install and cache dependencies
         uses: cypress-io/github-action@v1
