@@ -5,15 +5,18 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node13.6.0-chrome80-ff72
+    container: 'cypress/browsers:node13.6.0-chrome80-ff72'
 
     steps:
       - uses: actions/checkout@v1
 
-      - name: install and cache dependencies
-        uses: cypress-io/github-action@v1
-        with:
-          runTests: false
+      # - name: install and cache dependencies
+        # uses: cypress-io/github-action@v1
+        # with:
+          # runTests: false
+      - name: install
+        run: |
+          yarn install --frozen-lockfile
 
       - name: lint and unit test
         run: |
