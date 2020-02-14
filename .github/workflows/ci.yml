@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: versions
+      - run: |
+          google-chrome --version
+          firefox --version
+
       # - name: install and cache dependencies
         # uses: cypress-io/github-action@v1
         # with:
