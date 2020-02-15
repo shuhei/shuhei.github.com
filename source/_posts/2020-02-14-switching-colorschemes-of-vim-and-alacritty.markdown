@@ -8,6 +8,8 @@ categories: [Vim]
 
 I like fountain pens and good notebooks. They spark joy when I write on paper. Computer terminals are like stationery. A good terminal setup makes it fun to work with computers. Here is how I improved colors on my terminal and made it easy to switch them depending on the time and the mood.
 
+![Ayu Light for Vim and Alacritty](/images/light-terminal.png)
+
 ## Using official color schemes
 
 I have been using Dracula color scheme on Vim and Alacritty for a while. I liked the colors, but I had a small problem with it on Vim. The pop-up of `coc.nvim` had the same color as the background color, and it was hard to distinguish a pop-up and the background.
