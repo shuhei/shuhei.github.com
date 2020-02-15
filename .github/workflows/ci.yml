@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node13.6.0-chrome80-ff72
+      options: --user 1001
 
     steps:
       - uses: actions/checkout@v1
@@ -48,7 +49,6 @@ jobs:
         with:
           browser: firefox
           install: false
-          start: yarn serve
           wait-on: "http://localhost:4000"
 
       - name: deploy
