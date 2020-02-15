@@ -38,7 +38,7 @@ I turned it on, and colors looked gorgeous! Before learning about `termguicolors
 
 ## Switching color schemes
 
-After trying more color schemes, I picked the following:
+After trying dozens of color schemes, I picked the following:
 
 - [Ayu](https://github.com/ayu-theme/ayu-vim) Light: Good in the morning or at a place with natural light.
 - [Pink Moon](https://github.com/sts10/vim-pink-moon)
