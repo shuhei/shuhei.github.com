@@ -57,6 +57,42 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/07/22/toeic-official-workbook-vol-4-1/>TOEIC 新公式問題集 vol.4 (1)</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 22, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>初 TOEIC が今週末に迫ってきたので、練習問題を解いてみました。</p>
+<ul>
+<li>Part 1: 9 / 10</li>
+<li>Part 2: 27 / 30</li>
+<li>Part 3: 27 / 30</li>
+<li>Part 4: 25 / 30</li>
+<li>Part 5: 35 / 40</li>
+<li>Part 6: 10 / 12</li>
+<li>Part 7: 47 / 48</li>
+</ul>
+<p>換算点は 805 &#8211; 925 とのこと。
+0 &#8211; 200 を 10 &#8211; 990 に線形に投影すると 892 点。
+<a href="/blog/2009/05/24/toeic/">前回</a> よりも良くなっているようです。</p>
+<p>Part 7 が劇的に改善されています。最近洋書を読むようにしているからでしょう。
+弱点はやはりリスニングの Part 2, 3, 4 と、単語・語法の Part 5 です。
+前者は問題文先読みの試験テクニックを練習すればもう少し向上する気がします。
+Part 5 は費用対効果が少なさそうですが、コツコツやるしかありませんかね。</p>
+<p>とりあえず、日曜日まで毎日解いていこうと思います。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/07/10/surface/>Surface</a>
         </h1>
         <div class="meta">
@@ -101,43 +137,6 @@
 <li>丸が動画の点描。</li>
 <li>絵や写真の濃度マップによって、丸のバネ定数が変わる。絵が浮かび上がる？</li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/06/16/multi-rubies-with-rv/>RVM で複数バージョンの Ruby を管理</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 16, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。
-自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。
-<a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
-<ul>
-<li><a href="http://rvm.beginrescueend.com/rvm/install/">RVM: Ruby Version Manager &#8211; Installing RVM</a></li>
-<li><a href="http://d.hatena.ne.jp/mirakui/20100502/1272849327">rvm: 複数の Ruby を共存させる最新のやり方 &#8211; 床のトルストイ、ゲイとするとのこと</a></li>
-</ul>
-<p>を参考にインストール。
-公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。</p>
-<pre><code class="hljs sh">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</code></pre><p>した後 .bashrc の最後に以下を記載。</p>
-<pre><code class="hljs sh">[[ -s <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm</code></pre><p>これでターミナルを再起動すれば完了です。</p>
-<pre><code class="hljs sh">rvm list known</code></pre><p>とするとインストール可能なバージョンのリストを出力してくれます。
-下記で 1.9.1 をインストール。</p>
-<pre><code class="hljs sh">rvm install 1.9.1</code></pre><p>irb, gem, rake なども一緒にインストールして管理してくれます。
-1.8.7 系もインストール。</p>
-<pre><code class="hljs sh">rvm install 1.8.7</code></pre><p>使用する Ruby を変えるには・・・。</p>
-<pre><code class="hljs sh">rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
-<pre><code class="hljs sh">rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
-1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p>
 
         </div>
       </div>

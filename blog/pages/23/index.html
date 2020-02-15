@@ -57,6 +57,31 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/01/16/useufw/>ufw でファイアウォール</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 16, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
+Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。</p>
+<pre><code class="hljs sh">sudo ufw default DENY
+sudo ufw <span class="hljs-built_in">enable</span></code></pre><p>とやって有効化。
+ウェブサーバならば HTTP を許可します。</p>
+<pre><code class="hljs sh">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
+<pre><code class="hljs sh">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
+<pre><code class="hljs sh">sudo ufw <span class="hljs-built_in">limit</span> ssh</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/01/11/install-passenger/>Ubuntu Server に Passenger をインストール</a>
         </h1>
         <div class="meta">
@@ -158,33 +183,6 @@ make: *** [biffpop.o] Error 1</p>
 親切にも MyDNS ユーザ用のオプションが用意されていた訳です。
 この行のコメントを外し、フルオプションの方（ <code>FLAGS = -O3 -DIPv6 -DKILLLIST -DUSE_SSL # full option IPv6, Kill List &amp; SSL</code> ）をコメントアウトすると、ビルドできました。
 めでたしめでたし。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/12/31/japanese-on-irb/>irb で日本語表示</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Dec 31, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <pre><code class="hljs ">$irb
-irb(main):001:0&gt;puts &quot;あああ&quot;
-&quot;\343\201\202\343\201\202\343\201\202&quot;
-=&gt; nil</code></pre><p>上の例のように、日本語出力が読めない問題。</p>
-<p>$KCODE に使用中のターミナルの文字コードを設定すれば良いようです。
-UTF-8 なら <code>$KCODE = &#39;u&#39;</code> 、EUC-JP なら <code>$KCODE = &#39;e&#39;</code> など。
-irb コマンドのオプションでも指定できます。
-<code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
-<p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今 Ruby 勉強中 &#8211; Rubyist</a></p>
 
         </div>
       </div>

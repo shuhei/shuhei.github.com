@@ -57,6 +57,58 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/13/ntlm-hash-with-ruby/>NTLM ハッシュ を求める</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 13, 2009</span>
+          - <span class="category">Ruby</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの UTF-16 に符号化したものから <a href="http://en.wikipedia.org/wiki/MD4">MD4</a> でハッシュを作成するのだとか。</p>
+<h2 id="ruby-で">Ruby で</h2>
+<p>16 進数表現の文字列として出力します。もう少しうまい方法がある気がするのですが・・・。
+NTLM ハッシュの計算そのものは <a href="http://rubyforge.org/projects/rubyntlm/">Ruby/NTLM</a> に頼っています。ちなみに Ruby/NTLM をインストールするには、 <code>gem install rubyntlm</code> とします。</p>
+<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'rubygems'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'net/ntlm'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ntlm_hash16</span><span class="hljs-params">(password)</span></span>
+  result = <span class="hljs-string">""</span>
+  hash = Net::NTLM.ntlm_hash(password)
+  hash.size.times <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+    result += sprintf(<span class="hljs-string">"%02x"</span>, hash[i])
+  <span class="hljs-keyword">end</span>
+  result
+<span class="hljs-keyword">end</span>
+
+ntlm_hash16(<span class="hljs-string">"p@ssw0rd"</span>) <span class="hljs-comment">#=&gt; "de26cce0356891a4a020e7c4957afc72"</span></code></pre><h3 id="追記">追記</h3>
+<p><code>sprintf(&quot;%02x&quot;, hash[i])</code> の部分を、最初は <code>hash[i].to_s(16)</code> と書いていました。しかし、これだと 15 以下の数が来たときに 0 が抜けてしまうので、修正しました。</p>
+<h2 id="python-で">Python で</h2>
+<p>ついでに Python でも。</p>
+<pre><code class="hljs py"><span class="hljs-keyword">import</span> hashlib
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ntlm_hash16</span><span class="hljs-params">(password)</span>:</span>
+  result = <span class="hljs-string">""</span>
+  digest = hashlib.new(<span class="hljs-string">'md4'</span>, password.encode(<span class="hljs-string">'utf-16le'</span>)).digest()
+  <span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> digest:
+    result += <span class="hljs-string">"%02x"</span> % ord(ch)
+  <span class="hljs-keyword">return</span> result
+
+ntlm_hash16(<span class="hljs-string">"p@ssw0rd"</span>) <span class="hljs-comment">#=&gt; 'de26cce0356891a4a020e7c4957afc72'</span></code></pre><p>Ruby でも Python でも、さすがに結果は同じようですね。</p>
+<h3 id="追記-1">追記</h3>
+<p>Python でも Ruby と同じような間違いをしていました。
+<code>&quot;%02x&quot; % ord(ch)</code> の部分を、最初は <code>hex(ord(ch))[2:]</code> と書いていました。
+いやあ、テストは大事ですね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/12/get-book-list-from-booklog/>Booklog から本一覧を取得</a>
         </h1>
         <div class="meta">
@@ -186,33 +238,6 @@ draw_points(first_points, <span class="hljs-number">495</span>, <span class="hlj
 draw_points(second_points, <span class="hljs-number">495</span>, <span class="hljs-number">495</span>, <span class="hljs-string">"second.png"</span>)</code></pre><p><span class="responsive-image-wrapper" style="max-width: 495px;"><span class="responsive-image-inner" style="padding-top: 100%;"><img class="responsive-image" src="https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png" alt="first"></span></span></p>
 <p>ということで、出てきた動物の名前をいくつか適当に入れると正解に。しかし、まだまだ四分の一。先は長いです・・・。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/12/install-cairo-with-gem/>gem で cairo をインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 12, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <pre><code class="hljs ">sudo gem install cairo</code></pre><p>でインストールできず、四苦八苦。
-調べてみたところ、下記 URL に行き当たりました。
-よくわかりませんが、extconf.rb 内に記述されている何かのオプションにスペースが足りなかったようです。</p>
-<p><a href="http://lists.cairographics.org/archives/cairo-bugs/2008-November/002790.html">[Bug 18623] New: Patch for Ruby gem cairo-1.8. 0 to build on Mac OS X Leopard</a></p>
-<p>以下のようにパッチを当ててからビルドすると、無事成功しました。</p>
-<pre><code class="hljs ">cd cairo-1.8.0
-sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
-sudo ruby extconf.rb
-sudo make
-sudo make install</code></pre>
         </div>
       </div>
     </div>

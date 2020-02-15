@@ -57,6 +57,39 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/03/15/secure-ssh/>SSH を安全に</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Mar 15, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>自宅サーバの SSH を外から使えるようにするにあたり、セキュリティ対策を施してみました。</p>
+<p>鍵認証のところ以外は <a href="http://www.unixuser.org/~euske/doc/openssh/jman/sshd_config.html" title="5">SSHD_CONFIG</a> 参照。
+下記設定をして ufw とルータの設定を変えたら、今のところそれらしく動いてます。</p>
+<h2 id="パスワードではなく鍵認証に">パスワードではなく鍵認証に</h2>
+<p>クライアントで鍵を作って、サーバに公開鍵を置いておきます。クライアントが秘密鍵を持っていないと認証できないように設定。
+念のためパスワードもかけておきました。</p>
+<p>via <a href="http://www.turbolinux.co.jp/support/document/knowledge/152.html">ssh にてパスワードを使用しないでログインする方法</a></p>
+<h2 id="ポートを変更">ポートを変更</h2>
+<p>22 番ポートはいろんなところから攻撃されるということなので。</p>
+<h2 id="ログインユーザの制限">ログインユーザの制限</h2>
+<p>そんなにいろんなユーザ作ってませんが、念のため。</p>
+<h2 id="ルートログインの禁止">ルートログインの禁止</h2>
+<p>root ログインはユーザ名がばれているため禁止。使わないし。</p>
+<h2 id="試行回数の制限">試行回数の制限</h2>
+<p>鍵認証の場合はあまり関係ないかな？</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/03/13/redmine-with-git/>Git + Redmine</a>
         </h1>
         <div class="meta">
@@ -131,42 +164,6 @@ script/generete model_active_ldap user</code></pre><h2 id="接続">接続</h2>
 <li>PureRuby の Net::LDAP は、trunk でないと問題。</li>
 </ul>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/03/06/renew-ruby-environment/>Ruby の環境を新しく</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Mar 6, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。
-以下の環境に揃えました。</p>
-<ul>
-<li>Ruby 1.8.7</li>
-<li>Ruby Gems 1.3.5（Macbook は 1.3.4）</li>
-<li>Rails 2.3.5</li>
-</ul>
-<h2 id="ubuntu-server-910-64-bit">Ubuntu Server 9.10 64 bit</h2>
-<p>Ruby はもともと 1.8.7。RubyGems も 1.3.5。
-入っている Rails のバージョンを上げる。Aptitude で入れると古いので、RubyGems を使う事に。</p>
-<pre><code class="hljs ">sudo aptitude remove rails
-sudo gem install rails
-sudo gem install sqlite3-ruby
-
-vi ~/.bashrc
-export PATH=/var/lib/gem/1.8/bin:$PATH</code></pre><h2 id="mac-os-x">Mac OS X</h2>
-<p>もともと入っている Ruby が 1.8.6 なので、1.8.7 を入れます。</p>
-<pre><code class="hljs ">sudo port install ruby</code></pre><p>RubyGems も MacPorts から。1.3.4 なのは我慢。</p>
-<pre><code class="hljs ">sudo port install rb-rubygems</code></pre>
         </div>
       </div>
     </div>

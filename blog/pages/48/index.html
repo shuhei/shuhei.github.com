@@ -57,6 +57,43 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/08/24/connect-to-subversion-on-sakura-internet/>さくらインターネット上の Subversion につなぐ</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 24, 2008</span>
+          - <span class="category">さくらインターネット</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <ul>
+<li><a href="/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗</a></li>
+<li><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・成功</a></li>
+</ul>
+<p>上記二つに続けて、さくらインターネットへインストールした Subversion に SSH でつなぎます。
+使うのは TortoiseSVN。</p>
+<h2 id="公開鍵と秘密鍵">公開鍵と秘密鍵</h2>
+<p>puttygen.exe を実行して、マウスをグリグリします。
+上のテキストエリアに公開鍵、下に秘密鍵が出てきます。</p>
+<h3 id="公開鍵">公開鍵</h3>
+<p>コピペして下記のように編集。</p>
+<pre><code class="hljs ">command=&quot;/home/username/local/bin/svnserve -t&quot; ssh-rsa 公開鍵</code></pre><p>authorized_keys という名前で保存し、$HOME/.ssh/authorized_keys となるようにアップします。</p>
+<h3 id="秘密鍵">秘密鍵</h3>
+<p>コピペして適当な名前で、TortoiseSVN/bin に保存。
+これはどこでもいいそうですが、後でパスを指定します。</p>
+<h2 id="tortoisesvn-の設定">TortoiseSVN の設定</h2>
+<p>適当なフォルダを右クリックし、TortoiseSVN の 設定画面を開きます。
+Network &#8594; SSH &#8594; SSH client のところで下記のように設定。</p>
+<pre><code class="hljs ">&quot;C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe&quot; -l username -i &quot;C:\Program Files\TortoiseSVN\bin\private_key.ppk&quot;</code></pre><p>あとは下のような感じでレポジトリにアクセスできます。</p>
+<pre><code class="hljs ">svn+ssh://username@hostname/home/username/local/bin/repo</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/>さくらに Trac をインストール・・・成功</a>
         </h1>
         <div class="meta">
@@ -99,30 +136,6 @@ CGI だからですかね。
 <p>ちなみに、Proxy サーバを指定するには以下。</p>
 <pre><code class="hljs ">-DproxySet=true -DproxyHost=xxx.xxx.xxx.xxx -DproxyPort=yyyy</code></pre><p>フォントをアンチエイリアスするにはこんな感じ。</p>
 <pre><code class="hljs ">-Dswing.aatext=true</code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/08/21/network-programming/>ネットワークプログラミング</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 21, 2008</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>っていう言葉があるのかはわかりませんが、そんな感じのことについて全く知識がないことに気がつきました。
-重要な分野だと思うのですが、今後の研修ではあまりやらなさそう。
-しばらくは、テーマの一つにして勉強しようかと思います。</p>
-<p>これまで触ってきたのは、レンタルサーバ上で何かを動かすということが主でした。
-そうするとレンタルサーバでできない（またはとてもめんどくさい）ことがなかなか試せないため、どうも知識が偏ってしまいます。
-次の給料は自宅サーバに消えるかも。</p>
-
         </div>
       </div>
     </div>

@@ -57,6 +57,29 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/09/26/tweetstat/>TweetStats</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Sep 26, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
+<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。
+時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
+<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。
+<a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/09/23/textile-format-of-make-link/>Make Link の Textile 2 用フォーマット</a>
         </h1>
         <div class="meta">
@@ -95,48 +118,6 @@
           <p>先日別のブログで使っている Textpattern のバージョンを 4.0.5 から 4.2.0 に上げたのですが、 コメントの本文が表示されなくなっていることに気がつきました。</p>
 <p>コメント本文を表示するタグが <code>txp:message</code> から <code>txp:comment_message</code> に変更になっていたようです。
 4.0.5 から 4.2.0 までのどこかで変更になったのでしょうね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/21/use-textpatterns-textile-with-wordpress/>Wordpress で Textpattern 相当の Textile を使う</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 21, 2009</span>
-          - <span class="category">Wordpress</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>以前 <a href="/blog/2009/08/02/wordpress-textile-plugin/">Wordpress の Textile プラグイン</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
-<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン <a href="http://wordpress.org/extend/plugins/text-control-2/">Text Control 2</a> をふと思い立ってインストールしてみたこと。
-このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。
-これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
-<h2 id="手順">手順</h2>
-<h3 id="classtextilephp-の入手">classTextile.php の入手</h3>
-<p>Textpattern から <code>textpattern/lib/classTextile.php</code> を <code>wp-content/plugins/text-control-2/text-control/</code> に持ってきます。</p>
-<h3 id="textile2php-ではなく-classtextilephp-を使うように">textile2.php ではなく classTextile.php を使うように</h3>
-<p><code>wp-content/plugins/text-control-2/text-control.php</code> の 185 行目あたりを</p>
-<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
-  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
-
-    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/textile2.php'</span>);
-    $t = <span class="hljs-keyword">new</span> Textile();
-    $text = $t-&gt;process($text);</code></pre><p>から</p>
-<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
-  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
-
-    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/classTextile.php'</span>);
-    $t = <span class="hljs-keyword">new</span> Textile();
-    $text = $t-&gt;TextileThis($text);</code></pre><p>へ変更します。</p>
-<h2 id="結果">結果</h2>
-<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。
-Google Code Prettify も、これまではいちいち HTML のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p>
 
         </div>
       </div>

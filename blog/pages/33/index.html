@@ -57,6 +57,30 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/02/wordpress-textile-plugin/>Wordpress の Textile プラグイン</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 2, 2009</span>
+          - <span class="category">Wordpress</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>どうもしっくり来るのがありませんでした。</p>
+<p><a href="http://wordpress.org/extend/plugins/textile-2/">Textile2</a> というのが直球のネーミングで良さそうだったのですが、日本語が化けるのでやめました。
+<a href="http://wordpress.org/support/topic/253662">対策</a> を試すと大体直ったものの、 <code>pre</code> タグで囲った部分の文字化けが直らず。 <code>pre</code> タグを使うのはコードだけなので、日本語を使わなければいい話なのですが、コメントは日本語で書きたいので。
+ヘッダタグのオフセットなど素敵な機能がついていただけに残念です。</p>
+<p>結局 <a href="http://wordpress.org/extend/plugins/textiler/">Textiler</a> というのを採用。何だか評判がよくありませんが、文字化けはしないようです。ただ、リストが途中で分割されてしまうなど不思議な動きをしていますが・・・。</p>
+<p>何はともあれ、Textile を使えるようになりました。タグを打つ必要がなく、とてもいいですね。やはり CMS はこうでなくては。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/02/recently-bought-books-2009-07/>最近買った本 2009年7月</a>
         </h1>
         <div class="meta">
@@ -95,58 +119,6 @@
 <p><a href="https://www.flickr.com/photos/branchiopoda/3780153165/" title="Attractor2D by shuhei kagawa, on Flickr"><span class="responsive-image-wrapper" style="max-width: 269px;"><span class="responsive-image-inner" style="padding-top: 185.87360594795538%;"><img class="responsive-image" src="https://farm4.static.flickr.com/3479/3780153165_68805a6ef5.jpg" alt="Attractor2D"></span></span></a></p>
 <p>Processing と全く同じような感じで書けるので、よけいなことに労力を費やさずにすみます。今後 iPhone で OpenFrameworks を使って行くならば、UIKit との組み合わせ方と、審査が通るかどうかを調べなければいけませんね。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/08/02/blending-of-openg/>OpenGL のブレンディング方法について</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 2, 2009</span>
-          - <span class="category">C/C++</span>, <span class="category">OpenFrameworks</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>
-<p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshop などでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>
-<h2 id="まずは有効に">まずは有効に</h2>
-<p>ブレンディングを有効にするには以下の関数を呼ばなければなりません。</p>
-<pre><code class="hljs cpp">glEnable(GL_BLEND);</code></pre><h2 id="設定関数">設定関数</h2>
-<p>ブレンドする二つの画像を source と destination とします。OpenGL では、これから描くのが source、destination はフレームバッファ上の画像だそうです。</p>
-<h3 id="glblendfunc">glBlendFunc</h3>
-<p><code>glBlendFunc</code> では、それぞれの画像の RGBA にかける係数を設定します。下記は一例です。</p>
-<ul>
-<li><code>GL_ONE</code> RGBA 全てを 0 にする</li>
-<li><code>GL_ZERO</code> RGBA 全てそのまま</li>
-<li><code>GL_SRC_ALPHA</code> RGBA 全てに source の A をかける</li>
-</ul>
-<h3 id="glblendequation">glBlendEquation</h3>
-<p><code>glBlendEquation</code> では、画像同士の RGBA を合成する方法を設定します。</p>
-<ul>
-<li><code>GL_FUNC_ADD</code> 足す</li>
-<li><code>GL_FUNC_SUBTRACT</code> source から destination を引く</li>
-<li><code>GL_FUNC_REVERSE_SUBTRACT</code> destination から source を引く</li>
-<li><code>GL_MAX</code> 大きい方をそのまま使う</li>
-<li><code>GL_MIN</code> 小さい方をそのまま使う</li>
-</ul>
-<h3 id="その他">その他</h3>
-<p>iPhone では <code>glBlendEquation</code> ではなく <code>glBlendEquationOES</code> を使いますが、働きは同じもののようです。また <code>glBlendFunc</code> や <code>glBlendEquation</code> では RGBA 全てを一緒に設定しますが、 <code>glBlendFuncSeparate</code> や <code>glBlendEquationSeparate</code> を用いると RGB と Alpha を別々に設定できるようです。</p>
-<h2 id="実例">実例</h2>
-<h3 id="additive-blending">Additive blending</h3>
-<p>光の表現に。暗めの色を重ねていくと、ぼんやりと光るようないい感じになります。</p>
-<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_ADD); <span class="hljs-comment">// デフォルトは GL_FUNC_ADD のようで必要ないかも</span>
-glBlendFunc(GL_ONE, GL_ONE);
-<span class="hljs-comment">// glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR); // こっちの方がいい感じになるとか・・・。</span></code></pre><h3 id="フェードアウト">フェードアウト</h3>
-<p>もっといい方法があるかもしれませんが、他にやり方が思いつかなかったので。</p>
-<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_REVERSE_SUBTRACT_OES); <span class="hljs-comment">// 暗くするため、元画像から引く</span>
-glBlendFunc(GL_ONE, GL_ONE); <span class="hljs-comment">// そのまま</span>
-ofSetColor(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// 少しずつ暗くします</span>
-ofRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ofGetWidth(), ofGetHeight()); <span class="hljs-comment">// 画面全体に適用します</span></code></pre>
         </div>
       </div>
     </div>

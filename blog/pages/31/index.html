@@ -57,6 +57,48 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/09/21/use-textpatterns-textile-with-wordpress/>Wordpress で Textpattern 相当の Textile を使う</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Sep 21, 2009</span>
+          - <span class="category">Wordpress</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>以前 <a href="/blog/2009/08/02/wordpress-textile-plugin/">Wordpress の Textile プラグイン</a> という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。</p>
+<p>きっかけは、いくつかの簡易記法を選んで使えるというプラグイン <a href="http://wordpress.org/extend/plugins/text-control-2/">Text Control 2</a> をふと思い立ってインストールしてみたこと。
+このプラグインでも Textile 2 は文字化けするものの、Textile 1 は文字化けせず。つまり Textile 2 用のプラグラムに問題があるということです。
+これを実績のある Textpattern の Textile モジュールに置き換えてみると上手く行きました。</p>
+<h2 id="手順">手順</h2>
+<h3 id="classtextilephp-の入手">classTextile.php の入手</h3>
+<p>Textpattern から <code>textpattern/lib/classTextile.php</code> を <code>wp-content/plugins/text-control-2/text-control/</code> に持ってきます。</p>
+<h3 id="textile2php-ではなく-classtextilephp-を使うように">textile2.php ではなく classTextile.php を使うように</h3>
+<p><code>wp-content/plugins/text-control-2/text-control.php</code> の 185 行目あたりを</p>
+<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
+  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
+
+    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/textile2.php'</span>);
+    $t = <span class="hljs-keyword">new</span> Textile();
+    $text = $t-&gt;process($text);</code></pre><p>から</p>
+<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tc_post_process</span><span class="hljs-params">($text, $do_text=<span class="hljs-string">''</span>, $do_char=<span class="hljs-string">''</span>)</span> </span>{
+  <span class="hljs-keyword">if</span>($do_text == <span class="hljs-string">'textile2'</span>) {
+
+    <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'text-control/classTextile.php'</span>);
+    $t = <span class="hljs-keyword">new</span> Textile();
+    $text = $t-&gt;TextileThis($text);</code></pre><p>へ変更します。</p>
+<h2 id="結果">結果</h2>
+<p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。
+Google Code Prettify も、これまではいちいち HTML のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/09/20/todays-shipped-books/>今日届いた本（実用Subversion、Getting Real）</a>
         </h1>
         <div class="meta">
@@ -120,43 +162,6 @@
 </ul>
 <p>「生物と無生物のあいだ」の人の本。文章はますます流暢になり、もはや科学者という感じがしません。もう少し淡白な方が好みですが、面白いです。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/08/22/japanese-in-xml-comment-makes-monodevelop-down/>OSX 上の MonoDevelop の日本語対応</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 22, 2009</span>
-          - <span class="category">C#</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。
-プレビュー版だけあっていろいろ動作があやしいです。そして日本語、というかマルチバイト対応がさっぱりです。
-以下、できるだけ日本語使えるようにするためのメモ。</p>
-<h2 id="スタートページやメニューの文字化け">スタートページやメニューの文字化け</h2>
-<p>まず目につくのがこれ。<code>/Library/Framework/Mono.Framework/Version/Current/etc/pango/pango.aliases</code> というファイルを作成し、以下の内容を書くと直るようです。</p>
-<pre><code class="hljs ">&quot;Lucida Grande&quot; = &quot;Hiragino Kaku Gothic Pro&quot;</code></pre><p>pango なるもののバグだとか。</p>
-<p>via <a href="http://kki-zakki.blogspot.com/2008/12/monodevelop-20-alphamac-os-x.html">っき雑記: MonoDevelop 2.0 Alpha の Mac OS X 版で日本語を表示する方法</a></p>
-<h2 id="ファイルは-utf-8-でないと化ける">ファイルは UTF-8 でないと化ける</h2>
-<p>Shift-JIS のファイルを UTF-8 に置換しましょう。VisualStudio に戻した時にも問題ないはずです。</p>
-<pre><code class="hljs sh">find . -name <span class="hljs-string">'*.cs'</span> -print0 | xargs -0 nkf -w -Lu --overwrite</code></pre><h2 id="なんと日本語が入力できない">なんと日本語が入力できない</h2>
-<p>我慢しましょう。どうしてもという時はコピペができます。</p>
-<h2 id="xml-内の日本語">XML 内の日本語</h2>
-<p>XML コメントの中の一行で日本語が何文字か続いた後、改行せずにタグを閉じると落ちるようです。
-つまり、以下のようなもの。</p>
-<pre><code class="hljs ">/// &lt;param name=&quot;hoge&quot;&gt;ほげほげほげ&lt;/param&gt;</code></pre><p>当面の回避策は、タグを閉じる前に改行することでしょうか。</p>
-<pre><code class="hljs ">/// &lt;param name=&quot;hoge&quot;&gt;ほげほげほげ
-/// &lt;/param&gt;</code></pre><p>ちょっとどうかと思いますが、これなら落ちません。</p>
-<h3 id="置換">置換</h3>
-<pre><code class="hljs sh">perl -i.bak -pe <span class="hljs-string">'s/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg'</span> hoge.cs</code></pre><p>一括置換は以下。</p>
-<pre><code class="hljs sh">find . -name <span class="hljs-string">'*.cs'</span> -<span class="hljs-built_in">exec</span> perl -i.bak -pe <span class="hljs-string">'s/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg'</span> {} \;</code></pre>
         </div>
       </div>
     </div>

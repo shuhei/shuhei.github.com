@@ -57,6 +57,44 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/07/28/former-declaration-of-class/>クラスの前方宣言</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 28, 2009</span>
+          - <span class="category">C++</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>1 時間ほどハマりました。下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
+<blockquote>
+<p>C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
+</blockquote>
+<pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> GREETING { HELLO, NI_HAO, CIAO };
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">GREETING <span class="hljs-title">foo</span><span class="hljs-params">(B* b)</span></span>;  <span class="hljs-comment">// コンパイルエラー！</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bar</span><span class="hljs-params">(A* a)</span></span>;
+}</code></pre><p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<code>class A</code> の宣言の前に B の前方宣言が必要なんですね。</p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span>;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
+  <span class="hljs-comment">// ...</span>
+}</code></pre><p>一回勉強したのですが、すっかり忘れていました。この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/07/27/wanna-refactor-with-xcode/>XCode でリファクタリングがしたい</a>
         </h1>
         <div class="meta">
@@ -92,28 +130,6 @@
 <p>その間使っていたのは NetNewsWire。iPhone アプリは軽快動作でステキな出来なのですが、本体のウェブサイトが重すぎて使い物にならない代物で、いつか乗り換えたいと思っていました。</p>
 <p>先日 Byline が何かのセールで 200 円くらいにまで下がっていたので購入。使ってみたところ、カテゴリ毎だけでなくフィード毎の分類もできるようになっていたので、乗り換えを決意。ウェブサービスの方を Google Reader へと乗り換え、めでたく移行完了。</p>
 <p>Byline は動作と見た目を合わせて妙な安定感があっていいですね。さらに画像のキャッシュはとても便利。通勤電車の中でもストレスフリーでフィードを読めます。RSS の読みすぎで目が悪くなったり読書の時間が減っても困るので、ほどほどにしようとは思いますが。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/26/build-google-test-on-xcod/>Xcode での Google Test のビルド</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 26, 2009</span>
-          - <span class="category">C/C++</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。
-Google Code のサイトから落としてきた tar.gz ではダメでした。</p>
-<p>たしかに <a href="http://code.google.com/p/googletest/wiki/GoogleTestXcodeGuide">GoogleTestXcodeGuide</a> には Subversion から落としてね、と書いてあります。
-Subversion からでないとダメとは書いてありませんが、文句は言えませんね。</p>
 
         </div>
       </div>

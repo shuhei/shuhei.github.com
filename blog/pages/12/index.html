@@ -57,6 +57,46 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2015/02/15/playing-with-vanilla-webgl-api/>Playing with vanilla WebGL API</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Feb 15, 2015</span>
+          - <span class="category">JavaScript</span>, <span class="category">WebGL</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Started writing in English on a whim.</p>
+<p>I&#39;ve been learning vanilla WebGL with <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> since the last weekend. It took some time for me to understand concepts like array buffer and element buffer but it was fun to learn the basics that we stand on.</p>
+<p>The team behind <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> creates a set of utility modules called <a href="http://stack.gl/"><code>stackgl</code></a>. It embraces the UNIX philosophy, &quot;Write programs that do one thing and do it well.&quot; Even though the workshop doesn&#39;t use <code>stackgl</code> libraries, I liked the way the exercises were organized as small modules.</p>
+<p>Before moving to another workshop module, <a href="https://github.com/stackgl/shader-school">shader-school</a>, I ported my old openFrameworks experiment with vanilla WebGL and Audio User Media in order to check if I could use what I learned so far.</p>
+<p><a href="/blurred-cube"><span class="responsive-image-wrapper" style="max-width: 500px;"><span class="responsive-image-inner" style="padding-top: 86.4%;"><img class="responsive-image" src="/images/blurred-cube-webgl.png" alt="Blurred Cube"></span></span></a></p>
+<p><a href="/blurred-cube">Blurred Cube</a></p>
+<p>The hardest part was randomly moving the cube&#39;s edges. Because I couldn&#39;t randomly move vertices on the array buffer, I had to rewrite buffer data frame by frame. It might be inefficient, but it works well on my laptop at least.</p>
+<h2 id="steps-for-drawing-with-webgl">Steps for drawing with WebGL</h2>
+<p>The exercises on <a href="https://github.com/stackgl/webgl-workshop">webgl-workshop</a> split steps into two phases, <code>init</code> and <code>draw</code>, like <a href="https://processing.org/">Processing</a>. Here I leave a note on general steps in them for later use.</p>
+<h3 id="init">Init</h3>
+<ol>
+<li>Compile shaders and link them into a program. If you have attributes in vertex shader, don&#39;t forget to set attribute location before linking. If you have uniforms, get their locations after linking for later use.</li>
+<li>Create buffers and assign data to them.</li>
+<li>Create element buffers and assign data to them if necessary.</li>
+<li>Create textures and assign data to them if necessary. You can use textures in fragment shader via texture unit number as uniform.</li>
+</ol>
+<h3 id="draw">Draw</h3>
+<ol>
+<li>Use program, assign data to uniforms. If they don&#39;t change frame by frame, you can do this in the setup phase.</li>
+<li>Bind buffer. If you have only one buffer, you may have done this in the setup phase.</li>
+<li>Draw arrays or elements.</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2014/11/13/karma--to--preprocessor/>karma-6to5-preprocessor</a>
         </h1>
         <div class="meta">
@@ -102,34 +142,6 @@
 <li>ダブルタップで視点を切り替えられるように。ダブルタップやダブルクリックのイベントというのは特にないので、<code>touchstart</code> の時に一個前のイベントの時刻と比較して判断しています。</li>
 </ul>
 <p>早速買い換えた iPhone 6 Plus でぬるぬる動く上に、iPhone 5 でも余裕で動きます。直接触れるので、画面は小さいものの PC より楽しいなあと思いました。今後はモバイルでの WebGL が面白そうですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2014/08/23/grunt-and-es6-modules/>Grunt と ES6 Modules</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 23, 2014</span>
-          - <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。</p>
-<h2 id="introduction-to-grunt"><a href="https://speakerdeck.com/shuhei/introduction-to-grunt">Introduction to Grunt</a></h2>
-<p>こっちは、デザイナー向けに Grunt を紹介したときの資料。これまでよくわからず使っていた Grunt の設定ファイルについてちゃんと調べました。Qiita の<a href="http://qiita.com/shuhei/items/1156a795903b55d6b0d7">Grunt の設定オブジェクトの秘密</a> にも詳しく書いてます。やっとわかったマルチタスク。</p>
-<p>しかし、勉強会では結局何ができるか、どう運用するかの話が中心で、設定ファイルの話はしませんでした。初めての人には、細かいことよりも、まずは何ができるかですよね。良い経験になりました。</p>
-<script async class="speakerdeck-embed" data-id="39e78f00fade0131d88d6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-<h2 id="start-es6-today"><a href="https://speakerdeck.com/shuhei/start-es6-modules-today">Start ES6 Today</a></h2>
-<p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
-<p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
-<script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
         </div>
       </div>

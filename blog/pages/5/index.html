@@ -57,6 +57,104 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2018/09/16/node-js-under-a-microscope/>Node.js under a Microscope: CPU FlameGraph and FlameScope</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Sep 16, 2018</span>
+          - <span class="category">Node.js</span>, <span class="category">Linux</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.</p>
+<h2 id="background">Background</h2>
+<p>I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.</p>
+<p>My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took <code>tcpdump</code> and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or <em>someone else</em>.</p>
+<h2 id="cpu-profiling-with-linux-perf-command">CPU Profiling with Linux <code>perf</code> Command</h2>
+<p>Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it <strong>on production</strong>, so profiling was naturally a good fit because of its smaller overhead.</p>
+<p>For Node.js, there are mainly two different tools. One is <a href="https://github.com/v8/v8/wiki/V8-Profiler">V8 profiler</a>, and the other is <a href="https://perf.wiki.kernel.org/index.php/Main_Page">Linux perf</a>. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux <code>perf</code> can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to <a href="https://github.com/nodejs/diagnostics/issues/148">Node CPU Profiling Roadmap</a>, it seems that V8 profiler is the one officially supported by the V8 team, but Linux <code>perf</code> will keep working for a while. After all, I picked Linux <code>perf</code> because of low performance-overhead and small intervention to applications.</p>
+<p>Linux <code>perf record</code> records stack traces into a binary file called <code>perf.data</code> by default. The binary file has only addresses and file names of functions. <code>perf script</code> converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Install dependencies for `perf` command</span>
+sudo apt-get install linux-tools-common linux-tools-$(uname -r)
+<span class="hljs-comment"># Test `perf` command</span>
+sudo perf top
+
+<span class="hljs-comment"># Record stack traces 99 times per second for 30 seconds</span>
+sudo perf record -F 99 -p <span class="hljs-variable">${pid}</span> -g -- sleep 30s
+<span class="hljs-comment"># Generate human readable stack traces</span>
+sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?</p>
+<h2 id="cpu-flame-graph">CPU Flame Graph</h2>
+<p><a href="http://www.brendangregg.com/flamegraphs.html">CPU Flame Graph by Brendan Gregg</a> is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.</p>
+<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 55.714285714285715%;"><img class="responsive-image" src="/images/flamegraph.png" alt="CPU Flame Graph"></span></span>
+<em>A CPU Flame Graph from <a href="https://github.com/shuhei/perf-playground">a sample application</a></em></p>
+<p>I found some insights about the application on production with CPU Flame Graph:</p>
+<ul>
+<li>React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, <code>JSON.parse()</code> was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.</li>
+<li>Gzip decompression was using the almost same amount of CPU as React server-side rendering.</li>
+</ul>
+<p>There are a few tools like <a href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> and <a href="https://github.com/davidmarkclements/0x">0x</a> to generate CPU Flame Graph from Linux <code>perf</code> stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.</p>
+<h2 id="flamescope">FlameScope</h2>
+<p><a href="https://github.com/Netflix/flamescope">FlameScope by Netflix</a> is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.</p>
+<p><span class="responsive-image-wrapper" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 68.71428571428572%;"><img class="responsive-image" src="/images/flamescope-annotated.png" alt="FlameScope"></span></span>
+<em>Image from <a href="https://github.com/Netflix/flamescope">Netflix/flamescope</a></em></p>
+<p>If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.</p>
+<p>To use FlameScope, check out the repository and run the python server. Then put stack trace files from <code>perf script</code> into <code>examples</code> directory, and open <code>http://localhost:5000</code>.</p>
+<p>I found a couple of exciting insights about the application on production using this tool.</p>
+<h3 id="example-1-heavy-tasks-in-the-master-process">Example 1: Heavy Tasks in the Master Process</h3>
+<p>The application used <a href="https://nodejs.org/api/cluster.html">the <code>cluster</code> module</a> to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.</p>
+<p>The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using <code>JSON.stringify()</code> and <code>JSON.parse()</code> to deep-copy objects!</p>
+<h3 id="example-2-frequent-garbage-collections">Example 2: Frequent Garbage Collections</h3>
+<p>FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.</p>
+<p>The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s <a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection">generational garbage collector</a>.</p>
+<p>The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!</p>
+<h2 id="nodejs-gotchas">Node.js Gotchas</h2>
+<p><code>perf script</code> collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:</p>
+<ol>
+<li>Run your Node.js process with <code>--perf-basic-prof-only-functions</code> option. It generates a log file at <code>/tmp/perf-${pid}.map</code>. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in <code>/tmp/perf-${pid}.map</code> get outdated. <a href="https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c">I wrote a script to fix the issue</a>.</li>
+<li>Use <a href="https://github.com/mmarchini/node-linux-perf">mmarchini/node-linux-perf</a>. It generates the same <code>/tmp/perf-${pid}.map</code> as <code>--perf-basic-prof-only-functions</code> does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.</li>
+</ol>
+<p>In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven&#39;t tried them on production because the stack traces were already good enough for me:</p>
+<ul>
+<li><code>--no-turbo-inlining</code> turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.</li>
+<li><code>--interpreted-frames-native-stack</code> fixes <code>Builtin:InterpereterEntryTrampoline</code> in stack traces. It is available from Node.js 10.4.0. Check out &quot;Interpreted Frames&quot; in <a href="https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961">Updates from the Diagnostics Summit</a> for more details.</li>
+</ul>
+<h2 id="docker-gotchas">Docker Gotchas</h2>
+<p>It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux <code>perf</code> with Docker:</p>
+<ol>
+<li>Run <code>perf record</code> and <code>perf script</code> in the same Docker container as your application is running</li>
+<li>Run <code>perf record</code> and <code>perf script</code> in the host OS</li>
+</ol>
+<p>I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux <code>perf</code> available on it.</p>
+<p>To run <code>perf record</code> in the host OS, we need to figure out <code>pid</code> of the application process in the host.</p>
+<pre><code class="hljs ">$ ps ax | grep -n &#39;node --perf&#39;
+21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
+30481 pts/3    S+     0:00 grep --color=auto node --perf
+# or
+$ pgrep -f &#39;node --perf&#39;
+21574
+
+$ sudo perf record -F 99 -p 21574 -g -- sleep 30s</code></pre><p><code>perf script</code> collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with <code>perf script</code> and <code>/tmp/${pid}.map</code> files that applications generate. However, <code>perf script</code> in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because <a href="https://lkml.org/lkml/2017/7/19/790">its <code>perf</code> command knows containers</a>. But it was the case for me because I was not using the latest kernel.)</p>
+<p>I learned how to overcome the issue from <a href="http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/">Making FlameGraphs with Containerized Java</a>. I just copied necessary files from the container to the host.</p>
+<pre><code class="hljs sh"><span class="hljs-comment"># Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.</span>
+sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
+sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22</code></pre><p>To copy symbol map files, we need to find the <code>pid</code> in the container. We can do it by checking <code>/proc/${host_pid}/status</code>.</p>
+<pre><code class="hljs ">$ cat /proc/21574/status | grep NSpid
+NSpid:  21574   6
+$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map</code></pre><p>Now everything is ready! Then we can use <code>perf script</code> as usual.</p>
+<pre><code class="hljs sh">sudo perf script &gt; stacks.<span class="hljs-variable">${pid}</span>.out</code></pre><p>I set up <a href="https://github.com/shuhei/perf-playground">a sample project</a> for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Linux <code>perf</code> provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.</p>
+<p>There are some gotchas to profile Node.js applications on Docker with Linux <code>perf</code>. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2017/12/25/2017-in-review/>2017 in Review</a>
         </h1>
         <div class="meta">
@@ -173,108 +271,6 @@ fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2</code></
 <li>Processes in a Docker container run directly in host OS</li>
 <li>Understand what you are measuring exactly, especially in a Docker container</li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2017/05/13/http-request-timeouts-in-javascript/>HTTP request timeouts in JavaScript</a>
-        </h1>
-        <div class="meta">
-          <span class="date">May 14, 2017</span>
-          - <span class="category">JavaScript</span>, <span class="category">Node.js</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.</p>
-<p>As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.</p>
-<h2 id="nodejs-httphttps">Node.js &quot;http&quot;/&quot;https&quot;</h2>
-<p>Let&#39;s start with the standard library of Node.js. <code>http</code> and <code>https</code> provide <code>request()</code> function, which makes HTTP requests.</p>
-<h3 id="timeouts-on-httprequest">Timeouts on <code>http.request()</code></h3>
-<p><a href="http://nodejs.org/api/http.html#http_http_request_options_callback"><code>http.request()</code></a> takes a <code>timeout</code> option. Its documentation says:</p>
-<blockquote>
-<p><code>timeout</code> <code>&lt;number&gt;</code>: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.</p>
-</blockquote>
-<p>So what does it actually do? It internally calls <code>net.createConnection()</code> with its <code>timeout</code> option, which eventually calls <code>socket.setTimeout()</code> before the socket starts connecting.</p>
-<p>There is also <a href="http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback"><code>http.ClientRequest.setTimeout()</code></a>. Its documentation says:</p>
-<blockquote>
-<p>Once a socket is assigned to this request and is connected <code>socket.setTimeout()</code> will be called.</p>
-</blockquote>
-<p>So this also calls <a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback"><code>socket.setTimeout()</code></a>.</p>
-<p>Either of them doesn&#39;t close the connection when the socket timeouts but only emits a <code>timeout</code> event.</p>
-<p>So, what does <code>socket.setTimeout()</code> do? Let&#39;s check.</p>
-<h3 id="netsocketsettimeout">net.Socket.setTimeout()</h3>
-<p><a href="http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback">The documentation</a> says:</p>
-<blockquote>
-<p>Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default <code>net.Socket</code> does not have a timeout.</p>
-</blockquote>
-<p>OK, but what does &quot;inactivity on the socket&quot; exactly mean? In a happy path, a TCP socket follows the following steps:</p>
-<ol>
-<li>Start connecting</li>
-<li>DNS lookup is done: <code>lookup</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
-<li>Connection is made: <code>connect</code> event (Doesn&#39;t happen in HTTP Keep-Alive)</li>
-<li>Read data or write data</li>
-</ol>
-<p>When you call <code>socket.setTimeout()</code>, a timeout timer is created and restarted before connecting, after <code>lookup</code>, after <code>connect</code> and each data read &amp; write. So the <code>timeout</code> event is emitted on one of the following cases:</p>
-<ul>
-<li>DNS lookup doesn&#39;t finish in the given timeout</li>
-<li>TCP connection is not made in the given timeout after DNS lookup</li>
-<li>No data read or write in the given timeout after connection, previous data read or write</li>
-</ul>
-<p>This might be a bit counter-intuitive. Let&#39;s say you called <code>socket.setTimeout(300)</code> to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request &amp; response took more than 500 ms, <code>timeout</code> event is not emitted at all.</p>
-<p>Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.</p>
-<p>Then what happens if timeouts happen in all of the steps? As far as I tried, <code>timeout</code> event is triggered only once.</p>
-<p>Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. <code>timeout</code> set in an HTTP request does not affect subsequent HTTP requests because <a href="https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546">the timeout is cleaned up when it&#39;s kept alive</a>.</p>
-<h3 id="http-keep-alive--tcp-keep-alive">HTTP Keep-Alive &amp; TCP Keep-Alive</h3>
-<p>This is not directly related to timeout, but I found Keep-Alive options in <code>http</code>/<code>https</code> are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of <a href="http://nodejs.org/api/http.html#http_new_agent_options"><code>http.Agent</code> constructor</a> has <code>keepAlive</code> for HTTP Keep-Alive and <code>keepAliveMsecs</code> for TCP Keep-Alive.</p>
-<p>So, how are they different?</p>
-<ul>
-<li>HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.</li>
-<li>TCP Keep-Alive closes invalid connections, and it is normally handled by OS.</li>
-</ul>
-<h3 id="so">So?</h3>
-<p><code>http</code>/<code>https</code> use <code>socket.setTimeout()</code> whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.</p>
-<h2 id="third-party-modules">Third-party modules</h2>
-<h3 id="request-module">&quot;request&quot; module</h3>
-<p><a href="https://github.com/request/request">request</a> is a very popular HTTP request library that supports many convenient features on top of <code>http</code>/<code>https</code> module. Its README says:</p>
-<blockquote>
-<p><code>timeout</code> - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.</p>
-</blockquote>
-<p>However, as far as I checked the implementation, <code>timeout</code> is not applied to the timing of response headers as of v2.81.1.</p>
-<p>Currently this module emits the two types of timeout errors:</p>
-<ul>
-<li><code>ESOCKETTIMEDOUT</code>: Emitted from <code>http.ClientRequest.setTimeout()</code> described above, which uses <code>socket.setTimeout()</code>.</li>
-<li><code>ETIMEDOUT</code>: Emitted when a connection is not established in the given timeout. It was applied to the timing of response headers before v2.76.0.</li>
-</ul>
-<p>There is <a href="https://github.com/request/request/issues/2535">a GitHub issue</a> for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.</p>
-<p>By the way, <code>request</code> provides a useful timing measurement feature that you can enable with <code>time</code> option. It will help you to define a proper timeout value.</p>
-<h3 id="axios-module">&quot;axios&quot; module</h3>
-<p><a href="https://github.com/mzabriskie/axios"><code>axios</code></a> is another popular library that uses <code>Promise</code>. Like <code>request</code> module&#39;s README, its <code>timeout</code> option timeouts if the response status code and headers don&#39;t arrive in the given timeout.</p>
-<h2 id="browser-apis">Browser APIs</h2>
-<p>While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.</p>
-<h3 id="xmlhttprequest">XMLHttpRequest</h3>
-<p><a href="http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout"><code>XMLHttpRequest.timeout</code></a> aborts a request after the given timeout and calls <code>ontimeout</code> event listeners. The documentation does not explain the exact timing, but I guess that it is until <code>readyState === 4</code>, which means that the entire response body has arrived.</p>
-<h3 id="fetch">fetch()</h3>
-<p>As far as I read <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch()</code>&#39;s documentation on MDN</a>, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using <a href="http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a>.</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withTimeout</span>(<span class="hljs-params">msecs, promise</span>) </span>{
-  <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-      reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'timeout'</span>));
-    }, msecs);
-  });
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race([timeout, promise]);
-}
-
-withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-string">'https://foo.com/bar/'</span>))
-  .then(doSomething)
-  .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
 
         </div>
       </div>

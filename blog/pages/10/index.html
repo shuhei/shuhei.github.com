@@ -57,6 +57,47 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2015/10/25/node-executable-module/>Node.js executable module</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 25, 2015</span>
+          - <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it&#39;s OK for simple modules.</p>
+<p>To achieve it, you need to detect whether it&#39;s executed as an entry point. According to <a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module">the official documentation of Node</a>:</p>
+<blockquote>
+<p>When a file is run directly from Node.js, <code>require.main</code> is set to its module. That means that you can determine whether a file has been run directly by testing</p>
+<pre><code class="hljs ">require.main === module</code></pre></blockquote>
+<p>For example:</p>
+<pre><code class="hljs js"><span class="hljs-meta">#!/usr/bin/env node</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-built_in">module</span>.exports = sum;
+
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">require</span>.main === <span class="hljs-built_in">module</span>) {
+  <span class="hljs-keyword">var</span> a = <span class="hljs-built_in">parseInt</span>(process.argv[<span class="hljs-number">2</span>], <span class="hljs-number">10</span>);
+  <span class="hljs-keyword">var</span> b = <span class="hljs-built_in">parseInt</span>(process.argv[<span class="hljs-number">3</span>], <span class="hljs-number">10</span>);
+  <span class="hljs-built_in">console</span>.log(sum(a, b));
+}</code></pre><p>Then you can use it as an executable and a module.</p>
+<pre><code class="hljs sh">$ node sum.js 3 4
+7
+$ node
+&gt; require(<span class="hljs-string">'./sum'</span>)(3, 4)
+7</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2015/10/18/color-prompt-by-exit-code/>Color prompt by exit code</a>
         </h1>
         <div class="meta">
@@ -228,62 +269,6 @@ FactoryGirl.create(<span class="hljs-symbol">:comment</span>, <span class="hljs-
 <li><a href="https://robots.thoughtbot.com/speed-up-tests-by-selectively-avoiding-factory-girl">Speed Up Tests by Selectively Avoiding Factory Girl</a></li>
 <li><a href="https://robots.thoughtbot.com/use-factory-girls-build-stubbed-for-a-faster-test">Use Factory Girl&#39;s build_stubbed for a Faster Test Suite</a></li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2015/09/21/using-highlight-js-with-marked/>Using highlight.js with marked</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 21, 2015</span>
-          - <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>I use <a href="https://github.com/chjj/marked">marked</a> to parse markdown files of posts and pages, and <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> to highlight code blocks in them for this site. Here are problems that I came across to make them work together and a workaround for them.</p>
-<p>marked&#39;s README has <a href="https://github.com/chjj/marked#highlight">an example on how to configure it to work with highlight.js</a> but it doesn&#39;t add <code>hljs</code> classes on <code>&lt;code&gt;</code> tags that highlight.js uses to style code blocks. At the moment, you have to <a href="https://github.com/chjj/marked/pull/418#issuecomment-57291402">prepare your own renderer</a> to achieve it.</p>
-<p>Also, you need to check whether the language given by marked is a valid one for highlight.js. <a href="https://github.com/chjj/marked/issues/311#issuecomment-31182632">highlight.js seems to have had <code>LANGUAGES</code> property a few years ago</a> but now <code>getLanguage()</code> method serves as a substitute for it.</p>
-<p>Here&#39;s the outcome:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> marked, { Renderer } <span class="hljs-keyword">from</span> <span class="hljs-string">'marked'</span>;
-<span class="hljs-keyword">import</span> highlightjs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>;
-
-<span class="hljs-keyword">const</span> escapeMap = {
-  <span class="hljs-string">"&amp;"</span>: <span class="hljs-string">"&amp;amp;"</span>,
-  <span class="hljs-string">"&lt;"</span>: <span class="hljs-string">"&amp;lt;"</span>,
-  <span class="hljs-string">"&gt;"</span>: <span class="hljs-string">"&amp;gt;"</span>,
-  <span class="hljs-string">'"'</span>: <span class="hljs-string">"&amp;quot;"</span>,
-  <span class="hljs-string">"'"</span>: <span class="hljs-string">"&amp;#39;"</span>
-};
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeForHTML</span>(<span class="hljs-params">input</span>) </span>{
-  <span class="hljs-keyword">return</span> input.replace(<span class="hljs-regexp">/([&amp;&lt;&gt;'"])/g</span>, char =&gt; escapeMap[char]);
-}
-
-<span class="hljs-comment">// Create your custom renderer.</span>
-<span class="hljs-keyword">const</span> renderer = <span class="hljs-keyword">new</span> Renderer();
-renderer.code = <span class="hljs-function">(<span class="hljs-params">code, language</span>) =&gt;</span> {
-  <span class="hljs-comment">// Check whether the given language is valid for highlight.js.</span>
-  <span class="hljs-keyword">const</span> validLang = !!(language &amp;&amp; highlightjs.getLanguage(language));
-
-  <span class="hljs-comment">// Highlight only if the language is valid.</span>
-  <span class="hljs-comment">// highlight.js escapes HTML in the code, but we need to escape by ourselves</span>
-  <span class="hljs-comment">// when we don't use it.</span>
-  <span class="hljs-keyword">const</span> highlighted = validLang
-    ? highlightjs.highlight(language, code).value
-    : escapeForHTML(code);
-
-  <span class="hljs-comment">// Render the highlighted code with `hljs` class.</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class="hljs <span class="hljs-subst">${language}</span>"&gt;<span class="hljs-subst">${highlighted}</span>&lt;/code&gt;&lt;/pre&gt;`</span>;
-};
-
-<span class="hljs-comment">// Set the renderer to marked.</span>
-marked.setOptions({ renderer });</code></pre><p><strong>EDIT on Feb 24, 2019:</strong> The code snippet above was originally meant to be used for this blog and didn&#39;t have proper XSS protection for handling user inputs. Oleksii pointed out in a comment that it was vulnerable to XSS when <code>language</code> was not specified. I fixed the issue by escaping <code>code</code> for HTML. Thanks a lot, Oleksii!</p>
 
         </div>
       </div>

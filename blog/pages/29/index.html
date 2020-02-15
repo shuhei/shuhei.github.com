@@ -57,6 +57,62 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/11/grasse/>草</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 11, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="https://www.flickr.com/photos/branchiopoda/3998672572/" title="Grasses.pde by shuhei kagawa, on Flickr"><span class="responsive-image-wrapper" style="max-width: 495px;"><span class="responsive-image-inner" style="padding-top: 28.28282828282828%;"><img class="responsive-image" src="https://farm3.static.flickr.com/2619/3998672572_f846cfe28f_o.png" alt="Grasses.pde"></span></span></a></p>
+<p>パソコンの中にあったのを、絵作りのとこだけアップ。そういえば、何か作っていたのでした。
+備忘のために。</p>
+<pre><code class="hljs processing"><span class="hljs-built_in">int</span> NUM;
+<span class="hljs-built_in">float</span>[] grasses;
+
+<span class="hljs-keyword">void</span> <span class="hljs-title">setup</span>()
+{
+  <span class="hljs-built_in">size</span>(<span class="hljs-number">495</span>, <span class="hljs-number">140</span>);
+  <span class="hljs-built_in">smooth</span>();
+  <span class="hljs-built_in">background</span>(<span class="hljs-number">255</span>);
+
+  NUM = <span class="hljs-built_in">width</span>;
+
+  grasses = <span class="hljs-keyword">new</span> <span class="hljs-built_in">float</span>[NUM];
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++)
+  {
+    grasses[i] = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) * <span class="hljs-built_in">random</span>(<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+  }
+  drawGrasses();
+  <span class="hljs-built_in">save</span>(<span class="hljs-string">"grasses.png"</span>);
+}
+
+<span class="hljs-keyword">void</span> drawGrasses()
+{
+  <span class="hljs-built_in">noFill</span>();
+  <span class="hljs-built_in">colorMode</span>(HSB);
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM; i++)
+  {
+    <span class="hljs-built_in">stroke</span>(<span class="hljs-built_in">random</span>(<span class="hljs-number">50</span>, <span class="hljs-number">100</span>), <span class="hljs-number">200</span>, <span class="hljs-number">200</span>);
+    <span class="hljs-built_in">strokeWeight</span>(<span class="hljs-built_in">width</span> * <span class="hljs-number">0.0015</span> * <span class="hljs-built_in">random</span>(<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>));
+
+    <span class="hljs-built_in">int</span> x = i * <span class="hljs-built_in">width</span> / (NUM - <span class="hljs-number">1</span>);
+    <span class="hljs-built_in">line</span>(x,
+         <span class="hljs-built_in">height</span>,
+         x + <span class="hljs-built_in">width</span> * <span class="hljs-built_in">random</span>(<span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>) * <span class="hljs-built_in">random</span>(<span class="hljs-number">-0.15</span>, <span class="hljs-number">0.15</span>),
+         <span class="hljs-built_in">height</span> * (<span class="hljs-number">1.0</span> - grasses[i] * <span class="hljs-number">0.3</span> - <span class="hljs-number">0.2</span>));
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/10/python-challenge-from-0-to-5/>Python Challenge Lv. 0 - 5</a>
         </h1>
         <div class="meta">
@@ -141,29 +197,6 @@ obj = pickle.load(urllib.urlopen(uri))
         <div>
           <p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
 <pre><code class="hljs rb">ret = system <span class="hljs-string">"cmd.exe /c dir"</span></code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/26/tweetstat/>TweetStats</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 26, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://tweetstats.com/">TweetStats</a> をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。</p>
-<p>僕のは <a href="http://tweetstats.com/graphs/7to3">こんな感じ</a> 。
-時系列で発言数を見ると、2007 年頃は IM ごしにかなりつぶやいていて、2008 年頃はあまり使わなくなり、iPhone 使うようになってまた使いだした、という感じです。曜日別で見ると、何故か月、木、土の午後が活発ですね。</p>
-<p>発言した単語でタグクラウドのようなものを作ってくれる Tweet Cloud の方は、有意な情報があまり得られませんでした。日本語はスペース区切りでないためです。
-<a href="http://mecab.sourceforge.net/">MeCab</a> や <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">Yahoo! の日本語形態素解析</a> などを使って、しっかり日本語に対応してみると面白いかもしれません。</p>
-
         </div>
       </div>
     </div>

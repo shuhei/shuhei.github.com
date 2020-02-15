@@ -57,6 +57,43 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/22/japanese-in-xml-comment-makes-monodevelop-down/>OSX 上の MonoDevelop の日本語対応</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 22, 2009</span>
+          - <span class="category">C#</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。
+プレビュー版だけあっていろいろ動作があやしいです。そして日本語、というかマルチバイト対応がさっぱりです。
+以下、できるだけ日本語使えるようにするためのメモ。</p>
+<h2 id="スタートページやメニューの文字化け">スタートページやメニューの文字化け</h2>
+<p>まず目につくのがこれ。<code>/Library/Framework/Mono.Framework/Version/Current/etc/pango/pango.aliases</code> というファイルを作成し、以下の内容を書くと直るようです。</p>
+<pre><code class="hljs ">&quot;Lucida Grande&quot; = &quot;Hiragino Kaku Gothic Pro&quot;</code></pre><p>pango なるもののバグだとか。</p>
+<p>via <a href="http://kki-zakki.blogspot.com/2008/12/monodevelop-20-alphamac-os-x.html">っき雑記: MonoDevelop 2.0 Alpha の Mac OS X 版で日本語を表示する方法</a></p>
+<h2 id="ファイルは-utf-8-でないと化ける">ファイルは UTF-8 でないと化ける</h2>
+<p>Shift-JIS のファイルを UTF-8 に置換しましょう。VisualStudio に戻した時にも問題ないはずです。</p>
+<pre><code class="hljs sh">find . -name <span class="hljs-string">'*.cs'</span> -print0 | xargs -0 nkf -w -Lu --overwrite</code></pre><h2 id="なんと日本語が入力できない">なんと日本語が入力できない</h2>
+<p>我慢しましょう。どうしてもという時はコピペができます。</p>
+<h2 id="xml-内の日本語">XML 内の日本語</h2>
+<p>XML コメントの中の一行で日本語が何文字か続いた後、改行せずにタグを閉じると落ちるようです。
+つまり、以下のようなもの。</p>
+<pre><code class="hljs ">/// &lt;param name=&quot;hoge&quot;&gt;ほげほげほげ&lt;/param&gt;</code></pre><p>当面の回避策は、タグを閉じる前に改行することでしょうか。</p>
+<pre><code class="hljs ">/// &lt;param name=&quot;hoge&quot;&gt;ほげほげほげ
+/// &lt;/param&gt;</code></pre><p>ちょっとどうかと思いますが、これなら落ちません。</p>
+<h3 id="置換">置換</h3>
+<pre><code class="hljs sh">perl -i.bak -pe <span class="hljs-string">'s/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg'</span> hoge.cs</code></pre><p>一括置換は以下。</p>
+<pre><code class="hljs sh">find . -name <span class="hljs-string">'*.cs'</span> -<span class="hljs-built_in">exec</span> perl -i.bak -pe <span class="hljs-string">'s/(\t+\/\/\/ )(.+)(&lt;\/(param|returns)&gt;)/$1$2\n$1$3/mg'</span> {} \;</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/22/vim-settings-for-each-language/>言語ごとに vim の設定を変える</a>
         </h1>
         <div class="meta">
@@ -91,30 +128,6 @@
 改めて Apple Developer Connection の How-to ビデオを見て謎が解けました。証明書を作るときの手順に間違いがあったようです。</p>
 <p>キーチェーンアクセス &#8594; 証明書アシスタント -&gt; 認証局に証明書を要求&#8230; で出てくるダイアログで <strong>鍵ペア情報を指定</strong> というチェックボックスにチェックしていなかったのが原因のようでした。</p>
 <p>たしか参考にした第三者のサイトのスクリーンショットで、ここにチェックが入っていなかったためそのままにしていたのです。困った時は公式ページ、という教訓ですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/08/02/wordpress-textile-plugin/>Wordpress の Textile プラグイン</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 2, 2009</span>
-          - <span class="category">Wordpress</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>どうもしっくり来るのがありませんでした。</p>
-<p><a href="http://wordpress.org/extend/plugins/textile-2/">Textile2</a> というのが直球のネーミングで良さそうだったのですが、日本語が化けるのでやめました。
-<a href="http://wordpress.org/support/topic/253662">対策</a> を試すと大体直ったものの、 <code>pre</code> タグで囲った部分の文字化けが直らず。 <code>pre</code> タグを使うのはコードだけなので、日本語を使わなければいい話なのですが、コメントは日本語で書きたいので。
-ヘッダタグのオフセットなど素敵な機能がついていただけに残念です。</p>
-<p>結局 <a href="http://wordpress.org/extend/plugins/textiler/">Textiler</a> というのを採用。何だか評判がよくありませんが、文字化けはしないようです。ただ、リストが途中で分割されてしまうなど不思議な動きをしていますが・・・。</p>
-<p>何はともあれ、Textile を使えるようになりました。タグを打つ必要がなく、とてもいいですね。やはり CMS はこうでなくては。</p>
 
         </div>
       </div>
