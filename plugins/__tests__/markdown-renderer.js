@@ -54,7 +54,7 @@ describe("image", () => {
     renderer.setImageSizes(new Map([["foo.png", { width: 100, height: 33 }]]));
 
     expect(renderer.image("/images/foo.png", undefined, "alt of foo")).toBe(
-      '<span class="responsive-image-wrapper" style="max-width: 100px;"><span class="responsive-image-inner" style="padding-top: 33%;"><img class="responsive-image" src="/images/foo.png" alt="alt of foo"></span></span>'
+      '<span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 100px;"><span class="responsive-image-inner" style="padding-top: 33%;"><img class="responsive-image" src="/images/foo.png" alt="alt of foo"></span></span></span>'
     );
   });
 
@@ -62,7 +62,7 @@ describe("image", () => {
     expect(
       renderer.image("/images/foo.png", "title of foo =200x89", "alt of foo")
     ).toBe(
-      '<span class="responsive-image-wrapper" style="max-width: 200px;"><span class="responsive-image-inner" style="padding-top: 44.5%;"><img class="responsive-image" src="/images/foo.png" alt="alt of foo" title="title of foo"></span></span>'
+      '<span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 200px;"><span class="responsive-image-inner" style="padding-top: 44.5%;"><img class="responsive-image" src="/images/foo.png" alt="alt of foo" title="title of foo"></span></span></span>'
     );
   });
 });
