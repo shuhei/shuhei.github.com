@@ -172,12 +172,17 @@ a:hover {
 .content img {
   max-width: 100%;
 }
+
 /*
  * For more details of responsive images,
  * see the custom markdown renderer's `image` method.
  */
 .responsive-image-wrapper {
   display: block;
+}
+.responsive-image-outer {
+  display: block;
+  margin: 0 auto;
 }
 .responsive-image-inner {
   display: block;
@@ -416,5 +421,9 @@ blockquote cite:before {
   li .hljs {
     margin-left: 0;
     border-radius: 0.4em;
+  }
+  .responsive-image-wrapper {
+    margin-left: -20px;
+    margin-right: -20px;
   }
 }

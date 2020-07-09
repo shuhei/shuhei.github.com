@@ -76,13 +76,16 @@ class CustomRenderer extends marked.Renderer {
       // Using `<span>` tags instead of `<div>` and making them block with CSS because `<p>` can't
       // contain block elements.
       return (
+        // A wrapper to add negative margin to fit into the screen width on mobile.
+        `<span class="responsive-image-wrapper">` +
         // Another wrapper to limit the width to the image width when the container is wider than the
         // image. This can't be merged with the inner wrapper because `padding-top` percentage is
         // relative to the width of the containing block.
-        `<span class="responsive-image-wrapper" style="max-width: ${width}px;">` +
+        `<span class="responsive-image-outer" style="max-width: ${width}px;">` +
         // `padding-top` to reserve a space with the aspect ratio.
         `<span class="responsive-image-inner" style="padding-top: ${aspectRatio}%;">` +
         `<img class="responsive-image" ${renderAttrs({ src, alt, title })}>` +
+        "</span>" +
         "</span>" +
         "</span>"
       );
