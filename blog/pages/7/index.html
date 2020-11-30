@@ -57,6 +57,39 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2017/01/05/main-jsnext-main-and-module/>main, jsnext:main and module</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 5, 2017</span>
+          - <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Node module&#39;s <code>package.json</code> has <code>main</code> property. It&#39;s the entry point of a package, which is exported when a client <code>require</code>s the package.</p>
+<p>Recently, I got <a href="https://github.com/shuhei/material-colors/issues/13">an issue</a> on one of my popular GitHub repos, <code>material-colors</code>. It claimed that &quot;colors.es2015.js const not supported in older browser (Safari 9)&quot;, which looked pretty obvious to me. ES2015 is a new spec. Why do older browsers support it?</p>
+<p>I totally forgot about it at the time, but <a href="https://github.com/shuhei/material-colors/pull/10">the <code>colors.es2015.js</code> was exposed as the npm package&#39;s <code>jsnext:main</code></a>. And to my surprise, it turned out that <strong><code>jsnext:main</code> shouldn&#39;t have <em>jsnext</em> or ES2015+ features</strong> like <code>const</code>, arrow function and <code>class</code>. What a contradiction!</p>
+<h2 id="jsnextmain">jsnext:main</h2>
+<p>Module bundlers that utilizes tree shaking to reduce bundle size, like Rollup and Webpack 2, require packages to expose ES Modules with <code>import</code> and <code>export</code>. So they invented a non-standard property called <code>jsnext:main</code>.</p>
+<p>However, it had a problem. If the file specified <code>jsnext:main</code> contains ES2015+ features, it won&#39;t run without transpilation on browsers that don&#39;t support those features. But normally people don&#39;t transpile packages in <code>node_modules</code>, and many issues were created on GitHub. To solve the problem, people concluded that <code>jsnext:main</code> shouldn&#39;t have ES2015+ features other than <code>import</code> and <code>export</code>. What an irony.</p>
+<h2 id="module">module</h2>
+<p>Now the name <code>jsnext:main</code> is too confusing. I was confused at least. People discussed for a better name, and <a href="https://github.com/rollup/rollup/wiki/pkg.module"><code>module</code></a> came out that <a href="https://github.com/rollup/rollup/wiki/jsnext:main">supersedes <code>jsnext:main</code></a>. And <a href="https://nodesource.com/blog/es-modules-and-node-js-hard-choices/">it might be standardized</a>.</p>
+<h2 id="so">So?</h2>
+<p>I looked into a couple of popular repos, and they had both of <code>jsnext:main</code> and <code>module</code> in addition to <code>main</code>.</p>
+<ul>
+<li><a href="https://github.com/reactjs/redux/blob/master/package.json">redux</a></li>
+<li><a href="https://github.com/mrdoob/three.js/blob/dev/package.json">three.js</a></li>
+</ul>
+<p>At this time, it seems to be a good idea to have both of them if you want to support tree shaking. If you don&#39;t, just go with only the plain old <code>main</code>.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2016/10/03/prepaid-sim-in-germany/>How to set up and top up a prepaid SIM in Germany</a>
         </h1>
         <div class="meta">
@@ -119,36 +152,6 @@
 <li>It&#39;s fun to develop on React Native, and super easy to start. If you know React and CSS, you can apply your familiar ideas to mobile app development. And they are actually powerful.</li>
 <li><a href="http://browniefed.com/">Jason Brown&#39;s JavaScript without Grammar</a> is an awesome blog. It has lots of articles about React Native and animation on it, which taught me a lot. Also, I found the awesomeness of <code>LayoutAnimation</code> at <a href="https://medium.com/@Jpoliachik/react-native-s-layoutanimation-is-awesome-4a4d317afd3e#.5tnprrm80">Justin Poliachik&#39;s React Native’s LayoutAnimation is Awesome</a>, which is a great post too.</li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2016/06/03/the-best-part-of-angular-2-offline-compiler/>The Best Part of Angular 2 Offline Compiler</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 3, 2016</span>
-          - <span class="category">JavaScript</span>, <span class="category">Angular 2</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>A couple of weeks ago, I gave a short talk about Angular offline compiler at <a href="http://ng-sake.connpass.com/event/30746/">ng-sake #3</a>, which is a cozy meetup where Tokyo&#39;s Angular developers hang out drinking beer.</p>
-<script async class="speakerdeck-embed" data-id="384a4e8ded2945fbaa5dc2054409bcb3" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>I won&#39;t write much about it here because it&#39;s still in its early stage and I couldn&#39;t make <code>@angular/compiler-cli</code> work without modification.</p>
-<p>The only thing I want to stress here is that it enables us to <strong>statically type-check our templates with TypeScript</strong>, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn&#39;t be able to detect mistakes in templates until they are evaluated at the runtime.</p>
-<p>The steps would be the following:</p>
-<ol>
-<li>Angular 2 offline compiler compiles templates into TypeScript files with <code>.ngfactory.ts</code> extension.</li>
-<li>You prepare another bootstrap script that imports the root <code>.ngfactory.ts</code> and bootstraps your app with it.</li>
-<li>TypeScript compiler compiles the bootstrap script, other TypeScript files and <code>.ngfactory.ts</code> files into JavaScript.</li>
-</ol>
-<p>The step 3 type-checks <code>.ngfactory.ts</code>, and detects typo and type errors in your templates if any. It is a great benefit in addition to skipping the runtime compilation and smaller library size. Looking forward to Angular 2 offline compiler&#39;s official release!</p>
 
         </div>
       </div>

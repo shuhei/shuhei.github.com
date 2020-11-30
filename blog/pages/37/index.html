@@ -57,6 +57,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/07/23/refactor-for-cpp/>Refactor! for C++</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 23, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Visual Studio で使える C++ のリファクタリング用プラグインです。</p>
+<p><a href="http://www.devexpress.com/Products/Visual_Studio_Add-in/RefactorCPP/">Free C++ Refactoring Add-in for Visual Studio Developers</a></p>
+<p>無料で利用できます。Visual Studio にはもともと C# のリファクタリング機能がついていますが、それよりも高機能な印象です。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/07/05/command-line-args/>コマンドライン引数</a>
         </h1>
         <div class="meta">
@@ -103,34 +124,6 @@ TCHAR *tchar = bar();
 
 CString concat = cstr + <span class="hljs-string">" "</span> + tchar;</code></pre><p>普通に足せば足せるようです。<code>*tchar</code> を足すと <code>tchar</code> の最初の一文字だけ連結されます。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/03/studying-pointer/>ポインタの勉強</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 3, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>ポインタについて勉強してみます。</p>
-<h2 id="変数のアドレス">変数のアドレス</h2>
-<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> value = <span class="hljs-number">10</span>;</code></pre><p>のとき <code>&amp;value</code> で変数 <code>value</code> のメモリ上のアドレスがわかります。</p>
-<h2 id="ポインタ">ポインタ</h2>
-<p>メモリ上のアドレスを格納する変数がポインタです。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> value = <span class="hljs-number">10</span>;
-<span class="hljs-keyword">int</span> *ptr;
-ptr = &amp;a;</code></pre><p>という感じです。</p>
-<h2 id="ポインタの指す値">ポインタの指す値</h2>
-<p><code>ptr</code> の指すアドレスにある変数の値をとるには <code>*ptr</code> と書きます。</p>
-<pre><code class="hljs cpp"><span class="hljs-built_in">printf</span>(<span class="hljs-string">"*ptr の値は %d です。"</span>, *ptr); <span class="hljs-comment">// *ptr の値は 10 です。</span></code></pre>
         </div>
       </div>
     </div>

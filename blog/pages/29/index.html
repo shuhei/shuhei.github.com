@@ -57,6 +57,80 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/11/python-challenge-from-6-to-7/>Python Challenge Lv. 6 - 7</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 11, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。
+試験前ということを除けば、面白いし、自然と勉強になるので良いのですけどね。</p>
+<h2 id="level-6">Level 6</h2>
+<p>アドレスバーに何度も channel.zip と入れるも、ファイルがダウンロードされていることになかなか気付かず。気付いてファイルを解凍し、Level 4 的なプログラムで &#8220;Collect the comments.&#8221; に辿りつきましたが、意味がわかりません。
+少しカンニングしてみると、ZIP ファイルは中身のファイル毎にコメントを付けられるのだとか。Python の zipfile モジュールで見られるらしいので、やってみました。</p>
+<pre><code class="hljs py">num = <span class="hljs-string">"90052"</span>
+z = zipfile.ZipFile(<span class="hljs-string">"channel.zip"</span>)
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  <span class="hljs-comment"># Print file's comment</span>
+  <span class="hljs-keyword">print</span> z.getinfo(num + <span class="hljs-string">".txt"</span>).comment,
+  <span class="hljs-comment"># Get next nothing</span>
+  s = open(num + <span class="hljs-string">".txt"</span>).read()
+  m = pattern.match(s)
+  <span class="hljs-keyword">if</span> m:
+    num = m.group(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span></code></pre><p>Python で改行なしの出力をするには <code>print &quot;foo&quot;,</code> なんですね。
+いつのまにか Python で解いてしまってますね・・・。</p>
+<h2 id="level-7">Level 7</h2>
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
+data = list(image.getdata())
+
+before = <span class="hljs-number">0</span>
+message = <span class="hljs-string">""</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(width):
+  tmp = data[x + width * <span class="hljs-number">46</span>][<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">if</span> tmp != before:
+    message += <span class="hljs-string">"%c"</span> % (tmp)
+    before= tmp
+
+<span class="hljs-keyword">print</span> message</code></pre><p>これで下記メッセージが表示されるのですが、この配列の意味がわかりません・・・。</p>
+<blockquote>
+<p>smart guy, you made it. the next level is [105, 10, 16, 101, 103, 14, 105, 16, 121]ljljlimkljhdfdcdfa]_a</p>
+</blockquote>
+<p>少しカンニングをして気がついたのですが、 <code>if tmp != before:</code> としているのがマズかったようです。これだと同じ文字が続く場合に無視されてしまいます。
+気を取り直して以下。書き方も少し Python らしく（？）。
+<code>chr</code> という関数があったんですね。</p>
+<pre><code class="hljs py"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+image = Image.open(<span class="hljs-string">"oxygen.png"</span>)
+width = image.size[<span class="hljs-number">0</span>]
+data = list(image.getdata())
+message = []
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+  color = data[i + width * <span class="hljs-number">46</span>]
+  <span class="hljs-keyword">if</span> color[<span class="hljs-number">0</span>] == color[<span class="hljs-number">1</span>] == color[<span class="hljs-number">2</span>]:
+    message.append(color[<span class="hljs-number">2</span>])
+    i += <span class="hljs-number">7</span>
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">break</span>
+
+<span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, message))</code></pre><p>出てきたメッセージから答えを出します。</p>
+<pre><code class="hljs py"><span class="hljs-keyword">print</span> <span class="hljs-string">""</span>.join(map(chr, [<span class="hljs-number">105</span>, <span class="hljs-number">110</span>, <span class="hljs-number">116</span>, <span class="hljs-number">101</span>, <span class="hljs-number">103</span>, <span class="hljs-number">114</span>, <span class="hljs-number">105</span>, <span class="hljs-number">116</span>, <span class="hljs-number">121</span>]))</code></pre><p>何だかカンニングしてばかりですね・・・。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/11/grasse/>草</a>
         </h1>
         <div class="meta">
@@ -178,25 +252,6 @@ obj = pickle.load(urllib.urlopen(uri))
     <span class="hljs-keyword">print</span> l</code></pre><h2 id="今日はここまで">今日はここまで</h2>
 <p>続きはまた今度。</p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/30/exec-windows-command-with-ruby/>Ruby で Windows のコマンド実行</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 30, 2009</span>
-          - <span class="category">Ruby</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。</p>
-<pre><code class="hljs rb">ret = system <span class="hljs-string">"cmd.exe /c dir"</span></code></pre>
         </div>
       </div>
     </div>

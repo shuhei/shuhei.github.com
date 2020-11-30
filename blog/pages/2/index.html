@@ -57,6 +57,99 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2020/01/26/responsive-images-with-a-static-site-generator/>Responsive Images with a Static Site Generator</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 26, 2020</span>
+          - <span class="category">Blog</span>, <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h2 id="responsive-images">Responsive images</h2>
+<p>An <code>img</code> without <code>width</code>/<code>height</code> attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify <code>width</code> and <code>height</code> of <code>img</code> tag to avoid the jump.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/foo.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"600"</span> /&gt;</span></code></pre><p>But <code>img</code> tag with <code>width</code> and <code>height</code> doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without <code>width</code>/<code>height</code> and let them cause page jumps.</p>
+<p>Recently, I came across a similar problem at work and learned a cool technique to create a placeholder of the image&#39;s aspect ratio with <code>padding-top</code>. If the image&#39;s aspect ratio is <code>height/width = 75/100</code>:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>The <code>div</code> works as a placeholder with the image&#39;s aspect ratio that fits the width of its containing element. Because the <code>img</code> tag has <code>position: absolute</code>, it doesn&#39;t cause a page jump when it&#39;s loaded.</p>
+<p>I decided to implement it on this blog. This blog is made with a custom static site generator. I&#39;m not sure if it&#39;s useful for anyone else, but I write how I did it anyway…</p>
+<h2 id="limiting-overstretch">Limiting overstretch</h2>
+<p>In addition to images that are wide enough to always fill the full width of the content area, I had images that are not wide enough to fill the full width of a laptop, but wide enough to fill the full width of a mobile phone. Not to stretch the image on laptops, I decided to go with another wrapper to limit the maximum width of the image. If the image&#39;s width is <code>500px</code>:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"max-width: 500px;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><h2 id="getting-image-dimensions">Getting Image Dimensions</h2>
+<p>The placeholder technique requires image dimensions. I used <a href="https://github.com/image-size/image-size">image-size module</a> to get image dimensions.</p>
+<p>The following function gets dimensions of images in a directory and returns them as a <code>Map</code>.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">"util"</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">promises</span>: fs } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
+<span class="hljs-keyword">const</span> sizeOf = util.promisify(<span class="hljs-built_in">require</span>(<span class="hljs-string">"image-size"</span>).imageSize);
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readImageSizes</span>(<span class="hljs-params">dir</span>) </span>{
+  <span class="hljs-keyword">const</span> files = (<span class="hljs-keyword">await</span> fs.readdir(dir)).filter(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> !f.startsWith(<span class="hljs-string">"."</span>));
+  <span class="hljs-keyword">const</span> promises = files.map(<span class="hljs-keyword">async</span> file =&gt; {
+    <span class="hljs-keyword">const</span> filePath = path.resolve(dir, file);
+    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">await</span> sizeOf(filePath);
+    <span class="hljs-keyword">return</span> [file, dimensions];
+  });
+  <span class="hljs-keyword">const</span> entries = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(promises);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(entries);
+}</code></pre><h2 id="custom-renderer-of-marked">Custom renderer of Marked</h2>
+<p>This blog&#39;s posts are written in Markdown, and its static site generator uses <a href="https://github.com/markedjs/marked">marked</a> to convert Markdown into HTML. One of my favorite things about <code>marked</code> is that we can easily customize its behavior with a custom renderer.</p>
+<p>I used <code>span</code> tags to wrap <code>img</code> tag because they are rendered in <code>p</code> tag, which can&#39;t contain block tags like <code>div</code>.</p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomRenderer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">marked</span>.<span class="hljs-title">Renderer</span> </span>{
+  image(src, title, alt) {
+    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.imageDimensions &amp;&amp; <span class="hljs-keyword">this</span>.imageDimensions.get(src);
+    <span class="hljs-keyword">if</span> (dimensions) {
+      <span class="hljs-keyword">const</span> { width, height } = dimensions;
+      <span class="hljs-keyword">const</span> aspectRatio = (height / width) * <span class="hljs-number">100</span>;
+      <span class="hljs-keyword">return</span> (
+        <span class="hljs-string">`&lt;span class="responsive-image-wrapper" style="max-width: <span class="hljs-subst">${width}</span>px;"&gt;`</span> +
+        <span class="hljs-string">`&lt;span class="responsive-image-inner" style="padding-top: <span class="hljs-subst">${aspectRatio}</span>%;"&gt;`</span> +
+        <span class="hljs-string">`&lt;img class="responsive-image" src="<span class="hljs-subst">${src}</span>" alt="<span class="hljs-subst">${alt}</span>"&gt;`</span> +
+        <span class="hljs-string">"&lt;/span&gt;"</span> +
+        <span class="hljs-string">"&lt;/span&gt;"</span>
+      );
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.image(src, title, alt);
+  }
+
+  <span class="hljs-comment">// To set images dimensions when images are changed</span>
+  setImageDimensions(imageDimensions) {
+    <span class="hljs-keyword">this</span>.imageDimensions = imageDimensions;
+  }
+}</code></pre><p>And CSS:</p>
+<pre><code class="hljs css"><span class="hljs-selector-class">.responsive-image-wrapper</span> {
+  <span class="hljs-attribute">display</span>: block;
+}
+<span class="hljs-selector-class">.responsive-image-inner</span> {
+  <span class="hljs-attribute">display</span>: block;
+  <span class="hljs-attribute">position</span>: relative;
+}
+<span class="hljs-selector-class">.responsive-image</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+}</code></pre><h2 id="result">Result</h2>
+<p>Here are a few examples:</p>
+<ul>
+<li><a href="/blog/2019/12/31/2019-in-review/">Full width on laptop and mobile</a></li>
+<li><a href="/blog/2010/07/10/surface/">Full width on mobile but not on laptop</a></li>
+</ul>
+<p>Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...</p>
+<p>I skipped some details that are specific to my website. The full code is <a href="https://github.com/shuhei/shuhei.github.com/pull/45">on GitHub</a>.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2019/12/31/2019-in-review/>2019 in Review</a>
         </h1>
         <div class="meta">
@@ -153,125 +246,6 @@
 <li><p>Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.</p>
 </li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 13, 2019</span>
-          - <span class="category">Blog</span>, <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.</p>
-<p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
-<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 531px;"><span class="responsive-image-inner" style="padding-top: 83.9924670433145%;"><img class="responsive-image" src="/images/twitter-card.png" alt="Twitter Card preview"></span></span></span></p>
-<h2 id="meta-tags">Meta tags</h2>
-<p>Twitter&#39;s bots look for <code>&lt;meta&gt;</code> tags in your page. If your page has a certain meta tags, it shows a Twitter Cards for links to the page. Check <a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">the documentation</a> for more details. The <code>&lt;meta&gt;</code> tags look like these:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:card"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"summary_large_image"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:site"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"@your_twitter_account"</span> /&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"twitter:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><p>Uh, they look a bit too platform-specific. <code>twitter:card</code> and <code>twitter:site</code> are specific to Twitter, but what about <code>twitter:title</code>, <code>twitter:description</code> and <code>twitter:image</code>? Twitter&#39;s bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. So, we can use the <code>og:</code> tags instead of <code>twitter:</code> tags. Be careful that the attribute name of Open Graph metadata is <code>property</code> instead of <code>name</code>!</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:title"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"My Blog Post"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"This is a blog post."</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"og:image"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"https://test.com/images/foo.png"</span> /&gt;</span></code></pre><h2 id="homemade-static-site-generator">Homemade static site generator</h2>
-<p><a href="https://github.com/shuhei/shuhei.github.com">My blog</a> is built with <a href="https://github.com/gulpjs/gulp">gulp</a> and some custom plugins and deployed to GitHub Pages. I started the blog with <a href="https://github.com/octopress/octopress">Octopress</a> several years ago and rewrote it with gulp when I was fascinated with gulp and JavaScript build tools. I once added React as a template engine and removed it later. Because of the history, its directory structure stays similar to the original one of Octopress. I write markdown files like <code>source/_posts/2019-10-13-foo.md</code> and the build system generates HTMLs like <code>/blog/2019/10/13/foo/index.html</code>.</p>
-<p>To add Open Graph meta tags, I wrote a gulp plugin. Each gulp plugin is a transform stream that consumes and produces <a href="https://github.com/gulpjs/vinyl">vinyl</a> file objects. First, I made the plugin to extract image URLs from HTML and added necessary meta tags to the HTML template for <code>&lt;head&gt;</code> tag. Now, posts with at least one image got Twitter Cards.</p>
-<h2 id="image-generation-and-text-wrapping">Image generation and text wrapping</h2>
-<p>Most of my posts didn&#39;t have any images, while Twitter Cards don&#39;t look great without images. But I&#39;m too lazy to create an image for each blog post manually.</p>
-<p>I found that <a href="https://hatenablog.com/">Hatena Blog</a>, a blogging platform in Japan, was <a href="https://twitter.com/search?q=%23%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0">generating images from blog post titles and descriptions</a>. It&#39;s a neat idea to promote blog posts without manual effort of blog authors. Can I replicate the image generation?</p>
-<p>I found that many image-generation npm packages were using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>. It provides the canvas API for Node.js and supports export options, including PNG. I decided to try that.</p>
-<p>The canvas API was easy to use for me, but it doesn&#39;t provide text wrapping. I needed to come up with a way to break texts into lines. As <a href="https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element">a Q&amp;A on Stackoverflow</a> suggested, I used <code>ctx.measureText(text)</code> to measure the width of the text and remove words until the subtext fits the given width. And do the same for the remaining text.</p>
-<p>The first line of this text wrapping algorithm is visualized as follows (it actually happens on the same line, but showing each try in its line for illustration):</p>
-<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 30.28571428571429%;"><img class="responsive-image" src="/images/twitter-card-image-line-break.png" alt="Wrapping text"></span></span></span></p>
-<p>There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.</p>
-<p>The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):</p>
-<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 37%;"><img class="responsive-image" src="/images/twitter-card-image-font-sizes.png" alt="Try smaller font sizes"></span></span></span></p>
-<p>I eventually came up with JavaScript code like this (<a href="https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js">the full code is on GitHub</a>):</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fitTextIntoRectangle</span>(<span class="hljs-params">{ ctx, text, maxFontSize, rect }</span>) </span>{
-  <span class="hljs-comment">// Reduce font size until the title fits into the image.</span>
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> fontSize = maxFontSize; fontSize &gt; <span class="hljs-number">0</span>; fontSize -= <span class="hljs-number">1</span>) {
-    ctx.font = getTitleFont(fontSize);
-    <span class="hljs-keyword">let</span> words = text.split(<span class="hljs-string">" "</span>);
-    <span class="hljs-keyword">let</span> { y } = rect;
-    <span class="hljs-keyword">const</span> lines = [];
-    <span class="hljs-keyword">while</span> (words.length &gt; <span class="hljs-number">0</span>) {
-      <span class="hljs-keyword">let</span> i;
-      <span class="hljs-keyword">let</span> size;
-      <span class="hljs-keyword">let</span> subtext;
-      <span class="hljs-comment">// Remove words until the rest fit into the width.</span>
-      <span class="hljs-keyword">for</span> (i = words.length; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">1</span>) {
-        subtext = words.slice(<span class="hljs-number">0</span>, i).join(<span class="hljs-string">" "</span>);
-        size = ctx.measureText(subtext);
-
-        <span class="hljs-keyword">if</span> (size.width &lt;= rect.width) {
-          <span class="hljs-keyword">break</span>;
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (i &lt;= <span class="hljs-number">0</span>) {
-        <span class="hljs-comment">// A word doesn't fit into a line. Try a smaller font size.</span>
-        <span class="hljs-keyword">break</span>;
-      }
-
-      lines.push({
-        <span class="hljs-attr">text</span>: subtext,
-        <span class="hljs-attr">x</span>: rect.x,
-        <span class="hljs-attr">y</span>: y + size.emHeightAscent
-      });
-
-      words = words.slice(i);
-      y += size.emHeightAscent + size.emHeightDescent;
-    }
-
-    <span class="hljs-keyword">const</span> space = rect.y + rect.height - y;
-    <span class="hljs-keyword">if</span> (words.length === <span class="hljs-number">0</span> &amp;&amp; space &gt;= <span class="hljs-number">0</span>) {
-      <span class="hljs-comment">// The title fits into the image with the font size.</span>
-      <span class="hljs-comment">// Vertically centering the text in the given rectangle.</span>
-      <span class="hljs-keyword">const</span> centeredLines = lines.map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
-        <span class="hljs-keyword">return</span> {
-          ...line,
-          <span class="hljs-attr">y</span>: line.y + space / <span class="hljs-number">2</span>
-        };
-      });
-      <span class="hljs-keyword">return</span> {
-        fontSize,
-        <span class="hljs-attr">lines</span>: centeredLines
-      };
-    }
-  }
-
-  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
-    <span class="hljs-string">`Text layout failed: The given text '<span class="hljs-subst">${text}</span>' did not fit into the given rectangle <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(
-      rect
-    )}</span> even with the smallest font size (1)`</span>
-  );
-}</code></pre><h2 id="font">Font</h2>
-<p>My website is using <a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a> via Google Fonts. I wanted to use the same font in the images. Fortunately, node-canvas provides an API to load fonts, and the font is available also on npm.</p>
-<pre><code class="hljs sh">yarn add -D @ibm/plex</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> { registerFont } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"canvas"</span>);
-
-registerFont(
-  <span class="hljs-string">"./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf"</span>,
-  {
-    <span class="hljs-attr">family</span>: <span class="hljs-string">"IBM Plex Sans"</span>,
-    <span class="hljs-attr">weight</span>: <span class="hljs-string">"bold"</span>
-  }
-);
-
-<span class="hljs-comment">// ...</span>
-
-ctx.font = <span class="hljs-string">"bold 30px 'IBM Plex Sans'"</span>;</code></pre><h2 id="done">Done!</h2>
-<p>So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!</p>
 
         </div>
       </div>

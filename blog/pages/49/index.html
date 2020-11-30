@@ -57,6 +57,28 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/08/23/java-run-time-option-in-eclipse/>Eclipse で Java VM の実行時オプション</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 23, 2008</span>
+          - <span class="category">Java</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration -&gt; arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。
+なかなかわからなくて苦労したのでメモ。</p>
+<p>ちなみに、Proxy サーバを指定するには以下。</p>
+<pre><code class="hljs ">-DproxySet=true -DproxyHost=xxx.xxx.xxx.xxx -DproxyPort=yyyy</code></pre><p>フォントをアンチエイリアスするにはこんな感じ。</p>
+<pre><code class="hljs ">-Dswing.aatext=true</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/08/21/network-programming/>ネットワークプログラミング</a>
         </h1>
         <div class="meta">
@@ -97,34 +119,6 @@
 <li><a href="http://">mixi Developer Center » mixi OpenID</a></li>
 <li><a href="http://mixi.jp/openid.pl">[mixi] mixi OpenID</a></li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/>さくらに Trac をインストール・・・失敗</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 14, 2008</span>
-          - <span class="category">Python</span>, <span class="category">UNIX/LINUX</span>, <span class="category">さくらインターネット</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <ul>
-<li><a href="http://seasaw.eek.jp/wordpress/?p=38">心は十五歳の少年漂流記 » さくらで Trac</a></li>
-<li><a href="http://wiki.cre8system.jp/index.php?Trac%2F%A4%B5%A4%AF%A4%E9%A5%A4%A5%F3%A5%BF%A1%BC%A5%CD%A5%C3%A5%C8%A4%C7%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%EB">Trac/さくらインターネットでインストール &#8211; Happy Engineer Life</a></li>
-</ul>
-<p>このあたりを参考に Trac をインストールしようとしましたが、Subversion までは入ったものの、pysqlite が入らず。
-build しようとすると、「error: don&#8217;t know how to complile C/C++ ～～～」みたいなエラーが出てダメ。
-他の人のブログにはそんなことは書いてないので、自分で設定を変えた部分のせいなんですかね。</p>
-<p>また今度チャレンジします。</p>
-<h2 id="ins追記ins"><ins>追記</ins></h2>
-<p><a href="/blog/2008/08/23/succeed-to-install-trac-at-sakura-internet/">その後、成功しました。</a></p>
 
         </div>
       </div>

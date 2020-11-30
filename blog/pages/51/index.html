@@ -57,6 +57,33 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/08/12/virtual-python-in-sakura-internet/>さくらのサーバに virtual-python を入れる</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 12, 2008</span>
+          - <span class="category">Python</span>, <span class="category">さくらインターネット</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>さくらインターネットで easy install がうまく動かなかったので、virtual-python を使って Python 環境を再構築してみました。
+問題は他にあった気がしますが、easy install は使えるようになりました。</p>
+<p>参考にしたのは、以下のサイト。</p>
+<ul>
+<li><a href="http://d.hatena.ne.jp/cimadai/20080713/1215964300">さくらインターネットに python を再インストール &#8211; cimada-ism</a></li>
+<li><a href="http://labs.unoh.net/2007/04/python.html">ウノウラボ Unoh Labs: Python 開発環境を整えよう</a></li>
+</ul>
+<p>easy install が使えるようになったので、いろいろインストールしていたのですが、numpy など c のコンパイラを使うモジュールを入れようとするとエラーが出ます。c77（？）とかが入っていない、というような内容です。
+これについては、必要になるまで放置。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/08/02/building-names-ingoogle-maps/>Google Maps に建物名</a>
         </h1>
         <div class="meta">
@@ -91,40 +118,6 @@
           <p>PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 <code>implode</code>。</p>
 <pre><code class="hljs php">$output = implode(<span class="hljs-string">","</span>, $arr);</code></pre><p>同じことをしようとすると、Python では、以下。</p>
 <pre><code class="hljs py">output = <span class="hljs-string">","</span>.join(arr)</code></pre><p>少し変態っぽいですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/06/22/install-python-modules-in-sakura-internet/>さくらのサーバに Python モジュールをインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 22, 2008</span>
-          - <span class="category">Python</span>, <span class="category">さくらインターネット</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。
-インストール場所は、<code>$HOME/lib/python</code>に。</p>
-<p>$HOME/.cshrc で環境変数を設定。</p>
-<pre><code class="hljs sh">setenv PYTHONPATH <span class="hljs-variable">$HOME</span>/lib/python</code></pre><p>ほとんどは、ダウンロードして展開したディレクトリの中で、下記で OK でした。</p>
-<pre><code class="hljs sh">python setup.py install --home=~</code></pre><p>今日インストールしたのは以下。</p>
-<ul>
-<li>Universal Feedparser</li>
-<li>Python Imaging Library</li>
-<li>Beautiful Soup</li>
-<li>IPython（モジュール？）</li>
-<li>MySQLdb</li>
-<li><del>NumPy</del></li>
-<li><del>matplotlib</del></li>
-<li>pydelicious</li>
-<li>Element Tree</li>
-</ul>
 
         </div>
       </div>

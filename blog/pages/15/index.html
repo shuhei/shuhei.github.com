@@ -57,6 +57,34 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2013/10/27/tech-talks/>最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 27, 2013</span>
+          - <span class="category">JavaScript</span>, <span class="category">Backbone</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>大変ひさびさの更新。ここ一年の間で、会社も変わったりいろいろありました。</p>
+<p>最近社内勉強会で発表したスライドを溜め込んでたので、この辺で吐き出しておきます。</p>
+<ul>
+<li>6/7 <a href="https://speakerdeck.com/shuhei/node-dot-js-plus-websocket-detezaringusitemita">Node.js と WebSockets でテザリング</a></li>
+<li>8/16 <a href="/talks/20130816_Introduction_to_Backbone/">Backbone.js のはなし</a></li>
+<li>10/25 <a href="/talks/20131025_Testing_JavaScript/">Testing JavaScript</a></li>
+</ul>
+<p>どれも JavaScript ネタ。仕事の半分くらいは Ruby を書いているのですが・・・。</p>
+<p>一個目のは、外に置いてあるサーバとローカルのクライアント（両方 Node.js）を iPhone の Safari を介して WebSockets でつないでインターネットする、というやつです。Softbank がテザリングを始める前に着手して、ちょこちょこ作ってる間にサービスが始まってしまい、モチベーションが大いに削がれたといういわくつき。</p>
+<p>二個名、三個目のはタイトルそのままの内容です。どちらも markdown から HTML+JS のプレゼンを生成しています。コードを載せやすくて良いのですが、字が小さくて見にくいと不評。画像も貼りにくいし、次回からは Keynote で作ろうかなあ。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2012/06/01/3d-lut/>3D LUT</a>
         </h1>
         <div class="meta">
@@ -90,27 +118,6 @@
           <p>最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の <a href="https://github.com/mynyml/watchr">watchr</a> を使って、ファイルを更新したら自動でコンパイルするように設定。</p>
 <pre><code class="hljs rb">watch(<span class="hljs-string">'(.*)\.coffee'</span>) { <span class="hljs-params">|md|</span> system <span class="hljs-string">"coffee -o js -c <span class="hljs-subst">#{md[<span class="hljs-number">0</span>]}</span>"</span> }
 watch(<span class="hljs-string">'sass\/(.*)\.s[ac]ss'</span>) { <span class="hljs-params">|md|</span> system <span class="hljs-string">"compass compile <span class="hljs-subst">#{md[<span class="hljs-number">0</span>]}</span>"</span> }</code></pre><p>今のところ、SCSS と Compass はとても良いけど、CoffeeScript は jQuery との相性がいまいちという感想。jQuery のメソッドチェーンを書こうとすると、CoffeeScript でも関数実行の括弧が必要で JS とあまり変わらない。jQuery でちょこちょこエフェクトとかをつけるだけだと、あまりメリットがないかも。Backbone.js とかを使ってクラススタイルでごりごり書くのには良さそうなので、今度試してみたいなーと思います。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2012/04/03/perfume-dev/>Perfume Dev</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 3, 2012</span>
-          - <span class="category">JavsScript</span>, <span class="category">Three.js</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="/perfume_dev/stick_people/"><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 800px;"><span class="responsive-image-inner" style="padding-top: 57.62500000000001%;"><img class="responsive-image" src="https://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" alt="Perfume Dev"></span></span></span></a></p>
-<p><a href="https://www.perfume-global.com/">Perfume Global</a> のデータで<a href="/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
-<p>Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT したのを表示してます。Web Audio API はビルトインで FFT できてびっくりしました。HTML5 すごい。</p>
 
         </div>
       </div>

@@ -57,6 +57,31 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/03/16/flash-platform-camp-tokyo/>Flash Platform Camp Tokyo を見てきた</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Mar 16, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>今日 Flash Platform Camp Tokyo に行ってきました。
+Flash CS5、Flash Player 10.1、AIR2.0 の新機能紹介や、Ralph Hauwert, Mario Klingemann, 深津さん、新藤さん、Erik Natzke らのセッション。</p>
+<p>（内容まとめ。あとで書く）</p>
+<p>最近開発プロセスやアプリケーション設計、プログラミング言語そのものなど、いわば How の方に興味が移っていました。
+会社で What を選びにくい状況で、ついついそうなってしまっていたのかもしれません。
+しかし、今回のイベントでやはり How より What の方が面白いと再確認。とにかく何かを作ることを忘れないようにしようと思いました。</p>
+<p>こういう普段と違う世界を見るのは、自分を遠くから見る良いきっかけになりますね。今後も面白そうなものを見つけて参加していきたいです。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/03/15/secure-ssh/>SSH を安全に</a>
         </h1>
         <div class="meta">
@@ -124,44 +149,6 @@ local$ git push origin master</code></pre><h2 id="redmine-の設定">Redmine の
 <ul>
 <li><a href="http://blog.champierre.com/archives/670">せっかちな人のための git 入門 &#8211; git をインストールし、共同で開発できる環境を整えるまで : 僕は発展途上技術者</a></li>
 <li><a href="http://d.hatena.ne.jp/ntaku/20090526/1243327903">Redmine と Git で作るプロジェクト開発環境 &#8211; プログラミングノート</a></li>
-</ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/03/06/servey-note-ofactiveldap/>ActiveLdap 調査メモ</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Mar 6, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>未検証ですが、以下の記事から調査したことのメモ。</p>
-<ul>
-<li><a href="http://jp.rubyist.net/magazine/?0027-ActiveLdap">Rubyist Magazine &#8211; ActiveLdap を使ってみよう（前編）</a></li>
-<li><a href="http://www.clear-code.com/archives/rails-seminar-technical-night">Rails で作る Active Directory と連携した社内システム</a></li>
-</ul>
-<h2 id="rails-と併用可">Rails と併用可</h2>
-<pre><code class="hljs ">script/generate scaffold_active_ldap
-script/generete model_active_ldap user</code></pre><h2 id="接続">接続</h2>
-<p>接続はプロセス間共有不可。普通にやると、Passenger はだめ。</p>
-<h3 id="対策">対策</h3>
-<ul>
-<li>ユーザ毎の接続を持たせない。</li>
-<li>1 リクエストで完結させる。</li>
-</ul>
-<h2 id="バックエンド">バックエンド</h2>
-<ul>
-<li>Ruby なら Ruby/LDAP（OpenLDAP のバインディング）。</li>
-<li>JRuby なら JNDI。</li>
-<li>PureRuby の Net::LDAP は、trunk でないと問題。</li>
 </ul>
 
         </div>

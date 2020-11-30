@@ -57,6 +57,38 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2015/11/29/algorithms-part-1/>Algorithms: Design and Analysis, Part 1</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Nov 29, 2015</span>
+          - <span class="category">Algorithms</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Today I finished the final exam of Stanford&#39;s <a href="https://www.coursera.org/course/algo">&quot;Algorithms: Design and Analysis, Part 1&quot;</a> at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:</p>
+<ul>
+<li><a href="https://github.com/shuhei/algo">shuhei/algo</a></li>
+</ul>
+<p>The course focused on fundamental algorithms and their analysis. What I learned so far were:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithms">Divide-and-conquer algorithms</a> and analysis with <a href="https://en.wikipedia.org/wiki/Master_theorem">Master Method</a>: <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> and <a href="https://en.wikipedia.org/wiki/Quicksort">quick sort</a></li>
+<li>Graph algorithms: <a href="https://en.wikipedia.org/wiki/Minimum_cut">minimum cut</a>, <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first</a> and <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first</a> search, <a href="https://en.wikipedia.org/wiki/Strongly_connected_component">strongly connected components</a>, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&#39;s shortest-path</a></li>
+<li>Data structures: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">heaps</a>, <a href="https://en.wikipedia.org/wiki/Hash_table">hash tables</a> and <a href="https://en.wikipedia.org/wiki/Binary_search_tree">binary search trees</a></li>
+</ul>
+<p>As a self-taught programmer, I had been away from formal Computer Science topics like big O notation. But after I learned <a href="https://www.coursera.org/learn/machine-learning">Machine Learning</a> and tried to implement some ML algorithms for large datasets a few months ago, I noticed that I needed some knowledge of basic algorithms and mathematical analysis of them.</p>
+<p>The Algorithms course focused not only on algorithms themselves but also on their performance analysis and mathematical proofs. The analysis and proofs are crucial especially for the cases when we design custom algorithms for real-world problems in the future, and more importantly made me more confident about the algorithms.</p>
+<p>Another good side effect of the course was that I got interested in Mathematics. Through the course and a study meetings on <a href="https://mitpress.mit.edu/sicp/">SICP</a> with my co-workers, I noticed that Mathematics is interesting but I lacked some prerequisites to understand it. At the moment, I came across <a href="http://www.amazon.com/Introduction-Mathematical-Thinking-Keith-Devlin/dp/0615653634">Introduction to Mathematical Thinking</a> by Keith Devlin. It was written to fill the gap between the school math, which focuses following given procedures, and the college math, which focuses on thinking. It is perfect for someone like me, who skipped proper Mathematics training at college. I am still on the way reading it but it already started working on my analysis of the SICP exercises.</p>
+<p><a href="https://www.coursera.org/course/algo2">The part 2 of the course</a> will start probably on March 2016. I cannot wait for it to start and get my eyes open again.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2015/10/25/node-executable-module/>Node.js executable module</a>
         </h1>
         <div class="meta">
@@ -132,143 +164,6 @@ reset=<span class="hljs-string">"\[\e[m\]"</span>
 }
 <span class="hljs-built_in">export</span> GIT_PS1_SHOWDIRTYSTATE=1
 <span class="hljs-built_in">export</span> PROMPT_COMMAND=prompt_commandsh</code></pre><p>One of the advantages of attending real events over just browsing slides online is being able to take a peek of other people&#39;s dev environments. Looking forward to seeing more cool stuff on upcoming events like <a href="http://nodefest.jp/2015/">Tokyo Node Fest 2015</a>.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2015/09/26/speed-up-your-rspec-tests-by-reviewing-factory-girl/>Speed up your RSpec tests by reviewing Factory Girl</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 26, 2015</span>
-          - <span class="category">Ruby</span>, <span class="category">Rails</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a> is a great tool that makes test data creation easier. However, if you don&#39;t use it properly, it may imperceptibly slow down your tests.</p>
-<p>In this post, I will walk through some caveats that I stumbled upon in my current project. They could be applied not only to RSpec but I will use RSpec as an example.</p>
-<h2 id="measure-measure-measure">Measure! Measure! Measure!</h2>
-<blockquote>
-<p>What gets measured gets managed.</p>
-<p><cite>Peter Drucker</cite></p>
-</blockquote>
-<p>First of all, we want to know which tests take most of the times. RSpec has <code>--profile</code>/<code>-p</code> option for the very purpose.</p>
-<pre><code class="hljs sh">$ rspec --<span class="hljs-built_in">help</span>
-<span class="hljs-comment"># ...</span>
-    -p, --[no-]profile [COUNT]       Enable profiling of examples and list the slowest examples (default: 10).
-<span class="hljs-comment"># ...</span></code></pre><p>Let&#39;s measure your tests with it.</p>
-<pre><code class="hljs sh"><span class="hljs-comment"># Run all specs with profiling.</span>
-bin/rspec -p
-
-<span class="hljs-comment"># Run specific spec file with profiling.</span>
-bin/rspec spec/models/article_spec.rb -p</code></pre><p>It shows the slowest examples and groups. They should be the good point to start with.</p>
-<h2 id="database-writes-are-slow">Database writes are slow</h2>
-<p>There are many potential causes that slow down your tests. External API calls, file access, database access and etc. Among them, I would like to focus on database writes in this post because they are ubiquitous and relatively slow.</p>
-<p>You could use mocks/stubs to completely avoid touching database. However, you may have a certain amount of code that touches database. I believe it&#39;s better to find database-related bugs with a bit slow tests than finding them on production that were overlooked by lightning-fast tests.</p>
-<p>One of the Rails&#39; greatest features is that we can easily write tests that involves database queries. It&#39;s too good not to use it at all.</p>
-<p>Before you consider parallel execution of tests that may introduce other complexity, you still have something to do.</p>
-<h2 id="sample-project">Sample project</h2>
-<p>Let&#39;s say we have a blog application with the following models:</p>
-<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> &lt; ActiveRecord::Base</span>
-  has_many <span class="hljs-symbol">:articles</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> &lt; ActiveRecord::Base</span>
-  belongs_to <span class="hljs-symbol">:author</span>
-  has_many <span class="hljs-symbol">:comments</span>
-
-  validates <span class="hljs-symbol">:author</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> &lt; ActiveRecord::Base</span>
-  belongs_to <span class="hljs-symbol">:article</span>
-
-  validates <span class="hljs-symbol">:article</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">edited?</span></span>
-    created_at &lt; updated_at
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre><p>and factories:</p>
-<pre><code class="hljs ruby">FactoryGirl.define <span class="hljs-keyword">do</span>
-  factory <span class="hljs-symbol">:author</span> <span class="hljs-keyword">do</span>
-    first_name <span class="hljs-string">'Shuhei'</span>
-    last_name <span class="hljs-string">'Kagawa'</span>
-  <span class="hljs-keyword">end</span>
-
-  factory <span class="hljs-symbol">:article</span> <span class="hljs-keyword">do</span>
-    author
-    title <span class="hljs-string">'Rails on Rails'</span>
-    body <span class="hljs-string">'If you created an application that manages railway rails with the Rails framework, its name would be Rails on Rails...'</span>
-  <span class="hljs-keyword">end</span>
-
-  factory <span class="hljs-symbol">:comment</span> <span class="hljs-keyword">do</span>
-    article
-    commenter <span class="hljs-string">'Railer'</span>
-    body <span class="hljs-string">'Great post!'</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre><h2 id="factorygirlbuild-creates-associations">FactoryGirl.build creates associations</h2>
-<p>Let&#39;s review Factory Girl&#39;s <code>create</code> and <code>build</code>. <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#create-instance_method"><code>create</code></a> instantiates an model saving it into the database just like <code>ActiveRecord::Base.create</code> does. <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build-instance_method"><code>build</code></a> only instantiates an model without saving it just like <code>ActiveRecord::Base.new</code> does.</p>
-<p>The following usage of <code>FactoryGirl.build</code> seems harmless. <code>build</code> doesn&#39;t save a <code>Comment</code> into the database while <code>create</code> does, right?</p>
-<pre><code class="hljs ruby">describe Comment
-  describe <span class="hljs-string">'#edited?'</span> <span class="hljs-keyword">do</span>
-    it <span class="hljs-string">'returns true if updated after creation'</span> <span class="hljs-keyword">do</span>
-      now = Time.zone.now
-      comment = FactoryGirl.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)
-
-      expect(comment).to be_edited
-    <span class="hljs-keyword">end</span>
-
-    it <span class="hljs-string">'returns false right after creation'</span> <span class="hljs-keyword">do</span>
-      now = Time.zone.now
-      comment = FactoryGirl.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now, <span class="hljs-symbol">updated_at:</span> now)
-
-      expect(comment).not_to be_edited
-    <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre><p>However, <code>build</code> actually saves the model&#39;s associations, <code>article</code> and <code>author</code> created by <code>article</code> in this case, into the database <a href="http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md#Associations">unless you give <code>strategy: :build</code> option in the factory</a>. So <code>build</code> actually creates all its ancestor models, which can be a huge performance penalty if called plenty of times.</p>
-<p>To avoid this behavior, you can use <a href="http://www.rubydoc.info/gems/factory_girl/FactoryGirl/Syntax/Methods#build_stubbed-instance_method"><code>FactoryGirl.build_stubbed</code></a> instead of <code>build</code>. It builds all associations and don&#39;t save them into the database.</p>
-<pre><code class="hljs ruby">comment = FactoryGirl.build_stubbed(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)</code></pre><p>In this case, you even don&#39;t need to use Factory Girl because the <code>edited?</code> method doesn&#39;t involve associations. The following just works fine:</p>
-<pre><code class="hljs ruby">comment = Comment.new(<span class="hljs-symbol">created_at:</span> now - <span class="hljs-number">1</span>.minute, <span class="hljs-symbol">updated_at:</span> now)</code></pre><p>Here is another case where unnecessary <code>post</code> is created by <code>build(:comment)</code>.</p>
-<pre><code class="hljs ruby">post = FactoryGirl.create(<span class="hljs-symbol">:post</span>)
-post.comments &lt;&lt; FactoryGirl.build(<span class="hljs-symbol">:comment</span>)</code></pre><p>You could do:</p>
-<pre><code class="hljs ruby">post = FactoryGirl.create(<span class="hljs-symbol">:post</span>)
-post.comments &lt;&lt; FactoryGirl.build(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">post:</span> <span class="hljs-literal">nil</span>)
-
-<span class="hljs-comment"># or</span>
-
-post = FactoryGirl.create(<span class="hljs-symbol">:post</span>)
-FactoryGirl.create(<span class="hljs-symbol">:comment</span>, <span class="hljs-symbol">post:</span> post)</code></pre><h2 id="review-your-association-chain">Review your association chain</h2>
-<p>There is also a case where you intentionally use <code>FactoryGirl.create</code> and create unused objects. Let&#39;s think about <code>Blog</code> model that has multiple authors and multiple posts.</p>
-<pre><code class="hljs ruby">FactoryGirl.define <span class="hljs-keyword">do</span>
-  factory <span class="hljs-symbol">:blog</span> <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">end</span>
-
-  factory <span class="hljs-symbol">:author</span> <span class="hljs-keyword">do</span>
-    blog
-  <span class="hljs-keyword">end</span>
-
-  factory <span class="hljs-symbol">:post</span> <span class="hljs-keyword">do</span>
-    author
-    blog
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre><p>With the setup above, <code>FactoryGirl.create(:post)</code> <strong>creates blog twice</strong>, once in the <code>post</code> factory and once in the <code>author</code> factory. Not only is it redundant, but also it may introduce data inconsistency because the two <code>blog</code> instances are different.</p>
-<p>The <code>post</code> factory could reuse the <code>author</code>&#39;s <code>blog</code>.</p>
-<pre><code class="hljs ruby">factory <span class="hljs-symbol">:post</span> <span class="hljs-keyword">do</span>
-  author
-  blog { author.blog }
-<span class="hljs-keyword">end</span></code></pre><h2 id="summary">Summary</h2>
-<p>To recap, there are things to consider before you stub everything or start considering parallel execution of tests. Imagine what Factory Girl exactly does and review your tests and factories. You will be able to speed up your tests for relatively cheaper cost.</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
-<li><a href="https://robots.thoughtbot.com/speed-up-tests-by-selectively-avoiding-factory-girl">Speed Up Tests by Selectively Avoiding Factory Girl</a></li>
-<li><a href="https://robots.thoughtbot.com/use-factory-girls-build-stubbed-for-a-faster-test">Use Factory Girl&#39;s build_stubbed for a Faster Test Suite</a></li>
-</ul>
 
         </div>
       </div>

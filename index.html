@@ -57,6 +57,62 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2020/11/30/4-years-at-zalando/>4 Years at Zalando</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Nov 30, 2020</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2020-spree.jpg" alt="Spree in November, 2020"></span></span></span></p>
+<p>I&#39;m leaving Zalando with fond memories after 4 years. Here I&#39;m writing down my experience. It&#39;s never comprehensive, but I hope some people find it interesting!</p>
+<h2 id="beginning">Beginning</h2>
+<p>I had lived mostly in Japan for 34 years until 2016. I wanted to travel more, but I was lazy. I decided to work abroad so that I could travel while earning money.</p>
+<p>A job-matching website called <a href="https://www.honeypot.io/">Honeypot</a> introduced me to Zalando. I had 5 interviews and got an offer for Senior Software Engineer (Frontend). I accepted the offer without looking into any other companies because I liked the interviewers and the company&#39;s OSS projects looked interesting. (Honeypot was very happy about it. They put me on their top page and <a href="https://blog.honeypot.io/japanese-developer-in-berlin/">an interview blog post</a>.)</p>
+<p>I moved from Tokyo to Berlin and joined Zalando in October 2016. With 200 other newbies in a month! Zalando is a fashion e-commerce company that sells shoes, clothes, etc. on its website. I had no clue why they needed so many people at the beginning. Isn&#39;t it a website in the end? I later learned that the visible part of the website was the tip of the iceberg. There were many more areas like wholesale, brand relationship, pricing, warehouse management, shipping, payment, and so on.</p>
+<h2 id="teams">Team(s)</h2>
+<p>In 2016, Zalando was hiring software engineers with <em>pool hiring</em>. We were hired without specific teams to join. After a month of onboarding, each newbie was offered two departments to choose from. I chose the Catalog and Navigation team in the Fashion Store, the e-commerce website of Zalando.</p>
+<p>For the first few months, I thought that the company was providing free beer to employees because fridges were always full of beer bottles even if we drank them a couple of times a week. I later learned that the beer was provided by the delivery lead and the product owner of the team. I joined the right team.</p>
+<p>Aside from the beer, I liked the team. We worked together and played together. It was multi-cultural and magically bonded. It was an old team, but several members including me joined the team in late 2016. We learned the German language and explored the city of Berlin. We had BBQs in a park and drank vodka playing games in the office. It felt like a youth again. Some of the teammates were actually young. After two years or so, we stopped drinking as much as we did. We all became grown-ups...? Maybe.</p>
+<p>Through re-organizations, the shape of the team has changed. It was split into multiple teams. Some people left and new people joined. But I stayed in the same area more or less.</p>
+<h2 id="frontend-engineer">Frontend Engineer...?</h2>
+<p>At Zalando, Frontend Engineers were more like JavaScript Fullstack Engineers.</p>
+<p>In 2016, Zalando had a slogan &quot;Radical Agility&quot;. It promoted team autonomy and Microservices to support it. Each engineering team was supposed to operate what they built on top of the <a href="https://stups.io/">STUPS</a> infrastructure. Frontend was not an exception. <a href="https://www.mosaic9.org/">Mosaic</a> (frontend-microservices architecture) allowed each product team to own their Node.js servers for data aggregation and React server-side rendering in addition to frontend components.</p>
+<p>The team&#39;s responsibilities were broad. Building new features and UI improvements with A/B testing, contributing to shared UI components, web performance optimization, Node.js server operations, 24x7 on-call, writing post mortems, and so on.</p>
+<p>In <a href="https://engineering.zalando.com/posts/2018/12/front-end-micro-services.html">the new architecture that the Fashion Store is moving to</a>, product teams don&#39;t need to maintain Node.js servers. I would miss the burden, but I think it&#39;s a good thing.</p>
+<h2 id="operation-and-reliability">Operation and Reliability</h2>
+<p>I had a good opportunity to work on Node.js servers with serious traffic and business impact. Before joining Zalando, I had worked only on products that didn&#39;t take off or were just taking off. I didn&#39;t have much experience in scaling, monitoring, etc. But writing post mortems became one of my favorite activities after 4 years.</p>
+<p>When my team migrated one of Zalando&#39;s most frequently visited pages to the microservice architecture, our journey in this area started. Even among frontend engineers in the team, some of them were frontendy—good at UI—and some of them were backendy. I was a backendy one and started looking into the topic. I found it interesting. It was a nice way to contribute to the team and the business.</p>
+<p>I glimpsed SRE initiatives and Cyber Week preparation being set up and evolving. <a href="https://engineering.zalando.com/posts/2020/10/how-zalando-prepares-for-cyber-week.html">How Zalando prepares for Cyber Week</a> is a great overview of the evolution. I had a good chance to take part in it as a member of a product team. The people who formed the SRE team taught us monitoring, alerting, and reliability patterns (retry, circuit breaker, fallback, etc.). Incident response and post mortems were standardized. Then distributed tracing and <a href="https://www.usenix.org/conference/srecon19emea/presentation/mineiro">adaptive paging</a> were introduced.</p>
+<p>Some of my contributions were reliability improvements of Node.js services. I researched <a href="(/blog/2017/05/13/http-request-timeouts-in-javascript/)">timeout mechanisms of Node.js HTTP client</a> and added a timeout feature to <a href="https://github.com/zalando-incubator/perron">an HTTP client library</a>. <a href="/blog/2019/04/30/dns-polling/">Built a mitigation strategy for DNS timeouts</a>, <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">improved histogram metrics aggregation</a>, <a href="/blog/2018/09/16/node-js-under-a-microscope/">performed profiling and found interesting findings</a>—I had a chance to talk about it in front of a big audience including TC39 folks... It was a humbling experience.</p>
+<p>I was late to the Kubernetes train. The migration from STUPS to Kubernetes didn&#39;t get enough priority in my team. On the other hand, Zalando was an early adapter of Kubernetes and has been <a href="https://www.cncf.io/announcements/2020/08/20/cloud-native-computing-foundation-grants-zalando-the-top-end-user-award/">a strong contributor to the ecosystem</a>. I missed a good learning opportunity to dive into it and learn from the in-house experts.</p>
+<h2 id="web-performance">Web Performance</h2>
+<p>Another topic that I enjoyed was web performance optimization. It was especially rewarding because it directly contributes to customer experience and the e-commerce business. After my team worked on it, I had an opportunity to write a part of <a href="https://engineering.zalando.com/posts/2018/06/loading-time-matters.html">a blog post about the improvements</a>.</p>
+<p>This topic keeps evolving. New metrics like <a href="https://web.dev/vitals/">Web Vitals</a> and more measurement/optimization techniques came out. It is one of the topics that I would want to pursue if I remained at Zalando.</p>
+<h2 id="cross-team-collaboration">Cross-Team Collaboration</h2>
+<p>I had a chance to work with many other teams in the Fashion Store and other departments. I met and worked with literally hundreds of colleagues. I had never worked with so many people before joining Zalando.</p>
+<p>That meant more meetings and alignments. I learned decision making with writing. I still don&#39;t say that I&#39;m good at it, but Google Docs became my favorite editor next to Vim.</p>
+<p>I learned that it can be fun to work with many teams. Sometimes it was frustrating because of the time consumed. But it was rewarding to meet with many colleagues and work together.</p>
+<h2 id="career">Career</h2>
+<p>I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it&#39;s called Principal Engineer. In addition to technically lead projects, they shape the tech landscape of the company beyond the scope of a team.</p>
+<p>I was fortunate enough to be promoted to Principal Engineer this year. A new role gave me new tasks and a new point of view. It&#39;s one of my regrets to leave this role prematurely.</p>
+<h2 id="fun">Fun</h2>
+<p>I had a lot of fun.</p>
+<p>Lunch tours to Schlesisches Tor. Countless drinks at the office. After-drink burgers at Burgermeister. A team event on canoes. Summer BBQs in a park. Company parties with thousands of people and getting lost. <em>Mett</em> —German traditional breakfast of minced raw pork—with some beer in the office at 11 am. Ordering <em>Maß</em> at lunch and learning what it meant when 1L of beer arrived...</p>
+<h2 id="next">Next</h2>
+<p>It&#39;s been a fun journey. I&#39;m grateful for all the opportunities and learnings. If I went back to 2016, I would do it again.</p>
+<p>I&#39;m going to start a new job tomorrow. I hope it will be fun as well!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2020/02/14/switching-colorschemes-of-vim-and-alacritty/>Switching color schemes of Vim and Alacritty</a>
         </h1>
         <div class="meta">
@@ -187,99 +243,6 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
   <span class="hljs-keyword">default</span>:
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Unknown tag: <span class="hljs-subst">${tag}</span>`</span>);
 }</code></pre><p>I also added <code>console.log</code> for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. <a href="https://github.com/shuhei/shuhei.github.com/pull/44">The script worked well to convert more than one hundred posts</a>. The full script is <a href="https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72">on Gist</a>.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2020/01/26/responsive-images-with-a-static-site-generator/>Responsive Images with a Static Site Generator</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 26, 2020</span>
-          - <span class="category">Blog</span>, <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h2 id="responsive-images">Responsive images</h2>
-<p>An <code>img</code> without <code>width</code>/<code>height</code> attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify <code>width</code> and <code>height</code> of <code>img</code> tag to avoid the jump.</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/foo.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"600"</span> /&gt;</span></code></pre><p>But <code>img</code> tag with <code>width</code> and <code>height</code> doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without <code>width</code>/<code>height</code> and let them cause page jumps.</p>
-<p>Recently, I came across a similar problem at work and learned a cool technique to create a placeholder of the image&#39;s aspect ratio with <code>padding-top</code>. If the image&#39;s aspect ratio is <code>height/width = 75/100</code>:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>The <code>div</code> works as a placeholder with the image&#39;s aspect ratio that fits the width of its containing element. Because the <code>img</code> tag has <code>position: absolute</code>, it doesn&#39;t cause a page jump when it&#39;s loaded.</p>
-<p>I decided to implement it on this blog. This blog is made with a custom static site generator. I&#39;m not sure if it&#39;s useful for anyone else, but I write how I did it anyway…</p>
-<h2 id="limiting-overstretch">Limiting overstretch</h2>
-<p>In addition to images that are wide enough to always fill the full width of the content area, I had images that are not wide enough to fill the full width of a laptop, but wide enough to fill the full width of a mobile phone. Not to stretch the image on laptops, I decided to go with another wrapper to limit the maximum width of the image. If the image&#39;s width is <code>500px</code>:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"max-width: 500px;"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><h2 id="getting-image-dimensions">Getting Image Dimensions</h2>
-<p>The placeholder technique requires image dimensions. I used <a href="https://github.com/image-size/image-size">image-size module</a> to get image dimensions.</p>
-<p>The following function gets dimensions of images in a directory and returns them as a <code>Map</code>.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">"util"</span>);
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
-<span class="hljs-keyword">const</span> { <span class="hljs-attr">promises</span>: fs } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
-<span class="hljs-keyword">const</span> sizeOf = util.promisify(<span class="hljs-built_in">require</span>(<span class="hljs-string">"image-size"</span>).imageSize);
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readImageSizes</span>(<span class="hljs-params">dir</span>) </span>{
-  <span class="hljs-keyword">const</span> files = (<span class="hljs-keyword">await</span> fs.readdir(dir)).filter(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> !f.startsWith(<span class="hljs-string">"."</span>));
-  <span class="hljs-keyword">const</span> promises = files.map(<span class="hljs-keyword">async</span> file =&gt; {
-    <span class="hljs-keyword">const</span> filePath = path.resolve(dir, file);
-    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">await</span> sizeOf(filePath);
-    <span class="hljs-keyword">return</span> [file, dimensions];
-  });
-  <span class="hljs-keyword">const</span> entries = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(promises);
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(entries);
-}</code></pre><h2 id="custom-renderer-of-marked">Custom renderer of Marked</h2>
-<p>This blog&#39;s posts are written in Markdown, and its static site generator uses <a href="https://github.com/markedjs/marked">marked</a> to convert Markdown into HTML. One of my favorite things about <code>marked</code> is that we can easily customize its behavior with a custom renderer.</p>
-<p>I used <code>span</code> tags to wrap <code>img</code> tag because they are rendered in <code>p</code> tag, which can&#39;t contain block tags like <code>div</code>.</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomRenderer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">marked</span>.<span class="hljs-title">Renderer</span> </span>{
-  image(src, title, alt) {
-    <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.imageDimensions &amp;&amp; <span class="hljs-keyword">this</span>.imageDimensions.get(src);
-    <span class="hljs-keyword">if</span> (dimensions) {
-      <span class="hljs-keyword">const</span> { width, height } = dimensions;
-      <span class="hljs-keyword">const</span> aspectRatio = (height / width) * <span class="hljs-number">100</span>;
-      <span class="hljs-keyword">return</span> (
-        <span class="hljs-string">`&lt;span class="responsive-image-wrapper" style="max-width: <span class="hljs-subst">${width}</span>px;"&gt;`</span> +
-        <span class="hljs-string">`&lt;span class="responsive-image-inner" style="padding-top: <span class="hljs-subst">${aspectRatio}</span>%;"&gt;`</span> +
-        <span class="hljs-string">`&lt;img class="responsive-image" src="<span class="hljs-subst">${src}</span>" alt="<span class="hljs-subst">${alt}</span>"&gt;`</span> +
-        <span class="hljs-string">"&lt;/span&gt;"</span> +
-        <span class="hljs-string">"&lt;/span&gt;"</span>
-      );
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.image(src, title, alt);
-  }
-
-  <span class="hljs-comment">// To set images dimensions when images are changed</span>
-  setImageDimensions(imageDimensions) {
-    <span class="hljs-keyword">this</span>.imageDimensions = imageDimensions;
-  }
-}</code></pre><p>And CSS:</p>
-<pre><code class="hljs css"><span class="hljs-selector-class">.responsive-image-wrapper</span> {
-  <span class="hljs-attribute">display</span>: block;
-}
-<span class="hljs-selector-class">.responsive-image-inner</span> {
-  <span class="hljs-attribute">display</span>: block;
-  <span class="hljs-attribute">position</span>: relative;
-}
-<span class="hljs-selector-class">.responsive-image</span> {
-  <span class="hljs-attribute">position</span>: absolute;
-  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
-}</code></pre><h2 id="result">Result</h2>
-<p>Here are a few examples:</p>
-<ul>
-<li><a href="/blog/2019/12/31/2019-in-review/">Full width on laptop and mobile</a></li>
-<li><a href="/blog/2010/07/10/surface/">Full width on mobile but not on laptop</a></li>
-</ul>
-<p>Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...</p>
-<p>I skipped some details that are specific to my website. The full code is <a href="https://github.com/shuhei/shuhei.github.com/pull/45">on GitHub</a>.</p>
 
         </div>
       </div>
