@@ -15,7 +15,7 @@ jobs:
           node-version: 12.x
 
       - name: install and cache dependencies
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           runTests: false
 
@@ -27,7 +27,7 @@ jobs:
           CI: true
 
       - name: run E2E tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           install: false
           build: yarn build
