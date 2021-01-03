@@ -3,10 +3,10 @@
 
 // Stub Google Analytics
 // https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__google-analytics
-Cypress.on("window:before:load", (win) => {
+Cypress.on("window:before:load", win => {
   Object.defineProperty(win, "ga", {
     writable: false,
-    value: cy.stub().as("ga"),
+    value: cy.stub().as("ga")
   });
 });
 
@@ -61,7 +61,7 @@ describe("shuheikagawa.com", () => {
   });
 
   it("redirects works page to the top page", () => {
-    cy.contains("Works").click();
+    cy.visit("/works");
 
     cy.url().should("eq", `${host}/`);
   });
@@ -73,7 +73,7 @@ describe("shuheikagawa.com", () => {
 
     cy.get(".post-list-item__title a")
       .eq(0)
-      .then(($postItem) => {
+      .then($postItem => {
         const href = $postItem.prop("href");
         const title = $postItem.text();
 

@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production gulp build",
     "clean": "rm -rf public",
     "deploy": "yarn clean && yarn build && gh-pages -d public -b master",
-    "lint": "eslint gulpfile.js plugins source/_layouts",
+    "lint": "eslint gulpfile.js plugins source/_layouts cypress",
     "serve": "gulp serve",
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename",
