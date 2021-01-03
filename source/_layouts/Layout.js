@@ -87,9 +87,6 @@ function Layout({ site, css, title, image, description, children }) {
                 <a href="/about/">About</a>
               </li>
               <li class="menu__item">
-                <a href="/works/">Works</a>
-              </li>
-              <li class="menu__item">
                 <a href="/blog/archives/">Archives</a>
               </li>
             </ul>
