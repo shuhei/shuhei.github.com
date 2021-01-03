@@ -17,9 +17,7 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 - [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
 - [npm](https://www.npmjs.com/~shuhei)
 - [Stack Overflow](http://stackoverflow.com/)
-- [Speaker Deck](https://speakerdeck.com/shuhei)
 - [LinkedIn](http://www.linkedin.com/in/shuheikagawa)
-- [Qiita](http://qiita.com/users/shuhei) (Technical tips in Japanese)
 
 ## Talks
 
@@ -39,3 +37,14 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 - October 2013, [Testing JavaScript](/talks/20131025_Testing_JavaScript): (Japanese) JavaScript testing in general
 - August 2013, [Backbone.js のはなし](/talks/20130816_Introduction_to_Backbone): (Japanese) An introduction to Backbone.js
 - June 2013, [Node.js + WebSocket でテザリングしてみた](https://speakerdeck.com/shuhei/node-dot-js-plus-websocket-detezaringusitemita): (Japanese) Tethering with Node.js and WebSocket from scratch
+
+## Side Projects
+
+- 2017 [Pixelm](/pixelm/): A pixel editor optimized for mobile devices and written with Elm.
+- 2016 [Compare](https://github.com/shuhei/Compare): A super-simple mobile app to compare temperatures of yesterday and today
+- 2015 [Weird Attractors](/attractors): Tweaked Strange Attractors.
+- 2013 [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
+- 201? [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
+- 2013 [Go Board](/goban.js/): A Go game implementation in JavaScript.
+- 2007 [Groundscape Design Institute](http://www.groundscape.jp/): A website for an association for civil engineers, architects, landscape designers and etc. Made with WordPress.
+- 2007 [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/): A website for an urban design workshop. Made with Flash and ActionScript 3.

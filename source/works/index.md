@@ -7,24 +7,4 @@ sharing: true
 footer: true
 ---
 
-## Code
-
-- [GitHub](https://github.com/shuhei)
-- [npm](https://www.npmjs.com/~shuhei)
-
-## Visible Things
-
-- [Pixelm](/pixelm/): A pixel editor optimized for mobile devices and written with Elm.
-- [Compare](https://github.com/shuhei/Compare): A super-simple mobile app to compare temperatures of yesterday and today
-- [Weird Attractors](/attractors): Tweaked Strange Attractors.
-- [Blurred Cube](/blurred-cube): An experiment of pure WebGL and Audio User Media.
-- Contrib: Check your GitHub Contributions on your phone. Build with React.js and SVG.
-- [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
-- [Perfume Dev](/perfume_dev/): Perfume's choreography data visualized with Three.js.
-- [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
-- [Dymaxion Paint](/dymaxion-paint/): An interactive demo that I made with Three.js. You can paint on a dymaxion.
-- TenderLearn (Front-end and back-end development)
-- [Go Board](/goban.js/): A Go game implementation in JavaScript.
-- [My Tweet Stats](/works/tweet/): My tweet stats visualized with Protoviz.
-- [Groundscape Design Institute](http://www.groundscape.jp/): A website for an association for civil engineers, architects, landscape designers and etc. Made with WordPress.
-- [Groundscape Design Workshop 2007](http://www.groundscape.jp/workshop/): A website for an urban design workshop. Made with Flash and ActionScript 3.
+<script>location.assign('/');</script>

@@ -3,10 +3,10 @@
 
 // Stub Google Analytics
 // https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__google-analytics
-Cypress.on("window:before:load", win => {
+Cypress.on("window:before:load", (win) => {
   Object.defineProperty(win, "ga", {
     writable: false,
-    value: cy.stub().as("ga")
+    value: cy.stub().as("ga"),
   });
 });
 
@@ -60,30 +60,10 @@ describe("shuheikagawa.com", () => {
     cy.contains("Talks").should("be.visible");
   });
 
-  it("opens works page", () => {
+  it("redirects works page to the top page", () => {
     cy.contains("Works").click();
 
-    cy.url().should("eq", `${host}/works/`);
-
-    cy.contains("Code").should("be.visible");
-    cy.contains("GitHub").should(
-      "have.prop",
-      "href",
-      "https://github.com/shuhei"
-    );
-    cy.contains("npm").should(
-      "have.prop",
-      "href",
-      "https://www.npmjs.com/~shuhei"
-    );
-
-    cy.contains("Visible Things").should("be.visible");
-    cy.contains("Pixelm").should("have.prop", "href", `${host}/pixelm/`);
-    cy.contains("Compare").should(
-      "have.prop",
-      "href",
-      `https://github.com/shuhei/Compare`
-    );
+    cy.url().should("eq", `${host}/`);
   });
 
   it("opens archives page", () => {
@@ -93,7 +73,7 @@ describe("shuheikagawa.com", () => {
 
     cy.get(".post-list-item__title a")
       .eq(0)
-      .then($postItem => {
+      .then(($postItem) => {
         const href = $postItem.prop("href");
         const title = $postItem.text();
 
