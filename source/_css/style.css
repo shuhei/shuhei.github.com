@@ -159,6 +159,7 @@ a:hover {
 .post-list-item__date {
   font-size: small;
   width: 90px;
+  flex-shrink: 0;
 }
 .post-list-item__title {
   font-size: large;
