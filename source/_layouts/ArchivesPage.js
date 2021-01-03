@@ -20,7 +20,7 @@ const ArchivesPage = ({ site, posts }) => {
   const body = `
     <div class="post-list">
       <h1 class="title">
-        <a href="/blog/archives">Archives</a>
+        <a href="/blog/archives">All Posts</a>
       </h1>
       ${postList}
     </div>
