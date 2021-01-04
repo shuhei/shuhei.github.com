@@ -25,6 +25,7 @@ function renderAttrs(attrs) {
     .join(" ");
 }
 
+// A custom renderer that renders HTML from Markdown.
 class CustomRenderer extends marked.Renderer {
   constructor({ localImagePrefix } = {}) {
     super();
