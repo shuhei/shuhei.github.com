@@ -32,7 +32,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #312b3a;
-    --text-color: #f7f0e7;
+    --text-color: #efe7f7;
     --highlight-color: #9dc8fb;
 
     /* Based on Atom One Dark, but higher contrast for a11y */
