@@ -1,0 +1,69 @@
+---
+layout: post
+title: 2020 in Review
+date: 2021-01-13 23:00
+comments: true
+categories: [Review]
+---
+
+![Park with yellow leaves](/images/2020-park-yellow-leaves.jpg)
+
+It's already been two weeks in 2021, but I'll write anyway in the spirit of better late than never.
+
+2020 was finally over. It was a weird year. Time flies, but things that happened feels like a long time ago.
+
+## Work
+
+I had been working in the same area as before at Zalando, but there were good changes. My team's structure changed a bit and welcomed new members. It was refreshing to help a brand new product. I was promoted and exposed to new perspectives even though I left the new role before fully embracing it. More close collaboration with colleagues in Dublin happened thanks to the remote work as the default.
+
+At the end of November, [I left Zalando](/blog/2020/11/30/4-years-at-zalando/) where I met wonderful colleagues and friends. The four years there became an important part of my life.
+
+After a week of vacation, I started a new job at Google. I am currently working remotely from Berlin but will eventually relocate to Zurich when the situation improves. My current plan is to move at the end of March, but we never know.
+
+This job change took longer than I thought. I applied in February and got a result in June, but most of the positions were canceled due to COVID-19. It took a few more months to find a team to join. I got an offer at the end of August.
+
+A new job means a lot of learning. Now I'm experiencing how it feels to join a new place. I haven't had this feeling for a while. I tended to think that software engineers should thrive on depths, but I missed that we needed an overview before pursuing depths.
+
+I just finished an onboarding program. I'm excited to catch up and start contributing to real projects.
+
+## WfH
+
+I had been working from home 100% since February. I liked to go to the office and talk to colleagues in person, but I also like working from home.
+
+It didn't take long to adapt to working remotely. We were already working cross-location with Dublin and Helsinki using online collaboration tools like GitHub, Google Meet/Chat/Docs. It became even easier to attend meetings than before. Instead of climbing upstairs to go to a meeting room, meetings are only a few clicks away.
+
+The problem was physical equipment. I didn't realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—I may write more about this later.
+
+No commuting meant time-saving. I had been spending at least one and a half hours every day commuting. This was huge. At the same time, I lost a good chance of exercise. I try to walk outside every day, but my physical activities drastically decreased.
+
+## Computer Science
+
+It was fun to learn and practice algorithms and data structures for interview preparation. I solved about 300 Medium/Hard LeetCode problems in two months. Before 2020, I had been learning them with books and Coursera courses, but knowing and doing are two different things. Solving problems shed light on what I didn't fully understand. I studied topics that I was stuck—graphs, dynamic programming, string searching, well, most of them!
+
+After the interviews, I still wanted to learn more. Someone on Twitter tweeted about [Teach Yourself Computer Science](https://teachyourselfcs.com/). I started with _Operating Systems: Three Easy Pieces_ because it looked easy to read—and it was. Then I moved on to _Computer Systems: A Programmer's Perspective_. The book is more textbook-ish than OSTEP. But I found it fun to learn things that I hadn't taken a deeper look at—the binary representation of floating-point numbers, assembly, processors, etc.
+
+## Travel
+
+Before COVID-19 started, I traveled to Granada, Spain in January. It's a city of Alhambra—and free tapas. The city's bars give you tapas as long as you order drinks. Seafood and Jamón ibérico were so good.
+
+In September between the two lockdowns of the spring and the winter, I visited Goslar, Quedlinburg, and Düsseldorf in Germany to use too many vacation days left. Goslar and Quedlinburg were beautiful. As a substitute for a trip to Japan, I ate Japanese food extravagantly in Düsseldorf. My favorite restaurant was Hyuga. It felt like being at an _izakaya_ in Tokyo. Shochiku, a Japanese supermarket, had a fish counter where you can ask them to cut sashimi. I took it out and ate in the hotel room. So good.
+
+## Food & Drinks
+
+I had rarely used food deliveries before 2020. But yes, I did it this time. My favorite dishes have been Tacos and Korean fried chicken. Also, many restaurants started take-away. I had never imagined taking out _ramen_ before 2020.
+
+I kept drinking bubble tea. Dosha in Friedrichshain is my favorite in Berlin so far. In addition to authentic Taiwanese tea, they have waffles with Tapioca inside!
+
+Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally got an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let's see if I can make some latte art in 2021.
+
+## Books
+
+I bought 42 books or so but finished only a few non-tech books. Much less than I thought. One was _Into The Wild_. The others were two volumes about fermented beans, _natto_ in Japanese, around the world even though I'm scared of its smell and haven't tried it yet.
+
+I want to read more in 2021. I will cut the time on social media and read books instead. If you want to see the progress and my ever-growing _Tsundoku_ collection, here is [my Goodreads account](https://www.goodreads.com/user/show/57764964-shuhei-kagawa).
+
+## 2021
+
+I'll move to another country this year. We can't socialize in person under the current circumstances, but you know, remote meetings are a few clicks away ;)
+
+![A station in Berlin](/images/2020-station.jpg)
