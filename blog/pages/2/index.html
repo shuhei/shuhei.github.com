@@ -54,6 +54,46 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2020/01/27/goodbye-textile/>Goodbye, Textile</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 27, 2020</span>
+          - <span class="category">Blog</span>, <span class="category">JavaScript</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="https://en.wikipedia.org/wiki/Textile_(markup_language">Textile</a> is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.</p>
+<p>I started using Textile on a blog engine called <a href="https://en.wikipedia.org/wiki/Textpattern">Textpattern</a>. I don&#39;t remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards a more commercial one. Textpattern was a new open-source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.</p>
+<p>After a few years, Wordpress became a thing, or I realized it did. Even after I moved to Wordpress, I kept writing in Textile. I liked editing Textile more than editing rich text on WYSIWYG editor. I am not sure whether I had heard of Markdown at the time. But it was not as popular or dominant as it is now.</p>
+<p>I started this blog with Textile on Wordpress in 2008 when I started my first job. And I migrated it to Octopress in 2012. I started writing in Markdown with Octopress because it was the lingua franca of GitHub where all the cool things were happening. I had a bit more than a hundred posts in Textile. I kept them in Textile because Octopress supported Textile as well. In 2014, I rebuilt this blog with a handmade static site generator using Gulp. I carried the old Textile files over. I even wrote <a href="https://github.com/shuhei/gulp-textile">gulp-textile</a> plugin, which was just a thin wrapper of <a href="https://github.com/borgar/textile-js">textile-js</a>. It was my first npm package.</p>
+<p>Since then, I implemented a few Markdown-only features like syntax highlighting and responsive table in this blog. The outputs of Markdown and Textile diverged. Last weekend, I wanted to implement <a href="https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/">responsive images</a>. One more Markdown-only feature. Then I thought it was time to convert the Textile files to Markdown.</p>
+<h2 id="converting-textile-to-markdown">Converting Textile to Markdown</h2>
+<p>I didn&#39;t want to convert a hundred posts by hand. I had tried <a href="https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/">tomd</a> a few years ago, but I was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don&#39;t remember anymore. So I decided to write a conversion script.</p>
+<p>I used <a href="https://github.com/borgar/textile-js">textile-js</a> to parse Textile. It turned out that <code>textile-js</code> output HTML string or <a href="http://www.jsonml.org/">JsonML</a>. JsonML was new to me. It is basically HTML in JSON format. Each text node is represented as a string. Each element node is represented as an array whose first item is the tag name, an optional second item is an object of attributes and the rest are child nodes.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://foo.com"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"foo.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> /&gt;</span> Yay<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre><pre><code class="hljs json">[
+  <span class="hljs-string">"a"</span>,
+  { <span class="hljs-attr">"href"</span>: <span class="hljs-string">"https://foo.com"</span> },
+  [<span class="hljs-string">"img"</span>, { <span class="hljs-attr">"src"</span>: <span class="hljs-string">"foo.png"</span>, <span class="hljs-attr">"alt"</span>: <span class="hljs-string">"Foo"</span> }],
+  <span class="hljs-string">" Yay"</span>
+]</code></pre><p>I wrote a <code>switch</code> statement to handle tags and added tag handlers one by one.</p>
+<pre><code class="hljs js"><span class="hljs-keyword">switch</span> (tag) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"img"</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-comment">/* render &lt;img&gt; */</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">"a"</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-comment">/* render &lt;a&gt; */</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Unknown tag: <span class="hljs-subst">${tag}</span>`</span>);
+}</code></pre><p>I also added <code>console.log</code> for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. <a href="https://github.com/shuhei/shuhei.github.com/pull/44">The script worked well to convert more than one hundred posts</a>. The full script is <a href="https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72">on Gist</a>.</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2020/01/26/responsive-images-with-a-static-site-generator/>Responsive Images with a Static Site Generator</a>
         </h1>
         <div class="meta">
@@ -194,55 +234,6 @@
 <p>I attended two conferences, JSConf EU and JSConf JP, and had a chance to <a href="https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production">speak at a meetup</a>.</p>
 <h2 id="2020">2020</h2>
 <p>Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter Terminal (mostly Vim) Cleaning</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Dec 31, 2019</span>
-          - <span class="category">Vim</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
-<p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
-<h2 id="faster-text-rendering">Faster Text Rendering</h2>
-<p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
-<p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
-<p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
-<p>I tried <a href="https://github.com/jwilm/alacritty">Alacritty</a>, and it was much faster! I had been using Alacritty before but switched back to iTerm2 for font ligatures. Now I didn&#39;t care much about font ligatures—ligatures look pretty, but glyphs for <code>!=</code> and <code>!==</code> confused me in JavaScript. So I switched to Alacritty again.</p>
-<p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
-<h2 id="fzfvim">fzf.vim</h2>
-<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
-<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
-<ul>
-<li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
-<ul>
-<li><strong>Update on Jan 3, 2020:</strong> I started using <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.</li>
-</ul>
-</li>
-<li><p>Configured Vim to open <code>:help</code> in a vertical split. <code>:help</code> is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.</p>
-<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">help</span> <span class="hljs-keyword">wincmd</span> H</code></pre></li>
-<li><p>Sorted out JavaScript/JSX/TypeScript syntax highlighting. Vim sets <code>javascriptreact</code> to <code>.jsx</code> and <code>typescriptreact</code> to <code>.tsx</code> by default. But those file types don&#39;t work well with the plugin ecosystem because plugins for <code>javascript</code>/<code>typescript</code> file types don&#39;t work with <code>javascriptreact</code>/<code>typescriptreact</code> and popular JSX/TSX plugins use <code>javascript.jsx</code> and <code>typescript.tsx</code>.</p>
-<pre><code class="hljs vim"><span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.jsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=javascript.jsx
-<span class="hljs-keyword">autocmd</span> BufRead,BufNewFile *.tsx <span class="hljs-keyword">set</span> <span class="hljs-keyword">filetype</span>=typescript.tsx</code></pre></li>
-<li><p>Stopped unnecessarily lazy-loading Vim plugins with <a href="https://github.com/Shougo/dein.vim">dein.vim</a>. I had configured file-type-specific plugins as lazy plugins of dein.vim without understanding much. The truth was that lazy plugins are meaningful only for plugins with <code>plugin</code> directory. Most of the file-type-specific plugins don&#39;t have <code>plugin</code> directory and are lazily loaded by default with <code>ftdetect</code> and <code>ftplugin</code>. <code>:echo dein#check_lazy_plugins()</code> shows those plugins that are ill-configured. I finally learned <a href="https://learnvimscriptthehardway.stevelosh.com/chapters/42.html">what those plugin directories do</a> after using Vim for several years...</p>
-</li>
-<li><p>Reviewed key mappings and removed waiting time by avoiding mappings that prefixed other mappings. For example, I had mappings of <code>,g</code> and <code>,gr</code>. <code>,g</code> was slow because Vim had to wait for a while to determine it was <code>,g</code> or <code>,gr</code>.</p>
-</li>
-<li><p>Tried Vim 8 but switched back to Neovim. Vim 8 worked well, but tiny details looked smoother in Neovim. For example, when syntax highlighting hangs up, Vim 8 hangs up while Neovim disables syntax highlighting and goes on.</p>
-</li>
-<li><p>Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.</p>
-</li>
-</ul>
 
         </div>
       </div>

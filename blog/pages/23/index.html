@@ -54,6 +54,60 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/01/20/error-of-eclispe/>Eclipse の起動エラー</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jan 20, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Eclipse IDE for Java EE Developers (based on Eclipse 3.5 SR1) をダウンロードしてから最初の起動時に &#8220;JVM Terminated.&#8221; 的なエラー。
+eclipse.ini を修正。</p>
+<pre><code class="hljs ">-startup
+plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
+--launcher.library
+plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
+-product
+org.eclipse.epp.package.jee.product
+--launcher.XXMaxPermSize
+256M
+-showsplash
+org.eclipse.platform
+--launcher.XXMaxPermSize
+256m
+-vmargs
+-Dosgi.requiredJavaVersion=1.5
+-Xms40m
+-Xmx512m</code></pre><p>上を下に。</p>
+<pre><code class="hljs ">-startup
+plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
+--launcher.library
+plugins/org.eclipse.equinox.launcher.win32.win32.x86_1.0.200.v20090519
+-product
+org.eclipse.epp.package.jee.product
+--launcher.XXMaxPermSize
+256M
+-showsplash
+org.eclipse.platform
+--launcher.XXMaxPermSize
+256m
+-vm
+C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
+-vmargs
+-Dosgi.requiredJavaVersion=1.6
+-Xms40m
+-Xmx512m</code></pre><p>via <a href="http://aotan2008.eco.coocan.jp/blog/archives/2009/06/08133609.php">Eclipse の起動エラー（JVM terminated. Exit code=-1） &#8211; がんばれ！aotan2008</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/01/16/update-macports/>MacPorts のアップデート</a>
         </h1>
         <div class="meta">
@@ -94,50 +148,6 @@ sudo ufw <span class="hljs-built_in">enable</span></code></pre><p>とやって�
 <pre><code class="hljs sh">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
 <pre><code class="hljs sh">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
 <pre><code class="hljs sh">sudo ufw <span class="hljs-built_in">limit</span> ssh</code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/01/11/install-passenger/>Ubuntu Server に Passenger をインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 11, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h2 id="aptitude-ではだめ">Aptitude ではだめ</h2>
-<p>とりあえずは <code>apt-get</code> と思い、下記のようにしたらとしたら <code>libapache2-mod-php5</code> などが消されて焦りました。</p>
-<pre><code class="hljs sh">sudo apt-get install libapache2-mod-passenger</code></pre><p>Aptitude を使うと、Passenger と PHP 5 は共存できないようです。それぞれが依存している <code>apache2-mpm-worker</code> と <code>apache2-mpm-prefork</code> が共存できないのが原因のよう。</p>
-<p>via <a href="https://forums.ubuntulinux.jp/viewtopic.php?id=5341">Ubuntu 日本語フォーラム / ubuntu 9.04 passenger と　 php5 は共存できない？</a></p>
-<h2 id="gem-でインストール">Gem でインストール</h2>
-<p>しょうがないので PHP 5 を入れ直し、Passenger を gem で入れる事にしました。</p>
-<pre><code class="hljs sh">sudo gem install passenger
-sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><p>足りないパッケージさあれば教えてくれるので、インストールしてから再度実行。</p>
-<pre><code class="hljs sh">sudo /var/lib/gems/1.8/bin/passenger-install-apache2-module</code></pre><h2 id="設定ファイルの記述">設定ファイルの記述</h2>
-<p><code>httpd.conf</code> には直接書かず、専用のファイルを作ります。Ubuntu の流儀？</p>
-<p><code>/etc/apache2/mods-available/passenger.load</code>:</p>
-<pre><code class="hljs apache"><span class="hljs-attribute"><span class="hljs-nomarkup">LoadModule</span></span> passenger_module /var/lib/gems/1.8/gems/passenger-2.2.9/ext/apache2/mod_passenger.so</code></pre><p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
-<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
-  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
-  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
-<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>モジュールを有効に。<code>mods-enabled</code> から <code>mods-available</code> にシンボリックリンクを張って有効にするんですね。知りませんでした。</p>
-<pre><code class="hljs sh">sudo ln -s /etc/apache2/mods-available/passenger.load /etc/apache2/mods-enabled/passenger.load
-sudo ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf</code></pre><h2 id="サブディレクトリで公開">サブディレクトリで公開</h2>
-<p>ルート以外で公開したい場合、まずは公開ディレクトリにシンボリックリンクを作成します。</p>
-<pre><code class="hljs sh">sudo ln -s /path/to/app-name/public /path/to/www/app-name</code></pre><p>そして、Apache の設定ファイルに少し付け足します。</p>
-<p><code>/etc/apache2/mods-available/passenger.conf</code>:</p>
-<pre><code class="hljs apache"><span class="hljs-section">&lt;ifModule mod_passenger.c&gt;</span>
-  <span class="hljs-attribute">PassengerRoot</span> /var/lib/gems/1.8/gems/passenger-2.2.9
-  <span class="hljs-attribute">PassengerRuby</span> /usr/bin/ruby1.8
-  <span class="hljs-attribute">RailsBaseURI</span> /app-name
-<span class="hljs-section">&lt;/ifModule&gt;</span></code></pre><p>via <a href="http://blog.suz-lab.com/2009/05/passengerredmine.html">suz-lab - blog: Passenger で Redmine をサブディレクトリに公開</a></p>
-
         </div>
       </div>
     </div>

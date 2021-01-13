@@ -54,6 +54,31 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/02/recently-bought-books-2009-07/>最近買った本 2009年7月</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 2, 2009</span>
+          - <span class="category">読書</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h2 id="骨第-5-回企画展「骨」展展覧会カタログ-山中俊治ディレクション"><a href="http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22">骨—第 5 回企画展「骨」展展覧会カタログ 山中俊治ディレクション</a></h2>
+<p>展示会が面白かったので買いました。どうつくるかより何を作るかに目を向けなければ。</p>
+<h2 id="レガシーコード改善ガイド"><a href="http://amazon.co.jp/o/ASIN/4798116831/nanataisan-22">レガシーコード改善ガイド</a></h2>
+<p>仕事でまさにレガシーコードと格闘しているので・・・。</p>
+<h2 id="xunit-test-patterns-refactoring-test-code"><a href="http://amazon.co.jp/o/ASIN/0131495054/nanataisan-22">xUnit Test Patterns: Refactoring Test Code</a></h2>
+<p>何となく買ってみたら 900 ページ近くもあってビックリ。</p>
+<p>うーん、あんまり買ってませんね。その上、実際に読んだのはレガシーコード改善ガイドのみ。7 月は、飲んだり会社に遅くまでいたりで、本を読む気力・体力がなかったことが原因かもしれません。8 月はもうすこしゆったり過ごしたいと思います。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/02/openframeworks-on-iphon/>iPhone で OpenFrameworks</a>
         </h1>
         <div class="meta">
@@ -119,42 +144,6 @@ glBlendFunc(GL_ONE, GL_ONE);
 glBlendFunc(GL_ONE, GL_ONE); <span class="hljs-comment">// そのまま</span>
 ofSetColor(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// 少しずつ暗くします</span>
 ofRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ofGetWidth(), ofGetHeight()); <span class="hljs-comment">// 画面全体に適用します</span></code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/08/01/const-and-pointe/>const とポインタ</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Aug 1, 2009</span>
-          - <span class="category">C/C++</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>下のように <code>const</code> は型名の前後どちらに書いても同じです。</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;
-<span class="hljs-keyword">int</span> <span class="hljs-keyword">const</span> b = <span class="hljs-number">2</span>;</code></pre><p><a href="http://www.research.att.com/~bs/bs_faq2.html#constplacement">Bjarne Stroustrup&#8217;s C++ Style and Technique FAQ</a> では、前者がわかりやすくおすすめとされていますが。</p>
-<p>では、ポインタについてはどうでしょうか？</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>* pa = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">10</span>);  <span class="hljs-comment">// "const な int" へのポインタ</span>
-<span class="hljs-keyword">int</span> <span class="hljs-keyword">const</span>* pb = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>);  <span class="hljs-comment">// "const な int " へのポインタ</span>
-<span class="hljs-keyword">int</span>* <span class="hljs-keyword">const</span> pc = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>(<span class="hljs-number">12</span>);  <span class="hljs-comment">// int への  "const なポインタ"</span></code></pre><p>一つ目と二つ目は同じです。では、どのような挙動になるのでしょうか？</p>
-<pre><code class="hljs cpp"><span class="hljs-comment">// *pa = 20;  // エラー！ "const な int" の値を変えることはできない</span>
-<span class="hljs-comment">// *pb = 21;  // エラー！ "const な int" の値を変えることはできない</span>
-*pc = <span class="hljs-number">23</span>;
-
-<span class="hljs-keyword">delete</span> pa;   <span class="hljs-comment">// delete はできる</span>
-<span class="hljs-keyword">delete</span> pb;   <span class="hljs-comment">// delete はできる</span>
-<span class="hljs-keyword">delete</span> pc;
-
-pa = <span class="hljs-literal">NULL</span>;
-pb = <span class="hljs-literal">NULL</span>;
-<span class="hljs-comment">// pc = NULL;  // エラー！ポインタ自体が const なため</span></code></pre><p>というような感じになります。普通は <code>const int* pa</code> の方を使う機会が多いような気がしますね。</p>
-
         </div>
       </div>
     </div>

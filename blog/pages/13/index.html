@@ -54,6 +54,30 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2014/11/13/karma--to--preprocessor/>karma-6to5-preprocessor</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Nov 13, 2014</span>
+          - <span class="category">JavaScript</span>, <span class="category">Karma</span>, <span class="category">EcmaScript6</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>最近 <a href="https://github.com/6to5/6to5">6to5</a> を使って ES6 を書いています。ES6 を使うには Traceur Compiler なんかもありますが、クライアント側に結構重い runtime を入れる必要があって気が進みません。そこで runtime のいらない 6to5。</p>
+<p>今作っているのは Angular アプリなので、テストは Karma。6to5 の Preprocessor が必要です。当然あるだろうと思って検索したのですが、ない。なかったので作りました。</p>
+<p><a href="https://www.npmjs.org/package/karma-6to5-preprocessor">karma-6to5-preprocessor</a></p>
+<p>ES6 で書いたスクリプトを Karma でテストすることができるようになります。Sourcemap を含めた設定例は README を見てみてください。</p>
+<p>その後、ES6 Module も使うことにして、Browerify の transform として 6to5 と同じ作者が作っている <a href="https://github.com/6to5/6to5-browserify">6to5-browserify</a> を使うようにしました。すると Karma の方でも Browerify を使えばいいので karma-6to5-preprocessor は使う必要がなくなってしまったのです。結構需要がありそうなのに、何でなかったんだろうと思っていたのですが、これで謎がとけました。</p>
+<p>それでも、ES6 Modules は使わないけど ES6 の便利な機能は使いたいという人はいるようで、ちょこちょこダウンロードされています。良かった良かった。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2014/09/27/land-prices-on-ios/>WebGL な日本の地価マップをタッチ対応してみた</a>
         </h1>
         <div class="meta">
@@ -103,39 +127,6 @@
 <p>こっちは、あまりちゃんと調べられてなくて中途半端です。</p>
 <p>結論としては、ES6 Modules はまだ早い。<a href="https://github.com/systemjs/systemjs">System.js</a> とか使えば今でも使えそうだけど、それなら Browerify でいいかなというのが今の気分です。むしろ、class とか ES6 の他の文法を使いたい。Traceur Compiler や <code>jsx --harmony</code> でコンパイルできる AltJS と考えれば。</p>
 <script async class="speakerdeck-embed" data-id="b07645a0fadf0131d88c6a0d18b48761" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2014/06/08/blog-with-gulp/>Gulp でブログを書く</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 8, 2014</span>
-          - <span class="category">JavaScript</span>, <span class="category">gulp</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。</p>
-<p><a href="https://github.com/shuhei/shuhei.github.com/blob/source/gulpfile.babel.js">shuhei.github.io / gulpfile.babel.js</a></p>
-<p>ディレクトリ構成は Octopress そのまま。rake タスクではなく、gulp のタスクでサイトをビルド、デプロイします。</p>
-<p>機能は本当に最小限で、記事ページ、静的ページと index, archive の生成だけです。</p>
-<h2 id="経緯">経緯</h2>
-<p>動機は Jekyll が重くビルドに時間がかかること。他のもっと良いのがないかなあと思っていたのですが、そもそも大した機能は必要ないので、今年の初めにはまっていた gulp で自作しました。</p>
-<p>ビルドの部分は、ファイルを変換して書き出すという gulp でやりやすいタスクです。ただ GitHub Pages にデプロイする部分は git のコマンド実行が続くため面倒で、その部分だけ gulp で実装せずにRakefile をそのまま残していました。</p>
-<p>どうも気持ち悪かったので、ついに重い腰を上げて書いてみました。当初 child_process を使って書いたのですが、<a href="https://github.com/sun-zheng-an/gulp-shell">gulp-shell</a>を見つけて使うようにしたらすっきりしました。</p>
-<h2 id="操作">操作</h2>
-<p>gulp でビルドします。</p>
-<pre><code class="hljs shell">gulp</code></pre><p>表示を確認しながら編集したいときは、以下でローカルにサーバが立ち上がり、ファイル変更時にビルドしなおしてくれます。</p>
-<pre><code class="hljs shell">gulp watch</code></pre><p>デプロイも gulp タスクです。</p>
-<pre><code class="hljs shell">gulp deploy</code></pre><h2 id="感想">感想</h2>
-<p>当たり前の感想ですが、gulp はデプロイのようなタスクには向いてないものの、 静的サイトの生成には悪くないなと思いました。</p>
-<p>とは言え、サイト全体の情報を扱うのはやりにくいです。現在は index, archive のページを、各記事の stream から分岐して作っています。また、必要ないと思いサイドバーをつけていないのですが、つける場合には一旦全記事を読み込んでサイドバー向けの情報を作ってから各記事のページにくっつける必要があります。その辺は今後の課題ですかね。</p>
 
         </div>
       </div>

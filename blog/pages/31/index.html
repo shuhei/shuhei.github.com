@@ -54,6 +54,32 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/09/23/textile-format-of-make-link/>Make Link の Textile 2 用フォーマット</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Sep 23, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Firefox の Addon <a href="https://addons.mozilla.org/ja/firefox/addon/142">Make Link</a> はページのタイトルや URL からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。
+とうことで、Textile 2 用のフォーマットを作ってみました。</p>
+<h2 id="ページ名と-url">ページ名と URL</h2>
+<pre><code class="hljs ">&quot;%text%&quot;:%url</code></pre><p>テキストを選択せずに使用します。 <code>%text%</code> を <code>%title%</code> にすると何故か上手く行きません。</p>
+<h2 id="引用（引用元とその-url-付き）">引用（引用元とその URL 付き）</h2>
+<pre><code class="hljs ">bq.. %text%
+
+&quot;??%title%??&quot;:%url%</code></pre><p>引用するテキストを選択して使用します。引用文の末尾に引用元のページ名とそのリンクが付きます。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/09/21/texpatterns-comment-display-tag-has-changed/>Textpattern の コメント表示タグが変更に</a>
         </h1>
         <div class="meta">
@@ -108,32 +134,6 @@
 <h2 id="結果">結果</h2>
 <p>以上で、Wordpress でも Textpattern 相当の Textile が使えるようになります。
 Google Code Prettify も、これまではいちいち HTML のタグで囲んでいたのが <code>pre(prettyprint)..</code> と書くだけで使えるようになりました。大変便利ですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/09/20/todays-shipped-books/>今日届いた本（実用Subversion、Getting Real）</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 20, 2009</span>
-          - <span class="category">読書</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><a href="http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22">実用 Subversion 第二版</a></p>
-<p>職場で Subversion の管理をしているのですが、Subversion について知らなさすぎると思い買ってみた本です。
-引き継いだ時からバックアップがされておらず、何とかしないと思いつつも何もやっていませんでした。そんな中、先日調査してみると結構な数のレポジトリが壊れているとのこと。何とかしなければなりません。
-日頃は、管理者としてはレポジトリを作ったりユーザを追加したりする程度。ユーザとしては TortoiseSVN ごしに使う程度です。
-必要は何とかの母、ということで、この機会に理解を深めようかと思います。</p>
-<p><a href="http://gettingreal.37signals.com/GR_jpn.php">Getting Real</a></p>
-<p>Ruby on Rails を作った 37signals。彼らのソフトウェア開発に対する考え方が書かれた本です。同じ内容のものが、ウェブ上で無料で公開されています。少し読んで気に入り、紙媒体で読みたくて購入してみました。
-シンプルにシンプルに。</p>
 
         </div>
       </div>

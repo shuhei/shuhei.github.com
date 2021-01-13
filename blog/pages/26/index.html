@@ -54,6 +54,32 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/11/07/resize-images-with-imagemagick/>ImageMagick で画像を一括リサイズ</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Nov 7, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>特定の名前の画像をリサイズします。</p>
+<pre><code class="hljs ">#! /bin/bash
+
+for f in rect_*.png;
+do
+  convert -resize 12x12! $f $f
+done</code></pre><p>コマンドラインは便利ですねー。
+ひまを見てちょこちょこシェルスクリプトを勉強していきたいです。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/11/05/git-usage-note/>git の使い方メモ</a>
         </h1>
         <div class="meta">
@@ -98,36 +124,6 @@ via <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html" tit
 以下のように、GET のパラメータで page や perpage を渡すと、その通り返してくれます。</p>
 <p><a href="http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500">http://booklog.jp/users/branchiopoda/feed?page=1&amp;perpage=500</a></p>
 <p>著者名が入っていないのが残念ですが、カテゴリや Amazon の画像 URL が入っているのでなかなか使えそうですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/19/install-git/>git をインストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 19, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>会社では構成管理に Subversion を使っています。
-特に困っていることもないのですが、見識を広めるため家の MacBook に git を入れてみました。</p>
-<p><a href="http://code.google.com/p/git-osx-installer/">インストーラ</a> もあるようですが、管理が楽そうな MacPorts を使用。</p>
-<pre><code class="hljs ">port search git</code></pre><p>いろいろ出てきますが、git-core だけでよさそうです。</p>
-<pre><code class="hljs ">port variants git-core</code></pre><p>でオプションが出てきます。
-全部入りにしてみました。</p>
-<pre><code class="hljs ">sudo port install git-core +doc +gitweb +svn +bash_completion</code></pre><p>何だか Perl5 のライブラリがたくさん入りました。
-bash 補完は以下を.profile に貼付けると良いとのこと。</p>
-<pre><code class="hljs ">if [ -f /opt/local/etc/bash_completion ]; then
-  . /opt/local/etc/bash_completion
-fi</code></pre><p>その後 <a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/gittutorial.html">チュートリアル</a> を読んでいろいろ試してみました。branch が機能として統合されているのがいいですね。
-branch については <a href="http://d.hatena.ne.jp/zariganitosh/20080912/1221260782">アリスがチャレンジなコードを書く時、git branch をちゃんと理解したい！ &#8211; ザリガニが見ていた&#8230;。</a> がとても参考になりました。</p>
 
         </div>
       </div>

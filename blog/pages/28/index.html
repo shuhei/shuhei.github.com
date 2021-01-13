@@ -54,6 +54,61 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/10/12/get-book-list-from-booklog/>Booklog から本一覧を取得</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Oct 12, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p><a href="http://booklog.jp/">web 本棚サービス ブクログ</a> がリニューアルしたというので <a href="http://www.booklog.jp/users/branchiopoda">再開しました</a>。ペパボの公式サービスとなり、メンテナンスやサービスの追加をどんどんやって行くそうです。今回のリニューアルで一番うれしいのが、本の登録機能の強化です。</p>
+<blockquote>
+<p>ご要望で最も多かったものの一つが、もっと本を簡単に登録したい！ １冊１冊登録するのが面倒くさい！というものでした。 今回のリニューアルでは、 ページ遷移をせずに、簡単に複数の本を登録できるように改善しています。</p>
+</blockquote>
+<p><a href="http://info.booklog.jp/?eid=78">ブクログがリニューアルいたしました。 | ブクログお知らせブログ</a></p>
+<p>さくさく登録できて素晴らしいです。</p>
+<p>今のところ API はないようで、何かをしたいときにはスクレイピングする必要があります。とりあえず Ruby で本の一覧を取得してみました。</p>
+<pre><code class="hljs rb"><span class="hljs-keyword">require</span> <span class="hljs-string">'rubygems'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'hpricot'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'open-uri'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(title, url)</span></span>
+    @title = title
+    @url = url
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">asin</span></span>
+    @url.split(<span class="hljs-string">"/"</span>).last
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:title</span>, <span class="hljs-symbol">:url</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_books</span><span class="hljs-params">(username)</span></span>
+  doc = Hpricot(open(<span class="hljs-string">"http://www.booklog.jp/users/<span class="hljs-subst">#{username}</span>/All?display=list"</span>))
+  books = []
+  (doc/<span class="hljs-string">"div#shelf div.list ul li"</span>).each <span class="hljs-keyword">do</span> <span class="hljs-params">|book|</span>
+    title = (book/<span class="hljs-symbol">:a</span>).first.inner_html
+    url = (book/<span class="hljs-symbol">:a</span>).first[<span class="hljs-symbol">:href</span>]
+    books.push(Book.new(title, url))
+  <span class="hljs-keyword">end</span>
+  books
+<span class="hljs-keyword">end</span>
+
+books = get_books(<span class="hljs-string">"branchiopoda"</span>)
+books.each <span class="hljs-keyword">do</span> <span class="hljs-params">|book|</span>
+  puts <span class="hljs-string">"<span class="hljs-subst">#{book.title}</span> =&gt; <span class="hljs-subst">#{book.asin}</span>"</span>
+<span class="hljs-keyword">end</span></code></pre><p>一覧から取れるのはタイトルと ASIN コードだけなので、それ以上の情報を得るには、個別のページや Amazon の API を見る必要がありますね。一つ一つ見てゆくのは大変ですし、情報の更新も行いたいので、今後の API の公開に期待です。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/10/12/python-challenge-from-8-to-9/>Python Challenge Lv. 8 - 9</a>
         </h1>
         <div class="meta">
@@ -155,39 +210,6 @@ sudo patch -p0 &lt; 20081118-fix_rcairo_build_on_mac_leopard.patch
 sudo ruby extconf.rb
 sudo make
 sudo make install</code></pre>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/10/11/this-weeks-chipped-books/>今週届いた本（Joel on Software、高度試験午前対策など）</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Oct 11, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <h2 id="エッセー">エッセー</h2>
-<p>プログラマによるエッセー的な本を三冊。どれも有名な本ですね。</p>
-<ul>
-<li><a href="http://amazon.co.jp/o/ASIN/4274066304/nanataisan-22">Joel on Software</a></li>
-<li><a href="http://amazon.co.jp/o/ASIN/4274065979/nanataisan-22">ハッカーと画家 コンピュータ時代の創造者たち</a></li>
-<li><a href="http://amazon.co.jp/o/ASIN/4894712741/nanataisan-22">達人プログラマー—システム開発の職人から名匠への道</a></li>
-</ul>
-<p>技術書を適当に買うと、すぐに使わない分野のものが積読になってしまいがちです。
-エッセー的なものはどんどん読めて良いかな、と思って購入してみました。
-ちょこちょこ読んで行こうと思います。</p>
-<h2 id="ポケットスタディ-高度試験共通-午前-1・2-対応"><a href="http://amazon.co.jp/o/ASIN/4798021253/nanataisan-22">ポケットスタディ 高度試験共通 午前 1・2 対応</a></h2>
-<p>午前対策の他の本が品薄状態だったのと、レビューの評価が高かったので注文してみました。
-しかし、結論からいうとイマイチです。問題にヒントが書いてある形式もどうかと思いますが、「ポケット」なせいかボリュームが少なすぎます。
-まず、出題範囲。各分野ごとに数問しかなく、カバーできなかったキーワードは列挙されているだけです。そして解答の解説が十分ではありません。
-試験当日の朝にチェック目的で利用するには良いかもしれませんが、これだけでは勉強ができない本ですね。</p>
-
         </div>
       </div>
     </div>

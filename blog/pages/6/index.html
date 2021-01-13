@@ -54,6 +54,45 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2017/12/25/2017-in-review/>2017 in Review</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 25, 2017</span>
+          - <span class="category">Review</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <h2 id="berlin">Berlin</h2>
+<p>I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.</p>
+<p>I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.</p>
+<h2 id="travels">Travels</h2>
+<p>I traveled more than ever. The destinations were Germany (Dresden, Heidelberg, Frankfurt, Köln), Italy (Venice, Florence, Bologna), France (Paris), UK (London), Portugal (Lisbon) and Japan (Tokyo). I had fun in each of them, but if I have to choose one, I will name Lisbon. The city is full of what I miss in Berlin. Fresh and inexpensive seafood, views from hills, cute ceramic tiles, and beautiful weather. The sky was clear on every single day while I was there, and the highest temperature was 18 degrees in December!</p>
+<h2 id="beer">Beer</h2>
+<p>I am glad to have found <a href="https://untappd.com/fuerstwiacekbrew">Fuerst Wiacek</a>. Their <a href="https://untappd.com/b/fuerst-wiacek-german-movies/2155675">German Movies</a> is my No.1 beer so far. <a href="http://biererei-berlin.de/">Biererei</a> is a gem in Berlin, where I can buy fresh craft beers from Europe with growlers.</p>
+<p>British ale was a discovery to me. I liked pubs in London a lot. I also attended <a href="https://www.brlohack.de/english/">the first craft beer hackathon in the world</a> and won 12 crates of craft beer...!</p>
+<h2 id="shopping">Shopping</h2>
+<p>I bought <a href="https://ergodox-ez.com/">an ergonomic keyboard</a> and <a href="https://billerbeck.info/en/products/82/neck-support-pillow-novum">a neck support pillow</a>. Both of them lifted up my quality of life. My body is getting older.</p>
+<h2 id="language-learning">Language Learning</h2>
+<p>I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.</p>
+<h2 id="work">Work</h2>
+<p>I was lucky to join an awesome team. We work together and hang out together. <a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/">A research at Google shows that psychological safety is a key to team effectiveness.</a> I feel it on my team.</p>
+<p>On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.</p>
+<h2 id="side-projects">Side Projects</h2>
+<p>I enjoyed working with Elm. I <a href="https://github.com/shuhei/elm-compare">wrote a mobile weather app</a>, flew to Paris for <a href="https://2017.elmeurope.org/">Elm Europe 2017</a>, built <a href="https://github.com/shuhei/pixelm">a mobile-friendly pixel editor</a> and <a href="https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm">talked about it</a> at <a href="https://www.meetup.com/Elm-Berlin/events/242852794/">Elm Berlin Meetup</a>. I also helped <a href="https://github.com/w0rm/elm-glsl">an experiment of its compiler-side</a> in Haskell, although it is still pending.</p>
+<p>I didn&#39;t do much with JavaScript for side projects but wrote <a href="https://github.com/shuhei/pelo">a tiny library for server-side rendering with tagged template literals</a> while hanging out with friends at a cafe. It&#39;s used in <a href="https://github.com/choojs">the choo ecosystem</a> now.</p>
+<p>Aside from building things, I learned monad transformers, etc. from <a href="http://haskellbook.com/">Haskell Book</a> and machine learning with neural networks from <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization on Coursera</a>.</p>
+<h2 id="then">.then()</h2>
+<p>After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2017/05/27/memory-usage/>Getting Memory Usage in Linux and Docker</a>
         </h1>
         <div class="meta">
@@ -233,58 +272,6 @@ withTimeout(<span class="hljs-number">1000</span>, fetch(<span class="hljs-strin
   .catch(handleError);</code></pre><p>This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like <code>Promise</code> and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like <code>socket.setTimeout()</code> together to save some resources.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2017/01/05/how-to-export-commonjs-and-es-module/>How to export CommonJS and ES Module</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 5, 2017</span>
-          - <span class="category">JavaScript</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>After <a href="/blog/2017/01/05/main-jsnext-main-and-module/">my previous post about jsnext:main and module</a>, there came another issue.</p>
-<ul>
-<li><a href="https://github.com/shuhei/material-colors/issues/16">colors.es2015.js and colors.js have different APIs · Issue #16 · shuhei/material-colors</a>.</li>
-</ul>
-<p>Here is the twists and turns that I wandered to solve the problem.</p>
-<h2 id="exports">Exports</h2>
-<p>The code of <code>material-colors</code> looked like the following.</p>
-<p><code>colors.js</code> specified in <code>main</code> (CommonJS version)</p>
-<pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">red</span>: { <span class="hljs-comment">/* ... */</span> },
-  <span class="hljs-attr">blue</span>: { <span class="hljs-comment">/* ... */</span> }
-};</code></pre><p><code>colors.es2015.js</code> specified in <code>jsnext:main/module</code> (ES Module version)</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };</code></pre><p>Then the ES Module file can get benefit of tree shaking if it&#39;s imported by named imports.</p>
-<h2 id="problem-of-having-only-named-exports">Problem of having only named exports</h2>
-<p>The <code>colors.es2015.js</code> broke <code>react-color</code> when built with Webpack 2 because it was doing default import but <code>colors.es2015.js</code> didn&#39;t have default export.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
-<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>So <a href="https://github.com/echenley">@echenley</a> suggested to change it to a wildcard import.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> material <span class="hljs-keyword">from</span> <span class="hljs-string">'material-colors'</span>;
-<span class="hljs-built_in">console</span>.log(material.red);</code></pre><p>It worked well, but I removed <code>jsnext:main</code> and <code>module</code> because other libraries with default import may break on Webpack 2 and <code>material-colors</code> is already tiny without tree shaking anyway.</p>
-<h2 id="have-a-default-export">Have a default export</h2>
-<p>After a while, I came up with a better solution to have a default export in addition to named exports. Then it will work well with tree shaking and won&#39;t break default import. Pretty obvious after coming up.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> red = { <span class="hljs-comment">/* ... */</span> };
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> blue = { <span class="hljs-comment">/* ... */</span> };
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">red</span>: red,
-  <span class="hljs-attr">blue</span>: blue
-};</code></pre><h2 id="so">So?</h2>
-<p>To keep maximum compatibility for CommonJS and ES Module:</p>
-<ul>
-<li>If your CommonJS module exports only one thing, like encouraged in the npm world, export it as a default export.</li>
-<li>If your CommonJS module exports multiple things, which essentially exports an object with them as properties, export named exports. In addition to it, it&#39;s safer to have a default export just in case for the problem described above.</li>
-</ul>
 
         </div>
       </div>

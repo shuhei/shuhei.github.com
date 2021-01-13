@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Mon, 30 Nov 2020 22:00:00 GMT</lastBuildDate><item><title>4 Years at Zalando</title><link>https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/</link><description><![CDATA[
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom"><channel><title>Shuhei Kagawa</title><link>https://shuheikagawa.com</link><atom:link href="https://shuheikagawa.com/blog/feed/rss.xml" rel="self" type="application/rss+xml"></atom:link><description>Shuhei Kagawa's blog</description><language>en-US</language><lastBuildDate>Wed, 13 Jan 2021 23:00:00 GMT</lastBuildDate><item><title>2020 in Review</title><link>https://shuheikagawa.com/blog/2021/01/13/2020-in-review/</link><description><![CDATA[
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1886px;"><span class="responsive-image-inner" style="padding-top: 74.97348886532343%;"><img class="responsive-image" src="/images/2020-park-yellow-leaves.jpg" alt="Park with yellow leaves"></span></span></span></p>
+<p>It&#39;s already been two weeks in 2021, but I&#39;ll write anyway in the spirit of better late than never.</p>
+<p>2020 was finally over. It was a weird year. Time flies, but things that happened feels like a long time ago.</p>
+<h2 id="work">Work</h2>
+<p>I had been working in the same area as before at Zalando, but there were good changes. My team&#39;s structure changed a bit and welcomed new members. It was refreshing to help a brand new product. I was promoted and exposed to new perspectives even though I left the new role before fully embracing it. More close collaboration with colleagues in Dublin happened thanks to the remote work as the default.</p>
+<p>At the end of November, <a href="/blog/2020/11/30/4-years-at-zalando/">I left Zalando</a> where I met wonderful colleagues and friends. The four years there became an important part of my life.</p>
+<p>After a week of vacation, I started a new job at Google. I am currently working remotely from Berlin but will eventually relocate to Zurich when the situation improves. My current plan is to move at the end of March, but we never know.</p>
+<p>This job change took longer than I thought. I applied in February and got a result in June, but most of the positions were canceled due to COVID-19. It took a few more months to find a team to join. I got an offer at the end of August.</p>
+<p>A new job means a lot of learning. Now I&#39;m experiencing how it feels to join a new place. I haven&#39;t had this feeling for a while. I tended to think that software engineers should thrive on depths, but I missed that we needed an overview before pursuing depths.</p>
+<p>I just finished an onboarding program. I&#39;m excited to catch up and start contributing to real projects.</p>
+<h2 id="wfh">WfH</h2>
+<p>I had been working from home 100% since February. I liked to go to the office and talk to colleagues in person, but I also like working from home.</p>
+<p>It didn&#39;t take long to adapt to working remotely. We were already working cross-location with Dublin and Helsinki using online collaboration tools like GitHub, Google Meet/Chat/Docs. It became even easier to attend meetings than before. Instead of climbing upstairs to go to a meeting room, meetings are only a few clicks away.</p>
+<p>The problem was physical equipment. I didn&#39;t realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—I may write more about this later.</p>
+<p>No commuting meant time-saving. I had been spending at least one and a half hours every day commuting. This was huge. At the same time, I lost a good chance of exercise. I try to walk outside every day, but my physical activities drastically decreased.</p>
+<h2 id="computer-science">Computer Science</h2>
+<p>It was fun to learn and practice algorithms and data structures for interview preparation. I solved about 300 Medium/Hard LeetCode problems in two months. Before 2020, I had been learning them with books and Coursera courses, but knowing and doing are two different things. Solving problems shed light on what I didn&#39;t fully understand. I studied topics that I was stuck—graphs, dynamic programming, string searching, well, most of them!</p>
+<p>After the interviews, I still wanted to learn more. Someone on Twitter tweeted about <a href="https://teachyourselfcs.com/">Teach Yourself Computer Science</a>. I started with <em>Operating Systems: Three Easy Pieces</em> because it looked easy to read—and it was. Then I moved on to <em>Computer Systems: A Programmer&#39;s Perspective</em>. The book is more textbook-ish than OSTEP. But I found it fun to learn things that I hadn&#39;t taken a deeper look at—the binary representation of floating-point numbers, assembly, processors, etc.</p>
+<h2 id="travel">Travel</h2>
+<p>Before COVID-19 started, I traveled to Granada, Spain in January. It&#39;s a city of Alhambra—and free tapas. The city&#39;s bars give you tapas as long as you order drinks. Seafood and Jamón ibérico were so good.</p>
+<p>In September between the two lockdowns of the spring and the winter, I visited Goslar, Quedlinburg, and Düsseldorf in Germany to use too many vacation days left. Goslar and Quedlinburg were beautiful. As a substitute for a trip to Japan, I ate Japanese food extravagantly in Düsseldorf. My favorite restaurant was Hyuga. It felt like being at an <em>izakaya</em> in Tokyo. Shochiku, a Japanese supermarket, had a fish counter where you can ask them to cut sashimi. I took it out and ate in the hotel room. So good.</p>
+<h2 id="food--drinks">Food &amp; Drinks</h2>
+<p>I had rarely used food deliveries before 2020. But yes, I did it this time. My favorite dishes have been Tacos and Korean fried chicken. Also, many restaurants started take-away. I had never imagined taking out <em>ramen</em> before 2020.</p>
+<p>I kept drinking bubble tea. Dosha in Friedrichshain is my favorite in Berlin so far. In addition to authentic Taiwanese tea, they have waffles with Tapioca inside!</p>
+<p>Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally got an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let&#39;s see if I can make some latte art in 2021.</p>
+<h2 id="books">Books</h2>
+<p>I bought 42 books or so but finished only a few non-tech books. Much less than I thought. One was <em>Into The Wild</em>. The others were two volumes about fermented beans, <em>natto</em> in Japanese, around the world even though I&#39;m scared of its smell and haven&#39;t tried it yet.</p>
+<p>I want to read more in 2021. I will cut the time on social media and read books instead. If you want to see the progress and my ever-growing <em>Tsundoku</em> collection, here is <a href="https://www.goodreads.com/user/show/57764964-shuhei-kagawa">my Goodreads account</a>.</p>
+<h2 id="2021">2021</h2>
+<p>I&#39;ll move to another country this year. We can&#39;t socialize in person under the current circumstances, but you know, remote meetings are a few clicks away ;)</p>
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1886px;"><span class="responsive-image-inner" style="padding-top: 74.97348886532343%;"><img class="responsive-image" src="/images/2020-station.jpg" alt="A station in Berlin"></span></span></span></p>
+
+]]></description><pubDate>Wed, 13 Jan 2021 23:00:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2021/01/13/2020-in-review/</guid></item><item><title>4 Years at Zalando</title><link>https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/</link><description><![CDATA[
 <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2020-spree.jpg" alt="Spree in November, 2020"></span></span></span></p>
 <p>I&#39;m leaving Zalando with fond memories after 4 years. Here I&#39;m writing down my experience. It&#39;s never comprehensive, but I hope some people find it interesting!</p>
 <h2 id="beginning">Beginning</h2>
@@ -537,111 +570,4 @@ fibonacci(<span class="hljs-number">15</span>);</code></pre><p>The second book <
 <p>It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.</p>
 <p><a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> and <a href="https://compilerbook.com/">Writing a Compiler in Go</a> are great. I liked their hands-on approach with many unit tests.</p>
 
-]]></description><pubDate>Sun, 06 Oct 2019 23:32:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</guid></item><item><title>DNS Polling for Reliability</title><link>https://shuheikagawa.com/blog/2019/04/30/dns-polling/</link><description><![CDATA[
-<p>In December 2018, I wrote a package to poll and cache DNS records, <a href="https://github.com/shuhei/pollen">pollen</a>, as a mitigation for incidents at work.</p>
-<p>My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and <code>tcpdump</code>, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.</p>
-<h2 id="nodejs-is-vulnerable-to-dns-failures">Node.js is Vulnerable to DNS Failures</h2>
-<p>In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.</p>
-<p>Node.js is especially vulnerable to DNS lookup failures because:</p>
-<ul>
-<li>Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.</li>
-<li>Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.<ul>
-<li>Before <a href="https://github.com/nodejs/node/pull/22997">Node 10.12.0</a>, it was even worse because slow DNS queries affected other tasks in the thread pool like file IO and gzip encoding/decoding.</li>
-</ul>
-</li>
-</ul>
-<h2 id="caching-at-os-level">Caching at OS-level</h2>
-<p>We can make DNS lookups fast and reliable by caching it. <a href="https://github.com/nodejs/node/issues/5893">An issue on the nodejs/node repo</a> recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.</p>
-<p>However, it&#39;s not always easy depending on the platform that you are using. My team was using <a href="https://stups.io/">a platform where we just deploy your application Docker container</a>, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)</p>
-<p>Because the incidents didn&#39;t happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.</p>
-<h2 id="dns-caching-and-prefetching-with-nodejs">DNS Caching and Prefetching with Node.js</h2>
-<p>There were already some DNS caching packages:</p>
-<ul>
-<li><a href="https://github.com/yahoo/dnscache">yahoo/dnscache</a></li>
-<li><a href="https://github.com/eduardbcom/lookup-dns-cache">eduardbcom/lookup-dns-cache</a></li>
-</ul>
-<p>The packages looked great, but there was an edge case that they didn&#39;t cover. Both of the packages throw away caches after some time (<code>dnscache</code> uses <code>ttl</code> option and <code>lookup-dns-cache</code> uses the TTL that DNS servers return) and make DNS lookups again. This poses a risk where HTTP requests fail if DNS servers are down at the time.</p>
-<p>To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn&#39;t change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.</p>
-<h2 id="http-keep-alive-persistent-connection">HTTP Keep-Alive (Persistent Connection)</h2>
-<p>There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.</p>
-<p>We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the <code>activeSocketTTL</code> option of <code>keepaliveagent</code>. However, this is not optimal because IP addresses don&#39;t change most of the time.</p>
-<p>The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.</p>
-<h2 id="result">Result</h2>
-<p>I wrote <a href="https://github.com/shuhei/pollen">pollen</a>, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.</p>
-<p>I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.</p>
-<h2 id="how-to-use-it">How to Use It</h2>
-<pre><code class="hljs sh">npm i -S @shuhei/pollen
-<span class="hljs-comment"># or</span>
-yarn add @shuhei/pollen</code></pre><pre><code class="hljs js"><span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">"https"</span>);
-<span class="hljs-keyword">const</span> { DnsPolling, HttpsAgent } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@shuhei/pollen"</span>);
-
-<span class="hljs-keyword">const</span> dnsPolling = <span class="hljs-keyword">new</span> DnsPolling({
-  <span class="hljs-attr">interval</span>: <span class="hljs-number">30</span> * <span class="hljs-number">1000</span> <span class="hljs-comment">// 30 seconds by default</span>
-});
-<span class="hljs-comment">// Just a thin wrapper of https://github.com/node-modules/agentkeepalive</span>
-<span class="hljs-comment">// It accepts all the options of `agentkeepalive`.</span>
-<span class="hljs-keyword">const</span> agent = <span class="hljs-keyword">new</span> HttpsAgent();
-
-<span class="hljs-keyword">const</span> hostname = <span class="hljs-string">"shuheikagawa.com"</span>;
-<span class="hljs-keyword">const</span> req = https.request({
-  hostname,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">"/"</span>,
-  <span class="hljs-comment">// Make sure to call `getLookup()` for each request!</span>
-  <span class="hljs-attr">lookup</span>: dnsPolling.getLookup(hostname),
-  agent
-});</code></pre><h2 id="bonus-dns-lookup-metrics">Bonus: DNS Lookup Metrics</h2>
-<p>Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. <code>pollen</code> emits events for this purpose.</p>
-<pre><code class="hljs js">dnsPolling.on(<span class="hljs-string">"resolve:success"</span>, ({ hostname, duration, update }) =&gt; {
-  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-  recordDnsLookup();
-  recordDnsLatency(duration);
-
-  <span class="hljs-keyword">if</span> (update) {
-    logger.info({ hostname, duration }, <span class="hljs-string">"IP addresses updated"</span>);
-  }
-});
-dnsPolling.on(<span class="hljs-string">"resolve:error"</span>, ({ hostname, duration, error }) =&gt; {
-  <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-  recordDnsLookup();
-  recordDnsLatency(duration);
-  recordDnsError();
-
-  logger.warn({ hostname, <span class="hljs-attr">err</span>: error, duration }, <span class="hljs-string">"DNS lookup error"</span>);
-});</code></pre><p>I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of <a href="https://c-ares.haxx.se/">c-ares</a>, but I&#39;m not sure yet (<a href="https://c-ares.haxx.se/ares_init_options.html">its default timeout seems to be 5 seconds...</a>).</p>
-<p>Because <code>pollen</code> makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">Histogram for Time-Series Metrics on Node.js</a> for more details.</p>
-<p>Even if you don&#39;t use <code>pollen</code>, it is a good idea to monitor DNS lookups.</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> dns = <span class="hljs-built_in">require</span>(<span class="hljs-string">"dns"</span>);
-
-<span class="hljs-keyword">const</span> lookupWithMetrics = <span class="hljs-function">(<span class="hljs-params">hostname, options, callback</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> cb = callback || options;
-  <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
-
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onLookup</span>(<span class="hljs-params">err, address, family</span>) </span>{
-    <span class="hljs-keyword">const</span> duration = <span class="hljs-built_in">Date</span>.now() - startTime;
-    cb(err, address, family);
-
-    <span class="hljs-comment">// Hypothetical functions to update metrics...</span>
-    recordDnsLookup();
-    recordDnsLatency(duration);
-    <span class="hljs-keyword">if</span> (err) {
-      recordDnsError();
-      logger.warn({ hostname, err, duration }, <span class="hljs-string">"DNS lookup error"</span>);
-    }
-  }
-
-  <span class="hljs-keyword">return</span> dns.lookup(hostname, options, onLookup);
-};
-
-<span class="hljs-keyword">const</span> req = https.request({
-  <span class="hljs-comment">// ...</span>
-  <span class="hljs-attr">lookup</span>: lookupWithMetrics
-});</code></pre><h2 id="conclusion">Conclusion</h2>
-<p>Give <a href="https://github.com/shuhei/pollen">pollen</a> a try if you are:</p>
-<ul>
-<li>seeing DNS timeouts on outbound API calls</li>
-<li>using DNS for service discovery</li>
-<li>running your Node.js servers without DNS caching</li>
-</ul>
-<p>Also, don&#39;t forget to monitor DNS lookups!</p>
-
-]]></description><pubDate>Tue, 30 Apr 2019 00:14:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/04/30/dns-polling/</guid></item></channel></rss>
+]]></description><pubDate>Sun, 06 Oct 2019 23:32:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</guid></item></channel></rss>
