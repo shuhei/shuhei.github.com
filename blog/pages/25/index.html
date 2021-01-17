@@ -54,6 +54,33 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/12/31/japanese-on-irb/>irb で日本語表示</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Dec 31, 2009</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <pre><code class="hljs ">$irb
+irb(main):001:0&gt;puts &quot;あああ&quot;
+&quot;\343\201\202\343\201\202\343\201\202&quot;
+=&gt; nil</code></pre><p>上の例のように、日本語出力が読めない問題。</p>
+<p>$KCODE に使用中のターミナルの文字コードを設定すれば良いようです。
+UTF-8 なら <code>$KCODE = &#39;u&#39;</code> 、EUC-JP なら <code>$KCODE = &#39;e&#39;</code> など。
+irb コマンドのオプションでも指定できます。
+<code>irb -Ku</code> とか <code>irb -Ke</code> とか。</p>
+<p>via <a href="http://rubyist.g.hatena.ne.jp/gaba/20060702/p6">irb で日本語出来た &#8211; 只今 Ruby 勉強中 &#8211; Rubyist</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/12/09/ascii/>ascii コード</a>
         </h1>
         <div class="meta">
@@ -116,60 +143,6 @@ Objective-C ランタイムの例外送出部分にブレークポイントを�
 <p>通常のブレークポイントではソースコード中の行を指定しますが、シンボリックブレークポイントはシンボル単位で指定するブレークポイントです。
 ですので「あの関数が呼ばれたらブレーク」や「あのクラスのあのメソッドが呼ばれたらブレーク」ということができます。
 今回の objc_exception_throw は Objective-C のランタイム中にある例外を送出する関数のようですね。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/11/07/add-tabbar-to-navigation-based-application-project/>Navigation-based Application に TabBar を追加</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Nov 7, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>iPhone プロジェクトの新規作成時に &#8220;Navigation-based Application&#8221; を選んだ場合に、後から TabBar を追加する方法です。
-InterfaceBuilder での設定が画像入りの説明なしではよくわからず、苦戦したのでメモしておきます。</p>
-<h2 id="interfacebuilder-の設定">InterfaceBuilder の設定</h2>
-<h3 id="tab-bar-controller-の追加">Tab Bar Controller の追加</h3>
-<p>まず、InterfaceBuilder で MainWindow.xib を開きます。
-Navigation Controller を削除して Tab Bar Controller を追加します。</p>
-<h3 id="tab-bar-controller-の下に-navigation-controller-を">Tab Bar Controller の下に Navigation Controller を</h3>
-<p>Tab Bar Controller にフォーカスをあて、Inspector の一番左のタブ の &#8220;Tab Bar Controller&#8221; =&gt; &#8220;View Controllers&#8221; の中で Navigation Controller にするタブの Class を Navigation Controller に変更します。</p>
-<p><img src="/images/2009/11/TabBarController_Inspector1.png" alt=""></p>
-<p>すると、IB のメインウィンドウの方の Tab Bar Controller の子供の Controller の Type が UIViewController から UINavigationController に変わっているはずです。</p>
-<h3 id="navigation-controller-の下に-root-view-controller-を">Navigation Controller の下に Root View Controller を</h3>
-<p>この Navigation Controller のさらに子供の View Controller が、もともとの Root View Controller になるよう設定します。
-一番左側のタブで NIB Name を、Inspector で一番右側のタブで Class を設定します。</p>
-<p><img src="/images/2009/11/SetRootViewControllerNIB1.png" alt="">)<img src="/images/2009/11/SetRootViewControllerClass1.png" alt=""></p>
-<p>以上を保存して IB を閉じます。</p>
-<h2 id="コードの修正">コードの修正</h2>
-<p>Xcode に戻って AppDelegate を変更し、UINavigationController ではなく UITabBarController を読み込むようにします。
-以下、アプリケーションの名前を Hoge だったとして、 HogeAppDelegate.h と .m を編集します。</p>
-<h3 id="hogedelegateh">HogeDelegate.h</h3>
-<pre><code class="hljs objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">HogeAppDelegate</span> : <span class="hljs-title">NSObject</span>  </span>{
-  <span class="hljs-built_in">UIWindow</span> *window;
-  <span class="hljs-built_in">UITabBarController</span> *tabBarController;
-}
-
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">retain</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIWindow</span> *window;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">retain</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UITabBarController</span> *tabBarController;
-
-<span class="hljs-keyword">@end</span></code></pre><h3 id="hogeappdelegatem">HogeAppDelegate.m</h3>
-<pre><code class="hljs objc">- (<span class="hljs-keyword">void</span>)applicationDidFinishLaunching:(<span class="hljs-built_in">UIApplication</span> *)application {
-  [window addSubview:[tabBarController view]];
-  [window makeKeyAndVisible];
-}</code></pre><p><code>synsthesize</code> と <code>dealloc</code> 中の <code>release</code> も忘れずに変更します。</p>
-<h2 id="app-delegate-の-outlet-のつなぎ変え">App Delegate の Outlet のつなぎ変え</h2>
-<p>これまで App Delegate で UINavigationController を参照していたのを UITabBarController に変えたので、Outlet の設定が切れています。
-再度 Interface Builder に戻って App Delegate の Outlet をつなぎ直します。</p>
-<p>これで、Tab Bar Controller の下に Navigation Controller と View Controller、Navigation Controller の下に Root View Controller という構成になっているはずです。</p>
 
         </div>
       </div>

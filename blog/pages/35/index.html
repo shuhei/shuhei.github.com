@@ -54,6 +54,58 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/08/02/blending-of-openg/>OpenGL のブレンディング方法について</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Aug 2, 2009</span>
+          - <span class="category">C/C++</span>, <span class="category">OpenFrameworks</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。</p>
+<p>そこで調べてみた OpenGL のブレンディングについてメモ。一言で言うと、ブレンディングとは画像に画像を合成することです。Photoshop などでは、レイヤーとレイヤーの画像の合成の方法をブレンドモードと言っていますね。OpenGL では自分で書く訳ですから、ブレンディングの方法をさらに柔軟に指定できます。</p>
+<h2 id="まずは有効に">まずは有効に</h2>
+<p>ブレンディングを有効にするには以下の関数を呼ばなければなりません。</p>
+<pre><code class="hljs cpp">glEnable(GL_BLEND);</code></pre><h2 id="設定関数">設定関数</h2>
+<p>ブレンドする二つの画像を source と destination とします。OpenGL では、これから描くのが source、destination はフレームバッファ上の画像だそうです。</p>
+<h3 id="glblendfunc">glBlendFunc</h3>
+<p><code>glBlendFunc</code> では、それぞれの画像の RGBA にかける係数を設定します。下記は一例です。</p>
+<ul>
+<li><code>GL_ONE</code> RGBA 全てを 0 にする</li>
+<li><code>GL_ZERO</code> RGBA 全てそのまま</li>
+<li><code>GL_SRC_ALPHA</code> RGBA 全てに source の A をかける</li>
+</ul>
+<h3 id="glblendequation">glBlendEquation</h3>
+<p><code>glBlendEquation</code> では、画像同士の RGBA を合成する方法を設定します。</p>
+<ul>
+<li><code>GL_FUNC_ADD</code> 足す</li>
+<li><code>GL_FUNC_SUBTRACT</code> source から destination を引く</li>
+<li><code>GL_FUNC_REVERSE_SUBTRACT</code> destination から source を引く</li>
+<li><code>GL_MAX</code> 大きい方をそのまま使う</li>
+<li><code>GL_MIN</code> 小さい方をそのまま使う</li>
+</ul>
+<h3 id="その他">その他</h3>
+<p>iPhone では <code>glBlendEquation</code> ではなく <code>glBlendEquationOES</code> を使いますが、働きは同じもののようです。また <code>glBlendFunc</code> や <code>glBlendEquation</code> では RGBA 全てを一緒に設定しますが、 <code>glBlendFuncSeparate</code> や <code>glBlendEquationSeparate</code> を用いると RGB と Alpha を別々に設定できるようです。</p>
+<h2 id="実例">実例</h2>
+<h3 id="additive-blending">Additive blending</h3>
+<p>光の表現に。暗めの色を重ねていくと、ぼんやりと光るようないい感じになります。</p>
+<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_ADD); <span class="hljs-comment">// デフォルトは GL_FUNC_ADD のようで必要ないかも</span>
+glBlendFunc(GL_ONE, GL_ONE);
+<span class="hljs-comment">// glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR); // こっちの方がいい感じになるとか・・・。</span></code></pre><h3 id="フェードアウト">フェードアウト</h3>
+<p>もっといい方法があるかもしれませんが、他にやり方が思いつかなかったので。</p>
+<pre><code class="hljs cpp">glBlendEquationOES(GL_FUNC_REVERSE_SUBTRACT_OES); <span class="hljs-comment">// 暗くするため、元画像から引く</span>
+glBlendFunc(GL_ONE, GL_ONE); <span class="hljs-comment">// そのまま</span>
+ofSetColor(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// 少しずつ暗くします</span>
+ofRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ofGetWidth(), ofGetHeight()); <span class="hljs-comment">// 画面全体に適用します</span></code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/08/01/const-and-pointe/>const とポインタ</a>
         </h1>
         <div class="meta">
@@ -116,44 +168,6 @@ pb = <span class="hljs-literal">NULL</span>;
 <ul>
 <li><a href="http://slashdot.jp/~A7M/journal/311876">覚え書き：C++のコンストラクタに関する注意点 - A7M の日記</a></li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/28/former-declaration-of-class/>クラスの前方宣言</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 28, 2009</span>
-          - <span class="category">C++</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>1 時間ほどハマりました。下のようなコードで <code>A::foo</code> のところでコンパイルエラーです。</p>
-<blockquote>
-<p>C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません</p>
-</blockquote>
-<pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> GREETING { HELLO, NI_HAO, CIAO };
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
-<span class="hljs-keyword">public</span>:
-  <span class="hljs-function">GREETING <span class="hljs-title">foo</span><span class="hljs-params">(B* b)</span></span>;  <span class="hljs-comment">// コンパイルエラー！</span>
-}
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> {</span>
-<span class="hljs-keyword">public</span>:
-  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bar</span><span class="hljs-params">(A* a)</span></span>;
-}</code></pre><p>B は下でしっかり宣言しているのに型がないと言われるので、enum の使い方が違うのかと思いいろいろ調べていたのですが・・・。<code>class A</code> の宣言の前に B の前方宣言が必要なんですね。</p>
-<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span>;</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> {</span>
-  <span class="hljs-comment">// ...</span>
-}</code></pre><p>一回勉強したのですが、すっかり忘れていました。この辺は勝手に上手くやってくれる Java や C# のありがたみを感じます。</p>
 
         </div>
       </div>

@@ -54,6 +54,28 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/02/17/grep-onwindows/>Windows で grep</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Feb 17, 2010</span>
+          - <span class="category">Windows</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <pre><code class="hljs ">findstr /n /s /c:&quot;hello world&quot; sub_dir\*</code></pre><p>これで subdir 以下の &#8220;hello world&#8221; を含むファイルと行を表示できます。
+/n で行番号表示。/s は再帰的に。</p>
+<pre><code class="hljs ">findstr /n /s &quot;hello world&quot; sub_dir\*</code></pre><p>とすると、&#8220;hello&#8221; と &#8220;world&#8221; の両方にマッチしてしまうので注意。</p>
+<p>via <a href="http://d.hatena.ne.jp/language_and_engineering/20081001/1222857265">コマンドプロンプトで，暗記するべき１０の必須コマンド　　(前半) ファイル処理系 &#8211; 主に言語とシステム開発に関して</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/01/20/error-of-eclispe/>Eclipse の起動エラー</a>
         </h1>
         <div class="meta">
@@ -123,31 +145,6 @@ C:\Program Files\Java\jdk1.6.0_18\bin\javaw.exe
 <pre><code class="hljs ">sudo port sync</code></pre><p>たまにやった方がいいようですね。</p>
 <p>via <a href="http://d.hatena.ne.jp/kanonji/20091025/1256495516">MacPorts をちゃんと使うために調べてみた &#8211; kanonji の日記</a></p>
 
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/01/16/useufw/>ufw でファイアウォール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jan 16, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Linux のファイアウォールソフトに iptables というのがありますが、使い方が難しい。
-Ubuntu では ufw というものを使って iptables を簡単に操作できるようです。</p>
-<pre><code class="hljs sh">sudo ufw default DENY
-sudo ufw <span class="hljs-built_in">enable</span></code></pre><p>とやって有効化。
-ウェブサーバならば HTTP を許可します。</p>
-<pre><code class="hljs sh">sudo ufw allow http</code></pre><p>LAN 内からだけ SSH を許可。</p>
-<pre><code class="hljs sh">sudo ufw allow from 192.168.1.0/24 to any port ssh</code></pre><p>SSH へのログイン試行回数を制限。</p>
-<pre><code class="hljs sh">sudo ufw <span class="hljs-built_in">limit</span> ssh</code></pre>
         </div>
       </div>
     </div>

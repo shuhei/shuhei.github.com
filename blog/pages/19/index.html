@@ -54,6 +54,43 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2010/06/16/multi-rubies-with-rv/>RVM で複数バージョンの Ruby を管理</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 16, 2010</span>
+          
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。
+自分でシンボリックリンクを切り替えて・・・とか考えましたが面倒くさい。
+<a href="http://rvm.beginrescueend.com/">Ruby Version Manager</a> という素晴らしいものがあるそうです。</p>
+<ul>
+<li><a href="http://rvm.beginrescueend.com/rvm/install/">RVM: Ruby Version Manager &#8211; Installing RVM</a></li>
+<li><a href="http://d.hatena.ne.jp/mirakui/20100502/1272849327">rvm: 複数の Ruby を共存させる最新のやり方 &#8211; 床のトルストイ、ゲイとするとのこと</a></li>
+</ul>
+<p>を参考にインストール。
+公式サイトの方に gem はおすすめできないと書いてあったので下記の方法で。</p>
+<pre><code class="hljs sh">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-latest )</code></pre><p>した後 .bashrc の最後に以下を記載。</p>
+<pre><code class="hljs sh">[[ -s <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.rvm/scripts/rvm</code></pre><p>これでターミナルを再起動すれば完了です。</p>
+<pre><code class="hljs sh">rvm list known</code></pre><p>とするとインストール可能なバージョンのリストを出力してくれます。
+下記で 1.9.1 をインストール。</p>
+<pre><code class="hljs sh">rvm install 1.9.1</code></pre><p>irb, gem, rake なども一緒にインストールして管理してくれます。
+1.8.7 系もインストール。</p>
+<pre><code class="hljs sh">rvm install 1.8.7</code></pre><p>使用する Ruby を変えるには・・・。</p>
+<pre><code class="hljs sh">rvm use 1.8.7</code></pre><p>情報を見るには下記。</p>
+<pre><code class="hljs sh">rvm info 1.8.7</code></pre><p>1.8.7 は現時点では p174 の模様。最新安定板は p249 のようなので、少し古いのかも。
+1.8.7-head とすると head がとれますが、こちらは p294 と安定板ではない様子でした。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2010/06/01/out-of-memory-with-wordpress/>Wordpress で Out of memory</a>
         </h1>
         <div class="meta">
@@ -105,78 +142,6 @@ syslog を見ると Out of memory で kernel が apache2 を kill している�
 ソースをいじってコンパイルし直した直後に出るみたい。
 その後もう一回試すと、ちゃんと起動しています。
 うーん、不思議です・・・。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2010/04/14/upgrade-to-snow-leopard/>今さら Snow Leopard にアップグレード</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 14, 2010</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。
-しかし、iPhone SDK 4.0 beta は Leopard には入らないというので、ついに観念。
-ヨドバシのオンラインストア（Amazon より高いけど送料無料、即日発送、ポイントつく）で注文し、アップグレードしてみました。
-以下、それに伴う環境構築も合わせてメモ。</p>
-<h2 id="ファイル整理">ファイル整理</h2>
-<p>引っ越し前の大掃除ということで、いらないファイルを一掃しました。</p>
-<h2 id="（itunes-の認証を解除しておく）">（iTunes の認証を解除しておく）</h2>
-<p>iTunes で購入した音楽やアプリは 5 台までのコンピュータで共有できるようです。
-認証を解除しておかないと、この台数一つを無駄にすることになります。</p>
-<p>これには気がつかず、すっかりやり損ねました！
-今のところ 5 台で共有することもなさそうなので構いませんが・・・。</p>
-<h2 id="macports-rubygems-のメモ">MacPorts, RubyGems のメモ</h2>
-<pre><code class="hljs ">$ port installed &gt; ports20100414.txt
-$ gem list --local &gt; gems20100414.txt</code></pre><h2 id="time-machine-でバックアップ">Time Machine でバックアップ</h2>
-<p>外付け HDD を引っ張りだしてきてバックアップ。
-Time Machine は初めてだったので、フルバックアップで時間がかかりました。
-120 GB くらいで 3 から 4 時間ほど。</p>
-<h2 id="snow-leopard-インストール">Snow Leopard インストール</h2>
-<p>Snow Leopard の DVD を入れ、ディスクユーティリティでフォーマット。
-そしてインストール。</p>
-<h2 id="time-machine-からデータを転送">Time Machine からデータを転送</h2>
-<p>インストールのウィザードに身を任せ、Time Machine からデータを転送。
-ユーザと設定のみ転送し、&#8221;HDD 上のその他のファイル&#8220;（みたいなやつ）は転送せず。</p>
-<h2 id="xcode-のインストール">Xcode のインストール</h2>
-<p>DVD の &#8220;オプションインストール&#8221; フォルダから Xcode をインストール。</p>
-<h2 id="ソフトウェアアップデート">ソフトウェアアップデート</h2>
-<p>言われるがままソフトウェアアップデートをし、再起動。
-そしたらまた Java のアップデートがあるとかで、立て続けにソフトウェアアップデート、再起動。</p>
-<h2 id="iphone-sdk-のインストール">iPhone SDK のインストール</h2>
-<p>Xcode 3.2.3 + iPhone SDK 4.0 beta をインストール。</p>
-<h2 id="macports-のインストール">MacPorts のインストール</h2>
-<p>Leopard には最初から入っていたような気がするんですが、Snow Leopard には入っていません。
-サイトからダウンロードしてインストール。
-パッケージ管理ソフトとして Fink や Homebrew なども少し検討してみましたが、結局使い慣れた MacPorts に。</p>
-<h2 id="ruby-19-のインストール">Ruby 1.9 のインストール</h2>
-<p>これを機に Ruby も 1.9 系統を使うようにしてみます。</p>
-<pre><code class="hljs ">$ sudo port install ruby19</code></pre><p>このままだとコマンド名が <code>ruby1.9</code> や <code>rake1.9</code> です。
-<code>ruby</code> や <code>rake</code> として使いたいので、シンボリックリンクを作成。</p>
-<pre><code class="hljs ">$ cd /opt/local/bin
-$ sudo ln -s erb1.9 erb
-$ sudo ln -s gem1.9 gem
-$ sudo ln -s irb1.9 irb
-$ sudo ln -s rake1.9 rake
-$ sudo ln -s rdoc1.9 rdoc
-$ sudo ln -s ri1.9 ri
-$ sudo ln -s ruby1.9 ruby
-$ sudo ln -s testrb1.9 testrb
-$ which ruby
-/opt/local/bin/ruby</code></pre><p>こんなんでいいんですかね・・・？
-.bashrc が <code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH</code> 的な感じになっているのが前提です。</p>
-<p>なお、Ruby 1.9 には RubyGems が同梱されているので、別途インストールは不要。</p>
-<h2 id="一旦完了">一旦完了</h2>
-<p>とりあえず今日のところはこの辺で一旦完了ということで。
-その他の MacPorts のパッケージや RubyGems の gem は、必要に応じてインストールすることにします。</p>
 
         </div>
       </div>

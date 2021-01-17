@@ -54,6 +54,27 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2012/06/01/3d-lut/>3D LUT</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 1, 2012</span>
+          - <span class="category">openFrameworks</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>openFrameworks 0071 がリリースされました。今回のリリースの目玉の一つは <code>examples</code> が充実していることです。ディレクトリ構成上も <code>apps</code> から独立して一つ上の階層に上がりました。フォントのベクター情報いじったり、Instagram のエフェクト再現したりしてて面白い。</p>
+<p>Instagram 風の例を見てみると、エフェクトをかけるのには <a href="http://en.wikipedia.org/wiki/3D_LUT">3D LUT</a> という仕組みが使われているようです。.cube ファイルという、この RGB 値ならこの RGB 値にする、というのを単純に羅列したものでエフェクトを定義しています。このファイル形式は After Effects とかで作れるみたいです。</p>
+<p><a href="http://ae-users.com/jp/tips/2010/04/whats-new-after-effects-cs5/">After Effects CS5 ファーストレビュー！CS5では何が変わる？</a></p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2012/04/07/coffeescript-and-scss-for-vanilla-website/>普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて</a>
         </h1>
         <div class="meta">
@@ -87,71 +108,6 @@ watch(<span class="hljs-string">'sass\/(.*)\.s[ac]ss'</span>) { <span class="hlj
           <p><a href="/perfume_dev/stick_people/"><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 800px;"><span class="responsive-image-inner" style="padding-top: 57.62500000000001%;"><img class="responsive-image" src="https://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg" alt="Perfume Dev"></span></span></span></a></p>
 <p><a href="https://www.perfume-global.com/">Perfume Global</a> のデータで<a href="/perfume_dev/stick_people/">遊んでみました</a>。たぶん Chrome でないと動きません。曲のファイルが重いので、はじまるまでに時間がかかるかも。ソースは <a href="https://github.com/shuhei/perfume_dev">github</a> にあります。</p>
 <p>Three.js 使うと WebGL も簡単。床のは Web Audio API で FFT したのを表示してます。Web Audio API はビルトインで FFT できてびっくりしました。HTML5 すごい。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2012/04/03/category-index-for-octopress/>Category index for Octopress</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Apr 3, 2012</span>
-          - <span class="category">Octopress</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>サイドバーにカテゴリー一覧を出してみました。</p>
-<p>_config.yml</p>
-<pre><code class="hljs diff">diff --git a/_config.yml b/_config.yml
-index 5c7d335..7ad03bb 100644
-<span class="hljs-comment">--- a/_config.yml</span>
-<span class="hljs-comment">+++ b/_config.yml</span>
-@@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
-
- # list each of the sidebar modules you want to include, in the order you want them to appear.
- # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-<span class="hljs-deletion">-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]</span>
-<span class="hljs-addition">+default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.</span>
-
- # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
- # and add an array with the asides you want to use.</code></pre><p>source/_includes/custom/asides/categories.html</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Categories<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-    {% for category in site.categories %}
-      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>{{ category | category_link }}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    {% endfor %}
-  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></code></pre><p>2013-10-27 編集: 現在はデフォルトで <code>category_link</code> メソッドが追加されているので、以下の修正は不要です。</p>
-<p>plugins/category_generator.rb</p>
-<pre><code class="hljs diff">diff --git a/plugins/category_generator.rb b/plugins/category_generator.rb
-index bb5fd32..28bf7e0 100644
-<span class="hljs-comment">--- a/plugins/category_generator.rb</span>
-<span class="hljs-comment">+++ b/plugins/category_generator.rb</span>
-@@ -156,6 +156,18 @@ module Jekyll
-       end
-     end
-
-<span class="hljs-addition">+    # Outputs a link of a category.</span>
-<span class="hljs-addition">+    # </span>
-<span class="hljs-addition">+    #  +category+ is an item of site.categories.</span>
-<span class="hljs-addition">+    #</span>
-<span class="hljs-addition">+    # Returns string</span>
-<span class="hljs-addition">+    # </span>
-<span class="hljs-addition">+    def category_link(category)</span>
-<span class="hljs-addition">+      dir = @context.registers[:site].config['category_dir']</span>
-<span class="hljs-addition">+      category = category[0]</span>
-<span class="hljs-addition">+      "&lt;a class='category' href='/#{dir}/#{category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase}/'&gt;#{category}&lt;/a&gt;"</span>
-<span class="hljs-addition">+    end</span>
-<span class="hljs-addition">+</span>
-     # Outputs the post.date as formatted html, with hooks for CSS styling.
-     #
-     #  +date+ is the date object to format as HTML.</code></pre><p>Gist: <a href="https://gist.github.com/shuhei/2288181">Add a category index to Octopress</a></p>
 
         </div>
       </div>

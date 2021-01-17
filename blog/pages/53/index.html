@@ -54,6 +54,57 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2008/06/21/amazon-dot-com-reviewer/>Amazon.co.jp の洋書レビューを Amazon.com で見るための Greasemonkey</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jun 21, 2008</span>
+          - <span class="category">Greasemonkey</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
+一方、Amazon.com に行けばレビューがたくさんあります。
+ですが同じ本のページを探すのに、 ISBN をコピペしたり検索し直したりするのは、ちょっとした手間ですね。</p>
+<p>そこで、Greasemonkey のuser script を書いてみました。</p>
+<p>本の題名のすぐ下に、リンクができます。
+amazon.co.jp からは amazon.com の、amazon.com からは amazon.co.jp の、それぞれ同じ本のページへのリンクです。
+洋書のレビューを amazon.com で探したり、また amazon.com で見つけた本を amazon.co.jp で買う際に地味に便利です。</p>
+<p>amazondotcomreviewer.user.js</p>
+<pre><code class="hljs js"><span class="hljs-comment">// ==UserScript==</span>
+<span class="hljs-comment">// @name           AmazonDotComReviewer 0.1</span>
+<span class="hljs-comment">// @namespace      http://www.7to3.net</span>
+<span class="hljs-comment">// @description    Make link between amazon.com and amazon.co.jp</span>
+<span class="hljs-comment">// @include        http://*.amazon.*</span>
+<span class="hljs-comment">// ==/UserScript==</span>
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> isbnmatch = <span class="hljs-built_in">window</span>.location.href.match(<span class="hljs-regexp">/amazon\.(com|co\.jp)\/.*\/([0-1][0-9A-Z]{9})\//</span>);
+    <span class="hljs-keyword">var</span> header = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btAsinTitle'</span>);
+
+    <span class="hljs-keyword">if</span> (header &amp;&amp; isbnmatch) {
+        domain = (isbnmatch[<span class="hljs-number">1</span>] === <span class="hljs-string">'com'</span>) ? <span class="hljs-string">'co.jp'</span> : <span class="hljs-string">'com'</span>;
+        isbn = isbnmatch[<span class="hljs-number">2</span>];
+
+        <span class="hljs-keyword">var</span> uslink = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'a'</span>);
+        uslink.setAttribute(<span class="hljs-string">'href'</span>, <span class="hljs-string">'http://www.amazon.'</span> + domain + <span class="hljs-string">'/o/ASIN/'</span> + isbn + <span class="hljs-string">'/'</span>);
+        uslink.setAttribute(<span class="hljs-string">'title'</span>, <span class="hljs-string">'The same book at amazon.'</span> + domain);
+        uslink.innerHTML = <span class="hljs-string">"&lt;br /&gt;&amp;#187; Check also amazon."</span> + domain + <span class="hljs-string">"!"</span>;
+
+        header.insertBefore(uslink, header.firstChild.nextSibling);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+}
+)();</code></pre>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2008/06/21/hansokukaigi-september/>販促会議7月号</a>
         </h1>
         <div class="meta">
@@ -124,34 +175,6 @@
 チーム・・・「見当もつかない」は何か考えがある証拠。チームの士気。
 調査・・・礼状は必ず書く。聞くスキル。
 プレゼンテーション・・・完璧を求めて失敗するな。関係者全員に事前報告。一つのチャートに一つのメッセージ。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2008/06/21/update-firefox-3/>Firefox 3 インストール</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jun 21, 2008</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>JR の車内広告でリリースを知りました。
-市民権を得ている様子が伺えます。</p>
-<p>ダウンロードしてインストール。
-各所で言われている通り、少し速くなったような気がします。</p>
-<p>Firefox 2 からのブックマークの移行がうまくいきませんでした。
-おそらく以前 3 の Beta をインストールしていたのが原因。
-プロファイルフォルダの中の bookmarks.html をインポートしたら、うまくいきました。</p>
-<p>それから、毎度アップデートの際に面倒なのが、大抵のアドオンが最新版に対応していないこと。
-特にテーマがなかなか追いつかないのが残念です。
-拡張については、マウスジェスチャと Google Preview、それから Removetabs が対応してくれているので、特に言うことはありません。</p>
 
         </div>
       </div>

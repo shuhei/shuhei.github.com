@@ -54,6 +54,28 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2009/07/26/build-google-test-on-xcod/>Xcode での Google Test のビルド</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Jul 26, 2009</span>
+          - <span class="category">C/C++</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。
+Google Code のサイトから落としてきた tar.gz ではダメでした。</p>
+<p>たしかに <a href="http://code.google.com/p/googletest/wiki/GoogleTestXcodeGuide">GoogleTestXcodeGuide</a> には Subversion から落としてね、と書いてあります。
+Subversion からでないとダメとは書いてありませんが、文句は言えませんね。</p>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2009/07/23/cpd/>CPD</a>
         </h1>
         <div class="meta">
@@ -88,38 +110,6 @@ CPD という名前で、Copy/Paste Detector の略だとか。</p>
           <p>Visual Studio で使える C++ のリファクタリング用プラグインです。</p>
 <p><a href="http://www.devexpress.com/Products/Visual_Studio_Add-in/RefactorCPP/">Free C++ Refactoring Add-in for Visual Studio Developers</a></p>
 <p>無料で利用できます。Visual Studio にはもともと C# のリファクタリング機能がついていますが、それよりも高機能な印象です。</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2009/07/05/command-line-args/>コマンドライン引数</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Jul 5, 2009</span>
-          
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p>OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。
-C++ や Objective-C を触るのにも必要ですからね。</p>
-<p>で、まずは基本のキからということで、</p>
-<pre><code class="hljs ">#include &lt;stdio.h&gt;
-
-int main(int argc, char** argv) {
-  if (argc &gt; 1) {
-    printf(&quot;Hello, %s!&quot;, argv[1]);
-  } else {
-    printf(&quot;Hello, World!&quot;);
-  }
-}</code></pre><p><code>argc</code> はコマンドライン引数の個数、<code>argv</code> はコマンドライン引数の配列です。
-コマンドライン引数にはプラグラム名も含まれるため、引数なしの場合でも argc は 1 となります。
-また、 <code>argv</code> の方は <code>char* argv[]</code> とも書くことができ、引数の文字列へのポインタの配列です。</p>
 
         </div>
       </div>

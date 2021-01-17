@@ -54,6 +54,105 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
+          <a href=/blog/2020/02/14/switching-colorschemes-of-vim-and-alacritty/>Switching color schemes of Vim and Alacritty</a>
+        </h1>
+        <div class="meta">
+          <span class="date">Feb 14, 2020</span>
+          - <span class="category">Vim</span>
+        </div>
+      </div>
+      <div class="content">
+        <div>
+          <p>I like fountain pens and good notebooks. They spark joy when I write on paper. Computer terminals are like stationery. A good terminal setup makes it fun to work with computers. Here is how I improved colors on my terminal and made it easy to switch them depending on the time and the mood.</p>
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 63.714285714285715%;"><img class="responsive-image" src="/images/light-terminal.png" alt="Ayu Light for Vim and Alacritty"></span></span></span></p>
+<h2 id="using-official-color-schemes">Using official color schemes</h2>
+<p>I have been using Dracula color scheme on Vim and Alacritty for a while. I liked the colors, but I had a small problem with it on Vim. The pop-up of <code>coc.nvim</code> had the same color as the background color, and it was hard to distinguish a pop-up and the background.</p>
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 23.857142857142858%;"><img class="responsive-image" src="/images/vim-dracula-old.png" alt="dracula from flazz/vim-colorschemes"></span></span></span></p>
+<p>I was using Dracula from <a href="https://github.com/flazz/vim-colorschemes">vim-colorschemes</a>, which hadn&#39;t been updated for three years. I tried <a href="https://github.com/dracula/vim">the official Dracula color scheme for Vim</a>. It had a different background color for pop-ups! Yes, it&#39;s subtle, but now I can distinguish pop-ups from the background.</p>
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 23.857142857142858%;"><img class="responsive-image" src="/images/vim-dracula-official.png" alt="dracula from dracula/vim"></span></span></span></p>
+<p><a href="https://github.com/flazz/vim-colorschemes">vim-colorschemes</a> is a great way to try out different color schemes. You can get a random color scheme by <code>:colorscheme random</code>. But once you pick a few favorite ones, it&#39;s worth checking if they have official color schemes that are likely to be more maintained.</p>
+<p>The same goes for Alacritty. I was using the Dracula color scheme that I converted with <a href="https://github.com/shuhei/colortty">my tool</a> from <a href="https://github.com/mbadolato/iTerm2-Color-Schemes">iTerm2-Color-Schemes</a> for Alacritty. Dracula has <a href="https://github.com/dracula/alacritty">its official Alacritty theme</a>, and it looks better!</p>
+<h2 id="termguicolors">termguicolors</h2>
+<p>I started trying other color schemes and found Vim&#39;s <code>termguicolors</code> option in <a href="https://github.com/ayu-theme/ayu-vim">ayu-vim</a>&#39;s README. It enables true colors (24-bit colors) instead of 256 colors (8-bit).</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">if</span> <span class="hljs-built_in">has</span>(<span class="hljs-string">'termguicolors'</span>)
+  <span class="hljs-keyword">set</span> termguicolors
+<span class="hljs-keyword">endif</span></code></pre><p>I turned it on, and the colors looked gorgeous! Before learning about <code>termguicolors</code>, I had tried light color schemes like Ayu Light and given up because of too low contrast (left in the following image). With <code>termguicolors</code>, light color schemes became finally usable!</p>
+<p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 700px;"><span class="responsive-image-inner" style="padding-top: 63.714285714285715%;"><img class="responsive-image" src="/images/vim-light-colorscheme.png" alt="ayu light in 256 colors and true colors"></span></span></span></p>
+<h2 id="switching-color-schemes">Switching color schemes</h2>
+<p>After trying dozens of color schemes, I picked the following:</p>
+<ul>
+<li><a href="https://github.com/ayu-theme/ayu-vim">Ayu</a> Light: Good in the morning or at a place with natural light.</li>
+<li><a href="https://github.com/sts10/vim-pink-moon">Pink Moon</a></li>
+<li><a href="https://github.com/arcticicestudio/nord-vim">Nord</a>: Low-contrast theme. Good in the night.</li>
+</ul>
+<p>I started switching color schemes depending on the time and the mood and bumped into a couple of issues. It was tedious to update the color schemes of Vim and Alacritty together. Also, I manage my <code>.alacritty.yml</code> and <code>.vimrc</code> in a git repository. It was annoying that the repository had unstaged changes every time I switched color schemes.</p>
+<h2 id="solution">Solution</h2>
+<h3 id="alacritty">Alacritty</h3>
+<p>I decided to remove <code>.alacritty.yml</code> from the git repository and generate it out of a base template and color scheme files. Once I prepared a YAML file for each color scheme, it was quite easy with a one-liner.</p>
+<pre><code class="hljs sh">cat alacritty/base.yml alacritty/<span class="hljs-variable">${color}</span>.yml &gt; .alacritty.yml</code></pre><h3 id="vim">Vim</h3>
+<p>I could have generated <code>.vimrc</code>, but it felt weird because VimScript is a programming language. Instead of generating the whole <code>.vimrc</code>, I decided to generate a color scheme file <code>.vim/color.vim</code>, which is in <code>.gitignore</code></p>
+<pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">'let ayucolor="light"\ncolorscheme ayu'</span> &gt; ~/.vim/color.vim</code></pre><p>and load it from <code>.vimrc</code>.</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">let</span> color_path = <span class="hljs-built_in">expand</span>(<span class="hljs-string">'~/.vim/color.vim'</span>)
+<span class="hljs-keyword">if</span> <span class="hljs-built_in">filereadable</span>(color_path)
+  exec <span class="hljs-string">'source'</span> color_path
+<span class="hljs-keyword">else</span>
+  <span class="hljs-comment">" Default color scheme</span>
+  <span class="hljs-keyword">colorscheme</span> pink-moon
+<span class="hljs-keyword">endif</span></code></pre><h3 id="putting-them-together">Putting them together</h3>
+<p>Then, I created a shell script named <code>colorscheme</code> to switch color schemes of Vim and Alacritty together.</p>
+<pre><code class="hljs sh"><span class="hljs-meta">#!/bin/sh
+</span>
+color=<span class="hljs-variable">$1</span>
+dotfiles=~/dotfiles
+alacritty=<span class="hljs-variable">${dotfiles}</span>/alacritty
+
+<span class="hljs-function"><span class="hljs-title">configure_alacritty</span></span>() {
+  cat <span class="hljs-variable">${alacritty}</span>/base.yml <span class="hljs-variable">${alacritty}</span>/<span class="hljs-variable">${color}</span>.yml &gt; <span class="hljs-variable">${dotfiles}</span>/.alacritty.yml
+}
+
+<span class="hljs-function"><span class="hljs-title">configure_vim</span></span>() {
+  <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span> &gt; <span class="hljs-variable">${dotfiles}</span>/.vim/color.vim
+}
+
+<span class="hljs-keyword">case</span> <span class="hljs-variable">$color</span> <span class="hljs-keyword">in</span>
+  dracula)
+    configure_alacritty
+    configure_vim <span class="hljs-string">'colorscheme dracula'</span>
+    ;;
+  nord)
+    configure_alacritty
+    configure_vim <span class="hljs-string">'colorscheme nord'</span>
+    ;;
+  pink-moon)
+    configure_alacritty
+    configure_vim <span class="hljs-string">'colorscheme pink-moon'</span>
+    ;;
+  ayu-light)
+    configure_alacritty
+    configure_vim <span class="hljs-string">'let ayucolor="light"\ncolorscheme ayu'</span>
+    ;;
+  *)
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"Supported colorschemes: dracula, nord, pink-moon, ayu-light"</span>
+    <span class="hljs-built_in">exit</span> 1
+    ;;
+<span class="hljs-keyword">esac</span></code></pre><p>Now I can switch color schemes with only one command! (I still need to restart/reload open Vim sessions, but I can live with it.)</p>
+<pre><code class="hljs sh">colorscheme ayu-light
+colorscheme nord</code></pre><p>If you are curious about the full setup, check out <a href="https://github.com/shuhei/dotfiles">my dotfiles repo</a>.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Official color schemes may have more features than color scheme bundles</li>
+<li>Enable <code>termguicolors</code> on Vim</li>
+<li>Switch color schemes with a command!</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="post">
+      <div class="post-header">
+        <h1 class="title">
           <a href=/blog/2020/01/27/goodbye-textile/>Goodbye, Textile</a>
         </h1>
         <div class="meta">
@@ -178,62 +277,6 @@
 </ul>
 <p>Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...</p>
 <p>I skipped some details that are specific to my website. The full code is <a href="https://github.com/shuhei/shuhei.github.com/pull/45">on GitHub</a>.</p>
-
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2019/12/31/2019-in-review/>2019 in Review</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Dec 31, 2019</span>
-          - <span class="category">Review</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2019-aegina.jpg" alt="Aegina island in April"></span></span></span></p>
-<h2 id="travels">Travels</h2>
-<p>I visited six new countries and enjoyed each of them.</p>
-<ul>
-<li>January: Japan</li>
-<li>March: Budapest, Hungary</li>
-<li>April: Athens and Aegina, Greece</li>
-<li>April: Wrocław, Poland</li>
-<li>June: Prague, Czech Republic</li>
-<li>August: Brussels and Bruges, Belgium</li>
-<li>September: Munich, Germany</li>
-<li>October: Dubrovnik, Croatia</li>
-<li>November: Japan</li>
-</ul>
-<p>There are many more places to visit in Europe. I&#39;ll keep traveling in 2020.</p>
-<h2 id="bike">Bike</h2>
-<p>I bought an entry-level road bike at Decathlon in June. I used it for commuting and made day trips around Berlin. Berlin is surrounded by amazing fields. Blankenfelde is my favorite so far. I can&#39;t wait for the next Spring.</p>
-<h2 id="budgeting">Budgeting</h2>
-<p>I started using <a href="https://www.youneedabudget.com/">YNAB</a> at the end of the last year because a few of my friends were using it. I have used it throughout the year, and it&#39;s the first budgeting system that worked well for me. It helps us traveling regularly while saving money.</p>
-<h2 id="books">Books</h2>
-<p>I bought 55 physical books and 5 ebooks. That&#39;s three times more than the last year, probably because of a dedicated budget for buying books.</p>
-<p>I finished reading 14 books and stranded somewhere in the middle of many books. <em>Quiet</em> made me more introverted and now I spend more time at home. <em>Bad Blood</em> and <em>Educated</em> blew my mind.</p>
-<h2 id="drink">Drink</h2>
-<p>While it&#39;s hard to name the best food of the year, the best beer of 2019 was a porter at <a href="https://goo.gl/maps/9X7UMJnqB1MrzqJcA">Kontynuacja</a> in Wrocław, Poland. The city had high-quality craft beers, and everything that I drank was amazing.</p>
-<p>I had a chance to meet one of my most favorite brewers, Fuerst Wiacek, at a tap takeover event at Biererei Bar. I bought a T-shirt.</p>
-<p>The trip to Brussels was epic as well because I visited a traditional lambic brewery where they still brew beer with yeasts in the air of the building! After tasting sour lambic, I bought a T-shirt there too.</p>
-<p>In spite of the encounters with good beers, I don&#39;t drink as much as I used to anymore. When I started commuting by bike, I didn&#39;t want to get drunk and ride a bike. Even after I stopped commuting with my bike in the winter, the momentum kept going. I drank almost every day in Japan as an exception, but I almost quit drinking again after coming back to Berlin.</p>
-<p>On the other hand, I started drinking bubble tea regularly. There is a <a href="http://www.comebuy2002.de/">Comebuy</a> shop near my office. I tried several bubble tea shops in Tokyo and found that only a few were better than Comebuy—I liked Yi Fang most.</p>
-<h2 id="work">Work</h2>
-<p>I am still working on the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.</p>
-<p>My team and I started on-call duties. Before that, another on-call team was taking care of my team&#39;s applications, and we tried to make sure that they didn&#39;t get called. Our focus on reliability hasn&#39;t changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.</p>
-<p>I started interviewing regularly, mostly on coding. I&#39;m still not used to it, and there&#39;s more to learn.</p>
-<h2 id="side-projects">Side Projects</h2>
-<p>In the first half of the year, I wrote <a href="https://github.com/shuhei/rolling-window">a small metrics utility</a> for work and <a href="/blog/2019/10/06/interpreter-and-compiler-in-rust/">a toy interpreter and compiler in Rust</a> for fun. In the last half, I focused more on learning classic algorithms than side projects.</p>
-<h2 id="conferences--meetups">Conferences &amp; Meetups</h2>
-<p>I attended two conferences, JSConf EU and JSConf JP, and had a chance to <a href="https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production">speak at a meetup</a>.</p>
-<h2 id="2020">2020</h2>
-<p>Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!</p>
 
         </div>
       </div>
