@@ -8,13 +8,13 @@ categories: []
 
 ![My current setup](/images/2021-desk-front.jpg)
 
-Here are some lessons that I learned through my own mistakes. I'm not an expert, and I'm kind of late to the train. But I hope you find some of them useful!
+Here are some tips that I learned through my own mistakes. I'm not an expert, and I know I'm late to the train. But I hope you find some of the tips useful!
 
 ## Start from your body
 
 Find furniture and equipment that fit your body. Not the other way around. I made a mistake on it when I bought my standing desk.
 
-To have a good posture, check the following requirements for office furniture:
+To have a good posture, check the following requirements for good posture:
 
 - Chair: Your feet should rest flat on the floor when you sit deep.
 - Desk: Your elbows should be at 90 degrees or more when you type on your keyboard.
