@@ -14,27 +14,27 @@ It's already been two weeks in 2021, but I'll write anyway in the spirit of bett
 
 ## Work
 
-I had been working in the same area as before at Zalando, but there were good changes. My team's structure changed a bit and welcomed new members. It was refreshing to help a brand new product. I was promoted and exposed to new perspectives even though I left the new role before fully embracing it. More close collaboration with colleagues in Dublin happened thanks to the remote work as the default.
+I had been working in the same area as before at Zalando. But I was not bored. My team welcomed new members. I helped building a brand new product. I was promoted. The new role exposed me to new perspectives even though I left before fully embracing it. Thanks to the remote work as the default, I collaborated with colleagues in Dublin more closely than ever.
 
 At the end of November, [I left Zalando](/blog/2020/11/30/4-years-at-zalando/) where I met wonderful colleagues and friends. The four years there became an important part of my life.
 
-After a week of vacation, I started a new job at Google. I am currently working remotely from Berlin but will eventually relocate to Zurich when the situation improves. My current plan is to move at the end of March, but we never know.
+After a week of vacation, I started a new job at Google. I am currently working remotely from Berlin. But I will eventually relocate to Zurich when the situation improves. My current plan is to move at the end of March, but we never know.
 
-This job change took longer than I thought. I applied in February and got a result in June, but most of the positions were canceled due to COVID-19. It took a few more months to find a team to join. I got an offer at the end of August.
+This job change took longer than I thought. I applied in February and heard a result in June, but most of the positions were canceled due to COVID-19. It took a few more months to find a team to join. I received an offer at the end of August.
 
-A new job means a lot of learning. Now I'm experiencing how it feels to join a new place. I haven't had this feeling for a while. I tended to think that software engineers should thrive on depths, but I missed that we needed an overview before pursuing depths.
+A new job means a lot of learning. Now I'm experiencing how it feels to join a new place. I haven't had this feeling for a while. I tended to think that software engineers should thrive on depths. But I missed that we needed an overview before pursuing depths.
 
 I just finished an onboarding program. I'm excited to catch up and start contributing to real projects.
 
 ## WfH
 
-I had been working from home 100% since February. I liked to go to the office and talk to colleagues in person, but I also like working from home.
+I had been working from home 100% since February. I liked to go to the office and talk to colleagues in person. But I also like working from home.
 
 It didn't take long to adapt to working remotely. We were already working cross-location with Dublin and Helsinki using online collaboration tools like GitHub, Google Meet/Chat/Docs. It became even easier to attend meetings than before. Instead of climbing upstairs to go to a meeting room, meetings are only a few clicks away.
 
-The problem was physical equipment. I didn't realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—I may write more about this later.
+The problem was physical equipment. I didn't realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—[I may write more about this later](/blog/2021/01/17/home-office-ergonomics/).
 
-No commuting meant time-saving. I had been spending at least one and a half hours every day commuting. This was huge. At the same time, I lost a good chance of exercise. I try to walk outside every day, but my physical activities drastically decreased.
+No commuting means huge time-saving. I saved at least one and a half hours every day. At the same time, I lost a good chance of exercise. I try to walk outside every day, but the amount of my physical activities drastically decreased.
 
 ## Computer Science
 
@@ -54,7 +54,7 @@ I had rarely used food deliveries before 2020. But yes, I did it this time. My f
 
 I kept drinking bubble tea. Dosha in Friedrichshain is my favorite in Berlin so far. In addition to authentic Taiwanese tea, they have waffles with Tapioca inside!
 
-Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally got an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let's see if I can make some latte art in 2021.
+Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally bought an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let's see if I can make some latte art in 2021.
 
 ## Books
 
