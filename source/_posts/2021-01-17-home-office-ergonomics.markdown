@@ -14,7 +14,7 @@ Here are some tips that I learned through my own mistakes. I'm not an expert, an
 
 Find furniture and equipment that fit your body. Not the other way around. I made a mistake on it when I bought my standing desk.
 
-To have a good posture, check the following requirements for good posture:
+To have a good posture, check the following requirements:
 
 - Chair: Your feet should rest flat on the floor when you sit deep.
 - Desk: Your elbows should be at 90 degrees or more when you type on your keyboard.
