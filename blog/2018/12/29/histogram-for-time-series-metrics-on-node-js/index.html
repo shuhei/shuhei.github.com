@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Histogram for Time-Series Metrics on Node.js - Shuhei Kagawa</title>
+      <title>Histogram for time-series metrics on Node.js - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -29,7 +29,7 @@
       <meta name="description" content="The &quot;metrics&quot; library I have been using metrics library for application metrics of Node.js applications at work. It was already widely used in the company when ...">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Histogram for Time-Series Metrics on Node.js - Shuhei Kagawa">
+<meta property="og:title" content="Histogram for time-series metrics on Node.js - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content="The &quot;metrics&quot; library I have been using metrics library for application metrics of Node.js applications at work. It was already widely used in the company when ...">
 <meta property="og:image" content="https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/title.png">
@@ -57,7 +57,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/>Histogram for Time-Series Metrics on Node.js</a>
+          <a href=/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/>Histogram for time-series metrics on Node.js</a>
         </h1>
         <div class="meta">
           <span class="date">Dec 29, 2018</span>
@@ -70,14 +70,14 @@
 <p>I have been using <a href="https://github.com/mikejihbe/metrics">metrics</a> library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.</p>
 <p>The <a href="https://github.com/mikejihbe/metrics">metrics</a> library was ported from <a href="https://github.com/dropwizard/metrics">Dropwizard metrics</a>, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.</p>
 <p>Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of <a href="https://github.com/mikejihbe/metrics">metrics</a> library, especially <code>Histogram</code>.</p>
-<h2 id="eds-based-histogram">EDS-based Histogram</h2>
+<h2 id="eds-based-histogram">EDS-based histogram</h2>
 <p>The <code>metrics</code> library uses <a href="https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js">Exponentially Decaying Sample (EDS)</a> for <code>Histogram</code>. The name is intimidating, but the implementation is not so complicated.</p>
 <p>It sets a priority to each value based on its timing and <strong>some randomness</strong>, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.</p>
 <p>It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the <code>metrics</code> library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?</p>
 <p>But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times <strong>measured in the last minute</strong>. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
 So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <p>In addition to that, EDS randomly ignores values. Yes, it <strong>samples</strong>. Random sampling is a problem because I&#39;m interested in a small number of outliers.</p>
-<h2 id="hdr-histogram">HDR Histogram</h2>
+<h2 id="hdr-histogram">HDR histogram</h2>
 <p>I tweeted about these issues, and <a href="https://twitter.com/cbirchall/status/1077526632951414784">my former colleague @cbirchall (Thanks!) suggested</a> to take a look at <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a>. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.</p>
 <p><a href="https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374">Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help</a> by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.</p>
 <p>OK, I&#39;m sold.</p>
@@ -110,7 +110,7 @@ So, <strong>I don&#39;t need the decay effect at all</strong>.</p>
 <li>native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)</li>
 </ul>
 <p>According to the result, <code>hdr-histogram-js</code> is accurate and fast enough. Check out <a href="https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f">the gist</a> for more details!</p>
-<h2 id="reset-strategy">Reset Strategy</h2>
+<h2 id="reset-strategy">Reset strategy</h2>
 <p>While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.</p>
 <p><a href="https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir">Documentation of rolling-metrics library</a> lists up strategies and their trade-offs.</p>
 <ul>

@@ -54,7 +54,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/12/31/2019-in-review/>2019 in Review</a>
+          <a href=/blog/2019/12/31/2019-in-review/>2019 in review</a>
         </h1>
         <div class="meta">
           <span class="date">Dec 31, 2019</span>
@@ -95,9 +95,9 @@
 <p>I am still working on the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.</p>
 <p>My team and I started on-call duties. Before that, another on-call team was taking care of my team&#39;s applications, and we tried to make sure that they didn&#39;t get called. Our focus on reliability hasn&#39;t changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.</p>
 <p>I started interviewing regularly, mostly on coding. I&#39;m still not used to it, and there&#39;s more to learn.</p>
-<h2 id="side-projects">Side Projects</h2>
+<h2 id="side-projects">Side projects</h2>
 <p>In the first half of the year, I wrote <a href="https://github.com/shuhei/rolling-window">a small metrics utility</a> for work and <a href="/blog/2019/10/06/interpreter-and-compiler-in-rust/">a toy interpreter and compiler in Rust</a> for fun. In the last half, I focused more on learning classic algorithms than side projects.</p>
-<h2 id="conferences--meetups">Conferences &amp; Meetups</h2>
+<h2 id="conferences-and-meetups">Conferences and meetups</h2>
 <p>I attended two conferences, JSConf EU and JSConf JP, and had a chance to <a href="https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production">speak at a meetup</a>.</p>
 <h2 id="2020">2020</h2>
 <p>Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!</p>
@@ -110,7 +110,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter Terminal (mostly Vim) Cleaning</a>
+          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter terminal (mostly Vim) cleaning</a>
         </h1>
         <div class="meta">
           <span class="date">Dec 31, 2019</span>
@@ -121,7 +121,7 @@
         <div>
           <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
 <p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
-<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<h2 id="faster-text-rendering">Faster text rendering</h2>
 <p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
 <p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
 <p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
@@ -129,7 +129,7 @@
 <p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
 <h2 id="fzfvim">fzf.vim</h2>
 <p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
-<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<h2 id="more-vim-cleaning">More Vim cleaning</h2>
 <ul>
 <li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
 <ul>
@@ -159,7 +159,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card Images from Blog Post Titles</a>
+          <a href=/blog/2019/10/13/generating-twitter-card-images/>Generating Twitter Card images from blog post titles</a>
         </h1>
         <div class="meta">
           <span class="date">Oct 13, 2019</span>

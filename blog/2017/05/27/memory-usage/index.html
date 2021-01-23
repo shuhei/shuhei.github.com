@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Getting Memory Usage in Linux and Docker - Shuhei Kagawa</title>
+      <title>Getting memory usage in Linux and Docker - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -29,7 +29,7 @@
       <meta name="description" content="Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in...">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Getting Memory Usage in Linux and Docker - Shuhei Kagawa">
+<meta property="og:title" content="Getting memory usage in Linux and Docker - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content="Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in...">
 <meta property="og:image" content="https://shuheikagawa.com/blog/2017/05/27/memory-usage/title.png">
@@ -57,7 +57,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2017/05/27/memory-usage/>Getting Memory Usage in Linux and Docker</a>
+          <a href=/blog/2017/05/27/memory-usage/>Getting memory usage in Linux and Docker</a>
         </h1>
         <div class="meta">
           <span class="date">May 28, 2017</span>
@@ -72,7 +72,7 @@
 <span class="hljs-keyword">const</span> total = os.totalmem();
 <span class="hljs-keyword">const</span> free = os.freemem();
 <span class="hljs-keyword">const</span> usage = ((free - total) / total) * <span class="hljs-number">100</span>;</code></pre><p>So, they are basically from OS, which was <a href="https://alpinelinux.org/">Alpine Linux</a> on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?</p>
-<h2 id="buffers-and-cached-memory">Buffers and Cached Memory</h2>
+<h2 id="buffers-and-cached-memory">Buffers and cached memory</h2>
 <p>I used <code>top</code> command with <code>Shift+m</code> (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that <code>buffers</code> and <code>cached Mem</code> were high on the long-running one.</p>
 <p>After some research, or googling, I concluded that it was not a problem. Most of <code>buffers</code> and <code>cached Mem</code> are given up when application processes claim more memory.</p>
 <p>Actually <code>free -m</code> command provides a row for <code>used</code> and <code>free</code> taking buffers and cached into consideration.</p>
@@ -115,7 +115,7 @@ Swap:   1896     0  1896</code></pre><p>It is also <a href="http://docs.aws.amaz
 </ul>
 <p>Because of the namespaces, <code>ps</code> command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.</p>
 <p><a href="https://docs.docker.com/engine/admin/resource_constraints/#memory">By default, Docker containers have no resource constraints</a>. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &quot;free memory&quot; is same as the host OS&#39;s &quot;free memory&quot;.</p>
-<h2 id="memory-metrics-on-docker-container">Memory Metrics on Docker Container</h2>
+<h2 id="memory-metrics-on-docker-container">Memory metrics on Docker container</h2>
 <p>If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use <code>docker stats</code>.</p>
 <pre><code class="hljs console"><span class="hljs-meta">$</span><span class="bash"> docker stats</span>
 CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS

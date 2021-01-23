@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Check Your server.keepAliveTimeout - Shuhei Kagawa</title>
+      <title>Check your server.keepAliveTimeout - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -29,7 +29,7 @@
       <meta name="description" content="One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (HTTPCode_ELB_502_Count). The number...">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Check Your server.keepAliveTimeout - Shuhei Kagawa">
+<meta property="og:title" content="Check your server.keepAliveTimeout - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content="One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (HTTPCode_ELB_502_Count). The number...">
 <meta property="og:image" content="https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/title.png">
@@ -57,7 +57,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/04/25/keep-alive-timeout/>Check Your server.keepAliveTimeout</a>
+          <a href=/blog/2019/04/25/keep-alive-timeout/>Check your server.keepAliveTimeout</a>
         </h1>
         <div class="meta">
           <span class="date">Apr 25, 2019</span>
@@ -80,7 +80,7 @@
 <span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">8080</span>);
 
 server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;</code></pre><p>And the ELB 502 errors disappeared!</p>
-<p>As hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
+<p>In hindsight, there was already <a href="https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/">Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server</a> on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (<a href="https://github.com/zalando-incubator/kube-ingress-aws-controller">Skipper as k8s ingress</a>) and another Node.js server at work. I hope this issue becomes more widely known.</p>
 <h2 id="update-on-april-29-2019">Update on April 29, 2019</h2>
 <p>Oleksii told me in a comment that only <code>server.keepAliveTimeout</code> was not enough on Node.js 10.15.2. It turned out that we also need to configure <code>server.headersTimeout</code> longer than <code>server.keepAliveTimeout</code> on Node.js 10.15.2 and newer. See <a href="https://github.com/nodejs/node/issues/27363">his issue on GitHub</a> for more details. Thanks, Oleksii!</p>
 <pre><code class="hljs js">server.keepAliveTimeout = <span class="hljs-number">61</span> * <span class="hljs-number">1000</span>;

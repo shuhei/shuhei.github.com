@@ -46,7 +46,7 @@
 <h2 id="move">Move!</h2>
 <p>Even with all of the above, my body doesn&#39;t feel well if I stay in front of my computer all day. I go out for a walk every day, and it makes a difference. Ergonomic setup doesn&#39;t mean you can work all day.</p>
 
-]]></description><pubDate>Sun, 17 Jan 2021 15:05:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2021/01/17/home-office-ergonomics/</guid></item><item><title>2020 in Review</title><link>https://shuheikagawa.com/blog/2021/01/13/2020-in-review/</link><description><![CDATA[
+]]></description><pubDate>Sun, 17 Jan 2021 15:05:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2021/01/17/home-office-ergonomics/</guid></item><item><title>2020 in review</title><link>https://shuheikagawa.com/blog/2021/01/13/2020-in-review/</link><description><![CDATA[
 <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2020-park-yellow-leaves.jpg" alt="Park with yellow leaves"></span></span></span></p>
 <p>It&#39;s already been two weeks in 2021, but I&#39;ll write anyway in the spirit of better late than never.</p>
 <p>2020 was finally over. It was a weird year. Time flies, but things that happened feels like a long time ago.</p>
@@ -62,13 +62,13 @@
 <p>It didn&#39;t take long to adapt to working remotely. We were already working cross-location with Dublin and Helsinki using online collaboration tools like GitHub, Google Meet/Chat/Docs. It became even easier to attend meetings than before. Instead of climbing upstairs to go to a meeting room, meetings are only a few clicks away.</p>
 <p>The problem was physical equipment. I didn&#39;t realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—<a href="/blog/2021/01/17/home-office-ergonomics/">I may write more about this later</a>.</p>
 <p>No commuting means huge time-saving. I saved at least one and a half hours every day. At the same time, I lost a good chance of exercise. I try to walk outside every day, but the amount of my physical activities drastically decreased.</p>
-<h2 id="computer-science">Computer Science</h2>
+<h2 id="computer-science">Computer science</h2>
 <p>It was fun to learn and practice algorithms and data structures for interview preparation. I solved about 300 Medium/Hard LeetCode problems in two months. Before 2020, I had been learning them with books and Coursera courses, but knowing and doing are two different things. Solving problems shed light on what I didn&#39;t fully understand. I studied topics that I was stuck—graphs, dynamic programming, string searching, well, most of them!</p>
 <p>After the interviews, I still wanted to learn more. Someone on Twitter tweeted about <a href="https://teachyourselfcs.com/">Teach Yourself Computer Science</a>. I started with <em>Operating Systems: Three Easy Pieces</em> because it looked easy to read—and it was. Then I moved on to <em>Computer Systems: A Programmer&#39;s Perspective</em>. The book is more textbook-ish than OSTEP. But I found it fun to learn things that I hadn&#39;t taken a deeper look at—the binary representation of floating-point numbers, assembly, processors, etc.</p>
 <h2 id="travel">Travel</h2>
 <p>Before COVID-19 started, I traveled to Granada, Spain in January. It&#39;s a city of Alhambra—and free tapas. The city&#39;s bars give you tapas as long as you order drinks. Seafood and Jamón ibérico were so good.</p>
 <p>In September between the two lockdowns of the spring and the winter, I visited Goslar, Quedlinburg, and Düsseldorf in Germany to use too many vacation days left. Goslar and Quedlinburg were beautiful. As a substitute for a trip to Japan, I ate Japanese food extravagantly in Düsseldorf. My favorite restaurant was Hyuga. It felt like being at an <em>izakaya</em> in Tokyo. Shochiku, a Japanese supermarket, had a fish counter where you can ask them to cut sashimi. I took it out and ate in the hotel room. So good.</p>
-<h2 id="food--drinks">Food &amp; Drinks</h2>
+<h2 id="food-and-drinks">Food and drinks</h2>
 <p>I had rarely used food deliveries before 2020. But yes, I did it this time. My favorite dishes have been Tacos and Korean fried chicken. Also, many restaurants started take-away. I had never imagined taking out <em>ramen</em> before 2020.</p>
 <p>I kept drinking bubble tea. Dosha in Friedrichshain is my favorite in Berlin so far. In addition to authentic Taiwanese tea, they have waffles with Tapioca inside!</p>
 <p>Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally bought an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let&#39;s see if I can make some latte art in 2021.</p>
@@ -226,7 +226,7 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Unknown tag: <span class="hljs-subst">${tag}</span>`</span>);
 }</code></pre><p>I also added <code>console.log</code> for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. <a href="https://github.com/shuhei/shuhei.github.com/pull/44">The script worked well to convert more than one hundred posts</a>. The full script is <a href="https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72">on Gist</a>.</p>
 
-]]></description><pubDate>Mon, 27 Jan 2020 22:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/</guid></item><item><title>Responsive Images with a Static Site Generator</title><link>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</link><description><![CDATA[
+]]></description><pubDate>Mon, 27 Jan 2020 22:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/</guid></item><item><title>Responsive images with a static site generator</title><link>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</link><description><![CDATA[
 <h2 id="responsive-images">Responsive images</h2>
 <p>An <code>img</code> without <code>width</code>/<code>height</code> attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify <code>width</code> and <code>height</code> of <code>img</code> tag to avoid the jump.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/foo.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Foo"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"600"</span> /&gt;</span></code></pre><p>But <code>img</code> tag with <code>width</code> and <code>height</code> doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without <code>width</code>/<code>height</code> and let them cause page jumps.</p>
@@ -241,7 +241,7 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: relative; padding-top: 75%;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"position: absolute; top: 0; left: 0; max-width: 100%;"</span> /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><h2 id="getting-image-dimensions">Getting Image Dimensions</h2>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><h2 id="getting-image-dimensions">Getting image dimensions</h2>
 <p>The placeholder technique requires image dimensions. I used <a href="https://github.com/image-size/image-size">image-size module</a> to get image dimensions.</p>
 <p>The following function gets dimensions of images in a directory and returns them as a <code>Map</code>.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">"util"</span>);
@@ -303,7 +303,7 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
 <p>Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...</p>
 <p>I skipped some details that are specific to my website. The full code is <a href="https://github.com/shuhei/shuhei.github.com/pull/45">on GitHub</a>.</p>
 
-]]></description><pubDate>Sun, 26 Jan 2020 15:57:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</guid></item><item><title>2019 in Review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
+]]></description><pubDate>Sun, 26 Jan 2020 15:57:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</guid></item><item><title>2019 in review</title><link>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</link><description><![CDATA[
 <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 1024px;"><span class="responsive-image-inner" style="padding-top: 75%;"><img class="responsive-image" src="/images/2019-aegina.jpg" alt="Aegina island in April"></span></span></span></p>
 <h2 id="travels">Travels</h2>
 <p>I visited six new countries and enjoyed each of them.</p>
@@ -336,17 +336,17 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
 <p>I am still working on the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.</p>
 <p>My team and I started on-call duties. Before that, another on-call team was taking care of my team&#39;s applications, and we tried to make sure that they didn&#39;t get called. Our focus on reliability hasn&#39;t changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.</p>
 <p>I started interviewing regularly, mostly on coding. I&#39;m still not used to it, and there&#39;s more to learn.</p>
-<h2 id="side-projects">Side Projects</h2>
+<h2 id="side-projects">Side projects</h2>
 <p>In the first half of the year, I wrote <a href="https://github.com/shuhei/rolling-window">a small metrics utility</a> for work and <a href="/blog/2019/10/06/interpreter-and-compiler-in-rust/">a toy interpreter and compiler in Rust</a> for fun. In the last half, I focused more on learning classic algorithms than side projects.</p>
-<h2 id="conferences--meetups">Conferences &amp; Meetups</h2>
+<h2 id="conferences-and-meetups">Conferences and meetups</h2>
 <p>I attended two conferences, JSConf EU and JSConf JP, and had a chance to <a href="https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production">speak at a meetup</a>.</p>
 <h2 id="2020">2020</h2>
 <p>Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!</p>
 
-]]></description><pubDate>Tue, 31 Dec 2019 23:50:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</guid></item><item><title>Winter Terminal (mostly Vim) Cleaning</title><link>https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</link><description><![CDATA[
+]]></description><pubDate>Tue, 31 Dec 2019 23:50:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</guid></item><item><title>Winter terminal (mostly Vim) cleaning</title><link>https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</link><description><![CDATA[
 <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
 <p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
-<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<h2 id="faster-text-rendering">Faster text rendering</h2>
 <p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
 <p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
 <p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
@@ -354,7 +354,7 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
 <p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
 <h2 id="fzfvim">fzf.vim</h2>
 <p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
-<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<h2 id="more-vim-cleaning">More Vim cleaning</h2>
 <ul>
 <li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
 <ul>
@@ -376,7 +376,7 @@ colorscheme nord</code></pre><p>If you are curious about the full setup, check o
 </li>
 </ul>
 
-]]></description><pubDate>Tue, 31 Dec 2019 15:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</guid></item><item><title>Generating Twitter Card Images from Blog Post Titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
+]]></description><pubDate>Tue, 31 Dec 2019 15:20:00 GMT</pubDate><guid isPermaLink="false">https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</guid></item><item><title>Generating Twitter Card images from blog post titles</title><link>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</link><description><![CDATA[
 <p>Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.</p>
 <p><a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">Twitter Cards</a> give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using <a href="https://github.com/Automattic/node-canvas">node-canvas</a>, inspired by <a href="https://hatenablog.com/">Hatena Blog</a>.</p>
 <p><span class="responsive-image-wrapper"><span class="responsive-image-outer" style="max-width: 531px;"><span class="responsive-image-inner" style="padding-top: 83.9924670433145%;"><img class="responsive-image" src="/images/twitter-card.png" alt="Twitter Card preview"></span></span></span></p>

@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Winter Terminal (mostly Vim) Cleaning - Shuhei Kagawa</title>
+      <title>Winter terminal (mostly Vim) cleaning - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -29,7 +29,7 @@
       <meta name="description" content="In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off. Here are...">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Winter Terminal (mostly Vim) Cleaning - Shuhei Kagawa">
+<meta property="og:title" content="Winter terminal (mostly Vim) cleaning - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content="In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off. Here are...">
 <meta property="og:image" content="https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/title.png">
@@ -57,7 +57,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter Terminal (mostly Vim) Cleaning</a>
+          <a href=/blog/2019/12/31/winter-terminal-cleaning/>Winter terminal (mostly Vim) cleaning</a>
         </h1>
         <div class="meta">
           <span class="date">Dec 31, 2019</span>
@@ -68,7 +68,7 @@
         <div>
           <p>In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.</p>
 <p>Here are highlights of <a href="https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d">the changes</a>.</p>
-<h2 id="faster-text-rendering">Faster Text Rendering</h2>
+<h2 id="faster-text-rendering">Faster text rendering</h2>
 <p>I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.</p>
 <p>I opened files of different types in Vim&#39;s vertical split and <code>less</code> in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.</p>
 <p>It turned out that Vim was not the problem. With vertical splits of tmux, even <code>less</code> command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. <a href="https://www.iterm2.com/documentation-tmux-integration.html">iTerm2&#39;s tmux integration</a> may have helped, but I didn&#39;t try that.</p>
@@ -76,7 +76,7 @@
 <p>Also, I stopped using <a href="https://github.com/jordwalke/flatlandia">flatlandia</a> color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.</p>
 <h2 id="fzfvim">fzf.vim</h2>
 <p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of <a href="https://github.com/kien/ctrlp.vim">ctrlp.vim</a>), commit history and grep. Especially, incremental grep with a preview is amazing.</p>
-<h2 id="more-vim-cleaning">More Vim Cleaning</h2>
+<h2 id="more-vim-cleaning">More Vim cleaning</h2>
 <ul>
 <li><p>Started using <a href="https://github.com/dense-analysis/ale">ale</a> as a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> client. I was using ale for linting and fixing, and <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a> for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.</p>
 <ul>
