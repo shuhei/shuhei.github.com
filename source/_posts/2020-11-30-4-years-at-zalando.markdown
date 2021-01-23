@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 4 Years at Zalando
+title: 4 years at Zalando
 date: 2020-11-30 22:00
 comments: true
 categories: []
@@ -28,9 +28,9 @@ Aside from the beer, I liked the team. We worked together and played together. I
 
 Through re-organizations, the shape of the team has changed. It was split into multiple teams. Some people left and new people joined. But I stayed in the same area more or less.
 
-## Frontend Engineer...?
+## Frontend engineer...?
 
-At Zalando, Frontend Engineers were more like JavaScript Fullstack Engineers.
+At Zalando, frontend engineers were more like JavaScript fullstack engineers.
 
 In 2016, Zalando had a slogan "Radical Agility". It promoted team autonomy and Microservices to support it. Each engineering team was supposed to operate what they built on top of the [STUPS](https://stups.io/) infrastructure. Frontend was not an exception. [Mosaic](https://www.mosaic9.org/) (frontend-microservices architecture) allowed each product team to own their Node.js servers for data aggregation and React server-side rendering in addition to frontend components.
 
@@ -38,7 +38,7 @@ The team's responsibilities were broad. Building new features and UI improvement
 
 In [the new architecture that the Fashion Store is moving to](https://engineering.zalando.com/posts/2018/12/front-end-micro-services.html), product teams don't need to maintain Node.js servers. I would miss the burden, but I think it's a good thing.
 
-## Operation and Reliability
+## Operation and reliability
 
 I had a good opportunity to work on Node.js servers with serious traffic and business impact. Before joining Zalando, I had worked only on products that didn't take off or were just taking off. I didn't have much experience in scaling, monitoring, etc. But writing post mortems became one of my favorite activities after 4 years.
 
@@ -50,13 +50,13 @@ Some of my contributions were reliability improvements of Node.js services. I re
 
 I was late to the Kubernetes train. The migration from STUPS to Kubernetes didn't get enough priority in my team. On the other hand, Zalando was an early adapter of Kubernetes and has been [a strong contributor to the ecosystem](https://www.cncf.io/announcements/2020/08/20/cloud-native-computing-foundation-grants-zalando-the-top-end-user-award/). I missed a good learning opportunity to dive into it and learn from the in-house experts.
 
-## Web Performance
+## Web performance
 
 Another topic that I enjoyed was web performance optimization. It was especially rewarding because it directly contributes to customer experience and the e-commerce business. After my team worked on it, I had an opportunity to write a part of [a blog post about the improvements](https://engineering.zalando.com/posts/2018/06/loading-time-matters.html).
 
 This topic keeps evolving. New metrics like [Web Vitals](https://web.dev/vitals/) and more measurement/optimization techniques came out. It is one of the topics that I would want to pursue if I remained at Zalando.
 
-## Cross-Team Collaboration
+## Cross-team collaboration
 
 I had a chance to work with many other teams in the Fashion Store and other departments. I met and worked with literally hundreds of colleagues. I had never worked with so many people before joining Zalando.
 
@@ -66,9 +66,9 @@ I learned that it can be fun to work with many teams. Sometimes it was frustrati
 
 ## Career
 
-I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it's called Principal Engineer. In addition to technically lead projects, they shape the tech landscape of the company beyond the scope of a team.
+I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it's called Principal Engineer. In addition to technically leading projects, they shape the tech landscape of the company beyond the scope of a team.
 
-I was fortunate enough to be promoted to Principal Engineer this year. A new role gave me new tasks and a new point of view. It's one of my regrets to leave this role prematurely.
+I was fortunate enough to be promoted to a principal engineer this year. A new role gave me new tasks and a new point of view. It's one of my regrets to leave this role prematurely.
 
 ## Fun
 
