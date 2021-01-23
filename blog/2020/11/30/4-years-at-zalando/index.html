@@ -8,7 +8,7 @@
 <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2" as="font" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>4 Years at Zalando - Shuhei Kagawa</title>
+      <title>4 years at Zalando - Shuhei Kagawa</title>
       <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
       <script>
@@ -29,7 +29,7 @@
       <meta name="description" content=" I'm leaving Zalando with fond memories after 4 years. Here I'm writing down my experience. It's never comprehensive, but I hope some people find it interesting...">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="4 Years at Zalando - Shuhei Kagawa">
+<meta property="og:title" content="4 years at Zalando - Shuhei Kagawa">
 <meta property="og:site_name" content="Shuhei Kagawa">
 <meta property="og:description" content=" I'm leaving Zalando with fond memories after 4 years. Here I'm writing down my experience. It's never comprehensive, but I hope some people find it interesting...">
 <meta property="og:image" content="https://shuheikagawa.com/images/2020-spree.jpg">
@@ -57,7 +57,7 @@
     <div class="post">
       <div class="post-header">
         <h1 class="title">
-          <a href=/blog/2020/11/30/4-years-at-zalando/>4 Years at Zalando</a>
+          <a href=/blog/2020/11/30/4-years-at-zalando/>4 years at Zalando</a>
         </h1>
         <div class="meta">
           <span class="date">Nov 30, 2020</span>
@@ -77,27 +77,27 @@
 <p>For the first few months, I thought that the company was providing free beer to employees because fridges were always full of beer bottles even if we drank them a couple of times a week. I later learned that the beer was provided by the delivery lead and the product owner of the team. I joined the right team.</p>
 <p>Aside from the beer, I liked the team. We worked together and played together. It was multi-cultural and magically bonded. It was an old team, but several members including me joined the team in late 2016. We learned the German language and explored the city of Berlin. We had BBQs in a park and drank vodka playing games in the office. It felt like a youth again. Some of the teammates were actually young. After two years or so, we stopped drinking as much as we did. We all became grown-ups...? Maybe.</p>
 <p>Through re-organizations, the shape of the team has changed. It was split into multiple teams. Some people left and new people joined. But I stayed in the same area more or less.</p>
-<h2 id="frontend-engineer">Frontend Engineer...?</h2>
-<p>At Zalando, Frontend Engineers were more like JavaScript Fullstack Engineers.</p>
+<h2 id="frontend-engineer">Frontend engineer...?</h2>
+<p>At Zalando, frontend engineers were more like JavaScript fullstack engineers.</p>
 <p>In 2016, Zalando had a slogan &quot;Radical Agility&quot;. It promoted team autonomy and Microservices to support it. Each engineering team was supposed to operate what they built on top of the <a href="https://stups.io/">STUPS</a> infrastructure. Frontend was not an exception. <a href="https://www.mosaic9.org/">Mosaic</a> (frontend-microservices architecture) allowed each product team to own their Node.js servers for data aggregation and React server-side rendering in addition to frontend components.</p>
 <p>The team&#39;s responsibilities were broad. Building new features and UI improvements with A/B testing, contributing to shared UI components, web performance optimization, Node.js server operations, 24x7 on-call, writing post mortems, and so on.</p>
 <p>In <a href="https://engineering.zalando.com/posts/2018/12/front-end-micro-services.html">the new architecture that the Fashion Store is moving to</a>, product teams don&#39;t need to maintain Node.js servers. I would miss the burden, but I think it&#39;s a good thing.</p>
-<h2 id="operation-and-reliability">Operation and Reliability</h2>
+<h2 id="operation-and-reliability">Operation and reliability</h2>
 <p>I had a good opportunity to work on Node.js servers with serious traffic and business impact. Before joining Zalando, I had worked only on products that didn&#39;t take off or were just taking off. I didn&#39;t have much experience in scaling, monitoring, etc. But writing post mortems became one of my favorite activities after 4 years.</p>
 <p>When my team migrated one of Zalando&#39;s most frequently visited pages to the microservice architecture, our journey in this area started. Even among frontend engineers in the team, some of them were frontendy—good at UI—and some of them were backendy. I was a backendy one and started looking into the topic. I found it interesting. It was a nice way to contribute to the team and the business.</p>
 <p>I glimpsed SRE initiatives and Cyber Week preparation being set up and evolving. <a href="https://engineering.zalando.com/posts/2020/10/how-zalando-prepares-for-cyber-week.html">How Zalando prepares for Cyber Week</a> is a great overview of the evolution. I had a good chance to take part in it as a member of a product team. The people who formed the SRE team taught us monitoring, alerting, and reliability patterns (retry, circuit breaker, fallback, etc.). Incident response and post mortems were standardized. Then distributed tracing and <a href="https://www.usenix.org/conference/srecon19emea/presentation/mineiro">adaptive paging</a> were introduced.</p>
 <p>Some of my contributions were reliability improvements of Node.js services. I researched <a href="(/blog/2017/05/13/http-request-timeouts-in-javascript/)">timeout mechanisms of Node.js HTTP client</a> and added a timeout feature to <a href="https://github.com/zalando-incubator/perron">an HTTP client library</a>. <a href="/blog/2019/04/30/dns-polling/">Built a mitigation strategy for DNS timeouts</a>, <a href="/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/">improved histogram metrics aggregation</a>, <a href="/blog/2018/09/16/node-js-under-a-microscope/">performed profiling and found interesting findings</a>—I had a chance to talk about it in front of a big audience including TC39 folks... I was nervous!</p>
 <p>I was late to the Kubernetes train. The migration from STUPS to Kubernetes didn&#39;t get enough priority in my team. On the other hand, Zalando was an early adapter of Kubernetes and has been <a href="https://www.cncf.io/announcements/2020/08/20/cloud-native-computing-foundation-grants-zalando-the-top-end-user-award/">a strong contributor to the ecosystem</a>. I missed a good learning opportunity to dive into it and learn from the in-house experts.</p>
-<h2 id="web-performance">Web Performance</h2>
+<h2 id="web-performance">Web performance</h2>
 <p>Another topic that I enjoyed was web performance optimization. It was especially rewarding because it directly contributes to customer experience and the e-commerce business. After my team worked on it, I had an opportunity to write a part of <a href="https://engineering.zalando.com/posts/2018/06/loading-time-matters.html">a blog post about the improvements</a>.</p>
 <p>This topic keeps evolving. New metrics like <a href="https://web.dev/vitals/">Web Vitals</a> and more measurement/optimization techniques came out. It is one of the topics that I would want to pursue if I remained at Zalando.</p>
-<h2 id="cross-team-collaboration">Cross-Team Collaboration</h2>
+<h2 id="cross-team-collaboration">Cross-team collaboration</h2>
 <p>I had a chance to work with many other teams in the Fashion Store and other departments. I met and worked with literally hundreds of colleagues. I had never worked with so many people before joining Zalando.</p>
 <p>That meant more meetings and alignments. I learned decision making with writing. I still don&#39;t say that I&#39;m good at it, but Google Docs became my favorite editor next to Vim.</p>
 <p>I learned that it can be fun to work with many teams. Sometimes it was frustrating because of the time consumed. But it was rewarding to meet with many colleagues and work together.</p>
 <h2 id="career">Career</h2>
-<p>I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it&#39;s called Principal Engineer. In addition to technically lead projects, they shape the tech landscape of the company beyond the scope of a team.</p>
-<p>I was fortunate enough to be promoted to Principal Engineer this year. A new role gave me new tasks and a new point of view. It&#39;s one of my regrets to leave this role prematurely.</p>
+<p>I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it&#39;s called Principal Engineer. In addition to technically leading projects, they shape the tech landscape of the company beyond the scope of a team.</p>
+<p>I was fortunate enough to be promoted to a principal engineer this year. A new role gave me new tasks and a new point of view. It&#39;s one of my regrets to leave this role prematurely.</p>
 <h2 id="fun">Fun</h2>
 <p>I had a lot of fun.</p>
 <p>Lunch tours to Schlesisches Tor. Countless drinks at the office. After-drink burgers at Burgermeister. A team event on canoes. Summer BBQs in a park. Company parties with thousands of people and getting lost. <em>Mett</em> —German traditional breakfast of minced raw pork—with some beer in the office at 11 am. Ordering <em>Maß</em> at lunch and learning what it meant when 1L of beer arrived...</p>
