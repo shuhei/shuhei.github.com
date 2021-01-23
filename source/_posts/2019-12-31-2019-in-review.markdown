@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2019 in Review
+title: 2019 in review
 date: 2019-12-31 23:50
 comments: true
 categories: [Review]
@@ -58,11 +58,11 @@ My team and I started on-call duties. Before that, another on-call team was taki
 
 I started interviewing regularly, mostly on coding. I'm still not used to it, and there's more to learn.
 
-## Side Projects
+## Side projects
 
 In the first half of the year, I wrote [a small metrics utility](https://github.com/shuhei/rolling-window) for work and [a toy interpreter and compiler in Rust](/blog/2019/10/06/interpreter-and-compiler-in-rust/) for fun. In the last half, I focused more on learning classic algorithms than side projects.
 
-## Conferences & Meetups
+## Conferences and meetups
 
 I attended two conferences, JSConf EU and JSConf JP, and had a chance to [speak at a meetup](https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production).
 

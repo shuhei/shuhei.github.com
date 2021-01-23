@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2020 in Review
+title: 2020 in review
 date: 2021-01-13 23:00
 comments: true
 categories: [Review]
@@ -36,7 +36,7 @@ The problem was physical equipment. I didn't realize that the office equipment w
 
 No commuting means huge time-saving. I saved at least one and a half hours every day. At the same time, I lost a good chance of exercise. I try to walk outside every day, but the amount of my physical activities drastically decreased.
 
-## Computer Science
+## Computer science
 
 It was fun to learn and practice algorithms and data structures for interview preparation. I solved about 300 Medium/Hard LeetCode problems in two months. Before 2020, I had been learning them with books and Coursera courses, but knowing and doing are two different things. Solving problems shed light on what I didn't fully understand. I studied topics that I was stuck—graphs, dynamic programming, string searching, well, most of them!
 
@@ -48,7 +48,7 @@ Before COVID-19 started, I traveled to Granada, Spain in January. It's a city of
 
 In September between the two lockdowns of the spring and the winter, I visited Goslar, Quedlinburg, and Düsseldorf in Germany to use too many vacation days left. Goslar and Quedlinburg were beautiful. As a substitute for a trip to Japan, I ate Japanese food extravagantly in Düsseldorf. My favorite restaurant was Hyuga. It felt like being at an _izakaya_ in Tokyo. Shochiku, a Japanese supermarket, had a fish counter where you can ask them to cut sashimi. I took it out and ate in the hotel room. So good.
 
-## Food & Drinks
+## Food and drinks
 
 I had rarely used food deliveries before 2020. But yes, I did it this time. My favorite dishes have been Tacos and Korean fried chicken. Also, many restaurants started take-away. I had never imagined taking out _ramen_ before 2020.
 

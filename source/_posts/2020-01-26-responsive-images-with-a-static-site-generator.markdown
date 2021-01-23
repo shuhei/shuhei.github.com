@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Responsive Images with a Static Site Generator
+title: Responsive images with a static site generator
 date: 2020-01-26 15:57
 comments: true
 categories: [Blog, JavaScript]
@@ -40,7 +40,7 @@ In addition to images that are wide enough to always fill the full width of the 
 </div>
 ```
 
-## Getting Image Dimensions
+## Getting image dimensions
 
 The placeholder technique requires image dimensions. I used [image-size module](https://github.com/image-size/image-size) to get image dimensions.
 

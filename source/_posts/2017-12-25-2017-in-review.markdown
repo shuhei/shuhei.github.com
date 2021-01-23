@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2017 in Review"
+title: "2017 in review"
 date: 2017-12-25 22:54
 comments: true
 categories: [Review]
@@ -26,7 +26,7 @@ British ale was a discovery to me. I liked pubs in London a lot. I also attended
 
 I bought [an ergonomic keyboard](https://ergodox-ez.com/) and [a neck support pillow](https://billerbeck.info/en/products/82/neck-support-pillow-novum). Both of them lifted up my quality of life. My body is getting older.
 
-## Language Learning
+## Language learning
 
 I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.
 
@@ -36,7 +36,7 @@ I was lucky to join an awesome team. We work together and hang out together. [A 
 
 On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.
 
-## Side Projects
+## Side projects
 
 I enjoyed working with Elm. I [wrote a mobile weather app](https://github.com/shuhei/elm-compare), flew to Paris for [Elm Europe 2017](https://2017.elmeurope.org/), built [a mobile-friendly pixel editor](https://github.com/shuhei/pixelm) and [talked about it](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup](https://www.meetup.com/Elm-Berlin/events/242852794/). I also helped [an experiment of its compiler-side](https://github.com/w0rm/elm-glsl) in Haskell, although it is still pending.
 

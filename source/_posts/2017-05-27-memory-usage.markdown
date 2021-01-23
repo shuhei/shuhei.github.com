@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Getting Memory Usage in Linux and Docker"
+title: "Getting memory usage in Linux and Docker"
 date: 2017-05-28 16:28
 comments: true
 categories: [Linux, Docker]
@@ -18,7 +18,7 @@ const usage = ((free - total) / total) * 100;
 
 So, they are basically from OS, which was [Alpine Linux](https://alpinelinux.org/) on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?
 
-## Buffers and Cached Memory
+## Buffers and cached memory
 
 I used `top` command with `Shift+m` (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that `buffers` and `cached Mem` were high on the long-running one.
 
@@ -97,7 +97,7 @@ Because of the namespaces, `ps` command lists processes of Docker containers in 
 
 [By default, Docker containers have no resource constraints](https://docs.docker.com/engine/admin/resource_constraints/#memory). So, if you run one container in a host and don't limit resource usage of the container, and this is my case, the container's "free memory" is same as the host OS's "free memory".
 
-## Memory Metrics on Docker Container
+## Memory metrics on Docker container
 
 If you want to monitor a Docker container's memory usage from outside of the container, it's easy. You can use `docker stats`.
 

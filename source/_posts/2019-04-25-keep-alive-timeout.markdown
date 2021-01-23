@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Check Your server.keepAliveTimeout"
+title: "Check your server.keepAliveTimeout"
 date: 2019-04-25 23:29
 comments: true
 categories: [Node.js]
@@ -16,7 +16,7 @@ I recently came across a post, [A tale of unexpected ELB behavior.](https://medi
 
 According to [AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout), Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:
 
->We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.
+> We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.
 
 [Node.js `http`/`https` server has 5 seconds keep alive timeout by default](https://nodejs.org/api/http.html#http_server_keepalivetimeout). I wanted to make it longer. With [Express](https://expressjs.com/), we can do it like the following:
 
@@ -32,7 +32,7 @@ server.keepAliveTimeout = 61 * 1000;
 
 And the ELB 502 errors disappeared!
 
-As hindsight, there was already [Dealing with Intermittent 502's between an AWS ALB and Express Web Server](https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/) on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy ([Skipper as k8s ingress](https://github.com/zalando-incubator/kube-ingress-aws-controller)) and another Node.js server at work. I hope this issue becomes more widely known.
+In hindsight, there was already [Dealing with Intermittent 502's between an AWS ALB and Express Web Server](https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/) on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy ([Skipper as k8s ingress](https://github.com/zalando-incubator/kube-ingress-aws-controller)) and another Node.js server at work. I hope this issue becomes more widely known.
 
 ## Update on April 29, 2019
 

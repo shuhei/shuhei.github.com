@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DNS Polling for Reliability"
+title: "DNS polling for reliability"
 date: 2019-04-30 00:14
 comments: true
 categories: [Node.js]
@@ -10,7 +10,7 @@ In December 2018, I wrote a package to poll and cache DNS records, [pollen](http
 
 My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and `tcpdump`, but couldn't find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don't retry DNS lookups while C4 instances do.
 
-## Node.js is Vulnerable to DNS Failures
+## Node.js is vulnerable to DNS failures
 
 In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn't paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can't call servers without knowing their IP addresses.
 
@@ -28,7 +28,7 @@ However, it's not always easy depending on the platform that you are using. My t
 
 Because the incidents didn't happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.
 
-## DNS Caching and Prefetching with Node.js
+## DNS caching and prefetching with Node.js
 
 There were already some DNS caching packages:
 
@@ -39,7 +39,7 @@ The packages looked great, but there was an edge case that they didn't cover. Bo
 
 To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn't change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.
 
-## HTTP Keep-Alive (Persistent Connection)
+## HTTP Keep-Alive (persistent connection)
 
 There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.
 
@@ -53,7 +53,7 @@ I wrote [pollen](https://github.com/shuhei/pollen), tested it with C4 instances 
 
 I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn't find much difference in latency.
 
-## How to Use It
+## How to use it
 
 ```sh
 npm i -S @shuhei/pollen
@@ -82,7 +82,7 @@ const req = https.request({
 });
 ```
 
-## Bonus: DNS Lookup Metrics
+## Bonus: DNS lookup metrics
 
 Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. `pollen` emits events for this purpose.
 

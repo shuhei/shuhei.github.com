@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Best Part of Angular 2 Offline Compiler"
+title: "The best part of Angular 2 offline compiler"
 date: 2016-06-03 22:47
 comments: true
 categories: [JavaScript, Angular 2]

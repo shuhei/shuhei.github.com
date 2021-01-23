@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Winter Terminal (mostly Vim) Cleaning
+title: Winter terminal (mostly Vim) cleaning
 date: 2019-12-31 15:20
 comments: true
 categories: [Vim]
@@ -10,7 +10,7 @@ In December, I spent some time cleaning up my terminal setup. Dust had piled up 
 
 Here are highlights of [the changes](https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d).
 
-## Faster Text Rendering
+## Faster text rendering
 
 I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.
 
@@ -26,7 +26,7 @@ Also, I stopped using [flatlandia](https://github.com/jordwalke/flatlandia) colo
 
 [fzf.vim](https://github.com/junegunn/fzf.vim) was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of [ctrlp.vim](https://github.com/kien/ctrlp.vim)), commit history and grep. Especially, incremental grep with a preview is amazing.
 
-## More Vim Cleaning
+## More Vim cleaning
 
 - Started using [ale](https://github.com/dense-analysis/ale) as a [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) client. I was using ale for linting and fixing, and [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.
   - **Update on Jan 3, 2020:** I started using [coc.nvim](https://github.com/neoclide/coc.nvim) instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.

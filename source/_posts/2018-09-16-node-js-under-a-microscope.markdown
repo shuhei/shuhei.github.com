@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Node.js under a Microscope: CPU FlameGraph and FlameScope"
+title: "Node.js under a microscope: CPU FlameGraph and FlameScope"
 date: 2018-09-16 10:56
 comments: true
 categories: [Node.js, Linux]
@@ -12,9 +12,9 @@ Last week, I had an opportunity to talk about profiling Node.js applications on 
 
 I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn't know why.
 
-My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took `tcpdump` and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or *someone else*.
+My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took `tcpdump` and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or _someone else_.
 
-## CPU Profiling with Linux `perf` Command
+## CPU profiling with the Linux `perf` command
 
 Because the weird latency was happening in the application itself, I wanted to know what's going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it **on production**, so profiling was naturally a good fit because of its smaller overhead.
 
@@ -41,7 +41,7 @@ Now we have human-readable stack traces, but it's still hard to browse thousands
 [CPU Flame Graph by Brendan Gregg](http://www.brendangregg.com/flamegraphs.html) is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.
 
 ![CPU Flame Graph](/images/flamegraph.png)
-*A CPU Flame Graph from [a sample application](https://github.com/shuhei/perf-playground)*
+_A CPU Flame Graph from [a sample application](https://github.com/shuhei/perf-playground)_
 
 I found some insights about the application on production with CPU Flame Graph:
 
@@ -55,7 +55,7 @@ There are a few tools like [FlameGraph](https://github.com/brendangregg/FlameGra
 [FlameScope by Netflix](https://github.com/Netflix/flamescope) is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application's activity.
 
 ![FlameScope](/images/flamescope-annotated.png)
-*Image from [Netflix/flamescope](https://github.com/Netflix/flamescope)*
+_Image from [Netflix/flamescope](https://github.com/Netflix/flamescope)_
 
 If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.
 
@@ -63,13 +63,13 @@ To use FlameScope, check out the repository and run the python server. Then put 
 
 I found a couple of exciting insights about the application on production using this tool.
 
-### Example 1: Heavy Tasks in the Master Process
+### Example 1: Heavy tasks in the master process
 
 The application used [the `cluster` module](https://nodejs.org/api/cluster.html) to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.
 
 The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using `JSON.stringify()` and `JSON.parse()` to deep-copy objects!
 
-### Example 2: Frequent Garbage Collections
+### Example 2: Frequent garbage collections
 
 FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.
 
@@ -77,7 +77,7 @@ The application had an in-memory fallback cache for API calls that was used only
 
 The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application's 99 percentile response time improved by hundreds of milliseconds!
 
-## Node.js Gotchas
+## Node.js gotchas
 
 `perf script` collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:
 
@@ -89,7 +89,7 @@ In addition to the above, there are a few more Node.js options that you can use 
 - `--no-turbo-inlining` turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.
 - `--interpreted-frames-native-stack` fixes `Builtin:InterpereterEntryTrampoline` in stack traces. It is available from Node.js 10.4.0. Check out "Interpreted Frames" in [Updates from the Diagnostics Summit](https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961) for more details.
 
-## Docker Gotchas
+## Docker gotchas
 
 It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux `perf` with Docker:
 

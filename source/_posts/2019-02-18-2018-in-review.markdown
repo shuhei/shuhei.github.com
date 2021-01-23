@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2018 in Review"
+title: "2018 in review"
 date: 2019-02-19 01:20
 comments: true
 categories: [Review]
@@ -28,7 +28,7 @@ I visited two new countries and seven new cities. I wanted to visit a few more c
 - München, Germany for Oktoberfest in September
 - Köln and Düsseldorf, Germany in November
 
-## German Language
+## German language
 
 After finishing an A2 course at office, I started a B1 course at [Speakeasy](https://www.speakeasysprachzeug.de/en). I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going to the course.
 
@@ -42,7 +42,7 @@ In the first half of the year, I focused on web (frontend) performance optimizat
 
 In June, my team had a series of incidents on one of our applications, but we didn't know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find [Systems Performance by Brendan Gregg](http://www.brendangregg.com/sysperfbook.html), which is one of my all-time favorite technical books. As a by-product of the research/learning, I profiled Node.js servers on production and made some performance improvements. Wrote about it on [Node.js under a Microscope: CPU FlameGraph and FlameScope](/blog/2018/09/16/node-js-under-a-microscope/).
 
-## Side Projects
+## Side projects
 
 I didn't worked on many side projects in 2018. Instead, I learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into [the knowledge repo](https://github.com/shuhei/knowledge) inspired by [yoshuawuyts/knowledge](https://github.com/yoshuawuyts/knowledge). Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, [pollen](https://github.com/shuhei/pollen). It's been working without issues for 1.5 months!
 
