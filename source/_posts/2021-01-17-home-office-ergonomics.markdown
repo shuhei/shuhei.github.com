@@ -64,7 +64,7 @@ I'm using a 27-inch QHD monitor now after trying 24-inch and 32-inch. 32-inch wa
 
 Your monitor's top edge should be around your eye-level. Usually, the built-in stands of regular monitors don't go high enough. A stack of books, a monitor stand, or a monitor arm elevate your monitor. If you use a keyboard tray, you need less monitor elevation because you can keep your desktop higher.
 
-You should check whether your setup can satisfy your monitor's perfect height before buying anything. If you are getting a monitor arm, you may want to check the relative position of your monitor's VESA mount to its top. Not all monitors have their VESA mounts at their center.
+Before buying anything, check whether your setup can satisfy your monitor's perfect height. If you are getting a monitor arm, check the relative position of your monitor's VESA mount to its top. Not all monitors have their VESA mounts at their center.
 
 I'm using Flo from Colebrook Bosson Saunders. I'm satisfied with the beautiful monitor arm so far. Its maximum height is just enough for my eye-level. You may need a more robust one if you need more height or a bigger monitor.
 
