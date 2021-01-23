@@ -67,7 +67,7 @@ describe("shuheikagawa.com", () => {
   });
 
   it("opens all posts page", () => {
-    cy.contains("All Posts").click();
+    cy.contains("All posts").click();
 
     cy.url().should("eq", `${host}/blog/archives/`);
 
