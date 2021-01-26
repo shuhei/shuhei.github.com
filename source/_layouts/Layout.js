@@ -9,16 +9,16 @@ const googleAnalytics = `<script>
 </script>`;
 
 const fontCSS =
-  "https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700|Fira+Mono:400&display=swap";
+  "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Libre+Franklin:wght@700&family=DM+Mono&display=swap";
 
 // Preload woff2 because all browsers that support preload support woff2.
 const fonts = [
-  // Fira Mono 400
-  "https://fonts.gstatic.com/s/firamono/v8/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2",
-  // IBM Plex Sans 400
-  "https://fonts.gstatic.com/s/ibmplexsans/v7/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2",
-  // IBM Plex Sans 700
-  "https://fonts.gstatic.com/s/ibmplexsans/v7/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2"
+  // Libre Baskerville
+  "https://fonts.gstatic.com/s/librebaskerville/v9/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2",
+  // Libre Franklin
+  "https://fonts.gstatic.com/s/librefranklin/v6/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDPTedX18mE.woff",
+  // DM Mono
+  "https://fonts.gstatic.com/s/dmmono/v3/aFTU7PB1QTsUX8KYthqQBK6PYK0.woff2"
 ];
 
 function preloadFont(href) {

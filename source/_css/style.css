@@ -1,7 +1,7 @@
 /* beige and blue */
 :root {
-  --bg-color: #f7f0e7;
-  --text-color: #2d1e14;
+  --bg-color: #fff;
+  --text-color: #000;
   --highlight-color: #095ae8;
   --code-bg-color: hsl(
     var(--syntax-hue),
@@ -27,36 +27,14 @@
   --code-hue-5-2: hsl(344, 84%, 43%); /* red 2 */
   --code-hue-6: hsl(41, 99%, 30%); /* orange 1 */
   --code-hue-6-2: hsl(41, 99%, 30%); /* orange 2 */
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #312b3a;
-    --text-color: #f7f0e7;
-    --highlight-color: #9dc8fb;
-
-    /* Based on Atom One Dark, but higher contrast for a11y */
-    /* https://github.com/atom/atom/tree/master/packages/one-dark-syntax */
-    --syntax-hue: 220;
-    --syntax-saturation: 13%;
-    --syntax-brightness: 11%;
-
-    --code-mono-1: hsl(var(--syntax-hue), 14%, 87%);
-    --code-mono-2: hsl(var(--syntax-hue), 9%, 55%);
-    --code-mono-3: hsl(var(--syntax-hue), 10%, 40%);
-    --code-hue-1: hsl(187, 47%, 55%); /* cyan */
-    --code-hue-2: hsl(207, 82%, 66%); /* blue */
-    --code-hue-3: hsl(286, 60%, 67%); /* purple */
-    --code-hue-4: hsl(95, 38%, 62%); /* green */
-    --code-hue-5: hsl(355, 65%, 65%); /* red 1 */
-    --code-hue-5-2: hsl(5, 48%, 51%); /* red 2 */
-    --code-hue-6: hsl(29, 54%, 61%); /* orange 1 */
-    --code-hue-6-2: hsl(39, 67%, 69%); /* orange 2 */
-  }
+  --body-font-family: "Libre Baskerville", serif;
+  --heading-font-family: "Libre Franklin", sans-serif;
+  --code-font-family: "DM Mono", monospace;
 }
 
 body {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--body-font-family);
   background: var(--bg-color);
   color: var(--text-color);
   padding: 0;
@@ -81,15 +59,17 @@ a:hover {
 
 /* header */
 .header {
-  padding: 15px 0 5px;
+  padding: 25px 0 0;
   display: flex;
 }
 .header__title {
   margin: 0 10px 0 0;
   flex-grow: 1;
+  font-size: 1.2em;
+  font-weight: normal;
 }
 .header__title a {
-  color: var(--highlight-color);
+  color: var(--text-color);
   text-decoration: none;
 }
 .header__nav {
@@ -98,12 +78,13 @@ a:hover {
 .menu {
   list-style-position: outside;
   list-style-type: none;
-  padding: 15px 0;
+  padding: 0;
   margin: 0;
+  text-align: right;
 }
 .menu__item {
   display: inline-block;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 0.7em;
 }
 .menu__item a {
   color: var(--text-color);
@@ -118,9 +99,10 @@ a:hover {
 
 /* title */
 .title {
-  font-size: 42px;
-  margin: 0;
-  line-height: 1.3;
+  font-family: var(--heading-font-family);
+  font-size: 3em;
+  margin: 0 0 0.3em;
+  line-height: 1.1;
 }
 .title a {
   color: var(--text-color);
@@ -136,11 +118,13 @@ a:hover {
 /* separator only for index pages */
 .post:not(:first-child):before {
   content: "* * *";
+  font-family: var(--heading-font-family);
   font-weight: bold;
+  font-size: 4em;
   display: block;
-  margin: 0 auto 45px;
-  font-size: 50px;
+  margin: 0.2em auto 0.6em;
   text-align: center;
+  line-height: 1;
 }
 
 .post .meta {
@@ -158,18 +142,39 @@ a:hover {
 }
 .post-list-item__date {
   font-size: small;
-  width: 90px;
+  width: 8em;
   flex-shrink: 0;
 }
 .post-list-item__title {
   font-size: large;
   margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: bold;
 }
 .post-list-item__title a {
   text-decoration: none;
+  color: var(--text-color);
 }
 
 /* content */
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  font-family: var(--heading-font-family);
+  line-height: 1.1;
+  margin: 1em 0 0 0;
+}
+
+.content h2 {
+  font-size: 2em;
+}
+
+.content h3 {
+  font-size: 1.5em;
+}
+
 .content img {
   max-width: 100%;
 }
@@ -236,10 +241,9 @@ td {
 code {
   background-color: var(--code-bg-color);
   color: var(--code-text-color);
-  padding: 0.1em 0.4em 0.1em;
   border-radius: 0.4em;
   font-size: 0.9em;
-  font-family: "Fira Mono", monospace;
+  font-family: var(--code-font-family);
 }
 .code__filename {
   display: inline-block;
@@ -403,12 +407,6 @@ blockquote cite:before {
   .post,
   .post-list {
     padding-top: 10px;
-  }
-  .title {
-    font-size: 24px;
-  }
-  .menu__item {
-    padding: 0 20px 0 0;
   }
   .post-list-item {
     display: block;
