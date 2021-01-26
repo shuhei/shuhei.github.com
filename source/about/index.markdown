@@ -11,7 +11,7 @@ Hi, my name is Shuhei. I'm a programmer based in Berlin, mostly writing JavaScri
 
 When I don't sit in front of my laptop, I wander around the streets of Berlin, give a look at the spines of my book collection, or enjoy local IPAs.
 
-## Accounts
+## Social media
 
 - [GitHub @shuhei](https://github.com/shuhei)
 - [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
@@ -38,7 +38,7 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 - August 2013, [Backbone.js のはなし](/talks/20130816_Introduction_to_Backbone): (Japanese) An introduction to Backbone.js
 - June 2013, [Node.js + WebSocket でテザリングしてみた](https://speakerdeck.com/shuhei/node-dot-js-plus-websocket-detezaringusitemita): (Japanese) Tethering with Node.js and WebSocket from scratch
 
-## Side Projects
+## Side projects
 
 - 2017 [Pixelm](/pixelm/): A pixel editor optimized for mobile devices and written with Elm.
 - 2016 [Compare](https://github.com/shuhei/Compare): A super-simple mobile app to compare temperatures of yesterday and today
