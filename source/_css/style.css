@@ -3,11 +3,6 @@
   --bg-color: #fff;
   --text-color: #000;
   --highlight-color: #095ae8;
-  --code-bg-color: hsl(
-    var(--syntax-hue),
-    var(--syntax-saturation),
-    var(--syntax-brightness)
-  );
   --code-text-color: var(--code-mono-1);
 
   /* Based on Atom One Light, but higher contrast for a11y */
@@ -239,9 +234,7 @@ td {
 
 /* code */
 code {
-  background-color: var(--code-bg-color);
   color: var(--code-text-color);
-  border-radius: 0.4em;
   font-size: 0.9em;
   font-family: var(--code-font-family);
 }
@@ -256,11 +249,10 @@ code {
 .hljs {
   display: block;
   line-height: 1.5em;
-  padding: 15px 20px;
+  padding: 15px 20px 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
-  background-color: var(--code-bg-color);
   color: var(--code-text-color);
 }
 
