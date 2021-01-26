@@ -45,7 +45,7 @@ describe("shuheikagawa.com", () => {
 
     cy.url().should("eq", `${host}/about/`);
 
-    cy.contains("Accounts").should("be.visible");
+    cy.contains("Social media").should("be.visible");
     cy.contains("GitHub").should(
       "have.prop",
       "href",
@@ -58,6 +58,7 @@ describe("shuheikagawa.com", () => {
     );
 
     cy.contains("Talks").should("be.visible");
+    cy.contains("Side projects").should("be.visible");
   });
 
   it("redirects works page to the top page", () => {
