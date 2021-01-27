@@ -35,7 +35,8 @@
   },
   "homepage": "https://github.com/shuhei/shuhei.github.com",
   "devDependencies": {
-    "@ibm/plex": "^4.0.2",
+    "@fontsource/libre-baskerville": "^4.1.0",
+    "@fontsource/libre-franklin": "^4.1.0",
     "canvas": "^2.6.0",
     "cheerio": "^1.0.0-rc.3",
     "connect": "^3.3.4",

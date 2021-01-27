@@ -163,10 +163,15 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@ibm/plex@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ibm/plex/-/plex-4.0.2.tgz#0d871cd264ace55dae6c9f5211391b28ae0c2f63"
-  integrity sha512-MCOHPVSyQwuacyjCmVUhKuV7wc21eSaj/RdMM7BIL6YHMwKv6y4I9AqOa7V0Vcuzuyaj0YL8KgXj25+hVUObMA==
+"@fontsource/libre-baskerville@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/libre-baskerville/-/libre-baskerville-4.1.0.tgz#e11feec05920e336d1f0e400f5d6b2b5da8764c7"
+  integrity sha512-lko2FcyBoHBvvHCOk2Kpe9i3Tof5PLf/XOZCLSZ4j60gh/GbJ8CX3Shs7E+2rRQWJHHy2ATaoECH3K4nZJnFyQ==
+
+"@fontsource/libre-franklin@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/libre-franklin/-/libre-franklin-4.1.0.tgz#f92aa954ab3f7c78516554a9654d0fb5a74302c6"
+  integrity sha512-LdM733QKGH5Dy052WmHQglJuDLNb12Tewd/lO4DoKpOG3hLD9pysHJfZfDkoJhmd66GZpDr9ZOZlCVLfZaALfA==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
