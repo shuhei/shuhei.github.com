@@ -54,7 +54,7 @@ a:hover {
 
 /* header */
 .header {
-  padding: 25px 0 0;
+  padding: 1.5em 0 1em;
   display: flex;
 }
 .header__title {
@@ -79,7 +79,7 @@ a:hover {
 }
 .menu__item {
   display: inline-block;
-  padding: 0 0 0 0.7em;
+  padding: 0.3em 0 0 0.7em;
 }
 .menu__item a {
   color: var(--text-color);
@@ -96,7 +96,7 @@ a:hover {
 .title {
   font-family: var(--heading-font-family);
   font-size: 3em;
-  margin: 0 0 0.3em;
+  margin: 0 0 0.4em;
   line-height: 1.1;
 }
 .title a {
@@ -391,10 +391,6 @@ blockquote cite:before {
 @media only screen and (max-width: 767px) {
   .container {
     width: auto;
-  }
-  /* Put the menu below the title */
-  .header {
-    display: block;
   }
   .post,
   .post-list {
