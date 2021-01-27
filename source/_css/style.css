@@ -136,12 +136,12 @@ a:hover {
   display: flex;
 }
 .post-list-item__date {
-  font-size: small;
+  font-size: 0.8em;
   width: 8em;
   flex-shrink: 0;
 }
 .post-list-item__title {
-  font-size: large;
+  font-size: 1.3em;
   margin: 0;
   font-family: var(--heading-font-family);
   font-weight: bold;
