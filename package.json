@@ -13,6 +13,7 @@
     "newpost": "gulp newpost --title",
     "newpage": "gulp newpage --filename",
     "test": "jest",
+    "tdd": "jest --watch",
     "test-text-images": "node lib/plugins/manual-tests/title-image.js",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
