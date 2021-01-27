@@ -10,13 +10,19 @@ const markdown = require("gulp-markdown");
 const frontMatter = require("gulp-front-matter");
 
 const gulpIf = require("gulp-if");
-const startServer = require("./plugins/serve");
-const { index, layout, cleanUrl, newPost, newPage } = require("./plugins/blog");
-const branch = require("./plugins/branch");
-const readCssFiles = require("./plugins/css");
-const readImageSizes = require("./plugins/image-size");
-const summarize = require("./plugins/summarize");
-const MarkdownRenderer = require("./plugins/markdown-renderer");
+const startServer = require("./lib/plugins/serve");
+const {
+  index,
+  layout,
+  cleanUrl,
+  newPost,
+  newPage
+} = require("./lib/plugins/blog");
+const branch = require("./lib/plugins/branch");
+const readCssFiles = require("./lib/plugins/css");
+const readImageSizes = require("./lib/plugins/image-size");
+const summarize = require("./lib/plugins/summarize");
+const MarkdownRenderer = require("./lib/plugins/markdown-renderer");
 const siteConfig = require("./source/_config/site.json");
 
 const pipeline = util.promisify(Stream.pipeline);

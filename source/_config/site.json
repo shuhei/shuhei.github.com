@@ -6,7 +6,6 @@
   "newPageExtension": "markdown",
   "blogDir": "blog",
   "sourceDir": "source",
-  "layoutDir": "_layouts",
   "postDir": "_posts",
   "cssFiles": ["source/_css/style.css"]
 }
