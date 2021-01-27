@@ -5,25 +5,26 @@ date: 2017-05-14 23:31
 comments: true
 categories: [JavaScript, Node.js]
 ---
+
 These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn't become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.
 
 As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.
 
-## Node.js "http"/"https"
+## Node.js `http` and `https`
 
-Let's start with the standard library of Node.js. `http` and `https` provide `request()` function, which makes HTTP requests.
+Let's start with the standard library of Node.js. `http` and `https` packages provide `request()` function, which makes a HTTP(S) request.
 
 ### Timeouts on `http.request()`
 
 [`http.request()`](http://nodejs.org/api/http.html#http_http_request_options_callback) takes a `timeout` option. Its documentation says:
 
->`timeout` `<number>`: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.
+> `timeout` `<number>`: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.
 
 So what does it actually do? It internally calls `net.createConnection()` with its `timeout` option, which eventually calls `socket.setTimeout()` before the socket starts connecting.
 
 There is also [`http.ClientRequest.setTimeout()`](http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback). Its documentation says:
 
->Once a socket is assigned to this request and is connected `socket.setTimeout()` will be called.
+> Once a socket is assigned to this request and is connected `socket.setTimeout()` will be called.
 
 So this also calls [`socket.setTimeout()`](http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback).
 
@@ -35,7 +36,7 @@ So, what does `socket.setTimeout()` do? Let's check.
 
 [The documentation](http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback) says:
 
->Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default `net.Socket` does not have a timeout.
+> Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default `net.Socket` does not have a timeout.
 
 OK, but what does "inactivity on the socket" exactly mean? In a happy path, a TCP socket follows the following steps:
 
@@ -73,11 +74,11 @@ So, how are they different?
 
 ## Third-party modules
 
-### "request" module
+### `request` module
 
 [request](https://github.com/request/request) is a very popular HTTP request library that supports many convenient features on top of `http`/`https` module. Its README says:
 
->`timeout` - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.
+> `timeout` - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.
 
 However, as far as I checked the implementation, `timeout` is not applied to the timing of response headers as of v2.81.1.
 
@@ -90,7 +91,7 @@ There is [a GitHub issue](https://github.com/request/request/issues/2535) for it
 
 By the way, `request` provides a useful timing measurement feature that you can enable with `time` option. It will help you to define a proper timeout value.
 
-### "axios" module
+### `axios` module
 
 [`axios`](https://github.com/mzabriskie/axios) is another popular library that uses `Promise`. Like `request` module's README, its `timeout` option timeouts if the response status code and headers don't arrive in the given timeout.
 
@@ -110,13 +111,13 @@ As far as I read [`fetch()`'s documentation on MDN](https://developer.mozilla.or
 function withTimeout(msecs, promise) {
   const timeout = new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject(new Error('timeout'));
+      reject(new Error("timeout"));
     }, msecs);
   });
   return Promise.race([timeout, promise]);
 }
 
-withTimeout(1000, fetch('https://foo.com/bar/'))
+withTimeout(1000, fetch("https://foo.com/bar/"))
   .then(doSomething)
   .catch(handleError);
 ```

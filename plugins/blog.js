@@ -294,7 +294,6 @@ async function newPost(title, config) {
 layout: post
 title: ${title}
 date: ${strftime("%Y-%m-%d %H:%M")}
-comments: true
 categories: []
 ---
 `;
@@ -342,7 +341,6 @@ async function newPage(filename, config) {
 layout: page
 title: ${title}
 date: ${strftime("%Y-%m-%d %H:%M")}
-comments: true
 ---
 `;
 

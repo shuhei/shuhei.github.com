@@ -2,7 +2,6 @@
 layout: post
 title: "DNS polling for reliability"
 date: 2019-04-30 00:14
-comments: true
 categories: [Node.js]
 ---
 
