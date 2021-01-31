@@ -5,7 +5,7 @@ published: true
 date: 2008-12-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 ソフ開受かってました。

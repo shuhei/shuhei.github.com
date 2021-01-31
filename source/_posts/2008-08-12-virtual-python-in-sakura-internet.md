@@ -5,7 +5,7 @@ published: true
 date: 2008-08-12
 comments: true
 tags:
-categories: [Python, さくらインターネット]
+tags: [Python, さくらインターネット]
 ---
 
 さくらインターネットで easy install がうまく動かなかったので、virtual-python を使って Python 環境を再構築してみました。

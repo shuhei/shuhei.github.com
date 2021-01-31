@@ -5,7 +5,7 @@ published: true
 date: 2009-08-02
 comments: true
 tags:
-categories: [C/C++, OpenFrameworks]
+tags: [C/C++, OpenFrameworks]
 ---
 
 OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。

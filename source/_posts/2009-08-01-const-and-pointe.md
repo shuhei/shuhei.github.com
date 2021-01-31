@@ -5,7 +5,7 @@ published: true
 date: 2009-08-01
 comments: true
 tags:
-categories: [C/C++]
+tags: [C/C++]
 ---
 
 下のように `const` は型名の前後どちらに書いても同じです。

@@ -5,7 +5,7 @@ published: true
 date: 2009-10-12
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 ```

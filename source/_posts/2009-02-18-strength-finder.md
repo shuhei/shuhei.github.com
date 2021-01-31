@@ -5,7 +5,7 @@ published: true
 date: 2009-02-18
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 本屋で見つけた [「さあ、才能に目覚めよう」](http://www.amazon.co.jp/gp/product/4532149479) という本を読んでみました。

@@ -3,7 +3,7 @@ layout: post
 title: "Check your server.keepAliveTimeout"
 date: 2019-04-25
 comments: true
-categories: [Node.js]
+tags: [Node.js]
 ---
 
 One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (`HTTPCode_ELB_502_Count`). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn't bothered investigating it for a while.

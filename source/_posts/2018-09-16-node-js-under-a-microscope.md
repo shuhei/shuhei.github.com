@@ -2,7 +2,7 @@
 layout: post
 title: "Node.js under a microscope: CPU FlameGraph and FlameScope"
 date: 2018-09-16
-categories: [Node.js, Linux]
+tags: [Node.js, Linux]
 ---
 
 Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.

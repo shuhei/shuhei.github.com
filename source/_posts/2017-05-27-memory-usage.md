@@ -3,7 +3,7 @@ layout: post
 title: "Getting memory usage in Linux and Docker"
 date: 2017-05-28
 comments: true
-categories: [Linux, Docker]
+tags: [Linux, Docker]
 ---
 
 Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.

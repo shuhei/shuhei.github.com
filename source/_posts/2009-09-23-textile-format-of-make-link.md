@@ -5,7 +5,7 @@ published: true
 date: 2009-09-23
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 Firefox の Addon [Make Link](https://addons.mozilla.org/ja/firefox/addon/142) はページのタイトルや URL からリンクを作ってクリップボードに貼ってくれるアドオンです。ブログ記事にリンクを載せる際に重宝します。フォーマットを自分で作る事もできる点が大変便利。

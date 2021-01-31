@@ -5,7 +5,7 @@ published: true
 date: 2008-09-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 CSS で固定幅とリキッドの 2 カラムにレイアウトするため、ネガティブマージンを使ってみました。

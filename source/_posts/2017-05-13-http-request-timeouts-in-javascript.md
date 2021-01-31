@@ -3,7 +3,7 @@ layout: post
 title: "HTTP request timeouts in JavaScript"
 date: 2017-05-14
 comments: true
-categories: [JavaScript, Node.js]
+tags: [JavaScript, Node.js]
 ---
 
 These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn't become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.

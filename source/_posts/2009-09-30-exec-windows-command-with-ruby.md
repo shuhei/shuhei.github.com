@@ -5,7 +5,7 @@ published: true
 date: 2009-09-30
 comments: true
 tags:
-categories: [Ruby]
+tags: [Ruby]
 ---
 
 バッチファイルだけでは難しい処理をしたい時などに。そういう時は PowerShell を使うといいのかもしれませんが。

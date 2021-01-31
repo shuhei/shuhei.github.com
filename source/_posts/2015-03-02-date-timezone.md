@@ -3,7 +3,7 @@ layout: post
 title: "Assign Time/time string in UTC to ActiveRecord date attribute"
 date: 2015-03-02
 comments: true
-categories: [Ruby, Rails]
+tags: [Ruby, Rails]
 ---
 
 **TL;DR: `gem 'date_timezone'` in `Gemfile` and `include DateTimezone` in ActiveRecord models if you are on the east side of the prime meridian.**

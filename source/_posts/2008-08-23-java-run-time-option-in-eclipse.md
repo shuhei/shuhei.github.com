@@ -5,7 +5,7 @@ published: true
 date: 2008-08-23
 comments: true
 tags:
-categories: [Java]
+tags: [Java]
 ---
 
 Java の VM の実行時オプションをを指定するには、Run &#8594; Run Configuration -> arguments で Java Application の中から Project を選び、 Arguments タブの VM arguments のところに書きます。

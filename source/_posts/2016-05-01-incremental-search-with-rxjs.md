@@ -3,7 +3,7 @@ layout: post
 title: "Incremental search with RxJS switchMap"
 date: 2016-05-02
 comments: true
-categories: [JavaScript, RxJS]
+tags: [JavaScript, RxJS]
 ---
 
 RxJS leads us to better design separating data flow and side-effects. In addition, it provides powerful functionalities that sophisticate the outcome application. My favorite is [`switchMap`](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap) of RxJS 5, which is equivalent to [`flatMapLatest`](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md) in RxJS 4.

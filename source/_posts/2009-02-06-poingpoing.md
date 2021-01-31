@@ -5,7 +5,7 @@ published: true
 date: 2009-02-06
 comments: true
 tags:
-categories: [Proce55ing]
+tags: [Proce55ing]
 ---
 
 久しぶりに Processing いじってみました。

@@ -5,7 +5,7 @@ published: true
 date: 2008-08-14
 comments: true
 tags:
-categories: [Wordpress]
+tags: [Wordpress]
 ---
 
 Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。

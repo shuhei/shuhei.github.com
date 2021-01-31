@@ -5,7 +5,7 @@ published: true
 date: 2009-08-22
 comments: true
 tags:
-categories: [UNIX/LINUX]
+tags: [UNIX/LINUX]
 ---
 
 例えば、普段はタブじゃなくてスペースでインデントしたいけど、C# の場合はタブがいい。そんな時に。

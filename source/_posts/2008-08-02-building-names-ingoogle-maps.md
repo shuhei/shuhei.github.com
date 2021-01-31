@@ -5,7 +5,7 @@ published: true
 date: 2008-08-02
 comments: true
 tags:
-categories: [情報デザイン]
+tags: [情報デザイン]
 ---
 
 Google Maps に建物名が表示されるようになってました。

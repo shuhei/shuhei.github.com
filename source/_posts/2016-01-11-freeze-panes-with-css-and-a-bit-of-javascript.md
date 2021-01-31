@@ -3,7 +3,7 @@ layout: post
 title: "Freeze panes with CSS and a bit of JavaScript"
 date: 2016-01-11
 comments: true
-categories: [CSS, JavaScript]
+tags: [CSS, JavaScript]
 ---
 
 People want fixed-header table. It reminds you what the columns are while you scroll down the table. There are a bunch of fixed-header-table tutorials out there. But most of them kill one of the greatest features of HTML table. The automatic sizing of cells according to their contents. This is because they usually prepare separate `<table>`s for header and body.

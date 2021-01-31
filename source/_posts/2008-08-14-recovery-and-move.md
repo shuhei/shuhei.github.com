@@ -5,7 +5,7 @@ published: true
 date: 2008-08-14
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 先日 DB をいじっていたら、間違えてこのブログのテーブルを一部消してしまいまい、ログインすることができなくなりました。

@@ -5,7 +5,7 @@ published: true
 date: 2008-06-21
 comments: true
 tags: 
-categories: [Greasemonkey]
+tags: [Greasemonkey]
 ---
 Amazon.co.jp で洋書を見ると、レビューがほとんどありません。
 一方、Amazon.com に行けばレビューがたくさんあります。

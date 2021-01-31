@@ -5,7 +5,7 @@ published: true
 date: 2009-09-06
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 うーん、ちょっと買いすぎました。Push ばっかりで Pop が追いつきません。スタック的な意味で。

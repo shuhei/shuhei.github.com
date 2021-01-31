@@ -5,7 +5,7 @@ published: true
 date: 2008-05-18
 comments: true
 tags:
-categories: [Python, UNIX/LINUX]
+tags: [Python, UNIX/LINUX]
 ---
 
 これまで vim をデフォルトのまま使っていたのですが、なかなか慣れません。

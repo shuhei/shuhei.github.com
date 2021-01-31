@@ -5,7 +5,7 @@ published: true
 date: 2009-07-23
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 Visual Studio で使える C++ のリファクタリング用プラグインです。

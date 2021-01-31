@@ -2,7 +2,7 @@
 layout: post
 title: "main, jsnext:main and module"
 date: 2017-01-05
-categories: [JavaScript]
+tags: [JavaScript]
 ---
 
 Node module's `package.json` has `main` property. It's the entry point of a package, which is exported when a client `require`s the package.

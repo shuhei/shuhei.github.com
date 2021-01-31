@@ -5,7 +5,7 @@ published: true
 date: 2008-11-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 今日、簿記の 3 級を受けてきました。

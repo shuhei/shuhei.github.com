@@ -5,7 +5,7 @@ published: true
 date: 2008-06-22
 comments: true
 tags:
-categories: [Python]
+tags: [Python]
 ---
 
 PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 `implode`。

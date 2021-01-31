@@ -3,7 +3,7 @@ layout: post
 title: "Draw animated chart on React Native"
 date: 2016-07-18
 comments: true
-categories: [JavaScript, React]
+tags: [JavaScript, React]
 ---
 
 At [Meguro.es #4](http://meguroes.connpass.com/event/32167/) on June 21th, 2016, I talked about drawing animated chart on [React Native](https://facebook.github.io/react-native/). The talk was about the things I learned through developing an tiny app, Compare. It's a super simple app to compare temperatures.

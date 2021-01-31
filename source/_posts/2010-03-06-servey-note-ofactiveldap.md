@@ -5,7 +5,7 @@ published: true
 date: 2010-03-06
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 未検証ですが、以下の記事から調査したことのメモ。

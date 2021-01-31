@@ -5,7 +5,7 @@ published: true
 date: 2010-02-17
 comments: true
 tags:
-categories: [Windows]
+tags: [Windows]
 ---
 
 ```

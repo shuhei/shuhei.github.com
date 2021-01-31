@@ -4,7 +4,7 @@ title: "Python Challenge Lv. 8 - 9"
 published: true
 date: 2009-10-12
 comments: true
-categories: [Ruby, Python]
+tags: [Ruby, Python]
 ---
 
 ## Level 8

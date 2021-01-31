@@ -5,7 +5,7 @@ published: true
 date: 2008-08-20
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 気がついたら、こんなん出てました。

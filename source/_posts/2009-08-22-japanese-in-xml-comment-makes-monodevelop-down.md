@@ -5,7 +5,7 @@ published: true
 date: 2009-08-22
 comments: true
 tags:
-categories: [C#]
+tags: [C#]
 ---
 
 MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。

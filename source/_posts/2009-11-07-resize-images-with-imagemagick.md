@@ -5,7 +5,7 @@ published: true
 date: 2009-11-07
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 特定の名前の画像をリサイズします。

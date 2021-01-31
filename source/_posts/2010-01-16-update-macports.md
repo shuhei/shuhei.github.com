@@ -5,7 +5,7 @@ published: true
 date: 2010-01-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 port search xxx として出てくるものが古いときに。

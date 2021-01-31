@@ -5,7 +5,7 @@ published: true
 date: 2010-02-17
 comments: true
 tags:
-categories: [Ruby]
+tags: [Ruby]
 ---
 
 Windows XP の Ruby 1.8.7 で

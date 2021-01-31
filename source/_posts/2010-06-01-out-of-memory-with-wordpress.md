@@ -5,7 +5,7 @@ published: true
 date: 2010-06-01
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。

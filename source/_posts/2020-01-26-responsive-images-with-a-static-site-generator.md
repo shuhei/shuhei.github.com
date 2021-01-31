@@ -2,7 +2,7 @@
 layout: post
 title: Responsive images with a static site generator
 date: 2020-01-26
-categories: [Blog, JavaScript]
+tags: [Blog, JavaScript]
 ---
 
 ## Responsive images

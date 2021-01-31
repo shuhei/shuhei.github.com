@@ -5,7 +5,7 @@ published: true
 date: 2009-09-26
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 [TweetStats](http://tweetstats.com/) をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。

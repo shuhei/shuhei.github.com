@@ -3,7 +3,7 @@ layout: post
 title: "Node.js executable module"
 date: 2015-10-25
 comments: true
-categories: [JavaScript]
+tags: [JavaScript]
 ---
 
 You may want to create a Node module that is also an executable. The convention is to create two files, one for lib and the other for bin, but I think it's OK for simple modules.

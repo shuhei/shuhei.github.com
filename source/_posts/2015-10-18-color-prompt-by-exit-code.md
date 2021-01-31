@@ -3,7 +3,7 @@ layout: post
 title: "Color prompt by exit code"
 date: 2015-10-18
 comments: true
-categories: [Bash]
+tags: [Bash]
 ---
 
 The idea of customizing bash prompt hooked me a few months ago. I tried a few crazy things like [showing random emojis](https://github.com/shuhei/dotfiles/commit/a45d8c88d4c02737dad397b56624895bb715f5b5) and finally settled down with just showing the current directory, git branch and status.

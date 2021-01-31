@@ -2,7 +2,7 @@
 layout: post
 title: 4 years at Zalando
 date: 2020-11-30
-categories: []
+tags: []
 ---
 
 ![Spree in November, 2020](/images/2020-spree.jpg)

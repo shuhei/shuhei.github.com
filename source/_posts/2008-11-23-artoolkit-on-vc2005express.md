@@ -5,7 +5,7 @@ published: true
 date: 2008-11-23
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 ARToolkit、やっと自作プロジェクトで動きました。

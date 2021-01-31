@@ -5,7 +5,7 @@ published: true
 date: 2008-12-11
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 受かってました。

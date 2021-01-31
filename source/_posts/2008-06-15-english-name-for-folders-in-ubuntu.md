@@ -5,7 +5,7 @@ published: true
 date: 2008-06-15
 comments: true
 tags:
-categories: [UNIX/LINUX]
+tags: [UNIX/LINUX]
 ---
 
 Ubuntu の日本語フォーラムを覗いた時に、ちょうど目に入ったのでやってみました。

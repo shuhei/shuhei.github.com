@@ -5,7 +5,7 @@ published: true
 date: 2010-05-01
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。

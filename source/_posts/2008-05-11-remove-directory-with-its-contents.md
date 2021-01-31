@@ -4,7 +4,7 @@ title: "ディレクトリを中見ごと消す"
 published: true
 date: 2008-05-11
 comments: true
-categories: [UNIX/LINUX]
+tags: [UNIX/LINUX]
 ---
 メモ。
 

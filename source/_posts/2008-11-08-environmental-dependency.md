@@ -5,7 +5,7 @@ published: true
 date: 2008-11-08
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 「崎」の右上が「立」になっている字は環境依存文字だそうです。

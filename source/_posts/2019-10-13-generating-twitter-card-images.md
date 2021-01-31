@@ -4,7 +4,7 @@ title: Generating Twitter Card images from blog post titles
 date: 2019-10-13
 description: Twitter Cards show links to your website bigger on the timeline. This post explains how I generated images for Twitter Cards from blog post titles using node-canvas, inspired by Hatena Blog.
 image: auto
-categories: [Blog, JavaScript]
+tags: [Blog, JavaScript]
 ---
 
 Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn't show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn't know.

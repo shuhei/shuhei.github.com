@@ -3,7 +3,7 @@ layout: post
 title: "Clean up before exiting in Haskell"
 date: 2016-04-06
 comments: true
-categories: [Haskell]
+tags: [Haskell]
 ---
 
 Once upon a time (or a several days ago), I was reading [Programming in Haskell](http://amzn.to/22Qe9zf). When I ran 9.7's Game of Life, which shows Game of Life animation on the terminal, the terminal's cursor was flickering and annoying. So I tried to hide it when starting and show when exiting.

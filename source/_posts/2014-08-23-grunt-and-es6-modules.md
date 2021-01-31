@@ -3,7 +3,7 @@ layout: post
 title: "Grunt と ES6 Modules"
 date: 2014-08-23
 comments: true
-categories: [JavaScript]
+tags: [JavaScript]
 ---
 
 大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。

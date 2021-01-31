@@ -5,7 +5,7 @@ published: true
 date: 2009-08-02
 comments: true
 tags:
-categories: [Wordpress]
+tags: [Wordpress]
 ---
 
 どうもしっくり来るのがありませんでした。

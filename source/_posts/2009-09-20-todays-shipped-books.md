@@ -5,7 +5,7 @@ published: true
 date: 2009-09-20
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 [実用 Subversion 第二版](http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22)

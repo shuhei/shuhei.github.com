@@ -5,7 +5,7 @@ published: true
 date: 2009-02-11
 comments: true
 tags:
-categories: [Proce55ing, 情報デザイン]
+tags: [Proce55ing, 情報デザイン]
 ---
 
 前回に引き続き、Processing。

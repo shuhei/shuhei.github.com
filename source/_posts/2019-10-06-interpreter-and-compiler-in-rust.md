@@ -3,7 +3,7 @@ layout: post
 title: "Writing an interpreter and a compiler in Rust"
 date: 2019-10-06
 comments: true
-categories: [Rust]
+tags: [Rust]
 ---
 
 In the spring of this year, I read [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/) by [Thorsten Ball](https://thorstenball.com/), and implemented [an interpreter and a compiler](https://github.com/shuhei/cymbal) from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I'm finishing it.)

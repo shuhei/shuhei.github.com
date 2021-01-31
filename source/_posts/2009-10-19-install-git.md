@@ -5,7 +5,7 @@ published: true
 date: 2009-10-19
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 会社では構成管理に Subversion を使っています。

@@ -5,7 +5,7 @@ published: true
 date: 2008-06-10
 comments: true
 tags:
-categories: [Python]
+tags: [Python]
 ---
 
 Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。

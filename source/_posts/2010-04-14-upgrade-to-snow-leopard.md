@@ -5,7 +5,7 @@ published: true
 date: 2010-04-14
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。

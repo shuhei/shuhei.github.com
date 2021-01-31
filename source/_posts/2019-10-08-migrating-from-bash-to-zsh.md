@@ -3,7 +3,7 @@ layout: post
 title: Migrating from bash to zsh
 date: 2019-10-09
 description: I migrated from bash to zsh because macOS Catalina deprecated bash. I'll show how I wrote my custom command prompt theme for zsh using oh-my-zsh.
-categories: [zsh]
+tags: [zsh]
 ---
 
 A few days ago, I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.

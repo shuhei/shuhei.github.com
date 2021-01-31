@@ -3,7 +3,7 @@ layout: post
 title: "Let's create a Babel plugin"
 date: 2015-09-13
 comments: true
-categories: [JavaScript, Babel]
+tags: [JavaScript, Babel]
 ---
 
 **[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend [thejameskyle/babel-handbook](https://github.com/thejameskyle/babel-handbook/) as more up-to-date documentation.**

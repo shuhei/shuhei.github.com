@@ -2,7 +2,7 @@
 layout: post
 title: Things I wish I knew about home office ergonomics
 date: 2021-01-17
-categories: []
+tags: []
 ---
 
 ![My current setup](/images/2021-desk-front.jpg)

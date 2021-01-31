@@ -5,7 +5,7 @@ published: true
 date: 2008-08-21
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 っていう言葉があるのかはわかりませんが、そんな感じのことについて全く知識がないことに気がつきました。

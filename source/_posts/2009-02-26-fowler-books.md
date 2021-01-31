@@ -5,7 +5,7 @@ published: true
 date: 2009-02-26
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 「リファクタリング」をザッと読んだんですがとてもいいですね。

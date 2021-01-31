@@ -5,7 +5,7 @@ published: true
 date: 2010-03-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 今日 Flash Platform Camp Tokyo に行ってきました。

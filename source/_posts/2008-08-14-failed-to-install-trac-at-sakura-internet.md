@@ -5,7 +5,7 @@ published: true
 date: 2008-08-14
 comments: true
 tags:
-categories: [Python, UNIX/LINUX, さくらインターネット]
+tags: [Python, UNIX/LINUX, さくらインターネット]
 ---
 
 - [心は十五歳の少年漂流記 » さくらで Trac](http://seasaw.eek.jp/wordpress/?p=38)

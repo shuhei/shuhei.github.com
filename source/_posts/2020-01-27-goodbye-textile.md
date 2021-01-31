@@ -2,7 +2,7 @@
 layout: post
 title: Goodbye, Textile
 date: 2020-01-27
-categories: [Blog, JavaScript]
+tags: [Blog, JavaScript]
 ---
 
 [Textile](https://en.wikipedia.org/wiki/Textile_(markup_language) is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.

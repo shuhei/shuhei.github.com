@@ -5,7 +5,7 @@ published: true
 date: 2009-06-28
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 - SIMPLY RAILS 2

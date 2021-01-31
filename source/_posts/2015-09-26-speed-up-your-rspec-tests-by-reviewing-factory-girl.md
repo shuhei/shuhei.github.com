@@ -3,7 +3,7 @@ layout: post
 title: "Speed up your RSpec tests by reviewing Factory Girl"
 date: 2015-09-26
 comments: true
-categories: [Ruby,Rails]
+tags: [Ruby,Rails]
 ---
 
 [Factory Girl](https://github.com/thoughtbot/factory_girl) is a great tool that makes test data creation easier. However, if you don't use it properly, it may imperceptibly slow down your tests.

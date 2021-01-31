@@ -3,7 +3,7 @@ layout: post
 title: "How to export CommonJS and ES Module"
 date: 2017-01-05
 comments: true
-categories: [JavaScript]
+tags: [JavaScript]
 ---
 
 After [my previous post about jsnext:main and module](/blog/2017/01/05/main-jsnext-main-and-module/), there came another issue.

@@ -5,7 +5,7 @@ published: true
 date: 2008-06-07
 comments: true
 tags:
-categories: [情報デザイン]
+tags: [情報デザイン]
 ---
 
 ずいぶん間が開いてしまいました。

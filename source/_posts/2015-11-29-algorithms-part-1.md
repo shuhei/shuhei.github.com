@@ -3,7 +3,7 @@ layout: post
 title: "Algorithms: Design and Analysis, Part 1"
 date: 2015-11-29
 comments: true
-categories: [Algorithms]
+tags: [Algorithms]
 ---
 
 Today I finished the final exam of Stanford's ["Algorithms: Design and Analysis, Part 1"](https://www.coursera.org/course/algo) at Coursera. I solved all its programming assignments with JavaScript and put the solutions at GitHub:

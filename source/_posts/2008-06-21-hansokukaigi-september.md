@@ -5,7 +5,7 @@ published: true
 date: 2008-06-21
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 「エコで売れる理由」という特集に惹かれて。

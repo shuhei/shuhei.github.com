@@ -3,7 +3,7 @@ layout: post
 title: "The best part of Angular 2 offline compiler"
 date: 2016-06-03
 comments: true
-categories: [JavaScript, Angular 2]
+tags: [JavaScript, Angular 2]
 ---
 
 A couple of weeks ago, I gave a short talk about Angular offline compiler at [ng-sake #3](http://ng-sake.connpass.com/event/30746/), which is a cozy meetup where Tokyo's Angular developers hang out drinking beer.

@@ -5,7 +5,7 @@ published: true
 date: 2009-06-21
 comments: true
 tags:
-categories: [Flash/Flex]
+tags: [Flash/Flex]
 ---
 
 Pixel Bender のカーネル作成、編集などを Eclipse 上で行えるプラグインがありました。

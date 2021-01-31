@@ -5,7 +5,7 @@ published: true
 date: 2009-10-27
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 以前 [リスト形式の本棚からスクレイピングして本の一覧を取得する記事](/blog/2009/10/12/get-book-list-from-booklog/) を書きましたが、RSS を使うともっと楽にできるようです。

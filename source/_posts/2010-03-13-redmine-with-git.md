@@ -5,7 +5,7 @@ published: true
 date: 2010-03-13
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。

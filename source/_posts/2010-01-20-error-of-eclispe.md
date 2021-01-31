@@ -5,7 +5,7 @@ published: true
 date: 2010-01-20
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 Eclipse IDE for Java EE Developers (based on Eclipse 3.5 SR1) をダウンロードしてから最初の起動時に &#8220;JVM Terminated.&#8221; 的なエラー。

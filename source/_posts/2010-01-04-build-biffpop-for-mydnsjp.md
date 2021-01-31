@@ -5,7 +5,7 @@ published: true
 date: 2010-01-04
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 無料ダイナミック DNS サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。

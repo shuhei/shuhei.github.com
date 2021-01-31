@@ -2,7 +2,7 @@
 layout: post
 title: "Histogram for time-series metrics on Node.js"
 date: 2018-12-29
-categories: [Node.js]
+tags: [Node.js]
 ---
 
 ## The "metrics" library

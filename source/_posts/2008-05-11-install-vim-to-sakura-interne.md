@@ -5,7 +5,7 @@ published: true
 date: 2008-05-11
 comments: true
 tags:
-categories: [さくらインターネット]
+tags: [さくらインターネット]
 ---
 
 vim は Vi IMproved なんだそうです。

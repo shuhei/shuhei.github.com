@@ -5,7 +5,7 @@ published: true
 date: 2009-10-13
 comments: true
 tags:
-categories: [Ruby]
+tags: [Ruby]
 ---
 
 最近の Windows のパスワードの暗号化に使われているそうです。元の文字列をリトルエンディアンの UTF-16 に符号化したものから [MD4](http://en.wikipedia.org/wiki/MD4) でハッシュを作成するのだとか。

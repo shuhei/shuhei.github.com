@@ -3,7 +3,7 @@ layout: post
 title: "Angular 2 with Babel"
 date: 2016-05-08
 comments: true
-categories: [JavaScript, Angular 2, Babel]
+tags: [JavaScript, Angular 2, Babel]
 ---
 
 Although Angular 2's primary language is apparently TypeScript, many people want to use Babel as shown in [a survey](http://angularjs.blogspot.jp/2015/09/angular-2-survey-results.html).

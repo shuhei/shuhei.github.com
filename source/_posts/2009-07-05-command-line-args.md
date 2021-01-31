@@ -5,7 +5,7 @@ published: true
 date: 2009-07-05
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 OpenCV を触ってみようと思い、今まで避けてきた C 言語を勉強中です。

@@ -5,7 +5,7 @@ published: true
 date: 2009-10-11
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 システムアーキテクトの試験が来週末に迫っているのですが、またまたやってしまいました。現実逃避。

@@ -5,7 +5,7 @@ published: true
 date: 2009-01-07
 comments: true
 tags:
-categories: [iPhone 開発]
+tags: [iPhone 開発]
 ---
 
 [clang](http://clang.llvm.org/StaticAnalysis.html) というツールを使うと、Objective C や C、C++ などのコードを解析してバグを発見してくれるそうです。

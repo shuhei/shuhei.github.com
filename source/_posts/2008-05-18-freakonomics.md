@@ -5,7 +5,7 @@ published: true
 date: 2008-05-18
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 [ヤバい経済学](http://amazon.co.jp/o/ASIN/pd_sbs_b_title/nanataisan-22) 読了。

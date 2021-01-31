@@ -5,7 +5,7 @@ published: true
 date: 2009-07-27
 comments: true
 tags:
-categories: [iPhone 開発]
+tags: [iPhone 開発]
 ---
 
 ということで、iPhone 開発を再開してみようかと思います。動機が極めて不純ですが・・・。

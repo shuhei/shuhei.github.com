@@ -5,7 +5,7 @@ published: true
 date: 2012-04-03
 comments: true
 tags: 
-categories: [openFrameworks]
+tags: [openFrameworks]
 ---
 ofxOpenCv を of007 で使うためのちょっとしたメモです。
 

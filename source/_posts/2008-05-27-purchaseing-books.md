@@ -5,7 +5,7 @@ published: true
 date: 2008-05-27
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 今のところ、給料日から三日で本を 10 以上買ってしまっています。

@@ -5,7 +5,7 @@ published: true
 date: 2010-03-15
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 自宅サーバの SSH を外から使えるようにするにあたり、セキュリティ対策を施してみました。

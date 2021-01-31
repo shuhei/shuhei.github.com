@@ -5,7 +5,7 @@ published: true
 date: 2008-09-28
 comments: true
 tags:
-categories: [Java]
+tags: [Java]
 ---
 
 分厚いですがとても良い本だと思います。

@@ -2,7 +2,7 @@
 layout: post
 title: "DNS polling for reliability"
 date: 2019-04-30
-categories: [Node.js]
+tags: [Node.js]
 ---
 
 In December 2018, I wrote a package to poll and cache DNS records, [pollen](https://github.com/shuhei/pollen), as a mitigation for incidents at work.

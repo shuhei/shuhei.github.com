@@ -5,7 +5,7 @@ published: true
 date: 2008-05-11
 comments: true
 tags:
-categories: [Ruby, さくらインターネット]
+tags: [Ruby, さくらインターネット]
 ---
 
 基本的には以下のサイトを参考に。

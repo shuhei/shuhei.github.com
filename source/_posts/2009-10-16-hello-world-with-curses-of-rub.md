@@ -5,7 +5,7 @@ published: true
 date: 2009-10-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。

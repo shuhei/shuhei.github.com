@@ -5,7 +5,7 @@ published: true
 date: 2008-08-24
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 ちょっと前まであまり本を読んでいなかったのですが、最近また読み始めました。

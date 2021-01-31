@@ -5,7 +5,7 @@ published: true
 date: 2009-11-14
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 iPhone アプリの開発で例外が発生したとき、Xcode のコンソールにはスタックトレースのアドレス（？）が表示されるだけで、内容がわかりません。

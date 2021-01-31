@@ -5,7 +5,7 @@ published: true
 date: 2008-12-07
 comments: true
 tags:
-categories: [Proce55ing]
+tags: [Proce55ing]
 ---
 
 Proce55ing で作った Sketch を動画にする方法です。

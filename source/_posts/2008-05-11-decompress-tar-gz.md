@@ -4,7 +4,7 @@ title: ".tar.gz の解凍"
 published: true
 date: 2008-05-11
 comments: true
-categories: [UNIX/LINUX]
+tags: [UNIX/LINUX]
 ---
 
 ```sh

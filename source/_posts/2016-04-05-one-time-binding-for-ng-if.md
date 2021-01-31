@@ -3,7 +3,7 @@ layout: post
 title: "One-time binding for ng-if"
 date: 2016-04-05
 comments: true
-categories: [JavaScript, AngularJS]
+tags: [JavaScript, AngularJS]
 ---
 
 AngularJS's [one-time binding](https://docs.angularjs.org/guide/expression#one-time-binding) is useful to reduce the number of watches. It stops watching its expression once it becomes defined. It kindly keeps watching while the value is `undefined` for cases like asynchronous data fetching. But the kindness can be a pitfall especially for directives that take `boolean` expressions like `ng-if`.

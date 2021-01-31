@@ -5,7 +5,7 @@ published: true
 date: 2009-09-21
 comments: true
 tags:
-categories: [Textpattern]
+tags: [Textpattern]
 ---
 
 先日別のブログで使っている Textpattern のバージョンを 4.0.5 から 4.2.0 に上げたのですが、 コメントの本文が表示されなくなっていることに気がつきました。

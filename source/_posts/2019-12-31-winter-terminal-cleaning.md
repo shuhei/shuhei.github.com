@@ -2,7 +2,7 @@
 layout: post
 title: Winter terminal (mostly Vim) cleaning
 date: 2019-12-31
-categories: [Vim]
+tags: [Vim]
 ---
 
 In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.

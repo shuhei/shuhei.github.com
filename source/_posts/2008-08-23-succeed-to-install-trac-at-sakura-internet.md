@@ -5,7 +5,7 @@ published: true
 date: 2008-08-23
 comments: true
 tags:
-categories: [UNIX/LINUX, さくらインターネット]
+tags: [UNIX/LINUX, さくらインターネット]
 ---
 
 やっと Trac 入りました。

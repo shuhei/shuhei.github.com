@@ -5,7 +5,7 @@ published: true
 date: 2008-06-22
 comments: true
 tags:
-categories: [Python, さくらインターネット]
+tags: [Python, さくらインターネット]
 ---
 
 さくらインターネットのレンタルサーバ（スタンダード）に、Python の外部モジュールを入れました。

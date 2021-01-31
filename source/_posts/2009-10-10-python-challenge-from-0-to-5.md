@@ -5,7 +5,7 @@ published: true
 date: 2009-10-10
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 ふと mixi の Python コミュニティを覗いたら [Python Challenge](http://www.pythonchallenge.com) なるものを発見。

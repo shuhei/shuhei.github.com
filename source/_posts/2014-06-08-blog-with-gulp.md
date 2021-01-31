@@ -3,7 +3,7 @@ layout: post
 title: "Gulp でブログを書く"
 date: 2014-06-08
 comments: true
-categories: [JavaScript, gulp]
+tags: [JavaScript, gulp]
 ---
 
 もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。

@@ -5,7 +5,7 @@ published: true
 date: 2009-08-02
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 ## [骨—第 5 回企画展「骨」展展覧会カタログ 山中俊治ディレクション](http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22)

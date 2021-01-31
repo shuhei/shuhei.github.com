@@ -5,7 +5,7 @@ published: true
 date: 2009-07-28
 comments: true
 tags:
-categories: [C++]
+tags: [C++]
 ---
 
 またまた少しはまりました。

@@ -5,7 +5,7 @@ published: true
 date: 2008-06-21
 comments: true
 tags:
-categories: [読書]
+tags: [読書]
 ---
 
 最近は比較的忙しめで、最後まで読む本が少なかったです。

@@ -5,7 +5,7 @@ published: true
 date: 2010-06-16
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 1.8.7 と 1.9.1 など、複数の Ruby を共存させたい時があると思います。

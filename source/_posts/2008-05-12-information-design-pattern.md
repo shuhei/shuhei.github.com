@@ -5,7 +5,7 @@ published: true
 date: 2008-05-12
 comments: true
 tags:
-categories: [情報デザイン]
+tags: [情報デザイン]
 ---
 
 最近、情報デザインみたいなことに興味を持って、Ben Fry とか Edward Tufte の本を読んだりしています。

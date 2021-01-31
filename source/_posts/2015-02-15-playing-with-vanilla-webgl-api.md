@@ -3,7 +3,7 @@ layout: post
 title: "Playing with vanilla WebGL API"
 date: 2015-02-15
 comments: true
-categories: [JavaScript, WebGL]
+tags: [JavaScript, WebGL]
 ---
 Started writing in English on a whim.
 

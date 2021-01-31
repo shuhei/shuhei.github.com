@@ -5,7 +5,7 @@ published: true
 date: 2008-06-21
 comments: true
 tags:
-categories: []
+tags: []
 ---
 
 JR の車内広告でリリースを知りました。

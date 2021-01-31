@@ -5,7 +5,7 @@ published: true
 date: 2008-05-13
 comments: true
 tags:
-categories: [UNIX/LINUX]
+tags: [UNIX/LINUX]
 ---
 
 研修で興味を持ったので、自分のノート PC に Linux をインストール。

@@ -3,7 +3,7 @@ layout: post
 title: "Using highlight.js with marked"
 date: 2015-09-21
 comments: true
-categories: [JavaScript]
+tags: [JavaScript]
 ---
 
 I use [marked](https://github.com/chjj/marked) to parse markdown files of posts and pages, and [highlight.js](https://github.com/isagalaev/highlight.js) to highlight code blocks in them for this site. Here are problems that I came across to make them work together and a workaround for them.

@@ -5,7 +5,7 @@ published: true
 date: 2008-08-24
 comments: true
 tags:
-categories: [さくらインターネット]
+tags: [さくらインターネット]
 ---
 
 - [ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗](/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/)
