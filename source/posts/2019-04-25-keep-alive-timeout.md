@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Check your server.keepAliveTimeout"
 tags: [Node.js]
 ---

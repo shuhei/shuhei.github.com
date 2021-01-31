@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Windows 上に Ubuntu 8.04 をインストール"
 tags: [UNIX/LINUX]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Eclipse の起動エラー"
 tags: []
 ---

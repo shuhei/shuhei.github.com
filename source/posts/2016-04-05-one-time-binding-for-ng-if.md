@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "One-time binding for ng-if"
 tags: [JavaScript, AngularJS]
 ---

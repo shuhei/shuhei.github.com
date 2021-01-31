@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ruby で Windows のコマンド実行"
 tags: [Ruby]
 ---

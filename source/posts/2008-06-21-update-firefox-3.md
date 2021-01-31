@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Firefox 3 インストール"
 tags: []
 ---

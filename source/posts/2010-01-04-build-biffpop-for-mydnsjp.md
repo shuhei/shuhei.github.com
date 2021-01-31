@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "MyDNS.jp 用に biffpop をビルド"
 tags: []
 ---

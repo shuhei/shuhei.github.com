@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Writing an interpreter and a compiler in Rust"
 tags: [Rust]
 ---

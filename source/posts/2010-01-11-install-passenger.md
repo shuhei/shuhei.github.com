@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ubuntu Server に Passenger をインストール"
 tags: []
 ---

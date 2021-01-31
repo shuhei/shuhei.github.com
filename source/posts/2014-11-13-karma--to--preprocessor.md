@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "karma-6to5-preprocessor"
 tags: [JavaScript, Karma, EcmaScript6]
 ---

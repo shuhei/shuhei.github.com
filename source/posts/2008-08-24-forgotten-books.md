@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "読んだけど忘れてた本"
 tags: [読書]
 ---

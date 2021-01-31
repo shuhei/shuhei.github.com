@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Gulp でブログを書く"
 tags: [JavaScript, gulp]
 ---

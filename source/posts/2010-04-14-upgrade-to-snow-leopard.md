@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "今さら Snow Leopard にアップグレード"
 tags: []
 ---

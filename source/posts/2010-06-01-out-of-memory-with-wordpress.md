@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Wordpress で Out of memory"
 tags: []
 ---

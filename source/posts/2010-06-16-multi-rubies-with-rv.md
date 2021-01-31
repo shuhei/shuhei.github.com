@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "RVM で複数バージョンの Ruby を管理"
 tags: []
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "WebGL な日本の地価マップをタッチ対応してみた"
 tags: [WebGL, JavaScript]
 ---

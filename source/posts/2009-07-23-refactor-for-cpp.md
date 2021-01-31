@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Refactor! for C++"
 tags: []
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Python Challenge Lv. 0 - 5"
 tags: []
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "クラスの前方宣言"
 tags: [C++]
 ---

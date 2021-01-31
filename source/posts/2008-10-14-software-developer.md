@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ソフトウェア開発技術者"
 categories:
 ---

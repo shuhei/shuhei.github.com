@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "DNS polling for reliability"
 tags: [Node.js]
 ---

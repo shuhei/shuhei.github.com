@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "環境依存文字"
 tags: []
 ---

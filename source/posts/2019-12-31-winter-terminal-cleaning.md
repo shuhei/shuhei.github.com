@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Winter terminal (mostly Vim) cleaning
 tags: [Vim]
 ---

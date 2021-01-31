@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Information Design Pattern"
 tags: [情報デザイン]
 ---

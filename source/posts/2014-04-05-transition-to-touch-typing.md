@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "タッチタイピングに移行"
 categories:
 ---

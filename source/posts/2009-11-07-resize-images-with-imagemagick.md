@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ImageMagick で画像を一括リサイズ"
 tags: []
 ---

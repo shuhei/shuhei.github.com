@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Using highlight.js with marked"
 tags: [JavaScript]
 ---

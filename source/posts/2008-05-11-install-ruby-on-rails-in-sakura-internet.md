@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらのレンタルサーバに Ruby on Rails を入れる"
 tags: [Ruby, さくらインターネット]
 ---

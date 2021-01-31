@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Proce55ing から 動画を作る"
 tags: [Proce55ing]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）"
 tags: [JavaScript, Backbone]
 ---

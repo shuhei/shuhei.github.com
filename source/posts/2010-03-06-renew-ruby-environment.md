@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ruby の環境を新しく"
 categories:
 ---

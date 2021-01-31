@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 4 years at Zalando
 tags: []
 ---

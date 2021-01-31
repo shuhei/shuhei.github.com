@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらのサーバに Python モジュールをインストール"
 tags: [Python, さくらインターネット]
 ---

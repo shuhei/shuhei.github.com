@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Make Link の Textile 2 用フォーマット"
 tags: []
 ---

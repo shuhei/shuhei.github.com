@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "書籍購入"
 tags: [読書]
 ---

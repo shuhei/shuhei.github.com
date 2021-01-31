@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Visual C++ 2005 Express Edition で ARToolkit"
 tags: []
 ---

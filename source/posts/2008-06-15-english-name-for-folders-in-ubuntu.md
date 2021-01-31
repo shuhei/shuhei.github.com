@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ubuntu の日本語フォルダを英語名に"
 tags: [UNIX/LINUX]
 ---

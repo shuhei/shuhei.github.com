@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "NumPy などをインストール"
 tags: [Python]
 ---

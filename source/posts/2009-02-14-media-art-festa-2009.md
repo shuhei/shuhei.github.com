@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "文化庁メディア芸術祭2009"
 tags: []
 ---

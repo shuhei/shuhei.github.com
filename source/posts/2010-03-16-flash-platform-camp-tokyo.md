@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Flash Platform Camp Tokyo を見てきた"
 tags: []
 ---

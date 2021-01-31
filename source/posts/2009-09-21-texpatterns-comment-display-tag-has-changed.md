@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Textpattern の コメント表示タグが変更に"
 tags: [Textpattern]
 ---

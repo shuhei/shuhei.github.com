@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Python 開発環境"
 tags: [Python, UNIX/LINUX]
 ---

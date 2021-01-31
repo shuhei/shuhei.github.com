@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Incremental search with RxJS switchMap"
 tags: [JavaScript, RxJS]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "今日届いた本（実用Subversion、Getting Real）"
 tags: [読書]
 ---

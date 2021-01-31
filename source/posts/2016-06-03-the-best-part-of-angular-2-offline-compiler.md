@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "The best part of Angular 2 offline compiler"
 tags: [JavaScript, Angular 2]
 ---

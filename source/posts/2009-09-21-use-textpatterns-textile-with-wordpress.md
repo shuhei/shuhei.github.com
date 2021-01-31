@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Wordpress で Textpattern 相当の Textile を使う"
 tags: [Wordpress]
 ---

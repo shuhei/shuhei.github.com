@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ruby の Curses で Hello, World!"
 tags: []
 ---

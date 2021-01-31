@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Category index for Octopress"
 tags: [Octopress]
 ---

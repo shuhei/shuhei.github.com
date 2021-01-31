@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Windows で grep"
 tags: [Windows]
 ---

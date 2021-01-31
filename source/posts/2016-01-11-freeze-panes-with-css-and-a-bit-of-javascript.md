@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Freeze panes with CSS and a bit of JavaScript"
 tags: [CSS, JavaScript]
 ---

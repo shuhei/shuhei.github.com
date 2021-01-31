@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "TOEIC 新公式問題集 vol.4 (1)"
 categories:
 ---

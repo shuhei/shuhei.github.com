@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ポインタの勉強"
 tags: []
 ---

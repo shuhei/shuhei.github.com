@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Python Challenge Lv. 8 - 9"
 tags: [Ruby, Python]
 ---

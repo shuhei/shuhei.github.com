@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "irb で日本語表示"
 categories:
 ---

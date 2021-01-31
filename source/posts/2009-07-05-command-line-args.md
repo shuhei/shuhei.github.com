@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "コマンドライン引数"
 tags: []
 ---

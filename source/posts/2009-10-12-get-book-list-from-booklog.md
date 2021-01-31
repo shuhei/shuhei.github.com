@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Booklog から本一覧を取得"
 tags: []
 ---

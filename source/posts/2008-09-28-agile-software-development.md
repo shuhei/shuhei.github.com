@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "アジャイルソフトウェア開発の奥義"
 tags: [Java]
 ---

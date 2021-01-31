@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Navigation-based Application に TabBar を追加"
 tags: []
 ---

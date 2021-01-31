@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Chat Network"
 tags: [Proce55ing, 情報デザイン]
 ---

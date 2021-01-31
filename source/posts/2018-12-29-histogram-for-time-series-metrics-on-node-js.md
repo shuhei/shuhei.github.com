@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Histogram for time-series metrics on Node.js"
 tags: [Node.js]
 ---

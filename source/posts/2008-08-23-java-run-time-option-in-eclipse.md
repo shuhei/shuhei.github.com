@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Eclipse で Java VM の実行時オプション"
 tags: [Java]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Responsive images with a static site generator
 tags: [Blog, JavaScript]
 ---

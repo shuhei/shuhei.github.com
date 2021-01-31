@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらのレンタルサーバに Subversion を入れる"
 tags: [さくらインターネット]
 ---

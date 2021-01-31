@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Node.js under a microscope: CPU FlameGraph and FlameScope"
 tags: [Node.js, Linux]
 ---

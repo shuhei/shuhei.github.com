@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "clang で Objective C の静的解析"
 tags: [iPhone 開発]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ヤバい経済学"
 tags: [読書]
 ---

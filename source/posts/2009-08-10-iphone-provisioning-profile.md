@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "iPhone Provisioning Profile"
 tags: [iPhone 開発]
 ---

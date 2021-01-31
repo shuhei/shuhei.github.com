@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Node.js executable module"
 tags: [JavaScript]
 ---

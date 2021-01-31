@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Angular 2 with Babel"
 tags: [JavaScript, Angular 2, Babel]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "OpenGL のブレンディング方法について"
 tags: [C/C++, OpenFrameworks]
 ---

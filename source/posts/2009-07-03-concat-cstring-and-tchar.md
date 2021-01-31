@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "CString と TCHAR* の連結"
 tags: []
 ---

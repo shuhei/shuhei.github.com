@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "const とポインタ"
 tags: [C/C++]
 ---

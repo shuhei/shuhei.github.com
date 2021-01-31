@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Perfume Dev"
 tags: [JavsScript, Three.js]
 ---

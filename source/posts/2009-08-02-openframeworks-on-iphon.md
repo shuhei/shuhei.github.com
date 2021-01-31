@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "iPhone で OpenFrameworks"
 tags: [C/C++, iPhone 開発, OpenFrameworks]
 ---

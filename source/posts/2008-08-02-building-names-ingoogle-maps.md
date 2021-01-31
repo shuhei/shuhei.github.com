@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Google Maps に建物名"
 tags: [情報デザイン]
 ---

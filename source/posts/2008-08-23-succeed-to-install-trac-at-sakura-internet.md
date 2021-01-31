@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらに Trac をインストール・・・成功"
 tags: [UNIX/LINUX, さくらインターネット]
 ---

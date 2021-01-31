@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "基本クラスのメンバを初期化できない"
 tags: [C++]
 ---

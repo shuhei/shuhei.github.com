@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "販促会議7月号"
 tags: [読書]
 ---

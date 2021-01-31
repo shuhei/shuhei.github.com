@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Xcode での Google Test のビルド"
 tags: [C/C++]
 ---

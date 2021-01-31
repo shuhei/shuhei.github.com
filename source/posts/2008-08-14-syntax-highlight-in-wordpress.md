@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Wordpress でコードのシンタックスハイライト"
 tags: [Wordpress]
 ---

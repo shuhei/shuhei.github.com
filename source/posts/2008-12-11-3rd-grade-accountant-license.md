@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "簿記三級"
 tags: []
 ---

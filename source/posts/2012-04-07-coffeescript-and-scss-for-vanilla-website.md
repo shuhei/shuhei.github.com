@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて"
 tags: []
 ---

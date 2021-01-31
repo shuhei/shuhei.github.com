@@ -4,6 +4,9 @@ const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { blogPermalink, indexPermalink } = require("./lib/plugins/permalink");
 
 module.exports = config => {
+  config.setQuietMode(true);
+  config.setDataDeepMerge(true);
+
   config.setLibrary("md", getMarkdownIt());
 
   config.addCollection("posts", api => {
@@ -24,8 +27,6 @@ module.exports = config => {
   config.addPassthroughCopy("source/.nojekyll");
   config.addPassthroughCopy("source/CNAME");
   config.addPassthroughCopy("source/favicon.ico");
-
-  config.setQuietMode(true);
 
   return {
     dir: {

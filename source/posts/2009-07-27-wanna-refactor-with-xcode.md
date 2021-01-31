@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "XCode でリファクタリングがしたい"
 tags: [iPhone 開発]
 ---

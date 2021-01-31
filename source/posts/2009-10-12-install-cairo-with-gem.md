@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "gem で cairo をインストール"
 tags: []
 ---

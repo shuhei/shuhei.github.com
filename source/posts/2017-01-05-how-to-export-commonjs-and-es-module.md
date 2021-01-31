@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "How to export CommonJS and ES Module"
 tags: [JavaScript]
 ---

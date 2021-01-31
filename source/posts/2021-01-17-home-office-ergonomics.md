@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Things I wish I knew about home office ergonomics
 tags: []
 ---

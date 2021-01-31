@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "簿記の問題集"
 tags: []
 ---

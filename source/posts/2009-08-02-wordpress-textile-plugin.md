@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Wordpress の Textile プラグイン"
 tags: [Wordpress]
 ---

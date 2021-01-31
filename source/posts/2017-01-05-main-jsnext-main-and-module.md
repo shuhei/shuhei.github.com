@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "main, jsnext:main and module"
 tags: [JavaScript]
 ---

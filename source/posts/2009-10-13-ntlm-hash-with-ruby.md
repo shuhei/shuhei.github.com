@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "NTLM ハッシュ を求める"
 tags: [Ruby]
 ---

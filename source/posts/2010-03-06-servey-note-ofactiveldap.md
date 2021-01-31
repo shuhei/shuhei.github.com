@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ActiveLdap 調査メモ"
 tags: []
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ファウラー本"
 tags: [読書]
 ---

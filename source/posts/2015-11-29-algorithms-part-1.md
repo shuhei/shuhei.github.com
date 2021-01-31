@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Algorithms: Design and Analysis, Part 1"
 tags: [Algorithms]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Speed up your RSpec tests by reviewing Factory Girl"
 tags: [Ruby,Rails]
 ---

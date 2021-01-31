@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Clean up before exiting in Haskell"
 tags: [Haskell]
 ---

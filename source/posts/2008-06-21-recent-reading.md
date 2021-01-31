@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "最近の読書"
 tags: [読書]
 ---

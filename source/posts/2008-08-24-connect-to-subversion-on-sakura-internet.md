@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらインターネット上の Subversion につなぐ"
 tags: [さくらインターネット]
 ---

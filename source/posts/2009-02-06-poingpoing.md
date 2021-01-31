@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "ポインポイン"
 tags: [Proce55ing]
 ---

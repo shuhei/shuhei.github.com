@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Let's create a Babel plugin"
 tags: [JavaScript, Babel]
 ---

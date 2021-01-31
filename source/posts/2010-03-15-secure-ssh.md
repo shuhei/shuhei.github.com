@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "SSH を安全に"
 tags: []
 ---

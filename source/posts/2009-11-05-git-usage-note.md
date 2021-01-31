@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "git の使い方メモ"
 categories:
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Wordpress app on iPhone"
 categories:
 ---

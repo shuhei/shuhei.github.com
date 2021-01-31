@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Color prompt by exit code"
 tags: [Bash]
 ---

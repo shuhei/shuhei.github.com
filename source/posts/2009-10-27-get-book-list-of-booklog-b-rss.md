@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Booklog の本一覧をRSSから取得"
 tags: []
 ---

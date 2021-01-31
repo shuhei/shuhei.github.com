@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "How to set up and top up a prepaid SIM in Germany"
 ---
 

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "言語ごとに vim の設定を変える"
 tags: [UNIX/LINUX]
 ---

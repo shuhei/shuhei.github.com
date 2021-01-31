@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Goodbye, Textile
 tags: [Blog, JavaScript]
 ---

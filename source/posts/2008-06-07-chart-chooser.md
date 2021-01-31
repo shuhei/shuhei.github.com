@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Chart Chooser"
 tags: [情報デザイン]
 ---

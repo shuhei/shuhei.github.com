@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Getting memory usage in Linux and Docker"
 tags: [Linux, Docker]
 ---

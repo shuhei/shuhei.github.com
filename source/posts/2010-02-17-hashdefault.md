@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Ruby の Hash#default"
 tags: [Ruby]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "復旧と移転"
 tags: []
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Switching color schemes of Vim and Alacritty
 tags: [Vim]
 ---

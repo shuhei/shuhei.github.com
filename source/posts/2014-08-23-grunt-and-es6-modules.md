@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Grunt と ES6 Modules"
 tags: [JavaScript]
 ---

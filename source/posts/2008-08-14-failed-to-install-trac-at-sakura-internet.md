@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらに Trac をインストール・・・失敗"
 tags: [Python, UNIX/LINUX, さくらインターネット]
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Playing with vanilla WebGL API"
 tags: [JavaScript, WebGL]
 ---

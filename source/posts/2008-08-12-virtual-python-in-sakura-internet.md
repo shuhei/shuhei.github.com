@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "さくらのサーバに virtual-python を入れる"
 tags: [Python, さくらインターネット]
 ---

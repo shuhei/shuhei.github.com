@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "iPhone さっそく不具合"
 categories:
 ---

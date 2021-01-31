@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Draw animated chart on React Native"
 tags: [JavaScript, React]
 ---
