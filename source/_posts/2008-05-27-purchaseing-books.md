@@ -4,7 +4,6 @@ title: "書籍購入"
 published: true
 date: 2008-05-27
 comments: true
-tags:
 tags: [読書]
 ---
 

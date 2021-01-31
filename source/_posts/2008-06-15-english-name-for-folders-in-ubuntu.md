@@ -4,7 +4,6 @@ title: "Ubuntu の日本語フォルダを英語名に"
 published: true
 date: 2008-06-15
 comments: true
-tags:
 tags: [UNIX/LINUX]
 ---
 

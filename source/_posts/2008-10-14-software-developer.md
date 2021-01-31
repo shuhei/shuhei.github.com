@@ -4,7 +4,6 @@ title: "ソフトウェア開発技術者"
 published: true
 date: 2008-10-14
 comments: true
-tags:
 categories:
 ---
 

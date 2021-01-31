@@ -4,7 +4,6 @@ title: "Python で implode"
 published: true
 date: 2008-06-22
 comments: true
-tags:
 tags: [Python]
 ---
 

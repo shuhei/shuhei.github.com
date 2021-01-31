@@ -4,7 +4,6 @@ title: "ポインタの勉強"
 published: true
 date: 2009-07-03
 comments: true
-tags:
 tags: []
 ---
 

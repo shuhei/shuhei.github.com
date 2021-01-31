@@ -4,7 +4,6 @@ title: "Wordpress でコードのシンタックスハイライト"
 published: true
 date: 2008-08-14
 comments: true
-tags:
 tags: [Wordpress]
 ---
 

@@ -4,7 +4,6 @@ title: "NumPy などをインストール"
 published: true
 date: 2008-06-10
 comments: true
-tags:
 tags: [Python]
 ---
 

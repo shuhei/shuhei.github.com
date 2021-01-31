@@ -4,7 +4,6 @@ title: "ヤバい経済学"
 published: true
 date: 2008-05-18
 comments: true
-tags:
 tags: [読書]
 ---
 

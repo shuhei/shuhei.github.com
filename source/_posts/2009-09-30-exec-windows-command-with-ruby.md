@@ -4,7 +4,6 @@ title: "Ruby で Windows のコマンド実行"
 published: true
 date: 2009-09-30
 comments: true
-tags:
 tags: [Ruby]
 ---
 

@@ -4,7 +4,6 @@ title: "復旧と移転"
 published: true
 date: 2008-08-14
 comments: true
-tags:
 tags: []
 ---
 

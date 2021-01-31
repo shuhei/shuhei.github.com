@@ -4,7 +4,6 @@ title: "Wordpress で Textpattern 相当の Textile を使う"
 published: true
 date: 2009-09-21
 comments: true
-tags:
 tags: [Wordpress]
 ---
 

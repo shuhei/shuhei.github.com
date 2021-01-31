@@ -4,7 +4,6 @@ title: "OSX 上の MonoDevelop の日本語対応"
 published: true
 date: 2009-08-22
 comments: true
-tags:
 tags: [C#]
 ---
 

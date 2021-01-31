@@ -4,7 +4,6 @@ title: "Windows 上に Ubuntu 8.04 をインストール"
 published: true
 date: 2008-05-13
 comments: true
-tags:
 tags: [UNIX/LINUX]
 ---
 

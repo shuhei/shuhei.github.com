@@ -4,7 +4,6 @@ title: "Ruby の環境を新しく"
 published: true
 date: 2010-03-06
 comments: true
-tags:
 categories:
 ---
 

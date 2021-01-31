@@ -4,7 +4,6 @@ title: "Chat Network"
 published: true
 date: 2009-02-11
 comments: true
-tags:
 tags: [Proce55ing, 情報デザイン]
 ---
 

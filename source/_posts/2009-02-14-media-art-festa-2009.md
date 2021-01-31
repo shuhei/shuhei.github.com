@@ -4,7 +4,6 @@ title: "文化庁メディア芸術祭2009"
 published: true
 date: 2009-02-14
 comments: true
-tags:
 tags: []
 ---
 

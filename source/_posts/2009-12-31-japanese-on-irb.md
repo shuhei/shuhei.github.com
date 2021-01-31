@@ -4,7 +4,6 @@ title: "irb で日本語表示"
 published: true
 date: 2009-12-31
 comments: true
-tags:
 categories:
 ---
 

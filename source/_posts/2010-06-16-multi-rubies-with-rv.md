@@ -4,7 +4,6 @@ title: "RVM で複数バージョンの Ruby を管理"
 published: true
 date: 2010-06-16
 comments: true
-tags:
 tags: []
 ---
 

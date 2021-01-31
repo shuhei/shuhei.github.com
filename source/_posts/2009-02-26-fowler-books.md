@@ -4,7 +4,6 @@ title: "ファウラー本"
 published: true
 date: 2009-02-26
 comments: true
-tags:
 tags: [読書]
 ---
 

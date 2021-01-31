@@ -4,7 +4,6 @@ title: "PBDT - Pixel Bender 用 Eclipse プラグイン"
 published: true
 date: 2009-06-21
 comments: true
-tags:
 tags: [Flash/Flex]
 ---
 

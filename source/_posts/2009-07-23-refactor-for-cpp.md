@@ -4,7 +4,6 @@ title: "Refactor! for C++"
 published: true
 date: 2009-07-23
 comments: true
-tags:
 tags: []
 ---
 

@@ -4,7 +4,6 @@ title: "XCode でリファクタリングがしたい"
 published: true
 date: 2009-07-27
 comments: true
-tags:
 tags: [iPhone 開発]
 ---
 

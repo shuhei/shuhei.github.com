@@ -4,7 +4,6 @@ title: "Visual C++ 2005 Express Edition で ARToolkit"
 published: true
 date: 2008-11-23
 comments: true
-tags:
 tags: []
 ---
 

@@ -4,7 +4,6 @@ title: "Wordpress app on iPhone"
 published: true
 date: 2008-09-28
 comments: true
-tags:
 categories:
 ---
 

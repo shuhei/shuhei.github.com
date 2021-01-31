@@ -4,7 +4,6 @@ title: "最近買った本"
 published: true
 date: 2009-06-28
 comments: true
-tags:
 tags: [読書]
 ---
 

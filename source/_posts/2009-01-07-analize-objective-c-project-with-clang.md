@@ -4,7 +4,6 @@ title: "clang で Objective C の静的解析"
 published: true
 date: 2009-01-07
 comments: true
-tags:
 tags: [iPhone 開発]
 ---
 

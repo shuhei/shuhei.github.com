@@ -4,7 +4,6 @@ title: "クラスの前方宣言"
 published: true
 date: 2009-07-28
 comments: true
-tags:
 tags: [C++]
 ---
 

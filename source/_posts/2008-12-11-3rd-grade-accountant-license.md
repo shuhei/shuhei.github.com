@@ -4,7 +4,6 @@ title: "簿記三級"
 published: true
 date: 2008-12-11
 comments: true
-tags:
 tags: []
 ---
 

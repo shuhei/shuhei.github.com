@@ -4,7 +4,6 @@ title: "アジャイルソフトウェア開発の奥義"
 published: true
 date: 2008-09-28
 comments: true
-tags:
 tags: [Java]
 ---
 

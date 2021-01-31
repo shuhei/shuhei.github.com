@@ -4,7 +4,6 @@ title: "Ruby の Hash#default"
 published: true
 date: 2010-02-17
 comments: true
-tags:
 tags: [Ruby]
 ---
 

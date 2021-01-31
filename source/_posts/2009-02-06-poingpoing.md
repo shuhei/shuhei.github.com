@@ -4,7 +4,6 @@ title: "ポインポイン"
 published: true
 date: 2009-02-06
 comments: true
-tags:
 tags: [Proce55ing]
 ---
 

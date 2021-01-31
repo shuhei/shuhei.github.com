@@ -4,7 +4,6 @@ title: "gem で cairo をインストール"
 published: true
 date: 2009-10-12
 comments: true
-tags:
 tags: []
 ---
 

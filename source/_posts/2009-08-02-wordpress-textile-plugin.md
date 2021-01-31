@@ -4,7 +4,6 @@ title: "Wordpress の Textile プラグイン"
 published: true
 date: 2009-08-02
 comments: true
-tags:
 tags: [Wordpress]
 ---
 

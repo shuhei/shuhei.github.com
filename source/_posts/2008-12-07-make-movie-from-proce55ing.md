@@ -4,7 +4,6 @@ title: "Proce55ing から 動画を作る"
 published: true
 date: 2008-12-07
 comments: true
-tags:
 tags: [Proce55ing]
 ---
 

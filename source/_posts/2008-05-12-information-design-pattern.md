@@ -4,7 +4,6 @@ title: "Information Design Pattern"
 published: true
 date: 2008-05-12
 comments: true
-tags:
 tags: [情報デザイン]
 ---
 

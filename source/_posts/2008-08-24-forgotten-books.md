@@ -4,7 +4,6 @@ title: "読んだけど忘れてた本"
 published: true
 date: 2008-08-24
 comments: true
-tags:
 tags: [読書]
 ---
 

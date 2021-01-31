@@ -4,7 +4,6 @@ title: "Strength Finder"
 published: true
 date: 2009-02-18
 comments: true
-tags:
 tags: [読書]
 ---
 

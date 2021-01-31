@@ -4,7 +4,6 @@ title: "基本クラスのメンバを初期化できない"
 published: true
 date: 2009-07-28
 comments: true
-tags:
 tags: [C++]
 ---
 
