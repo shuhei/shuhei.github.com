@@ -257,7 +257,7 @@ code {
 .hljs {
   display: block;
   line-height: 1.5em;
-  padding: 15px 20px 0;
+  padding: 1em 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 

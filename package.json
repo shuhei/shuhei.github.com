@@ -57,6 +57,7 @@
     "highlight.js": "^9.11.0",
     "image-size": "^0.8.3",
     "jest": "^24.9.0",
+    "markdown-it": "^12.0.4",
     "mkdirp": "^0.5.0",
     "postcss": "^7.0.7",
     "postcss-clean": "^1.1.0",
