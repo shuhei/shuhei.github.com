@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "SSH を安全に"
-date: 2010-03-15
 tags: []
 ---
 

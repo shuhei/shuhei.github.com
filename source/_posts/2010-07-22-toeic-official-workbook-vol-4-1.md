@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "TOEIC 新公式問題集 vol.4 (1)"
-date: 2010-07-22
 categories:
 ---
 

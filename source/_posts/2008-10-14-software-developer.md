@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ソフトウェア開発技術者"
-date: 2008-10-14
 categories:
 ---
 

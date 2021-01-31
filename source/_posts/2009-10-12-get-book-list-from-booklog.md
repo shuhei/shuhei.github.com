@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Booklog から本一覧を取得"
-date: 2009-10-12
 tags: []
 ---
 

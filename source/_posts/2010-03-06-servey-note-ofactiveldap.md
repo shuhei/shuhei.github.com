@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ActiveLdap 調査メモ"
-date: 2010-03-06
 tags: []
 ---
 

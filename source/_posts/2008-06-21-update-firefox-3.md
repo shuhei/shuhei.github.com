@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Firefox 3 インストール"
-date: 2008-06-21
 tags: []
 ---
 

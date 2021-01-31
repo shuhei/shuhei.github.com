@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Xcode での Google Test のビルド"
-date: 2009-07-26
 tags: [C/C++]
 ---
 

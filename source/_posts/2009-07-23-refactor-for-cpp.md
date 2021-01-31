@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Refactor! for C++"
-date: 2009-07-23
 tags: []
 ---
 

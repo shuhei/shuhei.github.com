@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ポインタの勉強"
-date: 2009-07-03
 tags: []
 ---
 

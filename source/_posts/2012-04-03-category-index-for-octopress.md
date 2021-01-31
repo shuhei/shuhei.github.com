@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Category index for Octopress"
-date: 2012-04-03
 tags: [Octopress]
 ---
 サイドバーにカテゴリー一覧を出してみました。

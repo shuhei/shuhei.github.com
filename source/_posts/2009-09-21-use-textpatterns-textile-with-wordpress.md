@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Wordpress で Textpattern 相当の Textile を使う"
-date: 2009-09-21
 tags: [Wordpress]
 ---
 

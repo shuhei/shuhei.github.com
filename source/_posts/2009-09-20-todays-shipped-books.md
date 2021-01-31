@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "今日届いた本（実用Subversion、Getting Real）"
-date: 2009-09-20
 tags: [読書]
 ---
 

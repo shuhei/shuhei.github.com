@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "PBDT - Pixel Bender 用 Eclipse プラグイン"
-date: 2009-06-21
 tags: [Flash/Flex]
 ---
 

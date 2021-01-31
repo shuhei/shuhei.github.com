@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "復旧と移転"
-date: 2008-08-14
 tags: []
 ---
 

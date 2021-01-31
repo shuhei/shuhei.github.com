@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "最近買った本 2009年7月"
-date: 2009-08-02
 tags: [読書]
 ---
 

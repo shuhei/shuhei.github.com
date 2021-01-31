@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "言語ごとに vim の設定を変える"
-date: 2009-08-22
 tags: [UNIX/LINUX]
 ---
 

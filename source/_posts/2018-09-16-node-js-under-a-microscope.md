@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Node.js under a microscope: CPU FlameGraph and FlameScope"
-date: 2018-09-16
 tags: [Node.js, Linux]
 ---
 

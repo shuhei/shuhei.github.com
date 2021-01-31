@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Chat Network"
-date: 2009-02-11
 tags: [Proce55ing, 情報デザイン]
 ---
 

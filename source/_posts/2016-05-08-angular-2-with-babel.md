@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Angular 2 with Babel"
-date: 2016-05-08
 tags: [JavaScript, Angular 2, Babel]
 ---
 

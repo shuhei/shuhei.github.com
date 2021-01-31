@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "iPhone で OpenFrameworks"
-date: 2009-08-02
 tags: [C/C++, iPhone 開発, OpenFrameworks]
 ---
 

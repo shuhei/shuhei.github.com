@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "タッチタイピングに移行"
-date: 2014-04-05
 categories:
 ---
 

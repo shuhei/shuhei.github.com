@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "アジャイルソフトウェア開発の奥義"
-date: 2008-09-28
 tags: [Java]
 ---
 

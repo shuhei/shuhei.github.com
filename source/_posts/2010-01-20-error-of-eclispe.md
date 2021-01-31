@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Eclipse の起動エラー"
-date: 2010-01-20
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "今週届いた本（Joel on Software、高度試験午前対策など）"
-date: 2009-10-11
 tags: []
 ---
 

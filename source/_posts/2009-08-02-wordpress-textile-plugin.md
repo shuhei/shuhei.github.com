@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Wordpress の Textile プラグイン"
-date: 2009-08-02
 tags: [Wordpress]
 ---
 

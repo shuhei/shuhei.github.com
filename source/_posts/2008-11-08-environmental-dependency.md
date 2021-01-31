@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "環境依存文字"
-date: 2008-11-08
 tags: []
 ---
 

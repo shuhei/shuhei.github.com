@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Chart Chooser"
-date: 2008-06-07
 tags: [情報デザイン]
 ---
 

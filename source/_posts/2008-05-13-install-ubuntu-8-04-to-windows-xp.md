@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Windows 上に Ubuntu 8.04 をインストール"
-date: 2008-05-13
 tags: [UNIX/LINUX]
 ---
 

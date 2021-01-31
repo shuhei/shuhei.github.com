@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Ruby の Hash#default"
-date: 2010-02-17
 tags: [Ruby]
 ---
 

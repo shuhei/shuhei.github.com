@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ネガティブマージン"
-date: 2008-09-16
 tags: []
 ---
 

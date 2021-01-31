@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "CString と TCHAR* の連結"
-date: 2009-07-03
 tags: []
 ---
 

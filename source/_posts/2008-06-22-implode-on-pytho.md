@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Python で implode"
-date: 2008-06-22
 tags: [Python]
 ---
 

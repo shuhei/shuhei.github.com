@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Histogram for time-series metrics on Node.js"
-date: 2018-12-29
 tags: [Node.js]
 ---
 

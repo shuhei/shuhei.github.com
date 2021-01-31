@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Wordpress app on iPhone"
-date: 2008-09-28
 categories:
 ---
 

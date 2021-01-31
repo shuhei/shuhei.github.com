@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ヤバい経済学"
-date: 2008-05-18
 tags: [読書]
 ---
 

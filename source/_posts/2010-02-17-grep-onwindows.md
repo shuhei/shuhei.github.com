@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Windows で grep"
-date: 2010-02-17
 tags: [Windows]
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "クラスの前方宣言"
-date: 2009-07-28
 tags: [C++]
 ---
 

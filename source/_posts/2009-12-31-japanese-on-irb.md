@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "irb で日本語表示"
-date: 2009-12-31
 categories:
 ---
 

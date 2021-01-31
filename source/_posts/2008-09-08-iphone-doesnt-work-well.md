@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "iPhone さっそく不具合"
-date: 2008-09-08
 categories:
 ---
 

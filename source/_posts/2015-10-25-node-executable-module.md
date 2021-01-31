@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Node.js executable module"
-date: 2015-10-25
 tags: [JavaScript]
 ---
 

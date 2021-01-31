@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "さくらに Trac をインストール・・・成功"
-date: 2008-08-23
 tags: [UNIX/LINUX, さくらインターネット]
 ---
 

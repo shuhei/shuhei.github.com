@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Flash Platform Camp Tokyo を見てきた"
-date: 2010-03-16
 tags: []
 ---
 

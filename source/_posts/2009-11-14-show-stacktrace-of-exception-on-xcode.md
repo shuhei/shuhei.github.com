@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Xcode で例外発生時のスタックトレースをデバッガに表示"
-date: 2009-11-14
 tags: []
 ---
 

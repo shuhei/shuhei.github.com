@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "const とポインタ"
-date: 2009-08-01
 tags: [C/C++]
 ---
 

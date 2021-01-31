@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ポインポイン"
-date: 2009-02-06
 tags: [Proce55ing]
 ---
 

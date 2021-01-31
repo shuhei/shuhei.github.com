@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Winter terminal (mostly Vim) cleaning
-date: 2019-12-31
 tags: [Vim]
 ---
 

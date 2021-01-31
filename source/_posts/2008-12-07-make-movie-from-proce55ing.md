@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Proce55ing から 動画を作る"
-date: 2008-12-07
 tags: [Proce55ing]
 ---
 

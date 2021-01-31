@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "販促会議7月号"
-date: 2008-06-21
 tags: [読書]
 ---
 

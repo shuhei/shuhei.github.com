@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "コマンドライン引数"
-date: 2009-07-05
 tags: []
 ---
 

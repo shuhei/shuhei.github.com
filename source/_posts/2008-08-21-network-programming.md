@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ネットワークプログラミング"
-date: 2008-08-21
 tags: []
 ---
 

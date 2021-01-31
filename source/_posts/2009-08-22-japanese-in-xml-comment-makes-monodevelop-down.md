@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "OSX 上の MonoDevelop の日本語対応"
-date: 2009-08-22
 tags: [C#]
 ---
 

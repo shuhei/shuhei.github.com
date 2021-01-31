@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "NumPy などをインストール"
-date: 2008-06-10
 tags: [Python]
 ---
 

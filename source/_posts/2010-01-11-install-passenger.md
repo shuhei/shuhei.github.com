@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Ubuntu Server に Passenger をインストール"
-date: 2010-01-11
 tags: []
 ---
 

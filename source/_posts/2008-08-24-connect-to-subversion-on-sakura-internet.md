@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "さくらインターネット上の Subversion につなぐ"
-date: 2008-08-24
 tags: [さくらインターネット]
 ---
 

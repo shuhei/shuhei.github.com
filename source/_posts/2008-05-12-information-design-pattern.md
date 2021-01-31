@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Information Design Pattern"
-date: 2008-05-12
 tags: [情報デザイン]
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Ruby で Windows のコマンド実行"
-date: 2009-09-30
 tags: [Ruby]
 ---
 

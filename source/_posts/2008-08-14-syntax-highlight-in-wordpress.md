@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Wordpress でコードのシンタックスハイライト"
-date: 2008-08-14
 tags: [Wordpress]
 ---
 

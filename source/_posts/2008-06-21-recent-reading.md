@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "最近の読書"
-date: 2008-06-21
 tags: [読書]
 ---
 

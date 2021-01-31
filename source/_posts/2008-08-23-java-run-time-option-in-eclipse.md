@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Eclipse で Java VM の実行時オプション"
-date: 2008-08-23
 tags: [Java]
 ---
 

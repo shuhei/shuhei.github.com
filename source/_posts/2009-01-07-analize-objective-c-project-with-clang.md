@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "clang で Objective C の静的解析"
-date: 2009-01-07
 tags: [iPhone 開発]
 ---
 

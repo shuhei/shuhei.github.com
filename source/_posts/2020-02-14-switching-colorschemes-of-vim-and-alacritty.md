@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Switching color schemes of Vim and Alacritty
-date: 2020-02-14
 tags: [Vim]
 ---
 

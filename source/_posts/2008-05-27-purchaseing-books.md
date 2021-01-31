@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "書籍購入"
-date: 2008-05-27
 tags: [読書]
 ---
 

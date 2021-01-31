@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Ubuntu の日本語フォルダを英語名に"
-date: 2008-06-15
 tags: [UNIX/LINUX]
 ---
 

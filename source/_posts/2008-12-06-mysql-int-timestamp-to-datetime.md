@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "MySQL で INT 型のタイムスタンプから DATETIME 型"
-date: 2008-12-06
 categories:
 ---
 

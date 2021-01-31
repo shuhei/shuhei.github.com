@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "HTTP request timeouts in JavaScript"
-date: 2017-05-14
 tags: [JavaScript, Node.js]
 ---
 

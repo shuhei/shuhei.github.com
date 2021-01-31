@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "さくらのサーバに virtual-python を入れる"
-date: 2008-08-12
 tags: [Python, さくらインターネット]
 ---
 

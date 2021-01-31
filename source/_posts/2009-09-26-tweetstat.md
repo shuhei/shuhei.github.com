@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "TweetStats"
-date: 2009-09-26
 tags: []
 ---
 

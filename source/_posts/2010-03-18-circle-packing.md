@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Circle Packing"
-date: 2010-03-18
 tags: []
 ---
 

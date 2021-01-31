@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Freeze panes with CSS and a bit of JavaScript"
-date: 2016-01-11
 tags: [CSS, JavaScript]
 ---
 

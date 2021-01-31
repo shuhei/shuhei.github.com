@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "How to use ofxUI"
-date: 2012-04-02
 tags: [openFrameworks]
 ---
 

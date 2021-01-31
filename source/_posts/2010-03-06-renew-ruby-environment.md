@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Ruby の環境を新しく"
-date: 2010-03-06
 categories:
 ---
 

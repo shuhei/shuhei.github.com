@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ファウラー本"
-date: 2009-02-26
 tags: [読書]
 ---
 

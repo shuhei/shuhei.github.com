@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "簿記の問題集"
-date: 2008-11-16
 tags: []
 ---
 

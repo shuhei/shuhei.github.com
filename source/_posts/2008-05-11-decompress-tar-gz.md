@@ -1,7 +1,6 @@
 ---
 layout: post
 title: ".tar.gz の解凍"
-date: 2008-05-11
 tags: [UNIX/LINUX]
 ---
 

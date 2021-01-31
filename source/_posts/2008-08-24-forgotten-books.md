@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "読んだけど忘れてた本"
-date: 2008-08-24
 tags: [読書]
 ---
 

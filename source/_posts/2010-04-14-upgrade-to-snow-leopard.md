@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "今さら Snow Leopard にアップグレード"
-date: 2010-04-14
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "mixi OpenID"
-date: 2008-08-20
 tags: []
 ---
 

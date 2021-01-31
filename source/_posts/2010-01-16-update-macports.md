@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "MacPorts のアップデート"
-date: 2010-01-16
 tags: []
 ---
 
