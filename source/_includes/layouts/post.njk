@@ -20,3 +20,21 @@ permalink: "{{ page | blogPermalink }}"
     </div>
   </div>
 </div>
+
+{%- set newerPost = collections.posts | getPreviousCollectionItem(page) -%}
+{%- set olderPost = collections.posts | getNextCollectionItem(page) -%}
+<ul class="pagination">
+  <li class="pagination__prev-page">
+{%- if newerPost %}
+    <a href="{{ newerPost.url }}">{{ newerPost.data.title | insertWbr | safe }}</a>
+{%- endif %}
+  </li>
+  <li class="pagination__archives">
+    <a href="/blog/archives/">All posts</a>
+  </li>
+  <li class="pagination__next-page">
+{%- if olderPost %}
+    <a href="{{ olderPost.url }}">{{ olderPost.data.title | insertWbr | safe }}</a>
+{%- endif %}
+  </li>
+</ul>

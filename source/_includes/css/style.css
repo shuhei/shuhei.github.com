@@ -377,21 +377,16 @@ blockquote cite:before {
 }
 .pagination li {
   min-height: 1em;
-  width: 33%;
 }
 .pagination a {
   text-decoration: none;
 }
-.pagination__prev-page {
-}
-.pagination__prev-page a:before {
-  content: "< ";
+.pagination__prev-page,
+.pagination__next-page {
+  width: 35%;
 }
 .pagination__next-page {
   text-align: right;
-}
-.pagination__next-page a:after {
-  content: " >";
 }
 .pagination__archives {
   flex-grow: 1;

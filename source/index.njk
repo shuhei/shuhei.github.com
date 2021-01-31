@@ -31,7 +31,7 @@ permalink: "{{ pagination | indexPermalink }}"
 <ul class="pagination">
   <li class="pagination__prev-page">
 {%- if pagination.href.previous %}
-    <a href="{{pagination.href.previous}}">Older posts</a>
+    <a href="{{pagination.href.previous}}">Newer posts</a>
 {%- endif %}
   </li>
   <li class="pagination__archives">
@@ -39,7 +39,7 @@ permalink: "{{ pagination | indexPermalink }}"
   </li>
   <li class="pagination__next-page">
 {%- if pagination.href.next %}
-    <a href="{{pagination.href.next}}">Newer posts</a>
+    <a href="{{pagination.href.next}}">Older posts</a>
 {%- endif %}
   </li>
 </ul>
