@@ -1,6 +1,7 @@
 const { formatDate } = require("./lib/utils/date");
 const { insertWbr } = require("./lib/utils/wbr");
 const { getMarkdownIt } = require("./lib/plugins/markdown-it");
+const { blogPermalink } = require("./lib/plugins/permalink");
 
 module.exports = config => {
   config.setLibrary("md", getMarkdownIt());
@@ -12,6 +13,7 @@ module.exports = config => {
   config.addFilter("formatDate", formatDate);
   config.addFilter("insertWbr", insertWbr);
   config.addFilter("join", (items, separator) => items.join(separator));
+  config.addFilter("blogPermalink", blogPermalink);
 
   // Paththrough copy files paths are relative to the project root.
   config.addPassthroughCopy("source/images");
