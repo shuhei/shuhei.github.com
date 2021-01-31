@@ -1,9 +1,10 @@
 /* beige and blue */
 :root {
-  --bg-color: #fff;
+  --bg-color: #f9f9f9;
   --text-color: #222;
   --highlight-color: #095ae8;
   --code-text-color: var(--code-mono-1);
+  --code-bg-color: #fff;
 
   /* Based on Atom One Light, but higher contrast for a11y */
   /* https://github.com/atom/atom/tree/master/packages/one-light-syntax */
@@ -243,6 +244,7 @@ td {
 /* code */
 code {
   color: var(--code-text-color);
+  background-color: var(--code-bg-color);
   font-size: 0.9em;
   font-family: var(--code-font-family);
 }
@@ -262,6 +264,7 @@ code {
   -webkit-overflow-scrolling: touch;
 
   color: var(--code-text-color);
+  background-color: var(--code-bg-color);
 }
 
 .hljs-comment,
