@@ -1,6 +1,6 @@
 const { formatDate } = require("./lib/utils/date");
 const { insertWbr } = require("./lib/utils/wbr");
-const { getMarkdownIt } = require("./lib/plugins/markdown-it");
+const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { blogPermalink, indexPermalink } = require("./lib/plugins/permalink");
 
 module.exports = config => {
@@ -24,6 +24,8 @@ module.exports = config => {
   config.addPassthroughCopy("source/.nojekyll");
   config.addPassthroughCopy("source/CNAME");
   config.addPassthroughCopy("source/favicon.ico");
+
+  config.setQuietMode(true);
 
   return {
     dir: {

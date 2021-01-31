@@ -5,7 +5,7 @@ layout: base
 <div class="post">
   <div class="post-header">
     <h1 class="title">
-      {{ title | insertWbr }}
+      {{ title | insertWbr | safe }}
     </h1>
     <div class="content">
       {{ content | safe }}

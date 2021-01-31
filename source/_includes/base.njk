@@ -3,19 +3,17 @@ data:
   - site
   - fonts
 ---
-
-{% set css %}
+{%- set css -%}
   {% include "css/style.css" %}
-{% endset %}
-
+{%- endset -%}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <link rel="preload" href="{{ fonts.css }}" as="style">
-{% for fontFile in fonts.fontFiles %}
+{%- for fontFile in fonts.fontFiles %}
     <link rel="preload" href="{{ fontFile }}" as="font" crossorigin="anonymous">
-{% endfor %}
+{%- endfor %}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
@@ -38,9 +36,9 @@ data:
     <meta property="og:title", content="{{ title or site.title }}">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:description" content="{{ description or site.description }}">
-{% if image %}
+{%- if image %}
     <meta property="og:image" content="{{ image }}">
-{% endif %}
+{%- endif %}
   </head>
   <body>
     <div class="container">
