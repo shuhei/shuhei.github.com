@@ -27,7 +27,7 @@ module.exports = config => {
   return {
     dir: {
       input: "./source",
-      output: "./_site"
+      output: "./public"
     }
   };
 };

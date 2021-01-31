@@ -14,4 +14,3 @@ vendor
 node_modules
 dist
 lib/plugins/manual-tests/images
-_site
