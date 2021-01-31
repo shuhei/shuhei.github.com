@@ -1,3 +1,6 @@
+---
+data: site
+---
 doctype xml
 rss(version="2.0", xmlns:atom="https://www.w3.org/2005/Atom")
   channel
@@ -6,9 +9,9 @@ rss(version="2.0", xmlns:atom="https://www.w3.org/2005/Atom")
     atom:link(href="https://shuheikagawa.com/blog/feed/rss.xml", rel="self", type="application/rss+xml")
     description Shuhei Kagawa's blog
     language en-US
-    if posts.length
-      lastBuildDate= new Date(posts[0].date).toUTCString()
-    each post in posts
+    if collections.posts.length
+      lastBuildDate= new Date(collections.posts[0].date).toUTCString()
+    each post in collections.posts
       item
         title= post.title
         link https://shuheikagawa.com#{post.url}

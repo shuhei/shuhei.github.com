@@ -1,0 +1,22 @@
+---
+layout: base
+---
+
+<div class="post">
+  <div class="post-header">
+    <h1 class="title">
+      <a href="{{ url }}">{{ title }}</a>
+    </h1>
+    <div class="meta">
+      <span class="date">{{ date | formatDate }}</span>
+      {% if tags.length > 0 %}
+      - {{ tags | join(", ") }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="content">
+    <div>
+      {{ content | safe }}
+    </div>
+  </div>
+</div>

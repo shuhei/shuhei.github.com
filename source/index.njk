@@ -1,0 +1,44 @@
+---
+layout: base
+pagination:
+  data: collections.posts
+  size: 3
+  alias: posts
+---
+
+{%- for post in posts -%}
+<div class="post">
+  <div class="post-header">
+    <h1 class="title">
+      <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+    </h1>
+    <div class="meta">
+      <span class="date">{{ post.date | formatDate }}</span>
+      {% if post.data.tags.length > 0 %}
+      - {{ post.data.tags | join(", ") }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="content">
+    <div>
+      {{ post.templateContent | safe }}
+    </div>
+  </div>
+</div>
+{%- endfor -%}
+
+<ul class="pagination">
+  <li class="pagination__prev-page">
+    {% if pagination.href.previous %}
+    <a href="{{pagination.href.previous}}">Older posts</a>
+    {% endif %}
+  </li>
+  <li class="pagination__archives">
+    <a href="/blog/archives/">All posts</a>
+  </li>
+  <li class="pagination__next-page">
+    {% if pagination.href.next %}
+    <a href="{{pagination.href.next}}">Newer posts</a>
+    {% endif %}
+  </li>
+</ul>

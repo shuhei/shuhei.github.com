@@ -76,5 +76,8 @@
     "static": "public",
     "deploy": "_deploy",
     "branch": "master"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1"
   }
 }
