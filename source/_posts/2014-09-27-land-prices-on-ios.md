@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "WebGL な日本の地価マップをタッチ対応してみた"
-date: 2014-09-27 16:53
+date: 2014-09-27
 comments: true
 categories: [WebGL, JavaScript]
 ---

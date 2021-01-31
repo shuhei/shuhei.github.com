@@ -2,7 +2,7 @@
 layout: post
 title: "Chat Network"
 published: true
-date: 2009-02-11 12:38
+date: 2009-02-11
 comments: true
 tags:
 categories: [Proce55ing, 情報デザイン]

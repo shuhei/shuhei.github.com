@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Category index for Octopress"
-date: 2012-04-03 09:20
+date: 2012-04-03
 comments: true
 categories: [Octopress]
 ---

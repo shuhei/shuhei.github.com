@@ -2,7 +2,7 @@
 layout: post
 title: "簿記の問題集"
 published: true
-date: 2008-11-16 22:54
+date: 2008-11-16
 comments: true
 tags:
 categories: []

@@ -2,7 +2,7 @@
 layout: post
 title: "最近買った本（ちょっと買いすぎ）"
 published: true
-date: 2009-09-06 15:24
+date: 2009-09-06
 comments: true
 tags:
 categories: []

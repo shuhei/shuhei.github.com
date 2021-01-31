@@ -2,7 +2,7 @@
 layout: post
 title: "iPhone Provisioning Profile"
 published: true
-date: 2009-08-10 12:31
+date: 2009-08-10
 comments: true
 tags:
 categories: [iPhone 開発]

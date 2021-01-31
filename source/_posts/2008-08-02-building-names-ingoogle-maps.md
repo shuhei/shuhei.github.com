@@ -2,7 +2,7 @@
 layout: post
 title: "Google Maps に建物名"
 published: true
-date: 2008-08-02 11:14
+date: 2008-08-02
 comments: true
 tags:
 categories: [情報デザイン]

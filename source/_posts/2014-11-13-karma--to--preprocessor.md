@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "karma-6to5-preprocessor"
-date: 2014-11-13 23:35
+date: 2014-11-13
 comments: true
 categories: [JavaScript, Karma, EcmaScript6]
 ---

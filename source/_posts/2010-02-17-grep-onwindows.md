@@ -2,7 +2,7 @@
 layout: post
 title: "Windows で grep"
 published: true
-date: 2010-02-17 09:38
+date: 2010-02-17
 comments: true
 tags:
 categories: [Windows]

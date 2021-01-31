@@ -2,7 +2,7 @@
 layout: post
 title: "iPhone さっそく不具合"
 published: true
-date: 2008-09-08 08:43
+date: 2008-09-08
 comments: true
 tags:
 categories:

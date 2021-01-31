@@ -2,7 +2,7 @@
 layout: post
 title: "販促会議7月号"
 published: true
-date: 2008-06-21 20:51
+date: 2008-06-21
 comments: true
 tags:
 categories: [読書]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）"
-date: 2013-10-27 16:44
+date: 2013-10-27
 comments: true
 categories: [JavaScript, Backbone]
 ---

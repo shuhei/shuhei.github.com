@@ -2,7 +2,7 @@
 layout: post
 title: "CString と TCHAR* の連結"
 published: true
-date: 2009-07-03 13:00
+date: 2009-07-03
 comments: true
 tags:
 categories: []

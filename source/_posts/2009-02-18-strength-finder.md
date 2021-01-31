@@ -2,7 +2,7 @@
 layout: post
 title: "Strength Finder"
 published: true
-date: 2009-02-18 00:22
+date: 2009-02-18
 comments: true
 tags:
 categories: [読書]

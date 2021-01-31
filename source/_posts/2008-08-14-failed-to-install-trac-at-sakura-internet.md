@@ -2,7 +2,7 @@
 layout: post
 title: "さくらに Trac をインストール・・・失敗"
 published: true
-date: 2008-08-14 18:53
+date: 2008-08-14
 comments: true
 tags:
 categories: [Python, UNIX/LINUX, さくらインターネット]

@@ -2,7 +2,7 @@
 layout: post
 title: "Python で implode"
 published: true
-date: 2008-06-22 15:23
+date: 2008-06-22
 comments: true
 tags:
 categories: [Python]

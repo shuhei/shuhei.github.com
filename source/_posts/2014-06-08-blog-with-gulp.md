@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gulp でブログを書く"
-date: 2014-06-08 17:23
+date: 2014-06-08
 comments: true
 categories: [JavaScript, gulp]
 ---

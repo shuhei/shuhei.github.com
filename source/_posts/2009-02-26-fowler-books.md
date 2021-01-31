@@ -2,7 +2,7 @@
 layout: post
 title: "ファウラー本"
 published: true
-date: 2009-02-26 00:19
+date: 2009-02-26
 comments: true
 tags:
 categories: [読書]

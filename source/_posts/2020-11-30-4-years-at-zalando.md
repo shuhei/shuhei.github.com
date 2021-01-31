@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 4 years at Zalando
-date: 2020-11-30 22:00
+date: 2020-11-30
 categories: []
 ---
 

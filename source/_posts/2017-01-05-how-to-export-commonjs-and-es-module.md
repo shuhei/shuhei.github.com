@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to export CommonJS and ES Module"
-date: 2017-01-05 22:11
+date: 2017-01-05
 comments: true
 categories: [JavaScript]
 ---

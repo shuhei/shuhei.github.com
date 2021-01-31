@@ -2,7 +2,7 @@
 layout: post
 title: "iPhone で OpenFrameworks"
 published: true
-date: 2009-08-02 20:41
+date: 2009-08-02
 comments: true
 categories: [C/C++, iPhone 開発, OpenFrameworks]
 ---

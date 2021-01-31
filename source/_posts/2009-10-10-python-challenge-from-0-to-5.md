@@ -2,7 +2,7 @@
 layout: post
 title: "Python Challenge Lv. 0 - 5"
 published: true
-date: 2009-10-10 15:38
+date: 2009-10-10
 comments: true
 tags:
 categories: []

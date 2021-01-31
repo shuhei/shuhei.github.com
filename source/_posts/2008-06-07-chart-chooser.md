@@ -2,7 +2,7 @@
 layout: post
 title: "Chart Chooser"
 published: true
-date: 2008-06-07 17:07
+date: 2008-06-07
 comments: true
 tags:
 categories: [情報デザイン]

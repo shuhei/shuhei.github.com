@@ -2,7 +2,7 @@
 layout: post
 title: "Refactor! for C++"
 published: true
-date: 2009-07-23 19:05
+date: 2009-07-23
 comments: true
 tags:
 categories: []

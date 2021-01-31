@@ -2,7 +2,7 @@
 layout: post
 title: "gem で cairo をインストール"
 published: true
-date: 2009-10-12 16:13
+date: 2009-10-12
 comments: true
 tags:
 categories: []

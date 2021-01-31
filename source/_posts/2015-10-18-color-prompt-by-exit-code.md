@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Color prompt by exit code"
-date: 2015-10-18 19:11
+date: 2015-10-18
 comments: true
 categories: [Bash]
 ---

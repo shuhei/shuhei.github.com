@@ -2,7 +2,7 @@
 layout: post
 title: "ポインタの勉強"
 published: true
-date: 2009-07-03 10:38
+date: 2009-07-03
 comments: true
 tags:
 categories: []

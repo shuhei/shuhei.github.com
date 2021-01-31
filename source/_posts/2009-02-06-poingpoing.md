@@ -2,7 +2,7 @@
 layout: post
 title: "ポインポイン"
 published: true
-date: 2009-02-06 01:06
+date: 2009-02-06
 comments: true
 tags:
 categories: [Proce55ing]

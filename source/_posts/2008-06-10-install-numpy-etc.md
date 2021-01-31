@@ -2,7 +2,7 @@
 layout: post
 title: "NumPy などをインストール"
 published: true
-date: 2008-06-10 00:57
+date: 2008-06-10
 comments: true
 tags:
 categories: [Python]

@@ -2,7 +2,7 @@
 layout: post
 title: "mixi OpenID"
 published: true
-date: 2008-08-20 23:07
+date: 2008-08-20
 comments: true
 tags:
 categories: []

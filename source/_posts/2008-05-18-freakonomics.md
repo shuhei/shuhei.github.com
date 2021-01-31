@@ -2,7 +2,7 @@
 layout: post
 title: "ヤバい経済学"
 published: true
-date: 2008-05-18 12:47
+date: 2008-05-18
 comments: true
 tags:
 categories: [読書]

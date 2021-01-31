@@ -2,7 +2,7 @@
 layout: post
 title: "MySQL で INT 型のタイムスタンプから DATETIME 型"
 published: true
-date: 2008-12-06 12:59
+date: 2008-12-06
 comments: true
 tags:
 categories:

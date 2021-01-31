@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to set up and top up a prepaid SIM in Germany"
-date: 2016-10-03 10:35
+date: 2016-10-03
 comments: true
 categories: 
 ---

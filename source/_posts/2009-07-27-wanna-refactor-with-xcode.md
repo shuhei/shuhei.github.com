@@ -2,7 +2,7 @@
 layout: post
 title: "XCode でリファクタリングがしたい"
 published: true
-date: 2009-07-27 23:27
+date: 2009-07-27
 comments: true
 tags:
 categories: [iPhone 開発]

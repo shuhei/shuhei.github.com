@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "main, jsnext:main and module"
-date: 2017-01-05 00:00
+date: 2017-01-05
 categories: [JavaScript]
 ---
 

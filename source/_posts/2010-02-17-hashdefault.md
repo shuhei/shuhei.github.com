@@ -2,7 +2,7 @@
 layout: post
 title: "Ruby の Hash#default"
 published: true
-date: 2010-02-17 12:45
+date: 2010-02-17
 comments: true
 tags:
 categories: [Ruby]

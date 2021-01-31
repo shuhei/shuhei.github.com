@@ -2,7 +2,7 @@
 layout: post
 title: "Wordpress でコードのシンタックスハイライト"
 published: true
-date: 2008-08-14 12:22
+date: 2008-08-14
 comments: true
 tags:
 categories: [Wordpress]

@@ -2,7 +2,7 @@
 layout: post
 title: "SSH を安全に"
 published: true
-date: 2010-03-15 15:32
+date: 2010-03-15
 comments: true
 tags:
 categories: []

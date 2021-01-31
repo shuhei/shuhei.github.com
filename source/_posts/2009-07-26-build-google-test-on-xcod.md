@@ -2,7 +2,7 @@
 layout: post
 title: "Xcode での Google Test のビルド"
 published: true
-date: 2009-07-26 23:30
+date: 2009-07-26
 comments: true
 tags:
 categories: [C/C++]

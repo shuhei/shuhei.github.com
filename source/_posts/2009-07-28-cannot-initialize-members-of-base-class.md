@@ -2,7 +2,7 @@
 layout: post
 title: "基本クラスのメンバを初期化できない"
 published: true
-date: 2009-07-28 20:01
+date: 2009-07-28
 comments: true
 tags:
 categories: [C++]

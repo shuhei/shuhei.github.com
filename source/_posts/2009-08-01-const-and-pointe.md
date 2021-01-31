@@ -2,7 +2,7 @@
 layout: post
 title: "const とポインタ"
 published: true
-date: 2009-08-01 14:45
+date: 2009-08-01
 comments: true
 tags:
 categories: [C/C++]

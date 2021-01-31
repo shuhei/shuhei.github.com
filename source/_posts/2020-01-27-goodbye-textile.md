@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Goodbye, Textile
-date: 2020-01-27 22:20
+date: 2020-01-27
 categories: [Blog, JavaScript]
 ---
 

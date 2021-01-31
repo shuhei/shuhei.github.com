@@ -2,7 +2,7 @@
 layout: post
 title: "Eclipse の起動エラー"
 published: true
-date: 2010-01-20 09:40
+date: 2010-01-20
 comments: true
 tags:
 categories: []

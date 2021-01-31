@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Node.js executable module"
-date: 2015-10-25 22:42
+date: 2015-10-25
 comments: true
 categories: [JavaScript]
 ---

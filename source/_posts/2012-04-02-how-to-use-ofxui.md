@@ -2,7 +2,7 @@
 layout: post
 title: "How to use ofxUI"
 published: true
-date: 2012-04-02 20:13
+date: 2012-04-02
 comments: true
 tags:
 categories: [openFrameworks]

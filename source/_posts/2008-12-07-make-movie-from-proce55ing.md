@@ -2,7 +2,7 @@
 layout: post
 title: "Proce55ing から 動画を作る"
 published: true
-date: 2008-12-07 03:09
+date: 2008-12-07
 comments: true
 tags:
 categories: [Proce55ing]

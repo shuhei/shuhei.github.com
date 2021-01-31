@@ -2,7 +2,7 @@
 layout: post
 title: "Wordpress の Textile プラグイン"
 published: true
-date: 2009-08-02 23:53
+date: 2009-08-02
 comments: true
 tags:
 categories: [Wordpress]

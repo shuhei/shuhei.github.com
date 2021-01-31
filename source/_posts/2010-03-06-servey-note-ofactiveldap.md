@@ -2,7 +2,7 @@
 layout: post
 title: "ActiveLdap 調査メモ"
 published: true
-date: 2010-03-06 19:56
+date: 2010-03-06
 comments: true
 tags:
 categories: []

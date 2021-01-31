@@ -2,7 +2,7 @@
 layout: post
 title: "Visual C++ 2005 Express Edition で ARToolkit"
 published: true
-date: 2008-11-23 15:07
+date: 2008-11-23
 comments: true
 tags:
 categories: []

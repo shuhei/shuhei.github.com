@@ -2,7 +2,7 @@
 layout: post
 title: "Information Design Pattern"
 published: true
-date: 2008-05-12 21:27
+date: 2008-05-12
 comments: true
 tags:
 categories: [情報デザイン]

@@ -2,7 +2,7 @@
 layout: post
 title: "TweetStats"
 published: true
-date: 2009-09-26 22:36
+date: 2009-09-26
 comments: true
 tags:
 categories: []

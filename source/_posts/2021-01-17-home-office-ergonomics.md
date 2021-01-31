@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Things I wish I knew about home office ergonomics
-date: 2021-01-17 15:05
+date: 2021-01-17
 categories: []
 ---
 

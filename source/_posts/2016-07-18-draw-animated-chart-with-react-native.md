@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Draw animated chart on React Native"
-date: 2016-07-18 23:43
+date: 2016-07-18
 comments: true
 categories: [JavaScript, React]
 ---

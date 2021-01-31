@@ -2,7 +2,7 @@
 layout: post
 title: "Circle Packing"
 published: true
-date: 2010-03-18 00:24
+date: 2010-03-18
 comments: true
 categories: []
 ---

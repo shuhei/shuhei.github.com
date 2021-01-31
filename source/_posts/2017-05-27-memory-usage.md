@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Getting memory usage in Linux and Docker"
-date: 2017-05-28 16:28
+date: 2017-05-28
 comments: true
 categories: [Linux, Docker]
 ---

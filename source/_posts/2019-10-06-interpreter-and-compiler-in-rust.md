@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Writing an interpreter and a compiler in Rust"
-date: 2019-10-06 23:32
+date: 2019-10-06
 comments: true
 categories: [Rust]
 ---

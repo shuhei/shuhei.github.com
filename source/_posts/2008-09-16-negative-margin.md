@@ -2,7 +2,7 @@
 layout: post
 title: "ネガティブマージン"
 published: true
-date: 2008-09-16 23:36
+date: 2008-09-16
 comments: true
 tags:
 categories: []

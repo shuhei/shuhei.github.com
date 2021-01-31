@@ -2,7 +2,7 @@
 layout: post
 title: "MacPorts のアップデート"
 published: true
-date: 2010-01-16 14:49
+date: 2010-01-16
 comments: true
 tags:
 categories: []

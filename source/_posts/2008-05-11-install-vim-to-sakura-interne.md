@@ -2,7 +2,7 @@
 layout: post
 title: "さくらのレンタルサーバに vim を入れる"
 published: true
-date: 2008-05-11 17:23
+date: 2008-05-11
 comments: true
 tags:
 categories: [さくらインターネット]

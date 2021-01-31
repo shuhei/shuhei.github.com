@@ -2,7 +2,7 @@
 layout: post
 title: "Make Link の Textile 2 用フォーマット"
 published: true
-date: 2009-09-23 10:54
+date: 2009-09-23
 comments: true
 tags:
 categories: []

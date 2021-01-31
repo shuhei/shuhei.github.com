@@ -2,7 +2,7 @@
 layout: post
 title: "ソフトウェア開発技術者"
 published: true
-date: 2008-12-16 00:36
+date: 2008-12-16
 comments: true
 tags:
 categories: []
