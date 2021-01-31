@@ -1,10 +1,6 @@
 ---
 layout: page
 title: "About"
-date: 2012-04-02 13:01
-comments: false
-sharing: true
-footer: true
 ---
 
 Hi, my name is Shuhei. I'm a programmer based in Berlin, mostly writing JavaScript.
