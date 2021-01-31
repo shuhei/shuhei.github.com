@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "MyDNS.jp 用に biffpop をビルド"
-published: true
 date: 2010-01-04
-comments: true
 tags: []
 ---
 

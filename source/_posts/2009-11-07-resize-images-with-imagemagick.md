@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "ImageMagick で画像を一括リサイズ"
-published: true
 date: 2009-11-07
-comments: true
 tags: []
 ---
 

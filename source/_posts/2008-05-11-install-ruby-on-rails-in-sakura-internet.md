@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "さくらのレンタルサーバに Ruby on Rails を入れる"
-published: true
 date: 2008-05-11
-comments: true
 tags: [Ruby, さくらインターネット]
 ---
 

@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Navigation-based Application に TabBar を追加"
-published: true
 date: 2009-11-07
-comments: true
 tags: []
 ---
 

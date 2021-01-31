@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Wordpress で Out of memory"
-published: true
 date: 2010-06-01
-comments: true
 tags: []
 ---
 

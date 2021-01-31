@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Ruby の Curses で Hello, World!"
-published: true
 date: 2009-10-16
-comments: true
 tags: []
 ---
 

@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "さくらのレンタルサーバに Subversion を入れる"
-published: true
 date: 2008-05-11
-comments: true
 tags: [さくらインターネット]
 ---
 

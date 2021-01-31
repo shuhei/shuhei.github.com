@@ -2,7 +2,6 @@
 layout: post
 title: "How to set up and top up a prepaid SIM in Germany"
 date: 2016-10-03
-comments: true
 ---
 
 I have moved to Berlin from Tokyo a week ago. I may or may not write about it later, but I'm going to share more practical stuff today.

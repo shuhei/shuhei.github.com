@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "NTLM ハッシュ を求める"
-published: true
 date: 2009-10-13
-comments: true
 tags: [Ruby]
 ---
 

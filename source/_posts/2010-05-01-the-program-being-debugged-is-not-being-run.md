@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "The program being debugged is not being run."
-published: true
 date: 2010-05-01
-comments: true
 tags: []
 ---
 

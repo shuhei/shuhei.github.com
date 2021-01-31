@@ -2,7 +2,6 @@
 layout: post
 title: "One-time binding for ng-if"
 date: 2016-04-05
-comments: true
 tags: [JavaScript, AngularJS]
 ---
 

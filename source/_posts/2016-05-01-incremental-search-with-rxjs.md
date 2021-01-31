@@ -2,7 +2,6 @@
 layout: post
 title: "Incremental search with RxJS switchMap"
 date: 2016-05-02
-comments: true
 tags: [JavaScript, RxJS]
 ---
 

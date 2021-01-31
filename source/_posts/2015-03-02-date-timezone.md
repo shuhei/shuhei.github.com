@@ -2,7 +2,6 @@
 layout: post
 title: "Assign Time/time string in UTC to ActiveRecord date attribute"
 date: 2015-03-02
-comments: true
 tags: [Ruby, Rails]
 ---
 

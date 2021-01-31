@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Git + Redmine"
-published: true
 date: 2010-03-13
-comments: true
 tags: []
 ---
 

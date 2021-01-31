@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "さくらのサーバに Python モジュールをインストール"
-published: true
 date: 2008-06-22
-comments: true
 tags: [Python, さくらインターネット]
 ---
 

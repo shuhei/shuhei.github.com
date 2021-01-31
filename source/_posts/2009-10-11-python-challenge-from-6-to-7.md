@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Python Challenge Lv. 6 - 7"
-published: true
 date: 2009-10-11
-comments: true
 tags: []
 ---
 

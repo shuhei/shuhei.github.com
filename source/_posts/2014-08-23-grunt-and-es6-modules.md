@@ -2,7 +2,6 @@
 layout: post
 title: "Grunt と ES6 Modules"
 date: 2014-08-23
-comments: true
 tags: [JavaScript]
 ---
 

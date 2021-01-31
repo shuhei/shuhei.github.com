@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "最近買った本"
-published: true
 date: 2009-06-28
-comments: true
 tags: [読書]
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Algorithms: Design and Analysis, Part 1"
 date: 2015-11-29
-comments: true
 tags: [Algorithms]
 ---
 

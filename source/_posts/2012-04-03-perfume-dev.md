@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Perfume Dev"
-published: true
 date: 2012-04-03
-comments: true
 tags: [JavsScript, Three.js]
 ---
 

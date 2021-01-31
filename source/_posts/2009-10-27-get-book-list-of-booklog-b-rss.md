@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Booklog の本一覧をRSSから取得"
-published: true
 date: 2009-10-27
-comments: true
 tags: []
 ---
 

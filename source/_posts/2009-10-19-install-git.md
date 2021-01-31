@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "git をインストール"
-published: true
 date: 2009-10-19
-comments: true
 tags: []
 ---
 

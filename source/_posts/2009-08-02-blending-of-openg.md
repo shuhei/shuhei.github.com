@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "OpenGL のブレンディング方法について"
-published: true
 date: 2009-08-02
-comments: true
 tags: [C/C++, OpenFrameworks]
 ---
 

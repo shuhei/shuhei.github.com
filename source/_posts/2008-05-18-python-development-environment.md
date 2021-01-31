@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Python 開発環境"
-published: true
 date: 2008-05-18
-comments: true
 tags: [Python, UNIX/LINUX]
 ---
 

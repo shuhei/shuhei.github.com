@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "TweetStats"
-published: true
 date: 2009-09-26
-comments: true
 tags: []
 ---
 

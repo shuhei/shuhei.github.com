@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Textpattern の コメント表示タグが変更に"
-published: true
 date: 2009-09-21
-comments: true
 tags: [Textpattern]
 ---
 

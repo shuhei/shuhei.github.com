@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "How to use ofxOpenCv on of007"
-published: true
 date: 2012-04-03
-comments: true
 tags: [openFrameworks]
 ---
 

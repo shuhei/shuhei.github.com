@@ -2,7 +2,6 @@
 layout: post
 title: "Speed up your RSpec tests by reviewing Factory Girl"
 date: 2015-09-26
-comments: true
 tags: [Ruby,Rails]
 ---
 

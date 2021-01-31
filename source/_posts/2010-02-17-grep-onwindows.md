@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Windows で grep"
-published: true
 date: 2010-02-17
-comments: true
 tags: [Windows]
 ---
 

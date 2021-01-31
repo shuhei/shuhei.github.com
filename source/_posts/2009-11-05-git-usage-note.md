@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "git の使い方メモ"
-published: true
 date: 2009-11-05
-comments: true
 categories:
 ---
 

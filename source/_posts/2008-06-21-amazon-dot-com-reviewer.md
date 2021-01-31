@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Amazon.co.jp の洋書レビューを Amazon.com で見るための Greasemonkey"
-published: true
 date: 2008-06-21
-comments: true
 tags: [Greasemonkey]
 ---
 

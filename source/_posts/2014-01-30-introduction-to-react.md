@@ -2,7 +2,6 @@
 layout: post
 title: "React"
 date: 2014-01-30
-comments: true
 tags: [JavaScript]
 ---
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Clean up before exiting in Haskell"
 date: 2016-04-06
-comments: true
 tags: [Haskell]
 ---
 

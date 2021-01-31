@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Floating Balls"
-published: true
 date: 2010-07-04
-comments: true
 tags: []
 ---
 

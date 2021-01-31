@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Python Challenge Lv. 8 - 9"
-published: true
 date: 2009-10-12
-comments: true
 tags: [Ruby, Python]
 ---
 
