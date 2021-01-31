@@ -28,17 +28,18 @@ See [`babel-angular2-app`](https://github.com/shuhei/babel-angular2-app) for mor
 
 ## Supported annotations
 
-| Name                | Example        | EcmaScript  | TypeScript | Babel*   | Babel + angular2 |
-| ------------------- | -------------- | ----------- | ---------- | -------- | ---------------- |
-| Class decorator     | `@Component()` | Stage 1     | Yes        | Yes      | Yes              |
-| Property decorator  | `@Input()`     | Stage 1     | Yes        | Partial* | Yes              |
-| Parameter decorator | `@Optional()`  | Stage 0     | Yes        | No       | Yes              |
-| Type annotation     | `foo: Foo`     | -           | Yes        | No       | Yes              |
+| Name                | Example        | EcmaScript | TypeScript | Babel\*   | Babel + angular2 |
+| ------------------- | -------------- | ---------- | ---------- | --------- | ---------------- |
+| Class decorator     | `@Component()` | Stage 1    | Yes        | Yes       | Yes              |
+| Property decorator  | `@Input()`     | Stage 1    | Yes        | Partial\* | Yes              |
+| Parameter decorator | `@Optional()`  | Stage 0    | Yes        | No        | Yes              |
+| Type annotation     | `foo: Foo`     | -          | Yes        | No        | Yes              |
 
-"Babel*" above means Babel with the following official plugins:
-  - [babel-preset-es2015](https://babeljs.io/docs/plugins/preset-es2015/)
-  - [babel-plugin-transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/)
-  - [babel-plugin-transform-decorators-legacy](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy) (not literally official but maintained by [@loganfsmyth](https://github.com/loganfsmyth), one of Babel's core contributors)
+"Babel\*" above means Babel with the following official plugins:
+
+- [babel-preset-es2015](https://babeljs.io/docs/plugins/preset-es2015/)
+- [babel-plugin-transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/)
+- [babel-plugin-transform-decorators-legacy](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy) (not literally official but maintained by [@loganfsmyth](https://github.com/loganfsmyth), one of Babel's core contributors)
 
 Property decorator in Babel is marked "Partial" because `babel-plugin-transform-decorators-legacy` ignores class properties without initializers.
 
@@ -74,16 +75,16 @@ npm install -S babel-polyfill zone.js
 
 ```js
 // Import polyfills.
-import 'babel-polyfill';
-import 'zone.js/dist/zone.js';
+import "babel-polyfill";
+import "zone.js/dist/zone.js";
 
 // Bootstrap app!
-import {provide} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {ROUTER_PROVIDERS} from '@angular/router';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { provide } from "@angular/core";
+import { bootstrap } from "@angular/platform-browser-dynamic";
+import { ROUTER_PROVIDERS } from "@angular/router";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 
-import {HelloApp} from './app';
+import { HelloApp } from "./app";
 
 bootstrap(HelloApp, [
   ROUTER_PROVIDERS,
