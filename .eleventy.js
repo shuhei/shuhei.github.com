@@ -7,7 +7,7 @@ module.exports = config => {
   config.setLibrary("md", getMarkdownIt());
 
   config.addCollection("posts", api => {
-    return api.getFilteredByGlob("source/_posts/*.md").reverse();
+    return api.getFilteredByGlob("source/posts/*.md").reverse();
   });
 
   config.addFilter("formatDate", formatDate);

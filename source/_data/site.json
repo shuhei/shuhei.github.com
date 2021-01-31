@@ -2,10 +2,8 @@
   "title": "Shuhei Kagawa",
   "author": "Shuhei Kagawa",
   "hostname": "https://shuheikagawa.com",
-  "perPage": 3,
-  "newPageExtension": "markdown",
-  "blogDir": "blog",
-  "sourceDir": "source",
-  "postDir": "_posts",
-  "cssFiles": ["source/_css/style.css"]
+  "twitter": {
+    "cardType": "summary_large_image",
+    "account": "shuheikagawa"
+  }
 }

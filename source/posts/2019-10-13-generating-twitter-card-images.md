@@ -2,7 +2,6 @@
 layout: post
 title: Generating Twitter Card images from blog post titles
 description: Twitter Cards show links to your website bigger on the timeline. This post explains how I generated images for Twitter Cards from blog post titles using node-canvas, inspired by Hatena Blog.
-image: auto
 tags: [Blog, JavaScript]
 ---
 

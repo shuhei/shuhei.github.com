@@ -32,7 +32,15 @@ data:
     </script>
     <style>{{ css | safe }}</style>
     <link rel="stylesheet" href="{{ fonts.css }}">
-    <!-- TODO: meta tags -->
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="twitter:card", "{{ site.twitter.cardType }}">
+    <meta name="twitter:site", "@{{ site.twitter.account }}">
+    <meta property="og:title", content="{{ title or site.title }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:description" content="{{ description or site.description }}">
+{% if image %}
+    <meta property="og:image" content="{{ image }}">
+{% endif %}
   </head>
   <body>
     <div class="container">
@@ -60,25 +68,3 @@ data:
     </div>
   </body>
 </html>
-<!--
-function meta(attrName, attrValue, content) {
-  if (!content) {
-    return null;
-  }
-  const attr = escapeAttr(attrValue);
-  return `<meta ${attrName}="${attr}" content="${escapeAttr(content)}">`;
-}
-
-function Layout({ site, css, title, image, description, children }) {
-  const metaTags = [
-    meta("name", "description", description),
-    meta("name", "twitter:card", "summary_large_image"),
-    meta("name", "twitter:site", "@shuheikagawa"),
-    // Open Graph metadata needs `property` instead of `name`.
-    meta("property", "og:title", title),
-    meta("property", "og:site_name", site.title),
-    meta("property", "og:description", description),
-    meta("property", "og:image", image)
-  ].filter(Boolean);
-}
--->
