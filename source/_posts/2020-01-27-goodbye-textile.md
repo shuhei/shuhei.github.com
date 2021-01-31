@@ -5,7 +5,7 @@ date: 2020-01-27
 tags: [Blog, JavaScript]
 ---
 
-[Textile](https://en.wikipedia.org/wiki/Textile_(markup_language) is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.
+[Textile](<https://en.wikipedia.org/wiki/Textile_(markup_language)>) is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.
 
 I started using Textile on a blog engine called [Textpattern](https://en.wikipedia.org/wiki/Textpattern). I don't remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards a more commercial one. Textpattern was a new open-source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.
 
