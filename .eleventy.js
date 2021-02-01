@@ -4,7 +4,7 @@ const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
 const { insertWbr } = require("./lib/filters/wbr");
 const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { htmlmin } = require("./lib/transformers/htmlmin");
-const { imagemin } = require("./lib/transformers/imagemin");
+const { imageopt } = require("./lib/transformers/imageopt");
 
 module.exports = config => {
   config.setQuietMode(true);
@@ -23,7 +23,7 @@ module.exports = config => {
   config.addFilter("indexPermalink", indexPermalink);
   config.addNunjucksAsyncFilter("postcss", postcss);
 
-  config.addTransform("imagemin", imagemin);
+  config.addTransform("imagemin", imageopt);
   config.addTransform("htmlmin", htmlmin);
 
   // Paththrough copy files paths are relative to the project root.

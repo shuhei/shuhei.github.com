@@ -185,27 +185,6 @@ a:hover {
   margin: 1.15em 0;
 }
 
-/*
- * For more details of responsive images,
- * see the custom markdown renderer's `image` method.
- */
-.responsive-image-wrapper {
-  display: block;
-}
-.responsive-image-outer {
-  display: block;
-  margin: 0 auto;
-}
-.responsive-image-inner {
-  display: block;
-  position: relative;
-}
-.responsive-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .social-buttons {
   margin: 2em 0 0;
 }
@@ -420,7 +399,7 @@ blockquote cite:before {
   li .hljs {
     margin-left: 0;
   }
-  .responsive-image-wrapper {
+  .img-wrapper {
     margin-left: -20px;
     margin-right: -20px;
   }
