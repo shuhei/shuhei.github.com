@@ -1,9 +1,9 @@
+const { postcss } = require("./lib/filters/css");
+const { formatDate } = require("./lib/filters/date");
 const { htmlmin } = require("./lib/transformers/htmlmin");
-const { formatDate } = require("./lib/utils/date");
-const { insertWbr } = require("./lib/utils/wbr");
-const { applyPostcss } = require("./lib/plugins/css");
+const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
+const { insertWbr } = require("./lib/filters/wbr");
 const { getMarkdownIt } = require("./lib/plugins/markdown");
-const { blogPermalink, indexPermalink } = require("./lib/plugins/permalink");
 
 module.exports = config => {
   config.setQuietMode(true);
@@ -17,10 +17,10 @@ module.exports = config => {
 
   config.addFilter("formatDate", formatDate);
   config.addFilter("insertWbr", insertWbr);
-  config.addNunjucksAsyncFilter("postcss", applyPostcss);
   config.addFilter("join", (items, separator) => items.join(separator));
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);
+  config.addNunjucksAsyncFilter("postcss", postcss);
 
   config.addTransform("htmlmin", htmlmin);
 
