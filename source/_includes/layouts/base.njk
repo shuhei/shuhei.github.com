@@ -17,7 +17,7 @@ data:
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title or site.title }}</title>
-    <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,9 +31,9 @@ data:
     <style>{{ css | postcss | safe }}</style>
     <link rel="stylesheet" href="{{ fonts.css }}">
     <meta name="description" content="{{ description or site.description }}">
-    <meta name="twitter:card", "{{ site.twitter.cardType }}">
-    <meta name="twitter:site", "@{{ site.twitter.account }}">
-    <meta property="og:title", content="{{ title or site.title }}">
+    <meta name="twitter:card" content="{{ site.twitter.cardType }}">
+    <meta name="twitter:site" content="@{{ site.twitter.account }}">
+    <meta property="og:title" content="{{ title or site.title }}">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:description" content="{{ description or site.description }}">
 {%- if image %}
