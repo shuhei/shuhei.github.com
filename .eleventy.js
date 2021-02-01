@@ -1,5 +1,6 @@
 const { formatDate } = require("./lib/utils/date");
 const { insertWbr } = require("./lib/utils/wbr");
+const { applyPostcss } = require("./lib/plugins/css");
 const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { blogPermalink, indexPermalink } = require("./lib/plugins/permalink");
 
@@ -15,6 +16,7 @@ module.exports = config => {
 
   config.addFilter("formatDate", formatDate);
   config.addFilter("insertWbr", insertWbr);
+  config.addNunjucksAsyncFilter("postcss", applyPostcss);
   config.addFilter("join", (items, separator) => items.join(separator));
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);

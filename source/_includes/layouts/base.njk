@@ -16,7 +16,7 @@ data:
 {%- endfor %}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
+    <title>{{ title or site.title }}</title>
     <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
     <script>
@@ -28,7 +28,7 @@ data:
       ga('create', 'UA-309586-8', 'shuheikagawa.com');
       ga('send', 'pageview');
     </script>
-    <style>{{ css | safe }}</style>
+    <style>{{ css | postcss | safe }}</style>
     <link rel="stylesheet" href="{{ fonts.css }}">
     <meta name="description" content="{{ description or site.description }}">
     <meta name="twitter:card", "{{ site.twitter.cardType }}">
