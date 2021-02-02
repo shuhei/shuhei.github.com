@@ -37,7 +37,7 @@ data:
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:description" content="{{ description or site.description }}">
 {%- if image %}
-    <meta property="og:image" content="{{ image }}">
+    <meta property="og:image" content="{{ image | normalizeUrl(site.hostname) }}">
 {%- endif %}
   </head>
   <body>

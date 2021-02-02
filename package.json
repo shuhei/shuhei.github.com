@@ -11,7 +11,7 @@
     "serve": "eleventy --serve",
     "test": "jest",
     "tdd": "jest --watch",
-    "test-text-images": "node lib/plugins/manual-tests/title-image.js",
+    "test-text-images": "node lib/filters/manual-tests/title-image.js",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "cy:run:live": "Cypress_baseUrl=https://shuheikagawa.com cypress run",
