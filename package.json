@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production eleventy",
     "clean": "rm -rf public",
     "deploy": "yarn clean && yarn build && gh-pages -d public -b master",
-    "lint": "eslint .eleventy.js *.config.js lib cypress source/{blog,posts}",
+    "lint": "eslint .eleventy.js *.config.js lib cypress source/blog source/posts",
     "serve": "eleventy --serve",
     "test": "jest",
     "tdd": "jest --watch",
