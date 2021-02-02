@@ -1,6 +1,7 @@
 ---
 title: 4 years at Zalando
 tags: []
+image: /images/2020-spree.jpg
 ---
 
 ![Spree in November, 2020](/images/2020-spree.jpg)

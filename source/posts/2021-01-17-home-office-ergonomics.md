@@ -1,6 +1,7 @@
 ---
 title: Things I wish I knew about home office ergonomics
 tags: []
+image: /images/2021-desk-front.jpg
 ---
 
 ![My current setup](/images/2021-desk-front.jpg)

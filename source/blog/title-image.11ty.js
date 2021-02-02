@@ -14,7 +14,7 @@ class TitleImage {
 
   async render(data) {
     const page = data.pagination.items[0];
-    return this.titleImage(page.data.title, data.site.title);
+    return this.titleImage(page.data.title, data.site.twitter.subtitle);
   }
 }
 

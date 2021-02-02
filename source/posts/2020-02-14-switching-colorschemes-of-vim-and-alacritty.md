@@ -1,6 +1,7 @@
 ---
 title: Switching color schemes of Vim and Alacritty
 tags: [Vim]
+image: /images/light-terminal.png
 ---
 
 I like fountain pens and good notebooks. They spark joy when I write on paper. Computer terminals are like stationery. A good terminal setup makes it fun to work with computers. Here is how I improved colors on my terminal and made it easy to switch them depending on the time and the mood.

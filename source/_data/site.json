@@ -1,9 +1,10 @@
 {
   "title": "Shuhei Kagawa",
   "author": "Shuhei Kagawa",
-  "hostname": "shuheikagawa.com",
+  "hostname": "https://shuheikagawa.com",
   "twitter": {
     "cardType": "summary_large_image",
-    "account": "shuheikagawa"
+    "account": "shuheikagawa",
+    "subtitle": "shuheikagawa.com"
   }
 }
