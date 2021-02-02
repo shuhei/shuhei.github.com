@@ -2,6 +2,7 @@ const { postcss } = require("./lib/filters/css");
 const { formatDate } = require("./lib/filters/date");
 const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
 const { insertWbr } = require("./lib/filters/wbr");
+const { titleImage } = require("./lib/filters/title-image");
 const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { htmlmin } = require("./lib/transformers/htmlmin");
 const { imageopt } = require("./lib/transformers/imageopt");
@@ -22,6 +23,7 @@ module.exports = config => {
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);
   config.addNunjucksAsyncFilter("postcss", postcss);
+  config.addJavaScriptFunction("titleImage", titleImage);
 
   config.addTransform("imagemin", imageopt);
   config.addTransform("htmlmin", htmlmin);
