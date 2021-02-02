@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style type="text/css">
-      #container {
+<!doctype html><html><head><style type="text/css">#container {
         width: 700px;
         margin: 0 auto;
         text-align: center;
-      }
-    </style>
-    <script src="jquery-1.4.2.min.js"></script>
-    <script src="protovis-r3.2.js"></script>
-    <script type="text/javascript+protovis">
-    $.getJSON("stats.json", function(data) {
+      }</style><script src="jquery-1.4.2.min.js"></script><script src="protovis-r3.2.js"></script><script type="text/javascript+protovis">$.getJSON("stats.json", function(data) {
       new pv.Panel()
         .canvas("replies")
         .width(660)
@@ -123,14 +114,4 @@
         .left(function() 45 + this.index * 27)
         .fillStyle(dayColor.by(function() Math.floor((this.index + 1) % 24 / 3) * 3))
       .root.render();
-    });
-    </script>
-  </head>
-  <body>
-    <div id="container">
-      <div id="week_hour_circle"></div>
-      <div id="week_hour_dots"></div>
-      <div id="replies"></div>
-    </div>
-  </body>
-</html>
+    });</script></head><body><div id="container"><div id="week_hour_circle"></div><div id="week_hour_dots"></div><div id="replies"></div></div></body></html>

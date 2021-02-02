@@ -1,97 +1,18 @@
-<!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-			<link rel="preload" href="https://fonts.googleapis.com/css2?display=swap&family=Libre+Baskerville:ital@0;1&family=Libre+Franklin:wght@700&family=DM+Mono" as="style">
-<link rel="preload" href="https://fonts.gstatic.com/s/librebaskerville/v9/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2" as="font" crossorigin="anonymous">
-<link rel="preload" href="https://fonts.gstatic.com/s/librefranklin/v6/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDPTedX18mE.woff" as="font" crossorigin="anonymous">
-<link rel="preload" href="https://fonts.gstatic.com/s/dmmono/v3/aFTU7PB1QTsUX8KYthqQBK6PYK0.woff2" as="font" crossorigin="anonymous">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Let's create a Babel plugin - Shuhei Kagawa</title>
-      <link rel="icons" sizes="16x16 32x32 48x48" href="/favicon.ico">
-      <link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml">
-      <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="preload" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Libre+Baskerville:ital@0;1&amp;family=Libre+Franklin:wght@700&amp;family=DM+Mono" as="style"><link rel="preload" href="https://fonts.gstatic.com/s/librebaskerville/v9/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2" as="font" crossorigin="anonymous"><link rel="preload" href="https://fonts.gstatic.com/s/librefranklin/v6/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDPTedX18mE.woff" as="font" crossorigin="anonymous"><link rel="preload" href="https://fonts.gstatic.com/s/dmmono/v3/aFTU7PB1QTsUX8KYthqQBK6PYK0.woff2" as="font" crossorigin="anonymous"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><meta name="viewport" content="width=device-width,initial-scale=1"><title>Let&#39;s create a Babel plugin</title><link rel="icon" sizes="16x16 32x32 48x48" href="/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS Feed for shuheikagawa.com" href="/blog/feed/rss.xml"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-309586-8', 'shuheikagawa.com');
-  ga('send', 'pageview');
-</script>
-      <style>:root{--bg-color:#fff;--text-color:#222;--highlight-color:#095ae8;--code-text-color:var(--code-mono-1);--syntax-hue:230;--syntax-saturation:1%;--syntax-brightness:100%;--code-mono-1:hsl(var(--syntax-hue), 8%, 24%);--code-mono-2:hsl(var(--syntax-hue), 6%, 44%);--code-mono-3:hsl(var(--syntax-hue), 4%, 64%);--code-hue-1:hsl(198, 99%, 37%);--code-hue-2:hsl(221, 76%, 47%);--code-hue-3:hsl(301, 63%, 40%);--code-hue-4:hsl(119, 72%, 31%);--code-hue-5:hsl(5, 68%, 48%);--code-hue-5-2:hsl(344, 84%, 43%);--code-hue-6:hsl(41, 99%, 30%);--code-hue-6-2:hsl(41, 99%, 30%);--body-font-family:"Libre Baskerville",serif;--heading-font-family:"Libre Franklin",sans-serif;--code-font-family:"DM Mono",monospace}body{font-family:"Libre Baskerville",serif;font-family:var(--body-font-family);background:#fff;background:var(--bg-color);color:#222;color:var(--text-color);padding:0;margin:0;font-size:16px;line-height:1.9}.container{width:700px;padding:0 20px;margin:0 auto}a{color:#095ae8;color:var(--highlight-color);transition:color .5s ease}a:hover{opacity:.7}.header{padding:1.5em 0 1em;display:flex}.header__title{margin:0 10px 0 0;flex-grow:1;font-size:1em;font-weight:400}.header__title a{color:#222;color:var(--text-color);text-decoration:none}.header__nav{flex-grow:0}.menu{list-style-position:outside;list-style-type:none;padding:0;margin:0;text-align:right}.menu__item{display:inline-block;padding:0 0 0 .7em}.menu__item a{color:#222;color:var(--text-color);text-decoration:none}.footer{padding:3em 0 4em;text-align:center}.title{font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-size:3em;margin:0 0 .2em;line-height:1.1}.title a{color:#222;color:var(--text-color);text-decoration:none}.post,.post-list{padding:1.7em 0 1.25em}.post:not(:first-child):before{content:"* * *";font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-weight:700;font-size:4em;display:block;margin:.2em auto .6em;text-align:center;line-height:1}.post .meta{font-size:.75em}.post-list .title{margin-bottom:10px}.post-list-item{line-height:1.6em;padding:10px 0;display:flex}.post-list-item__date{font-size:.8em;width:8em;flex-shrink:0}.post-list-item__title{font-size:1.3em;margin:0;font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-weight:700}.post-list-item__title a{text-decoration:none;color:#222;color:var(--text-color)}.content h2,.content h3,.content h4,.content h5,.content h6{font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);line-height:1.1;margin:1em 0 0 0}.content h2{font-size:2.2em}.content h3{font-size:1.6em}.content h4{font-size:1.2em}.content img{max-width:100%}.content p{margin:1.15em 0}.responsive-image-wrapper{display:block}.responsive-image-outer{display:block;margin:0 auto}.responsive-image-inner{display:block;position:relative}.responsive-image{position:absolute;top:0;left:0}.social-buttons{margin:2em 0 0}.comments{margin-bottom:3em}ol,ul{list-style-position:outside;padding-left:1.4em}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}code{color:#383942;color:var(--code-text-color);font-size:.9em;font-family:"DM Mono",monospace;font-family:var(--code-font-family)}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.hljs{display:block;line-height:1.5em;padding:15px 20px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#383942;color:var(--code-text-color)}.hljs-comment,.hljs-quote{color:#696b76;color:var(--code-mono-2);font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a625a4;color:var(--code-hue-3)}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#cd3527;color:var(--code-hue-5)}.hljs-literal{color:#0083bb;color:var(--code-hue-1)}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#188716;color:var(--code-hue-4)}.hljs-built_in,.hljs-class .hljs-title{color:#986800;color:var(--code-hue-6-2)}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986800;color:var(--code-hue-6)}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#1c56d2;color:var(--code-hue-2)}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}blockquote{border-left:5px solid #222;border-left:5px solid var(--text-color);font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin-top:20px;display:flex;justify-content:space-between}.pagination li{min-height:1em;width:33%}.pagination a{text-decoration:none}.pagination__prev-page a:before{content:"< "}.pagination__next-page{text-align:right}.pagination__next-page a:after{content:" >"}.pagination__archives{flex-grow:1;text-align:center}@media only screen and (max-width:767px){body{font-size:16px;line-height:1.6}.container{width:auto}.post,.post-list{padding-top:10px}.post-list-item{display:block}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px;border-radius:0}li .hljs{margin-left:0}.responsive-image-wrapper{margin-left:-20px;margin-right:-20px}}</style>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Libre+Baskerville:ital@0;1&family=Libre+Franklin:wght@700&family=DM+Mono">
-      <meta name="description" content="[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend thejameskyle/babel-handbook as more up-to-date documentation. Babel is the gre...">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@shuheikagawa">
-<meta property="og:title" content="Let's create a Babel plugin - Shuhei Kagawa">
-<meta property="og:site_name" content="Shuhei Kagawa">
-<meta property="og:description" content="[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend thejameskyle/babel-handbook as more up-to-date documentation. Babel is the gre...">
-<meta property="og:image" content="https://shuheikagawa.com/blog/2015/09/13/lets-create-a-babel-plugin/title.png">
-    </head>
-    <body>
-      <div class="container">
-        <header class="header">
-          <h1 class="header__title">
-            <a href="/">Shuhei Kagawa</a>
-          </h1>
-          <nav class="header__nav">
-            <ul class="menu">
-              <li class="menu__item">
-                <a href="/about/">About</a>
-              </li>
-              <li class="menu__item">
-                <a href="/blog/archives/">All posts</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <div class="main">
-          
-    
-    <div class="post">
-      <div class="post-header">
-        <h1 class="title">
-          <a href=/blog/2015/09/13/lets-create-a-babel-plugin/>Let's create a Babel plugin</a>
-        </h1>
-        <div class="meta">
-          <span class="date">Sep 13, 2015</span>
-          - <span class="category">JavaScript</span>, <span class="category">Babel</span>
-        </div>
-      </div>
-      <div class="content">
-        <div>
-          <p><strong>[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend <a href="https://github.com/thejameskyle/babel-handbook/">thejameskyle/babel-handbook</a> as more up-to-date documentation.</strong></p>
-<p><a href="https://babeljs.io/">Babel</a> is the great tool that transpiles ES2015, ES7, JSX and such into ES5 and make them available on the browsers. If you are a person like me, you might use it on a daily basis.</p>
-<p>In addition to to <a href="https://babeljs.io/docs/advanced/transformers/">the built-in transformers</a>, you can add your own transpilation rules by employing third-party plugins. For example, I have been developing <a href="https://github.com/shuhei/babel-plugin-angular2-annotations">a plugin that enables you to write Angular 2 apps with Babel</a> lately. It is easier to develop than you may think. Let me introduce how to create a plugin for Babel 5.x.</p>
-<h2 id="how-babel-works">How Babel works</h2>
-<p>Simply put, Babel works like the following:</p>
-<ol>
-<li>Babylon, the parser of Babel, parses source code into AST.</li>
-<li>Transformers transforms AST into another AST in sequence.</li>
-<li>Generators generates JavaScript code from the final AST.</li>
-</ol>
-<p>In the step 1, AST is for <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a>, which represents the structure of source code as a tree. Babel&#39;s AST is based on a specfication called ESTree and has some extensions for non-standard nodes like ES7+, JSX and flowtype. You can check the ESTree spec at the following links:</p>
-<ul>
-<li><a href="https://github.com/estree/estree/blob/master/spec.md">Core</a></li>
-<li><a href="https://github.com/estree/estree/blob/master/es6.md">ES6</a></li>
-</ul>
-<p>In the step 2, transformers consists of <a href="https://babeljs.io/docs/advanced/transformers/">the built-in transformers</a>, like <a href="es6.classes">es6.classes</a>, and third-party plugin transformers. As of Babel 6.0, the built-in transpilers will also be extracted as external plugin modules. So there will be no border between the build-in and third-party plugins.</p>
-<p>So, what you have to do is write a transformer that transforms AST into another AST. You don&#39;t need to parse JS or generate JS from AST by yourself. It will be greatly effective compared to introducing another tool that parses JS by its own. Also, Babel&#39;s powerful API will make it easier than using the raw esprima tools.</p>
-<h2 id="what-you-can-not-do">What you can (not) do</h2>
-<p>You can do almost anything as long as it&#39;s in the syntax that Babylon supports, ES2015, ES7+, JSX, flowtype and etc. You can&#39;t introduce new syntax because Babel currently doesn&#39;t support parser extension by plugins. (You can actually accomplish it by monkey-patching Babylon though.)</p>
-<h2 id="create-a-project">Create a project</h2>
-<p>Create a directory in the format of <code>babel-plugin-*</code>. The <code>*</code> part turns to be your plugin name. In the directory, you can create a Babel plugin project with <code>babel-plugin init</code>, which is installed by <code>npm install -g babel</code>.</p>
-<pre><code class="hljs sh"><span class="hljs-comment"># Prepare a project directory.</span>
+      ga('create', 'UA-309586-8', 'shuheikagawa.com');
+      ga('send', 'pageview');</script><style>:root{--bg-color:#f9f9f9;--text-color:#222;--highlight-color:#095ae8;--code-text-color:var(--code-mono-1);--code-bg-color:#fff;--syntax-hue:230;--syntax-saturation:1%;--syntax-brightness:100%;--code-mono-1:hsl(var(--syntax-hue), 8%, 24%);--code-mono-2:hsl(var(--syntax-hue), 6%, 44%);--code-mono-3:hsl(var(--syntax-hue), 4%, 64%);--code-hue-1:hsl(198, 99%, 37%);--code-hue-2:hsl(221, 76%, 47%);--code-hue-3:hsl(301, 63%, 40%);--code-hue-4:hsl(119, 72%, 31%);--code-hue-5:hsl(5, 68%, 48%);--code-hue-5-2:hsl(344, 84%, 43%);--code-hue-6:hsl(41, 99%, 30%);--code-hue-6-2:hsl(41, 99%, 30%);--body-font-family:"Libre Baskerville",serif;--heading-font-family:"Libre Franklin",sans-serif;--code-font-family:"DM Mono",monospace}body{font-family:"Libre Baskerville",serif;font-family:var(--body-font-family);background:#f9f9f9;background:var(--bg-color);color:#222;color:var(--text-color);padding:0;margin:0;font-size:16px;line-height:1.9}.container{width:700px;padding:0 20px;margin:0 auto}a{color:#095ae8;color:var(--highlight-color);transition:color .5s ease}a:hover{opacity:.7}.header{padding:1.5em 0 1em;display:flex}.header__title{margin:0 10px 0 0;flex-grow:1;font-size:1em;font-weight:400}.header__title a{color:#222;color:var(--text-color);text-decoration:none}.header__nav{flex-grow:0}.menu{list-style-position:outside;list-style-type:none;padding:0;margin:0;text-align:right}.menu__item{display:inline-block;padding:0 0 0 .7em}.menu__item a{color:#222;color:var(--text-color);text-decoration:none}.footer{padding:3em 0 4em;text-align:center}.title{font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-size:3em;margin:0 0 .2em;line-height:1.1}.title a{color:#222;color:var(--text-color);text-decoration:none}.post,.post-list{padding:1.7em 0 1.25em}.post:not(:first-child):before{content:"* * *";font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-weight:700;font-size:4em;display:block;margin:.2em auto .6em;text-align:center;line-height:1}.post .meta{font-size:.75em}.post-list .title{margin-bottom:10px}.post-list-item{line-height:1.6em;padding:10px 0;display:flex}.post-list-item__date{font-size:.8em;width:8em;flex-shrink:0}.post-list-item__title{font-size:1.3em;margin:0;font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);font-weight:700}.post-list-item__title a{text-decoration:none;color:#222;color:var(--text-color)}.content h2,.content h3,.content h4,.content h5,.content h6{font-family:"Libre Franklin",sans-serif;font-family:var(--heading-font-family);margin:1em 0 0 0}.content h2{font-size:2.2em;line-height:1.1}.content h3{font-size:1.6em;line-height:1.3}.content h4{font-size:1.2em}.content img{max-width:100%;height:auto}.content p{margin:1.15em 0}.social-buttons{margin:2em 0 0}.comments{margin-bottom:3em}ol,ul{list-style-position:outside;padding-left:1.4em}.table-wrapper{overflow-x:auto}table{border-collapse:collapse;margin:2em 0}th{font-weight:400;text-align:left}tbody{border-top:1px solid #333;padding:.5em 0}td,th{padding-right:1em}code{color:#383942;color:var(--code-text-color);background-color:#fff;background-color:var(--code-bg-color);font-size:.9em;font-family:"DM Mono",monospace;font-family:var(--code-font-family)}.code__filename{display:inline-block;margin-bottom:13px;padding:5px 10px;font-size:.85em;background-color:#666}.hljs{display:block;line-height:1.5em;padding:1em 20px;overflow-x:auto;-webkit-overflow-scrolling:touch;color:#383942;color:var(--code-text-color);background-color:#fff;background-color:var(--code-bg-color)}.hljs-comment,.hljs-quote{color:#696b76;color:var(--code-mono-2);font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a625a4;color:var(--code-hue-3)}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#cd3527;color:var(--code-hue-5)}.hljs-literal{color:#0083bb;color:var(--code-hue-1)}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#188716;color:var(--code-hue-4)}.hljs-built_in,.hljs-class .hljs-title{color:#986800;color:var(--code-hue-6-2)}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986800;color:var(--code-hue-6)}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#1c56d2;color:var(--code-hue-2)}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}blockquote{border-left:5px solid #222;border-left:5px solid var(--text-color);font-style:italic;padding:.1em 1.2em;margin-left:0;quotes:"\201C""\201D""\2018""\2019"}blockquote p:first-child:before{content:open-quote;font-family:serif;font-size:3em;font-weight:700;line-height:.1em;margin-right:.2em;vertical-align:-.4em}blockquote cite{color:#999990}blockquote cite:before{content:"- "}.pagination{list-style-position:outside;list-style-type:none;padding:0;margin-top:20px;display:flex;justify-content:space-between}.pagination li{min-height:1em}.pagination a{text-decoration:none}.pagination__next-page,.pagination__prev-page{width:35%}.pagination__next-page{text-align:right}.pagination__archives{flex-grow:1;text-align:center}@media only screen and (max-width:767px){body{font-size:15px;line-height:1.65}.container{width:auto}.post,.post-list{padding-top:10px}.post-list-item{display:block}.hljs{margin-left:-20px;margin-right:-20px;padding:1.4em 20px;border-radius:0}li .hljs{margin-left:0}.img-wrapper{margin-left:-20px;margin-right:-20px}}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Libre+Baskerville:ital@0;1&amp;family=Libre+Franklin:wght@700&amp;family=DM+Mono"><meta name="description" content=""><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@shuheikagawa"><meta property="og:title" content="Let&#39;s create a Babel plugin"><meta property="og:site_name" content="Shuhei Kagawa"><meta property="og:description" content=""><meta property="og:image" content="https://shuheikagawa.com/blog/2015/09/13/lets-create-a-babel-plugin/title.png"></head><body><div class="container"><header class="header"><h1 class="header__title"><a href="/">Shuhei Kagawa</a></h1><nav class="header__nav"><ul class="menu"><li class="menu__item"><a href="/about/">About</a></li><li class="menu__item"><a href="/blog/archives/">All posts</a></li></ul></nav></header><div class="main"><div class="post"><div class="post-header"><h1 class="title">Let's create a Babel plugin</h1><div class="meta"><span class="date">Sep 13, 2015</span> - JavaScript, Babel</div></div><div class="content"><div><p><strong>[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend <a href="https://github.com/thejameskyle/babel-handbook/">thejameskyle/babel-handbook</a> as more up-to-date documentation.</strong></p><p><a href="https://babeljs.io/">Babel</a> is the great tool that transpiles ES2015, ES7, JSX and such into ES5 and make them available on the browsers. If you are a person like me, you might use it on a daily basis.</p><p>In addition to to <a href="https://babeljs.io/docs/advanced/transformers/">the built-in transformers</a>, you can add your own transpilation rules by employing third-party plugins. For example, I have been developing <a href="https://github.com/shuhei/babel-plugin-angular2-annotations">a plugin that enables you to write Angular 2 apps with Babel</a> lately. It is easier to develop than you may think. Let me introduce how to create a plugin for Babel 5.x.</p><h2>How Babel works</h2><p>Simply put, Babel works like the following:</p><ol><li>Babylon, the parser of Babel, parses source code into AST.</li><li>Transformers transforms AST into another AST in sequence.</li><li>Generators generates JavaScript code from the final AST.</li></ol><p>In the step 1, AST is for <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a>, which represents the structure of source code as a tree. Babel's AST is based on a specfication called ESTree and has some extensions for non-standard nodes like ES7+, JSX and flowtype. You can check the ESTree spec at the following links:</p><ul><li><a href="https://github.com/estree/estree/blob/master/spec.md">Core</a></li><li><a href="https://github.com/estree/estree/blob/master/es6.md">ES6</a></li></ul><p>In the step 2, transformers consists of <a href="https://babeljs.io/docs/advanced/transformers/">the built-in transformers</a>, like <a href="es6.classes">es6.classes</a>, and third-party plugin transformers. As of Babel 6.0, the built-in transpilers will also be extracted as external plugin modules. So there will be no border between the build-in and third-party plugins.</p><p>So, what you have to do is write a transformer that transforms AST into another AST. You don't need to parse JS or generate JS from AST by yourself. It will be greatly effective compared to introducing another tool that parses JS by its own. Also, Babel's powerful API will make it easier than using the raw esprima tools.</p><h2>What you can (not) do</h2><p>You can do almost anything as long as it's in the syntax that Babylon supports, ES2015, ES7+, JSX, flowtype and etc. You can't introduce new syntax because Babel currently doesn't support parser extension by plugins. (You can actually accomplish it by monkey-patching Babylon though.)</p><h2>Create a project</h2><p>Create a directory in the format of <code>babel-plugin-*</code>. The <code>*</code> part turns to be your plugin name. In the directory, you can create a Babel plugin project with <code>babel-plugin init</code>, which is installed by <code>npm install -g babel</code>.</p><pre><code class="hljs sh"><span class="hljs-comment"># Prepare a project directory.</span>
 mkdir babel-plugin-foo-bar
 <span class="hljs-built_in">cd</span> babel-plugin-foo-bar
 <span class="hljs-comment"># Generate necessary files.</span>
 npm install -g babel
 babel-plugin init
 <span class="hljs-comment"># Install dependencies.</span>
-npm install</code></pre><p>The following structure should have been generated:</p>
-<pre><code class="hljs ">.
+npm install
+</code></pre><p>The following structure should have been generated:</p><pre><code class="hljs">.
 ├── .gitignore
 ├── .npmigonore
 ├── LICENSE
@@ -99,25 +20,16 @@ npm install</code></pre><p>The following structure should have been generated:</
 ├── node_modules
 ├── package.json
 └── src
-    └── index.js</code></pre><p>You will find some npm-run-scripts in the <code>package.json</code>:</p>
-<ul>
-<li><code>npm run build</code> transpiles files under <code>src</code> directory with Babel and output the result into <code>lib</code> directory.</li>
-<li><code>npm run push</code> releases a newer version of the plugin. It takes care of git commit, tag and npm package.</li>
-<li><code>npm test</code> runs <code>babel-plugin test</code> but fails because the command doesn&#39;t exist. <a href="https://github.com/babel/babel/issues/1950">It seems like it will work in the future.</a> So, prepare your favorite test runner like <code>mocha</code> for now.</li>
-</ul>
-<p>With this setup, you can write your plugin itself with Babel&#39;s features. <code>src</code> should be ignored in npm and <code>lib</code> in git.</p>
-<h2 id="transformer">Transformer</h2>
-<p><code>src/index.js</code>, the meat of the plugin, looks like this:</p>
-<pre><code class="hljs js"><span class="hljs-comment">/* eslint no-unused-vars:0 */</span>
+    └── index.js
+</code></pre><p>You will find some npm-run-scripts in the <code>package.json</code>:</p><ul><li><code>npm run build</code> transpiles files under <code>src</code> directory with Babel and output the result into <code>lib</code> directory.</li><li><code>npm run push</code> releases a newer version of the plugin. It takes care of git commit, tag and npm package.</li><li><code>npm test</code> runs <code>babel-plugin test</code> but fails because the command doesn't exist. <a href="https://github.com/babel/babel/issues/1950">It seems like it will work in the future.</a> So, prepare your favorite test runner like <code>mocha</code> for now.</li></ul><p>With this setup, you can write your plugin itself with Babel's features. <code>src</code> should be ignored in npm and <code>lib</code> in git.</p><h2>Transformer</h2><p><code>src/index.js</code>, the meat of the plugin, looks like this:</p><pre><code class="hljs js"><span class="hljs-comment">/* eslint no-unused-vars:0 */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">"foo"</span>, {
     <span class="hljs-attr">visitor</span>: {
       <span class="hljs-comment">// your visitor methods go here</span>
     }
   });
-}</code></pre><p>It exports a factory function that creates a <code>Plugin</code> instance. The <code>Plugin</code> constructor gets the plugin&#39;s name and a configuration object.</p>
-<p>The <code>visitor</code> property holds methods named as AST node types. A Babel transformer traverses AST from the top to the bottom. Each method is called when the trasnformer visits the matched nodes. For instance, you can manipulate class declarations and function declarations as the following:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
+}
+</code></pre><p>It exports a factory function that creates a <code>Plugin</code> instance. The <code>Plugin</code> constructor gets the plugin's name and a configuration object.</p><p>The <code>visitor</code> property holds methods named as AST node types. A Babel transformer traverses AST from the top to the bottom. Each method is called when the trasnformer visits the matched nodes. For instance, you can manipulate class declarations and function declarations as the following:</p><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">"foo"</span>, {
     <span class="hljs-attr">visitor</span>: {
       ClassDeclaration(node, parent) {
@@ -128,42 +40,20 @@ npm install</code></pre><p>The following structure should have been generated:</
       }
     }
   });
-};</code></pre><p>You can also use <code>alias</code> instead of plain node types to match multiple node types. For example, <code>Function</code> matches against <code>FunctionDeclaration</code> and <code>FunctionExpression</code>.</p>
-<p><code>types</code> is another important thing. It contains a bunch of utility functions for AST manipulation.</p>
-<ul>
-<li>AST node generation functions such as <code>identifier()</code>, <code>memberExpression()</code> and <code>assignmentExpression</code>. Their names are lowerCamelCased versions of the corresponding node types. You can check their arguments at <a href="https://github.com/babel/babel/tree/master/packages/babel/src/types/definitions">definitions</a>&#39; <code>builder</code> properties.</li>
-<li>AST node check functions such as <code>isIdentifier()</code> and <code>isDecorator()</code>. You can shallowly check node properties with the second argument.</li>
-</ul>
-<p>The functions are <a href="https://github.com/babel/babel/blob/v5.8.24/packages/babel/src/types/index.js">generated</a> from <a href="https://github.com/babel/babel/tree/master/packages/babel/src/types/definitions">definitions</a>。The definitions will serve as a reference.</p>
-<p>The best examples of AST transformation using <code>types</code> functions are undoubtedly <a href="https://github.com/babel/babel/tree/v5.8.24/packages/babel/src/transformation/transformers">the source code of the built-in transformers</a>. Pick the closest one to what you want from <a href="https://babeljs.io/docs/advanced/transformers/">the list</a> and check out the source code. <a href="https://babeljs.io/docs/advanced/plugins/">The official documentation</a> will also help.</p>
-<h2 id="case-study-assign-class-constructors-arguments-as-instance-properties">Case study: Assign class constructor&#39;s arguments as instance properties</h2>
-<p>As a case study, I built a plugin called <a href="https://github.com/shuhei/babel-plugin-auto-assign">babel-plugin-auto-assign</a> that &quot;assigns class constructor&#39;s arguments as instance properties&quot;, which resembles TypeScript&#39;s parameter properties in its action. It is intended to be used with class-based dependency injection like Angular&#39;s.</p>
-<p>To avoid unawarely messing up constructors, let&#39;s apply the transformation only to classes with a decrator called <code>@autoAssign</code>. <code>@autoAssign</code> is a so-called <a href="https://github.com/jonathandturner/brainstorming/blob/master/README.md#c6-ambient-decorators">ambient decorator</a> because it should not appear in the output.</p>
-<p>Before:</p>
-<pre><code class="hljs js">@autoAssign
+};
+</code></pre><p>You can also use <code>alias</code> instead of plain node types to match multiple node types. For example, <code>Function</code> matches against <code>FunctionDeclaration</code> and <code>FunctionExpression</code>.</p><p><code>types</code> is another important thing. It contains a bunch of utility functions for AST manipulation.</p><ul><li>AST node generation functions such as <code>identifier()</code>, <code>memberExpression()</code> and <code>assignmentExpression</code>. Their names are lowerCamelCased versions of the corresponding node types. You can check their arguments at <a href="https://github.com/babel/babel/tree/master/packages/babel/src/types/definitions">definitions</a>' <code>builder</code> properties.</li><li>AST node check functions such as <code>isIdentifier()</code> and <code>isDecorator()</code>. You can shallowly check node properties with the second argument.</li></ul><p>The functions are <a href="https://github.com/babel/babel/blob/v5.8.24/packages/babel/src/types/index.js">generated</a> from <a href="https://github.com/babel/babel/tree/master/packages/babel/src/types/definitions">definitions</a>。The definitions will serve as a reference.</p><p>The best examples of AST transformation using <code>types</code> functions are undoubtedly <a href="https://github.com/babel/babel/tree/v5.8.24/packages/babel/src/transformation/transformers">the source code of the built-in transformers</a>. Pick the closest one to what you want from <a href="https://babeljs.io/docs/advanced/transformers/">the list</a> and check out the source code. <a href="https://babeljs.io/docs/advanced/plugins/">The official documentation</a> will also help.</p><h2>Case study: Assign class constructor's arguments as instance properties</h2><p>As a case study, I built a plugin called <a href="https://github.com/shuhei/babel-plugin-auto-assign">babel-plugin-auto-assign</a> that &quot;assigns class constructor's arguments as instance properties&quot;, which resembles TypeScript's parameter properties in its action. It is intended to be used with class-based dependency injection like Angular's.</p><p>To avoid unawarely messing up constructors, let's apply the transformation only to classes with a decrator called <code>@autoAssign</code>. <code>@autoAssign</code> is a so-called <a href="https://github.com/jonathandturner/brainstorming/blob/master/README.md#c6-ambient-decorators">ambient decorator</a> because it should not appear in the output.</p><p>Before:</p><pre><code class="hljs js">@autoAssign
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>{
   <span class="hljs-keyword">constructor</span>(foo, bar, baz) {
   }
-}</code></pre><p>After:</p>
-<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>{
+}
+</code></pre><p>After:</p><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>{
   <span class="hljs-keyword">constructor</span>(foo, bar, baz) {
     <span class="hljs-keyword">this</span>.foo = foo;
     <span class="hljs-keyword">this</span>.bar = bar;
     <span class="hljs-keyword">this</span>.baz = baz;
   }
-}</code></pre><p>Note that we can leave the ES6 class as is because it&#39;s going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied <strong>before</strong> the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with <code>:after</code> like <code>babel --plugins foo:after index.js</code>.</p>
-<h2 id="ast-beforeafter-transformation">AST before/after transformation</h2>
-<p>To transform AST, we need to know how the starting post and the goal look like. You can visualize source code in AST parsed by Babylon with <a href="http://felix-kling.de/esprima_ast_explorer">Felix Kling&#39;s JS AST Explorer</a>.</p>
-<ul>
-<li><a href="http://felix-kling.de/esprima_ast_explorer/#/OuFSNzgCl2">Before transformation</a></li>
-<li><a href="http://felix-kling.de/esprima_ast_explorer/#/tZsOQTyns6">After transformation</a></li>
-</ul>
-<p>It also works to examine nodes with <code>console.log()</code>.</p>
-<h2 id="code">Code</h2>
-<p>Once you get the ASTs, half of the work is done. Let&#39;s write some code to insert AST nodes using <code>types</code> functions.</p>
-<p><a href="https://github.com/shuhei/babel-plugin-auto-assign">The complete project</a> includes unit testing with fixtures.</p>
-<p><code>src/index.js</code></p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> AutoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
+}
+</code></pre><p>Note that we can leave the ES6 class as is because it's going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied <strong>before</strong> the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with <code>:after</code> like <code>babel --plugins foo:after index.js</code>.</p><h2>AST before/after transformation</h2><p>To transform AST, we need to know how the starting post and the goal look like. You can visualize source code in AST parsed by Babylon with <a href="http://felix-kling.de/esprima_ast_explorer">Felix Kling's JS AST Explorer</a>.</p><ul><li><a href="http://felix-kling.de/esprima_ast_explorer/#/OuFSNzgCl2">Before transformation</a></li><li><a href="http://felix-kling.de/esprima_ast_explorer/#/tZsOQTyns6">After transformation</a></li></ul><p>It also works to examine nodes with <code>console.log()</code>.</p><h2>Code</h2><p>Once you get the ASTs, half of the work is done. Let's write some code to insert AST nodes using <code>types</code> functions.</p><p><a href="https://github.com/shuhei/babel-plugin-auto-assign">The complete project</a> includes unit testing with fixtures.</p><p><code>src/index.js</code></p><pre><code class="hljs js"><span class="hljs-keyword">import</span> AutoAssign <span class="hljs-keyword">from</span> <span class="hljs-string">'./auto-assign'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ Plugin, types: t }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Plugin(<span class="hljs-string">'autoAssign'</span>, {
@@ -173,8 +63,8 @@ npm install</code></pre><p>The following structure should have been generated:</
       }
     }
   });
-}</code></pre><p><code>src/auto-assign.js</code></p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoAssign</span> </span>{
+}
+</code></pre><p><code>src/auto-assign.js</code></p><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoAssign</span> </span>{
   <span class="hljs-keyword">constructor</span>(types) {
     <span class="hljs-keyword">this</span>.types = types;
   }
@@ -232,11 +122,10 @@ npm install</code></pre><p>The following structure should have been generated:</
     <span class="hljs-keyword">const</span> assignment = <span class="hljs-keyword">this</span>.types.assignmentExpression(<span class="hljs-string">'='</span>, prop, arg);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.types.expressionStatement(assignment);
   }
-}</code></pre><h2 id="run">Run!</h2>
-<p>Use <code>--optional es7.decorators</code> option in order to support decorators. You can specify plugins by file path in addition to plugin name, which is convenient for development.</p>
-<pre><code class="hljs ">npm run build
-echo &#39;@autoAssign class Hello { constructor(foo, bar, baz) {} }&#39; | babel --optional es7.decorators --plugins ./lib/index.js</code></pre><p>Here comes the result!</p>
-<pre><code class="hljs js"><span class="hljs-meta">"use strict"</span>;
+}
+</code></pre><h2>Run!</h2><p>Use <code>--optional es7.decorators</code> option in order to support decorators. You can specify plugins by file path in addition to plugin name, which is convenient for development.</p><pre><code class="hljs">npm run build
+echo '@autoAssign class Hello { constructor(foo, bar, baz) {} }' | babel --optional es7.decorators --plugins ./lib/index.js
+</code></pre><p>Here comes the result!</p><pre><code class="hljs js"><span class="hljs-meta">"use strict"</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }
 
@@ -251,48 +140,5 @@ echo &#39;@autoAssign class Hello { constructor(foo, bar, baz) {} }&#39; | babel
 
   <span class="hljs-keyword">var</span> _Hello = Hello;
   <span class="hljs-keyword">return</span> Hello;
-})();</code></pre><h2 id="publish">Publish</h2>
-<p>After you write README and commit it, you can publish your plugin to the world by <code>npm run push</code>.</p>
-<p>Let&#39;s create awesome babel plugins!</p>
-<h2 id="references">References</h2>
-<h3 id="documentation">Documentation</h3>
-<ul>
-<li><a href="https://babeljs.io/docs/advanced/plugins/">Plugins - Babel</a></li>
-<li><a href="https://github.com/estree/estree">ESTree</a></li>
-<li><a href="https://github.com/babel/babel/tree/v5.8.24/packages/babel/src/transformation/transformers">Built-in transformers</a></li>
-</ul>
-<h3 id="projects">Projects</h3>
-<ul>
-<li><a href="https://github.com/shuhei/babel-plugin-auto-assign">shuhei/babel-plugin-auto-assign</a> The case study project in this article.</li>
-<li><a href="https://github.com/shuhei/babel-plugin-angular2-annotations">shuhei/babel-plugin-angular2-annotations</a> A plugin for building Angular 2 app with Babel. It supports TypeScript-like method parameter decorators by monkey-patching Babylon.</li>
-</ul>
-
-        </div>
-      </div>
-    </div>
-  
-    
-  <div class="comments">
-    <div id="disqus_thread" />
-    <script>
-      (function () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://shuheikagawa.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>
-      Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-    </noscript>
-  </div>
-
-  
-        </div>
-        <footer class="footer">
-          © Shuhei Kagawa
-        </footer>
-      </div>
-    </body>
-  </html>
+})();
+</code></pre><h2>Publish</h2><p>After you write README and commit it, you can publish your plugin to the world by <code>npm run push</code>.</p><p>Let's create awesome babel plugins!</p><h2>References</h2><h3>Documentation</h3><ul><li><a href="https://babeljs.io/docs/advanced/plugins/">Plugins - Babel</a></li><li><a href="https://github.com/estree/estree">ESTree</a></li><li><a href="https://github.com/babel/babel/tree/v5.8.24/packages/babel/src/transformation/transformers">Built-in transformers</a></li></ul><h3>Projects</h3><ul><li><a href="https://github.com/shuhei/babel-plugin-auto-assign">shuhei/babel-plugin-auto-assign</a> The case study project in this article.</li><li><a href="https://github.com/shuhei/babel-plugin-angular2-annotations">shuhei/babel-plugin-angular2-annotations</a> A plugin for building Angular 2 app with Babel. It supports TypeScript-like method parameter decorators by monkey-patching Babylon.</li></ul></div></div></div><ul class="pagination"><li class="pagination__prev-page"><a href="/blog/2015/09/21/using-highlight-js-with-marked/">Using highlight<wbr>.js with marked</a></li><li class="pagination__archives"><a href="/blog/archives/">All posts</a></li><li class="pagination__next-page"><a href="/blog/2015/03/02/date-timezone/">Assign Time/time string in UTC to Active<wbr>Record date attribute</a></li></ul></div><footer class="footer">© Shuhei Kagawa</footer></div></body></html>
