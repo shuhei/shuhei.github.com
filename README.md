@@ -2,9 +2,31 @@
 
 https://shuheikagawa.com
 
-This static website started as an [Octopress](https://github.com/octopress/octopress) blog. I re-wrote it using [Gulp](https://github.com/gulpjs/gulp), added and removed [React](https://github.com/facebook/react) server-side rendering. Currently, it's built with several custom Gulp plugins and rudimentary templates with JavaScript template literals.
+## Eleventy
 
-This website doesn't load any client-side JavaScript except third parties (Google Analytics, Disqus and Speakerdeck) because it's not necessary to do so and I love fast websites.
+This static website is built with [Eleventy](https://www.11ty.dev/).
+
+### Blog posts
+
+Blog post data and content are generated in the following chain:
+
+1. The markdown files in `posts` provide the slug, title, content and optionally image (used for `og:image`).
+2. `posts/posts.11tydata.js` specifies the layout and sets a generated `image` if not specified.
+3. `_includes/post.njk` renders the post page content and sets a permalink.
+4. `_includes/base.njk` render the entire content.
+5. (content only) Transformers optimize the HTML and images.
+
+Blog posts are collected as a custom collection called `posts`. I didn't use `tags` for blog posts collection because I wanted to show a list of tags on each page and it was tedious to ignore the `posts` tag there.
+
+The `posts` collection is used for the following purposes:
+
+- Render individual post pages.
+- Render the all posts page with `blog/archives.njk`.
+- Generate OG images with `blog/title-image.11ty.js`. This JavaScript template generates a PNG image for each post. The generated images are referenced with URLs by `posts/posts.11tydata.js`.
+
+### Static assets
+
+Static assets and non-markdown files are copied to the output directory by pass-through copy.
 
 ## Setup
 
@@ -21,18 +43,19 @@ git checkout source
 yarn
 ```
 
-## Add posts and pages
+## Add a new post
 
-To add a post:
+Create a new markdown file in the format of `YYYY-mm-dd-post-slug.md`.
 
-```sh
-yarn newpost 'Hello World!'
+The content should look like:
+
 ```
+---
+title: "Post title"
+tags: [TagA, TagB]
+---
 
-To add a page:
-
-```sh
-yarn newpage 'foo'
+Post content goes here.
 ```
 
 ## Start a dev server
@@ -62,6 +85,9 @@ The domain `shuheikagawa.com` is resolved to IP addresses of Cloudflare CDN. Clo
 
 Other services:
 
-- blog comments: Disqus
 - web fonts: Google Fonts
 - analytics: Google Analytics
+
+## History
+
+This static website started as an [Octopress](https://github.com/octopress/octopress) blog. I re-wrote it using [Gulp](https://github.com/gulpjs/gulp), added and removed [React](https://github.com/facebook/react) server-side rendering. Currently, it's built with [Eleventy](https://www.11ty.dev/).

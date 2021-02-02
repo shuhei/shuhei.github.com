@@ -26,16 +26,16 @@ describe("shuheikagawa.com", () => {
   it("navigates to older and newer posts", () => {
     cy.get("h1").should("have.length", 4);
 
-    cy.contains("Older Posts").click();
+    cy.contains("Older posts").click();
     cy.url().should("eq", `${host}/blog/pages/2/`);
     cy.get("h1").should("have.length", 4);
 
-    cy.contains("Older Posts").click();
+    cy.contains("Older posts").click();
     cy.url().should("eq", `${host}/blog/pages/3/`);
     cy.get("h1").should("have.length", 4);
 
-    cy.contains("Newer Posts").click();
-    cy.contains("Newer Posts").click();
+    cy.contains("Newer posts").click();
+    cy.contains("Newer posts").click();
     cy.url().should("eq", `${host}/`);
     cy.get("h1").should("have.length", 4);
   });

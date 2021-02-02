@@ -13,4 +13,4 @@ source/stylesheets/screen.css
 vendor
 node_modules
 dist
-lib/plugins/manual-tests/images
+lib/filters/manual-tests/images
