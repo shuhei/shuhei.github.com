@@ -31,6 +31,7 @@ module.exports = config => {
   config.addTransform("htmlmin", htmlmin);
 
   // Paththrough copy files paths are relative to the project root.
+  // Only .gif files are necessary to copy in images.
   config.addPassthroughCopy("source/images");
   config.addPassthroughCopy("source/ng2src");
   config.addPassthroughCopy("source/talks");
