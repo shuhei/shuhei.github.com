@@ -19,6 +19,7 @@ When I don't sit in front of my laptop, I wander around the streets of Berlin, g
 
 - June 2019, [Profiling Node.js apps on production](https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production) at [FullStackJS Berlin v0.8.0](https://www.meetup.com/fullstack-berlin/events/261255967/)
 - September 2017, [Building a Pixel Art Editor with Elm](https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm) at [Elm Berlin Meetup #4](https://www.meetup.com/Elm-Berlin/events/242852794/)
+- June 2016, [Draw Animated Chart on React Native (from scratch)](https://speakerdeck.com/shuhei/draw-animated-chart-on-react-native) at [Meguro.es #4](https://meguroes.connpass.com/event/32167/)
 - March 2016, [Weird Attractors](https://speakerdeck.com/shuhei/weird-attractors) at [WebGL Beginners Meetup](https://web3dj.connpass.com/event/30009/)
 - ...and some more at [Speakerdeck](https://speakerdeck.com/shuhei)
 
