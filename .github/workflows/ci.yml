@@ -30,9 +30,10 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          build: OPTIMIZE=1 yarn build
+          build: yarn build
           start: yarn serve
           wait-on: "http://localhost:8080"
+          env: OPTIMIZE=1
 
       - name: deploy
         if: github.ref == 'refs/heads/source'
