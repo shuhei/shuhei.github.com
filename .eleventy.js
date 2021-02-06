@@ -8,6 +8,8 @@ const { getMarkdownIt } = require("./lib/plugins/markdown");
 const { htmlmin } = require("./lib/transformers/htmlmin");
 const { imageopt } = require("./lib/transformers/imageopt");
 
+const shouldOptimize = !!process.env.OPTIMIZE;
+
 module.exports = config => {
   config.setQuietMode(true);
   config.setDataDeepMerge(true);
@@ -27,8 +29,11 @@ module.exports = config => {
   config.addNunjucksAsyncFilter("postcss", postcss);
   config.addJavaScriptFunction("titleImage", titleImage);
 
+  // Always apply imagemin because it does more than optimization.
   config.addTransform("imagemin", imageopt);
-  config.addTransform("htmlmin", htmlmin);
+  if (shouldOptimize) {
+    config.addTransform("htmlmin", htmlmin);
+  }
 
   // Paththrough copy files paths are relative to the project root.
   // Only .gif files are necessary to copy in images.

@@ -4,7 +4,7 @@
   "description": "@shuhei's website",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "NODE_ENV=production eleventy",
+    "build": "eleventy",
     "clean": "rm -rf public",
     "deploy": "yarn clean && yarn build && gh-pages -d public -b master",
     "lint": "eslint .eleventy.js *.config.js lib cypress source/blog source/posts",

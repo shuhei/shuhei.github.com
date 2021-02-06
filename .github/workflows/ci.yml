@@ -30,7 +30,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          build: yarn build
+          build: OPTIMIZE=1 yarn build
           start: yarn serve
           wait-on: "http://localhost:8080"
 

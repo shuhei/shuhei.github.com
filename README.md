@@ -64,6 +64,20 @@ Post content goes here.
 yarn start
 ```
 
+It will build files and start a dev server.
+
+## Build
+
+```sh
+yarn build
+```
+
+It doesn't apply slow optimizations such as AVIF image format. In order to enable them:
+
+```sh
+OPTIMIZE=1 yarn build
+```
+
 ## Deploy
 
 GitHub Action deploys each push to the `source` branch to GitHub Pages.
