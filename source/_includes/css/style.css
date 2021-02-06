@@ -52,7 +52,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  opacity: 0.7;
+  text-decoration: underline;
 }
 
 /* header */
@@ -68,7 +68,6 @@ a:hover {
 }
 .header__title a {
   color: var(--text-color);
-  text-decoration: none;
 }
 .header__nav {
   flex-grow: 0;
@@ -86,7 +85,6 @@ a:hover {
 }
 .menu__item a {
   color: var(--text-color);
-  text-decoration: none;
 }
 
 /* footer */
@@ -205,10 +203,15 @@ ol {
 /* table */
 .table-wrapper {
   overflow-x: auto;
+  margin: 1.15em 0;
 }
-table {
+.table-wrapper table {
   border-collapse: collapse;
-  margin: 2em 0;
+  margin: 0;
+  width: 100%;
+}
+tr {
+  vertical-align: top;
 }
 th {
   font-weight: normal;
@@ -216,6 +219,7 @@ th {
 }
 tbody {
   border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
   padding: 0.5em 0;
 }
 th,

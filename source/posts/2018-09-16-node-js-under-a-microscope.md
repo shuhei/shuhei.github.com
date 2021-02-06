@@ -13,7 +13,7 @@ My first suspect was the network. It is the place full of uncertainty. After lea
 
 ## CPU profiling with the Linux `perf` command
 
-Because the weird latency was happening in the application itself, I wanted to know what's going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it **on production**, so profiling was naturally a good fit because of its smaller overhead.
+Because the weird latency was happening in the application itself, I wanted to know what's going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it _on production_, so profiling was naturally a good fit because of its smaller overhead.
 
 For Node.js, there are mainly two different tools. One is [V8 profiler](https://github.com/v8/v8/wiki/V8-Profiler), and the other is [Linux perf](https://perf.wiki.kernel.org/index.php/Main_Page). V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux `perf` can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to [Node CPU Profiling Roadmap](https://github.com/nodejs/diagnostics/issues/148), it seems that V8 profiler is the one officially supported by the V8 team, but Linux `perf` will keep working for a while. After all, I picked Linux `perf` because of low performance-overhead and small intervention to applications.
 

@@ -15,14 +15,14 @@ Just before my last working day of 2018, I saw a weird chart with a p99.9 respon
 
 The `metrics` library uses [Exponentially Decaying Sample (EDS)](https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js) for `Histogram`. The name is intimidating, but the implementation is not so complicated.
 
-It sets a priority to each value based on its timing and **some randomness**, and values of top-1028 priorities survive (by default). As a result, the chance of a value's survival decays as time goes by.
+It sets a priority to each value based on its timing and _some randomness_, and values of top-1028 priorities survive (by default). As a result, the chance of a value's survival decays as time goes by.
 
 It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the `metrics` library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?
 
-But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times **measured in the last minute**. I don't need response times from previous minutes because they are already plotted on the chart. Also, I don't want values in the last half of the minute to have more influence than values in the first half.
-So, **I don't need the decay effect at all**.
+But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times _measured in the last minute_. I don't need response times from previous minutes because they are already plotted on the chart. Also, I don't want values in the last half of the minute to have more influence than values in the first half.
+So, _I don't need the decay effect at all_.
 
-In addition to that, EDS randomly ignores values. Yes, it **samples**. Random sampling is a problem because I'm interested in a small number of outliers.
+In addition to that, EDS randomly ignores values. Yes, it _samples_. Random sampling is a problem because I'm interested in a small number of outliers.
 
 ## HDR histogram
 
@@ -49,18 +49,22 @@ I compared them, excluding `node-hdr-histogram` because I think it's an overkill
 
 Adding 10K values to a histogram:
 
-- metrics: 173 ops/sec ±2.00% (80 runs sampled)
-- measured: 421 ops/sec ±1.19% (90 runs sampled)
-- hdr-histogram-js: 1,769 ops/sec ±1.84% (92 runs sampled)
-- native-hdr-histogram: 1,516 ops/sec ±0.82% (92 runs sampled)
+| implementation         | ops/sec                                |
+| ---------------------- | -------------------------------------- |
+| `metrics`              | 173 ops/sec ±2.00% (80 runs sampled)   |
+| `measured`             | 421 ops/sec ±1.19% (90 runs sampled)   |
+| `hdr-histogram-js`     | 1,769 ops/sec ±1.84% (92 runs sampled) |
+| `native-hdr-histogram` | 1,516 ops/sec ±0.82% (92 runs sampled) |
 
 Extracting 12 different percentiles from a histogram:
 
-- metrics: 1,721 ops/sec ±1.93% (92 runs sampled)
-- measured: 3,709 ops/sec ±0.78% (93 runs sampled)
-- measured (weighted percentiles): 2,383 ops/sec ±1.30% (90 runs sampled)
-- hdr-histogram-js: 3,509 ops/sec ±0.61% (93 runs sampled)
-- native-hdr-histogram: 2,760 ops/sec ±0.76% (93 runs sampled)
+| implementation                    | ops/sec                                |
+| --------------------------------- | -------------------------------------- |
+| `metrics`                         | 1,721 ops/sec ±1.93% (92 runs sampled) |
+| `measured`                        | 3,709 ops/sec ±0.78% (93 runs sampled) |
+| `measured` (weighted percentiles) | 2,383 ops/sec ±1.30% (90 runs sampled) |
+| `hdr-histogram-js`                | 3,509 ops/sec ±0.61% (93 runs sampled) |
+| `native-hdr-histogram`            | 2,760 ops/sec ±0.76% (93 runs sampled) |
 
 According to the result, `hdr-histogram-js` is accurate and fast enough. Check out [the gist](https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f) for more details!
 
@@ -88,7 +92,7 @@ I made a quick survey of popular libraries and frameworks.
 
 _Rolling time window_ strategy seems to be most popular, but I couldn't find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I'll probably start with _reset on snapshot_ strategy and see if it works well.
 
-**Update on Jan 11, 2019:** I wrote [a package to use HDR histogram with rolling time window](https://github.com/shuhei/rolling-window).
+_Update on Jan 11, 2019:_ I wrote [a package to use HDR histogram with rolling time window](https://github.com/shuhei/rolling-window).
 
 ## Conclusion
 

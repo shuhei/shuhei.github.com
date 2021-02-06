@@ -12,8 +12,8 @@ Also, you need to check whether the language given by marked is a valid one for 
 Here's the outcome:
 
 ```js
-import marked, { Renderer } from 'marked';
-import highlightjs from 'highlight.js';
+import marked, { Renderer } from "marked";
+import highlightjs from "highlight.js";
 
 const escapeMap = {
   "&": "&amp;",
@@ -48,4 +48,4 @@ renderer.code = (code, language) => {
 marked.setOptions({ renderer });
 ```
 
-**EDIT on Feb 24, 2019:** The code snippet above was originally meant to be used for this blog and didn't have proper XSS protection for handling user inputs. Oleksii pointed out in a comment that it was vulnerable to XSS when `language` was not specified. I fixed the issue by escaping `code` for HTML. Thanks a lot, Oleksii!
+_EDIT on Feb 24, 2019:_ The code snippet above was originally meant to be used for this blog and didn't have proper XSS protection for handling user inputs. Oleksii pointed out in a comment that it was vulnerable to XSS when `language` was not specified. I fixed the issue by escaping `code` for HTML. Thanks a lot, Oleksii!

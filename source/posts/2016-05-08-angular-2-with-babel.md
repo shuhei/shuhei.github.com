@@ -123,7 +123,7 @@ Of course you can use other module resolvers like Webpack or SystemJS.
 
 This is not yet available for Babel. Not completed even for TypeScript.
 
-The [`compiler_cli`](https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli) seems to be deeply integrated with TypeScript compiler. It **statically** collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.
+The [`compiler_cli`](https://github.com/angular/angular/tree/master/modules/%40angular/compiler_cli) seems to be deeply integrated with TypeScript compiler. It _statically_ collects metadata from the source and feed it to the compiler. I believe that it is achievable with Babel to do the same thing.
 
 I'm thinking of working on it once the TypeScript version is published and the compiler API becomes more stable.
 

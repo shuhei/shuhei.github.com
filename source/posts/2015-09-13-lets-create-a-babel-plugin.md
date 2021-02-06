@@ -3,7 +3,7 @@ title: "Let's create a Babel plugin"
 tags: [JavaScript, Babel]
 ---
 
-**[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend [thejameskyle/babel-handbook](https://github.com/thejameskyle/babel-handbook/) as more up-to-date documentation.**
+_[EDIT] This article was written for Babal 5.x, which is outdated now. I recommend [thejameskyle/babel-handbook](https://github.com/thejameskyle/babel-handbook/) as more up-to-date documentation._
 
 [Babel](https://babeljs.io/) is the great tool that transpiles ES2015, ES7, JSX and such into ES5 and make them available on the browsers. If you are a person like me, you might use it on a daily basis.
 
@@ -73,7 +73,7 @@ With this setup, you can write your plugin itself with Babel's features. `src` s
 
 ```js
 /* eslint no-unused-vars:0 */
-export default function ({ Plugin, types: t }) {
+export default function({ Plugin, types: t }) {
   return new Plugin("foo", {
     visitor: {
       // your visitor methods go here
@@ -87,7 +87,7 @@ It exports a factory function that creates a `Plugin` instance. The `Plugin` con
 The `visitor` property holds methods named as AST node types. A Babel transformer traverses AST from the top to the bottom. Each method is called when the trasnformer visits the matched nodes. For instance, you can manipulate class declarations and function declarations as the following:
 
 ```js
-export default function ({ Plugin, types: t }) {
+export default function({ Plugin, types: t }) {
   return new Plugin("foo", {
     visitor: {
       ClassDeclaration(node, parent) {
@@ -98,7 +98,7 @@ export default function ({ Plugin, types: t }) {
       }
     }
   });
-};
+}
 ```
 
 You can also use `alias` instead of plain node types to match multiple node types. For example, `Function` matches against `FunctionDeclaration` and `FunctionExpression`.
@@ -123,8 +123,7 @@ Before:
 ```js
 @autoAssign
 class Hello {
-  constructor(foo, bar, baz) {
-  }
+  constructor(foo, bar, baz) {}
 }
 ```
 
@@ -140,7 +139,7 @@ class Hello {
 }
 ```
 
-Note that we can leave the ES6 class as is because it's going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied **before** the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with `:after` like `babel --plugins foo:after index.js`.
+Note that we can leave the ES6 class as is because it's going to be transformed to ES5 by the subsequent built-in transformers. Babel plugin transformers are applied _before_ the built-in transformers by default. If you want to apply a plugin after the built-in transformers, suffix the plugin name with `:after` like `babel --plugins foo:after index.js`.
 
 ## AST before/after transformation
 
@@ -160,12 +159,12 @@ Once you get the ASTs, half of the work is done. Let's write some code to insert
 `src/index.js`
 
 ```js
-import AutoAssign from './auto-assign';
+import AutoAssign from "./auto-assign";
 
-export default function ({ Plugin, types: t }) {
-  return new Plugin('autoAssign', {
+export default function({ Plugin, types: t }) {
+  return new Plugin("autoAssign", {
     visitor: {
-      ClassDeclaration: function (node, parent) {
+      ClassDeclaration: function(node, parent) {
         new AutoAssign(t).run(node);
       }
     }
@@ -196,13 +195,13 @@ export default class AutoAssign {
   }
 
   findautoAssignDecorators(klass) {
-    return (klass.decorators || []).filter((decorator) => {
-      return decorator.expression.name === 'autoAssign';
+    return (klass.decorators || []).filter(decorator => {
+      return decorator.expression.name === "autoAssign";
     });
   }
 
   deleteDecorators(klass, decorators) {
-    decorators.forEach((decorator) => {
+    decorators.forEach(decorator => {
       const index = klass.decorators.indexOf(decorator);
       if (index >= 0) {
         klass.decorators.splice(index, 1);
@@ -211,8 +210,8 @@ export default class AutoAssign {
   }
 
   findConstructor(klass) {
-    return klass.body.body.filter((body) => {
-      return body.kind === 'constructor';
+    return klass.body.body.filter(body => {
+      return body.kind === "constructor";
     })[0];
   }
 
@@ -222,16 +221,19 @@ export default class AutoAssign {
 
   prependAssignments(ctor, args) {
     const body = ctor.value.body.body;
-    args.slice().reverse().forEach((arg) => {
-      const assignment = this.buildAssignment(arg);
-      body.unshift(assignment);
-    });
+    args
+      .slice()
+      .reverse()
+      .forEach(arg => {
+        const assignment = this.buildAssignment(arg);
+        body.unshift(assignment);
+      });
   }
 
   buildAssignment(arg) {
-    const self = this.types.identifier('this');
+    const self = this.types.identifier("this");
     const prop = this.types.memberExpression(self, arg);
-    const assignment = this.types.assignmentExpression('=', prop, arg);
+    const assignment = this.types.assignmentExpression("=", prop, arg);
     return this.types.expressionStatement(assignment);
   }
 }
@@ -251,9 +253,13 @@ Here comes the result!
 ```js
 "use strict";
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-var Hello = (function () {
+var Hello = (function() {
   function Hello(foo, bar, baz) {
     _classCallCheck(this, _Hello);
 

@@ -3,7 +3,7 @@ title: "Assign Time/time string in UTC to ActiveRecord date attribute"
 tags: [Ruby, Rails]
 ---
 
-**TL;DR: `gem 'date_timezone'` in `Gemfile` and `include DateTimezone` in ActiveRecord models if you are on the east side of the prime meridian.**
+_TL;DR: `gem 'date_timezone'` in `Gemfile` and `include DateTimezone` in ActiveRecord models if you are on the east side of the prime meridian._
 
 ActiveRecord is great. It automatically converts data [according to the type of database column](https://github.com/rails/rails/tree/v4.2.0/activerecord/lib/active_record/type). That's why we can throw request params, whose values are often strings, into mass assignment methods like `create` and `update` without manual conversion. The conversion works perfectly in most of the cases except for `date` attribute.
 

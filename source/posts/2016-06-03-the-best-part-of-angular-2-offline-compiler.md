@@ -9,7 +9,7 @@ A couple of weeks ago, I gave a short talk about Angular offline compiler at [ng
 
 I won't write much about it here because it's still in its early stage and I couldn't make `@angular/compiler-cli` work without modification.
 
-The only thing I want to stress here is that it enables us to **statically type-check our templates with TypeScript**, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn't be able to detect mistakes in templates until they are evaluated at the runtime.
+The only thing I want to stress here is that it enables us to _statically type-check our templates with TypeScript_, which is awesome. Templates have been one of the places where mistakes are made since Angular 1. Even if we introduce TypeScript or lint tools, we couldn't be able to detect mistakes in templates until they are evaluated at the runtime.
 
 The steps would be the following:
 

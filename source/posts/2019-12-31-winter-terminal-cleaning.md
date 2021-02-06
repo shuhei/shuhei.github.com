@@ -26,7 +26,7 @@ Also, I stopped using [flatlandia](https://github.com/jordwalke/flatlandia) colo
 ## More Vim cleaning
 
 - Started using [ale](https://github.com/dense-analysis/ale) as a [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) client. I was using ale for linting and fixing, and [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.
-  - **Update on Jan 3, 2020:** I started using [coc.nvim](https://github.com/neoclide/coc.nvim) instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.
+  - _Update on Jan 3, 2020:_ I started using [coc.nvim](https://github.com/neoclide/coc.nvim) instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.
 - Configured Vim to open `:help` in a vertical split. `:help` is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.
 
   ```vim

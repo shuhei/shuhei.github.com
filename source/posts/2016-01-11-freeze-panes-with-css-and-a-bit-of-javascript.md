@@ -10,7 +10,7 @@ Also, most of the tutorials only fix a header at the top. But my colleagues want
 1. Automatic sizing of cells according to their contents
 2. Freeze panes
 
-We want to use only one `<table>` to easily achive the goal 1. But at the same time, we want to separate the movement of the headers from other cells to achieve the goal 2. Then [CSS3's `transform` property](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) came to my mind. It allows you to transform **only rendering** of an element without interfering its sibling nodes.
+We want to use only one `<table>` to easily achive the goal 1. But at the same time, we want to separate the movement of the headers from other cells to achieve the goal 2. Then [CSS3's `transform` property](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) came to my mind. It allows you to transform _only rendering_ of an element without interfering its sibling nodes.
 
 So I gave it a shot and here's the result.
 
@@ -21,14 +21,14 @@ So I gave it a shot and here's the result.
 I used JavaScript to dynamically set `transform: translate(x, y);` to the header cells sending them back to the top/left edge of the container.
 
 ```js
-container.addEventListener('scroll', function () {
+container.addEventListener("scroll", function() {
   var x = container.scrollLeft;
   var y = container.scrollTop;
 
-  leftHeaders.forEach(function (leftHeader) {
+  leftHeaders.forEach(function(leftHeader) {
     leftHeader.style.transform = translate(x, 0);
   });
-  topHeaders.forEach(function (topHeader, i) {
+  topHeaders.forEach(function(topHeader, i) {
     if (i === 0) {
       topHeader.style.transform = translate(x, y);
     } else {
@@ -38,7 +38,7 @@ container.addEventListener('scroll', function () {
 });
 
 function translate(x, y) {
-  return 'translate(' + x + 'px, ' + y + 'px)';
+  return "translate(" + x + "px, " + y + "px)";
 }
 ```
 
@@ -64,10 +64,10 @@ td {
 The last trick is a kind of shame. It's the top left header cell that should be fixed horizontally and vertically. We can achieve it by the `transform` property but the other top header cells hides it. I tried to make it rise with `z-index` but didn't work. So I created a dummy element that had the same size with the cell.
 
 ```js
-var topLeft = document.createElement('div');
+var topLeft = document.createElement("div");
 var computed = window.getComputedStyle(columnHeaders[0]);
 container.appendChild(topLeft);
-topLeft.classList.add('top-left');
+topLeft.classList.add("top-left");
 topLeft.style.width = computed.width;
 topLeft.style.height = computed.height;
 ```

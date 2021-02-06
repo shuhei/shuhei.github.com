@@ -7,7 +7,7 @@ Node module's `package.json` has `main` property. It's the entry point of a pack
 
 Recently, I got [an issue](https://github.com/shuhei/material-colors/issues/13) on one of my popular GitHub repos, `material-colors`. It claimed that "colors.es2015.js const not supported in older browser (Safari 9)", which looked pretty obvious to me. ES2015 is a new spec. Why do older browsers support it?
 
-I totally forgot about it at the time, but [the `colors.es2015.js` was exposed as the npm package's `jsnext:main`](https://github.com/shuhei/material-colors/pull/10). And to my surprise, it turned out that **`jsnext:main` shouldn't have _jsnext_ or ES2015+ features** like `const`, arrow function and `class`. What a contradiction!
+I totally forgot about it at the time, but [the `colors.es2015.js` was exposed as the npm package's `jsnext:main`](https://github.com/shuhei/material-colors/pull/10). And to my surprise, it turned out that _`jsnext:main` shouldn't have *jsnext* or ES2015+ features_ like `const`, arrow function and `class`. What a contradiction!
 
 ## jsnext:main
 

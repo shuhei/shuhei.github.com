@@ -1,6 +1,6 @@
 ---
 title: "Speed up your RSpec tests by reviewing Factory Girl"
-tags: [Ruby,Rails]
+tags: [Ruby, Rails]
 ---
 
 [Factory Girl](https://github.com/thoughtbot/factory_girl) is a great tool that makes test data creation easier. However, if you don't use it properly, it may imperceptibly slow down your tests.
@@ -9,9 +9,9 @@ In this post, I will walk through some caveats that I stumbled upon in my curren
 
 ## Measure! Measure! Measure!
 
->What gets measured gets managed.
+> What gets measured gets managed.
 >
-><cite>Peter Drucker</cite>
+> <cite>Peter Drucker</cite>
 
 First of all, we want to know which tests take most of the times. RSpec has `--profile`/`-p` option for the very purpose.
 
@@ -173,7 +173,7 @@ FactoryGirl.define do
 end
 ```
 
-With the setup above, `FactoryGirl.create(:post)` **creates blog twice**, once in the `post` factory and once in the `author` factory. Not only is it redundant, but also it may introduce data inconsistency because the two `blog` instances are different.
+With the setup above, `FactoryGirl.create(:post)` _creates blog twice_, once in the `post` factory and once in the `author` factory. Not only is it redundant, but also it may introduce data inconsistency because the two `blog` instances are different.
 
 The `post` factory could reuse the `author`'s `blog`.
 
