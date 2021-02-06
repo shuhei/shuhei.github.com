@@ -1,0 +1,9 @@
+---
+layout: layouts/base
+title: All tags
+---
+<ul>
+{%- for tag, count in collections.tags %}
+  <li><a href="/blog/tags/{{ tag }}">{{ tag }} ({{ count }})</a></li>
+{%- endfor %}
+</ul>

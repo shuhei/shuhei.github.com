@@ -9,9 +9,10 @@ permalink: "{{ page | blogPermalink }}"
     </h1>
     <div class="meta">
       <span class="date">{{ page.date | formatDate }}</span>
-{%- if tags.length > 0 %}
-      - {{ tags | join(", ") }}
-{%- endif %}
+{%- for tag in tags -%}
+  {%- if loop.first -%}{{ ' - ' }}{%- endif -%}
+  <a href="/blog/tags/{{tag}}">{{ tag }}</a>{%- if not loop.last -%}{{ ', ' }}{%- endif -%}
+{%- endfor %}
     </div>
   </div>
   <div class="content">

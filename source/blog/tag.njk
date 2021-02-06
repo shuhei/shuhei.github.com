@@ -1,0 +1,14 @@
+---
+layout: layouts/base
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - posts
+permalink: "/blog/tags/{{ tag }}/index.html"
+---
+{%- set posts = collections[tag] | reverse -%}
+{%- set title -%}Tagged "{{ tag }}"{%- endset -%}
+{% include 'post-list.njk' %}

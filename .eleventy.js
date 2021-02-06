@@ -19,6 +19,23 @@ module.exports = config => {
   config.addCollection("posts", api => {
     return api.getFilteredByGlob("source/posts/*.md").reverse();
   });
+  config.addCollection("tags", api => {
+    const tagCounts = new Map();
+    for (const post of api.getAll()) {
+      if (!post.data.tags) continue;
+      for (const tag of post.data.tags) {
+        if (tagCounts.has(tag)) {
+          tagCounts.set(tag, tagCounts.get(tag) + 1);
+        } else {
+          tagCounts.set(tag, 1);
+        }
+      }
+    }
+    return [...tagCounts.entries()].sort((a, b) => {
+      if (a[1] !== b[1]) return b[1] - a[1];
+      return a[0].localeCompare(b[0]);
+    });
+  });
 
   config.addFilter("formatDate", formatDate);
   config.addFilter("insertWbr", insertWbr);
