@@ -45,7 +45,6 @@ describe("shuheikagawa.com", () => {
 
     cy.url().should("eq", `${host}/about/`);
 
-    cy.contains("Social media").should("be.visible");
     cy.contains("GitHub").should(
       "have.prop",
       "href",
