@@ -23,5 +23,4 @@ I occasionally tweet at [Twitter](https://twitter.com/shuheikagawa "Twitter @shu
 - 2016 [Compare](https://github.com/shuhei/Compare): A super-simple mobile app to compare temperatures of yesterday and today
 - 2015 [Weird Attractors](/attractors): Tweaked Strange Attractors.
 - 2013 [Land Prices in Japan 2012-2013](/webland/): Land prices in Japan visualized with Three.js.
-- 201? [\*\*\* Books](/works/bookshelf/): Books in my bookshelf.
 - 2013 [Go Board](/goban.js/): A Go game implementation in JavaScript.
