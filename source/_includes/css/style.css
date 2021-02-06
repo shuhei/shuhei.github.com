@@ -327,11 +327,9 @@ code {
 /* blockquote */
 /* https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
 blockquote {
-  border-left: 5px solid var(--text-color);
   font-style: italic;
-  padding: 0.1em 1.2em;
-  margin-left: 0;
-  quotes: "\201C""\201D""\2018""\2019";
+  padding: 0 0 0 2em;
+  margin: 1.5em 0;
 }
 
 blockquote p:first-child:before {
