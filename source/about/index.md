@@ -7,13 +7,7 @@ Hi, my name is Shuhei. I'm a programmer based in Berlin, mostly writing JavaScri
 
 When I don't sit in front of my laptop, I wander around the streets of Berlin, give a look at the spines of my book collection, or enjoy local IPAs.
 
-## Social media
-
-- [GitHub @shuhei](https://github.com/shuhei)
-- [Twitter @shuheikagawa](https://twitter.com/shuheikagawa)
-- [npm](https://www.npmjs.com/~shuhei)
-- [Stack Overflow](https://stackoverflow.com/users/822317/shuhei-kagawa)
-- [LinkedIn](http://www.linkedin.com/in/shuheikagawa)
+I occasionally tweet at [Twitter @shuheikagawa](https://twitter.com/shuheikagawa) and put some hobby code at [GitHub @shuhei](https://github.com/shuhei). You can check my professional profile at [LinkedIn](http://www.linkedin.com/in/shuheikagawa).
 
 ## Talks
 
