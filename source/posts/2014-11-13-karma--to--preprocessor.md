@@ -1,6 +1,6 @@
 ---
 title: "karma-6to5-preprocessor"
-tags: [JavaScript, Karma, EcmaScript6]
+tags: [JavaScript]
 lang: ja
 ---
 

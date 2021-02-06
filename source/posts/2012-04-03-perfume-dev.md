@@ -1,6 +1,6 @@
 ---
 title: "Perfume Dev"
-tags: [JavsScript, Three.js]
+tags: [JavaScript, Three.js]
 lang: ja
 ---
 

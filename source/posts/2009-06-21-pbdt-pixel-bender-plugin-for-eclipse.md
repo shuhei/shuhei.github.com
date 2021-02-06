@@ -1,6 +1,5 @@
 ---
 title: "PBDT - Pixel Bender 用 Eclipse プラグイン"
-tags: [Flash/Flex]
 lang: ja
 ---
 
