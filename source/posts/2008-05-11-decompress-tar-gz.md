@@ -1,6 +1,7 @@
 ---
 title: ".tar.gz の解凍"
 tags: [UNIX/LINUX]
+lang: ja
 ---
 
 ```sh

@@ -1,6 +1,7 @@
 ---
 title: "さくらに Trac をインストール・・・成功"
 tags: [UNIX/LINUX, さくらインターネット]
+lang: ja
 ---
 
 やっと Trac 入りました。

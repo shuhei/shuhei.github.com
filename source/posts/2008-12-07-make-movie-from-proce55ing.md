@@ -1,6 +1,7 @@
 ---
 title: "Proce55ing から 動画を作る"
 tags: [Proce55ing]
+lang: ja
 ---
 
 Proce55ing で作った Sketch を動画にする方法です。

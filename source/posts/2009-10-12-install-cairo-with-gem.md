@@ -1,6 +1,7 @@
 ---
 title: "gem で cairo をインストール"
 tags: []
+lang: ja
 ---
 
 ```

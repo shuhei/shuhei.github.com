@@ -1,6 +1,7 @@
 ---
 title: "PBDT - Pixel Bender 用 Eclipse プラグイン"
 tags: [Flash/Flex]
+lang: ja
 ---
 
 Pixel Bender のカーネル作成、編集などを Eclipse 上で行えるプラグインがありました。

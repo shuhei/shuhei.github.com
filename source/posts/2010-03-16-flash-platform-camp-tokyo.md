@@ -1,6 +1,7 @@
 ---
 title: "Flash Platform Camp Tokyo を見てきた"
 tags: []
+lang: ja
 ---
 
 今日 Flash Platform Camp Tokyo に行ってきました。

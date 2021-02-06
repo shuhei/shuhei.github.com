@@ -1,6 +1,7 @@
 ---
 title: "MySQL で INT 型のタイムスタンプから DATETIME 型"
 categories:
+lang: ja
 ---
 
 にする方法がよくわかりません。

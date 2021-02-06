@@ -1,6 +1,7 @@
 ---
 title: "Ubuntu の日本語フォルダを英語名に"
 tags: [UNIX/LINUX]
+lang: ja
 ---
 
 Ubuntu の日本語フォーラムを覗いた時に、ちょうど目に入ったのでやってみました。

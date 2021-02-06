@@ -1,6 +1,7 @@
 ---
 title: "ヤバい経済学"
 tags: [読書]
+lang: ja
 ---
 
 [ヤバい経済学](http://amazon.co.jp/o/ASIN/pd_sbs_b_title/nanataisan-22) 読了。

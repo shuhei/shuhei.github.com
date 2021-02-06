@@ -1,6 +1,7 @@
 ---
 title: "Ruby の Hash#default"
 tags: [Ruby]
+lang: ja
 ---
 
 Windows XP の Ruby 1.8.7 で

@@ -1,6 +1,7 @@
 ---
 title: "今日届いた本（実用Subversion、Getting Real）"
 tags: [読書]
+lang: ja
 ---
 
 [実用 Subversion 第二版](http://amazon.co.jp/o/ASIN/4873114144/nanataisan-22)

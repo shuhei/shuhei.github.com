@@ -1,6 +1,7 @@
 ---
 title: "Chat Network"
 tags: [Proce55ing, 情報デザイン]
+lang: ja
 ---
 
 前回に引き続き、Processing。

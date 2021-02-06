@@ -1,8 +1,9 @@
 {
   "title": "Shuhei Kagawa",
   "author": "Shuhei Kagawa",
-  "description": "A personal website of Shuhei Kagawa. I write mostly on web technologies and life.",
   "hostname": "https://shuheikagawa.com",
+  "description": "A personal website of Shuhei Kagawa. I write mostly on web technologies and life.",
+  "lang": "en",
   "twitter": {
     "cardType": "summary_large_image",
     "account": "shuheikagawa",

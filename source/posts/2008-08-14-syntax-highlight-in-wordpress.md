@@ -1,6 +1,7 @@
 ---
 title: "Wordpress でコードのシンタックスハイライト"
 tags: [Wordpress]
+lang: ja
 ---
 
 Wordpress でコードのシンタックスハイライﾄをしてくれるプラグインを入れてみました。

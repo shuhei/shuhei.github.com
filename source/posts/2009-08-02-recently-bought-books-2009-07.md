@@ -1,6 +1,7 @@
 ---
 title: "最近買った本 2009年7月"
 tags: [読書]
+lang: ja
 ---
 
 ## [骨—第 5 回企画展「骨」展展覧会カタログ 山中俊治ディレクション](http://amazon.co.jp/o/ASIN/4763009249/nanataisan-22)

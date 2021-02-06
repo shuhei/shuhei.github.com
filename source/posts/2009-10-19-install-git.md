@@ -1,6 +1,7 @@
 ---
 title: "git をインストール"
 tags: []
+lang: ja
 ---
 
 会社では構成管理に Subversion を使っています。

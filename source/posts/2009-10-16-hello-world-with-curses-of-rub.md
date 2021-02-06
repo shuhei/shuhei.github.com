@@ -1,6 +1,7 @@
 ---
 title: "Ruby の Curses で Hello, World!"
 tags: []
+lang: ja
 ---
 
 以前から wget の進行状況表示など、コマンドラインでアニメーションを表示するにはどうやってやるのか気になっていました。

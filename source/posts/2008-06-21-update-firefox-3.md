@@ -1,6 +1,7 @@
 ---
 title: "Firefox 3 インストール"
 tags: []
+lang: ja
 ---
 
 JR の車内広告でリリースを知りました。

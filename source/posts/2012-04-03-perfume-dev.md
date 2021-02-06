@@ -1,6 +1,7 @@
 ---
 title: "Perfume Dev"
 tags: [JavsScript, Three.js]
+lang: ja
 ---
 
 [![Perfume Dev](https://farm8.staticflickr.com/7193/6894949804_fae1a1bc62_c.jpg "=800x461")](/perfume_dev/stick_people/)

@@ -1,6 +1,7 @@
 ---
 title: "iPhone Provisioning Profile"
 tags: [iPhone 開発]
+lang: ja
 ---
 
 Provisioning Profile というやつがうまくできなくて、しばらく実機テストができませんでした。症状は、Provisioning Profile を作っても、Xcode のオーガナイザで「合致する証明書がないよ」と言われてしまうというもの。

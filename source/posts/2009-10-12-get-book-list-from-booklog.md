@@ -1,6 +1,7 @@
 ---
 title: "Booklog から本一覧を取得"
 tags: []
+lang: ja
 ---
 
 [web 本棚サービス ブクログ](http://booklog.jp/) がリニューアルしたというので [再開しました](http://www.booklog.jp/users/branchiopoda)。ペパボの公式サービスとなり、メンテナンスやサービスの追加をどんどんやって行くそうです。今回のリニューアルで一番うれしいのが、本の登録機能の強化です。

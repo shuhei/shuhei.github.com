@@ -1,6 +1,7 @@
 ---
 title: "MyDNS.jp 用に biffpop をビルド"
 tags: []
+lang: ja
 ---
 
 無料ダイナミック DNS サービスの MyDNS.jp では、IP アドレスの通知にメールサーバへのアクセスという方法を採用しています。

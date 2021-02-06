@@ -1,6 +1,7 @@
 ---
 title: "Category index for Octopress"
 tags: [Octopress]
+lang: ja
 ---
 サイドバーにカテゴリー一覧を出してみました。
 

@@ -1,6 +1,7 @@
 ---
 title: "さくらインターネット上の Subversion につなぐ"
 tags: [さくらインターネット]
+lang: ja
 ---
 
 - [ナナタイサン» ブログアーカイブ » さくらに Trac をインストール・・・失敗](/blog/2008/08/14/failed-to-install-trac-at-sakura-internet/)

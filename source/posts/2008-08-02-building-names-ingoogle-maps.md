@@ -1,6 +1,7 @@
 ---
 title: "Google Maps に建物名"
 tags: [情報デザイン]
+lang: ja
 ---
 
 Google Maps に建物名が表示されるようになってました。

@@ -1,6 +1,7 @@
 ---
 title: "ActiveLdap 調査メモ"
 tags: []
+lang: ja
 ---
 
 未検証ですが、以下の記事から調査したことのメモ。

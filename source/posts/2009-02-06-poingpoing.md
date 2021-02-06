@@ -1,6 +1,7 @@
 ---
 title: "ポインポイン"
 tags: [Proce55ing]
+lang: ja
 ---
 
 久しぶりに Processing いじってみました。

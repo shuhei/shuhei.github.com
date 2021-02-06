@@ -1,6 +1,7 @@
 ---
 title: "clang で Objective C の静的解析"
 tags: [iPhone 開発]
+lang: ja
 ---
 
 [clang](http://clang.llvm.org/StaticAnalysis.html) というツールを使うと、Objective C や C、C++ などのコードを解析してバグを発見してくれるそうです。

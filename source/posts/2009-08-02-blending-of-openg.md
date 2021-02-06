@@ -1,6 +1,7 @@
 ---
 title: "OpenGL のブレンディング方法について"
 tags: [C/C++, OpenFrameworks]
+lang: ja
 ---
 
 OpenFrameworks が iPhone 上で動くというので、触ってみています。ついこの前、Objective-C やりますと書きましたが、最近 C++ がマイブームなので・・・。

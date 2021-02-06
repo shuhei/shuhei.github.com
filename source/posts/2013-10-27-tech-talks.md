@@ -1,6 +1,7 @@
 ---
 title: "最近の社内勉強会での発表（WebSockets テザリング、Backbone.js、JavaScript のテスト）"
 tags: [JavaScript, Backbone]
+lang: ja
 ---
 
 大変ひさびさの更新。ここ一年の間で、会社も変わったりいろいろありました。

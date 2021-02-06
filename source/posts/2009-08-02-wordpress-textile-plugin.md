@@ -1,6 +1,7 @@
 ---
 title: "Wordpress の Textile プラグイン"
 tags: [Wordpress]
+lang: ja
 ---
 
 どうもしっくり来るのがありませんでした。

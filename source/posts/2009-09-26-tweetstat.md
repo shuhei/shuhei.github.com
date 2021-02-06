@@ -1,6 +1,7 @@
 ---
 title: "TweetStats"
 tags: []
+lang: ja
 ---
 
 [TweetStats](http://tweetstats.com/) をなるものをやってみました。Twitter のつぶやきを読み込んで、さまざまな統計情報を表示してくれるサービスです。

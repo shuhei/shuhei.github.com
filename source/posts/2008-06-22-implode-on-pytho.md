@@ -1,6 +1,7 @@
 ---
 title: "Python で implode"
 tags: [Python]
+lang: ja
 ---
 
 PHP などで、配列の要素をあいだに何を挟みながらくっつけて文字列にする関数 `implode`。

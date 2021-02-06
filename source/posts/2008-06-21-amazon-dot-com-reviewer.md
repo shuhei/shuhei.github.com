@@ -1,6 +1,7 @@
 ---
 title: "Amazon.co.jp の洋書レビューを Amazon.com で見るための Greasemonkey"
 tags: [Greasemonkey]
+lang: ja
 ---
 
 Amazon.co.jp で洋書を見ると、レビューがほとんどありません。

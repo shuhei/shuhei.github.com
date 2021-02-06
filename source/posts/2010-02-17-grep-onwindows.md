@@ -1,6 +1,7 @@
 ---
 title: "Windows で grep"
 tags: [Windows]
+lang: ja
 ---
 
 ```

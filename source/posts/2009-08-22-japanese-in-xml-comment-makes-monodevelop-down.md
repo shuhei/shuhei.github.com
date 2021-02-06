@@ -1,6 +1,7 @@
 ---
 title: "OSX 上の MonoDevelop の日本語対応"
 tags: [C#]
+lang: ja
 ---
 
 MonoDevelop Mac Preview 09/07/06 版をインストールしてみました。MonoDevelop 2.2 Beta リリース前のプレビュー版だそうです。

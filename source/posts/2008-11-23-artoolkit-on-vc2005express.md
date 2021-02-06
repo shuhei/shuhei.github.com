@@ -1,6 +1,7 @@
 ---
 title: "Visual C++ 2005 Express Edition で ARToolkit"
 tags: []
+lang: ja
 ---
 
 ARToolkit、やっと自作プロジェクトで動きました。

@@ -1,6 +1,7 @@
 ---
 title: "TOEIC 新公式問題集 vol.4 (1)"
 categories:
+lang: ja
 ---
 
 初 TOEIC が今週末に迫ってきたので、練習問題を解いてみました。

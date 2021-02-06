@@ -7,7 +7,7 @@ data:
   {% include "css/style.css" %}
 {%- endset -%}
 <!doctype html>
-<html lang="en">
+<html lang="{{ lang or site.lang }}">
   <head>
     <meta charset="utf-8">
     <link rel="preload" href="{{ fonts.css }}" as="style">

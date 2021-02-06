@@ -1,6 +1,7 @@
 ---
 title: "React"
 tags: [JavaScript]
+lang: ja
 ---
 
 社内勉強会で Facebook の UI ライブラリ [React](http://facebook.github.io/react/index.html) について発表しました。

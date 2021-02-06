@@ -1,6 +1,7 @@
 ---
 title: "git の使い方メモ"
 categories:
+lang: ja
 ---
 
 ## 無視リスト

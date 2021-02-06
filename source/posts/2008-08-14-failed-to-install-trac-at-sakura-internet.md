@@ -1,6 +1,7 @@
 ---
 title: "さくらに Trac をインストール・・・失敗"
 tags: [Python, UNIX/LINUX, さくらインターネット]
+lang: ja
 ---
 
 - [心は十五歳の少年漂流記 » さくらで Trac](http://seasaw.eek.jp/wordpress/?p=38)

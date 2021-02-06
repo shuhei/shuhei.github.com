@@ -1,6 +1,7 @@
 ---
 title: "ImageMagick で画像を一括リサイズ"
 tags: []
+lang: ja
 ---
 
 特定の名前の画像をリサイズします。

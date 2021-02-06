@@ -1,6 +1,7 @@
 ---
 title: "Circle Packing"
 tags: []
+lang: ja
 ---
 
 [![circle packing](https://farm3.static.flickr.com/2799/4441104740_982bb52841_o.png "=500x333")](https://www.flickr.com/photos/branchiopoda/4441104740/ "circle packing by shuhei kagawa, on Flickr")

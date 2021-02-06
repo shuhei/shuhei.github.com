@@ -1,6 +1,7 @@
 ---
 title: "Python Challenge Lv. 0 - 5"
 tags: []
+lang: ja
 ---
 
 ふと mixi の Python コミュニティを覗いたら [Python Challenge](http://www.pythonchallenge.com) なるものを発見。

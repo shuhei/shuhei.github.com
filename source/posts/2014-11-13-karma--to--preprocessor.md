@@ -1,6 +1,7 @@
 ---
 title: "karma-6to5-preprocessor"
 tags: [JavaScript, Karma, EcmaScript6]
+lang: ja
 ---
 
 最近 [6to5](https://github.com/6to5/6to5) を使って ES6 を書いています。ES6 を使うには Traceur Compiler なんかもありますが、クライアント側に結構重い runtime を入れる必要があって気が進みません。そこで runtime のいらない 6to5。

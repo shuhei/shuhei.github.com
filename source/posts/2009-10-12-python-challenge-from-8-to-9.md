@@ -1,6 +1,7 @@
 ---
 title: "Python Challenge Lv. 8 - 9"
 tags: [Ruby, Python]
+lang: ja
 ---
 
 ## Level 8

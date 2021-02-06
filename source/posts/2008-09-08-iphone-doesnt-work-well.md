@@ -1,6 +1,7 @@
 ---
 title: "iPhone さっそく不具合"
 categories:
+lang: ja
 ---
 
 インストールしたアプリが全く動きません。

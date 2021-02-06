@@ -1,6 +1,7 @@
 ---
 title: "Gulp でブログを書く"
 tags: [JavaScript, gulp]
+lang: ja
 ---
 
 もともと Octopress/Jekyll 製だったこのブログを、Ruby を捨てて gulp でページを生成するように書き直しました。

@@ -1,6 +1,7 @@
 ---
 title: "Ruby の環境を新しく"
 categories:
+lang: ja
 ---
 
 家の Macbook と Ubuntu で Ruby 周りのバージョンを揃えた時のメモ。

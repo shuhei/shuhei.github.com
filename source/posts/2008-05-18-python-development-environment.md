@@ -1,6 +1,7 @@
 ---
 title: "Python 開発環境"
 tags: [Python, UNIX/LINUX]
+lang: ja
 ---
 
 これまで vim をデフォルトのまま使っていたのですが、なかなか慣れません。

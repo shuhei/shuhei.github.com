@@ -1,6 +1,7 @@
 ---
 title: "const とポインタ"
 tags: [C/C++]
+lang: ja
 ---
 
 下のように `const` は型名の前後どちらに書いても同じです。

@@ -1,6 +1,7 @@
 ---
 title: "The program being debugged is not being run."
 tags: []
+lang: ja
 ---
 
 久しぶりに iPhone アプリ開発を始め、実機テストをしようとしてみたところ &#8220;The program being debugged is not being run.&#8221; とのエラー。

@@ -1,6 +1,7 @@
 ---
 title: "WebGL な日本の地価マップをタッチ対応してみた"
 tags: [WebGL, JavaScript]
+lang: ja
 ---
 
 iOS 8 の Safari で WebGL が動くようになったので、以前作った日本の地価の 3D で表示するやつをタッチ対応してみました。

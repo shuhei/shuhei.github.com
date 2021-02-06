@@ -1,6 +1,7 @@
 ---
 title: "How to use ofxOpenCv on of007"
 tags: [openFrameworks]
+lang: ja
 ---
 
 ofxOpenCv を of007 で使うためのちょっとしたメモです。

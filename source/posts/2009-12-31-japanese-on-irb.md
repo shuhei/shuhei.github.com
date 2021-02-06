@@ -1,6 +1,7 @@
 ---
 title: "irb で日本語表示"
 categories:
+lang: ja
 ---
 
 ```

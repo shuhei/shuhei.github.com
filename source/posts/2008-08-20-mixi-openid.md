@@ -1,6 +1,7 @@
 ---
 title: "mixi OpenID"
 tags: []
+lang: ja
 ---
 
 気がついたら、こんなん出てました。

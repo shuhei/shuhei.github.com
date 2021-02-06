@@ -1,6 +1,7 @@
 ---
 title: "Navigation-based Application に TabBar を追加"
 tags: []
+lang: ja
 ---
 
 iPhone プロジェクトの新規作成時に &#8220;Navigation-based Application&#8221; を選んだ場合に、後から TabBar を追加する方法です。

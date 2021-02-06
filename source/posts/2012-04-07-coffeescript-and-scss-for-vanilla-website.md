@@ -1,6 +1,7 @@
 ---
 title: "普通のウェブサイト制作に CoffeeScript と SCSS を使ってみて"
 tags: []
+lang: ja
 ---
 
 最近バックエンドなしの普通の Web サイトを作るのに、ためしに CoffeeScript と SCSS を使ってみています。Ruby の [watchr](https://github.com/mynyml/watchr) を使って、ファイルを更新したら自動でコンパイルするように設定。

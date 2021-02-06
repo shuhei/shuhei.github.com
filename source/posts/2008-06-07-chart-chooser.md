@@ -1,6 +1,7 @@
 ---
 title: "Chart Chooser"
 tags: [情報デザイン]
+lang: ja
 ---
 
 ずいぶん間が開いてしまいました。

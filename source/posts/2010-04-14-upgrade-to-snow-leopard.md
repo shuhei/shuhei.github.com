@@ -1,6 +1,7 @@
 ---
 title: "今さら Snow Leopard にアップグレード"
 tags: []
+lang: ja
 ---
 
 Snow Leopard の発売から 1 年以上たっていますが、外見上はあまり変わり映えしないし、面倒なので Leopard のままやってきました。

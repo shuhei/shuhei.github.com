@@ -14,7 +14,7 @@ const path = require("path");
 
     const filePath = path.join(dir, file);
     const content = await fs.readFile(filePath, "utf8");
-    const replaced = content
+    let replaced = content
       // Remove time from the date.
       .replace(/date: (\d{4}-\d{2}-\d{2}) \d{2}:\d{2}/, "date: $1")
       // Rename categories as tags
@@ -28,6 +28,13 @@ const path = require("path");
       .replace(/date: [0-9-]+\n/, "")
       // This should be set at a central place.
       .replace(/layout: post\n/, "");
+
+    if (
+      file.localeCompare("2015-02-14") <= 0 &&
+      !/\nlang: ja\n/.test(replaced)
+    ) {
+      replaced = replaced.replace(/\n---\n/, "\nlang: ja\n---\n");
+    }
 
     await fs.writeFile(filePath, replaced);
   }

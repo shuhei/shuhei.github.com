@@ -1,6 +1,7 @@
 ---
 title: "iPhone で OpenFrameworks"
 tags: [C/C++, iPhone 開発, OpenFrameworks]
+lang: ja
 ---
 
 二次元で Strange Attractor 的なものをつくってみました。パーティクルの点描ではなく軌跡を描いています。

@@ -1,6 +1,7 @@
 ---
 title: "MacPorts のアップデート"
 tags: []
+lang: ja
 ---
 
 port search xxx として出てくるものが古いときに。

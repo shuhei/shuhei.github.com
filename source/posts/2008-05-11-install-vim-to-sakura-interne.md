@@ -1,6 +1,7 @@
 ---
 title: "さくらのレンタルサーバに vim を入れる"
 tags: [さくらインターネット]
+lang: ja
 ---
 
 vim は Vi IMproved なんだそうです。

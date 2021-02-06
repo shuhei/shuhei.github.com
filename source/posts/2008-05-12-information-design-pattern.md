@@ -1,6 +1,7 @@
 ---
 title: "Information Design Pattern"
 tags: [情報デザイン]
+lang: ja
 ---
 
 最近、情報デザインみたいなことに興味を持って、Ben Fry とか Edward Tufte の本を読んだりしています。

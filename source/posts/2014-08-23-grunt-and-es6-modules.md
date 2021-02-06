@@ -1,6 +1,7 @@
 ---
 title: "Grunt と ES6 Modules"
 tags: [JavaScript]
+lang: ja
 ---
 
 大分間が空きましたが、社内勉強会で Grunt と ES6 Modules について発表したので、このへんで書いておきます。

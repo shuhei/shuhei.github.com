@@ -1,6 +1,7 @@
 ---
 title: "Git + Redmine"
 tags: []
+lang: ja
 ---
 
 自宅サーバに入れた Redmine から Git レポジトリを参照できるように設定してみました。

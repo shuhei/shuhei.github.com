@@ -1,6 +1,7 @@
 ---
 title: "Wordpress で Out of memory"
 tags: []
+lang: ja
 ---
 
 このブログは自宅サーバで運用しているのですが、5 月の頭、そして今日とサーバが応答しなくなっています。

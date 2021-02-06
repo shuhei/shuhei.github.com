@@ -1,6 +1,7 @@
 ---
 title: "Wordpress で Textpattern 相当の Textile を使う"
 tags: [Wordpress]
+lang: ja
 ---
 
 以前 [Wordpress の Textile プラグイン](/blog/2009/08/02/wordpress-textile-plugin/) という記事で、Wordpress の Textile 対応について書きました。この時は満足の行く結果が得られませんでしたが、今回ついにまともに Textile 2 が使えるようにできました。

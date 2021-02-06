@@ -1,6 +1,7 @@
 ---
 title: "NumPy などをインストール"
 tags: [Python]
+lang: ja
 ---
 
 Ubuntu に Python の 数学ライブラリ、NumPy を入れようとしたらうまく入りませんでした。

@@ -1,6 +1,7 @@
 ---
 title: "CString と TCHAR* の連結"
 tags: []
+lang: ja
 ---
 
 ```cpp

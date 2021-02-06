@@ -1,6 +1,7 @@
 ---
 title: "Refactor! for C++"
 tags: []
+lang: ja
 ---
 
 Visual Studio で使える C++ のリファクタリング用プラグインです。

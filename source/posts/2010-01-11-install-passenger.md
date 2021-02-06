@@ -1,6 +1,7 @@
 ---
 title: "Ubuntu Server に Passenger をインストール"
 tags: []
+lang: ja
 ---
 
 ## Aptitude ではだめ

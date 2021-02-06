@@ -1,6 +1,7 @@
 ---
 title: "Strength Finder"
 tags: [読書]
+lang: ja
 ---
 
 本屋で見つけた [「さあ、才能に目覚めよう」](http://www.amazon.co.jp/gp/product/4532149479) という本を読んでみました。

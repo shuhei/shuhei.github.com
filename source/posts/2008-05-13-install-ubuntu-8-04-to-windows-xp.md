@@ -1,6 +1,7 @@
 ---
 title: "Windows 上に Ubuntu 8.04 をインストール"
 tags: [UNIX/LINUX]
+lang: ja
 ---
 
 研修で興味を持ったので、自分のノート PC に Linux をインストール。

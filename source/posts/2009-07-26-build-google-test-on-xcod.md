@@ -1,6 +1,7 @@
 ---
 title: "Xcode での Google Test のビルド"
 tags: [C/C++]
+lang: ja
 ---
 
 Subversion から落としてこないと、「Version.h がないよ」と言われてビルドできないようです。
