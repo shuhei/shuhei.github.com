@@ -2,6 +2,7 @@
 title: Making coffee at home
 tags: [Coffee]
 image: "/images/latte-art-rabbit.jpg"
+description: "In this stay-home time, I started making coffee at home last November. I'm quite happy with this new hobby and wanted to share the fun here."
 ---
 
 In this stay-home time, I started making coffee at home last November. I'm quite happy with this new hobby and wanted to share the fun here.
