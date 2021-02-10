@@ -185,6 +185,7 @@ a:hover {
 }
 
 .img-wrapper {
+  display: block;
   text-align: center;
 }
 
