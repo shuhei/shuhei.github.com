@@ -46,8 +46,9 @@ module.exports = config => {
   config.addNunjucksAsyncFilter("postcss", postcss);
   config.addJavaScriptFunction("titleImage", titleImage);
 
-  // Always apply imagemin because it does more than optimization.
-  config.addTransform("imagemin", imageopt);
+  // imageopt could be turned off to shave a few seconds.
+  // But it's good to test it regularly because it changes DOM nodes.
+  config.addTransform("imageopt", imageopt);
   if (shouldOptimize) {
     config.addTransform("htmlmin", htmlmin);
   }
