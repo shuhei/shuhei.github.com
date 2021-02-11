@@ -2,7 +2,8 @@
   "css": "https://fonts.googleapis.com/css2?display=swap&family=Libre+Baskerville:ital@0;1&family=Libre+Franklin:wght@700&family=DM+Mono",
   "fontFiles": [
     "https://fonts.gstatic.com/s/librebaskerville/v9/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2",
-    "https://fonts.gstatic.com/s/librefranklin/v6/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDPTedX18mE.woff",
+    "https://fonts.gstatic.com/s/librefranklin/v7/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDPTedX18mE.woff",
+    "https://fonts.gstatic.com/s/librebaskerville/v9/kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcWxEQDO-Wyrs.woff2",
     "https://fonts.gstatic.com/s/dmmono/v3/aFTU7PB1QTsUX8KYthqQBK6PYK0.woff2"
   ]
 }
