@@ -88,6 +88,6 @@ draw_points(first_points, 495, 495, "first.png")
 draw_points(second_points, 495, 495, "second.png")
 ```
 
-![first](https://farm3.static.flickr.com/2436/4004511454_85bdd6eabe_o.png "=495x495")
+![first](/images/cow.png)
 
 ということで、出てきた動物の名前をいくつか適当に入れると正解に。しかし、まだまだ四分の一。先は長いです・・・。

@@ -1,10 +1,12 @@
 ---
 title: "Floating Balls"
-tags: []
+tags: [Proce55ing]
 lang: ja
 ---
 
-[![floating balls 1](https://farm5.static.flickr.com/4076/4759782068_589051e708.jpg "=500x250")](https://www.flickr.com/photos/branchiopoda/4759782068/ "floating balls 1 by shuhei kagawa, on Flickr")[![floating balls 2](https://farm5.static.flickr.com/4142/4759146593_2488f16d0e.jpg "=500x250")](https://www.flickr.com/photos/branchiopoda/4759146593/ "floating balls 2 by shuhei kagawa, on Flickr")
+![floating balls 1](/images/floating-balls-1.jpg)
+
+![floating balls 2](/images/floating-balls-2.jpg)
 
 最近本を読んでばかりで何も作っていなかったので、Processing をいじってみました。
 
