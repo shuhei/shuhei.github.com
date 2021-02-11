@@ -1,6 +1,6 @@
 ---
 title: "OSX 上の MonoDevelop の日本語対応"
-tags: [C#]
+tags: []
 lang: ja
 ---
 
