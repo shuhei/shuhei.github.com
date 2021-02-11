@@ -56,7 +56,6 @@ module.exports = config => {
   // Paththrough copy files paths are relative to the project root.
   // Only .gif files are necessary to copy in images.
   config.addPassthroughCopy("source/images");
-  config.addPassthroughCopy("source/ng2src");
   config.addPassthroughCopy("source/talks");
   config.addPassthroughCopy("source/works");
   config.addPassthroughCopy("source/.nojekyll");
