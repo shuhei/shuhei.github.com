@@ -28,6 +28,8 @@ The `posts` collection is used for the following purposes:
 
 Static assets and non-markdown files are copied to the output directory by pass-through copy.
 
+A special case is JPEG/PNG images. The `imageopt` transformer generates multiple image formats out of them and saves them into the `public/cached` directory. Files in `public/cached` can be cached forever because their file names have content-based hashes.
+
 ## Setup
 
 Prerequisites:
