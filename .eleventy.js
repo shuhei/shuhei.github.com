@@ -1,4 +1,3 @@
-const { postcss } = require("./lib/filters/css");
 const { formatDate } = require("./lib/filters/date");
 const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
 const { titleImage } = require("./lib/filters/title-image");
@@ -43,13 +42,10 @@ module.exports = config => {
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);
   config.addFilter("normalizeUrl", normalizeUrl);
-  config.addNunjucksAsyncFilter("postcss", postcss);
   config.addJavaScriptFunction("titleImage", titleImage);
 
-  // imageopt could be turned off to shave a few seconds.
-  // But it's good to test it regularly because it changes DOM nodes.
-  config.addTransform("imageopt", imageopt);
   if (shouldOptimize) {
+    config.addTransform("imageopt", imageopt);
     config.addTransform("htmlmin", htmlmin);
   }
 

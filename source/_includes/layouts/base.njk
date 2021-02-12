@@ -1,17 +1,13 @@
 ---
 data:
   - site
-  - fonts
+  - style
 ---
-{%- set css -%}
-  {% include "css/style.css" %}
-{%- endset -%}
 <!doctype html>
 <html lang="{{ lang or site.lang }}">
   <head>
     <meta charset="utf-8">
-    <link rel="preload" href="{{ fonts.css }}" as="style">
-{%- for fontFile in fonts.fontFiles %}
+{%- for fontFile in style.fontFiles %}
     <link rel="preload" href="{{ fontFile }}" as="font" crossorigin="anonymous">
 {%- endfor %}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +24,7 @@ data:
       ga('create', 'UA-309586-8', 'shuheikagawa.com');
       ga('send', 'pageview');
     </script>
-    <style>{{ css | postcss | safe }}</style>
-    <link rel="stylesheet" href="{{ fonts.css }}">
+    <style>{{ style.css | safe }}</style>
     <meta name="description" content="{{ description or site.description }}">
     <meta name="twitter:card" content="{{ site.twitter.cardType }}">
     <meta name="twitter:site" content="@{{ site.twitter.account }}">
