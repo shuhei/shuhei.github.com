@@ -44,8 +44,8 @@ module.exports = config => {
   config.addFilter("normalizeUrl", normalizeUrl);
   config.addJavaScriptFunction("titleImage", titleImage);
 
-  config.addTransform("imageopt", imageopt);
   if (shouldOptimize) {
+    config.addTransform("imageopt", imageopt);
     config.addTransform("htmlmin", htmlmin);
   }
 
