@@ -85,12 +85,11 @@ yarn deploy
 - DNS: Cloudflare
 - CDN: Cloudflare
 
-The domain `shuheikagawa.com` is resolved to IP addresses of Cloudflare CDN. Cloudflare CDN serves static contents whose origin is GitHub Pages.
+The domain `shuheikagawa.com` is resolved to IP addresses of Cloudflare CDN. Cloudflare CDN serves static contents whose origin is GitHub Pages. Contents in the `cached` directory get a long `Cache-Control` header.
 
 Other services:
 
 - web fonts: Google Fonts
-- analytics: Google Analytics
 
 ## History
 

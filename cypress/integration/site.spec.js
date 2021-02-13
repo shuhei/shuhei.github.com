@@ -1,26 +1,11 @@
 /// <reference types="Cypress" />
 /* global Cypress, cy */
 
-// Stub Google Analytics
-// https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__google-analytics
-Cypress.on("window:before:load", win => {
-  Object.defineProperty(win, "ga", {
-    writable: false,
-    value: cy.stub().as("ga")
-  });
-});
-
 const host = Cypress.config("baseUrl");
 
 describe("shuheikagawa.com", () => {
   beforeEach(() => {
     cy.visit("/");
-  });
-
-  it("sends a page view event to Google Analtics", () => {
-    cy.get("@ga")
-      .should("be.calledWith", "create", "UA-309586-8", "shuheikagawa.com")
-      .and("be.calledWith", "send", "pageview");
   });
 
   it("navigates to older and newer posts", () => {
