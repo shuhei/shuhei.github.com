@@ -1,3 +1,5 @@
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+
 const { formatDate } = require("./lib/filters/date");
 const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
 const { titleImage } = require("./lib/filters/title-image");
@@ -12,6 +14,8 @@ const shouldOptimize = !!process.env.OPTIMIZE;
 module.exports = config => {
   config.setQuietMode(true);
   config.setDataDeepMerge(true);
+
+  config.addPlugin(pluginRss);
 
   config.setLibrary("md", getMarkdownIt());
 
@@ -38,7 +42,7 @@ module.exports = config => {
 
   config.addFilter("formatDate", formatDate);
   config.addFilter("insertWbr", insertWbr);
-  config.addFilter("join", (items, separator) => items.join(separator));
+  config.addFilter("limit", (items, count) => items.slice(0, count));
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);
   config.addFilter("normalizeUrl", normalizeUrl);

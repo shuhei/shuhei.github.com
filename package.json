@@ -35,6 +35,7 @@
   "devDependencies": {
     "@11ty/eleventy-cache-assets": "^2.1.0",
     "@11ty/eleventy-img": "^0.7.8",
+    "@11ty/eleventy-plugin-rss": "^1.1.0",
     "@fontsource/libre-baskerville": "^4.1.0",
     "@fontsource/libre-franklin": "^4.1.0",
     "canvas": "^2.6.1",
