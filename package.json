@@ -39,6 +39,7 @@
     "@fontsource/libre-franklin": "^4.1.0",
     "canvas": "^2.6.1",
     "cypress": "^3.8.0",
+    "datauri": "^3.0.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.14.0",
@@ -55,7 +56,8 @@
     "postcss-clean": "^1.2.1",
     "postcss-custom-properties": "^11.0.0",
     "prettier": "^1.15.3",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sharp": "^0.27.1"
   },
   "gh-pages": {
     "repository": "shuhei/shuhei.github.com",
