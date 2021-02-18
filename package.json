@@ -57,7 +57,6 @@
     "postcss-clean": "^1.2.1",
     "postcss-custom-properties": "^11.0.0",
     "prettier": "^1.15.3",
-    "pug": "^2.0.4",
     "sharp": "^0.27.1"
   },
   "gh-pages": {
