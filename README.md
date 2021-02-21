@@ -40,7 +40,6 @@ Prerequisites:
 npm i -g yarn
 
 git clone {this repo}
-git checkout source
 
 yarn
 ```
@@ -70,13 +69,7 @@ It will build files and start a dev server. The build doesn't apply slow optimiz
 
 ## Deploy
 
-GitHub Action deploys each push to the `source` branch to GitHub Pages.
-
-To deploy manually:
-
-```sh
-yarn deploy
-```
+GitHub Action deploys each push to the `main` branch to GitHub Pages.
 
 ## Configuration
 
