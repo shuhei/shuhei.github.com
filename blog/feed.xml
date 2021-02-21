@@ -1,0 +1,1441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Shuhei Kagawa</title>
+  <subtitle>A personal website of Shuhei Kagawa. I write mostly on web technologies and life.</subtitle>
+  <link href="https://shuheikagawa.com/blog/feed.xml" rel="self"/>
+  <link href="https://shuheikagawa.com"/>
+  <updated>2021-02-10T00:00:00Z</updated>
+  <id>https://shuheikagawa.com</id>
+  <author>
+    <name>Shuhei Kagawa</name>
+  </author>
+
+  <entry>
+    <title>Making coffee at home</title>
+    <link href="https://shuheikagawa.com/blog/2021/02/10/making-coffee/"/>
+    <updated>2021-02-10T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2021/02/10/making-coffee/</id>
+    <content type="html">&lt;p&gt;In this stay-home time, I started making coffee at home last November. I&#39;m quite happy with this new hobby and wanted to share the fun here.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/latte-art-rabbit.jpg&quot; alt=&quot;Latte art—rabbit?&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;My coffee history&lt;/h2&gt;
+&lt;p&gt;I was not a coffee person. My regular drinks at Starbucks in Tokyo were chai latte in the winter and matcha frappuccino in the summer. I had cappuccinos (or &lt;em&gt;cappuccini&lt;/em&gt;!) at non-Starbucks cafes, but I never made coffee at home.&lt;/p&gt;
+&lt;p&gt;I started drinking more coffee in Berlin. Big espresso machines were introduced in the office a few years ago. My colleagues were excited. I bought Nespresso pods and joined the coffee time.&lt;/p&gt;
+&lt;p&gt;Many coffee shops in Berlin serve specialty coffee. I met something stronger than a cappuccino. Flat white became my regular drink.&lt;/p&gt;
+&lt;h2&gt;Espresso machine&lt;/h2&gt;
+&lt;p&gt;The last November, my wife and I bought &lt;a href=&quot;https://www.delonghi.com/en-int/products/coffee/coffee-makers/pump-espresso/dedica-style-ec-685bk-0132106140&quot;&gt;De&#39;Longhi Dedica EC685&lt;/a&gt; for 153.90 €. It&#39;s an entry-level espresso machine with good reviews. We wanted to start small because we were not sure if we wouldn&#39;t get bored.&lt;/p&gt;
+&lt;p&gt;It came with almost everything necessary for making a cup of cappuccino—a milk jug, baskets, and a tamper with a scoop on the other end. Well, you still need to buy coffee beans and milk though.&lt;/p&gt;
+&lt;p&gt;I&#39;m trying to make a flat white. Roughly speaking, it&#39;s a double espresso with steamed milk on top.&lt;/p&gt;
+&lt;p&gt;Making espresso is easy—at least to satisfy my less educated taste. Put ground coffee into the basket in the handle, set the handle into the espresso machine, and press a button. That&#39;s it.&lt;/p&gt;
+&lt;p&gt;Steamed milk is harder. Decica&#39;s milk foam is coarser than more professional ones&#39;. There are &lt;a href=&quot;http://toolsandtoys.net/guides/making-the-most-of-the-delonghi-dedica-budget-espresso-machine/&quot;&gt;a few ways to improve it&lt;/a&gt;, but I haven&#39;t tried any of them yet. I&#39;ll try the cable tie trick soon.&lt;/p&gt;
+&lt;p&gt;Many online reviews pointed out that Dedica EC685 suddenly stopped working after a few months and required a factory reset to recover. It happened to ours once. But it was not an issue because we already knew the trick.&lt;/p&gt;
+&lt;h2&gt;Coffee beans&lt;/h2&gt;
+&lt;p&gt;I live in a neighborhood famous for gentrification. In walking distance, there are a few coffee roasters and countless coffee shops that sell specialty coffee beans. The Barn, Five Elephant, Friedl, Firstcrack, MokannTi, Coffee Stars, oh my.&lt;/p&gt;
+&lt;p&gt;I still don&#39;t know what kind of beans I like. I&#39;m exploring different beans one by one and looking for my favorite. My current focus is making coffee properly. Otherwise, my poor coffee-making skills diminish the difference in coffee beans.&lt;/p&gt;
+&lt;h2&gt;Grinder&lt;/h2&gt;
+&lt;p&gt;There are much more options if you can grind whole beans by yourself. After a month with the espresso machine, we weren&#39;t bored yet. So we decided to invest in a grinder.&lt;/p&gt;
+&lt;p&gt;Not all grinders can grind coffee finely enough for espresso. Also, people on the internet say grinders are more important than espresso machines. But automatic grinders for espresso easily cost a few hundred euros at least. A bit too much for a beginner.&lt;/p&gt;
+&lt;p&gt;We opted for a good-quality hand grinder, &lt;a href=&quot;https://www.coffeecircle.com/en/p/porlex-mini-tall-hand-kaffeemuehle?number=Z034-005-002&quot;&gt;Porlex&lt;/a&gt;, at 64.90 €. It&#39;s made in Kagoshima, a southwest part of Japan. Its ceramic blades are easy to clean. It requires some force to rotate the handle, but it&#39;s been working well so far.&lt;/p&gt;
+&lt;p&gt;An alternative was &lt;a href=&quot;https://comandantegrinder.com/&quot;&gt;Comandante&lt;/a&gt; from Germany. It had a good reputation on the internet, but 228 € was out of our budget.&lt;/p&gt;
+&lt;p&gt;Grinding coffee is meditating. It brings analog vibes to my mostly digitalized life.&lt;/p&gt;
+&lt;h2&gt;Latte art&lt;/h2&gt;
+&lt;p&gt;To me, latte art is one of coffee&#39;s biggest wonders. Baristas draw beautiful patterns only by pouring milk into coffee! It looks easy when skilled baristas do it, but it&#39;s not.&lt;/p&gt;
+&lt;p&gt;If a picture is worth a thousand words, a video is worth a million words—especially for crafts like cooking and latte art. &lt;a href=&quot;https://www.youtube.com/watch?v=jdRS_5OJzZY&quot;&gt;&lt;em&gt;How to Pour Latte Art&lt;/em&gt; by Prima Coffee Equipment&lt;/a&gt; is the best video I have found so far. It was eye-opening to see how the barista pushed a circle into an arc, and he raised the milk jug before making a stroke at the end.&lt;/p&gt;
+&lt;p&gt;Also, coffee cups make a difference here. We started with small cylinder-shaped mugs that we had at home, but it didn&#39;t go well. After we got bowl-shaped
+coffee cups, the bigger surface made it easier to pour milk on the surface.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/latte-art-plant.jpg&quot; alt=&quot;Latte art—tulip?&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Well, there&#39;s still a long way to go!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Things I wish I knew about home office ergonomics</title>
+    <link href="https://shuheikagawa.com/blog/2021/01/17/home-office-ergonomics/"/>
+    <updated>2021-01-17T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2021/01/17/home-office-ergonomics/</id>
+    <content type="html">&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2021-desk-front.jpg&quot; alt=&quot;My current setup&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Here are some tips that I learned through my own mistakes. I&#39;m not an expert, and I know I&#39;m late to the train. But I hope you find some of the tips useful!&lt;/p&gt;
+&lt;h2&gt;Start from your body&lt;/h2&gt;
+&lt;p&gt;Find furniture and equipment that fit your body. Not the other way around. I made a mistake on it when I bought my standing desk.&lt;/p&gt;
+&lt;p&gt;To have a good posture, check the following requirements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chair: Your feet should rest flat on the floor when you sit deep.&lt;/li&gt;
+&lt;li&gt;Desk: Your elbows should be at 90 degrees or more when you type on your keyboard.&lt;/li&gt;
+&lt;li&gt;Monitor: Your monitor&#39;s top edge should be around your eye-level.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These three constraints define the ideal sizes and positions of your chair, desktop, and monitor.&lt;/p&gt;
+&lt;p&gt;Besides that, you can find tons of resources on the internet if you search for &lt;em&gt;office ergonomics&lt;/em&gt;. I found &lt;a href=&quot;http://ergo.human.cornell.edu/ergoguide.html&quot;&gt;the CUErgo website&lt;/a&gt; particularly informative.&lt;/p&gt;
+&lt;h2&gt;Chair&lt;/h2&gt;
+&lt;p&gt;Your feet should rest flat on the floor when you sit deep. It&#39;s not hard to achieve because most office chairs are height-adjustable. But pay attention to the range of the seat level before you buy one.&lt;/p&gt;
+&lt;h3&gt;Good chair is worth your money&lt;/h3&gt;
+&lt;p&gt;When I started working from home, I ordered the cheapest chair in stock at the time to satisfy my minimum needs. The chair looked OK, but its seat was too stiff. I nearly got hemorrhoids after a few weeks. I had to buy a donut-shaped seat cushion to get around the issue. But it didn&#39;t support my weight well and caused back pain.&lt;/p&gt;
+&lt;p&gt;Eventually, I decided to go with Aeron Chair Remastered, and I love it. It&#39;s not cheap, but it&#39;s much better than getting health problems.&lt;/p&gt;
+&lt;h2&gt;Desk&lt;/h2&gt;
+&lt;p&gt;Your elbows should be at 90 degrees or more when you type on your keyboard. This arrangement requires careful planning. Few desks are height adjustable. Even adjustable desks have their minimum/maximum heights. If you can&#39;t get a desk of your perfect height, you can a keyboard tray to lower your keyboard or footrest to elevate yourself.&lt;/p&gt;
+&lt;h3&gt;Check the minimum height before buying a standing desk&lt;/h3&gt;
+&lt;p&gt;I bought a standing desk, Flexispot E1, because I saw Flexispot on many blog posts in Japan and E1 was the most affordable one. It turned out that its minimum height 71 cm was too high for me. It took me a while to realize it because it&#39;s a &lt;em&gt;standing&lt;/em&gt; desk. More expensive models of Flexispot have lower minimum heights. For example, E5 can go down to 62 cm.&lt;/p&gt;
+&lt;p&gt;To work around the issue, I ordered a keyboard tray from Flexispot. The keyboard tray lowered the position of my keyboard and created more space on my desktop. I was happy that I was able to open a book between my keyboard and monitor. But the keyboard tray came with its problems. Typing hard on it shook the desk itself. It revealed the desk&#39;s instability. On top of that, the tray was unstable by itself because its screws were quite loose.&lt;/p&gt;
+&lt;p&gt;A good side effect was that I stopped resting my palms on wrist rests when I type. It was advice from the CUErgo website and an attempt to reduce the wobble of my desk and monitor. Now my monitor doesn&#39;t wobble and I can type faster.&lt;/p&gt;
+&lt;h3&gt;Stability matters&lt;/h3&gt;
+&lt;p&gt;If you are getting a standing desk, get a stable one!&lt;/p&gt;
+&lt;p&gt;Stability is especially important if you use a big monitor and a monitor arm. I tried a 32-inch monitor once with a monitor arm and had to return it because it wobbled too much on the standing desk.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.btod.com/blog/wobblemeter-results/&quot;&gt;btod.com has stability reviews of standing desks.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If I buy a standing desk again, I would try IKEA&#39;s Idasen.&lt;/p&gt;
+&lt;h2&gt;Monitor&lt;/h2&gt;
+&lt;p&gt;I&#39;m using a 27-inch QHD monitor now after trying 24-inch and 32-inch. 32-inch was too big for me.&lt;/p&gt;
+&lt;h3&gt;Monitor height&lt;/h3&gt;
+&lt;p&gt;Your monitor&#39;s top edge should be around your eye-level. Usually, the built-in stands of regular monitors don&#39;t go high enough. A stack of books, a monitor stand, or a monitor arm elevate your monitor. If you use a keyboard tray, you need less monitor elevation because you can keep your desktop higher.&lt;/p&gt;
+&lt;p&gt;Before buying anything, check whether your setup can satisfy your monitor&#39;s perfect height. If you are getting a monitor arm, check the relative position of your monitor&#39;s VESA mount to its top. Not all monitors have their VESA mounts at their center.&lt;/p&gt;
+&lt;p&gt;I&#39;m using Flo from Colebrook Bosson Saunders. I&#39;m satisfied with the beautiful monitor arm so far. Its maximum height is just enough for my eye-level. You may need a more robust one if you need more height or a bigger monitor.&lt;/p&gt;
+&lt;h2&gt;Inside your screen&lt;/h2&gt;
+&lt;p&gt;You don&#39;t need to fill your screen with windows. My neck hurts if I stare at a corner of my screen for a long time. But I often found myself in this neck-bending situation. It helps if you keep your working area at the top center of your screen.&lt;/p&gt;
+&lt;p&gt;I stopped using applications in full screen or multi-window layout. I put my browser window in the half-width of my screen and put it at the center. Instead of showing multiple windows, I keep only one window at a time and switch windows with a keyboard shortcut. This single-window policy allows me to always look in front of me and focus on one thing at a time.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/one-window.png&quot; alt=&quot;One window at a time&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Vim&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/junegunn/goyo.vim&quot;&gt;Goyo&lt;/a&gt; is a Vim plugin that creates a focus mode. The plugin hides non-essential elements and places the text at the center. The focus mode helps you not only focus, but also keep you face the center of the screen.&lt;/p&gt;
+&lt;p&gt;If Goyo provides horizontal adjustment, &lt;code&gt;z&amp;lt;CR&amp;gt;&lt;/code&gt; provides vertical adjustment. The normal-mode command brings the current line to the top of your screen. It helps you keep your neck straight.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/distraction-free-vim.png&quot; alt=&quot;Distraction-free Vim&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Terminal&lt;/h3&gt;
+&lt;p&gt;Can we create the Goyo-like focus mode outside of Vim? &lt;a href=&quot;https://superuser.com/questions/1261810/creating-a-focus-mode-for-tmux-one-centered-pane-flanked-by-two-blank-panes&quot;&gt;This cool trick on SuperUser&lt;/a&gt; allows you to create a focus mode on tmux. You can also move up your eyes to the top of your screen by &lt;code&gt;clear&lt;/code&gt; on your terminal.&lt;/p&gt;
+&lt;h2&gt;Move!&lt;/h2&gt;
+&lt;p&gt;Even with all of the above, my body doesn&#39;t feel well if I stay in front of my computer all day. I go out for a walk every day, and it makes a difference. Ergonomic setup doesn&#39;t mean you can work all day.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>2020 in review</title>
+    <link href="https://shuheikagawa.com/blog/2021/01/13/2020-in-review/"/>
+    <updated>2021-01-13T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2021/01/13/2020-in-review/</id>
+    <content type="html">&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2020-park-yellow-leaves.jpg&quot; alt=&quot;Park with yellow leaves&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It&#39;s already been two weeks in 2021, but I&#39;ll write anyway in the spirit of better late than never.&lt;/p&gt;
+&lt;p&gt;2020 was finally over. It was a weird year. Time flies, but things that happened feels like a long time ago.&lt;/p&gt;
+&lt;h2&gt;Work&lt;/h2&gt;
+&lt;p&gt;I had been working in the same area as before at Zalando. But I was not bored. My team welcomed new members. I helped building a brand new product. I was promoted. The new role exposed me to new perspectives even though I left before fully embracing it. Thanks to the remote work as the default, I collaborated with colleagues in Dublin more closely than ever.&lt;/p&gt;
+&lt;p&gt;At the end of November, &lt;a href=&quot;https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/&quot;&gt;I left Zalando&lt;/a&gt; where I met wonderful colleagues and friends. The four years there became an important part of my life.&lt;/p&gt;
+&lt;p&gt;After a week of vacation, I started a new job at Google. I am currently working remotely from Berlin. But I will eventually relocate to Zurich when the situation improves. My current plan is to move at the end of March, but we never know.&lt;/p&gt;
+&lt;p&gt;This job change took longer than I thought. I applied in February and heard a result in June, but most of the positions were canceled due to COVID-19. It took a few more months to find a team to join. I received an offer at the end of August.&lt;/p&gt;
+&lt;p&gt;A new job means a lot of learning. Now I&#39;m experiencing how it feels to join a new place. I haven&#39;t had this feeling for a while. I tended to think that software engineers should thrive on depths. But I missed that we needed an overview before pursuing depths.&lt;/p&gt;
+&lt;p&gt;I just finished an onboarding program. I&#39;m excited to catch up and start contributing to real projects.&lt;/p&gt;
+&lt;h2&gt;WfH&lt;/h2&gt;
+&lt;p&gt;I had been working from home 100% since February. I liked to go to the office and talk to colleagues in person. But I also like working from home.&lt;/p&gt;
+&lt;p&gt;It didn&#39;t take long to adapt to working remotely. We were already working cross-location with Dublin and Helsinki using online collaboration tools like GitHub, Google Meet/Chat/Docs. It became even easier to attend meetings than before. Instead of climbing upstairs to go to a meeting room, meetings are only a few clicks away.&lt;/p&gt;
+&lt;p&gt;The problem was physical equipment. I didn&#39;t realize that the office equipment was very nice before starting WfH. I bought tons of things to set up a comfortable home office—&lt;a href=&quot;https://shuheikagawa.com/blog/2021/01/17/home-office-ergonomics/&quot;&gt;I may write more about this later&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;No commuting means huge time-saving. I saved at least one and a half hours every day. At the same time, I lost a good chance of exercise. I try to walk outside every day, but the amount of my physical activities drastically decreased.&lt;/p&gt;
+&lt;h2&gt;Computer science&lt;/h2&gt;
+&lt;p&gt;It was fun to learn and practice algorithms and data structures for interview preparation. I solved about 300 Medium/Hard LeetCode problems in two months. Before 2020, I had been learning them with books and Coursera courses, but knowing and doing are two different things. Solving problems shed light on what I didn&#39;t fully understand. I studied topics that I was stuck—graphs, dynamic programming, string searching, well, most of them!&lt;/p&gt;
+&lt;p&gt;After the interviews, I still wanted to learn more. Someone on Twitter tweeted about &lt;a href=&quot;https://teachyourselfcs.com/&quot;&gt;Teach Yourself Computer Science&lt;/a&gt;. I started with &lt;em&gt;Operating Systems: Three Easy Pieces&lt;/em&gt; because it looked easy to read—and it was. Then I moved on to &lt;em&gt;Computer Systems: A Programmer&#39;s Perspective&lt;/em&gt;. The book is more textbook-ish than OSTEP. But I found it fun to learn things that I hadn&#39;t taken a deeper look at—the binary representation of floating-point numbers, assembly, processors, etc.&lt;/p&gt;
+&lt;h2&gt;Travel&lt;/h2&gt;
+&lt;p&gt;Before COVID-19 started, I traveled to Granada, Spain in January. It&#39;s a city of Alhambra—and free tapas. The city&#39;s bars give you tapas as long as you order drinks. Seafood and Jamón ibérico were so good.&lt;/p&gt;
+&lt;p&gt;In September between the two lockdowns of the spring and the winter, I visited Goslar, Quedlinburg, and Düsseldorf in Germany to use too many vacation days left. Goslar and Quedlinburg were beautiful. As a substitute for a trip to Japan, I ate Japanese food extravagantly in Düsseldorf. My favorite restaurant was Hyuga. It felt like being at an &lt;em&gt;izakaya&lt;/em&gt; in Tokyo. Shochiku, a Japanese supermarket, had a fish counter where you can ask them to cut sashimi. I took it out and ate in the hotel room. So good.&lt;/p&gt;
+&lt;h2&gt;Food and drinks&lt;/h2&gt;
+&lt;p&gt;I had rarely used food deliveries before 2020. But yes, I did it this time. My favorite dishes have been Tacos and Korean fried chicken. Also, many restaurants started take-away. I had never imagined taking out &lt;em&gt;ramen&lt;/em&gt; before 2020.&lt;/p&gt;
+&lt;p&gt;I kept drinking bubble tea. Dosha in Friedrichshain is my favorite in Berlin so far. In addition to authentic Taiwanese tea, they have waffles with Tapioca inside!&lt;/p&gt;
+&lt;p&gt;Then, winter came. Even though warm bubble tea is nice, it became tedious to go out on the cold street to grab drinks. I finally bought an entry-level espresso machine and a hand grinder. My less educated taste is already satisfied with it. Let&#39;s see if I can make some latte art in 2021.&lt;/p&gt;
+&lt;h2&gt;Books&lt;/h2&gt;
+&lt;p&gt;I bought 42 books or so but finished only a few non-tech books. Much less than I thought. One was &lt;em&gt;Into The Wild&lt;/em&gt;. The others were two volumes about fermented beans, &lt;em&gt;natto&lt;/em&gt; in Japanese, around the world even though I&#39;m scared of its smell and haven&#39;t tried it yet.&lt;/p&gt;
+&lt;p&gt;I want to read more in 2021. I will cut the time on social media and read books instead. If you want to see the progress and my ever-growing &lt;em&gt;Tsundoku&lt;/em&gt; collection, here is &lt;a href=&quot;https://www.goodreads.com/user/show/57764964-shuhei-kagawa&quot;&gt;my Goodreads account&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;2021&lt;/h2&gt;
+&lt;p&gt;I&#39;ll move to another country this year. We can&#39;t socialize in person under the current circumstances, but you know, remote meetings are a few clicks away ;)&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2020-station.jpg&quot; alt=&quot;A station in Berlin&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>4 years at Zalando</title>
+    <link href="https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/"/>
+    <updated>2020-11-30T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/</id>
+    <content type="html">&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2020-spree.jpg&quot; alt=&quot;Spree in November, 2020&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;m leaving Zalando with fond memories after 4 years. Here I&#39;m writing down my experience. It&#39;s never comprehensive, but I hope some people find it interesting!&lt;/p&gt;
+&lt;h2&gt;Beginning&lt;/h2&gt;
+&lt;p&gt;I had lived mostly in Japan for 34 years until 2016. I wanted to travel more, but I was lazy. I decided to work abroad so that I could travel while earning money.&lt;/p&gt;
+&lt;p&gt;A job-matching website called &lt;a href=&quot;https://www.honeypot.io/&quot;&gt;Honeypot&lt;/a&gt; introduced me to Zalando. I had 5 interviews and got an offer for Senior Software Engineer (Frontend). I accepted the offer without looking into any other companies because I liked the interviewers and the company&#39;s OSS projects looked interesting. (Honeypot was very happy about it. They put me on their top page and &lt;a href=&quot;https://blog.honeypot.io/japanese-developer-in-berlin/&quot;&gt;an interview blog post&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;I moved from Tokyo to Berlin and joined Zalando in October 2016. With 200 other newbies in a month! Zalando is a fashion e-commerce company that sells shoes, clothes, etc. on its website. I had no clue why they needed so many people at the beginning. Isn&#39;t it a website in the end? I later learned that the visible part of the website was the tip of the iceberg. There were many more areas like wholesale, brand relationship, pricing, warehouse management, shipping, payment, and so on.&lt;/p&gt;
+&lt;h2&gt;Team(s)&lt;/h2&gt;
+&lt;p&gt;In 2016, Zalando was hiring software engineers with &lt;em&gt;pool hiring&lt;/em&gt;. We were hired without specific teams to join. After a month of onboarding, each newbie was offered two departments to choose from. I chose the Catalog and Navigation team in the Fashion Store, the e-commerce website of Zalando.&lt;/p&gt;
+&lt;p&gt;For the first few months, I thought that the company was providing free beer to employees because fridges were always full of beer bottles even if we drank them a couple of times a week. I later learned that the beer was provided by the delivery lead and the product owner of the team. I joined the right team.&lt;/p&gt;
+&lt;p&gt;Aside from the beer, I liked the team. We worked together and played together. It was multi-cultural and magically bonded. It was an old team, but several members including me joined the team in late 2016. We learned the German language and explored the city of Berlin. We had BBQs in a park and drank vodka playing games in the office. It felt like a youth again. Some of the teammates were actually young. After two years or so, we stopped drinking as much as we did. We all became grown-ups...? Maybe.&lt;/p&gt;
+&lt;p&gt;Through re-organizations, the shape of the team has changed. It was split into multiple teams. Some people left and new people joined. But I stayed in the same area more or less.&lt;/p&gt;
+&lt;h2&gt;Frontend engineer...?&lt;/h2&gt;
+&lt;p&gt;At Zalando, frontend engineers were more like JavaScript fullstack engineers.&lt;/p&gt;
+&lt;p&gt;In 2016, Zalando had a slogan &amp;quot;Radical Agility&amp;quot;. It promoted team autonomy and Microservices to support it. Each engineering team was supposed to operate what they built on top of the &lt;a href=&quot;https://stups.io/&quot;&gt;STUPS&lt;/a&gt; infrastructure. Frontend was not an exception. &lt;a href=&quot;https://www.mosaic9.org/&quot;&gt;Mosaic&lt;/a&gt; (frontend-microservices architecture) allowed each product team to own their Node.js servers for data aggregation and React server-side rendering in addition to frontend components.&lt;/p&gt;
+&lt;p&gt;The team&#39;s responsibilities were broad. Building new features and UI improvements with A/B testing, contributing to shared UI components, web performance optimization, Node.js server operations, 24x7 on-call, writing post mortems, and so on.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;https://engineering.zalando.com/posts/2018/12/front-end-micro-services.html&quot;&gt;the new architecture that the Fashion Store is moving to&lt;/a&gt;, product teams don&#39;t need to maintain Node.js servers. I would miss the burden, but I think it&#39;s a good thing.&lt;/p&gt;
+&lt;h2&gt;Operation and reliability&lt;/h2&gt;
+&lt;p&gt;I had a good opportunity to work on Node.js servers with serious traffic and business impact. Before joining Zalando, I had worked only on products that didn&#39;t take off or were just taking off. I didn&#39;t have much experience in scaling, monitoring, etc. But writing post mortems became one of my favorite activities after 4 years.&lt;/p&gt;
+&lt;p&gt;When my team migrated one of Zalando&#39;s most frequently visited pages to the microservice architecture, our journey in this area started. Even among frontend engineers in the team, some of them were frontendy—good at UI—and some of them were backendy. I was a backendy one and started looking into the topic. I found it interesting. It was a nice way to contribute to the team and the business.&lt;/p&gt;
+&lt;p&gt;I glimpsed SRE initiatives and Cyber Week preparation being set up and evolving. &lt;a href=&quot;https://engineering.zalando.com/posts/2020/10/how-zalando-prepares-for-cyber-week.html&quot;&gt;How Zalando prepares for Cyber Week&lt;/a&gt; is a great overview of the evolution. I had a good chance to take part in it as a member of a product team. The people who formed the SRE team taught us monitoring, alerting, and reliability patterns (retry, circuit breaker, fallback, etc.). Incident response and post mortems were standardized. Then distributed tracing and &lt;a href=&quot;https://www.usenix.org/conference/srecon19emea/presentation/mineiro&quot;&gt;adaptive paging&lt;/a&gt; were introduced.&lt;/p&gt;
+&lt;p&gt;Some of my contributions were reliability improvements of Node.js services. I researched &lt;a href=&quot;https://shuheikagawa.com/blog/2020/11/30/4-years-at-zalando/(/blog/2017/05/13/http-request-timeouts-in-javascript/)&quot;&gt;timeout mechanisms of Node.js HTTP client&lt;/a&gt; and added a timeout feature to &lt;a href=&quot;https://github.com/zalando-incubator/perron&quot;&gt;an HTTP client library&lt;/a&gt;. &lt;a href=&quot;https://shuheikagawa.com/blog/2019/04/30/dns-polling/&quot;&gt;Built a mitigation strategy for DNS timeouts&lt;/a&gt;, &lt;a href=&quot;https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/&quot;&gt;improved histogram metrics aggregation&lt;/a&gt;, &lt;a href=&quot;https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/&quot;&gt;performed profiling and found interesting findings&lt;/a&gt;—I had a chance to talk about it in front of a big audience including TC39 folks... I was nervous!&lt;/p&gt;
+&lt;p&gt;I was late to the Kubernetes train. The migration from STUPS to Kubernetes didn&#39;t get enough priority in my team. On the other hand, Zalando was an early adapter of Kubernetes and has been &lt;a href=&quot;https://www.cncf.io/announcements/2020/08/20/cloud-native-computing-foundation-grants-zalando-the-top-end-user-award/&quot;&gt;a strong contributor to the ecosystem&lt;/a&gt;. I missed a good learning opportunity to dive into it and learn from the in-house experts.&lt;/p&gt;
+&lt;h2&gt;Web performance&lt;/h2&gt;
+&lt;p&gt;Another topic that I enjoyed was web performance optimization. It was especially rewarding because it directly contributes to customer experience and the e-commerce business. After my team worked on it, I had an opportunity to write a part of &lt;a href=&quot;https://engineering.zalando.com/posts/2018/06/loading-time-matters.html&quot;&gt;a blog post about the improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This topic keeps evolving. New metrics like &lt;a href=&quot;https://web.dev/vitals/&quot;&gt;Web Vitals&lt;/a&gt; and more measurement/optimization techniques came out. It is one of the topics that I would want to pursue if I remained at Zalando.&lt;/p&gt;
+&lt;h2&gt;Cross-team collaboration&lt;/h2&gt;
+&lt;p&gt;I had a chance to work with many other teams in the Fashion Store and other departments. I met and worked with literally hundreds of colleagues. I had never worked with so many people before joining Zalando.&lt;/p&gt;
+&lt;p&gt;That meant more meetings and alignments. I learned decision making with writing. I still don&#39;t say that I&#39;m good at it, but Google Docs became my favorite editor next to Vim.&lt;/p&gt;
+&lt;p&gt;I learned that it can be fun to work with many teams. Sometimes it was frustrating because of the time consumed. But it was rewarding to meet with many colleagues and work together.&lt;/p&gt;
+&lt;h2&gt;Career&lt;/h2&gt;
+&lt;p&gt;I saw good examples of career paths. Before joining Zalando, I imagined only two paths for software engineers. Staying as a senior engineer (or a lead engineer) or becoming a manager. It was great to see another path, being a senior individual contributor who takes technical leadership. At Zalando, it&#39;s called Principal Engineer. In addition to technically leading projects, they shape the tech landscape of the company beyond the scope of a team.&lt;/p&gt;
+&lt;p&gt;I was fortunate enough to be promoted to a principal engineer this year. A new role gave me new tasks and a new point of view. It&#39;s one of my regrets to leave this role prematurely.&lt;/p&gt;
+&lt;h2&gt;Fun&lt;/h2&gt;
+&lt;p&gt;I had a lot of fun.&lt;/p&gt;
+&lt;p&gt;Lunch tours to Schlesisches Tor. Countless drinks at the office. After-drink burgers at Burgermeister. A team event on canoes. Summer BBQs in a park. Company parties with thousands of people and getting lost. &lt;em&gt;Mett&lt;/em&gt; —German traditional breakfast of minced raw pork—with some beer in the office at 11 am. Ordering &lt;em&gt;Maß&lt;/em&gt; at lunch and learning what it meant when 1L of beer arrived...&lt;/p&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;It&#39;s been a fun journey. I&#39;m grateful for all the opportunities and learnings. If I went back to 2016, I would do it again.&lt;/p&gt;
+&lt;p&gt;I&#39;m going to start a new job tomorrow. I hope it will be fun as well!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Switching color schemes of Vim and Alacritty</title>
+    <link href="https://shuheikagawa.com/blog/2020/02/14/switching-colorschemes-of-vim-and-alacritty/"/>
+    <updated>2020-02-14T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2020/02/14/switching-colorschemes-of-vim-and-alacritty/</id>
+    <content type="html">&lt;p&gt;I like fountain pens and good notebooks. They spark joy when I write on paper. Computer terminals are like stationery. A good terminal setup makes it fun to work with computers. Here is how I improved colors on my terminal and made it easy to switch them depending on the time and the mood.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/light-terminal.png&quot; alt=&quot;Ayu Light for Vim and Alacritty&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Using official color schemes&lt;/h2&gt;
+&lt;p&gt;I have been using Dracula color scheme on Vim and Alacritty for a while. I liked the colors, but I had a small problem with it on Vim. The pop-up of &lt;code&gt;coc.nvim&lt;/code&gt; had the same color as the background color, and it was hard to distinguish a pop-up and the background.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/vim-dracula-old.png&quot; alt=&quot;dracula from flazz/vim-colorschemes&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I was using Dracula from &lt;a href=&quot;https://github.com/flazz/vim-colorschemes&quot;&gt;vim-colorschemes&lt;/a&gt;, which hadn&#39;t been updated for three years. I tried &lt;a href=&quot;https://github.com/dracula/vim&quot;&gt;the official Dracula color scheme for Vim&lt;/a&gt;. It had a different background color for pop-ups! Yes, it&#39;s subtle, but now I can distinguish pop-ups from the background.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/vim-dracula-official.png&quot; alt=&quot;dracula from dracula/vim&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/flazz/vim-colorschemes&quot;&gt;vim-colorschemes&lt;/a&gt; is a great way to try out different color schemes. You can get a random color scheme by &lt;code&gt;:colorscheme random&lt;/code&gt;. But once you pick a few favorite ones, it&#39;s worth checking if they have official color schemes that are likely to be more maintained.&lt;/p&gt;
+&lt;p&gt;The same goes for Alacritty. I was using the Dracula color scheme that I converted with &lt;a href=&quot;https://github.com/shuhei/colortty&quot;&gt;my tool&lt;/a&gt; from &lt;a href=&quot;https://github.com/mbadolato/iTerm2-Color-Schemes&quot;&gt;iTerm2-Color-Schemes&lt;/a&gt; for Alacritty. Dracula has &lt;a href=&quot;https://github.com/dracula/alacritty&quot;&gt;its official Alacritty theme&lt;/a&gt;, and it looks better!&lt;/p&gt;
+&lt;h2&gt;termguicolors&lt;/h2&gt;
+&lt;p&gt;I started trying other color schemes and found Vim&#39;s &lt;code&gt;termguicolors&lt;/code&gt; option in &lt;a href=&quot;https://github.com/ayu-theme/ayu-vim&quot;&gt;ayu-vim&lt;/a&gt;&#39;s README. It enables true colors (24-bit colors) instead of 256 colors (8-bit).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;has&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;termguicolors&#39;&lt;/span&gt;)
+  &lt;span class=&quot;hljs-keyword&quot;&gt;set&lt;/span&gt; termguicolors
+&lt;span class=&quot;hljs-keyword&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I turned it on, and the colors looked gorgeous! Before learning about &lt;code&gt;termguicolors&lt;/code&gt;, I had tried light color schemes like Ayu Light and given up because of too low contrast (left in the following image). With &lt;code&gt;termguicolors&lt;/code&gt;, light color schemes became finally usable!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/vim-light-colorscheme.png&quot; alt=&quot;ayu light in 256 colors and true colors&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Switching color schemes&lt;/h2&gt;
+&lt;p&gt;After trying dozens of color schemes, I picked the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ayu-theme/ayu-vim&quot;&gt;Ayu&lt;/a&gt; Light: Good in the morning or at a place with natural light.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sts10/vim-pink-moon&quot;&gt;Pink Moon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/arcticicestudio/nord-vim&quot;&gt;Nord&lt;/a&gt;: Low-contrast theme. Good in the night.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I started switching color schemes depending on the time and the mood and bumped into a couple of issues. It was tedious to update the color schemes of Vim and Alacritty together. Also, I manage my &lt;code&gt;.alacritty.yml&lt;/code&gt; and &lt;code&gt;.vimrc&lt;/code&gt; in a git repository. It was annoying that the repository had unstaged changes every time I switched color schemes.&lt;/p&gt;
+&lt;h2&gt;Solution&lt;/h2&gt;
+&lt;h3&gt;Alacritty&lt;/h3&gt;
+&lt;p&gt;I decided to remove &lt;code&gt;.alacritty.yml&lt;/code&gt; from the git repository and generate it out of a base template and color scheme files. Once I prepared a YAML file for each color scheme, it was quite easy with a one-liner.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;cat alacritty/base.yml alacritty/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; .alacritty.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Vim&lt;/h3&gt;
+&lt;p&gt;I could have generated &lt;code&gt;.vimrc&lt;/code&gt;, but it felt weird because VimScript is a programming language. Instead of generating the whole &lt;code&gt;.vimrc&lt;/code&gt;, I decided to generate a color scheme file &lt;code&gt;.vim/color.vim&lt;/code&gt;, which is in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;let ayucolor=&quot;light&quot;\ncolorscheme ayu&#39;&lt;/span&gt; &amp;gt; ~/.vim/color.vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and load it from &lt;code&gt;.vimrc&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; color_path = &lt;span class=&quot;hljs-built_in&quot;&gt;expand&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;~/.vim/color.vim&#39;&lt;/span&gt;)
+&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;filereadable&lt;/span&gt;(color_path)
+  exec &lt;span class=&quot;hljs-string&quot;&gt;&#39;source&#39;&lt;/span&gt; color_path
+&lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;hljs-comment&quot;&gt;&quot; Default color scheme&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;colorscheme&lt;/span&gt; pink-moon
+&lt;span class=&quot;hljs-keyword&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Putting them together&lt;/h3&gt;
+&lt;p&gt;Then, I created a shell script named &lt;code&gt;colorscheme&lt;/code&gt; to switch color schemes of Vim and Alacritty together.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#!/bin/sh
+&lt;/span&gt;
+color=&lt;span class=&quot;hljs-variable&quot;&gt;$1&lt;/span&gt;
+dotfiles=~/dotfiles
+alacritty=&lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/alacritty
+
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;configure_alacritty&lt;/span&gt;&lt;/span&gt;() {
+  cat &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/base.yml &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; &lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/.alacritty.yml
+}
+
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;configure_vim&lt;/span&gt;&lt;/span&gt;() {
+  &lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;$1&lt;/span&gt; &amp;gt; &lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/.vim/color.vim
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;$color&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt;
+  dracula)
+    configure_alacritty
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme dracula&#39;&lt;/span&gt;
+    ;;
+  nord)
+    configure_alacritty
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme nord&#39;&lt;/span&gt;
+    ;;
+  pink-moon)
+    configure_alacritty
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme pink-moon&#39;&lt;/span&gt;
+    ;;
+  ayu-light)
+    configure_alacritty
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;let ayucolor=&quot;light&quot;\ncolorscheme ayu&#39;&lt;/span&gt;
+    ;;
+  *)
+    &lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;Supported colorschemes: dracula, nord, pink-moon, ayu-light&quot;&lt;/span&gt;
+    &lt;span class=&quot;hljs-built_in&quot;&gt;exit&lt;/span&gt; 1
+    ;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;esac&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now I can switch color schemes with only one command! (I still need to restart/reload open Vim sessions, but I can live with it.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;colorscheme ayu-light
+colorscheme nord
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you are curious about the full setup, check out &lt;a href=&quot;https://github.com/shuhei/dotfiles&quot;&gt;my dotfiles repo&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Official color schemes may have more features than color scheme bundles&lt;/li&gt;
+&lt;li&gt;Enable &lt;code&gt;termguicolors&lt;/code&gt; on Vim&lt;/li&gt;
+&lt;li&gt;Switch color schemes with a command!&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Goodbye, Textile</title>
+    <link href="https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/"/>
+    <updated>2020-01-27T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2020/01/27/goodbye-textile/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Textile_(markup_language)&quot;&gt;Textile&lt;/a&gt; is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.&lt;/p&gt;
+&lt;p&gt;I started using Textile on a blog engine called &lt;a href=&quot;https://en.wikipedia.org/wiki/Textpattern&quot;&gt;Textpattern&lt;/a&gt;. I don&#39;t remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards a more commercial one. Textpattern was a new open-source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.&lt;/p&gt;
+&lt;p&gt;After a few years, Wordpress became a thing, or I realized it did. Even after I moved to Wordpress, I kept writing in Textile. I liked editing Textile more than editing rich text on WYSIWYG editor. I am not sure whether I had heard of Markdown at the time. But it was not as popular or dominant as it is now.&lt;/p&gt;
+&lt;p&gt;I started this blog with Textile on Wordpress in 2008 when I started my first job. And I migrated it to Octopress in 2012. I started writing in Markdown with Octopress because it was the lingua franca of GitHub where all the cool things were happening. I had a bit more than a hundred posts in Textile. I kept them in Textile because Octopress supported Textile as well. In 2014, I rebuilt this blog with a handmade static site generator using Gulp. I carried the old Textile files over. I even wrote &lt;a href=&quot;https://github.com/shuhei/gulp-textile&quot;&gt;gulp-textile&lt;/a&gt; plugin, which was just a thin wrapper of &lt;a href=&quot;https://github.com/borgar/textile-js&quot;&gt;textile-js&lt;/a&gt;. It was my first npm package.&lt;/p&gt;
+&lt;p&gt;Since then, I implemented a few Markdown-only features like syntax highlighting and responsive table in this blog. The outputs of Markdown and Textile diverged. Last weekend, I wanted to implement &lt;a href=&quot;https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/&quot;&gt;responsive images&lt;/a&gt;. One more Markdown-only feature. Then I thought it was time to convert the Textile files to Markdown.&lt;/p&gt;
+&lt;h2&gt;Converting Textile to Markdown&lt;/h2&gt;
+&lt;p&gt;I didn&#39;t want to convert a hundred posts by hand. I had tried &lt;a href=&quot;https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/&quot;&gt;tomd&lt;/a&gt; a few years ago, but I was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don&#39;t remember anymore. So I decided to write a conversion script.&lt;/p&gt;
+&lt;p&gt;I used &lt;a href=&quot;https://github.com/borgar/textile-js&quot;&gt;textile-js&lt;/a&gt; to parse Textile. It turned out that &lt;code&gt;textile-js&lt;/code&gt; output HTML string or &lt;a href=&quot;http://www.jsonml.org/&quot;&gt;JsonML&lt;/a&gt;. JsonML was new to me. It is basically HTML in JSON format. Each text node is represented as a string. Each element node is represented as an array whose first item is the tag name, an optional second item is an object of attributes and the rest are child nodes.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://foo.com&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;foo.png&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt; Yay&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;[
+  &lt;span class=&quot;hljs-string&quot;&gt;&quot;a&quot;&lt;/span&gt;,
+  { &lt;span class=&quot;hljs-attr&quot;&gt;&quot;href&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;https://foo.com&quot;&lt;/span&gt; },
+  [&lt;span class=&quot;hljs-string&quot;&gt;&quot;img&quot;&lt;/span&gt;, { &lt;span class=&quot;hljs-attr&quot;&gt;&quot;src&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;foo.png&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-attr&quot;&gt;&quot;alt&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; }],
+  &lt;span class=&quot;hljs-string&quot;&gt;&quot; Yay&quot;&lt;/span&gt;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I wrote a &lt;code&gt;switch&lt;/code&gt; statement to handle tags and added tag handlers one by one.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;switch&lt;/span&gt; (tag) {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;img&quot;&lt;/span&gt;:
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/* render &amp;lt;img&amp;gt; */&lt;/span&gt;;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;a&quot;&lt;/span&gt;:
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/* render &amp;lt;a&amp;gt; */&lt;/span&gt;;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;default&lt;/span&gt;:
+    &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Error&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;`Unknown tag: &lt;span class=&quot;hljs-subst&quot;&gt;${tag}&lt;/span&gt;`&lt;/span&gt;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I also added &lt;code&gt;console.log&lt;/code&gt; for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. &lt;a href=&quot;https://github.com/shuhei/shuhei.github.com/pull/44&quot;&gt;The script worked well to convert more than one hundred posts&lt;/a&gt;. The full script is &lt;a href=&quot;https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72&quot;&gt;on Gist&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Responsive images with a static site generator</title>
+    <link href="https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/"/>
+    <updated>2020-01-26T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</id>
+    <content type="html">&lt;h2&gt;Responsive images&lt;/h2&gt;
+&lt;p&gt;An &lt;code&gt;img&lt;/code&gt; without &lt;code&gt;width&lt;/code&gt;/&lt;code&gt;height&lt;/code&gt; attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; of &lt;code&gt;img&lt;/code&gt; tag to avoid the jump.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;/images/foo.jpg&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;width&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;800&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;height&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;600&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But &lt;code&gt;img&lt;/code&gt; tag with &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without &lt;code&gt;width&lt;/code&gt;/&lt;code&gt;height&lt;/code&gt; and let them cause page jumps.&lt;/p&gt;
+&lt;p&gt;Recently, I came across a similar problem at work and learned a cool technique to create a placeholder of the image&#39;s aspect ratio with &lt;code&gt;padding-top&lt;/code&gt;. If the image&#39;s aspect ratio is &lt;code&gt;height/width = 75/100&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: relative; padding-top: 75%;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: absolute; top: 0; left: 0; max-width: 100%;&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;div&lt;/code&gt; works as a placeholder with the image&#39;s aspect ratio that fits the width of its containing element. Because the &lt;code&gt;img&lt;/code&gt; tag has &lt;code&gt;position: absolute&lt;/code&gt;, it doesn&#39;t cause a page jump when it&#39;s loaded.&lt;/p&gt;
+&lt;p&gt;I decided to implement it on this blog. This blog is made with a custom static site generator. I&#39;m not sure if it&#39;s useful for anyone else, but I write how I did it anyway…&lt;/p&gt;
+&lt;h2&gt;Limiting overstretch&lt;/h2&gt;
+&lt;p&gt;In addition to images that are wide enough to always fill the full width of the content area, I had images that are not wide enough to fill the full width of a laptop, but wide enough to fill the full width of a mobile phone. Not to stretch the image on laptops, I decided to go with another wrapper to limit the maximum width of the image. If the image&#39;s width is &lt;code&gt;500px&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;max-width: 500px;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: relative; padding-top: 75%;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: absolute; top: 0; left: 0; max-width: 100%;&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Getting image dimensions&lt;/h2&gt;
+&lt;p&gt;The placeholder technique requires image dimensions. I used &lt;a href=&quot;https://github.com/image-size/image-size&quot;&gt;image-size module&lt;/a&gt; to get image dimensions.&lt;/p&gt;
+&lt;p&gt;The following function gets dimensions of images in a directory and returns them as a &lt;code&gt;Map&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; util = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;util&quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; path = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;path&quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { &lt;span class=&quot;hljs-attr&quot;&gt;promises&lt;/span&gt;: fs } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;fs&quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; sizeOf = util.promisify(&lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;image-size&quot;&lt;/span&gt;).imageSize);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;readImageSizes&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;dir&lt;/span&gt;) &lt;/span&gt;{
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; files = (&lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; fs.readdir(dir)).filter(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;f&lt;/span&gt; =&amp;gt;&lt;/span&gt; !f.startsWith(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;));
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; promises = files.map(&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; file =&amp;gt; {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; filePath = path.resolve(dir, file);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; sizeOf(filePath);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; [file, dimensions];
+  });
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; entries = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Promise&lt;/span&gt;.all(promises);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Map&lt;/span&gt;(entries);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Custom renderer of Marked&lt;/h2&gt;
+&lt;p&gt;This blog&#39;s posts are written in Markdown, and its static site generator uses &lt;a href=&quot;https://github.com/markedjs/marked&quot;&gt;marked&lt;/a&gt; to convert Markdown into HTML. One of my favorite things about &lt;code&gt;marked&lt;/code&gt; is that we can easily customize its behavior with a custom renderer.&lt;/p&gt;
+&lt;p&gt;I used &lt;code&gt;span&lt;/code&gt; tags to wrap &lt;code&gt;img&lt;/code&gt; tag because they are rendered in &lt;code&gt;p&lt;/code&gt; tag, which can&#39;t contain block tags like &lt;code&gt;div&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;CustomRenderer&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;marked&lt;/span&gt;.&lt;span class=&quot;hljs-title&quot;&gt;Renderer&lt;/span&gt; &lt;/span&gt;{
+  image(src, title, alt) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions &amp;amp;&amp;amp; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions.get(src);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (dimensions) {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { width, height } = dimensions;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; aspectRatio = (height / width) * &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; (
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&quot;responsive-image-wrapper&quot; style=&quot;max-width: &lt;span class=&quot;hljs-subst&quot;&gt;${width}&lt;/span&gt;px;&quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&quot;responsive-image-inner&quot; style=&quot;padding-top: &lt;span class=&quot;hljs-subst&quot;&gt;${aspectRatio}&lt;/span&gt;%;&quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;img class=&quot;responsive-image&quot; src=&quot;&lt;span class=&quot;hljs-subst&quot;&gt;${src}&lt;/span&gt;&quot; alt=&quot;&lt;span class=&quot;hljs-subst&quot;&gt;${alt}&lt;/span&gt;&quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;&quot;&amp;lt;/span&amp;gt;&quot;&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;&quot;&amp;lt;/span&amp;gt;&quot;&lt;/span&gt;
+      );
+    }
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;super&lt;/span&gt;.image(src, title, alt);
+  }
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// To set images dimensions when images are changed&lt;/span&gt;
+  setImageDimensions(imageDimensions) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions = imageDimensions;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And CSS:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-selector-class&quot;&gt;.responsive-image-wrapper&lt;/span&gt; {
+  &lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;: block;
+}
+&lt;span class=&quot;hljs-selector-class&quot;&gt;.responsive-image-inner&lt;/span&gt; {
+  &lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;: block;
+  &lt;span class=&quot;hljs-attribute&quot;&gt;position&lt;/span&gt;: relative;
+}
+&lt;span class=&quot;hljs-selector-class&quot;&gt;.responsive-image&lt;/span&gt; {
+  &lt;span class=&quot;hljs-attribute&quot;&gt;position&lt;/span&gt;: absolute;
+  &lt;span class=&quot;hljs-attribute&quot;&gt;top&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;
+  &lt;span class=&quot;hljs-attribute&quot;&gt;left&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Result&lt;/h2&gt;
+&lt;p&gt;Here are a few examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://shuheikagawa.com/blog/2019/12/31/2019-in-review/&quot;&gt;Full width on laptop and mobile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://shuheikagawa.com/blog/2010/07/10/surface/&quot;&gt;Full width on mobile but not on laptop&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yay, no more page jump! Well, web fonts still make the page slightly jump, but that&#39;s another story...&lt;/p&gt;
+&lt;p&gt;I skipped some details that are specific to my website. The full code is &lt;a href=&quot;https://github.com/shuhei/shuhei.github.com/pull/45&quot;&gt;on GitHub&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Winter terminal (mostly Vim) cleaning</title>
+    <link href="https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/"/>
+    <updated>2019-12-31T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/12/31/winter-terminal-cleaning/</id>
+    <content type="html">&lt;p&gt;In December, I spent some time cleaning up my terminal setup. Dust had piled up in a year, and my terminal was getting slower. It was time to dust off.&lt;/p&gt;
+&lt;p&gt;Here are highlights of &lt;a href=&quot;https://github.com/shuhei/dotfiles/compare/d5fa68a7514b040d0d19466ee85ebfbeb30b1d37...a8344b9d204af70f36ac8505df62425e87c5273d&quot;&gt;the changes&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Faster text rendering&lt;/h2&gt;
+&lt;p&gt;I noticed a non-negligible lag when I was editing JavaScript/TypeScript in Neovim. At first, I thought some Vim plugins caused it. But it was not true. Not only editing was slow, but also scrolling was slow. Text rendering itself was the problem.&lt;/p&gt;
+&lt;p&gt;I opened files of different types in Vim&#39;s vertical split and &lt;code&gt;less&lt;/code&gt; in tmux&#39;s vertical split. And I scrolled down and (subjectively) evaluated the smoothness of scrolling.&lt;/p&gt;
+&lt;p&gt;It turned out that Vim was not the problem. With vertical splits of tmux, even &lt;code&gt;less&lt;/code&gt; command was slow to scroll. Regardless of Vim or tmux, text rendering in vertical splits was slow on iTerm2. In retrospect, it makes sense because iTerm2 doesn&#39;t know about vertical split by Vim or tmux and can&#39;t limit rendering updates to the changed pane. &lt;a href=&quot;https://www.iterm2.com/documentation-tmux-integration.html&quot;&gt;iTerm2&#39;s tmux integration&lt;/a&gt; may have helped, but I didn&#39;t try that.&lt;/p&gt;
+&lt;p&gt;I tried &lt;a href=&quot;https://github.com/jwilm/alacritty&quot;&gt;Alacritty&lt;/a&gt;, and it was much faster! I had been using Alacritty before but switched back to iTerm2 for font ligatures. Now I didn&#39;t care much about font ligatures—ligatures look pretty, but glyphs for &lt;code&gt;!=&lt;/code&gt; and &lt;code&gt;!==&lt;/code&gt; confused me in JavaScript. So I switched to Alacritty again.&lt;/p&gt;
+&lt;p&gt;Also, I stopped using &lt;a href=&quot;https://github.com/jordwalke/flatlandia&quot;&gt;flatlandia&lt;/a&gt; color scheme in Vim, and it improved the rendering speed a bit. I didn&#39;t dig into why, though.&lt;/p&gt;
+&lt;h2&gt;fzf.vim&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/junegunn/fzf.vim&quot;&gt;fzf.vim&lt;/a&gt; was a life changer. It provides a blazing fast incremental search for almost anything. I use it for file names (instead of &lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;ctrlp.vim&lt;/a&gt;), commit history and grep. Especially, incremental grep with a preview is amazing.&lt;/p&gt;
+&lt;h2&gt;More Vim cleaning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Started using &lt;a href=&quot;https://github.com/dense-analysis/ale&quot;&gt;ale&lt;/a&gt; as a &lt;a href=&quot;https://microsoft.github.io/language-server-protocol/&quot;&gt;Language Server Protocol&lt;/a&gt; client. I was using ale for linting and fixing, and &lt;a href=&quot;https://github.com/autozimu/LanguageClient-neovim&quot;&gt;LanguageClient-neovim&lt;/a&gt; for LSP features. LanguageClient-neovim also shows a quickfix window when a file contains syntax errors and was conflicting with ale. I learned that ale supported LSP as well and made it handle LSP too.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Update on Jan 3, 2020:&lt;/em&gt; I started using &lt;a href=&quot;https://github.com/neoclide/coc.nvim&quot;&gt;coc.nvim&lt;/a&gt; instead of ale and deoplete.nvim for autocomplete, linting, fixing and LSP features. It makes Vim an IDE. Simply incredible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configured Vim to open &lt;code&gt;:help&lt;/code&gt; in a vertical split. &lt;code&gt;:help&lt;/code&gt; is a valuable resource when configuring Vim. The problem for me was that Vim opens help in a horizontal split by default. Opening help in a vertical split makes it much easier to read.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;autocmd&lt;/span&gt; FileType &lt;span class=&quot;hljs-keyword&quot;&gt;help&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;wincmd&lt;/span&gt; H
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sorted out JavaScript/JSX/TypeScript syntax highlighting. Vim sets &lt;code&gt;javascriptreact&lt;/code&gt; to &lt;code&gt;.jsx&lt;/code&gt; and &lt;code&gt;typescriptreact&lt;/code&gt; to &lt;code&gt;.tsx&lt;/code&gt; by default. But those file types don&#39;t work well with the plugin ecosystem because plugins for &lt;code&gt;javascript&lt;/code&gt;/&lt;code&gt;typescript&lt;/code&gt; file types don&#39;t work with &lt;code&gt;javascriptreact&lt;/code&gt;/&lt;code&gt;typescriptreact&lt;/code&gt; and popular JSX/TSX plugins use &lt;code&gt;javascript.jsx&lt;/code&gt; and &lt;code&gt;typescript.tsx&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;autocmd&lt;/span&gt; BufRead,BufNewFile *.jsx &lt;span class=&quot;hljs-keyword&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;filetype&lt;/span&gt;=javascript.jsx
+&lt;span class=&quot;hljs-keyword&quot;&gt;autocmd&lt;/span&gt; BufRead,BufNewFile *.tsx &lt;span class=&quot;hljs-keyword&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;filetype&lt;/span&gt;=typescript.tsx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stopped unnecessarily lazy-loading Vim plugins with &lt;a href=&quot;https://github.com/Shougo/dein.vim&quot;&gt;dein.vim&lt;/a&gt;. I had configured file-type-specific plugins as lazy plugins of dein.vim without understanding much. The truth was that lazy plugins are meaningful only for plugins with &lt;code&gt;plugin&lt;/code&gt; directory. Most of the file-type-specific plugins don&#39;t have &lt;code&gt;plugin&lt;/code&gt; directory and are lazily loaded by default with &lt;code&gt;ftdetect&lt;/code&gt; and &lt;code&gt;ftplugin&lt;/code&gt;. &lt;code&gt;:echo dein#check_lazy_plugins()&lt;/code&gt; shows those plugins that are ill-configured. I finally learned &lt;a href=&quot;https://learnvimscriptthehardway.stevelosh.com/chapters/42.html&quot;&gt;what those plugin directories do&lt;/a&gt; after using Vim for several years...&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reviewed key mappings and removed waiting time by avoiding mappings that prefixed other mappings. For example, I had mappings of &lt;code&gt;,g&lt;/code&gt; and &lt;code&gt;,gr&lt;/code&gt;. &lt;code&gt;,g&lt;/code&gt; was slow because Vim had to wait for a while to determine it was &lt;code&gt;,g&lt;/code&gt; or &lt;code&gt;,gr&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tried Vim 8 but switched back to Neovim. Vim 8 worked well, but tiny details looked smoother in Neovim. For example, when syntax highlighting hangs up, Vim 8 hangs up while Neovim disables syntax highlighting and goes on.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Started documentation of my setup. I keep forgetting key mappings, useful plugins that I occasionally use, how things are set up, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>2019 in review</title>
+    <link href="https://shuheikagawa.com/blog/2019/12/31/2019-in-review/"/>
+    <updated>2019-12-31T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/12/31/2019-in-review/</id>
+    <content type="html">&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2019-aegina.jpg&quot; alt=&quot;Aegina island in April&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Travels&lt;/h2&gt;
+&lt;p&gt;I visited six new countries and enjoyed each of them.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;January: Japan&lt;/li&gt;
+&lt;li&gt;March: Budapest, Hungary&lt;/li&gt;
+&lt;li&gt;April: Athens and Aegina, Greece&lt;/li&gt;
+&lt;li&gt;April: Wrocław, Poland&lt;/li&gt;
+&lt;li&gt;June: Prague, Czech Republic&lt;/li&gt;
+&lt;li&gt;August: Brussels and Bruges, Belgium&lt;/li&gt;
+&lt;li&gt;September: Munich, Germany&lt;/li&gt;
+&lt;li&gt;October: Dubrovnik, Croatia&lt;/li&gt;
+&lt;li&gt;November: Japan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many more places to visit in Europe. I&#39;ll keep traveling in 2020.&lt;/p&gt;
+&lt;h2&gt;Bike&lt;/h2&gt;
+&lt;p&gt;I bought an entry-level road bike at Decathlon in June. I used it for commuting and made day trips around Berlin. Berlin is surrounded by amazing fields. Blankenfelde is my favorite so far. I can&#39;t wait for the next Spring.&lt;/p&gt;
+&lt;h2&gt;Budgeting&lt;/h2&gt;
+&lt;p&gt;I started using &lt;a href=&quot;https://www.youneedabudget.com/&quot;&gt;YNAB&lt;/a&gt; at the end of the last year because a few of my friends were using it. I have used it throughout the year, and it&#39;s the first budgeting system that worked well for me. It helps us traveling regularly while saving money.&lt;/p&gt;
+&lt;h2&gt;Books&lt;/h2&gt;
+&lt;p&gt;I bought 55 physical books and 5 ebooks. That&#39;s three times more than the last year, probably because of a dedicated budget for buying books.&lt;/p&gt;
+&lt;p&gt;I finished reading 14 books and stranded somewhere in the middle of many books. &lt;em&gt;Quiet&lt;/em&gt; made me more introverted and now I spend more time at home. &lt;em&gt;Bad Blood&lt;/em&gt; and &lt;em&gt;Educated&lt;/em&gt; blew my mind.&lt;/p&gt;
+&lt;h2&gt;Drink&lt;/h2&gt;
+&lt;p&gt;While it&#39;s hard to name the best food of the year, the best beer of 2019 was a porter at &lt;a href=&quot;https://goo.gl/maps/9X7UMJnqB1MrzqJcA&quot;&gt;Kontynuacja&lt;/a&gt; in Wrocław, Poland. The city had high-quality craft beers, and everything that I drank was amazing.&lt;/p&gt;
+&lt;p&gt;I had a chance to meet one of my most favorite brewers, Fuerst Wiacek, at a tap takeover event at Biererei Bar. I bought a T-shirt.&lt;/p&gt;
+&lt;p&gt;The trip to Brussels was epic as well because I visited a traditional lambic brewery where they still brew beer with yeasts in the air of the building! After tasting sour lambic, I bought a T-shirt there too.&lt;/p&gt;
+&lt;p&gt;In spite of the encounters with good beers, I don&#39;t drink as much as I used to anymore. When I started commuting by bike, I didn&#39;t want to get drunk and ride a bike. Even after I stopped commuting with my bike in the winter, the momentum kept going. I drank almost every day in Japan as an exception, but I almost quit drinking again after coming back to Berlin.&lt;/p&gt;
+&lt;p&gt;On the other hand, I started drinking bubble tea regularly. There is a &lt;a href=&quot;http://www.comebuy2002.de/&quot;&gt;Comebuy&lt;/a&gt; shop near my office. I tried several bubble tea shops in Tokyo and found that only a few were better than Comebuy—I liked Yi Fang most.&lt;/p&gt;
+&lt;h2&gt;Work&lt;/h2&gt;
+&lt;p&gt;I am still working on the same team in Zalando. I looked for new opportunities inside and outside the company but decided to stay a bit more.&lt;/p&gt;
+&lt;p&gt;My team and I started on-call duties. Before that, another on-call team was taking care of my team&#39;s applications, and we tried to make sure that they didn&#39;t get called. Our focus on reliability hasn&#39;t changed much, but being on-call triggered new learnings. Writing post-mortem documents is my new favorite activity.&lt;/p&gt;
+&lt;p&gt;I started interviewing regularly, mostly on coding. I&#39;m still not used to it, and there&#39;s more to learn.&lt;/p&gt;
+&lt;h2&gt;Side projects&lt;/h2&gt;
+&lt;p&gt;In the first half of the year, I wrote &lt;a href=&quot;https://github.com/shuhei/rolling-window&quot;&gt;a small metrics utility&lt;/a&gt; for work and &lt;a href=&quot;https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/&quot;&gt;a toy interpreter and compiler in Rust&lt;/a&gt; for fun. In the last half, I focused more on learning classic algorithms than side projects.&lt;/p&gt;
+&lt;h2&gt;Conferences and meetups&lt;/h2&gt;
+&lt;p&gt;I attended two conferences, JSConf EU and JSConf JP, and had a chance to &lt;a href=&quot;https://speakerdeck.com/shuhei/profiling-node-dot-js-apps-on-production&quot;&gt;speak at a meetup&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;2020&lt;/h2&gt;
+&lt;p&gt;Looking back, 2019 was fun. I wish 2020 would be a happy year for all of you!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Generating Twitter Card images from blog post titles</title>
+    <link href="https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/"/>
+    <updated>2019-10-13T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/10/13/generating-twitter-card-images/</id>
+    <content type="html">&lt;p&gt;Twitter shows links to some websites as nice cards with images, but not for all websites. I realized that Twitter didn&#39;t show the card for my blog. Why? It turned out that they were called Twitter Cards, and Twitter showed them for websites that provided specific metadata. Is it common sense? Maybe, but I didn&#39;t know.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards&quot;&gt;Twitter Cards&lt;/a&gt; give websites an ability to add an image, a video, etc. when they are shared on Twitter. A Twitter Card makes a tweet (physically) 3x more visible on the timeline. This post explains how I generated images from post titles using &lt;a href=&quot;https://github.com/Automattic/node-canvas&quot;&gt;node-canvas&lt;/a&gt;, inspired by &lt;a href=&quot;https://hatenablog.com/&quot;&gt;Hatena Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/twitter-card.png&quot; alt=&quot;Twitter Card preview&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Meta tags&lt;/h2&gt;
+&lt;p&gt;Twitter&#39;s bots look for &lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; tags in your page. If your page has a certain meta tags, it shows a Twitter Cards for links to the page. Check &lt;a href=&quot;https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards&quot;&gt;the documentation&lt;/a&gt; for more details. The &lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; tags look like these:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:card&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;summary_large_image&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:site&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;@your_twitter_account&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:title&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;My Blog Post&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:description&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;This is a blog post.&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:image&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://test.com/images/foo.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Uh, they look a bit too platform-specific. &lt;code&gt;twitter:card&lt;/code&gt; and &lt;code&gt;twitter:site&lt;/code&gt; are specific to Twitter, but what about &lt;code&gt;twitter:title&lt;/code&gt;, &lt;code&gt;twitter:description&lt;/code&gt; and &lt;code&gt;twitter:image&lt;/code&gt;? Twitter&#39;s bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. So, we can use the &lt;code&gt;og:&lt;/code&gt; tags instead of &lt;code&gt;twitter:&lt;/code&gt; tags. Be careful that the attribute name of Open Graph metadata is &lt;code&gt;property&lt;/code&gt; instead of &lt;code&gt;name&lt;/code&gt;!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:title&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;My Blog Post&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:description&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;This is a blog post.&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:image&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://test.com/images/foo.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Homemade static site generator&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/shuhei/shuhei.github.com&quot;&gt;My blog&lt;/a&gt; is built with &lt;a href=&quot;https://github.com/gulpjs/gulp&quot;&gt;gulp&lt;/a&gt; and some custom plugins and deployed to GitHub Pages. I started the blog with &lt;a href=&quot;https://github.com/octopress/octopress&quot;&gt;Octopress&lt;/a&gt; several years ago and rewrote it with gulp when I was fascinated with gulp and JavaScript build tools. I once added React as a template engine and removed it later. Because of the history, its directory structure stays similar to the original one of Octopress. I write markdown files like &lt;code&gt;source/_posts/2019-10-13-foo.md&lt;/code&gt; and the build system generates HTMLs like &lt;code&gt;/blog/2019/10/13/foo/index.html&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To add Open Graph meta tags, I wrote a gulp plugin. Each gulp plugin is a transform stream that consumes and produces &lt;a href=&quot;https://github.com/gulpjs/vinyl&quot;&gt;vinyl&lt;/a&gt; file objects. First, I made the plugin to extract image URLs from HTML and added necessary meta tags to the HTML template for &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; tag. Now, posts with at least one image got Twitter Cards.&lt;/p&gt;
+&lt;h2&gt;Image generation and text wrapping&lt;/h2&gt;
+&lt;p&gt;Most of my posts didn&#39;t have any images, while Twitter Cards don&#39;t look great without images. But I&#39;m too lazy to create an image for each blog post manually.&lt;/p&gt;
+&lt;p&gt;I found that &lt;a href=&quot;https://hatenablog.com/&quot;&gt;Hatena Blog&lt;/a&gt;, a blogging platform in Japan, was &lt;a href=&quot;https://twitter.com/search?q=%23%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0&quot;&gt;generating images from blog post titles and descriptions&lt;/a&gt;. It&#39;s a neat idea to promote blog posts without manual effort of blog authors. Can I replicate the image generation?&lt;/p&gt;
+&lt;p&gt;I found that many image-generation npm packages were using &lt;a href=&quot;https://github.com/Automattic/node-canvas&quot;&gt;node-canvas&lt;/a&gt;. It provides the canvas API for Node.js and supports export options, including PNG. I decided to try that.&lt;/p&gt;
+&lt;p&gt;The canvas API was easy to use for me, but it doesn&#39;t provide text wrapping. I needed to come up with a way to break texts into lines. As &lt;a href=&quot;https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element&quot;&gt;a Q&amp;amp;A on Stackoverflow&lt;/a&gt; suggested, I used &lt;code&gt;ctx.measureText(text)&lt;/code&gt; to measure the width of the text and remove words until the subtext fits the given width. And do the same for the remaining text.&lt;/p&gt;
+&lt;p&gt;The first line of this text wrapping algorithm is visualized as follows (it actually happens on the same line, but showing each try in its line for illustration):&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/twitter-card-image-line-break.png&quot; alt=&quot;Wrapping text&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;There were two edge cases to be covered. The first case is that a long word doesn&#39;t fit into the given width. The other case is that the text is split into too many lines, and they overflow the given height. I covered them by decreasing the font size until the entire text fits into the given rectangle.&lt;/p&gt;
+&lt;p&gt;The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/twitter-card-image-font-sizes.png&quot; alt=&quot;Try smaller font sizes&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I eventually came up with JavaScript code like this (&lt;a href=&quot;https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js&quot;&gt;the full code is on GitHub&lt;/a&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;fitTextIntoRectangle&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;{ ctx, text, maxFontSize, rect }&lt;/span&gt;) &lt;/span&gt;{
+  &lt;span class=&quot;hljs-comment&quot;&gt;// Reduce font size until the title fits into the image.&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; fontSize = maxFontSize; fontSize &amp;gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; fontSize -= &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
+    ctx.font = getTitleFont(fontSize);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; words = text.split(&lt;span class=&quot;hljs-string&quot;&gt;&quot; &quot;&lt;/span&gt;);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; { y } = rect;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; lines = [];
+    &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (words.length &amp;gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; size;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; subtext;
+      &lt;span class=&quot;hljs-comment&quot;&gt;// Remove words until the rest fit into the width.&lt;/span&gt;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (i = words.length; i &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; i -= &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
+        subtext = words.slice(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, i).join(&lt;span class=&quot;hljs-string&quot;&gt;&quot; &quot;&lt;/span&gt;);
+        size = ctx.measureText(subtext);
+
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (size.width &amp;lt;= rect.width) {
+          &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;;
+        }
+      }
+
+      &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (i &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+        &lt;span class=&quot;hljs-comment&quot;&gt;// A word doesn&#39;t fit into a line. Try a smaller font size.&lt;/span&gt;
+        &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;;
+      }
+
+      lines.push({
+        &lt;span class=&quot;hljs-attr&quot;&gt;text&lt;/span&gt;: subtext,
+        &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: rect.x,
+        &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: y + size.emHeightAscent
+      });
+
+      words = words.slice(i);
+      y += size.emHeightAscent + size.emHeightDescent;
+    }
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; space = rect.y + rect.height - y;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (words.length === &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; space &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+      &lt;span class=&quot;hljs-comment&quot;&gt;// The title fits into the image with the font size.&lt;/span&gt;
+      &lt;span class=&quot;hljs-comment&quot;&gt;// Vertically centering the text in the given rectangle.&lt;/span&gt;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; centeredLines = lines.map(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;line&lt;/span&gt; =&amp;gt;&lt;/span&gt; {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
+          ...line,
+          &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: line.y + space / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;
+        };
+      });
+      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
+        fontSize,
+        &lt;span class=&quot;hljs-attr&quot;&gt;lines&lt;/span&gt;: centeredLines
+      };
+    }
+  }
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Error&lt;/span&gt;(
+    &lt;span class=&quot;hljs-string&quot;&gt;`Text layout failed: The given text &#39;&lt;span class=&quot;hljs-subst&quot;&gt;${text}&lt;/span&gt;&#39; did not fit into the given rectangle &lt;span class=&quot;hljs-subst&quot;&gt;${&lt;span class=&quot;hljs-built_in&quot;&gt;JSON&lt;/span&gt;.stringify(
+      rect
+    )}&lt;/span&gt; even with the smallest font size (1)`&lt;/span&gt;
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Font&lt;/h2&gt;
+&lt;p&gt;My website is using &lt;a href=&quot;https://fonts.google.com/specimen/IBM+Plex+Sans&quot;&gt;IBM Plex Sans&lt;/a&gt; via Google Fonts. I wanted to use the same font in the images. Fortunately, node-canvas provides an API to load fonts, and the font is available also on npm.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;yarn add -D @ibm/plex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { registerFont } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;canvas&quot;&lt;/span&gt;);
+
+registerFont(
+  &lt;span class=&quot;hljs-string&quot;&gt;&quot;./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf&quot;&lt;/span&gt;,
+  {
+    &lt;span class=&quot;hljs-attr&quot;&gt;family&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;IBM Plex Sans&quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-attr&quot;&gt;weight&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;bold&quot;&lt;/span&gt;
+  }
+);
+
+&lt;span class=&quot;hljs-comment&quot;&gt;// ...&lt;/span&gt;
+
+ctx.font = &lt;span class=&quot;hljs-string&quot;&gt;&quot;bold 30px &#39;IBM Plex Sans&#39;&quot;&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Done!&lt;/h2&gt;
+&lt;p&gt;So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Migrating from bash to zsh</title>
+    <link href="https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/"/>
+    <updated>2019-10-08T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/10/08/migrating-from-bash-to-zsh/</id>
+    <content type="html">&lt;p&gt;A few days ago, I updated my Macbook Air to macOS Catalina. The installation took some time, but it was done when I got up the next morning. The applications that I use seemed to work fine on Catalina. But bash started complaining at the beginning of new sessions.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I asked whether I should migrate to zsh on Twitter. Three people said &amp;quot;yes&amp;quot; as if it was common sense. OK, let&#39;s migrate.&lt;/p&gt;
+&lt;h2&gt;Changing the default shell of tmux&lt;/h2&gt;
+&lt;p&gt;First, I followed the instruction from Apple.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;chsh -s /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, it didn&#39;t change the default shell of tmux. I restarted sessions in tmux, and restarted iTerm 2 and the tmux server. But tmux still started bash sessions. Why?&lt;/p&gt;
+&lt;p&gt;I googled. There was &lt;a href=&quot;https://superuser.com/questions/253786/how-can-i-make-tmux-use-my-default-shell&quot;&gt;a Q&amp;amp;A for the exact problem&lt;/a&gt; on superuser. The &lt;code&gt;default-command&lt;/code&gt; option of tmux is the default shell. I had a hardcoded &lt;code&gt;bash&lt;/code&gt; there! By the way, &lt;code&gt;reattach-to-user-namespace&lt;/code&gt; is for sharing Mac&#39;s clipboard with tmux.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;set-option -g default-command &amp;quot;reattach-to-user-namespace -l bash&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I updated it with &lt;code&gt;SHELL&lt;/code&gt; environment variable so that I can migrate to any shell in the future!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;set-option -g default-command &amp;quot;reattach-to-user-namespace -l ${SHELL}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Command prompt&lt;/h2&gt;
+&lt;p&gt;Then I installed &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;oh-my-zsh&lt;/a&gt; and copied my &lt;code&gt;.bash_profile&lt;/code&gt; to &lt;code&gt;.zshrc&lt;/code&gt;. Most of the content of my &lt;code&gt;.bash_profile&lt;/code&gt; were aliases and &lt;code&gt;PATH&lt;/code&gt;s. They worked fine on zsh too.&lt;/p&gt;
+&lt;p&gt;But zsh has a different format for prompt. oh-my-zsh provides a lot of nice prompt themes, but I wanted to keep using the one that I had configured with bash. Let&#39;s migrate it to zsh.&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;oh-my-zsh has a directory for custom themes (&lt;code&gt;.oh-my-zsh/custom/themes&lt;/code&gt;). I moved the &lt;code&gt;custom&lt;/code&gt; directory to &lt;a href=&quot;https://github.com/shuhei/dotfiles&quot;&gt;my dotfiles repo&lt;/a&gt; and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.&lt;/s&gt; [Update on Oct 24, 2019] I realized that this symlink approach prevents updates of oh-my-zsh because it modifies the files in the git local clone of oh-my-zsh. &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/wiki/Customization&quot;&gt;The official customization guide&lt;/a&gt; recommends to use &lt;code&gt;ZSH_CUSTOM&lt;/code&gt; variable to specify the location of a custom directory. Now I&#39;m using &lt;code&gt;ZSH_CUSTOM&lt;/code&gt; to point to a directory in my dotfiles repo.&lt;/p&gt;
+&lt;p&gt;Eventually, I came up with a theme like this:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/zsh_prompt.png&quot; alt=&quot;my custom theme&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&quot;*&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# %~ is the current working directory relative to the home directory&lt;/span&gt;
+PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;[$FG[228]%~%{$reset_color%}]&#39;&lt;/span&gt;
+PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; $(git_prompt_info)&#39;&lt;/span&gt;
+PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; %(?.$FG[154].$FG[009])€%{$reset_color%} &#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each oh-my-zsh theme defines a variable called &lt;code&gt;PROMPT&lt;/code&gt;. Aside from &lt;a href=&quot;http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html&quot;&gt;its syntax&lt;/a&gt;, I was not sure how and when &lt;code&gt;PROMPT&lt;/code&gt; was evaluated. In hindsight, it is a string that is built once when a session starts or &lt;code&gt;source .zshrc&lt;/code&gt;. Every time a prompt is shown, &lt;code&gt;PROMPT&lt;/code&gt; is evaluated, meaning escapes (starting with &lt;code&gt;%&lt;/code&gt;) and variables in it are expanded.&lt;/p&gt;
+&lt;h3&gt;Colors&lt;/h3&gt;
+&lt;p&gt;At the beginning, I was baffled by how to specify colors. For example, the following &lt;code&gt;PROMPT&lt;/code&gt; shows &amp;quot;some red text&amp;quot; in red.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;%{$fg[red]%}some red text%{$reset_color%}&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;$fg[red]&lt;/code&gt; has the code that makes its following text red. &lt;code&gt;$reset_color&lt;/code&gt; has the code that resets the color. The tricky part is that these codes need to be surrounded by &lt;code&gt;%{&lt;/code&gt; and &lt;code&gt;%}&lt;/code&gt; in &lt;code&gt;PROMPT&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117&quot;&gt;zsh provides handy variables for colors&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;reset_color&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fg&lt;/code&gt;, &lt;code&gt;fg_bold&lt;/code&gt;, &lt;code&gt;fg_no_bold&lt;/code&gt;: They are associative arrays (similar to JavaScript objects).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bg&lt;/code&gt;, &lt;code&gt;bg_bold&lt;/code&gt;, &lt;code&gt;bg_no_bold&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/blob/b09aed9cc7e2099f3e7f2aa2632660bc510f3e35/lib/spectrum.zsh&quot;&gt;oh-my-zsh provides 256 colors&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FX&lt;/code&gt;: This has codes for text effects like &lt;code&gt;FX[underline]&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FG&lt;/code&gt;: 256 colors for foreground like &lt;code&gt;FG[102]&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BG&lt;/code&gt;: 256 colors for background like &lt;code&gt;BG[123]&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;spectrum_ls&lt;/code&gt; and &lt;code&gt;spectrum_bls&lt;/code&gt; commands show you all the 256 colors! Note that values in &lt;code&gt;FX&lt;/code&gt;, &lt;code&gt;FG&lt;/code&gt; and &lt;code&gt;BG&lt;/code&gt; are already surrounded by &lt;code&gt;%{&lt;/code&gt; and &lt;code&gt;%}&lt;/code&gt;, and we don&#39;t need to do it again.&lt;/p&gt;
+&lt;p&gt;We can examine those variables in the terminal.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;span class=&quot;hljs-variable&quot;&gt;${fg[yellow]}&lt;/span&gt;hello&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${bg[green]}&lt;/span&gt;world&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# `(kv)` extracts key values from an associative array.&lt;/span&gt;
+&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${(kv)fg}&lt;/span&gt;
+&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${(kv)FG}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Exit code&lt;/h3&gt;
+&lt;p&gt;With bash, &lt;a href=&quot;https://shuheikagawa.com/blog/2015/10/18/color-prompt-by-exit-code/&quot;&gt;I had a trick to change the color of the prompt by the previous command&#39;s exit code&lt;/a&gt;. How can I achieve this with zsh?&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/exit_code.png&quot; alt=&quot;Change color by exit code&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Surprisingly, &lt;a href=&quot;https://stackoverflow.com/questions/4466245/customize-zshs-prompt-when-displaying-previous-command-exit-code&quot;&gt;zsh prompt expression has a special syntax for switching prompt by exit code&lt;/a&gt;. To be accurate, it&#39;s a combination of a ternary operator and &lt;code&gt;?&lt;/code&gt; for exit code check.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Shows &quot;foo&quot; if the exit code is 0 and &quot;bar&quot; if the exit code is non-zero.&lt;/span&gt;
+%(?.foo.bar)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following expression shows the Euro sign in green if the exit code is 0 and in red if the exit code is non-zero.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;%(?.%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[green]%}.%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[red]%})€%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Git info&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;git_prompt_info()&lt;/code&gt; function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by &lt;code&gt;ZSH_THEME_GIT_PROMPT_*&lt;/code&gt; variables.&lt;/p&gt;
+&lt;p&gt;I wrote something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&quot;*&quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&quot;... &lt;span class=&quot;hljs-variable&quot;&gt;$(git_prompt_info)&lt;/span&gt; ...&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I thought it was done and went back to work. But when I switched the git branch, the prompt stayed the same. Why? I googled again. There was &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/issues/4826&quot;&gt;an issue&lt;/a&gt; for the same problem. The &lt;code&gt;PROMPT&lt;/code&gt; needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it&#39;s defined!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;... $(git_prompt_info) ...&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it&#39;s always fun to try something new (to me). I&#39;m looking forward to trying cool zsh plugins and tricks!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Writing an interpreter and a compiler in Rust</title>
+    <link href="https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/"/>
+    <updated>2019-10-06T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</id>
+    <content type="html">&lt;p&gt;In the spring of this year, I read &lt;a href=&quot;https://interpreterbook.com/&quot;&gt;Writing an Interpreter in Go&lt;/a&gt; and &lt;a href=&quot;https://compilerbook.com/&quot;&gt;Writing a Compiler in Go&lt;/a&gt; by &lt;a href=&quot;https://thorstenball.com/&quot;&gt;Thorsten Ball&lt;/a&gt;, and implemented &lt;a href=&quot;https://github.com/shuhei/cymbal&quot;&gt;an interpreter and a compiler&lt;/a&gt; from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)&lt;/p&gt;
+&lt;p&gt;The first book &lt;a href=&quot;https://interpreterbook.com/&quot;&gt;Writing an Interpreter in Go&lt;/a&gt; is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; fibonacci = fn(x) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (x == &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+        &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (x == &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
+            &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;
+        } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+            fibonacci(x - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) + fibonacci(x - &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
+        }
+    }
+};
+fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The second book &lt;a href=&quot;https://compilerbook.com/&quot;&gt;Writing a Compiler in Go&lt;/a&gt; taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression &lt;code&gt;1 + 2&lt;/code&gt; is compiled into:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// Constants&lt;/span&gt;
+&lt;span class=&quot;hljs-built_in&quot;&gt;vec!&lt;/span&gt;[
+    Object::Integer(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
+    Object::Integer(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;),
+]
+
+&lt;span class=&quot;hljs-comment&quot;&gt;// Instructions&lt;/span&gt;
+&lt;span class=&quot;hljs-built_in&quot;&gt;vec!&lt;/span&gt;[
+    make_u16(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;),
+    make_u16(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
+    make(OpCode::Add),
+    make(OpCode::Pop),
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;How I started&lt;/h2&gt;
+&lt;p&gt;I had bought &lt;em&gt;Writing an Interpreter in Go&lt;/em&gt; more in 2017, but it had been sleeping in my bookshelf (&lt;a href=&quot;https://en.wikipedia.org/wiki/Tsundoku&quot;&gt;Tsundoku&lt;/a&gt;). Recently, I wanted to relearn a little Go for work. I took the book from my bookshelf and started following the book—typing the code in Go. I did two chapters, and new Go syntaxes stopped appearing. I achieved my initial purpose—relearning Go—earlier than I thought because the book used a limited set of Go&#39;s language features. Then Rust came to my mind.&lt;/p&gt;
+&lt;p&gt;Before starting this project, I had written two simple command-line tools with Rust (&lt;a href=&quot;https://github.com/shuhei/colortty&quot;&gt;colortty&lt;/a&gt; and &lt;a href=&quot;https://github.com/shuhei/ynan26&quot;&gt;ynan26&lt;/a&gt;), but they were too small to learn different aspects of Rust. I wanted to learn more by implementing something not trivial.&lt;/p&gt;
+&lt;h2&gt;Good things about Rust&lt;/h2&gt;
+&lt;p&gt;First, I rewrote what I had written in Go with Rust and continued the rest of the book. The implementation in Rust was less redundant than the one in Go. Also, it was more type-safe thanks to &lt;code&gt;enum&lt;/code&gt;s and &lt;code&gt;Result&lt;/code&gt;. Especially &lt;code&gt;enum&lt;/code&gt;s were perfect for AST (Abstract Syntax Tree) and evaluated objects.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// An example of AST&lt;/span&gt;
+&lt;span class=&quot;hljs-meta&quot;&gt;#[derive(Debug, PartialEq, Clone, Hash, Eq)]&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;pub&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Expression&lt;/span&gt;&lt;/span&gt; {
+    Identifier(&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;),
+    IntegerLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;i64&lt;/span&gt;),
+    StringLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;),
+    Boolean(&lt;span class=&quot;hljs-built_in&quot;&gt;bool&lt;/span&gt;),
+    Array(&lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    Hash(HashLiteral),
+    Index(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    Prefix(Prefix, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    Infix(Infix, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    If(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, BlockStatement, &lt;span class=&quot;hljs-built_in&quot;&gt;Option&lt;/span&gt;&amp;lt;BlockStatement&amp;gt;),
+    FunctionLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;&amp;gt;, BlockStatement),
+    Call(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, harder parts came later when the compiler and the virtual machine grew complex.&lt;/p&gt;
+&lt;h2&gt;Nested symbol tables were a linked list&lt;/h2&gt;
+&lt;p&gt;To implement nested scopes, the Compiler Book uses self-recursive &lt;code&gt;struct&lt;/code&gt;s for nested symbol tables. I was struggling with their ownership. I tried &lt;code&gt;Rc&lt;/code&gt; and &lt;code&gt;RefCell&lt;/code&gt;, but still was not able to get through them.&lt;/p&gt;
+&lt;p&gt;Then, I went to Rust Hack and Learn—a local meetup at Mozilla Berlin office—and asked how to get over ownership rules. One person (sorry, I didn&#39;t ask his name!) recommended me a book &lt;a href=&quot;https://rust-unofficial.github.io/too-many-lists/&quot;&gt;Learn Rust With Entirely Too Many Linked Lists &lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The book introduces several versions of linked list implementations in Rust even though its precaution is not to implement linked lists in Rust. It had some techniques that I had recently learned, and much more. After a while, I realized that I had been trying to implement a linked list. Then I changed the self-recursive &lt;code&gt;struct&lt;/code&gt; to a &lt;code&gt;Vec&lt;/code&gt;, and it solved most of my headaches. So, the book&#39;s precaution was right. Don&#39;t implement a liked list.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// Before&lt;/span&gt;
+&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolTable&lt;/span&gt;&lt;/span&gt; {
+  store: HashMap&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// This is a linked list!&lt;/span&gt;
+  outer: &lt;span class=&quot;hljs-built_in&quot;&gt;Option&lt;/span&gt;&amp;lt;SymbolTable&amp;gt;;
+}
+
+&lt;span class=&quot;hljs-comment&quot;&gt;// After&lt;/span&gt;
+&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolLayer&lt;/span&gt;&lt;/span&gt; {
+  store: HashMap&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
+}
+
+&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolTable&lt;/span&gt;&lt;/span&gt; {
+  current: SymbolLayer;
+  outers: &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;SymbolStore&amp;gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;I learned basics of how programs work at low-level&lt;/h2&gt;
+&lt;p&gt;Even before starting the project, I had some vague ideas about parser, interpreter and compiler thanks to my previous projects. But I hadn&#39;t had concrete ideas about compilers, especially about how to translate high-level code like function calls and closures into low-level instructions. After the project, now I can confidently say what is on the stack and what is on the heap.&lt;/p&gt;
+&lt;p&gt;Also, the knowledge about stack was useful to understand some of the concepts of Rust itself. Rust&#39;s compiler to know the sizes of types because it needs to generate machine code that allocates values of the types on the stack.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;It was a fun project. I learned something, but there is much more to learn in Rust. Also, now I can admire modern interpreters and compilers like V8 more than before.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://interpreterbook.com/&quot;&gt;Writing an Interpreter in Go&lt;/a&gt; and &lt;a href=&quot;https://compilerbook.com/&quot;&gt;Writing a Compiler in Go&lt;/a&gt; are great. I liked their hands-on approach with many unit tests.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>DNS polling for reliability</title>
+    <link href="https://shuheikagawa.com/blog/2019/04/30/dns-polling/"/>
+    <updated>2019-04-30T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/04/30/dns-polling/</id>
+    <content type="html">&lt;p&gt;In December 2018, I wrote a package to poll and cache DNS records, &lt;a href=&quot;https://github.com/shuhei/pollen&quot;&gt;pollen&lt;/a&gt;, as a mitigation for incidents at work.&lt;/p&gt;
+&lt;p&gt;My team at work migrated our Node.js servers from AWS EC2 C4 instances to C5 instances. Then mysterious timeout errors on outbound HTTP(S) calls started happening. They happened only in an availability zone at a time. We tried different things to investigate the issue, like profiling and &lt;code&gt;tcpdump&lt;/code&gt;, but couldn&#39;t find the cause. Eventually, AWS Support suggested that the incidents were correlated to DNS timeouts in their metrics. According to them, C5 instances don&#39;t retry DNS lookups while C4 instances do.&lt;/p&gt;
+&lt;h2&gt;Node.js is vulnerable to DNS failures&lt;/h2&gt;
+&lt;p&gt;In the microservice world, we work hard to make remote procedure calls (with HTTPS) reliable. We use timeout, retry, fallback, etc. to make it as reliable as possible. However, we hadn&#39;t paid enough attention to DNS lookup, which we use for service discovery. It can easily be a single point of failure because we can&#39;t call servers without knowing their IP addresses.&lt;/p&gt;
+&lt;p&gt;Node.js is especially vulnerable to DNS lookup failures because:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js standard library doesn&#39;t have DNS cache by default while other languages/runtimes like Java and Go have it by default.&lt;/li&gt;
+&lt;li&gt;Node.js uses a small thread pool to make DNS lookups. When there are slow DNS queries or packet loss, subsequent DNS lookups need to wait for them to finish or timeout.
+&lt;ul&gt;
+&lt;li&gt;Before &lt;a href=&quot;https://github.com/nodejs/node/pull/22997&quot;&gt;Node 10.12.0&lt;/a&gt;, it was even worse because slow DNS queries affected other tasks in the thread pool like file IO and gzip encoding/decoding.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Caching at OS-level&lt;/h2&gt;
+&lt;p&gt;We can make DNS lookups fast and reliable by caching it. &lt;a href=&quot;https://github.com/nodejs/node/issues/5893&quot;&gt;An issue on the nodejs/node repo&lt;/a&gt; recommends to have caching at OS-level. We can run a daemon like dnsmasq, unbound, CoreDNS, etc.&lt;/p&gt;
+&lt;p&gt;However, it&#39;s not always easy depending on the platform that you are using. My team was using &lt;a href=&quot;https://stups.io/&quot;&gt;a platform where we just deploy your application Docker container&lt;/a&gt;, and it was hard to set up another daemon on the OS. The majority of the users of the platform were application runtimes such as Java and Go, which have basic DNS caching by default and rarely have the same issues with Node.js applications. It was hard to convince the platform team to introduce per-node DNS caching to the platform only for Node.js applications without a concrete evidence while they were focusing on a new Kubernetes-based platform. (They eventually added per-node DNS caching to the new platform later, but the application in question won&#39;t move to it because of reasons...)&lt;/p&gt;
+&lt;p&gt;Because the incidents didn&#39;t happen on C4 instances and we had other priorities to work on, we just rolled back and kept using C4 instances for a while. However, I wanted to finish the issue before celebrating 2019. So, I decided to implement DNS caching on the application layer with Node.js.&lt;/p&gt;
+&lt;h2&gt;DNS caching and prefetching with Node.js&lt;/h2&gt;
+&lt;p&gt;There were already some DNS caching packages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yahoo/dnscache&quot;&gt;yahoo/dnscache&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/eduardbcom/lookup-dns-cache&quot;&gt;eduardbcom/lookup-dns-cache&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The packages looked great, but there was an edge case that they didn&#39;t cover. Both of the packages throw away caches after some time (&lt;code&gt;dnscache&lt;/code&gt; uses &lt;code&gt;ttl&lt;/code&gt; option and &lt;code&gt;lookup-dns-cache&lt;/code&gt; uses the TTL that DNS servers return) and make DNS lookups again. This poses a risk where HTTP requests fail if DNS servers are down at the time.&lt;/p&gt;
+&lt;p&gt;To avoid making DNS lookups on demand, we can prefetch DNS records and always provide cached DNS records. This means that we may get outdated IP addresses. However, DNS records didn&#39;t change often for my case. I thought it would be better to use expired DNS records than just giving up. In the worst case, we would get an SSL certificate error if the expired IP addresses point to wrong servers as long as we use HTTPS.&lt;/p&gt;
+&lt;h2&gt;HTTP Keep-Alive (persistent connection)&lt;/h2&gt;
+&lt;p&gt;There was another issue that I wanted to solve with this package: keeping HTTP Keep-Alive connections as long as possible.&lt;/p&gt;
+&lt;p&gt;We have been using HTTP Keep-Alive for good performance. However, we couldn&#39;t keep the Keep-Alive connections forever because our backend servers may change their IP addresses (DNS-based traffic switch in our case). To avoid keeping stale connections, we were re-creating TCP/TLS connections for each minute, by rotating HTTP agents and later using the &lt;code&gt;activeSocketTTL&lt;/code&gt; option of &lt;code&gt;keepaliveagent&lt;/code&gt;. However, this is not optimal because IP addresses don&#39;t change most of the time.&lt;/p&gt;
+&lt;p&gt;The DNS caching and prefetching tell us when IP addresses change. So we can keep using existing connections as long as IP addresses stay same and re-connect only when IP addresses change. In this way, we can avoid unnecessary TCP/TLS handshakes.&lt;/p&gt;
+&lt;h2&gt;Result&lt;/h2&gt;
+&lt;p&gt;I wrote &lt;a href=&quot;https://github.com/shuhei/pollen&quot;&gt;pollen&lt;/a&gt;, tested it with C4 instances and migrated our servers to C5 again. No issues happened after five months. So, it seems that DNS failure was the cause and the package can mitigate it.&lt;/p&gt;
+&lt;p&gt;I had expected performance improvement because of fewer TCP/TLS handshakes, but I didn&#39;t find much difference in latency.&lt;/p&gt;
+&lt;h2&gt;How to use it&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;npm i -S @shuhei/pollen
+&lt;span class=&quot;hljs-comment&quot;&gt;# or&lt;/span&gt;
+yarn add @shuhei/pollen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; https = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;https&quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { DnsPolling, HttpsAgent } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;@shuhei/pollen&quot;&lt;/span&gt;);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dnsPolling = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; DnsPolling({
+  &lt;span class=&quot;hljs-attr&quot;&gt;interval&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;// 30 seconds by default&lt;/span&gt;
+});
+&lt;span class=&quot;hljs-comment&quot;&gt;// Just a thin wrapper of https://github.com/node-modules/agentkeepalive&lt;/span&gt;
+&lt;span class=&quot;hljs-comment&quot;&gt;// It accepts all the options of `agentkeepalive`.&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; agent = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; HttpsAgent();
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; hostname = &lt;span class=&quot;hljs-string&quot;&gt;&quot;shuheikagawa.com&quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.request({
+  hostname,
+  &lt;span class=&quot;hljs-attr&quot;&gt;path&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;/&quot;&lt;/span&gt;,
+  &lt;span class=&quot;hljs-comment&quot;&gt;// Make sure to call `getLookup()` for each request!&lt;/span&gt;
+  &lt;span class=&quot;hljs-attr&quot;&gt;lookup&lt;/span&gt;: dnsPolling.getLookup(hostname),
+  agent
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Bonus: DNS lookup metrics&lt;/h2&gt;
+&lt;p&gt;Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. &lt;code&gt;pollen&lt;/code&gt; emits events for this purpose.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;dnsPolling.on(&lt;span class=&quot;hljs-string&quot;&gt;&quot;resolve:success&quot;&lt;/span&gt;, ({ hostname, duration, update }) =&amp;gt; {
+  &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
+  recordDnsLookup();
+  recordDnsLatency(duration);
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (update) {
+    logger.info({ hostname, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;IP addresses updated&quot;&lt;/span&gt;);
+  }
+});
+dnsPolling.on(&lt;span class=&quot;hljs-string&quot;&gt;&quot;resolve:error&quot;&lt;/span&gt;, ({ hostname, duration, error }) =&amp;gt; {
+  &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
+  recordDnsLookup();
+  recordDnsLatency(duration);
+  recordDnsError();
+
+  logger.warn({ hostname, &lt;span class=&quot;hljs-attr&quot;&gt;err&lt;/span&gt;: error, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;DNS lookup error&quot;&lt;/span&gt;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of &lt;a href=&quot;https://c-ares.haxx.se/&quot;&gt;c-ares&lt;/a&gt;, but I&#39;m not sure yet (&lt;a href=&quot;https://c-ares.haxx.se/ares_init_options.html&quot;&gt;its default timeout seems to be 5 seconds...&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Because &lt;code&gt;pollen&lt;/code&gt; makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out &lt;a href=&quot;https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/&quot;&gt;Histogram for Time-Series Metrics on Node.js&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Even if you don&#39;t use &lt;code&gt;pollen&lt;/code&gt;, it is a good idea to monitor DNS lookups.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dns = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;dns&quot;&lt;/span&gt;);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; lookupWithMetrics = &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;hostname, options, callback&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cb = callback || options;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; startTime = &lt;span class=&quot;hljs-built_in&quot;&gt;Date&lt;/span&gt;.now();
+
+  &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;onLookup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;err, address, family&lt;/span&gt;) &lt;/span&gt;{
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; duration = &lt;span class=&quot;hljs-built_in&quot;&gt;Date&lt;/span&gt;.now() - startTime;
+    cb(err, address, family);
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
+    recordDnsLookup();
+    recordDnsLatency(duration);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (err) {
+      recordDnsError();
+      logger.warn({ hostname, err, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;DNS lookup error&quot;&lt;/span&gt;);
+    }
+  }
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; dns.lookup(hostname, options, onLookup);
+};
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.request({
+  &lt;span class=&quot;hljs-comment&quot;&gt;// ...&lt;/span&gt;
+  &lt;span class=&quot;hljs-attr&quot;&gt;lookup&lt;/span&gt;: lookupWithMetrics
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Give &lt;a href=&quot;https://github.com/shuhei/pollen&quot;&gt;pollen&lt;/a&gt; a try if you are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;seeing DNS timeouts on outbound API calls&lt;/li&gt;
+&lt;li&gt;using DNS for service discovery&lt;/li&gt;
+&lt;li&gt;running your Node.js servers without DNS caching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, don&#39;t forget to monitor DNS lookups!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Check your server.keepAliveTimeout</title>
+    <link href="https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/"/>
+    <updated>2019-04-25T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/04/25/keep-alive-timeout/</id>
+    <content type="html">&lt;p&gt;One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (&lt;code&gt;HTTPCode_ELB_502_Count&lt;/code&gt;). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn&#39;t bothered investigating it for a while.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;clients -&amp;gt; AWS ELB -&amp;gt; Node.js server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I recently came across a post, &lt;a href=&quot;https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4&quot;&gt;A tale of unexpected ELB behavior.&lt;/a&gt; It says ELB pre-connects to backend servers, and it can cause a race condition where ELB thinks a connection is open, but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found &lt;a href=&quot;https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340&quot;&gt;Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer&lt;/a&gt;. It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server&#39;s keep alive idle timeout longer than the load balancer&#39;s timeout. This advice seemed applicable even to AWS ELB and Node.js server.&lt;/p&gt;
+&lt;p&gt;According to &lt;a href=&quot;https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout&quot;&gt;AWS documentation&lt;/a&gt;, Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://nodejs.org/api/http.html#http_server_keepalivetimeout&quot;&gt;Node.js &lt;code&gt;http&lt;/code&gt;/&lt;code&gt;https&lt;/code&gt; server has 5 seconds keep alive timeout by default&lt;/a&gt;. I wanted to make it longer. With &lt;a href=&quot;https://expressjs.com/&quot;&gt;Express&lt;/a&gt;, we can do it like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; express = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;express&quot;&lt;/span&gt;);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; app = express();
+&lt;span class=&quot;hljs-comment&quot;&gt;// Set up the app...&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; server = app.listen(&lt;span class=&quot;hljs-number&quot;&gt;8080&lt;/span&gt;);
+
+server.keepAliveTimeout = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the ELB 502 errors disappeared!&lt;/p&gt;
+&lt;p&gt;In hindsight, there was already &lt;a href=&quot;https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/&quot;&gt;Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server&lt;/a&gt; on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (&lt;a href=&quot;https://github.com/zalando-incubator/kube-ingress-aws-controller&quot;&gt;Skipper as k8s ingress&lt;/a&gt;) and another Node.js server at work. I hope this issue becomes more widely known.&lt;/p&gt;
+&lt;h2&gt;Update on April 29, 2019&lt;/h2&gt;
+&lt;p&gt;Oleksii told me in a comment that only &lt;code&gt;server.keepAliveTimeout&lt;/code&gt; was not enough on Node.js 10.15.2. It turned out that we also need to configure &lt;code&gt;server.headersTimeout&lt;/code&gt; longer than &lt;code&gt;server.keepAliveTimeout&lt;/code&gt; on Node.js 10.15.2 and newer. See &lt;a href=&quot;https://github.com/nodejs/node/issues/27363&quot;&gt;his issue on GitHub&lt;/a&gt; for more details. Thanks, Oleksii!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;server.keepAliveTimeout = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
+server.headersTimeout = &lt;span class=&quot;hljs-number&quot;&gt;65&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;; &lt;span class=&quot;hljs-comment&quot;&gt;// This should be bigger than `keepAliveTimeout + your server&#39;s expected response time`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>2018 in review</title>
+    <link href="https://shuheikagawa.com/blog/2019/02/18/2018-in-review/"/>
+    <updated>2019-02-18T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2019/02/18/2018-in-review/</id>
+    <content type="html">&lt;p&gt;Looking back 2018, it flew like an arrow. It was so fast that it&#39;s already in February 2019!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/tempelhof.jpg&quot; alt=&quot;Sunset at Tempelhof in April&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Move&lt;/h2&gt;
+&lt;p&gt;We had lived in an apartment on the border of Schöneberg and Wilmersdorf for 2 years, and decided to move out at the end of October without extending the contract. We spent two or three months for flat search, and a month and a half for moving, buying furniture and setting up the new apartment. After all, we like the new area and are looking forward to spend time on the balcony in the summer.&lt;/p&gt;
+&lt;p&gt;In the meanwhile, I got my left arm injured and it took a few months to recover.&lt;/p&gt;
+&lt;h2&gt;Travel&lt;/h2&gt;
+&lt;p&gt;I visited two new countries and seven new cities. I wanted to visit a few more countries, but could not manage mainly because of the moving.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tokyo, Japan in Feburary&lt;/li&gt;
+&lt;li&gt;Spreewald, Germany in March&lt;/li&gt;
+&lt;li&gt;Amsterdam, Netherlands for React Amsterdam in April&lt;/li&gt;
+&lt;li&gt;Leipzig, Germany in May&lt;/li&gt;
+&lt;li&gt;Vienna, Austria for a wedding party in July&lt;/li&gt;
+&lt;li&gt;München, Germany for Oktoberfest in September&lt;/li&gt;
+&lt;li&gt;Köln and Düsseldorf, Germany in November&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;German language&lt;/h2&gt;
+&lt;p&gt;After finishing an A2 course at office, I started a B1 course at &lt;a href=&quot;https://www.speakeasysprachzeug.de/en&quot;&gt;Speakeasy&lt;/a&gt;. I felt that I should have taken A2 again... In the end, I was distracted by something else and stopped going to the course.&lt;/p&gt;
+&lt;h2&gt;Work&lt;/h2&gt;
+&lt;p&gt;It has been 2 years since I started working at Zalando. 2017 was about architecture migration from a monolith to microservices. 2018 was about optimization (and the next migration already started...).&lt;/p&gt;
+&lt;p&gt;In addition to front-end tasks, I focused more on non-feature stuff.&lt;/p&gt;
+&lt;p&gt;In the first half of the year, I focused on web (frontend) performance optimization. My team&#39;s work was featured in a blog post, &lt;a href=&quot;https://jobs.zalando.com/tech/blog/loading-time-matters/&quot;&gt;Loading Time Matters&lt;/a&gt;, on the company blog.&lt;/p&gt;
+&lt;p&gt;In June, my team had a series of incidents on one of our applications, but we didn&#39;t know why. It opened a door of learning for me. I dug into Node.js internals and Linux network stack. I was lucky enough to find &lt;a href=&quot;http://www.brendangregg.com/sysperfbook.html&quot;&gt;Systems Performance by Brendan Gregg&lt;/a&gt;, which is one of my all-time favorite technical books. As a by-product of the research/learning, I profiled Node.js servers on production and made some performance improvements. Wrote about it on &lt;a href=&quot;https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/&quot;&gt;Node.js under a Microscope: CPU FlameGraph and FlameScope&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Side projects&lt;/h2&gt;
+&lt;p&gt;I didn&#39;t worked on many side projects in 2018. Instead, I learned a lot of low-level stuff. Network, Linux, Node.js. I put some of what I learned into &lt;a href=&quot;https://github.com/shuhei/knowledge&quot;&gt;the knowledge repo&lt;/a&gt; inspired by &lt;a href=&quot;https://github.com/yoshuawuyts/knowledge&quot;&gt;yoshuawuyts/knowledge&lt;/a&gt;. Also, as a permanent solution for the issue at work, I wrote a library to keep Node.js app resilient against DNS timeouts, &lt;a href=&quot;https://github.com/shuhei/pollen&quot;&gt;pollen&lt;/a&gt;. It&#39;s been working without issues for 1.5 months!&lt;/p&gt;
+&lt;p&gt;Some other unfinished pieces:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote some Haskell for &lt;a href=&quot;https://github.com/shuhei/elm-compiler/pull/1&quot;&gt;a GLSL parser&lt;/a&gt; in the Elm compiler with &lt;a href=&quot;https://github.com/w0rm&quot;&gt;@w0rm&lt;/a&gt;, but it&#39;s pending&lt;/li&gt;
+&lt;li&gt;Experimented Node.js profiling at &lt;a href=&quot;https://github.com/shuhei/perf-playground&quot;&gt;perf-playground&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Played around with image formats at &lt;a href=&quot;https://github.com/shuhei/incomplete-image-parser&quot;&gt;incomplete-image-parser&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tried to write a Node.js profiler inspired by &lt;a href=&quot;https://github.com/rbspy/rbspy&quot;&gt;rbspy&lt;/a&gt;, but gave up to figure out memory layout of V8 objects&lt;/li&gt;
+&lt;li&gt;Investigated an issue with &lt;a href=&quot;https://github.com/facebook/react/issues/11538#issuecomment-390386520&quot;&gt;React + Google Translate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2019&lt;/h2&gt;
+&lt;p&gt;In 2018, I focused on tiny things such as shaving hundreds of milliseconds. In 2019, I would like to be more open. Try new things. Travel more.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Histogram for time-series metrics on Node.js</title>
+    <link href="https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/"/>
+    <updated>2018-12-29T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/</id>
+    <content type="html">&lt;h2&gt;The &amp;quot;metrics&amp;quot; library&lt;/h2&gt;
+&lt;p&gt;I have been using &lt;a href=&quot;https://github.com/mikejihbe/metrics&quot;&gt;metrics&lt;/a&gt; library for application metrics of Node.js applications at work. It was already widely used in the company when I joined, and I kept using it without questioning much.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/mikejihbe/metrics&quot;&gt;metrics&lt;/a&gt; library was ported from &lt;a href=&quot;https://github.com/dropwizard/metrics&quot;&gt;Dropwizard metrics&lt;/a&gt;, which is a widely-used metrics library for Java and also called as Coda Hale metrics, Yammer metrics, or Metrics Core. It supports various metrics types like Counter, Gauge, Histogram, Meter (a combination of Counter and Histogram), etc., and nice reporting abstraction.&lt;/p&gt;
+&lt;p&gt;Just before my last working day of 2018, I saw a weird chart with a p99.9 response time metric with only around 50 data points per minute. Outliers were staying for ~15 minutes (much longer than expected) and suddenly disappearing. I thought I was misusing the library. That&#39;s why I started reading the source code of &lt;a href=&quot;https://github.com/mikejihbe/metrics&quot;&gt;metrics&lt;/a&gt; library, especially &lt;code&gt;Histogram&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;EDS-based histogram&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;metrics&lt;/code&gt; library uses &lt;a href=&quot;https://github.com/mikejihbe/metrics/blob/v0.1.20/stats/exponentially_decaying_sample.js&quot;&gt;Exponentially Decaying Sample (EDS)&lt;/a&gt; for &lt;code&gt;Histogram&lt;/code&gt;. The name is intimidating, but the implementation is not so complicated.&lt;/p&gt;
+&lt;p&gt;It sets a priority to each value based on its timing and &lt;em&gt;some randomness&lt;/em&gt;, and values of top-1028 priorities survive (by default). As a result, the chance of a value&#39;s survival decays as time goes by.&lt;/p&gt;
+&lt;p&gt;It seems to have a problem that the influence of an old value stays longer than expected, which was fixed in the Java implementation after the &lt;code&gt;metrics&lt;/code&gt; library was ported to JavaScript. Maybe I can port the fix to the JavaScript implementation?&lt;/p&gt;
+&lt;p&gt;But, wait. Why do I need the decay at all? Most of my use cases of the histogram are to plot percentiles of response times. The data points are per minute. All I want for each data point is percentiles of all the response times &lt;em&gt;measured in the last minute&lt;/em&gt;. I don&#39;t need response times from previous minutes because they are already plotted on the chart. Also, I don&#39;t want values in the last half of the minute to have more influence than values in the first half.
+So, &lt;em&gt;I don&#39;t need the decay effect at all&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to that, EDS randomly ignores values. Yes, it &lt;em&gt;samples&lt;/em&gt;. Random sampling is a problem because I&#39;m interested in a small number of outliers.&lt;/p&gt;
+&lt;h2&gt;HDR histogram&lt;/h2&gt;
+&lt;p&gt;I tweeted about these issues, and &lt;a href=&quot;https://twitter.com/cbirchall/status/1077526632951414784&quot;&gt;my former colleague @cbirchall (Thanks!) suggested&lt;/a&gt; to take a look at &lt;a href=&quot;https://github.com/HdrHistogram/HdrHistogram&quot;&gt;HdrHistogram&lt;/a&gt;. I don&#39;t understand how it works (yet), but it claims to keep accuracy without sacrificing memory footprint and performance.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/hotels-com-technology/your-latency-metrics-could-be-misleading-you-how-hdrhistogram-can-help-9d545b598374&quot;&gt;Your Latency Metrics Could Be Misleading You — How HdrHistogram Can Help&lt;/a&gt; by Will Tomlin on the Hotels.com Technology Blog illustrates shortcomings of the EDS-based histogram and advantages of the HDR histogram pretty well.&lt;/p&gt;
+&lt;p&gt;OK, I&#39;m sold.&lt;/p&gt;
+&lt;h2&gt;Benchmark on Node.js&lt;/h2&gt;
+&lt;p&gt;Then, how can I use HDR Histogram on Node.js? I found three implementations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/HdrHistogram/HdrHistogramJS&quot;&gt;hdr-histogram-js&lt;/a&gt;: JS implementation in the same GitHub org as the Java implementation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mcollina/native-hdr-histogram&quot;&gt;native-hdr-histogram&lt;/a&gt;: A binding to a C implementation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/kiggundu/node-hdr-histogram&quot;&gt;node-hdr-histogram&lt;/a&gt;: A binding to the Java implementation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also EDS-based histogram implementations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mikejihbe/metrics&quot;&gt;metrics&lt;/a&gt;: The library I&#39;m using at work&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yaorg/node-measured/tree/master/packages/measured-core&quot;&gt;measured-core&lt;/a&gt;: Actively maintained and widely used by Node.js developers (&lt;a href=&quot;https://twitter.com/_vigneshh/status/1078287577394880512&quot;&gt;Thanks @_vigneshh for letting me know!&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I compared them, excluding &lt;code&gt;node-hdr-histogram&lt;/code&gt; because I think it&#39;s an overkill to run JVM only for metrics (and won&#39;t perform well anyway). The benchmark code is on &lt;a href=&quot;https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f&quot;&gt;a gist&lt;/a&gt;, and here is the result on Node.js 10.14.2.&lt;/p&gt;
+&lt;p&gt;Adding 10K values to a histogram:&lt;/p&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;implementation&lt;/th&gt;
+&lt;th&gt;ops/sec&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;metrics&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;173 ops/sec ±2.00% (80 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;measured&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;421 ops/sec ±1.19% (90 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;hdr-histogram-js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1,769 ops/sec ±1.84% (92 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;native-hdr-histogram&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1,516 ops/sec ±0.82% (92 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;&lt;p&gt;Extracting 12 different percentiles from a histogram:&lt;/p&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;implementation&lt;/th&gt;
+&lt;th&gt;ops/sec&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;metrics&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1,721 ops/sec ±1.93% (92 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;measured&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;3,709 ops/sec ±0.78% (93 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;measured&lt;/code&gt; (weighted percentiles)&lt;/td&gt;
+&lt;td&gt;2,383 ops/sec ±1.30% (90 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;hdr-histogram-js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;3,509 ops/sec ±0.61% (93 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;native-hdr-histogram&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2,760 ops/sec ±0.76% (93 runs sampled)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;&lt;p&gt;According to the result, &lt;code&gt;hdr-histogram-js&lt;/code&gt; is accurate and fast enough. Check out &lt;a href=&quot;https://gist.github.com/shuhei/3a747b26b62242ae795616b04c24024f&quot;&gt;the gist&lt;/a&gt; for more details!&lt;/p&gt;
+&lt;h2&gt;Reset strategy&lt;/h2&gt;
+&lt;p&gt;While HDR Histogram can keep numbers more accurately than Exponentially Decaying Sample, it doesn&#39;t throw away old values by itself. We need a strategy to remove old values out of it. In a sense, EDS is a reset strategy. If we don&#39;t use it, we need another one.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/vladimir-bukhtoyarov/rolling-metrics/blob/e1bff04f05743b642585897182bb6807b1bdfce2/histograms.md#configuration-options-for-evicting-the-old-values-of-from-reservoir&quot;&gt;Documentation of rolling-metrics library&lt;/a&gt; lists up strategies and their trade-offs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reset on snapshot&lt;/li&gt;
+&lt;li&gt;Reset periodically&lt;/li&gt;
+&lt;li&gt;Reset periodically by chunks (rolling time window)&lt;/li&gt;
+&lt;li&gt;Never reset&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Reset on snapshot&lt;/em&gt; looks a bit hacky (we need to keep metrics collection only once in an interval) but should be easy to implement and practical. &lt;em&gt;Rolling time window&lt;/em&gt; looks more rigorous, but a bit tedious to implement, especially about choosing the right parameters.&lt;/p&gt;
+&lt;p&gt;I made a quick survey of popular libraries and frameworks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hysterix: &lt;a href=&quot;https://github.com/Netflix/Hystrix/blob/v1.5.18/hystrix-core/src/main/java/com/netflix/hystrix/metric/consumer/RollingCommandLatencyDistributionStream.java&quot;&gt;HdrHistogram + rolling time window&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Finagle: &lt;a href=&quot;https://github.com/twitter/finagle/blob/finagle-18.12.0/finagle-core/src/main/scala/com/twitter/finagle/util/WindowedPercentileHistogram.scala&quot;&gt;HdrHistogram + rolling time window&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Resilience4j: Uses Prometheus?&lt;/li&gt;
+&lt;li&gt;Prometheus: Supports &lt;a href=&quot;https://prometheus.io/docs/practices/histograms/&quot;&gt;Histogram and Summary&lt;/a&gt; by its own implementation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vladimir-bukhtoyarov/rolling-metrics&quot;&gt;rolling-metrics&lt;/a&gt;: Supports HdrHistogram and multiple strategies including rolling time window.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/erikvanoosten/metrics-scala&quot;&gt;metrics-scala&lt;/a&gt;: Supports HdrHistogram + only reset on snapshot strategy. Depends on &lt;a href=&quot;https://bitbucket.org/marshallpierce/hdrhistogram-metrics-reservoir&quot;&gt;hdrhistogram-metrics-reservoir&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Rolling time window&lt;/em&gt; strategy seems to be most popular, but I couldn&#39;t find a consensus on default parameters (length of the time window, bucket size, etc.). For the next step, I&#39;ll probably start with &lt;em&gt;reset on snapshot&lt;/em&gt; strategy and see if it works well.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Update on Jan 11, 2019:&lt;/em&gt; I wrote &lt;a href=&quot;https://github.com/shuhei/rolling-window&quot;&gt;a package to use HDR histogram with rolling time window&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. &lt;a href=&quot;https://github.com/HdrHistogram/HdrHistogramJS&quot;&gt;hdr-histogram-js&lt;/a&gt; is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. &lt;em&gt;Reset on snapshot&lt;/em&gt; is easy and practical, but &lt;em&gt;rolling time window&lt;/em&gt; is more rigorous.&lt;/p&gt;
+&lt;p&gt;After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Node.js under a microscope: CPU FlameGraph and FlameScope</title>
+    <link href="https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/"/>
+    <updated>2018-09-16T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</id>
+    <content type="html">&lt;p&gt;Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.&lt;/p&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.&lt;/p&gt;
+&lt;p&gt;My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took &lt;code&gt;tcpdump&lt;/code&gt; and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or &lt;em&gt;someone else&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;CPU profiling with the Linux &lt;code&gt;perf&lt;/code&gt; command&lt;/h2&gt;
+&lt;p&gt;Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it &lt;em&gt;on production&lt;/em&gt;, so profiling was naturally a good fit because of its smaller overhead.&lt;/p&gt;
+&lt;p&gt;For Node.js, there are mainly two different tools. One is &lt;a href=&quot;https://github.com/v8/v8/wiki/V8-Profiler&quot;&gt;V8 profiler&lt;/a&gt;, and the other is &lt;a href=&quot;https://perf.wiki.kernel.org/index.php/Main_Page&quot;&gt;Linux perf&lt;/a&gt;. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux &lt;code&gt;perf&lt;/code&gt; can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to &lt;a href=&quot;https://github.com/nodejs/diagnostics/issues/148&quot;&gt;Node CPU Profiling Roadmap&lt;/a&gt;, it seems that V8 profiler is the one officially supported by the V8 team, but Linux &lt;code&gt;perf&lt;/code&gt; will keep working for a while. After all, I picked Linux &lt;code&gt;perf&lt;/code&gt; because of low performance-overhead and small intervention to applications.&lt;/p&gt;
+&lt;p&gt;Linux &lt;code&gt;perf record&lt;/code&gt; records stack traces into a binary file called &lt;code&gt;perf.data&lt;/code&gt; by default. The binary file has only addresses and file names of functions. &lt;code&gt;perf script&lt;/code&gt; converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Install dependencies for `perf` command&lt;/span&gt;
+sudo apt-get install linux-tools-common linux-tools-$(uname -r)
+&lt;span class=&quot;hljs-comment&quot;&gt;# Test `perf` command&lt;/span&gt;
+sudo perf top
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# Record stack traces 99 times per second for 30 seconds&lt;/span&gt;
+sudo perf record -F 99 -p &lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt; -g -- sleep 30s
+&lt;span class=&quot;hljs-comment&quot;&gt;# Generate human readable stack traces&lt;/span&gt;
+sudo perf script &amp;gt; stacks.&lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt;.out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?&lt;/p&gt;
+&lt;h2&gt;CPU Flame Graph&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html&quot;&gt;CPU Flame Graph by Brendan Gregg&lt;/a&gt; is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/flamegraph.png&quot; alt=&quot;CPU Flame Graph&quot; /&gt;&lt;/span&gt;
+&lt;em&gt;A CPU Flame Graph from &lt;a href=&quot;https://github.com/shuhei/perf-playground&quot;&gt;a sample application&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I found some insights about the application on production with CPU Flame Graph:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, &lt;code&gt;JSON.parse()&lt;/code&gt; was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.&lt;/li&gt;
+&lt;li&gt;Gzip decompression was using the almost same amount of CPU as React server-side rendering.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are a few tools like &lt;a href=&quot;https://github.com/brendangregg/FlameGraph&quot;&gt;FlameGraph&lt;/a&gt; and &lt;a href=&quot;https://github.com/davidmarkclements/0x&quot;&gt;0x&lt;/a&gt; to generate CPU Flame Graph from Linux &lt;code&gt;perf&lt;/code&gt; stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.&lt;/p&gt;
+&lt;h2&gt;FlameScope&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Netflix/flamescope&quot;&gt;FlameScope by Netflix&lt;/a&gt; is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/flamescope-annotated.png&quot; alt=&quot;FlameScope&quot; /&gt;&lt;/span&gt;
+&lt;em&gt;Image from &lt;a href=&quot;https://github.com/Netflix/flamescope&quot;&gt;Netflix/flamescope&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.&lt;/p&gt;
+&lt;p&gt;To use FlameScope, check out the repository and run the python server. Then put stack trace files from &lt;code&gt;perf script&lt;/code&gt; into &lt;code&gt;examples&lt;/code&gt; directory, and open &lt;code&gt;http://localhost:5000&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I found a couple of exciting insights about the application on production using this tool.&lt;/p&gt;
+&lt;h3&gt;Example 1: Heavy tasks in the master process&lt;/h3&gt;
+&lt;p&gt;The application used &lt;a href=&quot;https://nodejs.org/api/cluster.html&quot;&gt;the &lt;code&gt;cluster&lt;/code&gt; module&lt;/a&gt; to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.&lt;/p&gt;
+&lt;p&gt;The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using &lt;code&gt;JSON.stringify()&lt;/code&gt; and &lt;code&gt;JSON.parse()&lt;/code&gt; to deep-copy objects!&lt;/p&gt;
+&lt;h3&gt;Example 2: Frequent garbage collections&lt;/h3&gt;
+&lt;p&gt;FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.&lt;/p&gt;
+&lt;p&gt;The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s &lt;a href=&quot;http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection&quot;&gt;generational garbage collector&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!&lt;/p&gt;
+&lt;h2&gt;Node.js gotchas&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;perf script&lt;/code&gt; collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run your Node.js process with &lt;code&gt;--perf-basic-prof-only-functions&lt;/code&gt; option. It generates a log file at &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt;. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt; get outdated. &lt;a href=&quot;https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c&quot;&gt;I wrote a script to fix the issue&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&quot;https://github.com/mmarchini/node-linux-perf&quot;&gt;mmarchini/node-linux-perf&lt;/a&gt;. It generates the same &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt; as &lt;code&gt;--perf-basic-prof-only-functions&lt;/code&gt; does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven&#39;t tried them on production because the stack traces were already good enough for me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--no-turbo-inlining&lt;/code&gt; turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--interpreted-frames-native-stack&lt;/code&gt; fixes &lt;code&gt;Builtin:InterpereterEntryTrampoline&lt;/code&gt; in stack traces. It is available from Node.js 10.4.0. Check out &amp;quot;Interpreted Frames&amp;quot; in &lt;a href=&quot;https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961&quot;&gt;Updates from the Diagnostics Summit&lt;/a&gt; for more details.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Docker gotchas&lt;/h2&gt;
+&lt;p&gt;It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux &lt;code&gt;perf&lt;/code&gt; with Docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;perf record&lt;/code&gt; and &lt;code&gt;perf script&lt;/code&gt; in the same Docker container as your application is running&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;perf record&lt;/code&gt; and &lt;code&gt;perf script&lt;/code&gt; in the host OS&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux &lt;code&gt;perf&lt;/code&gt; available on it.&lt;/p&gt;
+&lt;p&gt;To run &lt;code&gt;perf record&lt;/code&gt; in the host OS, we need to figure out &lt;code&gt;pid&lt;/code&gt; of the application process in the host.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;$ ps ax | grep -n &#39;node --perf&#39;
+21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
+30481 pts/3    S+     0:00 grep --color=auto node --perf
+# or
+$ pgrep -f &#39;node --perf&#39;
+21574
+
+$ sudo perf record -F 99 -p 21574 -g -- sleep 30s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;perf script&lt;/code&gt; collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with &lt;code&gt;perf script&lt;/code&gt; and &lt;code&gt;/tmp/${pid}.map&lt;/code&gt; files that applications generate. However, &lt;code&gt;perf script&lt;/code&gt; in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because &lt;a href=&quot;https://lkml.org/lkml/2017/7/19/790&quot;&gt;its &lt;code&gt;perf&lt;/code&gt; command knows containers&lt;/a&gt;. But it was the case for me because I was not using the latest kernel.)&lt;/p&gt;
+&lt;p&gt;I learned how to overcome the issue from &lt;a href=&quot;http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/&quot;&gt;Making FlameGraphs with Containerized Java&lt;/a&gt;. I just copied necessary files from the container to the host.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.&lt;/span&gt;
+sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
+sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To copy symbol map files, we need to find the &lt;code&gt;pid&lt;/code&gt; in the container. We can do it by checking &lt;code&gt;/proc/${host_pid}/status&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;$ cat /proc/21574/status | grep NSpid
+NSpid:  21574   6
+$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now everything is ready! Then we can use &lt;code&gt;perf script&lt;/code&gt; as usual.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;sudo perf script &amp;gt; stacks.&lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt;.out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I set up &lt;a href=&quot;https://github.com/shuhei/perf-playground&quot;&gt;a sample project&lt;/a&gt; for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Linux &lt;code&gt;perf&lt;/code&gt; provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.&lt;/p&gt;
+&lt;p&gt;There are some gotchas to profile Node.js applications on Docker with Linux &lt;code&gt;perf&lt;/code&gt;. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>2017 in review</title>
+    <link href="https://shuheikagawa.com/blog/2017/12/25/2017-in-review/"/>
+    <updated>2017-12-25T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</id>
+    <content type="html">&lt;h2&gt;Berlin&lt;/h2&gt;
+&lt;p&gt;I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.&lt;/p&gt;
+&lt;p&gt;I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.&lt;/p&gt;
+&lt;h2&gt;Travels&lt;/h2&gt;
+&lt;p&gt;I traveled more than ever. The destinations were Germany (Dresden, Heidelberg, Frankfurt, Köln), Italy (Venice, Florence, Bologna), France (Paris), UK (London), Portugal (Lisbon) and Japan (Tokyo). I had fun in each of them, but if I have to choose one, I will name Lisbon. The city is full of what I miss in Berlin. Fresh and inexpensive seafood, views from hills, cute ceramic tiles, and beautiful weather. The sky was clear on every single day while I was there, and the highest temperature was 18 degrees in December!&lt;/p&gt;
+&lt;h2&gt;Beer&lt;/h2&gt;
+&lt;p&gt;I am glad to have found &lt;a href=&quot;https://untappd.com/fuerstwiacekbrew&quot;&gt;Fuerst Wiacek&lt;/a&gt;. Their &lt;a href=&quot;https://untappd.com/b/fuerst-wiacek-german-movies/2155675&quot;&gt;German Movies&lt;/a&gt; is my No.1 beer so far. &lt;a href=&quot;http://biererei-berlin.de/&quot;&gt;Biererei&lt;/a&gt; is a gem in Berlin, where I can buy fresh craft beers from Europe with growlers.&lt;/p&gt;
+&lt;p&gt;British ale was a discovery to me. I liked pubs in London a lot. I also attended &lt;a href=&quot;https://www.brlohack.de/english/&quot;&gt;the first craft beer hackathon in the world&lt;/a&gt; and won 12 crates of craft beer...!&lt;/p&gt;
+&lt;h2&gt;Shopping&lt;/h2&gt;
+&lt;p&gt;I bought &lt;a href=&quot;https://ergodox-ez.com/&quot;&gt;an ergonomic keyboard&lt;/a&gt; and &lt;a href=&quot;https://billerbeck.info/en/products/82/neck-support-pillow-novum&quot;&gt;a neck support pillow&lt;/a&gt;. Both of them lifted up my quality of life. My body is getting older.&lt;/p&gt;
+&lt;h2&gt;Language learning&lt;/h2&gt;
+&lt;p&gt;I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.&lt;/p&gt;
+&lt;h2&gt;Work&lt;/h2&gt;
+&lt;p&gt;I was lucky to join an awesome team. We work together and hang out together. &lt;a href=&quot;https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/&quot;&gt;A research at Google shows that psychological safety is a key to team effectiveness.&lt;/a&gt; I feel it on my team.&lt;/p&gt;
+&lt;p&gt;On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.&lt;/p&gt;
+&lt;h2&gt;Side projects&lt;/h2&gt;
+&lt;p&gt;I enjoyed working with Elm. I &lt;a href=&quot;https://github.com/shuhei/elm-compare&quot;&gt;wrote a mobile weather app&lt;/a&gt;, flew to Paris for &lt;a href=&quot;https://2017.elmeurope.org/&quot;&gt;Elm Europe 2017&lt;/a&gt;, built &lt;a href=&quot;https://github.com/shuhei/pixelm&quot;&gt;a mobile-friendly pixel editor&lt;/a&gt; and &lt;a href=&quot;https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm&quot;&gt;talked about it&lt;/a&gt; at &lt;a href=&quot;https://www.meetup.com/Elm-Berlin/events/242852794/&quot;&gt;Elm Berlin Meetup&lt;/a&gt;. I also helped &lt;a href=&quot;https://github.com/w0rm/elm-glsl&quot;&gt;an experiment of its compiler-side&lt;/a&gt; in Haskell, although it is still pending.&lt;/p&gt;
+&lt;p&gt;I didn&#39;t do much with JavaScript for side projects but wrote &lt;a href=&quot;https://github.com/shuhei/pelo&quot;&gt;a tiny library for server-side rendering with tagged template literals&lt;/a&gt; while hanging out with friends at a cafe. It&#39;s used in &lt;a href=&quot;https://github.com/choojs&quot;&gt;the choo ecosystem&lt;/a&gt; now.&lt;/p&gt;
+&lt;p&gt;Aside from building things, I learned monad transformers, etc. from &lt;a href=&quot;http://haskellbook.com/&quot;&gt;Haskell Book&lt;/a&gt; and machine learning with neural networks from &lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;Deep Learning Specialization on Coursera&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;.then()&lt;/h2&gt;
+&lt;p&gt;After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!&lt;/p&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>Getting memory usage in Linux and Docker</title>
+    <link href="https://shuheikagawa.com/blog/2017/05/27/memory-usage/"/>
+    <updated>2017-05-27T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2017/05/27/memory-usage/</id>
+    <content type="html">&lt;p&gt;Recently I started monitoring a Node.js app that we have been developing at work. After a while, I found that its memory usage % was growing slowly, like 20% in 3 days. The memory usage was measured in the following Node.js code.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; os = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;os&quot;&lt;/span&gt;);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; total = os.totalmem();
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; free = os.freemem();
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; usage = ((free - total) / total) * &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, they are basically from OS, which was &lt;a href=&quot;https://alpinelinux.org/&quot;&gt;Alpine Linux&lt;/a&gt; on Docker in this case. Luckily I also had memory usages of application processes recorded, but they were not increasing. Then why is the OS memory usage increasing?&lt;/p&gt;
+&lt;h2&gt;Buffers and cached memory&lt;/h2&gt;
+&lt;p&gt;I used &lt;code&gt;top&lt;/code&gt; command with &lt;code&gt;Shift+m&lt;/code&gt; (sort by memory usage) and compared processes on a long-running server and ones on a newly deployed server. Processes on each side were almost same. The only difference was that &lt;code&gt;buffers&lt;/code&gt; and &lt;code&gt;cached Mem&lt;/code&gt; were high on the long-running one.&lt;/p&gt;
+&lt;p&gt;After some research, or googling, I concluded that it was not a problem. Most of &lt;code&gt;buffers&lt;/code&gt; and &lt;code&gt;cached Mem&lt;/code&gt; are given up when application processes claim more memory.&lt;/p&gt;
+&lt;p&gt;Actually &lt;code&gt;free -m&lt;/code&gt; command provides a row for &lt;code&gt;used&lt;/code&gt; and &lt;code&gt;free&lt;/code&gt; taking buffers and cached into consideration.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; free -m&lt;/span&gt;
+             total  used  free  shared  buffers cached
+Mem:          3950   285  3665     183       12    188
+-/+ buffers/cache:    84  3866
+Swap:         1896     0  1896
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, what are they actually? According to &lt;a href=&quot;http://man7.org/linux/man-pages/man5/proc.5.html&quot;&gt;the manual of &lt;code&gt;/proc/meminfo&lt;/code&gt;&lt;/a&gt;, which is a pseudo file and the data source of &lt;code&gt;free&lt;/code&gt;, &lt;code&gt;top&lt;/code&gt; and friends:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;Buffers %lu
+       Relatively temporary storage for raw disk blocks that
+       shouldn&#39;t get tremendously large (20MB or so).
+
+Cached %lu
+       In-memory cache for files read from the disk (the page
+       cache).  Doesn&#39;t include SwapCached.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I am still not sure what exactly &lt;code&gt;Buffers&lt;/code&gt; contains, but it contains metadata of files, etc. and it&#39;s relatively trivial in size. &lt;code&gt;Cached&lt;/code&gt; contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.&lt;/p&gt;
+&lt;p&gt;If you are interested, &lt;a href=&quot;https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output&quot;&gt;What is the difference between Buffers and Cached columns in /proc/meminfo output?&lt;/a&gt; on Quora has more details about &lt;code&gt;Buffers&lt;/code&gt; and &lt;code&gt;Cached&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;MemAvailable&lt;/h2&gt;
+&lt;p&gt;So, should we use &lt;code&gt;free + buffers + cached&lt;/code&gt;? &lt;code&gt;/proc/meminfo&lt;/code&gt; has an even better metric called &lt;code&gt;MemAvailable&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;MemAvailable %lu (since Linux 3.14)
+       An estimate of how much memory is available for
+       starting new applications, without swapping.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; cat /proc/meminfo&lt;/span&gt;
+MemTotal:        4045572 kB
+MemFree:         3753648 kB
+MemAvailable:    3684028 kB
+Buffers:           13048 kB
+Cached:           193336 kB
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Its background is explained well in &lt;a href=&quot;https://github.com/torvalds/linux/commit/34e431b0ae398fc54ea69ff85ec700722c9da773&quot;&gt;the commit in Linux Kernel&lt;/a&gt;, but essentially it excludes non-freeable page cache and includes reclaimable slab memory. &lt;a href=&quot;https://github.com/torvalds/linux/blob/v4.12-rc2/mm/page_alloc.c#L4341-L4382&quot;&gt;The current implementation in Linux v4.12-rc2&lt;/a&gt; still looks almost same.&lt;/p&gt;
+&lt;p&gt;Some implementation of &lt;code&gt;free -m&lt;/code&gt; have &lt;code&gt;available&lt;/code&gt; column. For example, on Boot2Docker:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; free -m&lt;/span&gt;
+       total  used  free  shared  buff/cache  available
+Mem:    3950    59  3665     183         226       3597
+Swap:   1896     0  1896
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is also &lt;a href=&quot;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html&quot;&gt;available on AWS CloudWatch metrics&lt;/a&gt; via &lt;code&gt;--mem-avail&lt;/code&gt; flag.&lt;/p&gt;
+&lt;h2&gt;Some background about Docker&lt;/h2&gt;
+&lt;p&gt;My another question was &amp;quot;Are those metrics same in Docker?&amp;quot;. Before diving into this question, let&#39;s check how docker works.&lt;/p&gt;
+&lt;p&gt;According to &lt;a href=&quot;https://docs.docker.com/engine/docker-overview/#the-underlying-technology&quot;&gt;Docker Overview: The Underlying Technology&lt;/a&gt;, processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linux_namespaces&quot;&gt;namespaces&lt;/a&gt;: Isolate PIDs, hostnames, user IDs, network accesses, IPC, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Cgroups&quot;&gt;cgroups&lt;/a&gt;: Limit resource usage&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/UnionFS&quot;&gt;UnionFS&lt;/a&gt;: Isolate file system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because of the namespaces, &lt;code&gt;ps&lt;/code&gt; command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/engine/admin/resource_constraints/#memory&quot;&gt;By default, Docker containers have no resource constraints&lt;/a&gt;. So, if you run one container in a host and don&#39;t limit resource usage of the container, and this is my case, the container&#39;s &amp;quot;free memory&amp;quot; is same as the host OS&#39;s &amp;quot;free memory&amp;quot;.&lt;/p&gt;
+&lt;h2&gt;Memory metrics on Docker container&lt;/h2&gt;
+&lt;p&gt;If you want to monitor a Docker container&#39;s memory usage from outside of the container, it&#39;s easy. You can use &lt;code&gt;docker stats&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; docker stats&lt;/span&gt;
+CONTAINER     CPU %  MEM USAGE / LIMIT  MEM %  NET I/O     BLOCK I/O  PIDS
+fc015f31d9d1  0.00%  220KiB / 3.858GiB  0.01%  1.3kB / 0B  0B / 0B    2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But if you want to get the memory usage in the container or get more detailed metrics, it gets complicated. &lt;a href=&quot;https://fabiokung.com/2014/03/13/memory-inside-linux-containers/&quot;&gt;Memory inside Linux containers&lt;/a&gt; describes the difficulties in details.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/proc/meminfo&lt;/code&gt; and &lt;code&gt;sysinfo&lt;/code&gt;, which is used by &lt;code&gt;os.totalmem()&lt;/code&gt; and &lt;code&gt;os.freemem()&lt;/code&gt; of Node.js, are not isolated, you get metrics of host OS if you use normal utilities like &lt;code&gt;top&lt;/code&gt; and &lt;code&gt;free&lt;/code&gt; in a Docker container.&lt;/p&gt;
+&lt;p&gt;To get metrics specific to your Docker container, &lt;a href=&quot;https://docs.docker.com/engine/admin/runmetrics/&quot;&gt;you can check pseudo files in &lt;code&gt;/sys/fs/cgroup/memory/&lt;/code&gt;&lt;/a&gt;. They are not standardized according to &lt;a href=&quot;https://fabiokung.com/2014/03/13/memory-inside-linux-containers/&quot;&gt;Memory inside Linux containers&lt;/a&gt; though.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs console&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; cat /sys/fs/cgroup/memory/memory.usage_in_bytes&lt;/span&gt;
+303104
+&lt;span class=&quot;hljs-meta&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt; cat /sys/fs/cgroup/memory/memory.limit_in_bytes&lt;/span&gt;
+9223372036854771712
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;memory.limit_in_bytes&lt;/code&gt; returns a very big number if there is no limit. In that case, you can find the host OS&#39;s total memory with &lt;code&gt;/proc/meminfo&lt;/code&gt; or commands that use it.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;It was a longer journey than I initially thought. My takeaways are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Available Memory &amp;gt; Free Memory&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;MemAvailable&lt;/code&gt; if available (pun intended)&lt;/li&gt;
+&lt;li&gt;Processes in a Docker container run directly in host OS&lt;/li&gt;
+&lt;li&gt;Understand what you are measuring exactly, especially in a Docker container&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+
+  <entry>
+    <title>HTTP request timeouts in JavaScript</title>
+    <link href="https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/"/>
+    <updated>2017-05-13T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2017/05/13/http-request-timeouts-in-javascript/</id>
+    <content type="html">&lt;p&gt;These days I have been working on a Node.js front-end server that calls back-end APIs and renders HTML with React components. In this microservices setup, I am making sure that the server doesn&#39;t become too slow even when its dependencies have problems. So I need to set timeouts to the API calls so that the server can give up non-essential dependencies quickly and fail fast when essential dependencies are out of order.&lt;/p&gt;
+&lt;p&gt;As I started looking at timeout options carefully, I quickly found that there were many different kinds of timeouts even in the very limited field, HTTP request with JavaScript.&lt;/p&gt;
+&lt;h2&gt;Node.js &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Let&#39;s start with the standard library of Node.js. &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; packages provide &lt;code&gt;request()&lt;/code&gt; function, which makes a HTTP(S) request.&lt;/p&gt;
+&lt;h3&gt;Timeouts on &lt;code&gt;http.request()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://nodejs.org/api/http.html#http_http_request_options_callback&quot;&gt;&lt;code&gt;http.request()&lt;/code&gt;&lt;/a&gt; takes a &lt;code&gt;timeout&lt;/code&gt; option. Its documentation says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;timeout&lt;/code&gt; &lt;code&gt;&amp;lt;number&amp;gt;&lt;/code&gt;: A number specifying the socket timeout in milliseconds. This will set the timeout before the socket is connected.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So what does it actually do? It internally calls &lt;code&gt;net.createConnection()&lt;/code&gt; with its &lt;code&gt;timeout&lt;/code&gt; option, which eventually calls &lt;code&gt;socket.setTimeout()&lt;/code&gt; before the socket starts connecting.&lt;/p&gt;
+&lt;p&gt;There is also &lt;a href=&quot;http://nodejs.org/api/http.html#http_request_settimeout_timeout_callback&quot;&gt;&lt;code&gt;http.ClientRequest.setTimeout()&lt;/code&gt;&lt;/a&gt;. Its documentation says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Once a socket is assigned to this request and is connected &lt;code&gt;socket.setTimeout()&lt;/code&gt; will be called.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So this also calls &lt;a href=&quot;http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback&quot;&gt;&lt;code&gt;socket.setTimeout()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Either of them doesn&#39;t close the connection when the socket timeouts but only emits a &lt;code&gt;timeout&lt;/code&gt; event.&lt;/p&gt;
+&lt;p&gt;So, what does &lt;code&gt;socket.setTimeout()&lt;/code&gt; do? Let&#39;s check.&lt;/p&gt;
+&lt;h3&gt;net.Socket.setTimeout()&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback&quot;&gt;The documentation&lt;/a&gt; says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default &lt;code&gt;net.Socket&lt;/code&gt; does not have a timeout.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;OK, but what does &amp;quot;inactivity on the socket&amp;quot; exactly mean? In a happy path, a TCP socket follows the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Start connecting&lt;/li&gt;
+&lt;li&gt;DNS lookup is done: &lt;code&gt;lookup&lt;/code&gt; event (Doesn&#39;t happen in HTTP Keep-Alive)&lt;/li&gt;
+&lt;li&gt;Connection is made: &lt;code&gt;connect&lt;/code&gt; event (Doesn&#39;t happen in HTTP Keep-Alive)&lt;/li&gt;
+&lt;li&gt;Read data or write data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;When you call &lt;code&gt;socket.setTimeout()&lt;/code&gt;, a timeout timer is created and restarted before connecting, after &lt;code&gt;lookup&lt;/code&gt;, after &lt;code&gt;connect&lt;/code&gt; and each data read &amp;amp; write. So the &lt;code&gt;timeout&lt;/code&gt; event is emitted on one of the following cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS lookup doesn&#39;t finish in the given timeout&lt;/li&gt;
+&lt;li&gt;TCP connection is not made in the given timeout after DNS lookup&lt;/li&gt;
+&lt;li&gt;No data read or write in the given timeout after connection, previous data read or write&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This might be a bit counter-intuitive. Let&#39;s say you called &lt;code&gt;socket.setTimeout(300)&lt;/code&gt; to set the timeout as 300 ms, and it took 100 ms for DNS lookup, 100 ms for making a connection with a remote server, 200 ms for the remote server to send response headers, 50 ms for transferring the first half of the response body and another 50 ms for the rest. While the entire request &amp;amp; response took more than 500 ms, &lt;code&gt;timeout&lt;/code&gt; event is not emitted at all.&lt;/p&gt;
+&lt;p&gt;Because the timeout timer is restarted in each step, timeout happens only when a step is not completed in the given time.&lt;/p&gt;
+&lt;p&gt;Then what happens if timeouts happen in all of the steps? As far as I tried, &lt;code&gt;timeout&lt;/code&gt; event is triggered only once.&lt;/p&gt;
+&lt;p&gt;Another concern is HTTP Keep-Alive, which reuses a socket for multiple HTTP requests. What happens if you set a timeout for a socket and the socket is reused for another HTTP request? Never mind. &lt;code&gt;timeout&lt;/code&gt; set in an HTTP request does not affect subsequent HTTP requests because &lt;a href=&quot;https://github.com/nodejs/node/blob/v7.10.0/lib/_http_client.js#L546&quot;&gt;the timeout is cleaned up when it&#39;s kept alive&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;HTTP Keep-Alive &amp;amp; TCP Keep-Alive&lt;/h3&gt;
+&lt;p&gt;This is not directly related to timeout, but I found Keep-Alive options in &lt;code&gt;http&lt;/code&gt;/&lt;code&gt;https&lt;/code&gt; are a bit confusing. They mix HTTP Keep-Alive and TCP Keep-Alive, which are completely different things but coincidentally have the same name. For example, the options of &lt;a href=&quot;http://nodejs.org/api/http.html#http_new_agent_options&quot;&gt;&lt;code&gt;http.Agent&lt;/code&gt; constructor&lt;/a&gt; has &lt;code&gt;keepAlive&lt;/code&gt; for HTTP Keep-Alive and &lt;code&gt;keepAliveMsecs&lt;/code&gt; for TCP Keep-Alive.&lt;/p&gt;
+&lt;p&gt;So, how are they different?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP Keep-Alive reuses a TCP connection for multiple HTTP requests. It saves the TCP connection overhead such as DNS lookup and TCP slow start.&lt;/li&gt;
+&lt;li&gt;TCP Keep-Alive closes invalid connections, and it is normally handled by OS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;So?&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;http&lt;/code&gt;/&lt;code&gt;https&lt;/code&gt; use &lt;code&gt;socket.setTimeout()&lt;/code&gt; whose timer is restarted in stages of socket lifecycle. It doesn&#39;t ensure a timeout for the overall request &amp;amp; response. If you want to make sure that a request completes in a specific time or fails, you need to prepare your own timeout solution.&lt;/p&gt;
+&lt;h2&gt;Third-party modules&lt;/h2&gt;
+&lt;h3&gt;&lt;code&gt;request&lt;/code&gt; module&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/request/request&quot;&gt;request&lt;/a&gt; is a very popular HTTP request library that supports many convenient features on top of &lt;code&gt;http&lt;/code&gt;/&lt;code&gt;https&lt;/code&gt; module. Its README says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;timeout&lt;/code&gt; - Integer containing the number of milliseconds to wait for a server to send response headers (and start the response body) before aborting the request.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;However, as far as I checked the implementation, &lt;code&gt;timeout&lt;/code&gt; is not applied to the timing of response headers as of v2.81.1.&lt;/p&gt;
+&lt;p&gt;Currently this module emits the two types of timeout errors:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ESOCKETTIMEDOUT&lt;/code&gt;: Emitted from &lt;code&gt;http.ClientRequest.setTimeout()&lt;/code&gt; described above, which uses &lt;code&gt;socket.setTimeout()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ETIMEDOUT&lt;/code&gt;: Emitted when a connection is not established in the given timeout. It was applied to the timing of response headers before v2.76.0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is &lt;a href=&quot;https://github.com/request/request/issues/2535&quot;&gt;a GitHub issue&lt;/a&gt; for it, but I&#39;m not sure if it&#39;s intended and the README is outdated, or it&#39;s a bug.&lt;/p&gt;
+&lt;p&gt;By the way, &lt;code&gt;request&lt;/code&gt; provides a useful timing measurement feature that you can enable with &lt;code&gt;time&lt;/code&gt; option. It will help you to define a proper timeout value.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;axios&lt;/code&gt; module&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/mzabriskie/axios&quot;&gt;&lt;code&gt;axios&lt;/code&gt;&lt;/a&gt; is another popular library that uses &lt;code&gt;Promise&lt;/code&gt;. Like &lt;code&gt;request&lt;/code&gt; module&#39;s README, its &lt;code&gt;timeout&lt;/code&gt; option timeouts if the response status code and headers don&#39;t arrive in the given timeout.&lt;/p&gt;
+&lt;h2&gt;Browser APIs&lt;/h2&gt;
+&lt;p&gt;While my initial interest was server-side HTTP requests, I become curious about browser APIs as I was investigating Node.js options.&lt;/p&gt;
+&lt;h3&gt;XMLHttpRequest&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/timeout&quot;&gt;&lt;code&gt;XMLHttpRequest.timeout&lt;/code&gt;&lt;/a&gt; aborts a request after the given timeout and calls &lt;code&gt;ontimeout&lt;/code&gt; event listeners. The documentation does not explain the exact timing, but I guess that it is until &lt;code&gt;readyState === 4&lt;/code&gt;, which means that the entire response body has arrived.&lt;/p&gt;
+&lt;h3&gt;fetch()&lt;/h3&gt;
+&lt;p&gt;As far as I read &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch&quot;&gt;&lt;code&gt;fetch()&lt;/code&gt;&#39;s documentation on MDN&lt;/a&gt;, it does not have any way to specify a timeout. So we need to handle by ourselves. We can do that easily using &lt;a href=&quot;http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race&quot;&gt;&lt;code&gt;Promise.race()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;withTimeout&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;msecs, promise&lt;/span&gt;) &lt;/span&gt;{
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; timeout = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Promise&lt;/span&gt;(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;resolve, reject&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
+    setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; =&amp;gt;&lt;/span&gt; {
+      reject(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Error&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;timeout&quot;&lt;/span&gt;));
+    }, msecs);
+  });
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Promise&lt;/span&gt;.race([timeout, promise]);
+}
+
+withTimeout(&lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;, fetch(&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://foo.com/bar/&quot;&lt;/span&gt;))
+  .then(doSomething)
+  .catch(handleError);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This kind of external approach works with any HTTP client and timeouts for the overall request and response. However, it does not abort the underlying HTTP request while preceding timeouts actually abort HTTP requests and save some resources.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Most of the HTTP request APIs in JavaScript doesn&#39;t offer timeout mechanism for the overall request and response. If you want to limit the maximum processing time for your piece of code, you have to prepare your own timeout solution. However, if your solution relies on a high-level abstraction like &lt;code&gt;Promise&lt;/code&gt; and cannot abort underlying TCP socket and HTTP request when timeout, it is nice to use an existing low-level timeout mechanisms like &lt;code&gt;socket.setTimeout()&lt;/code&gt; together to save some resources.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

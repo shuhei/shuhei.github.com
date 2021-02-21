@@ -1,0 +1,202 @@
+<!doctype html><html><head><title>Presentation</title><meta charset="utf-8"><script src="js/jquery-1.10.2.js"></script><script src="js/underscore.js"></script><script src="js/backbone.js"></script><script src="js/slides.js"></script></head><style>/* Your individual styles here, or just use inline styles if that’s what you want. */</style><body style="display: none"><section class="slides layout-regular template-default"><article><h1>Backbone.js のはなし</h1><h2>香川 周平 @ M3 Teck Talk #7</h2></article><article><h3>Backbone.js とは？</h3><ul><li>フロントエンドの JavaScript MVC(?) フレームワーク。</li><li>jQuery/Zepto, Underscore.js, (json2: 古い IE 用)　のみに依存。</li><li>Web アプリケーションに <em>構造</em> を与える。</li><li>2013 年 3 月に 1.0.0 がリリース。</li></ul></article><article><h3>メリット</h3><p>フロントエンドの JavaScript をきれいに書ける。</p><ul><li>オブジェクト指向 ... jQuery のセレクタとコールバックの羅列から、責任の明確なクラス群へ。何がどこにあるか把握しやすくなる。</li><li>強力なイベント機構 ... Observer パターンでモジュール間が疎結合に。</li><li>軽量・柔軟 ... 使い方を強制しない。使えるところから使い始められる。</li></ul></article><article><h3>他のフレームワークとどう違う？</h3><table><thead><tr><th></th><th>Size (min)</th><th>Data Binding</th><th>Components</th><th>Testing Support</th></tr></thead><tbody><tr><td>Backbone.js</td><td><em>6.3 kb</em></td><td></td><td></td><td></td></tr><tr><td>Angular.js</td><td>81 kb</td><td>x</td><td>x</td><td>x</td></tr><tr><td>Ember.js</td><td>56 kb</td><td>x</td><td>x</td><td>x</td></tr></tbody></table><p>Backbone.js は圧倒的に軽量。機能は少ない。</p><p>フェラーリと自転車を比べるようなもの・・・。</p><p>Backbone なしでできないことが、Backbone でできるようになるわけではない。</p></article><article><h3>主なコンポーネント</h3><h4>MVC?</h4><ul><li>Model ... いわゆる Model。データの保持、変化に応じてイベント発火。</li><li>Collection ... Model の集合を管理。</li><li>View ... Controller と View を足したもの。Model/Collection と DOM を結びつける。</li></ul><h4>それから・・・</h4><ul><li>Router ... URL とアプリの状態をマッピングする機構。History API をサポート。</li><li>Sync ... Model とサーバと同期する機構。</li></ul></article><article><h3>Underscore.js</h3><p>Backbone.js が依存しているユーティリティライブラリ。豊富なコレクション操作など、かゆいところに手が届く。</p><pre><code class="js">_.each([1, 2, 3], function (num, i) { console.log(num); });
+
+_.map([1, 2, 3], function (num) { return num * num; });
+// [1, 4, 9]
+
+_.groupBy([18, 23, 34, 30, 12, 43], function (age) {
+  return Math.floor(age / 10) * 10;
+});
+// { 10: [18, 12], 20: [23], 30: [34, 30], 40: [43] }
+</code></pre><p>テンプレート関数もあり。</p><pre><code class="js">var compiled = _.template('Hello, &lt;%= name %&gt;!');
+var result = compiled({ name: 'World' });
+// Hello, World!
+</code></pre></article><article><h3>Backbone.Events 1</h3><p>Object にイベント機能を付加する。</p><ul><li><code>on</code> でイベントリスナーを登録。</li><li><code>off</code> で解除。</li><li><code>trigger</code> でイベントを発火。引数も渡せる。</li></ul><pre><code class="js">var obj = _.extend({}, Backbone.Events);
+obj.on('greeting', function (message) {
+  console.log([message, message, message].join(' ') + '!');
+});
+obj.trigger('greeting', 'hello');
+// hello hello hello!
+
+obj.off('greeting');
+obj.trigger('greeting', 'ciao');
+// ...
+</code></pre></article><article><h3>Backbone.Events 2</h3><p>主従が逆のメソッドも。メモリーリーク対策にも。</p><ul><li><code>listenTo</code> でイベントリスナーを登録。</li><li><code>stopListening</code> で解除。</li></ul><pre><code class="js">var another = _.extend({
+  reverse: function (message) {
+    console.log(message.split('').reverse().join('')); 
+  }
+}, Backbone.Events);
+another.listenTo(obj, 'greeting', another.reverse); // bind いらず！
+// obj.on('greeting', _.bind(another.reverse, another));
+
+obj.trigger('greeting', 'Bonjour');
+// ruojnoB
+
+another.stopListening();
+// obj から another.reverse への参照を能動的に消すことができる。
+</code></pre></article><article><h3>Backbone.Model 1</h3><ul><li>データの保持 ... <code>get()</code>/<code>set()</code> でデータの出し入れ。</li><li>変更の監視 ... データが変更されると <code>change</code> イベントを発火する。</li><li>Backbone.Sync によるサーバサイドとのデータ同期</li></ul><h4>何を入れる？</h4><ul><li>アプリケーションが管理するデータ</li><li>画面の状態なども</li></ul></article><article><h3>Backbone.Model 2</h3><pre><code class="js">var Background = Backbone.Model.extend({
+  promptColor: function () {
+    var cssColor = prompt('CSS 色を入力してください。');
+    this.set('color', cssColor);
+  },
+  turnBlack: function () {
+    this.set('color', '#000');
+  }
+});
+var bg = new Background();
+bg.on('change:color', function (model, color) {
+  $('section').css('backgroundColor', color);
+});
+
+$('#prompt-color').on('click', _.bind(bg.promptColor, bg));
+$('#turn-black').on('click', _.bind(bg.turnBlack, bg));
+</code></pre><p><button id="prompt-color">Prompt Color</button> <button id="turn-black">Turn Black</button><script>var Background = Backbone.Model.extend({
+    promptColor: function () {
+      var cssColor = prompt('CSS 色を入力してください。');
+      this.set('color', cssColor);
+    },
+    turnBlack: function () {
+      this.set('color', '#000')
+    }
+  });
+  var bg = new Background();
+  bg.on('change:color', function (model, color) {
+    $('section').css('backgroundColor', color);
+  });
+  $('#prompt-color').on('click', function () {
+    bg.promptColor();
+  });
+  $('#turn-black').on('click', function () {
+    bg.turnBlack();
+  });</script></p></article><article><h3>Backbone.Collection 1</h3><p>Model の集合を管理する。追加、削除時にイベントを発火。</p><pre><code class="js">var Book = Backbone.Model.extend({});
+var Library = Backbone.Collection.extend({
+  model: Book
+});
+
+var books = new Library();
+books.on('add', function (book) {
+  console.log('新しく「' + book.get('title') + '」が到着しました。');
+});
+books.add([
+  { title: '羅生門 2', author: '芥川龍之介', published: false },
+  { title: '坊ちゃん', author: '夏目漱石', published: true }
+]);
+// 新しく「羅生門 2」が到着しました。
+// 新しく「坊ちゃん」が到着しました。
+</code></pre></article><article><h3>Backbone.Collection 2</h3><p>Underscore.js の collection メソッドが利用可能。.</p><pre><code class="js">var authors = books.map(function (book) {
+  return book.get('author');
+});
+// [&quot;芥川龍之介&quot;, &quot;夏目漱石&quot;]
+
+var publishedBooks = books.filter(function (book) {
+  return book.get('published') === true;
+});
+// '「坊ちゃん」だけ'
+</code></pre></article><article><h3>Backbone.Sync</h3><p>Model/Collection をバックエンドと同期する仕組み。<code>Backbone.sync</code> を書き換えれば、REST API や local storage など、好きなバックエンドを選択できる。</p><pre><code class="js">var book = new Backbone.Model({
+  title: 'The Rough Riders',
+  author: 'Theodore Roosevelt'
+});
+
+book.save();
+// create: {&quot;title&quot;:&quot;The Rough Riders&quot;,&quot;author&quot;:&quot;Theodore Roosevelt&quot;}
+
+book.save({author: 'Teddy'});
+// update: {&quot;title&quot;:&quot;The Rough Riders&quot;,&quot;author&quot;:&quot;Teddy&quot;}
+</code></pre></article><article><h3>Backbone.View 1</h3><p>コードというより、規約。</p><h4>DOM と Model/Collection をつなぐ</h4><ul><li>DOM のイベントを監視し、Model/Collection を操作。</li><li>Model/Collection のイベントを監視し、DOM を操作。</li></ul><h4>DOM 関連のコードを整理する</h4></article><article><h3>Backbone.View 2</h3><pre><code class="js">var DocumentView = Backbone.View.extend({
+  tagName: 'li',
+  className: 'document-row',
+  events: {
+    'click .icon'         : 'open',
+    'click .button.edit'  : 'openEditDialog',
+    'click .button.delete': 'destroy'
+  },
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  }
+  render: function() { /* ... */ });
+});
+var doc = new Document({ title: 'Hello, World!', content: '...' });
+var docView = new DocumentView({ model: doc });
+</code></pre></article><article><h3>テンプレート</h3><p>まずは Underscore.js 標準のものが簡単。JST や Hanlderbars.js もよく使われる。</p><pre><code class="html">&lt;script type=&quot;text/template&quot; id=&quot;book-template&quot;&gt;
+  &lt;div class=&quot;book&quot;&gt;
+    &lt;span class=&quot;book-name&quot;&gt;&lt;%= title %&gt;&lt;/span&gt;
+    by &lt;span class=&quot;book-author&quot;&gt;&lt;%= author %&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/script&gt;
+</code></pre><pre><code class="js">var BookView = Backbone.View.extend({
+  render: function () {
+    var template = $('#book-template').html();
+    this.$el.html(template(this.model.attributes));
+    return this;
+  }
+});
+</code></pre></article><article><h3>部品化 1</h3><p>jQuery のセレクタとコールバックの羅列。何がしたいのかよくわからない・・・。</p><pre><code class="js">// Foo
+$('.foo').on('click', function (e) { /* ... */ });
+$('.foo bar').on('click', function (e) { /* ... */ });
+$('.foo bar').on('mouseover', function (e) { /* ... */ });
+
+// Baz
+$('.baz').on('click', function (e) { /* ... */ });
+</code></pre><p>部品ごとにコードを一カ所に集め、それぞれ <code>Backbone.View</code> を継承したクラスにすると・・・。</p></article><article><h3>部品化 2</h3><pre><code class="js">var FooView = Backbone.View.extend({
+  events: {
+    'click' : 'doSomething',
+    'click .bar' : 'toggleBarState',
+    'mouseover .bar' : 'makeBarRed'
+  },
+  doSomething: function (e) { /* ... */ },
+  toggleBarState: function (e) { /* ... */ },
+  makeBarRed: function (e) { /* ... */ }
+});
+var BazView = Backbone.View.extend({
+  events: {
+    'click' : 'postData'
+  },
+  postData: function (e) { /* ... */ }
+});
+
+var fooView = new FooView({ el: $('.foo') });
+var bazView = new BazView({ el: $('.baz') });
+</code></pre></article><article><h3>名前がつく</h3><ul><li>クラス名</li><li>メソッド名</li></ul><p>jQuery セレクタ/コールバックの羅列に比べて、どこで何をしているかわかりやすくなる。</p></article><article><h3>Event Delegation</h3><p><code>events</code> を使うと、担当する DOM 要素とその子要素へのイベントハンドラーが簡単に登録できる。<code>this</code> もバインド済。</p><pre><code class="js">var FooView = Backbone.View.extend({
+  greet: 'Hello!'
+  events: {
+    'mouseover'           : 'smile',
+    'click .hello-button' : 'sayHello'
+  },
+  smile: function () {
+  },
+  sayHello: function () {
+    // this は View のインスタンス！
+    console.log(this.greet);
+  }
+});
+</code></pre></article><article><h3>Event Delegation 補足</h3><p>jQuery だけでも、委譲はできる。</p><p><code>.hello-button</code> は最初からある必要はない。親要素にイベントリスナーを仕掛けておき、子から bubbling してくるイベントを監視。</p><pre><code class="js">$('.foo').on('click', '.hello-button', function (e) {
+  var buttonText = $(e.currentTarget).text();
+  alert(buttonText + ' was clicked.');
+});
+$('&lt;button /&gt;').addClass('hello-button').text('Hello!').appendTo('.foo');
+$('&lt;button /&gt;').addClass('hello-button').text('Hi!').appendTo('.foo');
+</code></pre><div class="foo"></div><script>$('.foo').on('click', '.hello-button', function (e) {
+    var buttonText = $(e.currentTarget).text();
+    alert(buttonText + ' was clicked.');
+  });
+  $('<button />').addClass('hello-button').text('Hello!').appendTo('.foo');
+  $('<button />').addClass('hello-button').text('Hi!').appendTo('.foo');</script><p>古い IE で <code>submit</code> など、できないイベントもあり。</p></article><article><h3>うちはうち、よそはよそ。</h3><p>グローバルの <code>$</code> を使うと、View の中だけでなく、画面中どこでも操作できてしまう。 <code>this.$el</code>/<code>this.$</code> で、<code>this.el</code> またはその子供だけを操作するようにすると、責任範囲が明確になる。</p><pre><code class="js">// View のメソッドの中で・・・
+
+this.$el.css('color', '#f00');
+// $(this.el).css('color', '#f00'); と同じ
+
+this.$('li').hide();
+// $(this.el).find('li').hide(); と同じ。
+</code></pre></article><article><h3>別の View と連動させたい時は？</h3><ul><li><code>Model</code> を経由する。</li><li>親 <code>View</code> から 子 <code>View</code> のメソッドを直接呼ぶ。</li><li>親 <code>View</code> が子 <code>View</code> のイベントを監視する。</li><li><code>View</code> 同士を <code>Mediator</code> でつなぐ。</li><li><code>Router</code> を使う。</li></ul></article><article><h3>Backbone.Router</h3><p>URL とアクションをマッピング。</p><pre><code class="js">var Router = Backbone.Router.extend({
+  routes: {
+    'help':                 'help',    // #help
+    'search/:query':        'search',  // #search/kiwis
+    'search/:query/p:page': 'search'   // #search/kiwis/p7
+  },
+  help: function() { /* ... */ },
+  search: function(query, page) { /* ... */ }
+});
+var router = new Router();
+Backbone.history.start(); // { pushStat: true } なら進む・戻る
+
+router.navigate('help', {trigger: true});
+</code></pre></article><article><h3>まずは View から</h3><p>既存システムでクライアントサイドに <code>Model</code> を導入するには、けっこうな変更が必要。REST API を用意して、クライアントでテンプレート使ってレンダリングして・・・。</p><p><code>Router</code> も Single Page Application でないとあまり・・・。</p><p>まずは <code>View</code> から使ってみましょう。</p></article><article><h3>リソース</h3><ul><li><a href="https://github.com/rstacruz/backbone-patterns">Backbone Patterns</a> Backbone.js のベストプラクティス集。</li><li><a href="http://www.amazon.co.jp/dp/4899773501">Backbone.jsガイドブック, 高橋 侑久</a> 概念的な話は少なく入門には向かないが、実践的な内容。</li><li><a href="http://shop.oreilly.com/product/0636920025344.do">Developing Backbone.js Applications, Addy Osmani</a> O'Reilly 本。</li><li><a href="http://shop.oreilly.com/product/0636920018421.do">JavaScript Web Applicaitons, Alex MacCaw</a> 少し古いが、フロントエンドフレームワークがなぜ必要かよくわかる。</li><li><a href="http://marionettejs.com/">Marionette.js</a> Backbone.js の上に構築されたフレームワーク。ベストプラクティス集として読むこともできる。</li><li><a href="http://todomvc.com/">TodoMVC</a> Todo アプリをいろいろなフレームワークで実装。</li></ul></article></section></body></html>
