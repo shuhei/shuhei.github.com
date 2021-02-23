@@ -43,7 +43,7 @@ Cached %lu
        cache).  Doesn't include SwapCached.
 ```
 
-I am still not sure what exactly `Buffers` contains, but it contains metadata of files, etc. and it's relatively trivial in size. `Cached` contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.
+I am still not sure what exactly `Buffers` contains, but it contains metadata of files, etc. and it’s relatively trivial in size. `Cached` contains cached file contents, which are called page cache. OS keeps page cache while RAM has enough free space. That was why the memory usage was increasing even when processes were not leaking memory.
 
 If you are interested, [What is the difference between Buffers and Cached columns in /proc/meminfo output?](https://www.quora.com/What-is-the-difference-between-Buffers-and-Cached-columns-in-proc-meminfo-output) on Quora has more details about `Buffers` and `Cached`.
 
@@ -82,7 +82,7 @@ It is also [available on AWS CloudWatch metrics](http://docs.aws.amazon.com/AWSE
 
 ## Some background about Docker
 
-My another question was "Are those metrics same in Docker?". Before diving into this question, let's check how docker works.
+My another question was “Are those metrics same in Docker?”. Before diving into this question, let’s check how docker works.
 
 According to [Docker Overview: The Underlying Technology](https://docs.docker.com/engine/docker-overview/#the-underlying-technology), processes in a Docker container directly run in their host OS without any virtualization, but they are isolated from the host OS and other containers in effect thanks to these Linux kernel features:
 
@@ -92,7 +92,7 @@ According to [Docker Overview: The Underlying Technology](https://docs.docker.co
 
 Because of the namespaces, `ps` command lists processes of Docker containers in addition to other processes in the host OS, while it cannot list processes of host OS or other containers in a docker container.
 
-[By default, Docker containers have no resource constraints](https://docs.docker.com/engine/admin/resource_constraints/#memory). So, if you run one container in a host and don't limit resource usage of the container, and this is my case, the container's "free memory" is same as the host OS's "free memory".
+[By default, Docker containers have no resource constraints](https://docs.docker.com/engine/admin/resource_constraints/#memory). So, if you run one container in a host and don’t limit resource usage of the container, and this is my case, the container’s “free memory” is same as the host OS’s “free memory”.
 
 ## Memory metrics on Docker container
 
@@ -117,7 +117,7 @@ $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 9223372036854771712
 ```
 
-`memory.limit_in_bytes` returns a very big number if there is no limit. In that case, you can find the host OS's total memory with `/proc/meminfo` or commands that use it.
+`memory.limit_in_bytes` returns a very big number if there is no limit. In that case, you can find the host OS’s total memory with `/proc/meminfo` or commands that use it.
 
 ## Conclusion
 

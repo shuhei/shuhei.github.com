@@ -3,13 +3,13 @@ title: "Check your server.keepAliveTimeout"
 tags: [Node.js]
 ---
 
-One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (`HTTPCode_ELB_502_Count`). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn't bothered investigating it for a while.
+One of my Node.js server applications at work had constant 502 errors at AWS ELB (Application Load Balancer) in front of it (`HTTPCode_ELB_502_Count`). The number was very small. It was around 0.001% of the entire requests. It was not happening on other applications with the same configuration but with shorter response times and more throughputs. Because of the low frequency, I hadn’t bothered investigating it for a while.
 
 ```
 clients -> AWS ELB -> Node.js server
 ```
 
-I recently came across a post, [A tale of unexpected ELB behavior.](https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4) It says ELB pre-connects to backend servers, and it can cause a race condition where ELB thinks a connection is open, but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found [Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer](https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340). It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server's keep alive idle timeout longer than the load balancer's timeout. This advice seemed applicable even to AWS ELB and Node.js server.
+I recently came across a post, [A tale of unexpected ELB behavior.](https://medium.com/@liquidgecka/a-tale-of-unexpected-elb-behavior-5281db9e5cb4) It says ELB pre-connects to backend servers, and it can cause a race condition where ELB thinks a connection is open, but the backend closes it. It clicked my memory about the ELB 502 issue. After some googling, I found [Tuning NGINX behind Google Cloud Platform HTTP(S) Load Balancer](https://blog.percy.io/tuning-nginx-behind-google-cloud-platform-http-s-load-balancer-305982ddb340). It describes an issue on GCP Load Balancer and NGINX, but its takeaway was to have the server’s keep alive idle timeout longer than the load balancer’s timeout. This advice seemed applicable even to AWS ELB and Node.js server.
 
 According to [AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#connection-idle-timeout), Application Load Balancer has 60 seconds of connection idle timeout by default. It also suggests:
 

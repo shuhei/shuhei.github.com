@@ -232,6 +232,7 @@ code {
   background-color: var(--code-bg-color);
   font-size: 0.9em;
   font-family: var(--code-font-family);
+  padding: 0 0.3em;
 }
 .code__filename {
   display: inline-block;

@@ -14,17 +14,17 @@ I have been using Dracula color scheme on Vim and Alacritty for a while. I liked
 
 ![dracula from flazz/vim-colorschemes](/images/vim-dracula-old.png)
 
-I was using Dracula from [vim-colorschemes](https://github.com/flazz/vim-colorschemes), which hadn't been updated for three years. I tried [the official Dracula color scheme for Vim](https://github.com/dracula/vim). It had a different background color for pop-ups! Yes, it's subtle, but now I can distinguish pop-ups from the background.
+I was using Dracula from [vim-colorschemes](https://github.com/flazz/vim-colorschemes), which hadn’t been updated for three years. I tried [the official Dracula color scheme for Vim](https://github.com/dracula/vim). It had a different background color for pop-ups! Yes, it’s subtle, but now I can distinguish pop-ups from the background.
 
 ![dracula from dracula/vim](/images/vim-dracula-official.png)
 
-[vim-colorschemes](https://github.com/flazz/vim-colorschemes) is a great way to try out different color schemes. You can get a random color scheme by `:colorscheme random`. But once you pick a few favorite ones, it's worth checking if they have official color schemes that are likely to be more maintained.
+[vim-colorschemes](https://github.com/flazz/vim-colorschemes) is a great way to try out different color schemes. You can get a random color scheme by `:colorscheme random`. But once you pick a few favorite ones, it’s worth checking if they have official color schemes that are likely to be more maintained.
 
 The same goes for Alacritty. I was using the Dracula color scheme that I converted with [my tool](https://github.com/shuhei/colortty) from [iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes) for Alacritty. Dracula has [its official Alacritty theme](https://github.com/dracula/alacritty), and it looks better!
 
 ## termguicolors
 
-I started trying other color schemes and found Vim's `termguicolors` option in [ayu-vim](https://github.com/ayu-theme/ayu-vim)'s README. It enables true colors (24-bit colors) instead of 256 colors (8-bit).
+I started trying other color schemes and found Vim’s `termguicolors` option in [ayu-vim](https://github.com/ayu-theme/ayu-vim)’s README. It enables true colors (24-bit colors) instead of 256 colors (8-bit).
 
 ```vim
 if has('termguicolors')

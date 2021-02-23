@@ -5,7 +5,7 @@ tags: [Blog, JavaScript]
 
 [Textile](<https://en.wikipedia.org/wiki/Textile_(markup_language)>) is a markup language that is similar to Markdown. This blog had had posts written in Textile for more than a decade—I feel old now! I removed the Textile files last weekend. This post is a memoir on the markup language.
 
-I started using Textile on a blog engine called [Textpattern](https://en.wikipedia.org/wiki/Textpattern). I don't remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards a more commercial one. Textpattern was a new open-source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.
+I started using Textile on a blog engine called [Textpattern](https://en.wikipedia.org/wiki/Textpattern). I don’t remember exactly when, but probably around 2004 or 2005. I was a university student. Movable Type was the most popular blog engine at the time, but it changed its license towards a more commercial one. Textpattern was a new open-source software. I fell in love with its minimalism. There were not many Textpattern users in Japan. Information in Japanese was very little if not none. I read documentation and forums in English and translated some into Japanese with a few fellows whom I had never met in person.
 
 After a few years, Wordpress became a thing, or I realized it did. Even after I moved to Wordpress, I kept writing in Textile. I liked editing Textile more than editing rich text on WYSIWYG editor. I am not sure whether I had heard of Markdown at the time. But it was not as popular or dominant as it is now.
 
@@ -15,7 +15,7 @@ Since then, I implemented a few Markdown-only features like syntax highlighting 
 
 ## Converting Textile to Markdown
 
-I didn't want to convert a hundred posts by hand. I had tried [tomd](https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/) a few years ago, but I was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don't remember anymore. So I decided to write a conversion script.
+I didn’t want to convert a hundred posts by hand. I had tried [tomd](https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/) a few years ago, but I was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don’t remember anymore. So I decided to write a conversion script.
 
 I used [textile-js](https://github.com/borgar/textile-js) to parse Textile. It turned out that `textile-js` output HTML string or [JsonML](http://www.jsonml.org/). JsonML was new to me. It is basically HTML in JSON format. Each text node is represented as a string. Each element node is represented as an array whose first item is the tag name, an optional second item is an object of attributes and the rest are child nodes.
 
