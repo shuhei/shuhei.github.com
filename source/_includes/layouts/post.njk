@@ -30,12 +30,10 @@ permalink: "{{ page | blogPermalink }}"
     <a href="{{ newerPost.url }}">{{ newerPost.data.title | insertWbr | safe }}</a>
 {%- endif %}
   </li>
-  <li class="pagination__archives">
-    <a href="/blog/archives/">All posts</a>
-  </li>
   <li class="pagination__next-page">
 {%- if olderPost %}
     <a href="{{ olderPost.url }}">{{ olderPost.data.title | insertWbr | safe }}</a>
 {%- endif %}
   </li>
 </ul>
+<nav class="footer-nav"><a href="/blog/archives/">All posts</a></nav>

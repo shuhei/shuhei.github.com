@@ -34,12 +34,12 @@ permalink: "{{ pagination | indexPermalink }}"
     <a href="{{pagination.href.previous}}">Newer posts</a>
 {%- endif %}
   </li>
-  <li class="pagination__archives">
-    <a href="/blog/archives/">All posts</a>
-  </li>
   <li class="pagination__next-page">
 {%- if pagination.href.next %}
     <a href="{{pagination.href.next}}">Older posts</a>
 {%- endif %}
   </li>
 </ul>
+<nav class="footer-nav">
+  <a href="/blog/archives/">All posts</a>
+</nav>

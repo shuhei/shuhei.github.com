@@ -110,14 +110,13 @@ a:hover {
   padding: 1.7em 0 1.25em;
 }
 
-/* separator only for index pages */
-.post:not(:first-child):before {
+.post:after {
   content: "* * *";
   font-family: var(--heading-font-family);
   font-weight: bold;
-  font-size: 4em;
+  font-size: 4.5em;
   display: block;
-  margin: 0.2em auto 0.6em;
+  margin: 0.9em auto 0;
   text-align: center;
   line-height: 1;
 }
@@ -359,21 +358,14 @@ blockquote cite:before {
   display: flex;
   justify-content: space-between;
 }
-.pagination li {
-  min-height: 1em;
-}
-.pagination a {
-  text-decoration: none;
-}
 .pagination__prev-page,
 .pagination__next-page {
-  width: 35%;
+  width: 46%;
 }
 .pagination__next-page {
   text-align: right;
 }
-.pagination__archives {
-  flex-grow: 1;
+.footer-nav {
   text-align: center;
 }
 
