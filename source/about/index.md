@@ -3,9 +3,9 @@ layout: layouts/page
 title: "About"
 ---
 
-Hi, my name is Shuhei. I’m a programmer based in Berlin, mostly writing JavaScript.
+Hi, my name is Shuhei. I’m a programmer based in Zürich.
 
-When I’m not in front of my laptop, I wander around the streets of Berlin, give a look at the spines of my book collection, or enjoy local IPAs.
+When I’m not in front of my keyboard, I wander around the streets of Zürich, give a look at the spines of my book collection, or enjoy NEIPA.
 
 I occasionally tweet at [Twitter](https://twitter.com/shuheikagawa "Twitter @shuheikagawa") and put some hobby code at [GitHub](https://github.com/shuhei "GitHub @shuhei"). You can check my professional profile at [LinkedIn](http://www.linkedin.com/in/shuheikagawa "LinkedIn: Shuhei Kagawa").
 
