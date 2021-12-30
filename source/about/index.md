@@ -3,11 +3,9 @@ layout: layouts/page
 title: "About"
 ---
 
-Hi, my name is Shuhei. I’m a programmer based in Zürich.
+Hi, my name is Shuhei. I work as a software engineer in Zürich, Switzerland. When I’m not in front of my keyboard, I take a walk, go hiking, practice latte art or give a look at the spines of my book collection. I occasionally tweet at [Twitter](https://twitter.com/shuheikagawa "Twitter @shuheikagawa") and put some hobby code at [GitHub](https://github.com/shuhei "GitHub @shuhei").
 
-When I’m not in front of my keyboard, I wander around the streets of Zürich, give a look at the spines of my book collection, or enjoy NEIPA.
-
-I occasionally tweet at [Twitter](https://twitter.com/shuheikagawa "Twitter @shuheikagawa") and put some hobby code at [GitHub](https://github.com/shuhei "GitHub @shuhei"). You can check my professional profile at [LinkedIn](http://www.linkedin.com/in/shuheikagawa "LinkedIn: Shuhei Kagawa").
+Opinions written here are my own and not views of my employer.
 
 ## Talks
 
