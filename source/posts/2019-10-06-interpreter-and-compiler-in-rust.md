@@ -95,7 +95,7 @@ struct SymbolLayer {
 
 struct SymbolTable {
   current: SymbolLayer;
-  outers: Vec<SymbolStore>;
+  outers: Vec<SymbolLayer>;
 }
 ```
 
