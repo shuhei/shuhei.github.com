@@ -6,7 +6,7 @@
     "start": "eleventy --serve",
     "build": "OPTIMIZE=1 eleventy",
     "clean": "rm -rf public",
-    "lint": "eslint .eleventy.js *.config.js lib cypress source/blog source/posts",
+    "lint": "eslint .eleventy.js *.config.js lib cypress source/posts",
     "serve": "http-server",
     "test": "jest",
     "tdd": "jest --watch",
