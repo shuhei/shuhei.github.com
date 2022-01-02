@@ -2,4 +2,4 @@
 .cache
 public
 node_modules
-lib/filters/manual-tests/images
+lib/manual-tests/images

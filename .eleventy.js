@@ -2,7 +2,6 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 const { formatDate } = require("./lib/filters/date");
 const { blogPermalink, indexPermalink } = require("./lib/filters/permalink");
-const { titleImage } = require("./lib/filters/title-image");
 const { normalizeUrl } = require("./lib/filters/url");
 const { insertWbr } = require("./lib/filters/wbr");
 const { getMarkdownIt } = require("./lib/plugins/markdown");
@@ -46,7 +45,6 @@ module.exports = config => {
   config.addFilter("blogPermalink", blogPermalink);
   config.addFilter("indexPermalink", indexPermalink);
   config.addFilter("normalizeUrl", normalizeUrl);
-  config.addJavaScriptFunction("titleImage", titleImage);
 
   if (shouldOptimize) {
     config.addTransform("imageopt", imageopt);

@@ -11,7 +11,7 @@ This static website is built with [Eleventy](https://www.11ty.dev/).
 Blog post data and content are generated in the following chain:
 
 1. The markdown files in `posts` provide the slug, title, content and optionally image (used for `og:image`).
-2. `posts/posts.11tydata.js` specifies the layout and sets a generated `image` if not specified.
+2. `posts/posts.11tydata.js` specifies the layout and prepares an OpenGraph image. If `image` is not specified in front matter, an image is generated. Regardless of image generation, the image is resized and optimized and saved into `public/cached`.
 3. `_includes/post.njk` renders the post page content and sets a permalink.
 4. `_includes/base.njk` render the entire content.
 5. (content only) Transformers optimize the HTML and images.
@@ -22,7 +22,6 @@ The `posts` collection is used for the following purposes:
 
 - Render individual post pages.
 - Render the all posts page with `blog/archives.njk`.
-- Generate OG images with `blog/title-image.11ty.js`. This JavaScript template generates a PNG image for each post. The generated images are referenced with URLs by `posts/posts.11tydata.js`.
 
 ### Static assets
 
