@@ -871,7 +871,7 @@ fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
 
 &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolTable&lt;/span&gt;&lt;/span&gt; {
   current: SymbolLayer;
-  outers: &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;SymbolStore&amp;gt;;
+  outers: &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;SymbolLayer&amp;gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;I learned basics of how programs work at low-level&lt;/h2&gt;
