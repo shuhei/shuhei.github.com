@@ -4,7 +4,8 @@ const path = require("path");
 const { createTitleImage, titleImageWidth } = require("../../lib/title-image");
 const {
   extensionToFormat,
-  imageOutputPathOptions
+  imageOutputPathOptions,
+  shouldOptimize
 } = require("../../lib/transformers/imageopt");
 
 // Provide common fields for all the posts.
@@ -12,6 +13,11 @@ module.exports = {
   layout: "layouts/post",
   eleventyComputed: {
     async image({ image, title, site }) {
+      if (!shouldOptimize) {
+        // Skip slow image generation and optimization.
+        return null;
+      }
+
       let source;
       let format;
       if (image) {

@@ -64,7 +64,7 @@ Post content goes here.
 yarn start
 ```
 
-It will build files and start a dev server. The build doesn't apply slow optimizations such as AVIF image format. In order to enable the optimizations, use `OPTIMIZE=1` or run `yarn build`.
+It will build files and start a dev server. The build doesn't apply slow optimizations such as AVIF image format and Open Graph image generation. In order to enable the optimizations, use `OPTIMIZE=1` or run `yarn build`.
 
 ## Deploy
 
