@@ -15,9 +15,10 @@ permalink: "{{ pagination | indexPermalink }}"
     </h1>
     <div class="meta">
       <span class="date">{{ post.date | formatDate }}</span>
-{%- if post.data.tags.length > 0 %}
-      - {{ post.data.tags | join(", ") }}
-{%- endif %}
+{%- for tag in post.data.tags -%}
+  {%- if loop.first -%}{{ ' - ' }}{%- endif -%}
+  <a href="/blog/tags/{{tag}}">{{ tag }}</a>{%- if not loop.last -%}{{ ', ' }}{%- endif -%}
+{%- endfor %}
     </div>
   </div>
   <div class="content">
