@@ -55,7 +55,7 @@
     "postcss-clean": "^1.2.1",
     "postcss-custom-properties": "^11.0.0",
     "prettier": "^1.15.3",
-    "sharp": "^0.27.1"
+    "sharp": "^0.30.5"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.11.1"
