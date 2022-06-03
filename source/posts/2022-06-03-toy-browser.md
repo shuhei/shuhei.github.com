@@ -6,11 +6,11 @@ image: /images/2022-toy-browser-coffee.png
 
 ![Screenshot of my toy browser showing this website](/images/2022-toy-browser-coffee.png)
 
-In the last several weeks, I have been building a toy browser based on an online book, [Browser Engineering](https://browser.engineering). As someone who spent a fair share of his career on web frontend, it was eye-opening and satisfying. It felt like I had been living on one side of a wall for years and finally visited the other side of the wall. I imagine other web frontend folks would like it as well.
+In the last several weeks, I have been building a toy browser based on an online book, [Web Browser Engineering](https://browser.engineering). As someone who spent a fair share of his career on web frontend, it was eye-opening and satisfying. It felt like I had been living on one side of a wall for years and finally visited the other side of the wall. I imagine other web frontend folks would like it as well.
 
 ## The book
 
-[Browser Engineering](https://browser.engineering/) is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), the interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP and Tkinter (replaced by Skia and SDL in later chapters).
+[Web Browser Engineering](https://browser.engineering/) is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), the interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP and Tkinter (replaced by Skia and SDL in later chapters).
 
 I discovered it on Twitter. Once I started reading the book, I was hooked. It presents succinct code to implement browser features incrementally. You are always with working code.
 
