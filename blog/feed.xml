@@ -4,11 +4,77 @@
   <subtitle>A personal website of Shuhei Kagawa. I write mostly on web technologies and life.</subtitle>
   <link href="https://shuheikagawa.com/blog/feed.xml" rel="self"/>
   <link href="https://shuheikagawa.com"/>
-  <updated>2021-12-31T00:00:00Z</updated>
+  <updated>2022-06-03T00:00:00Z</updated>
   <id>https://shuheikagawa.com</id>
   <author>
     <name>Shuhei Kagawa</name>
   </author>
+
+  <entry>
+    <title>Building a toy browser</title>
+    <link href="https://shuheikagawa.com/blog/2022/06/03/toy-browser/"/>
+    <updated>2022-06-03T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2022/06/03/toy-browser/</id>
+    <content type="html">&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2022-toy-browser-coffee.png&quot; alt=&quot;Screenshot of my toy browser showing this website&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the last several weeks, I have been building a toy browser based on an online book, &lt;a href=&quot;https://browser.engineering/&quot;&gt;Browser Engineering&lt;/a&gt;. As someone who spent a fair share of his career in web frontend, it was eye-opening and satisfying. It felt like I had been living on one side of a wall for years and finally visited the other side of the wall. I imagine other web frontend folks would like it as well.&lt;/p&gt;
+&lt;h2&gt;The book&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://browser.engineering/&quot;&gt;Browser Engineering&lt;/a&gt; is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP and Tkinter (replaced by Skia and SDL in later chapters).&lt;/p&gt;
+&lt;p&gt;I discovered it on Twitter. Once I started reading the book, I was hooked. It presents succinct code to implement browser features incrementally. You are always with working code.&lt;/p&gt;
+&lt;p&gt;Each topic lays a good foundation that you can build upon and links to relevant resources. Exercises let you implement features on your own.&lt;/p&gt;
+&lt;p&gt;Even before reading the book, I had read a good amount of articles about how browsers work &lt;em&gt;from outside&lt;/em&gt;. The book explained concepts in a way that readers could implement them. I learned a lot.&lt;/p&gt;
+&lt;h2&gt;Beyond the book&lt;/h2&gt;
+&lt;p&gt;I wanted to render real-world websites. Well, real-world websites on the simpler side. Not JavaScript-driven applications. HTML, CSS, and a bit of JavaScript. This website and the book&#39;s website were my main targets. Wikipedia was a stretch goal.&lt;/p&gt;
+&lt;p&gt;The goal has been partially achieved.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2022-toy-browser-ch11.png&quot; alt=&quot;Screenshot of the toy browser showing Web Browser Engineering Chapter 11&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Even for rendering simple websites, I had to implement or revamp numerous browser features beyond the book.&lt;/p&gt;
+&lt;h3&gt;HTML&lt;/h3&gt;
+&lt;p&gt;I revamped the recursive descent HTML parser from the book to support quoted attributes, raw text elements, etc. Among HTML, CSS, and JavaScript (ECMAScript), the HTML spec was the easiest to read and to implement (partially).&lt;/p&gt;
+&lt;p&gt;Fun facts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://html.spec.whatwg.org/multipage/parsing.html#determining-the-character-encoding&quot;&gt;Browsers are supposed to &lt;em&gt;sniff&lt;/em&gt; the character encoding of a web page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://html.spec.whatwg.org/multipage/syntax.html#optional-tags&quot;&gt;HTML spec has quite detailed rules for tag omission&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://html.spec.whatwg.org/multipage/parsing.html#an-introduction-to-error-handling-and-strange-cases-in-the-parser&quot;&gt;HTML spec explains how to handle invalid markups&lt;/a&gt; like &lt;code&gt;&amp;lt;b&amp;gt;&amp;lt;i&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/i&amp;gt;&lt;/code&gt;. HTML parser never fails!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;CSS and rendering&lt;/h3&gt;
+&lt;p&gt;I was drawn to implementing CSS features. CSS is more forgiving than JavaScript—at least for a toy browser. Even if my toy browser missed most of the CSS features, it still rendered something on the screen. On the other hand, JavaScript halts execution on a single missing syntax or feature. I would need to implement a bunch of browser APIs until the toy browser could run real-world scripts. So, I focused on CSS and rendering for the toy browser.&lt;/p&gt;
+&lt;p&gt;While I was working on the project, my best friends were &lt;a href=&quot;https://developer.mozilla.org/&quot;&gt;MDN&lt;/a&gt; and CSS specs (&lt;a href=&quot;https://www.w3.org/TR/CSS22/&quot;&gt;CSS 2&lt;/a&gt; and &lt;a href=&quot;https://www.w3.org/Style/CSS/specs.en.html&quot;&gt;more&lt;/a&gt;). Yes, there are quite readable.&lt;/p&gt;
+&lt;p&gt;One surprise for me was that CSS syntax doesn’t say much about property values. Each property has its own syntax. For example, &lt;code&gt;font-family&lt;/code&gt; and &lt;code&gt;animation&lt;/code&gt; have different precedence rules for commas and spaces.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;font-family&lt;/code&gt; puts commas higher precedence than spaces:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;/* (1.6em) (bold) (Helvetica, Arial, sans-serif) */&lt;/span&gt;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;font-family&lt;/span&gt;: 1&lt;span class=&quot;hljs-selector-class&quot;&gt;.6em&lt;/span&gt; &lt;span class=&quot;hljs-selector-tag&quot;&gt;bold&lt;/span&gt; &lt;span class=&quot;hljs-selector-tag&quot;&gt;Helvetica&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;Arial&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;sans-serif&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;animation&lt;/code&gt; does the other way around:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;/* (slidein 3s), (move 10s) */&lt;/span&gt;
+&lt;span class=&quot;hljs-selector-tag&quot;&gt;animation&lt;/span&gt;: &lt;span class=&quot;hljs-selector-tag&quot;&gt;slidein&lt;/span&gt; 3&lt;span class=&quot;hljs-selector-tag&quot;&gt;s&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;move&lt;/span&gt; 10&lt;span class=&quot;hljs-selector-tag&quot;&gt;s&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The book skipped whitespace handling but it was necessary for nice-looking code blocks (&lt;code&gt;white-space: pre&lt;/code&gt;). The CSS spec has &lt;a href=&quot;https://www.w3.org/TR/css-text-3/#white-space-rules&quot;&gt;elaborate rules for ignoring and collapsing whitespace&lt;/a&gt;. I made up a greedy algorithm instead of implementing the full spec. It&#39;s not 100% accurate, but it looks alright.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2022-toy-browser-pre.png&quot; alt=&quot;Screenshot of the toy browser showing a page with code blocks&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Web fonts were essential to make my toy browser look nice. I revamped the CSS parser to support &lt;code&gt;@font-face&lt;/code&gt; rule, and implemented rudimentary font synthesis and font matching. Skia took care of the actual rendering.&lt;/p&gt;
+&lt;p&gt;I also learned a few things about inline layout (or normal flow). The box model is considered to be a basic of frontend developers. But did you know how inline layout works? What&#39;s the difference between &lt;code&gt;line-height: 1&lt;/code&gt; and &lt;code&gt;line-height: 1em&lt;/code&gt;? Why doesn&#39;t vertical-align help vertical centering? &lt;a href=&quot;https://iamvdo.me/en/blog/css-font-metrics-line-height-and-vertical-align&quot;&gt;Deep dive CSS: font metrics, line-height and vertical-align&lt;/a&gt; by Vincent De Oliveira is an amazing article that explains those things.&lt;/p&gt;
+&lt;p&gt;Fun facts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Y5Xa4H2wtVA&quot;&gt;Margin collapsing and float are hilariously complex&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.w3.org/TR/css-fonts-4/#font-style-matching&quot;&gt;CSS Fonts Module&lt;/a&gt; has line charts to explain the font matching algorithm. Browsers try their best to pick fonts for you without you even noticing it.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.w3.org/TR/css-lists-3/&quot;&gt;The list counter spec&lt;/a&gt; is quite advanced. You can create counters, increment them and use them as part of &lt;code&gt;content&lt;/code&gt; in CSS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Other stuff&lt;/h3&gt;
+&lt;p&gt;I also implemented other stuff.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Retina display to make the toy browser look good on my laptop&lt;/li&gt;
+&lt;li&gt;Window resizing: SDL doesn’t seem to provide a good API for resizing&lt;/li&gt;
+&lt;li&gt;URL parsing: Parsing URLs into objects made it easier to implement many other parts of the project. I should have done it earlier.&lt;/li&gt;
+&lt;li&gt;Content Security Policy: The CSP implementation from the book blocks legitimate requests. I implemented the bare-minimum to allow legitimate resource loading.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;p&gt;The book uses Python for good reasons. I followed the path and used Python because I wanted to focus on the subject instead of spending time on &lt;em&gt;how to do X in Y language&lt;/em&gt;. I had already made enough (fun) mistakes of this kind in my life.&lt;/p&gt;
+&lt;p&gt;Also, I was not that familiar to Python. Before starting the project, I hadn’t written much Python. It&#39;s used in many places. Good chance to learn it. Now I like the syntax.&lt;/p&gt;
+&lt;p&gt;I used &lt;a href=&quot;https://github.com/microsoft/pyright&quot;&gt;pyright&lt;/a&gt; for static type checking along with &lt;a href=&quot;https://github.com/fannheyward/coc-pyright&quot;&gt;coc-pyright&lt;/a&gt; on Vim. Its type inference worked quite well for me. It uses a gradual typing approach similar to TypeScript although Python’s type annotation is part of the language specification. Python’s typing features don’t look as powerful as TypeScript, but they met more than 90% of my needs. Also, auto completion was helpful for a Python beginner.&lt;/p&gt;
+&lt;p&gt;My toy browser uses only a handful of third-party libraries. They either had type annotations or had only small little surface in my toy browser. The only exception was &lt;a href=&quot;https://github.com/kyamagu/skia-python&quot;&gt;skia-python&lt;/a&gt;. I used it a lot. It didn’t have official type stubs, so &lt;a href=&quot;https://github.com/kyamagu/skia-python/issues/133#issuecomment-1066141203&quot;&gt;I generated them with mypy&#39;s stubgen&lt;/a&gt;. The generated stubs were not perfect but good enough as a foundation to build upon for my limited use case.&lt;/p&gt;
+&lt;p&gt;I used &lt;a href=&quot;https://github.com/psf/black&quot;&gt;black&lt;/a&gt; for code formatting and &lt;a href=&quot;https://github.com/pytest-dev/pytest/&quot;&gt;pytest&lt;/a&gt; for unit testing. I don&#39;t have much to say about them because they &lt;em&gt;just worked™&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;It’s been a fun side project with lots of learning. I imagine other web frontend folks would like it as well. I recommend you check out &lt;a href=&quot;https://browser.engineering/&quot;&gt;the book&lt;/a&gt; and build your own toy browser!&lt;/p&gt;
+</content>
+  </entry>
 
   <entry>
     <title>2021 in review</title>
@@ -1290,35 +1356,6 @@ $ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Linux &lt;code&gt;perf&lt;/code&gt; provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.&lt;/p&gt;
 &lt;p&gt;There are some gotchas to profile Node.js applications on Docker with Linux &lt;code&gt;perf&lt;/code&gt;. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!&lt;/p&gt;
-</content>
-  </entry>
-
-  <entry>
-    <title>2017 in review</title>
-    <link href="https://shuheikagawa.com/blog/2017/12/25/2017-in-review/"/>
-    <updated>2017-12-25T00:00:00Z</updated>
-    <id>https://shuheikagawa.com/blog/2017/12/25/2017-in-review/</id>
-    <content type="html">&lt;h2&gt;Berlin&lt;/h2&gt;
-&lt;p&gt;I moved to Berlin from Tokyo at the end of September 2016. 2017 was my almost first year in Berlin.&lt;/p&gt;
-&lt;p&gt;I like the city so far. It is more relaxed than Tokyo and other big cities in Europe. Summer is especially nice. BBQ makes it even better. After my office moved to a building in front of Spree River, I enjoy my commute crossing Oberbaum Bridge and walking along the river.&lt;/p&gt;
-&lt;h2&gt;Travels&lt;/h2&gt;
-&lt;p&gt;I traveled more than ever. The destinations were Germany (Dresden, Heidelberg, Frankfurt, Köln), Italy (Venice, Florence, Bologna), France (Paris), UK (London), Portugal (Lisbon) and Japan (Tokyo). I had fun in each of them, but if I have to choose one, I will name Lisbon. The city is full of what I miss in Berlin. Fresh and inexpensive seafood, views from hills, cute ceramic tiles, and beautiful weather. The sky was clear on every single day while I was there, and the highest temperature was 18 degrees in December!&lt;/p&gt;
-&lt;h2&gt;Beer&lt;/h2&gt;
-&lt;p&gt;I am glad to have found &lt;a href=&quot;https://untappd.com/fuerstwiacekbrew&quot;&gt;Fuerst Wiacek&lt;/a&gt;. Their &lt;a href=&quot;https://untappd.com/b/fuerst-wiacek-german-movies/2155675&quot;&gt;German Movies&lt;/a&gt; is my No.1 beer so far. &lt;a href=&quot;http://biererei-berlin.de/&quot;&gt;Biererei&lt;/a&gt; is a gem in Berlin, where I can buy fresh craft beers from Europe with growlers.&lt;/p&gt;
-&lt;p&gt;British ale was a discovery to me. I liked pubs in London a lot. I also attended &lt;a href=&quot;https://www.brlohack.de/english/&quot;&gt;the first craft beer hackathon in the world&lt;/a&gt; and won 12 crates of craft beer...!&lt;/p&gt;
-&lt;h2&gt;Shopping&lt;/h2&gt;
-&lt;p&gt;I bought &lt;a href=&quot;https://ergodox-ez.com/&quot;&gt;an ergonomic keyboard&lt;/a&gt; and &lt;a href=&quot;https://billerbeck.info/en/products/82/neck-support-pillow-novum&quot;&gt;a neck support pillow&lt;/a&gt;. Both of them lifted up my quality of life. My body is getting older.&lt;/p&gt;
-&lt;h2&gt;Language learning&lt;/h2&gt;
-&lt;p&gt;I learned a bit of German Language. I finished A1 in May and started A2 after a pause of 5 months. While the learning process is prolonged, now German feels less cryptic to me.&lt;/p&gt;
-&lt;h2&gt;Work&lt;/h2&gt;
-&lt;p&gt;I was lucky to join an awesome team. We work together and hang out together. &lt;a href=&quot;https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/&quot;&gt;A research at Google shows that psychological safety is a key to team effectiveness.&lt;/a&gt; I feel it on my team.&lt;/p&gt;
-&lt;p&gt;On the technical side, my team joined a relatively large project and completed it on time. I worked mostly in architecture, performance optimization, type checking with Flow, SRE, etc. for apps with React and Node.js. I also helped my colleagues to start building an internal tool with Elm.&lt;/p&gt;
-&lt;h2&gt;Side projects&lt;/h2&gt;
-&lt;p&gt;I enjoyed working with Elm. I &lt;a href=&quot;https://github.com/shuhei/elm-compare&quot;&gt;wrote a mobile weather app&lt;/a&gt;, flew to Paris for &lt;a href=&quot;https://2017.elmeurope.org/&quot;&gt;Elm Europe 2017&lt;/a&gt;, built &lt;a href=&quot;https://github.com/shuhei/pixelm&quot;&gt;a mobile-friendly pixel editor&lt;/a&gt; and &lt;a href=&quot;https://speakerdeck.com/shuhei/building-a-pixel-art-editor-with-elm&quot;&gt;talked about it&lt;/a&gt; at &lt;a href=&quot;https://www.meetup.com/Elm-Berlin/events/242852794/&quot;&gt;Elm Berlin Meetup&lt;/a&gt;. I also helped &lt;a href=&quot;https://github.com/w0rm/elm-glsl&quot;&gt;an experiment of its compiler-side&lt;/a&gt; in Haskell, although it is still pending.&lt;/p&gt;
-&lt;p&gt;I didn&#39;t do much with JavaScript for side projects but wrote &lt;a href=&quot;https://github.com/shuhei/pelo&quot;&gt;a tiny library for server-side rendering with tagged template literals&lt;/a&gt; while hanging out with friends at a cafe. It&#39;s used in &lt;a href=&quot;https://github.com/choojs&quot;&gt;the choo ecosystem&lt;/a&gt; now.&lt;/p&gt;
-&lt;p&gt;Aside from building things, I learned monad transformers, etc. from &lt;a href=&quot;http://haskellbook.com/&quot;&gt;Haskell Book&lt;/a&gt; and machine learning with neural networks from &lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;Deep Learning Specialization on Coursera&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;.then()&lt;/h2&gt;
-&lt;p&gt;After all, I lived a year in a new country and enjoyed it. I have settled down, and now I feel prepared for new challenges next year. Let&#39;s see what is going to happen!&lt;/p&gt;
 </content>
   </entry>
 </feed>
