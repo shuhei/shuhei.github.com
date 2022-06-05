@@ -16,7 +16,7 @@ I discovered it on Twitter. Once I started reading the book, I was hooked. It pr
 
 Each topic lays a good foundation that you can build upon and links to relevant resources. Exercises let you implement features on your own.
 
-Even before reading the book, I had read a good amount of articles about how browsers work _from outside_. The book explained concepts in a way that readers could implement them. I learned a lot.
+Even before the book, I had read a good amount of articles about how browsers work _from outside_. The book explained concepts in a way that readers could implement them. I learned a lot.
 
 ## Beyond the book
 
