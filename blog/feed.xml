@@ -21,7 +21,7 @@
 &lt;p&gt;&lt;a href=&quot;https://browser.engineering/&quot;&gt;Web Browser Engineering&lt;/a&gt; is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), the interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP, Tkinter (replaced by Skia and SDL in later chapters), and dukpy.&lt;/p&gt;
 &lt;p&gt;I discovered it on Twitter. Once I started reading the book, I was hooked. It presents succinct code to implement browser features incrementally. You are always with working code.&lt;/p&gt;
 &lt;p&gt;Each topic lays a good foundation that you can build upon and links to relevant resources. Exercises let you implement features on your own.&lt;/p&gt;
-&lt;p&gt;Even before reading the book, I had read a good amount of articles about how browsers work &lt;em&gt;from outside&lt;/em&gt;. The book explained concepts in a way that readers could implement them. I learned a lot.&lt;/p&gt;
+&lt;p&gt;Even before the book, I had read a good amount of articles about how browsers work &lt;em&gt;from outside&lt;/em&gt;. The book explained concepts in a way that readers could implement them. I learned a lot.&lt;/p&gt;
 &lt;h2&gt;Beyond the book&lt;/h2&gt;
 &lt;p&gt;I wanted to render real-world websites. Well, real-world websites on the simpler side. Not JavaScript-driven applications. HTML, CSS, and a bit of JavaScript. This website and the book&#39;s website were my main targets. Wikipedia was a stretch goal.&lt;/p&gt;
 &lt;p&gt;The goal has been partially achieved.&lt;/p&gt;
