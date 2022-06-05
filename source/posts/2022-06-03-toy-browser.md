@@ -24,7 +24,7 @@ I wanted to render real-world websites. Well, real-world websites on the simpler
 
 The goal has been partially achieved.
 
-![Screenshot of the toy browser showing Web Browser Engineering Chapter 11](/images/2022-toy-browser-ch11.png)
+<iframe style="width: 100%; aspect-ratio: 1280 / 880;" src="https://www.youtube-nocookie.com/embed/xlWsv1C6VOA?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Even for rendering simple websites, I had to implement or revamp numerous browser features beyond the book.
 
