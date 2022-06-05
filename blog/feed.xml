@@ -25,7 +25,7 @@
 &lt;h2&gt;Beyond the book&lt;/h2&gt;
 &lt;p&gt;I wanted to render real-world websites. Well, real-world websites on the simpler side. Not JavaScript-driven applications. HTML, CSS, and a bit of JavaScript. This website and the book&#39;s website were my main targets. Wikipedia was a stretch goal.&lt;/p&gt;
 &lt;p&gt;The goal has been partially achieved.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2022-toy-browser-ch11.png&quot; alt=&quot;Screenshot of the toy browser showing Web Browser Engineering Chapter 11&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;iframe style=&quot;width: 100%; aspect-ratio: 1280 / 880;&quot; src=&quot;https://www.youtube-nocookie.com/embed/xlWsv1C6VOA?mute=1&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;p&gt;Even for rendering simple websites, I had to implement or revamp numerous browser features beyond the book.&lt;/p&gt;
 &lt;h3&gt;HTML&lt;/h3&gt;
 &lt;p&gt;I revamped the recursive descent HTML parser from the book to support quoted attributes, raw text elements, etc. Among HTML, CSS, and JavaScript (ECMAScript), the HTML spec was the easiest to read and implement (partially).&lt;/p&gt;
