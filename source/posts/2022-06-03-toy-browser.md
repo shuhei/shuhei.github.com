@@ -10,7 +10,7 @@ In the last several weeks, I have been building a toy browser based on an online
 
 ## The book
 
-[Web Browser Engineering](https://browser.engineering/) is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), the interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP and Tkinter (replaced by Skia and SDL in later chapters).
+[Web Browser Engineering](https://browser.engineering/) is an online book by Pavel Panchekha and Chris Harrelson. It explains how browsers work and lets you implement a toy browser almost from scratch. HTTP, CSS parser, HTML parser, rendering pipeline (style, layout, paint), the interaction between browser window and tabs, JavaScript, animation, and the list goes on. It uses only a handful of libraries such as TCP, Tkinter (replaced by Skia and SDL in later chapters), and dukpy.
 
 I discovered it on Twitter. Once I started reading the book, I was hooked. It presents succinct code to implement browser features incrementally. You are always with working code.
 
@@ -34,15 +34,15 @@ I revamped the recursive descent HTML parser from the book to support quoted att
 
 Fun facts:
 
-- [Browsers are supposed to _sniff_ the character encoding of a web page](https://html.spec.whatwg.org/multipage/parsing.html#determining-the-character-encoding)
-- [HTML spec has quite detailed rules for tag omission](https://html.spec.whatwg.org/multipage/syntax.html#optional-tags)
+- [Browsers are supposed to _sniff_ the character encoding of a web page](https://html.spec.whatwg.org/multipage/parsing.html#determining-the-character-encoding).
+- [HTML spec has quite detailed rules for tag omission](https://html.spec.whatwg.org/multipage/syntax.html#optional-tags).
 - [HTML spec explains how to handle invalid markups](https://html.spec.whatwg.org/multipage/parsing.html#an-introduction-to-error-handling-and-strange-cases-in-the-parser) like `<b><i></b></i>`. HTML parser never fails!
 
 ### CSS and rendering
 
 I was drawn to implementing CSS features. CSS is more forgiving than JavaScript—at least for a toy browser. Even if my toy browser missed most of the CSS features, it still rendered something on the screen. On the other hand, JavaScript halts execution on a single missing syntax or feature. I would need to implement a bunch of browser APIs until the toy browser could run real-world scripts. So, I focused on CSS and rendering for the toy browser.
 
-While I was working on the project, my best friends were [MDN](https://developer.mozilla.org) and CSS specs ([CSS 2](https://www.w3.org/TR/CSS22/) and [more](https://www.w3.org/Style/CSS/specs.en.html)). Yes, there are quite readable.
+While I was working on the project, my best friends were [MDN](https://developer.mozilla.org) and CSS specs ([CSS 2](https://www.w3.org/TR/CSS22/) and [more](https://www.w3.org/Style/CSS/specs.en.html "All CSS specifications")). Yes, there are quite readable.
 
 One surprise for me was that CSS syntax doesn’t say much about property values. Each property has own syntax. For example, `font-family` and `animation` have different precedence rules for commas and spaces.
 
@@ -70,7 +70,7 @@ I also learned a few things about the inline layout (or normal flow). The box mo
 
 Fun facts:
 
-- [Margin collapsing and float are hilariously complex](https://www.youtube.com/watch?v=Y5Xa4H2wtVA).
+- [Margin collapsing and float are hilariously complex](https://www.youtube.com/watch?v=Y5Xa4H2wtVA "BlinkOn 8: Block Layout Deep Dive"). I implemented only a tip of them.
 - [CSS Fonts Module](https://www.w3.org/TR/css-fonts-4/#font-style-matching) has line charts to explain the font matching algorithm. Browsers try their best to pick fonts for you without you even noticing it.
 - [The list counter spec](https://www.w3.org/TR/css-lists-3/) is quite advanced. You can create counters, increment them and use them as part of `content` in CSS.
 
@@ -85,9 +85,9 @@ I also implemented other stuff.
 
 ## Python
 
-The book uses Python for good reasons. I followed the path and used Python because I wanted to focus on the subject instead of spending time on _how to do X in Y language_. I had already made enough (fun) mistakes of this kind in my life.
+The book uses Python for [good reasons](https://browser.engineering/blog/why-python.html "Why Python? | Web Browser Engineering"). I followed the path and used Python because I wanted to focus on the subject instead of spending time on _how to do X in Y language_. I had already made enough (fun) mistakes of this kind in my life.
 
-Also, I was not that familiar with Python. Before starting the project, I hadn’t written much Python. It's used in many places. Good chance to learn it. Now I like the syntax.
+Also, it was a good opportunity for me to learn Python. Python is used in a lot of places now, but I had survived without learning it before the project. After writing thousands of lines, I like its concise syntax.
 
 I used [pyright](https://github.com/microsoft/pyright) for static type-checking along with [coc-pyright](https://github.com/fannheyward/coc-pyright) on Vim. Its type inference worked quite well for me. It uses a gradual typing approach similar to TypeScript although Python’s type annotation is part of the language specification. Python’s typing features don’t look as powerful as TypeScript, but they met more than 90% of my needs. Also, auto-completion was helpful for a Python beginner.
 
@@ -97,4 +97,4 @@ I used [black](https://github.com/psf/black) for code formatting and [pytest](ht
 
 ## Conclusion
 
-It’s been a fun side project with lots of learning. I imagine other web frontend folks would like it as well. I recommend you check out [the book](https://browser.engineering) and build your own toy browser!
+It’s been a fun side project with lots of learning. I imagine other web frontend folks would like it as well. I recommend you check out [the book](https://browser.engineering "Web Browser Engineering") and build your own toy browser!
