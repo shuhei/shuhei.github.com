@@ -1,6 +1,6 @@
 const fs = require("fs").promises;
 const postcss = require("postcss");
-const clean = require("postcss-clean");
+const cssnano = require("cssnano");
 const customProperties = require("postcss-custom-properties");
 const Cache = require("@11ty/eleventy-cache-assets");
 
@@ -53,7 +53,12 @@ function getFontFilesToPreload(fontsCss) {
 }
 
 async function provideStyle() {
-  const processor = postcss([customProperties(), clean()]);
+  const processor = postcss([
+    customProperties(),
+    cssnano({
+      preset: "default"
+    })
+  ]);
 
   const [styleCss, fontsCss] = await Promise.all([
     fs.readFile(baseCssFile, "utf8"),

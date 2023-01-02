@@ -66,10 +66,7 @@ describe("shuheikagawa.com", () => {
 
         // Check the linked individual page.
         cy.url().should("eq", href);
-        cy.get("h1")
-          .eq(1)
-          .invoke("text")
-          .should("contain", title);
+        cy.get("h1").eq(1).invoke("text").should("contain", title);
       });
   });
 });
