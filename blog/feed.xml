@@ -41,11 +41,11 @@
 &lt;p&gt;One surprise for me was that CSS syntax doesn’t say much about property values. Each property has own syntax. For example, &lt;code&gt;font-family&lt;/code&gt; and &lt;code&gt;animation&lt;/code&gt; have different precedence rules for commas and spaces.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;font-family&lt;/code&gt; puts commas higher precedence than spaces:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;/* (1.6em) (bold) (Helvetica, Arial, sans-serif) */&lt;/span&gt;
-&lt;span class=&quot;hljs-selector-tag&quot;&gt;font-family&lt;/span&gt;: 1&lt;span class=&quot;hljs-selector-class&quot;&gt;.6em&lt;/span&gt; &lt;span class=&quot;hljs-selector-tag&quot;&gt;bold&lt;/span&gt; &lt;span class=&quot;hljs-selector-tag&quot;&gt;Helvetica&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;Arial&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;sans-serif&lt;/span&gt;;
+&lt;span class=&quot;hljs-attribute&quot;&gt;font-family&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;1.6em&lt;/span&gt; bold Helvetica, Arial, sans-serif;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;animation&lt;/code&gt; does the other way around:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs css&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;/* (slidein 3s), (move 10s) */&lt;/span&gt;
-&lt;span class=&quot;hljs-selector-tag&quot;&gt;animation&lt;/span&gt;: &lt;span class=&quot;hljs-selector-tag&quot;&gt;slidein&lt;/span&gt; 3&lt;span class=&quot;hljs-selector-tag&quot;&gt;s&lt;/span&gt;, &lt;span class=&quot;hljs-selector-tag&quot;&gt;move&lt;/span&gt; 10&lt;span class=&quot;hljs-selector-tag&quot;&gt;s&lt;/span&gt;;
+&lt;span class=&quot;hljs-attribute&quot;&gt;animation&lt;/span&gt;: slidein &lt;span class=&quot;hljs-number&quot;&gt;3s&lt;/span&gt;, move &lt;span class=&quot;hljs-number&quot;&gt;10s&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The book skipped whitespace handling but it was necessary for nice-looking code blocks (&lt;code&gt;white-space: pre&lt;/code&gt;). The CSS spec has &lt;a href=&quot;https://www.w3.org/TR/css-text-3/#white-space-rules&quot;&gt;elaborate rules for ignoring and collapsing whitespace&lt;/a&gt;. I made up a greedy algorithm instead of implementing the full spec. It&#39;s not 100% accurate, but it looks alright.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/2022-toy-browser-pre.png&quot; alt=&quot;Screenshot of the toy browser showing a page with code blocks&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
@@ -337,7 +337,7 @@ coffee cups, the bigger surface made it easier to pour milk on the surface.&lt;/
 &lt;p&gt;The same goes for Alacritty. I was using the Dracula color scheme that I converted with &lt;a href=&quot;https://github.com/shuhei/colortty&quot;&gt;my tool&lt;/a&gt; from &lt;a href=&quot;https://github.com/mbadolato/iTerm2-Color-Schemes&quot;&gt;iTerm2-Color-Schemes&lt;/a&gt; for Alacritty. Dracula has &lt;a href=&quot;https://github.com/dracula/alacritty&quot;&gt;its official Alacritty theme&lt;/a&gt;, and it looks better!&lt;/p&gt;
 &lt;h2&gt;termguicolors&lt;/h2&gt;
 &lt;p&gt;I started trying other color schemes and found Vim’s &lt;code&gt;termguicolors&lt;/code&gt; option in &lt;a href=&quot;https://github.com/ayu-theme/ayu-vim&quot;&gt;ayu-vim&lt;/a&gt;’s README. It enables true colors (24-bit colors) instead of 256 colors (8-bit).&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;has&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;termguicolors&#39;&lt;/span&gt;)
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;has&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;termguicolors&amp;#x27;&lt;/span&gt;)
   &lt;span class=&quot;hljs-keyword&quot;&gt;set&lt;/span&gt; termguicolors
 &lt;span class=&quot;hljs-keyword&quot;&gt;endif&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -354,31 +354,31 @@ coffee cups, the bigger surface made it easier to pour milk on the surface.&lt;/
 &lt;h2&gt;Solution&lt;/h2&gt;
 &lt;h3&gt;Alacritty&lt;/h3&gt;
 &lt;p&gt;I decided to remove &lt;code&gt;.alacritty.yml&lt;/code&gt; from the git repository and generate it out of a base template and color scheme files. Once I prepared a YAML file for each color scheme, it was quite easy with a one-liner.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;cat alacritty/base.yml alacritty/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; .alacritty.yml
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cat&lt;/span&gt; alacritty/base.yml alacritty/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; .alacritty.yml
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Vim&lt;/h3&gt;
 &lt;p&gt;I could have generated &lt;code&gt;.vimrc&lt;/code&gt;, but it felt weird because VimScript is a programming language. Instead of generating the whole &lt;code&gt;.vimrc&lt;/code&gt;, I decided to generate a color scheme file &lt;code&gt;.vim/color.vim&lt;/code&gt;, which is in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;let ayucolor=&quot;light&quot;\ncolorscheme ayu&#39;&lt;/span&gt; &amp;gt; ~/.vim/color.vim
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;let ayucolor=&amp;quot;light&amp;quot;\ncolorscheme ayu&amp;#x27;&lt;/span&gt; &amp;gt; ~/.vim/color.vim
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;and load it from &lt;code&gt;.vimrc&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; color_path = &lt;span class=&quot;hljs-built_in&quot;&gt;expand&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;~/.vim/color.vim&#39;&lt;/span&gt;)
+&lt;pre&gt;&lt;code class=&quot;hljs vim&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; color_path = &lt;span class=&quot;hljs-built_in&quot;&gt;expand&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;~/.vim/color.vim&amp;#x27;&lt;/span&gt;)
 &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;filereadable&lt;/span&gt;(color_path)
-  exec &lt;span class=&quot;hljs-string&quot;&gt;&#39;source&#39;&lt;/span&gt; color_path
+  exec &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;source&amp;#x27;&lt;/span&gt; color_path
 &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt;
-  &lt;span class=&quot;hljs-comment&quot;&gt;&quot; Default color scheme&lt;/span&gt;
+  &lt;span class=&quot;hljs-comment&quot;&gt;&amp;quot; Default color scheme&lt;/span&gt;
   &lt;span class=&quot;hljs-keyword&quot;&gt;colorscheme&lt;/span&gt; pink-moon
 &lt;span class=&quot;hljs-keyword&quot;&gt;endif&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Putting them together&lt;/h3&gt;
 &lt;p&gt;Then, I created a shell script named &lt;code&gt;colorscheme&lt;/code&gt; to switch color schemes of Vim and Alacritty together.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#!/bin/sh
-&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#!/bin/sh&lt;/span&gt;
+
 color=&lt;span class=&quot;hljs-variable&quot;&gt;$1&lt;/span&gt;
 dotfiles=~/dotfiles
 alacritty=&lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/alacritty
 
 &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;configure_alacritty&lt;/span&gt;&lt;/span&gt;() {
-  cat &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/base.yml &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; &lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/.alacritty.yml
+  &lt;span class=&quot;hljs-built_in&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/base.yml &lt;span class=&quot;hljs-variable&quot;&gt;${alacritty}&lt;/span&gt;/&lt;span class=&quot;hljs-variable&quot;&gt;${color}&lt;/span&gt;.yml &amp;gt; &lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/.alacritty.yml
 }
 
 &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-title&quot;&gt;configure_vim&lt;/span&gt;&lt;/span&gt;() {
@@ -388,22 +388,22 @@ alacritty=&lt;span class=&quot;hljs-variable&quot;&gt;${dotfiles}&lt;/span&gt;/a
 &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;$color&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt;
   dracula)
     configure_alacritty
-    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme dracula&#39;&lt;/span&gt;
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;colorscheme dracula&amp;#x27;&lt;/span&gt;
     ;;
   nord)
     configure_alacritty
-    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme nord&#39;&lt;/span&gt;
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;colorscheme nord&amp;#x27;&lt;/span&gt;
     ;;
   pink-moon)
     configure_alacritty
-    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;colorscheme pink-moon&#39;&lt;/span&gt;
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;colorscheme pink-moon&amp;#x27;&lt;/span&gt;
     ;;
   ayu-light)
     configure_alacritty
-    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&#39;let ayucolor=&quot;light&quot;\ncolorscheme ayu&#39;&lt;/span&gt;
+    configure_vim &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;let ayucolor=&amp;quot;light&amp;quot;\ncolorscheme ayu&amp;#x27;&lt;/span&gt;
     ;;
   *)
-    &lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;Supported colorschemes: dracula, nord, pink-moon, ayu-light&quot;&lt;/span&gt;
+    &lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Supported colorschemes: dracula, nord, pink-moon, ayu-light&amp;quot;&lt;/span&gt;
     &lt;span class=&quot;hljs-built_in&quot;&gt;exit&lt;/span&gt; 1
     ;;
 &lt;span class=&quot;hljs-keyword&quot;&gt;esac&lt;/span&gt;
@@ -435,23 +435,23 @@ colorscheme nord
 &lt;h2&gt;Converting Textile to Markdown&lt;/h2&gt;
 &lt;p&gt;I didn’t want to convert a hundred posts by hand. I had tried &lt;a href=&quot;https://github.blog/2016-03-01-upgrading-your-textile-posts-to-markdown/&quot;&gt;tomd&lt;/a&gt; a few years ago, but I was not satisfied with the result. The old Textile files had raw HTML tags and some classes for styling. Also, I was afraid of missing some details that I don’t remember anymore. So I decided to write a conversion script.&lt;/p&gt;
 &lt;p&gt;I used &lt;a href=&quot;https://github.com/borgar/textile-js&quot;&gt;textile-js&lt;/a&gt; to parse Textile. It turned out that &lt;code&gt;textile-js&lt;/code&gt; output HTML string or &lt;a href=&quot;http://www.jsonml.org/&quot;&gt;JsonML&lt;/a&gt;. JsonML was new to me. It is basically HTML in JSON format. Each text node is represented as a string. Each element node is represented as an array whose first item is the tag name, an optional second item is an object of attributes and the rest are child nodes.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://foo.com&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;foo.png&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt; Yay&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;https://foo.com&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;foo.png&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Foo&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt; Yay&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;[
-  &lt;span class=&quot;hljs-string&quot;&gt;&quot;a&quot;&lt;/span&gt;,
-  { &lt;span class=&quot;hljs-attr&quot;&gt;&quot;href&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;https://foo.com&quot;&lt;/span&gt; },
-  [&lt;span class=&quot;hljs-string&quot;&gt;&quot;img&quot;&lt;/span&gt;, { &lt;span class=&quot;hljs-attr&quot;&gt;&quot;src&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;foo.png&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-attr&quot;&gt;&quot;alt&quot;&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; }],
-  &lt;span class=&quot;hljs-string&quot;&gt;&quot; Yay&quot;&lt;/span&gt;
-]
+&lt;pre&gt;&lt;code class=&quot;hljs json&quot;&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;hljs-punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;href&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;https://foo.com&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;hljs-punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;img&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;hljs-punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;src&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;foo.png&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;&amp;quot;alt&amp;quot;&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Foo&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;hljs-punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot; Yay&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;hljs-punctuation&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I wrote a &lt;code&gt;switch&lt;/code&gt; statement to handle tags and added tag handlers one by one.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;switch&lt;/span&gt; (tag) {
-  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;img&quot;&lt;/span&gt;:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;img&amp;quot;&lt;/span&gt;:
     &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/* render &amp;lt;img&amp;gt; */&lt;/span&gt;;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;a&quot;&lt;/span&gt;:
+  &lt;span class=&quot;hljs-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;:
     &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/* render &amp;lt;a&amp;gt; */&lt;/span&gt;;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;default&lt;/span&gt;:
-    &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Error&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;`Unknown tag: &lt;span class=&quot;hljs-subst&quot;&gt;${tag}&lt;/span&gt;`&lt;/span&gt;);
+  &lt;span class=&quot;hljs-attr&quot;&gt;default&lt;/span&gt;:
+    &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Error&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;`Unknown tag: &lt;span class=&quot;hljs-subst&quot;&gt;${tag}&lt;/span&gt;`&lt;/span&gt;);
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I also added &lt;code&gt;console.log&lt;/code&gt; for unknown attributes. In this way, I was able to make sure that all tags and attributes were handled. &lt;a href=&quot;https://github.com/shuhei/shuhei.github.com/pull/44&quot;&gt;The script worked well to convert more than one hundred posts&lt;/a&gt;. The full script is &lt;a href=&quot;https://gist.github.com/shuhei/b622af9559d859d386edbfe43f171d72&quot;&gt;on Gist&lt;/a&gt;.&lt;/p&gt;
@@ -465,66 +465,66 @@ colorscheme nord
     <id>https://shuheikagawa.com/blog/2020/01/26/responsive-images-with-a-static-site-generator/</id>
     <content type="html">&lt;h2&gt;Responsive images&lt;/h2&gt;
 &lt;p&gt;An &lt;code&gt;img&lt;/code&gt; without &lt;code&gt;width&lt;/code&gt;/&lt;code&gt;height&lt;/code&gt; attributes causes a page jump when it&#39;s loaded. It happens because the browser doesn&#39;t know the dimensions of the image until its data is loaded—only the first part that contains dimensions is enough though. It&#39;s common to specify &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; of &lt;code&gt;img&lt;/code&gt; tag to avoid the jump.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;/images/foo.jpg&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;Foo&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;width&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;800&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;height&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;600&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;/images/foo.jpg&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;alt&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Foo&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;width&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;800&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;height&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;600&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;But &lt;code&gt;img&lt;/code&gt; tag with &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; doesn&#39;t always work well with Responsive Design because the dimensions are fixed. I wanted images to fit the screen width on mobile phones. So I left images without &lt;code&gt;width&lt;/code&gt;/&lt;code&gt;height&lt;/code&gt; and let them cause page jumps.&lt;/p&gt;
 &lt;p&gt;Recently, I came across a similar problem at work and learned a cool technique to create a placeholder of the image&#39;s aspect ratio with &lt;code&gt;padding-top&lt;/code&gt;. If the image&#39;s aspect ratio is &lt;code&gt;height/width = 75/100&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: relative; padding-top: 75%;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: absolute; top: 0; left: 0; max-width: 100%;&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;position: relative; padding-top: 75%;&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;position: absolute; top: 0; left: 0; max-width: 100%;&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;div&lt;/code&gt; works as a placeholder with the image&#39;s aspect ratio that fits the width of its containing element. Because the &lt;code&gt;img&lt;/code&gt; tag has &lt;code&gt;position: absolute&lt;/code&gt;, it doesn&#39;t cause a page jump when it&#39;s loaded.&lt;/p&gt;
 &lt;p&gt;I decided to implement it on this blog. This blog is made with a custom static site generator. I&#39;m not sure if it&#39;s useful for anyone else, but I write how I did it anyway…&lt;/p&gt;
 &lt;h2&gt;Limiting overstretch&lt;/h2&gt;
 &lt;p&gt;In addition to images that are wide enough to always fill the full width of the content area, I had images that are not wide enough to fill the full width of a laptop, but wide enough to fill the full width of a mobile phone. Not to stretch the image on laptops, I decided to go with another wrapper to limit the maximum width of the image. If the image&#39;s width is &lt;code&gt;500px&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;max-width: 500px;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: relative; padding-top: 75%;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;position: absolute; top: 0; left: 0; max-width: 100%;&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;max-width: 500px;&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;position: relative; padding-top: 75%;&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;position: absolute; top: 0; left: 0; max-width: 100%;&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span class=&quot;hljs-name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Getting image dimensions&lt;/h2&gt;
 &lt;p&gt;The placeholder technique requires image dimensions. I used &lt;a href=&quot;https://github.com/image-size/image-size&quot;&gt;image-size module&lt;/a&gt; to get image dimensions.&lt;/p&gt;
 &lt;p&gt;The following function gets dimensions of images in a directory and returns them as a &lt;code&gt;Map&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; util = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;util&quot;&lt;/span&gt;);
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; path = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;path&quot;&lt;/span&gt;);
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { &lt;span class=&quot;hljs-attr&quot;&gt;promises&lt;/span&gt;: fs } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;fs&quot;&lt;/span&gt;);
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; sizeOf = util.promisify(&lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;image-size&quot;&lt;/span&gt;).imageSize);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; util = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;util&amp;quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; path = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;path&amp;quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { &lt;span class=&quot;hljs-attr&quot;&gt;promises&lt;/span&gt;: fs } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;fs&amp;quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; sizeOf = util.&lt;span class=&quot;hljs-title function_&quot;&gt;promisify&lt;/span&gt;(&lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;image-size&amp;quot;&lt;/span&gt;).&lt;span class=&quot;hljs-property&quot;&gt;imageSize&lt;/span&gt;);
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;readImageSizes&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;dir&lt;/span&gt;) &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; files = (&lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; fs.readdir(dir)).filter(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;f&lt;/span&gt; =&amp;gt;&lt;/span&gt; !f.startsWith(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;));
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; promises = files.map(&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; file =&amp;gt; {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; filePath = path.resolve(dir, file);
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; sizeOf(filePath);
+&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;readImageSizes&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;dir&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; files = (&lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; fs.&lt;span class=&quot;hljs-title function_&quot;&gt;readdir&lt;/span&gt;(dir)).&lt;span class=&quot;hljs-title function_&quot;&gt;filter&lt;/span&gt;(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;f&lt;/span&gt; =&amp;gt;&lt;/span&gt; !f.&lt;span class=&quot;hljs-title function_&quot;&gt;startsWith&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;));
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; promises = files.&lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; file =&amp;gt; {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; filePath = path.&lt;span class=&quot;hljs-title function_&quot;&gt;resolve&lt;/span&gt;(dir, file);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;sizeOf&lt;/span&gt;(filePath);
     &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; [file, dimensions];
   });
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; entries = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Promise&lt;/span&gt;.all(promises);
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Map&lt;/span&gt;(entries);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; entries = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Promise&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;all&lt;/span&gt;(promises);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Map&lt;/span&gt;(entries);
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Custom renderer of Marked&lt;/h2&gt;
 &lt;p&gt;This blog&#39;s posts are written in Markdown, and its static site generator uses &lt;a href=&quot;https://github.com/markedjs/marked&quot;&gt;marked&lt;/a&gt; to convert Markdown into HTML. One of my favorite things about &lt;code&gt;marked&lt;/code&gt; is that we can easily customize its behavior with a custom renderer.&lt;/p&gt;
 &lt;p&gt;I used &lt;code&gt;span&lt;/code&gt; tags to wrap &lt;code&gt;img&lt;/code&gt; tag because they are rendered in &lt;code&gt;p&lt;/code&gt; tag, which can&#39;t contain block tags like &lt;code&gt;div&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;CustomRenderer&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;marked&lt;/span&gt;.&lt;span class=&quot;hljs-title&quot;&gt;Renderer&lt;/span&gt; &lt;/span&gt;{
-  image(src, title, alt) {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions &amp;amp;&amp;amp; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions.get(src);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;CustomRenderer&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;hljs-title class_ inherited__&quot;&gt;marked.Renderer&lt;/span&gt; {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;image&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;src, title, alt&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dimensions = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;imageDimensions&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;imageDimensions&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;get&lt;/span&gt;(src);
     &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (dimensions) {
       &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { width, height } = dimensions;
       &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; aspectRatio = (height / width) * &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;;
       &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; (
-        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&quot;responsive-image-wrapper&quot; style=&quot;max-width: &lt;span class=&quot;hljs-subst&quot;&gt;${width}&lt;/span&gt;px;&quot;&amp;gt;`&lt;/span&gt; +
-        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&quot;responsive-image-inner&quot; style=&quot;padding-top: &lt;span class=&quot;hljs-subst&quot;&gt;${aspectRatio}&lt;/span&gt;%;&quot;&amp;gt;`&lt;/span&gt; +
-        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;img class=&quot;responsive-image&quot; src=&quot;&lt;span class=&quot;hljs-subst&quot;&gt;${src}&lt;/span&gt;&quot; alt=&quot;&lt;span class=&quot;hljs-subst&quot;&gt;${alt}&lt;/span&gt;&quot;&amp;gt;`&lt;/span&gt; +
-        &lt;span class=&quot;hljs-string&quot;&gt;&quot;&amp;lt;/span&amp;gt;&quot;&lt;/span&gt; +
-        &lt;span class=&quot;hljs-string&quot;&gt;&quot;&amp;lt;/span&amp;gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&amp;quot;responsive-image-wrapper&amp;quot; style=&amp;quot;max-width: &lt;span class=&quot;hljs-subst&quot;&gt;${width}&lt;/span&gt;px;&amp;quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;span class=&amp;quot;responsive-image-inner&amp;quot; style=&amp;quot;padding-top: &lt;span class=&quot;hljs-subst&quot;&gt;${aspectRatio}&lt;/span&gt;%;&amp;quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;`&amp;lt;img class=&amp;quot;responsive-image&amp;quot; src=&amp;quot;&lt;span class=&quot;hljs-subst&quot;&gt;${src}&lt;/span&gt;&amp;quot; alt=&amp;quot;&lt;span class=&quot;hljs-subst&quot;&gt;${alt}&lt;/span&gt;&amp;quot;&amp;gt;`&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;lt;/span&amp;gt;&amp;quot;&lt;/span&gt; +
+        &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;lt;/span&amp;gt;&amp;quot;&lt;/span&gt;
       );
     }
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;super&lt;/span&gt;.image(src, title, alt);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-variable language_&quot;&gt;super&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;image&lt;/span&gt;(src, title, alt);
   }
 
   &lt;span class=&quot;hljs-comment&quot;&gt;// To set images dimensions when images are changed&lt;/span&gt;
-  setImageDimensions(imageDimensions) {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.imageDimensions = imageDimensions;
+  &lt;span class=&quot;hljs-title function_&quot;&gt;setImageDimensions&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;imageDimensions&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;imageDimensions&lt;/span&gt; = imageDimensions;
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -659,17 +659,17 @@ colorscheme nord
 &lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/twitter-card.png&quot; alt=&quot;Twitter Card preview&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h2&gt;Meta tags&lt;/h2&gt;
 &lt;p&gt;Twitter&#39;s bots look for &lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; tags in your page. If your page has a certain meta tags, it shows a Twitter Cards for links to the page. Check &lt;a href=&quot;https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards&quot;&gt;the documentation&lt;/a&gt; for more details. The &lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; tags look like these:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:card&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;summary_large_image&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:site&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;@your_twitter_account&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;twitter:card&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;summary_large_image&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;twitter:site&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;@your_twitter_account&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
 
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:title&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;My Blog Post&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:description&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;This is a blog post.&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;twitter:image&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://test.com/images/foo.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;twitter:title&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;My Blog Post&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;twitter:description&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;This is a blog post.&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;twitter:image&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;https://test.com/images/foo.png&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Uh, they look a bit too platform-specific. &lt;code&gt;twitter:card&lt;/code&gt; and &lt;code&gt;twitter:site&lt;/code&gt; are specific to Twitter, but what about &lt;code&gt;twitter:title&lt;/code&gt;, &lt;code&gt;twitter:description&lt;/code&gt; and &lt;code&gt;twitter:image&lt;/code&gt;? Twitter&#39;s bots also pick up Open Graph metadata tags, which are also used by other platforms like Facebook. So, we can use the &lt;code&gt;og:&lt;/code&gt; tags instead of &lt;code&gt;twitter:&lt;/code&gt; tags. Be careful that the attribute name of Open Graph metadata is &lt;code&gt;property&lt;/code&gt; instead of &lt;code&gt;name&lt;/code&gt;!&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:title&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;My Blog Post&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:description&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;This is a blog post.&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;og:image&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https://test.com/images/foo.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs html&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;og:title&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;My Blog Post&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;og:description&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;This is a blog post.&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span class=&quot;hljs-name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;property&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;og:image&amp;quot;&lt;/span&gt; &lt;span class=&quot;hljs-attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;https://test.com/images/foo.png&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Homemade static site generator&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/shuhei/shuhei.github.com&quot;&gt;My blog&lt;/a&gt; is built with &lt;a href=&quot;https://github.com/gulpjs/gulp&quot;&gt;gulp&lt;/a&gt; and some custom plugins and deployed to GitHub Pages. I started the blog with &lt;a href=&quot;https://github.com/octopress/octopress&quot;&gt;Octopress&lt;/a&gt; several years ago and rewrote it with gulp when I was fascinated with gulp and JavaScript build tools. I once added React as a template engine and removed it later. Because of the history, its directory structure stays similar to the original one of Octopress. I write markdown files like &lt;code&gt;source/_posts/2019-10-13-foo.md&lt;/code&gt; and the build system generates HTMLs like &lt;code&gt;/blog/2019/10/13/foo/index.html&lt;/code&gt;.&lt;/p&gt;
@@ -685,50 +685,50 @@ colorscheme nord
 &lt;p&gt;The algorithm for the first edge case is visualized as follows (it tries smaller fonts until the word fits into the width):&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/twitter-card-image-font-sizes.png&quot; alt=&quot;Try smaller font sizes&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;I eventually came up with JavaScript code like this (&lt;a href=&quot;https://github.com/shuhei/shuhei.github.com/blob/f30cb5cd85a4ef35a4fb73d94a01da44e03ae116/plugins/title-image.js&quot;&gt;the full code is on GitHub&lt;/a&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;fitTextIntoRectangle&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;{ ctx, text, maxFontSize, rect }&lt;/span&gt;) &lt;/span&gt;{
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;fitTextIntoRectangle&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;{ ctx, text, maxFontSize, rect }&lt;/span&gt;) {
   &lt;span class=&quot;hljs-comment&quot;&gt;// Reduce font size until the title fits into the image.&lt;/span&gt;
   &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; fontSize = maxFontSize; fontSize &amp;gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; fontSize -= &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
-    ctx.font = getTitleFont(fontSize);
-    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; words = text.split(&lt;span class=&quot;hljs-string&quot;&gt;&quot; &quot;&lt;/span&gt;);
+    ctx.&lt;span class=&quot;hljs-property&quot;&gt;font&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;getTitleFont&lt;/span&gt;(fontSize);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; words = text.&lt;span class=&quot;hljs-title function_&quot;&gt;split&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;);
     &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; { y } = rect;
     &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; lines = [];
-    &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (words.length &amp;gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (words.&lt;span class=&quot;hljs-property&quot;&gt;length&lt;/span&gt; &amp;gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
       &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i;
       &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; size;
       &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; subtext;
       &lt;span class=&quot;hljs-comment&quot;&gt;// Remove words until the rest fit into the width.&lt;/span&gt;
-      &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (i = words.length; i &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; i -= &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
-        subtext = words.slice(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, i).join(&lt;span class=&quot;hljs-string&quot;&gt;&quot; &quot;&lt;/span&gt;);
-        size = ctx.measureText(subtext);
+      &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (i = words.&lt;span class=&quot;hljs-property&quot;&gt;length&lt;/span&gt;; i &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; i -= &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
+        subtext = words.&lt;span class=&quot;hljs-title function_&quot;&gt;slice&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, i).&lt;span class=&quot;hljs-title function_&quot;&gt;join&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;);
+        size = ctx.&lt;span class=&quot;hljs-title function_&quot;&gt;measureText&lt;/span&gt;(subtext);
 
-        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (size.width &amp;lt;= rect.width) {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (size.&lt;span class=&quot;hljs-property&quot;&gt;width&lt;/span&gt; &amp;lt;= rect.&lt;span class=&quot;hljs-property&quot;&gt;width&lt;/span&gt;) {
           &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;;
         }
       }
 
       &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (i &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
-        &lt;span class=&quot;hljs-comment&quot;&gt;// A word doesn&#39;t fit into a line. Try a smaller font size.&lt;/span&gt;
+        &lt;span class=&quot;hljs-comment&quot;&gt;// A word doesn&amp;#x27;t fit into a line. Try a smaller font size.&lt;/span&gt;
         &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;;
       }
 
-      lines.push({
+      lines.&lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;({
         &lt;span class=&quot;hljs-attr&quot;&gt;text&lt;/span&gt;: subtext,
-        &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: rect.x,
-        &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: y + size.emHeightAscent
+        &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: rect.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;,
+        &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: y + size.&lt;span class=&quot;hljs-property&quot;&gt;emHeightAscent&lt;/span&gt;
       });
 
-      words = words.slice(i);
-      y += size.emHeightAscent + size.emHeightDescent;
+      words = words.&lt;span class=&quot;hljs-title function_&quot;&gt;slice&lt;/span&gt;(i);
+      y += size.&lt;span class=&quot;hljs-property&quot;&gt;emHeightAscent&lt;/span&gt; + size.&lt;span class=&quot;hljs-property&quot;&gt;emHeightDescent&lt;/span&gt;;
     }
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; space = rect.y + rect.height - y;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (words.length === &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; space &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; space = rect.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; + rect.&lt;span class=&quot;hljs-property&quot;&gt;height&lt;/span&gt; - y;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (words.&lt;span class=&quot;hljs-property&quot;&gt;length&lt;/span&gt; === &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; space &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
       &lt;span class=&quot;hljs-comment&quot;&gt;// The title fits into the image with the font size.&lt;/span&gt;
       &lt;span class=&quot;hljs-comment&quot;&gt;// Vertically centering the text in the given rectangle.&lt;/span&gt;
-      &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; centeredLines = lines.map(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;line&lt;/span&gt; =&amp;gt;&lt;/span&gt; {
+      &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; centeredLines = lines.&lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;line&lt;/span&gt; =&amp;gt;&lt;/span&gt; {
         &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
           ...line,
-          &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: line.y + space / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;
+          &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: line.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; + space / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;
         };
       });
       &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
@@ -738,8 +738,8 @@ colorscheme nord
     }
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;Error&lt;/span&gt;(
-    &lt;span class=&quot;hljs-string&quot;&gt;`Text layout failed: The given text &#39;&lt;span class=&quot;hljs-subst&quot;&gt;${text}&lt;/span&gt;&#39; did not fit into the given rectangle &lt;span class=&quot;hljs-subst&quot;&gt;${&lt;span class=&quot;hljs-built_in&quot;&gt;JSON&lt;/span&gt;.stringify(
+  &lt;span class=&quot;hljs-keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Error&lt;/span&gt;(
+    &lt;span class=&quot;hljs-string&quot;&gt;`Text layout failed: The given text &amp;#x27;&lt;span class=&quot;hljs-subst&quot;&gt;${text}&lt;/span&gt;&amp;#x27; did not fit into the given rectangle &lt;span class=&quot;hljs-subst&quot;&gt;${&lt;span class=&quot;hljs-built_in&quot;&gt;JSON&lt;/span&gt;.stringify(
       rect
     )}&lt;/span&gt; even with the smallest font size (1)`&lt;/span&gt;
   );
@@ -749,19 +749,19 @@ colorscheme nord
 &lt;p&gt;My website is using &lt;a href=&quot;https://fonts.google.com/specimen/IBM+Plex+Sans&quot;&gt;IBM Plex Sans&lt;/a&gt; via Google Fonts. I wanted to use the same font in the images. Fortunately, node-canvas provides an API to load fonts, and the font is available also on npm.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;yarn add -D @ibm/plex
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { registerFont } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;canvas&quot;&lt;/span&gt;);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { registerFont } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;canvas&amp;quot;&lt;/span&gt;);
 
-registerFont(
-  &lt;span class=&quot;hljs-string&quot;&gt;&quot;./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf&quot;&lt;/span&gt;,
+&lt;span class=&quot;hljs-title function_&quot;&gt;registerFont&lt;/span&gt;(
+  &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./node_modules/@ibm/plex/IBM-Plex-Sans/fonts/complete/otf/IBMPlexSans-Bold.otf&amp;quot;&lt;/span&gt;,
   {
-    &lt;span class=&quot;hljs-attr&quot;&gt;family&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;IBM Plex Sans&quot;&lt;/span&gt;,
-    &lt;span class=&quot;hljs-attr&quot;&gt;weight&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;bold&quot;&lt;/span&gt;
+    &lt;span class=&quot;hljs-attr&quot;&gt;family&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;IBM Plex Sans&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-attr&quot;&gt;weight&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;bold&amp;quot;&lt;/span&gt;
   }
 );
 
 &lt;span class=&quot;hljs-comment&quot;&gt;// ...&lt;/span&gt;
 
-ctx.font = &lt;span class=&quot;hljs-string&quot;&gt;&quot;bold 30px &#39;IBM Plex Sans&#39;&quot;&lt;/span&gt;;
+ctx.&lt;span class=&quot;hljs-property&quot;&gt;font&lt;/span&gt; = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;bold 30px &amp;#x27;IBM Plex Sans&amp;#x27;&amp;quot;&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Done!&lt;/h2&gt;
 &lt;p&gt;So, the feature is done. It looked trivial at first glance, but the text wrapping algorithm was fun to write. Now I got to write more blog posts to use this feature!&lt;/p&gt;
@@ -796,20 +796,20 @@ For more details, please visit https://support.apple.com/kb/HT208050.
 &lt;p&gt;&lt;s&gt;oh-my-zsh has a directory for custom themes (&lt;code&gt;.oh-my-zsh/custom/themes&lt;/code&gt;). I moved the &lt;code&gt;custom&lt;/code&gt; directory to &lt;a href=&quot;https://github.com/shuhei/dotfiles&quot;&gt;my dotfiles repo&lt;/a&gt; and symlinked it so that I can manage my custom theme with Git without forking oh-my-zsh itself.&lt;/s&gt; [Update on Oct 24, 2019] I realized that this symlink approach prevents updates of oh-my-zsh because it modifies the files in the git local clone of oh-my-zsh. &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/wiki/Customization&quot;&gt;The official customization guide&lt;/a&gt; recommends to use &lt;code&gt;ZSH_CUSTOM&lt;/code&gt; variable to specify the location of a custom directory. Now I&#39;m using &lt;code&gt;ZSH_CUSTOM&lt;/code&gt; to point to a directory in my dotfiles repo.&lt;/p&gt;
 &lt;p&gt;Eventually, I came up with a theme like this:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/zsh_prompt.png&quot; alt=&quot;my custom theme&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&quot;*&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
 &lt;span class=&quot;hljs-comment&quot;&gt;# %~ is the current working directory relative to the home directory&lt;/span&gt;
-PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;[$FG[228]%~%{$reset_color%}]&#39;&lt;/span&gt;
-PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; $(git_prompt_info)&#39;&lt;/span&gt;
-PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; %(?.$FG[154].$FG[009])€%{$reset_color%} &#39;&lt;/span&gt;
+PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;[$FG[228]%~%{$reset_color%}]&amp;#x27;&lt;/span&gt;
+PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27; $(git_prompt_info)&amp;#x27;&lt;/span&gt;
+PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27; %(?.$FG[154].$FG[009])€%{$reset_color%} &amp;#x27;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Each oh-my-zsh theme defines a variable called &lt;code&gt;PROMPT&lt;/code&gt;. Aside from &lt;a href=&quot;http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html&quot;&gt;its syntax&lt;/a&gt;, I was not sure how and when &lt;code&gt;PROMPT&lt;/code&gt; was evaluated. In hindsight, it is a string that is built once when a session starts or &lt;code&gt;source .zshrc&lt;/code&gt;. Every time a prompt is shown, &lt;code&gt;PROMPT&lt;/code&gt; is evaluated, meaning escapes (starting with &lt;code&gt;%&lt;/code&gt;) and variables in it are expanded.&lt;/p&gt;
 &lt;h3&gt;Colors&lt;/h3&gt;
 &lt;p&gt;At the beginning, I was baffled by how to specify colors. For example, the following &lt;code&gt;PROMPT&lt;/code&gt; shows &amp;quot;some red text&amp;quot; in red.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;%{$fg[red]%}some red text%{$reset_color%}&#39;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;%{$fg[red]%}some red text%{$reset_color%}&amp;#x27;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;$fg[red]&lt;/code&gt; has the code that makes its following text red. &lt;code&gt;$reset_color&lt;/code&gt; has the code that resets the color. The tricky part is that these codes need to be surrounded by &lt;code&gt;%{&lt;/code&gt; and &lt;code&gt;%}&lt;/code&gt; in &lt;code&gt;PROMPT&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/zsh-users/zsh/blob/243e46998eb29665ec345e531b2d1bb6921ed578/Functions/Misc/colors#L97-L117&quot;&gt;zsh provides handy variables for colors&lt;/a&gt;.&lt;/p&gt;
@@ -826,7 +826,7 @@ PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; %(?.$FG[154].$FG[009])�
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;spectrum_ls&lt;/code&gt; and &lt;code&gt;spectrum_bls&lt;/code&gt; commands show you all the 256 colors! Note that values in &lt;code&gt;FX&lt;/code&gt;, &lt;code&gt;FG&lt;/code&gt; and &lt;code&gt;BG&lt;/code&gt; are already surrounded by &lt;code&gt;%{&lt;/code&gt; and &lt;code&gt;%}&lt;/code&gt;, and we don&#39;t need to do it again.&lt;/p&gt;
 &lt;p&gt;We can examine those variables in the terminal.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;span class=&quot;hljs-variable&quot;&gt;${fg[yellow]}&lt;/span&gt;hello&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${bg[green]}&lt;/span&gt;world&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&lt;span class=&quot;hljs-variable&quot;&gt;${fg[yellow]}&lt;/span&gt;hello&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${bg[green]}&lt;/span&gt;world&lt;span class=&quot;hljs-variable&quot;&gt;${reset_color}&lt;/span&gt;&amp;quot;&lt;/span&gt;
 
 &lt;span class=&quot;hljs-comment&quot;&gt;# `(kv)` extracts key values from an associative array.&lt;/span&gt;
 &lt;span class=&quot;hljs-built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;${(kv)fg}&lt;/span&gt;
@@ -836,7 +836,7 @@ PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; %(?.$FG[154].$FG[009])�
 &lt;p&gt;With bash, &lt;a href=&quot;https://shuheikagawa.com/blog/2015/10/18/color-prompt-by-exit-code/&quot;&gt;I had a trick to change the color of the prompt by the previous command&#39;s exit code&lt;/a&gt;. How can I achieve this with zsh?&lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/exit_code.png&quot; alt=&quot;Change color by exit code&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Surprisingly, &lt;a href=&quot;https://stackoverflow.com/questions/4466245/customize-zshs-prompt-when-displaying-previous-command-exit-code&quot;&gt;zsh prompt expression has a special syntax for switching prompt by exit code&lt;/a&gt;. To be accurate, it&#39;s a combination of a ternary operator and &lt;code&gt;?&lt;/code&gt; for exit code check.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Shows &quot;foo&quot; if the exit code is 0 and &quot;bar&quot; if the exit code is non-zero.&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Shows &amp;quot;foo&amp;quot; if the exit code is 0 and &amp;quot;bar&amp;quot; if the exit code is non-zero.&lt;/span&gt;
 %(?.foo.bar)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following expression shows the Euro sign in green if the exit code is 0 and in red if the exit code is non-zero.&lt;/p&gt;
@@ -845,15 +845,15 @@ PROMPT+=&lt;span class=&quot;hljs-string&quot;&gt;&#39; %(?.$FG[154].$FG[009])�
 &lt;h3&gt;Git info&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;git_prompt_info()&lt;/code&gt; function outputs git info such as the branch name and the state of the working tree (clean or dirty). We can customize its output by &lt;code&gt;ZSH_THEME_GIT_PROMPT_*&lt;/code&gt; variables.&lt;/p&gt;
 &lt;p&gt;I wrote something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&quot;*&quot;&lt;/span&gt;
-ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;ZSH_THEME_GIT_PROMPT_PREFIX=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%}(&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_SUFFIX=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;%{&lt;span class=&quot;hljs-variable&quot;&gt;$fg&lt;/span&gt;[white]%})%{&lt;span class=&quot;hljs-variable&quot;&gt;$reset_color&lt;/span&gt;%}&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_DIRTY=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+ZSH_THEME_GIT_PROMPT_CLEAN=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
-PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&quot;... &lt;span class=&quot;hljs-variable&quot;&gt;$(git_prompt_info)&lt;/span&gt; ...&quot;&lt;/span&gt;
+PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;... &lt;span class=&quot;hljs-subst&quot;&gt;$(git_prompt_info)&lt;/span&gt; ...&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I thought it was done and went back to work. But when I switched the git branch, the prompt stayed the same. Why? I googled again. There was &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/issues/4826&quot;&gt;an issue&lt;/a&gt; for the same problem. The &lt;code&gt;PROMPT&lt;/code&gt; needs to be created with single quotes instead of double quotes so that dynamic parts are not evaluated when it&#39;s defined!&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&#39;... $(git_prompt_info) ...&#39;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;... $(git_prompt_info) ...&amp;#x27;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;I have migrated my terminal from bash to zsh. My initial motivation was passive (Catalina deprecated bash), but it&#39;s always fun to try something new (to me). I&#39;m looking forward to trying cool zsh plugins and tricks!&lt;/p&gt;
@@ -867,32 +867,32 @@ PROMPT=&lt;span class=&quot;hljs-string&quot;&gt;&quot;... &lt;span class=&quot;
     <id>https://shuheikagawa.com/blog/2019/10/06/interpreter-and-compiler-in-rust/</id>
     <content type="html">&lt;p&gt;In the spring of this year, I read &lt;a href=&quot;https://interpreterbook.com/&quot;&gt;Writing an Interpreter in Go&lt;/a&gt; and &lt;a href=&quot;https://compilerbook.com/&quot;&gt;Writing a Compiler in Go&lt;/a&gt; by &lt;a href=&quot;https://thorstenball.com/&quot;&gt;Thorsten Ball&lt;/a&gt;, and implemented &lt;a href=&quot;https://github.com/shuhei/cymbal&quot;&gt;an interpreter and a compiler&lt;/a&gt; from the books in Rust. (I started writing this post in April but left unfinished for six months. Now I&#39;m finishing it.)&lt;/p&gt;
 &lt;p&gt;The first book &lt;a href=&quot;https://interpreterbook.com/&quot;&gt;Writing an Interpreter in Go&lt;/a&gt; is about writing a parser and an interpreter for a programming language called Monkey. Monkey&#39;s feature set is limited, but it has some interesting features that modern programming languages have—such as function as a first-class citizen and closures.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; fibonacci = fn(x) {
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; fibonacci = &lt;span class=&quot;hljs-title function_&quot;&gt;fn&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x&lt;/span&gt;) {
     &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (x == &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
         &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
     } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
         &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (x == &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
             &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;
         } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-            fibonacci(x - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) + fibonacci(x - &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
+            &lt;span class=&quot;hljs-title function_&quot;&gt;fibonacci&lt;/span&gt;(x - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) + &lt;span class=&quot;hljs-title function_&quot;&gt;fibonacci&lt;/span&gt;(x - &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
         }
     }
 };
-fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
+&lt;span class=&quot;hljs-title function_&quot;&gt;fibonacci&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The second book &lt;a href=&quot;https://compilerbook.com/&quot;&gt;Writing a Compiler in Go&lt;/a&gt; taught me to write a simple compiler and a simple virtual machine. The compiler compiles Monkey scripts into instructions (and constants), and the virtual machine executes the instructions. For example, an expression &lt;code&gt;1 + 2&lt;/code&gt; is compiled into:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// Constants&lt;/span&gt;
 &lt;span class=&quot;hljs-built_in&quot;&gt;vec!&lt;/span&gt;[
-    Object::Integer(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
-    Object::Integer(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;),
+    Object::&lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Integer&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
+    Object::&lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Integer&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;),
 ]
 
 &lt;span class=&quot;hljs-comment&quot;&gt;// Instructions&lt;/span&gt;
 &lt;span class=&quot;hljs-built_in&quot;&gt;vec!&lt;/span&gt;[
-    make_u16(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;),
-    make_u16(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
-    make(OpCode::Add),
-    make(OpCode::Pop),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;make_u16&lt;/span&gt;(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;make_u16&lt;/span&gt;(OpCode::Constant, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;make&lt;/span&gt;(OpCode::Add),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;make&lt;/span&gt;(OpCode::Pop),
 ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;How I started&lt;/h2&gt;
@@ -902,19 +902,19 @@ fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
 &lt;p&gt;First, I rewrote what I had written in Go with Rust and continued the rest of the book. The implementation in Rust was less redundant than the one in Go. Also, it was more type-safe thanks to &lt;code&gt;enum&lt;/code&gt;s and &lt;code&gt;Result&lt;/code&gt;. Especially &lt;code&gt;enum&lt;/code&gt;s were perfect for AST (Abstract Syntax Tree) and evaluated objects.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// An example of AST&lt;/span&gt;
 &lt;span class=&quot;hljs-meta&quot;&gt;#[derive(Debug, PartialEq, Clone, Hash, Eq)]&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;pub&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Expression&lt;/span&gt;&lt;/span&gt; {
-    Identifier(&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;),
-    IntegerLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;i64&lt;/span&gt;),
-    StringLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;),
-    Boolean(&lt;span class=&quot;hljs-built_in&quot;&gt;bool&lt;/span&gt;),
-    Array(&lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
-    Hash(HashLiteral),
-    Index(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
-    Prefix(Prefix, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
-    Infix(Infix, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
-    If(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, BlockStatement, &lt;span class=&quot;hljs-built_in&quot;&gt;Option&lt;/span&gt;&amp;lt;BlockStatement&amp;gt;),
-    FunctionLiteral(&lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;&amp;gt;, BlockStatement),
-    Call(&lt;span class=&quot;hljs-built_in&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+&lt;span class=&quot;hljs-keyword&quot;&gt;pub&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Expression&lt;/span&gt; {
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Identifier&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;String&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;IntegerLiteral&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;i64&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;StringLiteral&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;String&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Boolean&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;bool&lt;/span&gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Array&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Hash&lt;/span&gt;(HashLiteral),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Index&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Prefix&lt;/span&gt;(Prefix, &lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Infix&lt;/span&gt;(Infix, &lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;If&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, BlockStatement, &lt;span class=&quot;hljs-type&quot;&gt;Option&lt;/span&gt;&amp;lt;BlockStatement&amp;gt;),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;FunctionLiteral&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;Vec&lt;/span&gt;&amp;lt;&lt;span class=&quot;hljs-type&quot;&gt;String&lt;/span&gt;&amp;gt;, BlockStatement),
+    &lt;span class=&quot;hljs-title function_ invoke__&quot;&gt;Call&lt;/span&gt;(&lt;span class=&quot;hljs-type&quot;&gt;Box&lt;/span&gt;&amp;lt;Expression&amp;gt;, &lt;span class=&quot;hljs-type&quot;&gt;Vec&lt;/span&gt;&amp;lt;Expression&amp;gt;),
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, harder parts came later when the compiler and the virtual machine grew complex.&lt;/p&gt;
@@ -923,21 +923,21 @@ fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
 &lt;p&gt;Then, I went to Rust Hack and Learn—a local meetup at Mozilla Berlin office—and asked how to get over ownership rules. One person (sorry, I didn&#39;t ask his name!) recommended me a book &lt;a href=&quot;https://rust-unofficial.github.io/too-many-lists/&quot;&gt;Learn Rust With Entirely Too Many Linked Lists &lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The book introduces several versions of linked list implementations in Rust even though its precaution is not to implement linked lists in Rust. It had some techniques that I had recently learned, and much more. After a while, I realized that I had been trying to implement a linked list. Then I changed the self-recursive &lt;code&gt;struct&lt;/code&gt; to a &lt;code&gt;Vec&lt;/code&gt;, and it solved most of my headaches. So, the book&#39;s precaution was right. Don&#39;t implement a liked list.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs rs&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// Before&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolTable&lt;/span&gt;&lt;/span&gt; {
-  store: HashMap&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
+&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;SymbolTable&lt;/span&gt; {
+  store: HashMap&amp;lt;&lt;span class=&quot;hljs-type&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
 
   &lt;span class=&quot;hljs-comment&quot;&gt;// This is a linked list!&lt;/span&gt;
-  outer: &lt;span class=&quot;hljs-built_in&quot;&gt;Option&lt;/span&gt;&amp;lt;SymbolTable&amp;gt;;
+  outer: &lt;span class=&quot;hljs-type&quot;&gt;Option&lt;/span&gt;&amp;lt;SymbolTable&amp;gt;;
 }
 
 &lt;span class=&quot;hljs-comment&quot;&gt;// After&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolLayer&lt;/span&gt;&lt;/span&gt; {
-  store: HashMap&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
+&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;SymbolLayer&lt;/span&gt; {
+  store: HashMap&amp;lt;&lt;span class=&quot;hljs-type&quot;&gt;String&lt;/span&gt;, Symbol&amp;gt;,
 }
 
-&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;SymbolTable&lt;/span&gt;&lt;/span&gt; {
+&lt;span class=&quot;hljs-keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;SymbolTable&lt;/span&gt; {
   current: SymbolLayer;
-  outers: &lt;span class=&quot;hljs-built_in&quot;&gt;Vec&lt;/span&gt;&amp;lt;SymbolLayer&amp;gt;;
+  outers: &lt;span class=&quot;hljs-type&quot;&gt;Vec&lt;/span&gt;&amp;lt;SymbolLayer&amp;gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;I learned basics of how programs work at low-level&lt;/h2&gt;
@@ -991,71 +991,71 @@ fibonacci(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
 &lt;span class=&quot;hljs-comment&quot;&gt;# or&lt;/span&gt;
 yarn add @shuhei/pollen
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; https = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;https&quot;&lt;/span&gt;);
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { DnsPolling, HttpsAgent } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;@shuhei/pollen&quot;&lt;/span&gt;);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; https = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;https&amp;quot;&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; { &lt;span class=&quot;hljs-title class_&quot;&gt;DnsPolling&lt;/span&gt;, &lt;span class=&quot;hljs-title class_&quot;&gt;HttpsAgent&lt;/span&gt; } = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;@shuhei/pollen&amp;quot;&lt;/span&gt;);
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dnsPolling = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; DnsPolling({
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dnsPolling = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;DnsPolling&lt;/span&gt;({
   &lt;span class=&quot;hljs-attr&quot;&gt;interval&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;// 30 seconds by default&lt;/span&gt;
 });
 &lt;span class=&quot;hljs-comment&quot;&gt;// Just a thin wrapper of https://github.com/node-modules/agentkeepalive&lt;/span&gt;
 &lt;span class=&quot;hljs-comment&quot;&gt;// It accepts all the options of `agentkeepalive`.&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; agent = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; HttpsAgent();
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; agent = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;HttpsAgent&lt;/span&gt;();
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; hostname = &lt;span class=&quot;hljs-string&quot;&gt;&quot;shuheikagawa.com&quot;&lt;/span&gt;;
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.request({
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; hostname = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;shuheikagawa.com&amp;quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.&lt;span class=&quot;hljs-title function_&quot;&gt;request&lt;/span&gt;({
   hostname,
-  &lt;span class=&quot;hljs-attr&quot;&gt;path&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&quot;/&quot;&lt;/span&gt;,
+  &lt;span class=&quot;hljs-attr&quot;&gt;path&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;,
   &lt;span class=&quot;hljs-comment&quot;&gt;// Make sure to call `getLookup()` for each request!&lt;/span&gt;
-  &lt;span class=&quot;hljs-attr&quot;&gt;lookup&lt;/span&gt;: dnsPolling.getLookup(hostname),
+  &lt;span class=&quot;hljs-attr&quot;&gt;lookup&lt;/span&gt;: dnsPolling.&lt;span class=&quot;hljs-title function_&quot;&gt;getLookup&lt;/span&gt;(hostname),
   agent
 });
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Bonus: DNS lookup metrics&lt;/h2&gt;
 &lt;p&gt;Because DNS lookup is a critical operation, it is a good idea to monitor its rate, errors and latency. &lt;code&gt;pollen&lt;/code&gt; emits events for this purpose.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;dnsPolling.on(&lt;span class=&quot;hljs-string&quot;&gt;&quot;resolve:success&quot;&lt;/span&gt;, ({ hostname, duration, update }) =&amp;gt; {
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;dnsPolling.&lt;span class=&quot;hljs-title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;resolve:success&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;{ hostname, duration, update }&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
   &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
-  recordDnsLookup();
-  recordDnsLatency(duration);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLookup&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLatency&lt;/span&gt;(duration);
 
   &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (update) {
-    logger.info({ hostname, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;IP addresses updated&quot;&lt;/span&gt;);
+    logger.&lt;span class=&quot;hljs-title function_&quot;&gt;info&lt;/span&gt;({ hostname, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;IP addresses updated&amp;quot;&lt;/span&gt;);
   }
 });
-dnsPolling.on(&lt;span class=&quot;hljs-string&quot;&gt;&quot;resolve:error&quot;&lt;/span&gt;, ({ hostname, duration, error }) =&amp;gt; {
+dnsPolling.&lt;span class=&quot;hljs-title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;resolve:error&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;{ hostname, duration, error }&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
   &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
-  recordDnsLookup();
-  recordDnsLatency(duration);
-  recordDnsError();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLookup&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLatency&lt;/span&gt;(duration);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsError&lt;/span&gt;();
 
-  logger.warn({ hostname, &lt;span class=&quot;hljs-attr&quot;&gt;err&lt;/span&gt;: error, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;DNS lookup error&quot;&lt;/span&gt;);
+  logger.&lt;span class=&quot;hljs-title function_&quot;&gt;warn&lt;/span&gt;({ hostname, &lt;span class=&quot;hljs-attr&quot;&gt;err&lt;/span&gt;: error, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;DNS lookup error&amp;quot;&lt;/span&gt;);
 });
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I was surprised by DNS lookups occasionally taking 1.5 seconds. It might be because of retries of &lt;a href=&quot;https://c-ares.haxx.se/&quot;&gt;c-ares&lt;/a&gt;, but I&#39;m not sure yet (&lt;a href=&quot;https://c-ares.haxx.se/ares_init_options.html&quot;&gt;its default timeout seems to be 5 seconds...&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Because &lt;code&gt;pollen&lt;/code&gt; makes fewer DNS lookups, the events don&#39;t happen frequently. I came across an issue of histogram implementation that greatly skewed percentiles of infrequent events, and started using HDR histograms. Check out &lt;a href=&quot;https://shuheikagawa.com/blog/2018/12/29/histogram-for-time-series-metrics-on-node-js/&quot;&gt;Histogram for Time-Series Metrics on Node.js&lt;/a&gt; for more details.&lt;/p&gt;
 &lt;p&gt;Even if you don&#39;t use &lt;code&gt;pollen&lt;/code&gt;, it is a good idea to monitor DNS lookups.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dns = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;dns&quot;&lt;/span&gt;);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dns = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;dns&amp;quot;&lt;/span&gt;);
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; lookupWithMetrics = &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;hostname, options, callback&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;lookupWithMetrics&lt;/span&gt; = (&lt;span class=&quot;hljs-params&quot;&gt;hostname, options, callback&lt;/span&gt;) =&amp;gt; {
   &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cb = callback || options;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; startTime = &lt;span class=&quot;hljs-built_in&quot;&gt;Date&lt;/span&gt;.now();
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; startTime = &lt;span class=&quot;hljs-title class_&quot;&gt;Date&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;now&lt;/span&gt;();
 
-  &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;onLookup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;err, address, family&lt;/span&gt;) &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; duration = &lt;span class=&quot;hljs-built_in&quot;&gt;Date&lt;/span&gt;.now() - startTime;
-    cb(err, address, family);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;onLookup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;err, address, family&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; duration = &lt;span class=&quot;hljs-title class_&quot;&gt;Date&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;now&lt;/span&gt;() - startTime;
+    &lt;span class=&quot;hljs-title function_&quot;&gt;cb&lt;/span&gt;(err, address, family);
 
     &lt;span class=&quot;hljs-comment&quot;&gt;// Hypothetical functions to update metrics...&lt;/span&gt;
-    recordDnsLookup();
-    recordDnsLatency(duration);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLookup&lt;/span&gt;();
+    &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsLatency&lt;/span&gt;(duration);
     &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (err) {
-      recordDnsError();
-      logger.warn({ hostname, err, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&quot;DNS lookup error&quot;&lt;/span&gt;);
+      &lt;span class=&quot;hljs-title function_&quot;&gt;recordDnsError&lt;/span&gt;();
+      logger.&lt;span class=&quot;hljs-title function_&quot;&gt;warn&lt;/span&gt;({ hostname, err, duration }, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;DNS lookup error&amp;quot;&lt;/span&gt;);
     }
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; dns.lookup(hostname, options, onLookup);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; dns.&lt;span class=&quot;hljs-title function_&quot;&gt;lookup&lt;/span&gt;(hostname, options, onLookup);
 };
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.request({
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; req = https.&lt;span class=&quot;hljs-title function_&quot;&gt;request&lt;/span&gt;({
   &lt;span class=&quot;hljs-comment&quot;&gt;// ...&lt;/span&gt;
   &lt;span class=&quot;hljs-attr&quot;&gt;lookup&lt;/span&gt;: lookupWithMetrics
 });
@@ -1085,20 +1085,20 @@ dnsPolling.on(&lt;span class=&quot;hljs-string&quot;&gt;&quot;resolve:error&quot
 &lt;p&gt;We also recommend that you configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://nodejs.org/api/http.html#http_server_keepalivetimeout&quot;&gt;Node.js &lt;code&gt;http&lt;/code&gt;/&lt;code&gt;https&lt;/code&gt; server has 5 seconds keep alive timeout by default&lt;/a&gt;. I wanted to make it longer. With &lt;a href=&quot;https://expressjs.com/&quot;&gt;Express&lt;/a&gt;, we can do it like the following:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; express = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;express&quot;&lt;/span&gt;);
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; express = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;express&amp;quot;&lt;/span&gt;);
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; app = express();
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; app = &lt;span class=&quot;hljs-title function_&quot;&gt;express&lt;/span&gt;();
 &lt;span class=&quot;hljs-comment&quot;&gt;// Set up the app...&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; server = app.listen(&lt;span class=&quot;hljs-number&quot;&gt;8080&lt;/span&gt;);
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; server = app.&lt;span class=&quot;hljs-title function_&quot;&gt;listen&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;8080&lt;/span&gt;);
 
-server.keepAliveTimeout = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
+server.&lt;span class=&quot;hljs-property&quot;&gt;keepAliveTimeout&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And the ELB 502 errors disappeared!&lt;/p&gt;
 &lt;p&gt;In hindsight, there was already &lt;a href=&quot;https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/&quot;&gt;Dealing with Intermittent 502&#39;s between an AWS ALB and Express Web Server&lt;/a&gt; on the internet, which describes exactly the same issue with more details. (I found it while writing this post...) Also, the same issue seems to be happening with different load balancers/proxies and different servers. Especially the 5-second timeout of Node.js is quite short and prone to this issue. I found that it had happened with a reverse proxy (&lt;a href=&quot;https://github.com/zalando-incubator/kube-ingress-aws-controller&quot;&gt;Skipper as k8s ingress&lt;/a&gt;) and another Node.js server at work. I hope this issue becomes more widely known.&lt;/p&gt;
 &lt;h2&gt;Update on April 29, 2019&lt;/h2&gt;
 &lt;p&gt;Oleksii told me in a comment that only &lt;code&gt;server.keepAliveTimeout&lt;/code&gt; was not enough on Node.js 10.15.2. It turned out that we also need to configure &lt;code&gt;server.headersTimeout&lt;/code&gt; longer than &lt;code&gt;server.keepAliveTimeout&lt;/code&gt; on Node.js 10.15.2 and newer. See &lt;a href=&quot;https://github.com/nodejs/node/issues/27363&quot;&gt;his issue on GitHub&lt;/a&gt; for more details. Thanks, Oleksii!&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;server.keepAliveTimeout = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
-server.headersTimeout = &lt;span class=&quot;hljs-number&quot;&gt;65&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;; &lt;span class=&quot;hljs-comment&quot;&gt;// This should be bigger than `keepAliveTimeout + your server&#39;s expected response time`&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs js&quot;&gt;server.&lt;span class=&quot;hljs-property&quot;&gt;keepAliveTimeout&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;61&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
+server.&lt;span class=&quot;hljs-property&quot;&gt;headersTimeout&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;65&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;; &lt;span class=&quot;hljs-comment&quot;&gt;// This should be bigger than `keepAliveTimeout + your server&amp;#x27;s expected response time`&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
@@ -1275,12 +1275,12 @@ So, &lt;em&gt;I don&#39;t need the decay effect at all&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;For Node.js, there are mainly two different tools. One is &lt;a href=&quot;https://github.com/v8/v8/wiki/V8-Profiler&quot;&gt;V8 profiler&lt;/a&gt;, and the other is &lt;a href=&quot;https://perf.wiki.kernel.org/index.php/Main_Page&quot;&gt;Linux perf&lt;/a&gt;. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux &lt;code&gt;perf&lt;/code&gt; can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to &lt;a href=&quot;https://github.com/nodejs/diagnostics/issues/148&quot;&gt;Node CPU Profiling Roadmap&lt;/a&gt;, it seems that V8 profiler is the one officially supported by the V8 team, but Linux &lt;code&gt;perf&lt;/code&gt; will keep working for a while. After all, I picked Linux &lt;code&gt;perf&lt;/code&gt; because of low performance-overhead and small intervention to applications.&lt;/p&gt;
 &lt;p&gt;Linux &lt;code&gt;perf record&lt;/code&gt; records stack traces into a binary file called &lt;code&gt;perf.data&lt;/code&gt; by default. The binary file has only addresses and file names of functions. &lt;code&gt;perf script&lt;/code&gt; converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Install dependencies for `perf` command&lt;/span&gt;
-sudo apt-get install linux-tools-common linux-tools-$(uname -r)
+sudo apt-get install linux-tools-common linux-tools-$(&lt;span class=&quot;hljs-built_in&quot;&gt;uname&lt;/span&gt; -r)
 &lt;span class=&quot;hljs-comment&quot;&gt;# Test `perf` command&lt;/span&gt;
 sudo perf top
 
 &lt;span class=&quot;hljs-comment&quot;&gt;# Record stack traces 99 times per second for 30 seconds&lt;/span&gt;
-sudo perf record -F 99 -p &lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt; -g -- sleep 30s
+sudo perf record -F 99 -p &lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt; -g -- &lt;span class=&quot;hljs-built_in&quot;&gt;sleep&lt;/span&gt; 30s
 &lt;span class=&quot;hljs-comment&quot;&gt;# Generate human readable stack traces&lt;/span&gt;
 sudo perf script &amp;gt; stacks.&lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt;.out
 &lt;/code&gt;&lt;/pre&gt;
@@ -1340,9 +1340,9 @@ $ sudo perf record -F 99 -p 21574 -g -- sleep 30s
 &lt;p&gt;&lt;code&gt;perf script&lt;/code&gt; collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with &lt;code&gt;perf script&lt;/code&gt; and &lt;code&gt;/tmp/${pid}.map&lt;/code&gt; files that applications generate. However, &lt;code&gt;perf script&lt;/code&gt; in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because &lt;a href=&quot;https://lkml.org/lkml/2017/7/19/790&quot;&gt;its &lt;code&gt;perf&lt;/code&gt; command knows containers&lt;/a&gt;. But it was the case for me because I was not using the latest kernel.)&lt;/p&gt;
 &lt;p&gt;I learned how to overcome the issue from &lt;a href=&quot;http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/&quot;&gt;Making FlameGraphs with Containerized Java&lt;/a&gt;. I just copied necessary files from the container to the host.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.&lt;/span&gt;
-sudo docker cp mycontainer:/usr/bin/node /usr/bin/node
-sudo docker cp mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
-sudo docker cp mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22
+sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/usr/bin/node /usr/bin/node
+sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
+sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To copy symbol map files, we need to find the &lt;code&gt;pid&lt;/code&gt; in the container. We can do it by checking &lt;code&gt;/proc/${host_pid}/status&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;$ cat /proc/21574/status | grep NSpid
