@@ -3,9 +3,10 @@ title: "Category index for Octopress"
 tags: [Octopress]
 lang: ja
 ---
+
 サイドバーにカテゴリー一覧を出してみました。
 
-_config.yml
+\_config.yml
 
 ```diff
 diff --git a/_config.yml b/_config.yml
@@ -13,28 +14,32 @@ index 5c7d335..7ad03bb 100644
 --- a/_config.yml
 +++ b/_config.yml
 @@ -45,7 +45,7 @@ titlecase: true       # Converts page and post titles to titlecase
- 
+
  # list each of the sidebar modules you want to include, in the order you want them to appear.
  # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 -default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 +default_asides: [asides/recent_posts.html, custom/asides/categories.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.
- 
+
  # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
  # and add an array with the asides you want to use.
 ```
 
-source/_includes/custom/asides/categories.html
+source/\_includes/custom/asides/categories.html
+
+{% raw %}
 
 ```html
 <section>
   <h1>Categories</h1>
   <ul>
     {% for category in site.categories %}
-      <li>{{ category | category_link }}</li>
+    <li>{{ category | category_link }}</li>
     {% endfor %}
   </ul>
 </section>
 ```
+
+{% endraw %}
 
 2013-10-27 編集: 現在はデフォルトで `category_link` メソッドが追加されているので、以下の修正は不要です。
 
@@ -48,13 +53,13 @@ index bb5fd32..28bf7e0 100644
 @@ -156,6 +156,18 @@ module Jekyll
        end
      end
- 
+
 +    # Outputs a link of a category.
-+    # 
++    #
 +    #  +category+ is an item of site.categories.
 +    #
 +    # Returns string
-+    # 
++    #
 +    def category_link(category)
 +      dir = @context.registers[:site].config['category_dir']
 +      category = category[0]
