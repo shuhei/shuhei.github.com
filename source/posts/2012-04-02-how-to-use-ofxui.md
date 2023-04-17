@@ -4,9 +4,7 @@ tags: [openFrameworks]
 lang: ja
 ---
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/36385123?dnt=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-
-[ofxUI: A User Interface Addon for OF](http://www.syedrezaali.com/blog/?p=2172) を使うと openFrameworks に [ofxControlPanel](https://github.com/ofTheo/ofxControlPanel) よりもちょっとかっこいい UI を追加することができます。[github のページ](https://github.com/rezaali/ofxUI) の Readme を超訳してみました。
+[ofxUI: A User Interface Addon for OF](https://www.syedrezaali.com/ofxui/) を使うと openFrameworks に [ofxControlPanel](https://github.com/ofTheo/ofxControlPanel) よりもちょっとかっこいい UI を追加することができます。[github のページ](https://github.com/rezaali/ofxUI) の Readme を超訳してみました。
 
 1. [ダウンロードページ](https://github.com/rezaali/ofxUI/downloads)から ofxUI をダウンロード。中の `src` を `of/addons` の中に移して、名前を `ofxUI` にします。残りは `of/apps` に移して `ofxUIExamples` などとします。すると以下のようなファイル構成になります。
 
