@@ -4,11 +4,40 @@
   <subtitle>A personal website of Shuhei Kagawa. I write mostly on web technologies and life.</subtitle>
   <link href="https://shuheikagawa.com/blog/feed.xml" rel="self"/>
   <link href="https://shuheikagawa.com"/>
-  <updated>2022-06-03T00:00:00Z</updated>
+  <updated>2023-01-03T00:00:00Z</updated>
   <id>https://shuheikagawa.com</id>
   <author>
     <name>Shuhei Kagawa</name>
   </author>
+
+  <entry>
+    <title>2022 in review</title>
+    <link href="https://shuheikagawa.com/blog/2023/01/03/2022-in-review/"/>
+    <updated>2023-01-03T00:00:00Z</updated>
+    <id>https://shuheikagawa.com/blog/2023/01/03/2022-in-review/</id>
+    <content type="html">&lt;p&gt;TODO: Title image&lt;/p&gt;
+&lt;p&gt;It’s already April. You may think that it’s too late to publish a review of 2022. But you know, fiscal years and school years start in April in my home country. So it’s not unusual for me to publish this now.&lt;/p&gt;
+&lt;h2&gt;Becoming a parent&lt;/h2&gt;
+&lt;p&gt;I became a father in the winter of 2022. Before the birth, I was preoccupied by the birth itself. I wan’t well prepared for taking care of the baby when the baby came to the world.&lt;/p&gt;
+&lt;p&gt;I often focus on one thing at a time and put off the other things. It’s one of my superpowers that helped me arrive where I am. At the same time, I felt that I missed many important things because of this tendency. I hope parenting teaches me how to balance better.&lt;/p&gt;
+&lt;h2&gt;Coffee&lt;/h2&gt;
+&lt;p&gt;After I wrote &lt;a href=&quot;https://shuheikagawa.com/blog/2021/02/10/making-coffee/&quot;&gt;a blog post on making coffee at home&lt;/a&gt;, coffee has turned into a good hobby. I upgraded my equipment: Flair 58, Comandante C40 and NanoFoamer. I practiced latte art every day and started to see some improvements.&lt;/p&gt;
+&lt;p&gt;TODO: Images of before and after&lt;/p&gt;
+&lt;h2&gt;Books&lt;/h2&gt;
+&lt;p&gt;I mostly read technology and non-fiction books in the last several years in the spirit of &lt;em&gt;truth is stranger than fiction&lt;/em&gt;. I did differently in 2022. I read novels. I probably missed human interactions. Novels have filled them in a way.&lt;/p&gt;
+&lt;p&gt;Also I learned statistics at the beginning of the year. A Coursera course. The O’Reilly book: Practical Statistics for Data Scientists.&lt;/p&gt;
+&lt;h2&gt;Side project&lt;/h2&gt;
+&lt;p&gt;I enjoyed building a toy browser following &lt;a href=&quot;https://browser.engineering/&quot;&gt;the Web Browser Engineering book by Pawel and Chris&lt;/a&gt;. You can read &lt;a href=&quot;https://shuheikagawa.com/blog/2022/06/03/toy-browser/&quot;&gt;my previous blog post&lt;/a&gt; for more about it.&lt;/p&gt;
+&lt;h2&gt;Travels&lt;/h2&gt;
+&lt;p&gt;We didn’t make long travels after my wife got pregnant. We made short trips to France and Germany, a few days in Paris and Berlin each. Day trips to Colmar in Alsas and Constants. I made a spontaneous cycling from Zurich to the German border and came back by train.&lt;/p&gt;
+&lt;p&gt;I visited places near Zurich. Zug, Einsiedeln, Winterthur, Rapperswil, Stein am Rhein. Visited Jona a few times for amazing ramen at Ninja Noodles. And enjoyed the view from Uetliberg several times.&lt;/p&gt;
+&lt;h2&gt;Work&lt;/h2&gt;
+&lt;p&gt;The time has finally come. Return to office. I enjoyed working from office after a long time. I even had a work boat party on the Zurich lake. But I caught COVID-19 twice in a row in July and August, and then started working from home again.&lt;/p&gt;
+&lt;p&gt;I have been in the same team for 2 years. Still not very confident about the tech stack, but fake it until make it…&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;My biggest change in 2022 (and the last few years) was becoming a parent. I’m looking forward to what’s to come in upcoming years!&lt;/p&gt;
+</content>
+  </entry>
 
   <entry>
     <title>Building a toy browser</title>
@@ -1258,104 +1287,6 @@ So, &lt;em&gt;I don&#39;t need the decay effect at all&lt;/em&gt;.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;HDR Histogram is more accurate than EDS-based Histogram for tracking response times in a time series. &lt;a href=&quot;https://github.com/HdrHistogram/HdrHistogramJS&quot;&gt;hdr-histogram-js&lt;/a&gt; is accurate and performant. It seems to be the best option on Node.js. We need a way to remove old values from a histogram. &lt;em&gt;Reset on snapshot&lt;/em&gt; is easy and practical, but &lt;em&gt;rolling time window&lt;/em&gt; is more rigorous.&lt;/p&gt;
 &lt;p&gt;After the research on this topic, I got an impression that HDR Histogram is well-known in the Java/JVM community, but probably not so much in other communities. I made a benchmark on Node.js in this post, but it might be useful to review your metrics implementation on other programming languages or platforms as well.&lt;/p&gt;
-</content>
-  </entry>
-
-  <entry>
-    <title>Node.js under a microscope: CPU FlameGraph and FlameScope</title>
-    <link href="https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/"/>
-    <updated>2018-09-16T00:00:00Z</updated>
-    <id>https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/</id>
-    <content type="html">&lt;p&gt;Last week, I had an opportunity to talk about profiling Node.js applications on production at an internal guild meeting at work. Here is a written version of it plus some additional information.&lt;/p&gt;
-&lt;h2&gt;Background&lt;/h2&gt;
-&lt;p&gt;I have been working on Node.js microservices, which fetch data from API servers and render HTML with React, at work. We monitor response times at load balancers, in application metrics and with distributed tracing with OpenTracing. One of the microservices had a weird gap between 99 percentile response times of itself and its dependencies. It was spending an extra 500 milliseconds—but I didn&#39;t know why.&lt;/p&gt;
-&lt;p&gt;My first suspect was the network. It is the place full of uncertainty. After learning and trying different commands and metrics, I took &lt;code&gt;tcpdump&lt;/code&gt; and checked packets one by one with my eyes and a script. There were no significant delays that I had expected. So I had to stop blaming the network—or &lt;em&gt;someone else&lt;/em&gt;.&lt;/p&gt;
-&lt;h2&gt;CPU profiling with the Linux &lt;code&gt;perf&lt;/code&gt; command&lt;/h2&gt;
-&lt;p&gt;Because the weird latency was happening in the application itself, I wanted to know what&#39;s going on in it. There are mainly two ways to achieve this: profiling and tracing. Profiling records some samples and tracing records everything. I wanted to do it &lt;em&gt;on production&lt;/em&gt;, so profiling was naturally a good fit because of its smaller overhead.&lt;/p&gt;
-&lt;p&gt;For Node.js, there are mainly two different tools. One is &lt;a href=&quot;https://github.com/v8/v8/wiki/V8-Profiler&quot;&gt;V8 profiler&lt;/a&gt;, and the other is &lt;a href=&quot;https://perf.wiki.kernel.org/index.php/Main_Page&quot;&gt;Linux perf&lt;/a&gt;. V8 profiler uses the profiler provided by V8. It covers all JavaScript executions and V8 native functions. It works on non-Linux operating systems. If you use non-Linux machines, it might be pretty handy. On the other hand, Linux &lt;code&gt;perf&lt;/code&gt; can profile almost anything including Linux kernel, libuv, and all processes on your OS with minimal overhead. However, as the name suggests, it works only on Linux. According to &lt;a href=&quot;https://github.com/nodejs/diagnostics/issues/148&quot;&gt;Node CPU Profiling Roadmap&lt;/a&gt;, it seems that V8 profiler is the one officially supported by the V8 team, but Linux &lt;code&gt;perf&lt;/code&gt; will keep working for a while. After all, I picked Linux &lt;code&gt;perf&lt;/code&gt; because of low performance-overhead and small intervention to applications.&lt;/p&gt;
-&lt;p&gt;Linux &lt;code&gt;perf record&lt;/code&gt; records stack traces into a binary file called &lt;code&gt;perf.data&lt;/code&gt; by default. The binary file has only addresses and file names of functions. &lt;code&gt;perf script&lt;/code&gt; converts the stack traces into a human-readable text file adding function names from program binaries and symbol map files.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Install dependencies for `perf` command&lt;/span&gt;
-sudo apt-get install linux-tools-common linux-tools-$(&lt;span class=&quot;hljs-built_in&quot;&gt;uname&lt;/span&gt; -r)
-&lt;span class=&quot;hljs-comment&quot;&gt;# Test `perf` command&lt;/span&gt;
-sudo perf top
-
-&lt;span class=&quot;hljs-comment&quot;&gt;# Record stack traces 99 times per second for 30 seconds&lt;/span&gt;
-sudo perf record -F 99 -p &lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt; -g -- &lt;span class=&quot;hljs-built_in&quot;&gt;sleep&lt;/span&gt; 30s
-&lt;span class=&quot;hljs-comment&quot;&gt;# Generate human readable stack traces&lt;/span&gt;
-sudo perf script &amp;gt; stacks.&lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt;.out
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we have human-readable stack traces, but it&#39;s still hard to browse thousands of stack traces and get insights from them. How can we efficiently analyze them?&lt;/p&gt;
-&lt;h2&gt;CPU Flame Graph&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html&quot;&gt;CPU Flame Graph by Brendan Gregg&lt;/a&gt; is a great way of visualizing stack traces. It aggregates stack traces into one chart. Frequently executed functions are shown wider and rarely executed functions are narrower in the chart.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/flamegraph.png&quot; alt=&quot;CPU Flame Graph&quot; /&gt;&lt;/span&gt;
-&lt;em&gt;A CPU Flame Graph from &lt;a href=&quot;https://github.com/shuhei/perf-playground&quot;&gt;a sample application&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I found some insights about the application on production with CPU Flame Graph:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;React server-side rendering is considered to be a very CPU-intensive task that blocks Node.js event loop. However, &lt;code&gt;JSON.parse()&lt;/code&gt; was using 3x more CPU than React—it might be because we had already optimized React server-side rendering though.&lt;/li&gt;
-&lt;li&gt;Gzip decompression was using the almost same amount of CPU as React server-side rendering.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are a few tools like &lt;a href=&quot;https://github.com/brendangregg/FlameGraph&quot;&gt;FlameGraph&lt;/a&gt; and &lt;a href=&quot;https://github.com/davidmarkclements/0x&quot;&gt;0x&lt;/a&gt; to generate CPU Flame Graph from Linux &lt;code&gt;perf&lt;/code&gt; stack traces. However, I eventually didn&#39;t need them because FlameScope, which I&#39;ll explain next, can generate CPU Flame Graph too.&lt;/p&gt;
-&lt;h2&gt;FlameScope&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/Netflix/flamescope&quot;&gt;FlameScope by Netflix&lt;/a&gt; is another great tool for visualizing stack traces in a time-series. It shows a heatmap out of stack traces. Each cell represents a short amount of time, 20 ms if 50 cells per second, and its color represents how many times the process was on-CPU. It visualizes patterns of your application&#39;s activity.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&quot;img-wrapper&quot;&gt;&lt;img src=&quot;https://shuheikagawa.com/images/flamescope-annotated.png&quot; alt=&quot;FlameScope&quot; /&gt;&lt;/span&gt;
-&lt;em&gt;Image from &lt;a href=&quot;https://github.com/Netflix/flamescope&quot;&gt;Netflix/flamescope&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If you select a time range on the heatmap, FlameScope shows you a CPU Flame Graph of the range. It allows you to examine what happened when in details.&lt;/p&gt;
-&lt;p&gt;To use FlameScope, check out the repository and run the python server. Then put stack trace files from &lt;code&gt;perf script&lt;/code&gt; into &lt;code&gt;examples&lt;/code&gt; directory, and open &lt;code&gt;http://localhost:5000&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I found a couple of exciting insights about the application on production using this tool.&lt;/p&gt;
-&lt;h3&gt;Example 1: Heavy tasks in the master process&lt;/h3&gt;
-&lt;p&gt;The application used &lt;a href=&quot;https://nodejs.org/api/cluster.html&quot;&gt;the &lt;code&gt;cluster&lt;/code&gt; module&lt;/a&gt; to utilize multiple CPU cores. FlameScope showed that the master process was not busy for most of the time, but it occasionally kept using CPU for 1.5 seconds continuously! FlameScope showed that it was caused by metrics aggregation.&lt;/p&gt;
-&lt;p&gt;The master process was aggregating application metrics from worker processes, and it was responding to metrics collectors a few times in a minute. When the metrics collectors asked for data, the master process calculated percentiles of response times and prepared a JSON response. The percentile calculation was taking long time because the application had a lot of metrics buckets and the library that we used was using &lt;code&gt;JSON.stringify()&lt;/code&gt; and &lt;code&gt;JSON.parse()&lt;/code&gt; to deep-copy objects!&lt;/p&gt;
-&lt;h3&gt;Example 2: Frequent garbage collections&lt;/h3&gt;
-&lt;p&gt;FlameScope showed that the worker processes were not overloaded for most of the time, but they had a few hundred milliseconds of CPU-busy time in about 10 seconds. It was caused by mark-sweep and mark-compact garbage collections.&lt;/p&gt;
-&lt;p&gt;The application had an in-memory fallback cache for API calls that was used only when API calls and retries fail. Even when API had problems, the cache hit rate was very low because of the number of permutations. In other words, it was not used almost at all. It cached large API responses for a while and threw them away after the cache expired. It looked innocent at first glance—but it was a problem for V8&#39;s &lt;a href=&quot;http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection&quot;&gt;generational garbage collector&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The API responses were always promoted to the old generation space causing frequent slow GCs. GC of the old generation is much slower than GC of the young generation. After removing the fallback cache, the application&#39;s 99 percentile response time improved by hundreds of milliseconds!&lt;/p&gt;
-&lt;h2&gt;Node.js gotchas&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;perf script&lt;/code&gt; collects symbols for function addresses from program binaries. For Node.js, we need something special because functions are compiled just in time. As far as I know, there are two ways to record symbols:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Run your Node.js process with &lt;code&gt;--perf-basic-prof-only-functions&lt;/code&gt; option. It generates a log file at &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt;. The file keeps growing. The speed depends on your application, but it was a few megabytes per day for an application at work. Another problem is that functions in V8 keep moving and the addresses in &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt; get outdated. &lt;a href=&quot;https://gist.github.com/shuhei/6c261342063bad387c70af384c6d8d5c&quot;&gt;I wrote a script to fix the issue&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Use &lt;a href=&quot;https://github.com/mmarchini/node-linux-perf&quot;&gt;mmarchini/node-linux-perf&lt;/a&gt;. It generates the same &lt;code&gt;/tmp/perf-${pid}.map&lt;/code&gt; as &lt;code&gt;--perf-basic-prof-only-functions&lt;/code&gt; does, but on demand. Because it always freshly generates the file, it doesn&#39;t contain outdated symbols. It seems to be the way to go, but I haven&#39;t tried this on production yet.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In addition to the above, there are a few more Node.js options that you can use to improve your stack traces—though I haven&#39;t tried them on production because the stack traces were already good enough for me:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--no-turbo-inlining&lt;/code&gt; turns off function inlining, which is an optimization done by V8. Because function inlining fuses multiple functions into one, it can make it harder to understand stack traces. Turning it off generates more named frames.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--interpreted-frames-native-stack&lt;/code&gt; fixes &lt;code&gt;Builtin:InterpereterEntryTrampoline&lt;/code&gt; in stack traces. It is available from Node.js 10.4.0. Check out &amp;quot;Interpreted Frames&amp;quot; in &lt;a href=&quot;https://github.com/nodejs/diagnostics/issues/148#issuecomment-369348961&quot;&gt;Updates from the Diagnostics Summit&lt;/a&gt; for more details.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Docker gotchas&lt;/h2&gt;
-&lt;p&gt;It gets a bit tricky when you are using containers to run your application. There are two ways to use Linux &lt;code&gt;perf&lt;/code&gt; with Docker:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Run &lt;code&gt;perf record&lt;/code&gt; and &lt;code&gt;perf script&lt;/code&gt; in the same Docker container as your application is running&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;perf record&lt;/code&gt; and &lt;code&gt;perf script&lt;/code&gt; in the host OS&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I eventually chose the option 2. I tried the option 1 first but gave up because I was using Alpine Linux as the base image and it was hard to make Linux &lt;code&gt;perf&lt;/code&gt; available on it.&lt;/p&gt;
-&lt;p&gt;To run &lt;code&gt;perf record&lt;/code&gt; in the host OS, we need to figure out &lt;code&gt;pid&lt;/code&gt; of the application process in the host.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;$ ps ax | grep -n &#39;node --perf&#39;
-21574 pts/0    Sl+    2:53 node --perf-basic-prof-only-functions src/index.js
-30481 pts/3    S+     0:00 grep --color=auto node --perf
-# or
-$ pgrep -f &#39;node --perf&#39;
-21574
-
-$ sudo perf record -F 99 -p 21574 -g -- sleep 30s
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;perf script&lt;/code&gt; collects symbols from binaries and symbol files to get human-readable function names. It needs to be able to read the binaries whose functions were recorded with &lt;code&gt;perf script&lt;/code&gt; and &lt;code&gt;/tmp/${pid}.map&lt;/code&gt; files that applications generate. However, &lt;code&gt;perf script&lt;/code&gt; in the host OS cannot read them with the same file names as the container can. (It seems that this is not the case anymore with the latest Linux kernel because &lt;a href=&quot;https://lkml.org/lkml/2017/7/19/790&quot;&gt;its &lt;code&gt;perf&lt;/code&gt; command knows containers&lt;/a&gt;. But it was the case for me because I was not using the latest kernel.)&lt;/p&gt;
-&lt;p&gt;I learned how to overcome the issue from &lt;a href=&quot;http://blog.alicegoldfuss.com/making-flamegraphs-with-containerized-java/&quot;&gt;Making FlameGraphs with Containerized Java&lt;/a&gt;. I just copied necessary files from the container to the host.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Horrible hack! Binaries to be used depend on your set up. `perf script` tells you what it wants if anything is missing.&lt;/span&gt;
-sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/usr/bin/node /usr/bin/node
-sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
-sudo docker &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; mycontainer:/usr/lib/libstdc++.so.6.0.22 /usr/lib/libstdc++.so.6.0.22
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To copy symbol map files, we need to find the &lt;code&gt;pid&lt;/code&gt; in the container. We can do it by checking &lt;code&gt;/proc/${host_pid}/status&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs &quot;&gt;$ cat /proc/21574/status | grep NSpid
-NSpid:  21574   6
-$ sudo docker cp mycontainer:/tmp/perf-6.map /tmp/perf-21574.map
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now everything is ready! Then we can use &lt;code&gt;perf script&lt;/code&gt; as usual.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;sudo perf script &amp;gt; stacks.&lt;span class=&quot;hljs-variable&quot;&gt;${pid}&lt;/span&gt;.out
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I set up &lt;a href=&quot;https://github.com/shuhei/perf-playground&quot;&gt;a sample project&lt;/a&gt; for profiling a Node.js application on Docker. It was nice to practice profiling a bit before doing it on production!&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Linux &lt;code&gt;perf&lt;/code&gt; provides great observability to Node.js applications on production. Tools like CPU Flame Graph and FlameScope helped me to identify performance bottlenecks.&lt;/p&gt;
-&lt;p&gt;There are some gotchas to profile Node.js applications on Docker with Linux &lt;code&gt;perf&lt;/code&gt;. It took some time for me to figure out how to do it because Node.js and Linux evolve day by day and I couldn&#39;t find many up-to-date resources online. I hope this post is helpful!&lt;/p&gt;
 </content>
   </entry>
 </feed>
